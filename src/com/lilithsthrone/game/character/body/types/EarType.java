@@ -22,8 +22,6 @@ public enum EarType implements BodyPartTypeInterface {
 
 	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, Race.DEMON),
 
-	IMP(BodyCoveringType.IMP, Race.IMP),
-	
 	DOG_MORPH(BodyCoveringType.CANINE_FUR, Race.DOG_MORPH),
 	DOG_MORPH_POINTED(BodyCoveringType.CANINE_FUR, Race.DOG_MORPH),
 	DOG_MORPH_FOLDED(BodyCoveringType.CANINE_FUR, Race.DOG_MORPH),
@@ -47,8 +45,6 @@ public enum EarType implements BodyPartTypeInterface {
 	RABBIT_MORPH(BodyCoveringType.RABBIT_FUR, Race.RABBIT_MORPH),
 	RABBIT_MORPH_FLOPPY(BodyCoveringType.RABBIT_FUR, Race.RABBIT_MORPH),
 	
-	BAT_MORPH(BodyCoveringType.BAT_FUR, Race.BAT_MORPH),
-
 	ALLIGATOR_MORPH(BodyCoveringType.ALLIGATOR_SCALES, Race.ALLIGATOR_MORPH),
 
 	HORSE_MORPH(BodyCoveringType.HORSE_HAIR, Race.HORSE_MORPH),
@@ -98,8 +94,6 @@ public enum EarType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("furry", "fur-coated", "cow-like");
 			case DEMON_COMMON:
 				return UtilText.returnStringAtRandom("pointed", "demonic");
-			case IMP:
-				return UtilText.returnStringAtRandom("pointed", "impish");
 			case DOG_MORPH:
 				return UtilText.returnStringAtRandom("floppy", "furry", "fur-coated", "dog-like");
 			case DOG_MORPH_POINTED:
@@ -124,8 +118,6 @@ public enum EarType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("pointed", "furry", "fur-coated", "fox-like");
 			case FOX_MORPH_BIG:
 				return UtilText.returnStringAtRandom("large", "fennec-like");
-			case BAT_MORPH:
-				return UtilText.returnStringAtRandom("large", "bat-like");
 			case RAT_MORPH:
 				return UtilText.returnStringAtRandom("rat-like");
 			case RABBIT_MORPH:
@@ -146,8 +138,6 @@ public enum EarType implements BodyPartTypeInterface {
 				return "tufted feline";
 			case DEMON_COMMON:
 				return "demonic";
-			case IMP:
-				return "impish";
 			case DOG_MORPH:
 				return "canine";
 			case DOG_MORPH_POINTED:
@@ -174,8 +164,6 @@ public enum EarType implements BodyPartTypeInterface {
 				return "vulpine";
 			case FOX_MORPH_BIG:
 				return "massive vulpine";
-			case BAT_MORPH:
-				return "bat";
 			case RAT_MORPH:
 				return "rat";
 			case RABBIT_MORPH:

@@ -117,21 +117,6 @@ public class Ear implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case IMP:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" They quickly shift into delicate, human-like ears, but with long, pointed tips, all covered in [pc.earFullDescriptionColour]."
-								+ "<br/>"
-								+ "You now have [style.boldImp(pointed, impish ears)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" They quickly shift into delicate, human-like ears, but with long, pointed tips, all covered in [npc.earFullDescriptionColour]."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldImp(pointed, impish ears)]."
-							+ "</p>");
-				}
-				break;
 			case DOG_MORPH: case DOG_MORPH_POINTED: case DOG_MORPH_FOLDED:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -316,23 +301,6 @@ public class Ear implements BodyPartInterface, Serializable {
 								+ " A layer of [npc.earFullDescriptionColour] grows to cover them, and as the transformation finishes, [npc.she] experimentally twitches [npc.her] new rat-like ears back and forth."
 								+ "<br/>"
 								+ "[npc.Name] now has [style.boldRatMorph(anthropomorphic, rat-like ears)]."
-							+ "</p>");
-				}
-				break;
-			case BAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" They quickly grow into large, upright points, and shift to sit higher up on your head than a normal pair of human ears would."
-								+ " A layer of [pc.earFullDescriptionColour] grows to cover them, and as the transformation finishes, you discover that you can easily twitch your new bat-like ears back and forth."
-								+ "<br/>"
-								+ "You now have [style.boldBatMorph(anthropomorphic, bat-like ears)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" They quickly grow into large, upright points, and shift to sit higher up on [npc.her] head than a normal pair of human ears would."
-								+ " A layer of [npc.earFullDescriptionColour] grows to cover them, and as the transformation finishes, [npc.she] experimentally twitches [npc.her] new bat-like ears back and forth."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldBatMorph(anthropomorphic, bat-like ears)]."
 							+ "</p>");
 				}
 				break;

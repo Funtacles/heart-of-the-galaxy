@@ -287,23 +287,6 @@ public class Penis implements BodyPartInterface, Serializable {
 							+ "[npc.She] has [style.boldDemon([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" demonic balls)], covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldDemon(demon cum)].");
 				}
 				break;
-			case IMP:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							"You squirm and [pc.moan] as the skin covering your cock transforms into a smooth, highly sensitive impish counterpart."
-							+ " Slimy pre-cum starts drooling from the tip, and you let out [pc.a_moan+] as thick ridges suddenly press out all along its length."
-							+ " As if that wasn't enough, rows of little bumps start to press out and form into little tentacles, which then start wriggling with a mind of their own.<br/>"
-							+ "You now have an [style.boldImp(impish penis)], covered in [pc.penisFullDescription(true)].<br/>"
-							+ "You have [style.boldImp([pc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" impish balls)], covered in [pc.ballsFullDescription(true)], which produce [pc.cumColour(true)] [style.boldImp(imp cum)].");
-				} else {
-					UtilText.transformationContentSB.append(
-							"[npc.She] squirms and [npc.moansVerb] as the skin covering [npc.her] cock transforms into a smooth, highly sensitive impish counterpart."
-							+ " Slimy pre-cum starts drooling from the tip, and [npc.she] lets out [npc.a_moan+] as thick ridges suddenly press out all along its length."
-							+ " As if that wasn't enough, rows of little bumps start to press out and form into little tentacles, which then start wriggling with a mind of their own.<br/>"
-							+ "[npc.She] now has a [style.boldImp(impish penis)], covered in [npc.penisFullDescription(true)].<br/>"
-							+ "[npc.She] has [style.boldImp([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" impish balls)], covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldImp(imp cum)].");
-				}
-				break;
 			case CANINE:
 				owner.setSkinCovering(new Covering(BodyCoveringType.PENIS, Colour.SKIN_RED), false);
 				if (owner.isPlayer()) {
@@ -481,19 +464,6 @@ public class Penis implements BodyPartInterface, Serializable {
 							"[npc.She] now has a [style.boldRabbitMorph(rabbit-morph's penis)], covered in [npc.penisFullDescription(true)].<br/>"
 							+ "[npc.She] has [style.boldRabbitMorph([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" rabbit-morph's balls)], covered in [npc.ballsFullDescription(true)],"
 									+ " which produce [npc.cumColour(true)] [style.boldRabbitMorph(rabbit-morph cum)].");
-				}
-				break;
-			case BAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							"You now have a [style.boldBatMorph(bat-morph's penis)], covered in [pc.penisFullDescription(true)].<br/>"
-							+ "You have [style.boldBatMorph([pc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" bat-morph's balls)],"
-									+ " covered in [pc.ballsFullDescription(true)], which produce [pc.cumColour(true)] [style.boldBatMorph(bat-morph cum)].");
-				} else {
-					UtilText.transformationContentSB.append(
-							"[npc.She] now has a [style.boldBatMorph(bat-morph's penis)], covered in [npc.penisFullDescription(true)].<br/>"
-							+ "[npc.She] has [style.boldBatMorph([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" bat-morph's balls)], covered in [npc.ballsFullDescription(true)],"
-									+ " which produce [npc.cumColour(true)] [style.boldBatMorph(bat-morph cum)].");
 				}
 				break;
 		}

@@ -27,8 +27,6 @@ public enum BreastType implements BodyPartTypeInterface {
 
 	DEMON_COMMON(NippleType.DEMON_COMMON, FluidType.MILK_DEMON_COMMON, BodyCoveringType.DEMON_COMMON, Race.DEMON),
 	
-	IMP(NippleType.IMP, FluidType.MILK_IMP, BodyCoveringType.IMP, Race.IMP),
-
 	DOG_MORPH(NippleType.DOG_MORPH, FluidType.MILK_DOG_MORPH, BodyCoveringType.CANINE_FUR, Race.DOG_MORPH),
 	
 	WOLF_MORPH(NippleType.WOLF_MORPH, FluidType.MILK_WOLF_MORPH, BodyCoveringType.LYCAN_FUR, Race.WOLF_MORPH),
@@ -44,8 +42,6 @@ public enum BreastType implements BodyPartTypeInterface {
 	RAT_MORPH(NippleType.RAT_MORPH, FluidType.MILK_RAT_MORPH, BodyCoveringType.RAT_FUR, Race.RAT_MORPH),
 	
 	RABBIT_MORPH(NippleType.RABBIT_MORPH, FluidType.MILK_RABBIT_MORPH, BodyCoveringType.RABBIT_FUR, Race.RABBIT_MORPH),
-	
-	BAT_MORPH(NippleType.BAT_MORPH, FluidType.MILK_BAT_MORPH, BodyCoveringType.BAT_FUR, Race.BAT_MORPH),
 	
 	ALLIGATOR_MORPH(NippleType.ALLIGATOR_MORPH, FluidType.MILK_ALLIGATOR_MORPH, BodyCoveringType.ALLIGATOR_SCALES, Race.ALLIGATOR_MORPH),
 	
@@ -146,8 +142,6 @@ public enum BreastType implements BodyPartTypeInterface {
 				return "feline";
 			case DEMON_COMMON:
 				return "demonic";
-			case IMP:
-				return "impish";
 			case DOG_MORPH:
 				return "canine";
 			case COW_MORPH:
@@ -168,8 +162,6 @@ public enum BreastType implements BodyPartTypeInterface {
 				return "lupine";
 			case FOX_MORPH:
 				return "vulpine";
-			case BAT_MORPH:
-				return "bat";
 			case RAT_MORPH:
 				return "rat";
 			case RABBIT_MORPH:

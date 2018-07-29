@@ -1468,8 +1468,6 @@ public class HarpyNestOffspringDialogue {
 		public String getContent() {
 			UtilText.nodeContentSB.setLength(0);
 			
-			// TODO use offspring().flagBackgroundProgress
-			
 			UtilText.nodeContentSB.append(
 					"<p>"
 						+ "Deciding that you'd like to get to know [npc.name] a little better, you ask [npc.herHim] about how [npc.sheIs] doing,"

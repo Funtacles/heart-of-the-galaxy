@@ -137,19 +137,6 @@ public class Ass implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case IMP:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							"You now have an [style.boldImp(impish ass)], covered in [pc.assFullDescription].<br/>"
-							+ "You have also been left with [style.boldImp(an impish)] [pc.assholeFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-							"[npc.She] now has an [style.boldImp(impish ass)], covered in [npc.assFullDescription].<br/>"
-							+ "[npc.She] has also been left with [style.boldImp(an impish)] [npc.assholeFullDescription]."
-							+ "</p>");
-				}
-				break;
 			case DOG_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -277,19 +264,6 @@ public class Ass implements BodyPartInterface, Serializable {
 					UtilText.transformationContentSB.append(
 							"[npc.She] now has a [style.boldRabbitMorph(rabbit-morph ass)], covered in [npc.assFullDescription].<br/>"
 							+ "[npc.She] has also been left with [style.boldRabbitMorph(a rabbit-morph)] [npc.assholeFullDescription]."
-							+ "</p>");
-				}
-				break;
-			case BAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							"You now have a [style.boldBatMorph(bat-morph ass)], covered in [pc.assFullDescription].<br/>"
-							+ "You have also been left with [style.boldBatMorph(a bat-morph)] [pc.assholeFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-							"[npc.She] now has a [style.boldBatMorph(bat-morph ass)], covered in [npc.assFullDescription].<br/>"
-							+ "[npc.She] has also been left with [style.boldBatMorph(a bat-morph)] [npc.assholeFullDescription]."
 							+ "</p>");
 				}
 				break;

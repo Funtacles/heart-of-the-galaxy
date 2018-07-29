@@ -8,7 +8,6 @@ import com.lilithsthrone.game.character.PlayerCharacter;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.attributes.CorruptionLevel;
 import com.lilithsthrone.game.character.body.CoverableArea;
-import com.lilithsthrone.game.character.body.valueEnums.BodyMaterial;
 import com.lilithsthrone.game.character.body.valueEnums.Capacity;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
@@ -2603,35 +2602,30 @@ public class Lab {
 						+ "</p>");
 			}
 
-			if(Main.game.getPlayer().getBodyMaterial()==BodyMaterial.SLIME) {
-				UtilText.nodeContentSB.append(UtilText.parseFromXMLFile("places/dominion/lilayasHome/lab", "DETECT_PREGNANCY_TYPE_SLIME"));
-				
-			} else {
-				UtilText.nodeContentSB.append(
-						"<p>"
-							+ "[lilaya.speech(Don't worry, I'm here for you,)]"
-							+ " she says, pulling you into a loving hug for a moment before stepping back,"
-							+ " [lilaya.speech(but first, I need to know what sort of race you're going to be giving birth to.)]"
-						+ "</p>"
-							
-						+ "<p>"
-							+ (!Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.VAGINA)
-								? "As she speaks, Lilaya starts stripping off your clothes, and as she gets access to your vagina, she lets out a little humming noise, "
-								: "Your vagina is already exposed, and, after looking down at it for a moment, Lilaya lets out a little humming noise, "));
-				
-				switch(Main.game.getPlayer().getVaginaType()) {
-					case HARPY:
-						UtilText.nodeContentSB.append("[lilaya.speech(Ooh, alright, you're going to be laying some eggs, how exciting!"
-								+ " I'm sure you're already feeling it, but some incredibly strong maternal instincts are going to be kicking in pretty soon, and you're only going to feel comfortable doing this in a very personal area."
-								+ " I think using your room would be the best bet, follow me!)]"
-								+ "</p>");
-						break;
-					default:
-						UtilText.nodeContentSB.append("[lilaya.speech(Alright, so you're going to be giving birth to live young."
-								+ " I've got a room set up for just that purpose, follow me!)]"
-								+ "</p>");
-						break;
-				}
+			UtilText.nodeContentSB.append(
+					"<p>"
+						+ "[lilaya.speech(Don't worry, I'm here for you,)]"
+						+ " she says, pulling you into a loving hug for a moment before stepping back,"
+						+ " [lilaya.speech(but first, I need to know what sort of race you're going to be giving birth to.)]"
+					+ "</p>"
+						
+					+ "<p>"
+						+ (!Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.VAGINA)
+							? "As she speaks, Lilaya starts stripping off your clothes, and as she gets access to your vagina, she lets out a little humming noise, "
+							: "Your vagina is already exposed, and, after looking down at it for a moment, Lilaya lets out a little humming noise, "));
+			
+			switch(Main.game.getPlayer().getVaginaType()) {
+				case HARPY:
+					UtilText.nodeContentSB.append("[lilaya.speech(Ooh, alright, you're going to be laying some eggs, how exciting!"
+							+ " I'm sure you're already feeling it, but some incredibly strong maternal instincts are going to be kicking in pretty soon, and you're only going to feel comfortable doing this in a very personal area."
+							+ " I think using your room would be the best bet, follow me!)]"
+							+ "</p>");
+					break;
+				default:
+					UtilText.nodeContentSB.append("[lilaya.speech(Alright, so you're going to be giving birth to live young."
+							+ " I've got a room set up for just that purpose, follow me!)]"
+							+ "</p>");
+					break;
 			}
 			
 			return UtilText.nodeContentSB.toString();
@@ -2676,10 +2670,6 @@ public class Lab {
 
 		@Override
 		public String getContent() {
-			if(Main.game.getPlayer().getBodyMaterial()==BodyMaterial.SLIME) {
-				return UtilText.parseFromXMLFile("places/dominion/lilayasHome/lab", "ASSIST_BIRTHING_SLIME");
-			}
-			
 			if (!Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_FIRST_TIME_PREGNANCY)) {
 				return UtilText.parseFromXMLFile("places/dominion/lilayasHome/lab", "ASSIST_BIRTHING_FIRST_TIME");
 				
@@ -2697,13 +2687,6 @@ public class Lab {
 						Main.game.getDialogueFlags().values.remove(DialogueFlagValue.reactedToPregnancyLilaya);
 						Main.game.getPlayer().endPregnancy(true);
 						Main.game.getPlayer().setMana(0);
-						
-						if(Main.game.getPlayer().getBodyMaterial()!=BodyMaterial.SLIME) {
-							Main.game.getPlayer().incrementVaginaStretchedCapacity(15);
-							Main.game.getPlayer().incrementVaginaCapacity(
-									(Main.game.getPlayer().getVaginaStretchedCapacity()-Main.game.getPlayer().getVaginaRawCapacityValue())*Main.game.getPlayer().getVaginaPlasticity().getCapacityIncreaseModifier(),
-									false);
-						}
 					}
 				};
 
@@ -2714,13 +2697,6 @@ public class Lab {
 						Main.game.getDialogueFlags().values.remove(DialogueFlagValue.reactedToPregnancyLilaya);
 						Main.game.getPlayer().endPregnancy(true);
 						Main.game.getPlayer().setMana(0);
-
-						if(Main.game.getPlayer().getBodyMaterial()!=BodyMaterial.SLIME) {
-							Main.game.getPlayer().incrementVaginaStretchedCapacity(15);
-							Main.game.getPlayer().incrementVaginaCapacity(
-									(Main.game.getPlayer().getVaginaStretchedCapacity()-Main.game.getPlayer().getVaginaRawCapacityValue())*Main.game.getPlayer().getVaginaPlasticity().getCapacityIncreaseModifier(),
-									false);
-						}
 					}
 				};
 
@@ -2746,22 +2722,12 @@ public class Lab {
 					+ " she says, and you see sparks of purple energy start to run down her arms."
 					+ "</p>");
 
-			if(Main.game.getPlayer().getBodyMaterial()==BodyMaterial.SLIME) {
-				UtilText.nodeContentSB.append("<p>"
+			UtilText.nodeContentSB.append("<p>"
 						+ "You strain your neck to look down, and see Lilaya bring her hands up to hover over your pregnant belly."
 						+ " A huge wave of exhaustion crashes over you, and you remember what she said about how she was going to draw out your aura for this."
-						+ " You struggle to keep your eyes open, but as you feel an intense pushing sensation deep with your slimy body, you're almost glad that you can't see what's happening."
+						+ " You struggle to keep your eyes open, but as you feel an intense pushing sensation deep within your vagina, you're almost glad that you can't see what's happening."
 						+ " You start to slip in and out of consciousness, and you find yourself having a strange dream."
 					+ "</p>");
-				
-			} else {
-				UtilText.nodeContentSB.append("<p>"
-							+ "You strain your neck to look down, and see Lilaya bring her hands up to hover over your pregnant belly."
-							+ " A huge wave of exhaustion crashes over you, and you remember what she said about how she was going to draw out your aura for this."
-							+ " You struggle to keep your eyes open, but as you feel an intense pushing sensation deep within your vagina, you're almost glad that you can't see what's happening."
-							+ " You start to slip in and out of consciousness, and you find yourself having a strange dream."
-						+ "</p>");
-			}
 			
 			UtilText.nodeContentSB.append("<p>"
 					+ "<i>"
@@ -2841,19 +2807,12 @@ public class Lab {
 						+ "[Lilaya.speech(You know, I thought you might ask for that! I prepared this for you earlier!)]"
 					+ "</p>");
 
-			if(Main.game.getPlayer().getBodyMaterial()==BodyMaterial.SLIME) {
-				UtilText.nodeContentSB.append("<p>"
-							+ " She hands you a glass of what looks like ordinary sparkling water, but as you bring it to your lips and quickly down the liquid, you notice that it has a strong taste of peppermint."
-							+ " Almost instantly, you feel your eyelids grow heavy, and as you lie back on the bed, you vaguely see Lilaya bringing her hands up to hover over your pregnant belly."
-							+ " Sparks of purple energy start to run down her arms, and as you start to feel an intense pushing sensation deep within your slimy body, you're glad that you're not going to be awake for this."
-						+ "</p>");
-			} else {
-				UtilText.nodeContentSB.append("<p>"
-						+ " She hands you a glass of what looks like ordinary sparkling water, but as you bring it to your lips and quickly down the liquid, you notice that it has a strong taste of peppermint."
-						+ " Almost instantly, you feel your eyelids grow heavy, and as you lie back on the bed, you vaguely see Lilaya bringing her hands up to hover over your pregnant belly."
-						+ " Sparks of purple energy start to run down her arms, and as you start to feel an intense pushing sensation deep within your vagina, you're glad that you're not going to be awake for this."
-					+ "</p>");
-			}
+
+			UtilText.nodeContentSB.append("<p>"
+					+ " She hands you a glass of what looks like ordinary sparkling water, but as you bring it to your lips and quickly down the liquid, you notice that it has a strong taste of peppermint."
+					+ " Almost instantly, you feel your eyelids grow heavy, and as you lie back on the bed, you vaguely see Lilaya bringing her hands up to hover over your pregnant belly."
+					+ " Sparks of purple energy start to run down her arms, and as you start to feel an intense pushing sensation deep within your vagina, you're glad that you're not going to be awake for this."
+				+ "</p>");
 			
 			return UtilText.nodeContentSB.toString();
 		}
@@ -2951,13 +2910,6 @@ public class Lab {
 						Main.game.getDialogueFlags().values.remove(DialogueFlagValue.reactedToPregnancyLilaya);
 						Main.game.getPlayer().endPregnancy(true);
 						Main.game.getPlayer().setMana(0);
-
-						if(Main.game.getPlayer().getBodyMaterial()!=BodyMaterial.SLIME) {
-							Main.game.getPlayer().incrementVaginaStretchedCapacity(15);
-							Main.game.getPlayer().incrementVaginaCapacity(
-									(Main.game.getPlayer().getVaginaStretchedCapacity()-Main.game.getPlayer().getVaginaRawCapacityValue())*Main.game.getPlayer().getVaginaPlasticity().getCapacityIncreaseModifier(),
-									false);
-						}
 					}
 				};
 
@@ -3211,8 +3163,6 @@ public class Lab {
 					case ELEMENTAL_EARTH:
 					case ELEMENTAL_FIRE:
 					case ELEMENTAL_WATER:
-					case IMP:
-					case IMP_ALPHA:
 					case FOX_MORPH:
 					case FOX_MORPH_FENNEC:
 					case FOX_ASCENDANT:
@@ -3240,37 +3190,6 @@ public class Lab {
 					case HUMAN:
 						litterSB.append(" smiling");
 						break;
-					case SLIME:
-					case SLIME_ALLIGATOR:
-					case SLIME_ANGEL:
-					case SLIME_CAT:
-					case SLIME_CAT_LYNX:
-					case SLIME_CAT_LEOPARD_SNOW:
-					case SLIME_CAT_LEOPARD:
-					case SLIME_CAT_LION:
-					case SLIME_CAT_TIGER:
-					case SLIME_CAT_CHEETAH:
-					case SLIME_CAT_CARACAL:
-					case SLIME_COW:
-					case SLIME_DEMON:
-					case SLIME_DOG:
-					case SLIME_DOG_DOBERMANN:
-					case SLIME_DOG_BORDER_COLLIE:
-					case SLIME_FOX:
-					case SLIME_FOX_FENNEC:
-					case SLIME_HARPY:
-					case SLIME_HARPY_RAVEN:
-					case SLIME_HARPY_BALD_EAGLE:
-					case SLIME_HORSE:
-					case SLIME_IMP:
-					case SLIME_REINDEER:
-					case SLIME_SQUIRREL:
-					case SLIME_BAT:
-					case SLIME_RAT:
-					case SLIME_WOLF:
-					case SLIME_RABBIT:
-						litterSB.append(" bubbly");
-						break;
 					case SQUIRREL_MORPH:
 						litterSB.append(" playful");
 						break;
@@ -3280,9 +3199,6 @@ public class Lab {
 						break;
 					case WOLF_MORPH:
 						litterSB.append(" powerful");
-						break;
-					case BAT_MORPH:
-						litterSB.append(" smiling");
 						break;
 					case RAT_MORPH:
 						litterSB.append(" grinning");
@@ -3323,8 +3239,6 @@ public class Lab {
 					case ELEMENTAL_EARTH:
 					case ELEMENTAL_FIRE:
 					case ELEMENTAL_WATER:
-					case IMP:
-					case IMP_ALPHA:
 					case FOX_MORPH:
 					case FOX_MORPH_FENNEC:
 					case FOX_ASCENDANT:
@@ -3352,37 +3266,6 @@ public class Lab {
 					case HUMAN:
 						litterSB.append(" smiling");
 						break;
-					case SLIME:
-					case SLIME_ALLIGATOR:
-					case SLIME_ANGEL:
-					case SLIME_CAT:
-					case SLIME_CAT_LYNX:
-					case SLIME_CAT_LEOPARD_SNOW:
-					case SLIME_CAT_LEOPARD:
-					case SLIME_CAT_LION:
-					case SLIME_CAT_TIGER:
-					case SLIME_CAT_CHEETAH:
-					case SLIME_CAT_CARACAL:
-					case SLIME_COW:
-					case SLIME_DEMON:
-					case SLIME_DOG:
-					case SLIME_DOG_DOBERMANN:
-					case SLIME_DOG_BORDER_COLLIE:
-					case SLIME_FOX:
-					case SLIME_FOX_FENNEC:
-					case SLIME_HARPY:
-					case SLIME_HARPY_RAVEN:
-					case SLIME_HARPY_BALD_EAGLE:
-					case SLIME_HORSE:
-					case SLIME_IMP:
-					case SLIME_REINDEER:
-					case SLIME_SQUIRREL:
-					case SLIME_BAT:
-					case SLIME_RAT:
-					case SLIME_WOLF:
-					case SLIME_RABBIT:
-						litterSB.append(" bubbly");
-						break;
 					case SQUIRREL_MORPH:
 						litterSB.append(" playful");
 						break;
@@ -3392,9 +3275,6 @@ public class Lab {
 						break;
 					case WOLF_MORPH:
 						litterSB.append(" powerful");
-						break;
-					case BAT_MORPH:
-						litterSB.append(" smiling");
 						break;
 					case RAT_MORPH:
 						litterSB.append(" grinning");
@@ -3435,8 +3315,6 @@ public class Lab {
 					case ELEMENTAL_EARTH:
 					case ELEMENTAL_FIRE:
 					case ELEMENTAL_WATER:
-					case IMP:
-					case IMP_ALPHA:
 					case FOX_MORPH:
 					case FOX_MORPH_FENNEC:
 					case FOX_ASCENDANT:
@@ -3464,37 +3342,6 @@ public class Lab {
 					case HUMAN:
 						litterSB.append(" smiling");
 						break;
-					case SLIME:
-					case SLIME_ALLIGATOR:
-					case SLIME_ANGEL:
-					case SLIME_CAT:
-					case SLIME_CAT_LYNX:
-					case SLIME_CAT_LEOPARD_SNOW:
-					case SLIME_CAT_LEOPARD:
-					case SLIME_CAT_LION:
-					case SLIME_CAT_TIGER:
-					case SLIME_CAT_CHEETAH:
-					case SLIME_CAT_CARACAL:
-					case SLIME_COW:
-					case SLIME_DEMON:
-					case SLIME_DOG:
-					case SLIME_DOG_DOBERMANN:
-					case SLIME_DOG_BORDER_COLLIE:
-					case SLIME_FOX:
-					case SLIME_FOX_FENNEC:
-					case SLIME_HARPY:
-					case SLIME_HARPY_RAVEN:
-					case SLIME_HARPY_BALD_EAGLE:
-					case SLIME_HORSE:
-					case SLIME_IMP:
-					case SLIME_REINDEER:
-					case SLIME_SQUIRREL:
-					case SLIME_BAT:
-					case SLIME_RAT:
-					case SLIME_WOLF:
-					case SLIME_RABBIT:
-						litterSB.append(" bubbly");
-						break;
 					case SQUIRREL_MORPH:
 						litterSB.append(" wily");
 						break;
@@ -3504,9 +3351,6 @@ public class Lab {
 						break;
 					case WOLF_MORPH:
 						litterSB.append(" grinning");
-						break;
-					case BAT_MORPH:
-						litterSB.append(" smiling");
 						break;
 					case RAT_MORPH:
 						litterSB.append(" grinning");
@@ -3547,8 +3391,6 @@ public class Lab {
 					case ELEMENTAL_EARTH:
 					case ELEMENTAL_FIRE:
 					case ELEMENTAL_WATER:
-					case IMP:
-					case IMP_ALPHA:
 					case FOX_MORPH:
 					case FOX_MORPH_FENNEC:
 					case FOX_ASCENDANT:
@@ -3576,37 +3418,6 @@ public class Lab {
 					case HUMAN:
 						litterSB.append(" smiling");
 						break;
-					case SLIME:
-					case SLIME_ALLIGATOR:
-					case SLIME_ANGEL:
-					case SLIME_CAT:
-					case SLIME_CAT_LYNX:
-					case SLIME_CAT_LEOPARD_SNOW:
-					case SLIME_CAT_LEOPARD:
-					case SLIME_CAT_LION:
-					case SLIME_CAT_TIGER:
-					case SLIME_CAT_CHEETAH:
-					case SLIME_CAT_CARACAL:
-					case SLIME_COW:
-					case SLIME_DEMON:
-					case SLIME_DOG:
-					case SLIME_DOG_DOBERMANN:
-					case SLIME_DOG_BORDER_COLLIE:
-					case SLIME_FOX:
-					case SLIME_FOX_FENNEC:
-					case SLIME_HARPY:
-					case SLIME_HARPY_RAVEN:
-					case SLIME_HARPY_BALD_EAGLE:
-					case SLIME_HORSE:
-					case SLIME_IMP:
-					case SLIME_REINDEER:
-					case SLIME_SQUIRREL:
-					case SLIME_BAT:
-					case SLIME_RAT:
-					case SLIME_WOLF:
-					case SLIME_RABBIT:
-						litterSB.append(" bubbly");
-						break;
 					case SQUIRREL_MORPH:
 						litterSB.append(" wily");
 						break;
@@ -3616,9 +3427,6 @@ public class Lab {
 						break;
 					case WOLF_MORPH:
 						litterSB.append(" grinning");
-						break;
-					case BAT_MORPH:
-						litterSB.append(" smiling");
 						break;
 					case RAT_MORPH:
 						litterSB.append(" grinning");

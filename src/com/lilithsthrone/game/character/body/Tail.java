@@ -222,33 +222,6 @@ public class Tail implements BodyPartInterface, Serializable {
 							);
 				}
 				break;
-			case IMP:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							(owner.getTailCount()==1
-								?" An impish, spaded tail sprouts from just above your ass, rapidly growing in size until it's slightly longer than one of your legs."
-									+ " You quickly realise that you have complete control over where it goes, allowing you to use it like a third limb."
-									+ "<br/>"
-									+ "You now have an [style.boldImp(impish tail)]"
-								:" [pc.TailCount] impish, spaded tails sprout from just above your ass, rapidly growing in size until they're each slightly longer than one of your legs."
-									+ " You quickly realise that you have complete control over where they go, allowing you to use them like extra limbs."
-									+ "<br/>"
-									+ "You now have [pc.tailCount] [style.boldImp(impish tails)]")
-							);
-				} else {
-					UtilText.transformationContentSB.append(
-							(owner.getTailCount()==1
-								?" An impish, spaded tail sprouts from just above [npc.her] ass, rapidly growing in size until it's slightly longer than one of [npc.her] legs."
-									+ " [npc.She] quickly realises that [npc.she] has complete control over where it goes, allowing [npc.herHim] to use it like a third limb."
-									+ "<br/>"
-									+ "[npc.Name] now has a [style.boldImp(impish tail)]"
-								:" [npc.TailCount] impish, spaded tails sprout from just above [npc.her] ass, rapidly growing in size until they're slightly longer than one of [npc.her] legs."
-									+ " [npc.She] quickly realises that [npc.she] has complete control over where they go, allowing [npc.herHim] to use them like extra limbs."
-									+ "<br/>"
-									+ "[npc.Name] now has [npc.tailCount] [style.boldImp(impish tails)]")
-							);
-				}
-				break;
 			case DOG_MORPH: case DOG_MORPH_STUBBY:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(

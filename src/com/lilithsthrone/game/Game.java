@@ -39,7 +39,6 @@ import com.lilithsthrone.game.character.attributes.AffectionLevel;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.attributes.ObedienceLevel;
 import com.lilithsthrone.game.character.body.CoverableArea;
-import com.lilithsthrone.game.character.body.Covering;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.gender.GenderPreference;
@@ -89,16 +88,7 @@ import com.lilithsthrone.game.character.npc.misc.GenericMaleNPC;
 import com.lilithsthrone.game.character.npc.misc.PrologueFemale;
 import com.lilithsthrone.game.character.npc.misc.PrologueMale;
 import com.lilithsthrone.game.character.npc.misc.SlaveImport;
-import com.lilithsthrone.game.character.npc.submission.Axel;
-import com.lilithsthrone.game.character.npc.submission.Claire;
-import com.lilithsthrone.game.character.npc.submission.Epona;
-import com.lilithsthrone.game.character.npc.submission.Roxy;
-import com.lilithsthrone.game.character.npc.submission.SlimeGuardFire;
-import com.lilithsthrone.game.character.npc.submission.SlimeGuardIce;
-import com.lilithsthrone.game.character.npc.submission.SlimeQueen;
-import com.lilithsthrone.game.character.npc.submission.SlimeRoyalGuard;
 import com.lilithsthrone.game.character.persona.History;
-import com.lilithsthrone.game.character.quests.Quest;
 import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.combat.Spell;
@@ -110,7 +100,6 @@ import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
 import com.lilithsthrone.game.dialogue.encounters.Encounter;
 import com.lilithsthrone.game.dialogue.eventLog.EventLogEntry;
 import com.lilithsthrone.game.dialogue.eventLog.SlaveryEventLogEntry;
-import com.lilithsthrone.game.dialogue.places.dominion.zaranixHome.ZaranixHomeGroundFloor;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseCombat;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
@@ -128,7 +117,6 @@ import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.settings.KeyCodeWithModifiers;
 import com.lilithsthrone.game.settings.KeyboardAction;
 import com.lilithsthrone.game.sex.Sex;
-import com.lilithsthrone.game.slavery.MilkingRoom;
 import com.lilithsthrone.game.slavery.SlavePermission;
 import com.lilithsthrone.game.slavery.SlavePermissionSetting;
 import com.lilithsthrone.game.slavery.SlaveryUtil;
@@ -144,7 +132,6 @@ import com.lilithsthrone.world.Generation;
 import com.lilithsthrone.world.World;
 import com.lilithsthrone.world.WorldType;
 import com.lilithsthrone.world.places.PlaceType;
-import com.lilithsthrone.world.places.PlaceUpgrade;
 
 /**
  * @since 0.1.0
@@ -629,16 +616,12 @@ public class Game implements Serializable, XMLSaving {
 						gen.worldGeneration(WorldType.SHOPPING_ARCADE);
 					}
 					if(Main.isVersionOlderThan(loadingVersion, "0.2.1.5")) {
-						gen.worldGeneration(WorldType.SUBMISSION);
 						gen.worldGeneration(WorldType.DOMINION);
 						gen.worldGeneration(WorldType.HARPY_NEST);
 					}
 					if(Main.isVersionOlderThan(loadingVersion, "0.2.2")) {
 						gen.worldGeneration(WorldType.DOMINION);
 						gen.worldGeneration(WorldType.SLAVER_ALLEY);
-					}
-					if(Main.isVersionOlderThan(loadingVersion, "0.2.3.5")) {
-						gen.worldGeneration(WorldType.BAT_CAVERNS);
 					}
 					if(Main.isVersionOlderThan(loadingVersion, "0.2.8")) {
 						gen.worldGeneration(WorldType.NIGHTLIFE_CLUB);
@@ -777,20 +760,6 @@ public class Game implements Serializable, XMLSaving {
 				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Lumi.class))) {
 					Main.game.addNPC(new Lumi(), false);
 				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Claire.class))) {
-					Main.game.addNPC(new Claire(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(SlimeQueen.class))) { // Add slime queen quest NPCs:
-					Main.game.addNPC(new SlimeQueen(), false);
-					Main.game.addNPC(new SlimeGuardIce(), false);
-					Main.game.addNPC(new SlimeGuardFire(), false);
-					Main.game.addNPC(new SlimeRoyalGuard(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Roxy.class))) { // Add gambling den NPCs:
-					Main.game.addNPC(new Roxy(), false);
-					Main.game.addNPC(new Axel(), false);
-					Main.game.addNPC(new Epona(), false);
-				}
 				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Jules.class))) { // Add nightclub NPCs:
 					Main.game.addNPC(new Jules(), false);
 					Main.game.addNPC(new Kruger(), false);
@@ -798,72 +767,6 @@ public class Game implements Serializable, XMLSaving {
 					Main.game.getKalahari().setFather(Main.game.getKruger());
 					Main.game.getKalahari().setAffection(Main.game.getKruger(), AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
 					Main.game.getKruger().setAffection(Main.game.getKalahari(), AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
-				}
-				if(Main.isVersionOlderThan(loadingVersion, "0.2.8")) {
-					Main.game.getJules().setLocation(WorldType.NIGHTLIFE_CLUB, PlaceType.WATERING_HOLE_ENTRANCE);
-					Main.game.getKruger().setLocation(WorldType.NIGHTLIFE_CLUB, PlaceType.WATERING_HOLE_VIP_AREA);
-					Main.game.getKalahari().setLocation(WorldType.NIGHTLIFE_CLUB, PlaceType.WATERING_HOLE_BAR);
-				}
-				
-				// To prevent errors from previous versions, reset Zaranix progress if prior to 0.1.95:
-				if(Main.isVersionOlderThan(loadingVersion, "0.1.90.5")) {
-					if(Main.game.getPlayer().getWorldLocation() == WorldType.ZARANIX_HOUSE_GROUND_FLOOR
-							|| Main.game.getPlayer().getWorldLocation() == WorldType.ZARANIX_HOUSE_FIRST_FLOOR) {
-						Main.game.getPlayer().setLocation(WorldType.DOMINION, PlaceType.DOMINION_DEMON_HOME, false);
-						
-						ZaranixHomeGroundFloor.resetHouseAfterLeaving();
-						Main.game.getDialogueFlags().setFlag(DialogueFlagValue.zaranixDiscoveredHome, false);
-						Main.game.getDialogueFlags().setFlag(DialogueFlagValue.zaranixKickedDownDoor, false);
-						Main.game.getDialogueFlags().setFlag(DialogueFlagValue.zaranixKnockedOnDoor, false);
-						Main.game.getDialogueFlags().setFlag(DialogueFlagValue.zaranixMaidsHostile, false);
-						
-						Main.game.getArthur().setLocation(WorldType.ZARANIX_HOUSE_FIRST_FLOOR, PlaceType.ZARANIX_FF_OFFICE, true);
-						
-						if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-							Main.game.getPlayer().setQuestProgress(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE);
-						}
-					}
-				}
-				
-				if(Main.isVersionOlderThan(loadingVersion, "0.1.95")) {
-					if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-						Main.game.getArthur().setLocation(WorldType.LILAYAS_HOUSE_GROUND_FLOOR, PlaceType.LILAYA_HOME_LAB, true);
-					}
-				}
-
-				if(Main.isVersionOlderThan(loadingVersion, "0.2.4.5")) { //Try to remove unused NPCs TODO better method to delete all banished NPCs
-					for(NPC npc : Main.game.getAllNPCs()) {
-						if(!npc.isUnique() && npc.getWorldLocation()==WorldType.EMPTY) {
-							Main.game.banishNPC(npc);
-						}
-					}
-				}
-				
-				if(Main.isVersionOlderThan(loadingVersion, "0.2.5.1")) { //Reset ass/nipple/lip colours
-					for(NPC npc : Main.game.getAllNPCs()) {
-						if(!npc.isSlave() || (npc.getOwner()!=null && !npc.getOwner().isPlayer()))
-						npc.setSkinCovering(new Covering(npc.getSkinType().getBodyCoveringType(npc), npc.getCovering(npc.getSkinType().getBodyCoveringType(npc)).getPrimaryColour()), true);
-					}
-				}
-				
-				if(Main.isVersionOlderThan(loadingVersion, "0.2.5")) { //Add milking rooms
-					
-					Cell[][] grid = Main.game.getWorlds().get(WorldType.LILAYAS_HOUSE_GROUND_FLOOR).getCellGrid();
-					for(int i=0 ; i<grid.length ; i++) {
-						for(int j=0 ; j<grid[0].length ; j++) {
-							if(grid[i][j].getPlace().getPlaceUpgrades().contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-								Main.game.getSlaveryUtil().addMilkingRoom(new MilkingRoom(WorldType.LILAYAS_HOUSE_GROUND_FLOOR, new Vector2i(i, j)));
-							}
-						}
-					}
-					grid = Main.game.getWorlds().get(WorldType.LILAYAS_HOUSE_FIRST_FLOOR).getCellGrid();
-					for(int i=0 ; i<grid.length ; i++) {
-						for(int j=0 ; j<grid[0].length ; j++) {
-							if(grid[i][j].getPlace().getPlaceUpgrades().contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-								Main.game.getSlaveryUtil().addMilkingRoom(new MilkingRoom(WorldType.LILAYAS_HOUSE_FIRST_FLOOR, new Vector2i(i, j)));
-							}
-						}
-					}
 				}
 				
 				Main.game.pendingSlaveInStocksReset = false;
@@ -1071,16 +974,6 @@ public class Game implements Serializable, XMLSaving {
 			addNPC(new Loppy(), false);
 			
 			addNPC(new Lumi(), false);
-			addNPC(new Claire(), false);
-
-			addNPC(new SlimeQueen(), false);
-			addNPC(new SlimeGuardIce(), false);
-			addNPC(new SlimeGuardFire(), false);
-			addNPC(new SlimeRoyalGuard(), false);
-			
-			addNPC(new Roxy(), false);
-			addNPC(new Axel(), false);
-			addNPC(new Epona(), false);
 
 			addNPC(new Jules(), false);
 			addNPC(new Kruger(), false);
@@ -2842,38 +2735,6 @@ public class Game implements Serializable, XMLSaving {
 	
 	public NPC getLumi() {
 		return (NPC) this.getNPCById(getUniqueNPCId(Lumi.class));
-	}
-	
-	public NPC getClaire() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Claire.class));
-	}
-
-	public NPC getSlimeQueen() {
-		return (NPC) this.getNPCById(getUniqueNPCId(SlimeQueen.class));
-	}
-
-	public NPC getSlimeGuardIce() {
-		return (NPC) this.getNPCById(getUniqueNPCId(SlimeGuardIce.class));
-	}
-
-	public NPC getSlimeGuardFire() {
-		return (NPC) this.getNPCById(getUniqueNPCId(SlimeGuardFire.class));
-	}
-
-	public NPC getSlimeRoyalGuard() {
-		return (NPC) this.getNPCById(getUniqueNPCId(SlimeRoyalGuard.class));
-	}
-
-	public NPC getRoxy() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Roxy.class));
-	}
-
-	public NPC getAxel() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Axel.class));
-	}
-
-	public NPC getEpona() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Epona.class));
 	}
 
 	public NPC getJules() {

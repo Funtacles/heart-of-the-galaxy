@@ -1181,7 +1181,7 @@ public class CharacterUtils {
 		}
 		
 		// Penis:
-		if(character.hasPenis() || character.getRace()==Race.DEMON || character.getRace()==Race.IMP) {
+		if(character.hasPenis() || character.getRace()==Race.DEMON) {
 			character.setPenisVirgin(true);
 			if(Math.random()>0.15f
 					|| character.getHistory()==History.NPC_PROSTITUTE
@@ -1278,8 +1278,6 @@ public class CharacterUtils {
 	 */
 	public static void setHistoryAndPersonality(GameCharacter character, boolean lowlife) {
 
-		 //TODO Set personality based on history. (Or vice-versa, but one should lead to the other.)
-		
 		if(lowlife) {
 			double prostituteChance = 0.15f; // Base 0.15% chance for any random to be a prostitute.
 			 			

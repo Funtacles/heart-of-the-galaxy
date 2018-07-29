@@ -123,33 +123,6 @@ public enum Race {
 			FurryPreference.MAXIMUM,
 			false),
 
-	IMP("imp",
-			"imps",
-			"imp",
-			"imp",
-			"imps",
-			"imps",
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "IMP_BASIC"),
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "IMP_ADVANCED"),
-
-			Colour.RACE_DEMON,
-			Disposition.UNPREDICTABLE,
-			StatusEffect.IMP,
-			Util.newArrayListOfValues(
-					Attack.MAIN,
-					Attack.SEDUCTION),
-			true,
-			0.75f,
-			2,
-			3,
-			Attribute.DAMAGE_IMP,
-			Attribute.RESISTANCE_IMP,
-			FurryPreference.MAXIMUM,
-			FurryPreference.MAXIMUM,
-			false),
-
 	// BOVINES:
 	COW_MORPH("cow-morph",
 			"cow-morphs",
@@ -424,33 +397,6 @@ public enum Race {
 			FurryPreference.NORMAL,
 			true),
 	
-	BAT_MORPH("bat-morph",
-			"bat-morphs",
-			"bat-boy",
-			"bat-girl",
-			"bat-boys",
-			"bat-girls",
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "BAT_MORPH_BASIC"),
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "BAT_MORPH_ADVANCED"),
-
-			Colour.RACE_BAT_MORPH,
-			Disposition.NEUTRAL,
-			StatusEffect.BAT_MORPH,
-			Util.newArrayListOfValues(
-					Attack.MAIN,
-					Attack.SPECIAL_ATTACK),
-			true,
-			0.5f,
-			1,
-			2,
-			Attribute.DAMAGE_BAT_MORPH,
-			Attribute.RESISTANCE_BAT_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
-	
 	ALLIGATOR_MORPH("alligator-morph",
 			"alligator-morphs",
 			"alligator-boy",
@@ -477,32 +423,6 @@ public enum Race {
 			FurryPreference.NORMAL,
 			FurryPreference.NORMAL,
 			true),
-
-	// SLIME:
-	SLIME("slime",
-			"slimes",
-			"slime",
-			"slime",
-			"slimes",
-			"slimes",
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "SLIME_BASIC"),
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "SLIME_ADVANCED"),
-
-			Colour.RACE_SLIME,
-			Disposition.NEUTRAL,
-			StatusEffect.SLIME,
-			Util.newArrayListOfValues(Attack.SEDUCTION),
-			true,
-			0.5f,
-			1,
-			1,
-			Attribute.DAMAGE_SLIME,
-			Attribute.RESISTANCE_SLIME,
-			FurryPreference.MAXIMUM,
-			FurryPreference.MAXIMUM,
-			false),
 
 	// AVIAN:
 	HARPY("harpy",

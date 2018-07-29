@@ -179,9 +179,6 @@ public class OptionsDialogue {
 					}
 				};
 			
-			} else if (index == 8) {
-				return new Response("Patch notes", "View the patch notes for this version.", PATCH_NOTES);
-			
 			} else if (index == 9) {
 				return new Response("Credits", "View the game's credits screen.", CREDITS);
 				
@@ -1006,31 +1003,6 @@ public class OptionsDialogue {
 				+ "</tr>";
 	}
 	
-	
-	public static final DialogueNodeOld PATCH_NOTES = new DialogueNodeOld("Patch Notes", "Patch notes", true) {
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public String getContent(){
-			return Main.patchNotes;
-		}
-		
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 0) {
-				return new Response("Back", "Go back to the options menu.", MENU);
-				
-			}else {
-				return null;
-			}
-		}
-
-		@Override
-		public DialogueNodeType getDialogueNodeType() {
-			return DialogueNodeType.OPTIONS;
-		}
-	};
-	
 	public static final DialogueNodeOld DISCLAIMER = new DialogueNodeOld("", "", true) {
 		private static final long serialVersionUID = 1L;
 		
@@ -1318,42 +1290,10 @@ public class OptionsDialogue {
 					case ELEMENTAL_EARTH:
 					case ELEMENTAL_FIRE:
 					case ELEMENTAL_WATER:
-					case IMP:
-					case IMP_ALPHA:
 					case HARPY:
 					case HARPY_RAVEN:
 					case HARPY_BALD_EAGLE:
 					case HUMAN:
-					case SLIME:
-					case SLIME_ALLIGATOR:
-					case SLIME_ANGEL:
-					case SLIME_CAT:
-					case SLIME_CAT_LYNX:
-					case SLIME_CAT_LEOPARD_SNOW:
-					case SLIME_CAT_LEOPARD:
-					case SLIME_CAT_LION:
-					case SLIME_CAT_TIGER:
-					case SLIME_CAT_CHEETAH:
-					case SLIME_CAT_CARACAL:
-					case SLIME_COW:
-					case SLIME_DEMON:
-					case SLIME_DOG:
-					case SLIME_DOG_DOBERMANN:
-					case SLIME_DOG_BORDER_COLLIE:
-					case SLIME_FOX:
-					case SLIME_FOX_FENNEC:
-					case SLIME_HARPY:
-					case SLIME_HARPY_RAVEN:
-					case SLIME_HARPY_BALD_EAGLE:
-					case SLIME_HORSE:
-					case SLIME_IMP:
-					case SLIME_REINDEER:
-					case SLIME_SQUIRREL:
-					case SLIME_WOLF:
-					case SLIME_BAT:
-					case SLIME_RAT:
-					case SLIME_RABBIT:
-						break;
 					case ALLIGATOR_MORPH:
 					case CAT_MORPH:
 					case CAT_MORPH_LYNX:
@@ -1376,7 +1316,6 @@ public class OptionsDialogue {
 					case DOG_MORPH:
 					case DOG_MORPH_DOBERMANN:
 					case DOG_MORPH_BORDER_COLLIE:
-					case BAT_MORPH:
 					case RAT_MORPH:
 					case RABBIT_MORPH:
 					case RABBIT_MORPH_LOP:
@@ -1885,19 +1824,11 @@ public class OptionsDialogue {
 			UtilText.nodeContentSB.setLength(0);
 			
 			UtilText.nodeContentSB.append(
-					"<p>"
-						+ "Thank you for playing Lilith's Throne, I hope you enjoy it just as much as I do making it!"
-						+ " Thank you so much to all of the supporters on Patreon! Thanks to you, I'm able to spend more time working on Lilith's Throne, and I promise that I'll make this game the very best that I can!"
-					+ "</p>"
-					+"<p style='text-align:center;'>"
+					"<p style='text-align:center;'>"
 						+ "Lilith's Throne has been created by:<br/>"
 						+ "<b style='color:#9b78fa;'>Innoxia</b>"
 						+ "<br/><br/>"
 						+ "Artists whose character art can be found in the game:<br/>");
-			
-			for(Artist artist : Artwork.allArtists) {
-				UtilText.nodeContentSB.append("<b style='color:"+artist.getColour().toWebHexString()+";'>"+artist.getName()+"</b><br/>");
-			}	
 
 			UtilText.nodeContentSB.append("<br/>"
 					+ "Contributors:</br>"

@@ -258,7 +258,6 @@ public enum Name {
 			case CAT_MORPH:
 			case COW_MORPH:
 			case DEMON:
-			case IMP:
 			case FOX_MORPH:
 			case DOG_MORPH:
 			case ALLIGATOR_MORPH:
@@ -266,8 +265,6 @@ public enum Name {
 			case HUMAN:
 			case WOLF_MORPH:
 			case SQUIRREL_MORPH:
-			case SLIME:
-			case BAT_MORPH:
 			case RAT_MORPH:
 			case RABBIT_MORPH:
 			case ELEMENTAL_AIR:
@@ -315,14 +312,11 @@ public enum Name {
 			case HUMAN:
 			case WOLF_MORPH:
 			case SQUIRREL_MORPH:
-			case SLIME:
-			case BAT_MORPH:
 			case RAT_MORPH:
 			case RABBIT_MORPH:
 			break;
 			
 			case DEMON:
-			case IMP:
 			case ELEMENTAL_AIR:
 			case ELEMENTAL_ARCANE:
 			case ELEMENTAL_EARTH:

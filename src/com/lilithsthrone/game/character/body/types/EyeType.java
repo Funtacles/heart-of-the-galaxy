@@ -25,8 +25,6 @@ public enum EyeType implements BodyPartTypeInterface {
 
 	DEMON_COMMON(BodyCoveringType.EYE_DEMON_COMMON, Race.DEMON, 1, EyeShape.ROUND, EyeShape.VERTICAL),
 
-	IMP(BodyCoveringType.EYE_IMP, Race.IMP, 1, EyeShape.ROUND, EyeShape.VERTICAL),
-
 	DOG_MORPH(BodyCoveringType.EYE_DOG_MORPH, Race.DOG_MORPH, 1, EyeShape.ROUND, EyeShape.ROUND),
 
 	LYCAN(BodyCoveringType.EYE_LYCAN, Race.WOLF_MORPH, 1, EyeShape.ROUND, EyeShape.ROUND),
@@ -41,8 +39,6 @@ public enum EyeType implements BodyPartTypeInterface {
 
 	RABBIT_MORPH(BodyCoveringType.EYE_RABBIT, Race.RABBIT_MORPH, 1, EyeShape.ROUND, EyeShape.ROUND),
 	
-	BAT_MORPH(BodyCoveringType.EYE_BAT, Race.BAT_MORPH, 1, EyeShape.ROUND, EyeShape.ROUND),
-
 	ALLIGATOR_MORPH(BodyCoveringType.EYE_ALLIGATOR_MORPH, Race.ALLIGATOR_MORPH, 1, EyeShape.ROUND, EyeShape.VERTICAL),
 
 	HORSE_MORPH(BodyCoveringType.EYE_HORSE_MORPH, Race.HORSE_MORPH, 1, EyeShape.ROUND, EyeShape.HORIZONTAL),
@@ -96,8 +92,6 @@ public enum EyeType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("cow-like");
 			case DEMON_COMMON:
 				return UtilText.returnStringAtRandom("demonic");
-			case IMP:
-				return UtilText.returnStringAtRandom("impish");
 			case DOG_MORPH:
 				return UtilText.returnStringAtRandom("dog-like");
 			case SQUIRREL_MORPH:
@@ -120,8 +114,6 @@ public enum EyeType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("rat-like");
 			case RABBIT_MORPH:
 				return UtilText.returnStringAtRandom("rabbit-like");
-			case BAT_MORPH:
-				return UtilText.returnStringAtRandom("bat-like");
 		}
 		return "";
 	}
@@ -134,8 +126,6 @@ public enum EyeType implements BodyPartTypeInterface {
 				return "feline";
 			case DEMON_COMMON:
 				return "demonic";
-			case IMP:
-				return "impish";
 			case DOG_MORPH:
 				return "canine";
 			case COW_MORPH:
@@ -160,8 +150,6 @@ public enum EyeType implements BodyPartTypeInterface {
 				return "rat";
 			case RABBIT_MORPH:
 				return "rabbit";
-			case BAT_MORPH:
-				return "bat";
 		}
 		return "";
 	}

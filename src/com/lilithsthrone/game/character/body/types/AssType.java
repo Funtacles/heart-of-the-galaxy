@@ -23,8 +23,6 @@ public enum AssType implements BodyPartTypeInterface {
 	
 	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, AnusType.DEMON_COMMON, Race.DEMON),
 	
-	IMP(BodyCoveringType.IMP, AnusType.IMP, Race.IMP),
-	
 	DOG_MORPH(BodyCoveringType.CANINE_FUR, AnusType.DOG_MORPH, Race.DOG_MORPH),
 	
 	COW_MORPH(BodyCoveringType.BOVINE_FUR, AnusType.COW_MORPH, Race.COW_MORPH),
@@ -35,8 +33,6 @@ public enum AssType implements BodyPartTypeInterface {
 	
 	RABBIT_MORPH(BodyCoveringType.RABBIT_FUR, AnusType.RABBIT_MORPH, Race.RABBIT_MORPH),
 
-	BAT_MORPH(BodyCoveringType.BAT_FUR, AnusType.BAT_MORPH, Race.BAT_MORPH),
-	
 	ALLIGATOR_MORPH(BodyCoveringType.ALLIGATOR_SCALES, AnusType.ALLIGATOR_MORPH, Race.ALLIGATOR_MORPH),
 	
 	WOLF_MORPH(BodyCoveringType.LYCAN_FUR, AnusType.WOLF_MORPH, Race.WOLF_MORPH),
@@ -134,8 +130,6 @@ public enum AssType implements BodyPartTypeInterface {
 				return "feline";
 			case DEMON_COMMON:
 				return "demonic";
-			case IMP:
-				return "impish";
 			case DOG_MORPH:
 				return "canine";
 			case COW_MORPH:
@@ -156,8 +150,6 @@ public enum AssType implements BodyPartTypeInterface {
 				return "lupine";
 			case FOX_MORPH:
 				return "vulpine";
-			case BAT_MORPH:
-				return "bat";
 			case RAT_MORPH:
 				return "rat";
 			case RABBIT_MORPH:

@@ -18,27 +18,6 @@ public enum WorldType {
 	
 	// Dominion:
 	
-//	DOMINION(6,
-//			"Dominion",
-//			Colour.BASE_PURPLE,
-//			1,
-//			PlaceType.DOMINION_STREET,
-//			PlaceType.DOMINION_BACK_ALLEYS,
-//			Util.newArrayListOfValues(
-//					PlaceType.,
-//					PlaceType.,
-//					PlaceType.,
-//					PlaceType.,
-//					PlaceType.,
-//					PlaceType.,
-//					PlaceType.,
-//					PlaceType.,
-//
-//			Util.newArrayListOfValues(
-//					PlaceType.,
-//					PlaceType.DOMINION_DARK_ALLEYS,
-//					PlaceType.DOMINION_DARK_ALLEYS)),
-
 	DOMINION("Dominion",
 			Colour.BASE_PURPLE,
 			1,
@@ -48,7 +27,6 @@ public enum WorldType {
 					
 					new Value<>(new Color(0x808080), PlaceType.DOMINION_STREET),
 					new Value<>(new Color(0x404040), PlaceType.DOMINION_BOULEVARD),
-					new Value<>(new Color(0x808000), PlaceType.DOMINION_EXIT_TO_SUBMISSION),
 					
 					new Value<>(new Color(0xc10000), PlaceType.DOMINION_BACK_ALLEYS),
 					new Value<>(new Color(0x5b0000), PlaceType.DOMINION_DARK_ALLEYS),
@@ -294,114 +272,6 @@ public enum WorldType {
 	
 	// Other:
 
-	SUBMISSION("Submission",
-			Colour.BASE_GREEN,
-			1,
-			"/com/lilithsthrone/res/map/submission/submission.png",
-			Util.newHashMapOfValues(
-					
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-
-					new Value<>(new Color(0x808000), PlaceType.SUBMISSION_ENTRANCE),
-					
-					new Value<>(new Color(0x808080), PlaceType.SUBMISSION_WALKWAYS),
-					new Value<>(new Color(0xc10000), PlaceType.SUBMISSION_TUNNELS),
-					
-					new Value<>(new Color(0x008080), PlaceType.SUBMISSION_BAT_CAVERNS),
-					new Value<>(new Color(0xff9100), PlaceType.SUBMISSION_RAT_WARREN),
-					new Value<>(new Color(0xffff00), PlaceType.SUBMISSION_GAMBLING_DEN),
-					
-					new Value<>(new Color(0xff00ff), PlaceType.SUBMISSION_LILIN_PALACE),
-					new Value<>(new Color(0x000000), PlaceType.SUBMISSION_LILIN_PALACE_GATE),
-					new Value<>(new Color(0x404040), PlaceType.SUBMISSION_LILIN_PALACE_CAVERN),
-					
-					new Value<>(new Color(0x00ff00), PlaceType.SUBMISSION_IMP_FORTRESS_1),
-					new Value<>(new Color(0x32ff00), PlaceType.SUBMISSION_IMP_FORTRESS_2),
-					new Value<>(new Color(0x64ff00), PlaceType.SUBMISSION_IMP_FORTRESS_3),
-					new Value<>(new Color(0x96ff00), PlaceType.SUBMISSION_IMP_FORTRESS_4),
-					new Value<>(new Color(0xc8ff00), PlaceType.SUBMISSION_IMP_FORTRESS_5),
-					new Value<>(new Color(0xfaff00), PlaceType.SUBMISSION_IMP_FORTRESS_6))),
-
-	BAT_CAVERNS("Bat Caverns",
-			Colour.BASE_BLACK,
-			1,
-			"/com/lilithsthrone/res/map/submission/batCaverns/batCaverns.png",
-			Util.newHashMapOfValues(
-					
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-
-					new Value<>(new Color(0x00ff00), PlaceType.BAT_CAVERN_ENTRANCE),
-					
-					new Value<>(new Color(0x008080), PlaceType.BAT_CAVERN_DARK),
-					new Value<>(new Color(0x808080), PlaceType.BAT_CAVERN_LIGHT),
-					
-					new Value<>(new Color(0x0080ff), PlaceType.BAT_CAVERN_RIVER),
-					new Value<>(new Color(0x40b4ff), PlaceType.BAT_CAVERN_RIVER_CROSSING),
-					new Value<>(new Color(0x004080), PlaceType.BAT_CAVERN_RIVER_END),
-					
-					new Value<>(new Color(0xff80ff), PlaceType.BAT_CAVERN_SLIME_QUEEN_LAIR))),
-
-	SLIME_QUEENS_LAIR_GROUND_FLOOR("Slime Queen's Tower",
-			Colour.BASE_PINK,
-			1,
-			"/com/lilithsthrone/res/map/submission/slimeQueensLair/slimeQueensLairGroundFloor.png",
-			Util.newHashMapOfValues(
-					
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-
-					new Value<>(new Color(0x808080), PlaceType.SLIME_QUEENS_LAIR_CORRIDOR),
-					
-					new Value<>(new Color(0x00ff00), PlaceType.SLIME_QUEENS_LAIR_ENTRANCE),
-					new Value<>(new Color(0xff0000), PlaceType.SLIME_QUEENS_LAIR_STAIRS_UP),
-					
-					new Value<>(new Color(0xff8000), PlaceType.SLIME_QUEENS_LAIR_STORAGE_VATS),
-					new Value<>(new Color(0x40b4ff), PlaceType.SLIME_QUEENS_LAIR_ROOM),
-					
-					new Value<>(new Color(0xff80ff), PlaceType.SLIME_QUEENS_LAIR_ENTRANCE_GUARDS),
-					
-					new Value<>(new Color(0xffff00), PlaceType.SLIME_QUEENS_LAIR_SLIME_QUEEN))),
-
-	SLIME_QUEENS_LAIR_FIRST_FLOOR("Slime Queen's Tower",
-			Colour.BASE_PINK,
-			1,
-			"/com/lilithsthrone/res/map/submission/slimeQueensLair/slimeQueensLairFirstFloor.png",
-			Util.newHashMapOfValues(
-					
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-
-					new Value<>(new Color(0x808080), PlaceType.SLIME_QUEENS_LAIR_CORRIDOR),
-					
-					new Value<>(new Color(0x00ff00), PlaceType.SLIME_QUEENS_LAIR_STAIRS_DOWN),
-					
-					new Value<>(new Color(0x40b4ff), PlaceType.SLIME_QUEENS_LAIR_ROOM),
-					
-					new Value<>(new Color(0xff00ff), PlaceType.SLIME_QUEENS_LAIR_ROYAL_GUARD),
-					new Value<>(new Color(0xffff00), PlaceType.SLIME_QUEENS_LAIR_SLIME_QUEEN))),
-
-	GAMBLING_DEN("Gambling Den",
-			Colour.BASE_GOLD,
-			1,
-			"/com/lilithsthrone/res/map/submission/gamblingDen/gamblingDen.png",
-			Util.newHashMapOfValues(
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-					new Value<>(new Color(0x808080), PlaceType.GAMBLING_DEN_CORRIDOR),
-					
-					new Value<>(new Color(0x00ff00), PlaceType.GAMBLING_DEN_ENTRANCE),
-					
-					new Value<>(new Color(0xffff00), PlaceType.GAMBLING_DEN_TRADER),
-					
-					new Value<>(new Color(0x0080ff), PlaceType.GAMBLING_DEN_GAMBLING),
-					
-					new Value<>(new Color(0xff80ff), PlaceType.GAMBLING_DEN_PREGNANCY),
-					new Value<>(new Color(0xff00ff), PlaceType.GAMBLING_DEN_FUTA_PREGNANCY),
-					new Value<>(new Color(0xff8000), PlaceType.GAMBLING_DEN_PREGNANCY_ROULETTE)
-					)){
-		@Override
-		public boolean isRevealedOnStart() {
-			return true;
-		}
-	},
-	
 	JUNGLE(6,
 			"jungle",
 			Colour.BASE_GREEN_LIME,

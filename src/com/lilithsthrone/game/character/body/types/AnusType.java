@@ -22,8 +22,6 @@ public enum AnusType implements BodyPartTypeInterface {
 	
 	DEMON_COMMON(BodyCoveringType.ANUS, Race.DEMON, OrificeModifier.RIBBED, OrificeModifier.TENTACLED, OrificeModifier.MUSCLE_CONTROL),
 	
-	IMP(BodyCoveringType.ANUS, Race.IMP, OrificeModifier.RIBBED, OrificeModifier.TENTACLED, OrificeModifier.MUSCLE_CONTROL),
-	
 	COW_MORPH(BodyCoveringType.ANUS, Race.COW_MORPH),
 	
 	DOG_MORPH(BodyCoveringType.ANUS, Race.DOG_MORPH),
@@ -35,8 +33,6 @@ public enum AnusType implements BodyPartTypeInterface {
 	RAT_MORPH(BodyCoveringType.ANUS, Race.RAT_MORPH),
 	
 	RABBIT_MORPH(BodyCoveringType.ANUS, Race.RABBIT_MORPH),
-	
-	BAT_MORPH(BodyCoveringType.ANUS, Race.BAT_MORPH),
 	
 	WOLF_MORPH(BodyCoveringType.ANUS, Race.WOLF_MORPH),
 	

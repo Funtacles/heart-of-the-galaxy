@@ -149,14 +149,6 @@ public class PlayerCharacter extends GameCharacter implements XMLSaving {
 			CharacterUtils.addAttribute(doc, e, "quest", String.valueOf(entry.getValue()));
 		}
 		
-//		private SizedStack<ShopTransaction> buybackStack; TODO
-		
-//		Element slavesOwned = doc.createElement("slavesExported");
-//		properties.appendChild(slavesOwned);
-//		for(String id : this.getSlavesOwned()) {
-//			Main.game.getNPCById(id).saveAsXML(slavesOwned, doc);
-//		}
-		
 		return properties;
 	}
 	

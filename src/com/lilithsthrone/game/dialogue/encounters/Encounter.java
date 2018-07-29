@@ -20,9 +20,6 @@ import com.lilithsthrone.game.character.npc.dominion.DominionSuccubusAttacker;
 import com.lilithsthrone.game.character.npc.dominion.HarpyNestsAttacker;
 import com.lilithsthrone.game.character.npc.dominion.Lumi;
 import com.lilithsthrone.game.character.npc.dominion.RentalMommy;
-import com.lilithsthrone.game.character.npc.submission.BatMorphCavernAttacker;
-import com.lilithsthrone.game.character.npc.submission.SlimeCavernAttacker;
-import com.lilithsthrone.game.character.npc.submission.SubmissionAttacker;
 import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
@@ -475,108 +472,8 @@ public enum Encounter {
 			
 			return null;
 		}
-	},
-	
-	SUBMISSION_TUNNELS(Util.newHashMapOfValues(
-			new Value<EncounterType, Float>(EncounterType.SUBMISSION_TUNNEL_ATTACK, 20f),
-			new Value<EncounterType, Float>(EncounterType.SUBMISSION_FIND_ITEM, 10f))) {
-
-		@Override
-		protected DialogueNodeOld initialiseEncounter(EncounterType node) {
-			if (node == EncounterType.SUBMISSION_TUNNEL_ATTACK) {
-				
-				// Prioritise re-encountering the NPC on this tile:
-				for(NPC npc : Main.game.getNonCompanionCharactersPresent()) {
-					Main.game.setActiveNPC(npc);
-					return Main.game.getActiveNPC().getEncounterDialogue();
-				}
-				
-				if(Math.random()<IncestEncounterRate()) {
-					List<NPC> offspringAvailable = UnspawnedChildren(
-						npc -> npc.getSubspecies().getWorldLocations().contains(WorldType.SUBMISSION));
-					
-					if(!offspringAvailable.isEmpty()) {
-						return SpawnAndStartChildHere(offspringAvailable);
-					}
-				}
-				
-				Main.game.setActiveNPC(new SubmissionAttacker(GenderPreference.getGenderFromUserPreferences(false, false)));
-				try {
-					Main.game.addNPC(Main.game.getActiveNPC(), false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				return Main.game.getActiveNPC().getEncounterDialogue();
-				
-			} else if (node == EncounterType.SUBMISSION_FIND_ITEM) {
-				
-				randomItem = AbstractItemType.generateItem(ItemType.submissionTunnelItems.get(Util.random.nextInt(ItemType.submissionTunnelItems.size())));
-				
-				Main.game.getActiveWorld().getCell(Main.game.getPlayer().getLocation()).getInventory().addItem(randomItem);
-				return SubmissionEncounterDialogue.FIND_ITEM;
-				
-			} else {
-				return null;
-			}
-		}
-	},
-	
-	BAT_CAVERN(Util.newHashMapOfValues(
-			new Value<EncounterType, Float>(EncounterType.BAT_CAVERN_BAT_ATTACK, 8f),
-			new Value<EncounterType, Float>(EncounterType.BAT_CAVERN_SLIME_ATTACK, 6f),
-			new Value<EncounterType, Float>(EncounterType.BAT_CAVERN_FIND_ITEM, 6f))) {
-
-		@Override
-		protected DialogueNodeOld initialiseEncounter(EncounterType node) {
-			if (node == EncounterType.BAT_CAVERN_BAT_ATTACK) {
-				
-				// Prioritise re-encountering the NPC on this tile:
-				for(NPC npc : Main.game.getNonCompanionCharactersPresent()) {
-					Main.game.setActiveNPC(npc);
-					return Main.game.getActiveNPC().getEncounterDialogue();
-				}
-				
-//				TODO Add offspring encounters
-				
-				Main.game.setActiveNPC(new BatMorphCavernAttacker(GenderPreference.getGenderFromUserPreferences(false, false)));
-				try {
-					Main.game.addNPC(Main.game.getActiveNPC(), false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				return Main.game.getActiveNPC().getEncounterDialogue();
-				
-			} else if (node == EncounterType.BAT_CAVERN_SLIME_ATTACK) {
-				
-				// Prioritise re-encountering the NPC on this tile:
-				for(NPC npc : Main.game.getNonCompanionCharactersPresent()) {
-					Main.game.setActiveNPC(npc);
-					return Main.game.getActiveNPC().getEncounterDialogue();
-				}
-				
-//				TODO Add offspring encounters
-				
-				Main.game.setActiveNPC(new SlimeCavernAttacker(GenderPreference.getGenderFromUserPreferences(false, false)));
-				try {
-					Main.game.addNPC(Main.game.getActiveNPC(), false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				return Main.game.getActiveNPC().getEncounterDialogue();
-				
-			} else if (node == EncounterType.BAT_CAVERN_FIND_ITEM) {
-				
-				randomItem = AbstractItemType.generateItem(ItemType.batCavernItems.get(Util.random.nextInt(ItemType.batCavernItems.size())));
-
-				Main.game.getActiveWorld().getCell(Main.game.getPlayer().getLocation()).getInventory().addItem(randomItem);
-				return BatCavernsEncounterDialogue.FIND_ITEM;
-				
-			} else {
-				return null;
-			}
-		}
 	};
-
+	
 	private static List<NPC> UnspawnedChildren(Predicate<NPC> matcher) {
 		List<NPC> offspringAvailable = Main.game.getOffspring().stream().filter(npc -> !npc.isSlave())
 										.filter(npc -> npc.getWorldLocation()==WorldType.EMPTY)

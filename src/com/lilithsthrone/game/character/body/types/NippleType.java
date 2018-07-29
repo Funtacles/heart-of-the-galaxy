@@ -23,8 +23,6 @@ public enum NippleType implements BodyPartTypeInterface {
 
 	DEMON_COMMON(BodyCoveringType.NIPPLES, Race.DEMON),
 
-	IMP(BodyCoveringType.NIPPLES, Race.IMP),
-
 	DOG_MORPH(BodyCoveringType.NIPPLES, Race.DOG_MORPH),
 	
 	WOLF_MORPH(BodyCoveringType.NIPPLES, Race.WOLF_MORPH),
@@ -38,8 +36,6 @@ public enum NippleType implements BodyPartTypeInterface {
 	SQUIRREL_MORPH(BodyCoveringType.NIPPLES, Race.SQUIRREL_MORPH),
 	
 	RAT_MORPH(BodyCoveringType.NIPPLES, Race.RAT_MORPH),
-	
-	BAT_MORPH(BodyCoveringType.NIPPLES, Race.BAT_MORPH),
 	
 	RABBIT_MORPH(BodyCoveringType.NIPPLES, Race.RABBIT_MORPH),
 	

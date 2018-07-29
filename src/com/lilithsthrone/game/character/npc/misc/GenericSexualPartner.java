@@ -74,8 +74,6 @@ public class GenericSexualPartner extends NPC {
 					// No spawn chance:
 					case ANGEL:
 					case DEMON:
-					case IMP:
-					case IMP_ALPHA:
 					case FOX_ASCENDANT:
 					case FOX_ASCENDANT_FENNEC:
 					case ELEMENTAL_AIR:
@@ -89,43 +87,8 @@ public class GenericSexualPartner extends NPC {
 					case ALLIGATOR_MORPH:
 						addToSubspeciesMap(5, gender, s, availableRaces);
 						break;
-					case SLIME:
-					case SLIME_ALLIGATOR:
-					case SLIME_ANGEL:
-					case SLIME_CAT:
-					case SLIME_CAT_LEOPARD:
-					case SLIME_CAT_LEOPARD_SNOW:
-					case SLIME_CAT_LYNX:
-					case SLIME_CAT_LION:
-					case SLIME_CAT_TIGER:
-					case SLIME_CAT_CARACAL:
-					case SLIME_CAT_CHEETAH:
-					case SLIME_COW:
-					case SLIME_DEMON:
-					case SLIME_DOG:
-					case SLIME_DOG_DOBERMANN:
-					case SLIME_DOG_BORDER_COLLIE:
-					case SLIME_FOX:
-					case SLIME_FOX_FENNEC:
-					case SLIME_HARPY:
-					case SLIME_HARPY_RAVEN:
-					case SLIME_HARPY_BALD_EAGLE:
-					case SLIME_HORSE:
-					case SLIME_IMP:
-					case SLIME_REINDEER:
-					case SLIME_SQUIRREL:
-					case SLIME_BAT:
-					case SLIME_RAT:
-					case SLIME_WOLF:
-					case SLIME_RABBIT:
-						addToSubspeciesMap(1, gender, s, availableRaces);
-						break;
 					case RAT_MORPH:
 						addToSubspeciesMap(5, gender, s, availableRaces);
-						break;
-
-					case BAT_MORPH:
-						addToSubspeciesMap(1, gender, s, availableRaces);
 						break;
 					case HARPY:
 						addToSubspeciesMap(4, gender, s, availableRaces);
@@ -344,9 +307,7 @@ public class GenericSexualPartner extends NPC {
 	
 	@Override
 	public String getVirginityLossOrificeDescription(GameCharacter characterPenetrating, SexAreaPenetration penetrationType, GameCharacter characterPenetrated, SexAreaOrifice orifice){
-		if(!characterPenetrated.isPlayer()
-				|| (characterPenetrating.getLocationPlace().getPlaceType()!=PlaceType.GAMBLING_DEN_FUTA_PREGNANCY
-					&& characterPenetrating.getLocationPlace().getPlaceType()!=PlaceType.GAMBLING_DEN_PREGNANCY)) {
+		if(!characterPenetrated.isPlayer()) {
 			return super.getVirginityLossOrificeDescription(characterPenetrating, penetrationType, characterPenetrated, orifice);
 		}
 		

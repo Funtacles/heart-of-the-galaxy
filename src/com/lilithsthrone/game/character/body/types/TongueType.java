@@ -21,8 +21,6 @@ public enum TongueType implements BodyPartTypeInterface {
 
 	DEMON_COMMON(BodyCoveringType.TONGUE, Race.DEMON, 1, TongueModifier.BIFURCATED),
 	
-	IMP(BodyCoveringType.TONGUE, Race.IMP, 1, TongueModifier.BIFURCATED),
-
 	DOG_MORPH(BodyCoveringType.TONGUE, Race.DOG_MORPH, 1),
 
 	WOLF_MORPH(BodyCoveringType.TONGUE, Race.WOLF_MORPH, 1),
@@ -45,10 +43,8 @@ public enum TongueType implements BodyPartTypeInterface {
 
 	RAT_MORPH(BodyCoveringType.TONGUE, Race.RAT_MORPH, 1),
 	
-	RABBIT_MORPH(BodyCoveringType.TONGUE, Race.RABBIT_MORPH, 1),
+	RABBIT_MORPH(BodyCoveringType.TONGUE, Race.RABBIT_MORPH, 1);
 
-	BAT_MORPH(BodyCoveringType.TONGUE, Race.BAT_MORPH, 1);
-	
 	private BodyCoveringType skinType;
 	private Race race;
 	private int defaultTongueLength;
@@ -106,10 +102,6 @@ public enum TongueType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("");
 			case TENGU:
 				return UtilText.returnStringAtRandom("bird-like");
-			case BAT_MORPH:
-				return UtilText.returnStringAtRandom("");
-			case IMP:
-				return UtilText.returnStringAtRandom("");
 			case RAT_MORPH:
 				return UtilText.returnStringAtRandom("");
 			case RABBIT_MORPH:

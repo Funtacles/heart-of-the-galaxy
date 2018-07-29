@@ -146,18 +146,6 @@ public class ItemEffectType {
 		}
 	};
 
-	public static AbstractItemEffectType BOOK_READ_IMP = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"Adds imp encyclopedia entry.",
-			"[style.boldExcellent(+5)] [style.boldImp("+Attribute.DAMAGE_IMP.getName()+")]",
-			"[style.boldExcellent(+5)] [style.boldImp("+Attribute.RESISTANCE_IMP.getName()+")]"),
-			Colour.RACE_IMP) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getBookEffect(Race.IMP, ItemType.BOOK_IMP);
-		}
-	};
-	
 	public static AbstractItemEffectType BOOK_READ_DOG_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"Adds dog-morph encyclopedia entry.",
 			"[style.boldExcellent(+5)] [style.boldDogMorph("+Attribute.DAMAGE_DOG_MORPH.getName()+")]",
@@ -278,18 +266,6 @@ public class ItemEffectType {
 		}
 	};
 	
-	public static AbstractItemEffectType BOOK_READ_BAT_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"Adds bat-morph encyclopedia entry.",
-			"[style.boldExcellent(+5)] [style.boldBatMorph("+Attribute.DAMAGE_BAT_MORPH.getName()+")]",
-			"[style.boldExcellent(+5)] [style.boldBatMorph("+Attribute.RESISTANCE_BAT_MORPH.getName()+")]"),
-			Colour.RACE_BAT_MORPH) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getBookEffect(Race.BAT_MORPH, ItemType.BOOK_BAT_MORPH);
-		}
-	};
-	
 	public static AbstractItemEffectType BOOK_READ_WOLF_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"Adds wolf-morph encyclopedia entry.",
 			"[style.boldExcellent(+5)] [style.boldWolfMorph("+Attribute.DAMAGE_WOLF_MORPH.getName()+")]",
@@ -302,18 +278,6 @@ public class ItemEffectType {
 		}
 	};
 
-	public static AbstractItemEffectType BOOK_READ_SLIME = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"Adds slime encyclopedia entry.",
-			"[style.boldExcellent(+5)] [style.boldSlime("+Attribute.DAMAGE_SLIME.getName()+")]",
-			"[style.boldExcellent(+5)] [style.boldSlime("+Attribute.RESISTANCE_SLIME.getName()+")]"),
-			Colour.RACE_SLIME) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getBookEffect(Race.SLIME, ItemType.BOOK_SLIME);
-		}
-	};
-	
 	public static AbstractItemEffectType ORIENTATION_CHANGE = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"Sets orientation to gynephilic.",
 			"[style.boldExcellent(+50)] [style.boldCorruption(corruption)]"),
@@ -1110,56 +1074,17 @@ public class ItemEffectType {
 			StringBuilder sb = new StringBuilder();
 
 			sb.append("<p>");
-				if(target.getBodyMaterial()==BodyMaterial.SLIME) {
-					if(target.isPlayer()) {
-						sb.append("Your slimy body starts [style.boldTfGeneric(glowing)]!");
-					} else {
-						sb.append(UtilText.parse(target, "[npc.NamePos] slimy body starts [style.boldTfGeneric(glowing)]!"));
-					}
-					
-					target.getCovering(BodyCoveringType.SLIME).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_ANUS).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_ANUS).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_EYE).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_EYE).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_HAIR).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_HAIR).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_MOUTH).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_MOUTH).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_NIPPLES).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_NIPPLES).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_PUPILS).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_PUPILS).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_SCLERA).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_SCLERA).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_VAGINA).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_VAGINA).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_PENIS).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_PENIS).setSecondaryGlowing(true);
-					
+				if(target.isPlayer()) {
+					sb.append("The interiors of all of your orifices start to [style.boldTfGeneric(glow)]!");
 				} else {
-					if(target.isPlayer()) {
-						sb.append("The interiors of all of your orifices start to [style.boldTfGeneric(glow)]!");
-					} else {
-						sb.append(UtilText.parse(target, "The interiors of all of [npc.namePos] orifices start to [style.boldTfGeneric(glow)]!"));
-					}
-
-					target.getCovering(BodyCoveringType.MOUTH).setSecondaryGlowing(true);
-					target.getCovering(BodyCoveringType.ANUS).setSecondaryGlowing(true);
-					target.getCovering(BodyCoveringType.VAGINA).setSecondaryGlowing(true);
-					target.getCovering(BodyCoveringType.PENIS).setSecondaryGlowing(true);
-					target.getCovering(BodyCoveringType.NIPPLES).setSecondaryGlowing(true);
+					sb.append(UtilText.parse(target, "The interiors of all of [npc.namePos] orifices start to [style.boldTfGeneric(glow)]!"));
 				}
+
+				target.getCovering(BodyCoveringType.MOUTH).setSecondaryGlowing(true);
+				target.getCovering(BodyCoveringType.ANUS).setSecondaryGlowing(true);
+				target.getCovering(BodyCoveringType.VAGINA).setSecondaryGlowing(true);
+				target.getCovering(BodyCoveringType.PENIS).setSecondaryGlowing(true);
+				target.getCovering(BodyCoveringType.NIPPLES).setSecondaryGlowing(true);
 			sb.append("</p>");
 
 			target.addStatusEffect(StatusEffect.PSYCHOACTIVE, 6*60);
@@ -1598,56 +1523,6 @@ public class ItemEffectType {
 					+ target.addPotionEffect(Attribute.MAJOR_PHYSIQUE, 5);
 		}
 	};
-	
-	public static AbstractItemEffectType RACE_BIOJUICE = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(+50)] [style.boldCorruption(corruption)] to 'potion effects'",
-			"[style.boldSlime(Transforms body into slime!)]"),
-			Colour.RACE_SLIME) {
-
-		@Override
-		public String getPotionDescriptor() {
-			return "slime";
-		}
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			if(target.getBody().getBodyMaterial()==BodyMaterial.SLIME) {
-				if(target.isPlayer()) {
-					return "[style.colourDisabled(You are already a slime, so nothing happens...)]";
-				} else {
-					return UtilText.parse(target, "[style.colourDisabled([npc.Name] is already a slime, so nothing happens...)]");
-				}
-				
-			} else {
-				return target.incrementAttribute(Attribute.MAJOR_CORRUPTION, 50)
-						+ "<br/>"
-						+ target.setBodyMaterial(BodyMaterial.SLIME);
-			}
-		}
-	};
-	
-	// Essences:
-	
-//	public static AbstractItemEffectType BOTTLED_ESSENCE_ANGEL = new AbstractItemEffectType(Util.newArrayListOfValues(
-//			"[style.boldGood(+1)] [style.boldAngel(Angel)] essence"),
-//			Colour.RACE_ANGEL) {
-//		
-//		@Override
-//		public List<TFModifier> getPrimaryModifiers() {
-//			return null;
-//		}
-//
-//		@Override
-//		public List<TFModifier> getSecondaryModifiers(TFModifier primaryModifier) {
-//			return null;
-//		}
-//		
-//		@Override
-//		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-//			target.incrementEssenceCount(TFEssence.ANGEL, 1);
-//			return "You have absorbed [style.boldGood(+1)] [style.boldAngel(Angel)] essence!";
-//		}
-//	};
 	
 	public static AbstractItemEffectType BOTTLED_ESSENCE_ARCANE = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldGood(+1)] [style.boldArcane(Arcane)] essence"),
@@ -2854,35 +2729,6 @@ public class ItemEffectType {
 		}
 	};
 
-	public static AbstractItemEffectType RACE_BAT_MORPH = new AbstractItemEffectType(null,
-			Colour.RACE_BAT_MORPH) {
-
-		@Override
-		public List<TFModifier> getPrimaryModifiers() {
-			return TFModifier.getTFRacialBodyPartsList();
-		}
-
-		@Override
-		public List<TFModifier> getSecondaryModifiers(TFModifier primaryModifier) {
-			return getRacialSecondaryModifiers(Race.BAT_MORPH, primaryModifier);
-		}
-		
-		@Override
-		public List<TFPotency> getPotencyModifiers(TFModifier primaryModifier, TFModifier secondaryModifier) {
-			return getRacialPotencyModifiers(Race.BAT_MORPH, primaryModifier, secondaryModifier);
-		}
-		
-		@Override
-		public List<String> getEffectsDescription(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target) {
-			return Util.newArrayListOfValues(getRacialEffect(Race.BAT_MORPH, primaryModifier, secondaryModifier, potency, user, target).getDescriptionPlusChangeDescription());
-		}
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getRacialEffect(Race.BAT_MORPH, primaryModifier, secondaryModifier, potency, user, target).applyEffect();
-		}
-	};
-	
 	public static AbstractItemEffectType RACE_DOG_MORPH = new AbstractItemEffectType(null,
 			Colour.RACE_DOG_MORPH) {
 

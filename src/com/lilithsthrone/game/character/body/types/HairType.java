@@ -22,8 +22,6 @@ public enum HairType implements BodyPartTypeInterface {
 
 	DEMON_COMMON(BodyCoveringType.HAIR_DEMON, Race.DEMON),
 	
-	IMP(BodyCoveringType.HAIR_IMP, Race.IMP),
-
 	DOG_MORPH(BodyCoveringType.HAIR_CANINE_FUR, Race.DOG_MORPH),
 
 	LYCAN(BodyCoveringType.HAIR_LYCAN_FUR, Race.WOLF_MORPH),
@@ -43,8 +41,6 @@ public enum HairType implements BodyPartTypeInterface {
 	RAT_MORPH(BodyCoveringType.HAIR_RAT_FUR, Race.RAT_MORPH),
 
 	RABBIT_MORPH(BodyCoveringType.HAIR_RABBIT_FUR, Race.RABBIT_MORPH),
-
-	BAT_MORPH(BodyCoveringType.HAIR_BAT_FUR, Race.BAT_MORPH),
 
 	HORSE_MORPH(BodyCoveringType.HAIR_HORSE_HAIR, Race.HORSE_MORPH),
 
@@ -84,8 +80,6 @@ public enum HairType implements BodyPartTypeInterface {
 				return "feather";
 			case ALLIGATOR_SCALES:
 				return "scale";
-			case SLIME:
-				return "slime";
 			default:
 				return "hair";
 		}
@@ -98,8 +92,6 @@ public enum HairType implements BodyPartTypeInterface {
 				return "feathers";
 			case ALLIGATOR_SCALES:
 				return "scales";
-			case SLIME:
-				return "slime";
 			default:
 				return "hair";
 		}
@@ -118,8 +110,6 @@ public enum HairType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("cow-like");
 			case DEMON_COMMON:
 				return UtilText.returnStringAtRandom("demonic");
-			case IMP:
-				return UtilText.returnStringAtRandom("impish");
 			case DOG_MORPH:
 				return UtilText.returnStringAtRandom("dog-like");
 			case SQUIRREL_MORPH:
@@ -138,8 +128,6 @@ public enum HairType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("wolf-like");
 			case FOX_MORPH:
 				return UtilText.returnStringAtRandom("fox-like");
-			case BAT_MORPH:
-				return UtilText.returnStringAtRandom("bat-like");
 			case RAT_MORPH:
 				return UtilText.returnStringAtRandom("rat-like");
 			case RABBIT_MORPH:
@@ -168,8 +156,6 @@ public enum HairType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("feline sidefluff");
 			case DEMON_COMMON:
 				return "demonic";
-			case IMP:
-				return "impish";
 			case DOG_MORPH:
 				return "canine";
 			case COW_MORPH:
@@ -190,8 +176,6 @@ public enum HairType implements BodyPartTypeInterface {
 				return "lupine";
 			case FOX_MORPH:
 				return "vulpine";
-			case BAT_MORPH:
-				return "bat";
 			case RAT_MORPH:
 				return "rat";
 			case RABBIT_MORPH:

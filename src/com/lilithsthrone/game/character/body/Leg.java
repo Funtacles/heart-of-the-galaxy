@@ -140,23 +140,6 @@ public class Leg implements BodyPartInterface, Serializable {
 							+ "[npc.NameIsFull] left with [style.boldDemon(demonic legs and hoofed feet)], which are covered in [pc.legFullDescription]."
 						+ "</p>");
 				break;
-			case IMP:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" They quickly shift into a pair of smooth, slender legs, and you let out a gasp as a layer of flawless, impish skin rapidly grows to cover them."
-								+ " As they finish transforming, you almost lose your balance and fall over as the bones in your feet start to shift and rearrange themselves."
-								+ " After a moment, they've transformed into slender human-like feet, ending in soft, delicate toes.<br/>"
-								+ "You now have [style.boldImp(impish legs and feet)], which are covered in [pc.legFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" They quickly shift into a pair of smooth, slender legs, and [npc.she] lets out a gasp as a layer of flawless, impish skin rapidly grows to cover them."
-								+ " As they finish transforming, [npc.she] almost loses [npc.her] balance as the bones in [npc.her] feet start to shift and rearrange themselves."
-								+ " After a moment, they've transformed into slender human-like feet, ending in soft, delicate toes.<br/>"
-								+ "[npc.Name] now has [style.boldImp(impish legs and feet)], which are covered in [npc.legFullDescription]."
-							+ "</p>");
-				}
-				break;
 			case DOG_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -345,23 +328,6 @@ public class Leg implements BodyPartInterface, Serializable {
 								+ " As [npc.her] new fur spreads down to the ends of [npc.her] toes, [npc.her] toenails thicken into blunt claws, and soft little pads grow to cover [npc.her] soles, leaving [npc.herHim] with long, paw-like feet."
 								+ " As the transformation ends, [npc.she] sees that [npc.her] new fur smoothly transitions into the [npc.skin] covering the rest of [npc.her] body at [npc.her] upper-thigh.<br/>"
 								+ "[npc.Name] now has anthropomorphic, [style.boldRabbitMorph(rabbit-like legs and feet)], which are covered in [npc.legFullDescription]."
-							+ "</p>");
-				}
-				break;
-			case BAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" A layer of bat-like fur quickly grows over your legs as they shift into a new form."
-								+ " As your new fur spreads down to the ends of your toes, your toenails thicken into sharp claws, and little pink pads grow to cover your soles, leaving you with paw-like feet."
-								+ " As the transformation ends, you see that your new fur smoothly transitions into the [pc.skin] covering the rest of your body at your upper-thigh.<br/>"
-								+ "You're left with anthropomorphic, [style.boldBatMorph(bat-like legs and feet)], which are covered in [pc.legFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" A layer of bat-like fur quickly grows over [npc.her] legs as they shift into a new form."
-								+ " As [npc.her] new fur spreads down to the ends of [npc.her] toes, [npc.her] toenails thicken into sharp claws, and little pink pads grow to cover [npc.her] soles, leaving [npc.herHim] with paw-like feet."
-								+ " As the transformation ends, [npc.she] sees that [npc.her] new fur smoothly transitions into the [npc.skin] covering the rest of [npc.her] body at [npc.her] upper-thigh.<br/>"
-								+ "[npc.Name] now has anthropomorphic, [style.boldBatMorph(bat-like legs and feet)], which are covered in [npc.legFullDescription]."
 							+ "</p>");
 				}
 				break;

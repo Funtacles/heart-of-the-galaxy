@@ -30,7 +30,6 @@ import com.lilithsthrone.game.sex.sexActions.SexActionPriority;
 import com.lilithsthrone.game.sex.sexActions.SexActionType;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Util;
-import com.lilithsthrone.world.places.PlaceType;
 
 /**
  * @since 0.1.69
@@ -1275,7 +1274,7 @@ public class GenericOrgasms {
 							}
 							cumTargetSB.append(" gulp down as much of the");
 							if(!characterOrgasming.getCumModifiers().isEmpty()) {
-								switch(characterOrgasming.getCumModifiers().get(Util.random.nextInt(characterOrgasming.getCumModifiers().size()))) { //TODO specials for ALCOHOLIC & HALLUCINOGENIC
+								switch(characterOrgasming.getCumModifiers().get(Util.random.nextInt(characterOrgasming.getCumModifiers().size()))) {
 									case ADDICTIVE:
 										cumTargetSB.append(" delicious, highly-addictive [npc1.cum] as you possibly can.");
 										break;
@@ -1431,7 +1430,6 @@ public class GenericOrgasms {
 				case AIR:
 				case ARCANE:
 				case WATER:
-				case SLIME:
 					if(characterOrgasming.isPlayer()) {
 						cumTargetSB.append("<br/>"
 								+ "As [npc2.namePos] body is made completely out of translucent "+target.getBodyMaterial().getName()+", you're able to see the cloud of your [npc1.cum+] shooting up and dispersing inside of [npc2.herHim].");
@@ -2870,8 +2868,6 @@ public class GenericOrgasms {
 		@Override
 		public boolean isBaseRequirementsMet() {
 			return isTakingCock(Main.game.getPlayer(), Sex.getCharacterTargetedForSexAction(this))
-					&& Main.game.getPlayer().getLocationPlace().getPlaceType()!=PlaceType.GAMBLING_DEN_FUTA_PREGNANCY
-					&& Main.game.getPlayer().getLocationPlace().getPlaceType()!=PlaceType.GAMBLING_DEN_PREGNANCY
 					&& Sex.getCharacterPerformingAction().isPlayer();
 		}
 
@@ -3362,17 +3358,12 @@ public class GenericOrgasms {
 		
 		@Override
 		public SexActionPriority getPriority() {
-			if(Main.game.getPlayer().getLocationPlace().getPlaceType()==PlaceType.GAMBLING_DEN_FUTA_PREGNANCY
-					|| Main.game.getPlayer().getLocationPlace().getPlaceType()==PlaceType.GAMBLING_DEN_PREGNANCY) {
-				return SexActionPriority.UNIQUE_MAX;
-			}
 			return SexActionPriority.NORMAL;
 		}
 		
 		@Override
 		public boolean endsSex() {
-			return Main.game.getPlayer().getLocationPlace().getPlaceType()==PlaceType.GAMBLING_DEN_FUTA_PREGNANCY
-					|| Main.game.getPlayer().getLocationPlace().getPlaceType()==PlaceType.GAMBLING_DEN_PREGNANCY;
+			return false;
 		}
 		
 		@Override

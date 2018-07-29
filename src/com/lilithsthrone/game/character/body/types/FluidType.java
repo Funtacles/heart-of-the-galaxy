@@ -46,15 +46,6 @@ public enum FluidType implements BodyPartTypeInterface {
 					FluidModifier.SLIMY),
 			Race.DEMON),
 
-	CUM_IMP(FluidTypeBase.CUM,
-			BodyCoveringType.CUM,
-			FluidFlavour.CUM,
-			Util.newArrayListOfValues("impish"),
-			Util.newArrayListOfValues(
-					FluidModifier.STICKY,
-					FluidModifier.SLIMY),
-			Race.IMP),
-
 	CUM_DOG_MORPH(FluidTypeBase.CUM,
 			BodyCoveringType.CUM,
 			FluidFlavour.CUM,
@@ -118,15 +109,6 @@ public enum FluidType implements BodyPartTypeInterface {
 					FluidModifier.STICKY,
 					FluidModifier.SLIMY),
 			Race.RABBIT_MORPH),
-	
-	CUM_BAT_MORPH(FluidTypeBase.CUM,
-			BodyCoveringType.CUM,
-			FluidFlavour.CUM,
-			Util.newArrayListOfValues("bat"),
-			Util.newArrayListOfValues(
-					FluidModifier.STICKY,
-					FluidModifier.SLIMY),
-			Race.BAT_MORPH),
 	
 	CUM_ALLIGATOR_MORPH(FluidTypeBase.CUM,
 			BodyCoveringType.CUM,
@@ -202,14 +184,6 @@ public enum FluidType implements BodyPartTypeInterface {
 					FluidModifier.SLIMY),
 			Race.DEMON),
 
-	GIRL_CUM_IMP(FluidTypeBase.GIRLCUM,
-			BodyCoveringType.GIRL_CUM,
-			FluidFlavour.GIRL_CUM,
-			Util.newArrayListOfValues("impish"),
-			Util.newArrayListOfValues(
-					FluidModifier.SLIMY),
-			Race.IMP),
-
 	GIRL_CUM_DOG_MORPH(FluidTypeBase.GIRLCUM,
 			BodyCoveringType.GIRL_CUM,
 			FluidFlavour.GIRL_CUM,
@@ -265,14 +239,6 @@ public enum FluidType implements BodyPartTypeInterface {
 			Util.newArrayListOfValues(
 					FluidModifier.SLIMY),
 			Race.RABBIT_MORPH),
-	
-	GIRL_CUM_BAT_MORPH(FluidTypeBase.GIRLCUM,
-			BodyCoveringType.GIRL_CUM,
-			FluidFlavour.GIRL_CUM,
-			Util.newArrayListOfValues("bat"),
-			Util.newArrayListOfValues(
-					FluidModifier.SLIMY),
-			Race.BAT_MORPH),
 	
 	GIRL_CUM_ALLIGATOR_MORPH(FluidTypeBase.GIRLCUM,
 			BodyCoveringType.GIRL_CUM,
@@ -344,13 +310,6 @@ public enum FluidType implements BodyPartTypeInterface {
 			Util.newArrayListOfValues(),
 			Race.DEMON),
 
-	MILK_IMP(FluidTypeBase.MILK,
-			BodyCoveringType.MILK,
-			FluidFlavour.MILK,
-			Util.newArrayListOfValues("impish"),
-			Util.newArrayListOfValues(),
-			Race.IMP),
-
 	MILK_DOG_MORPH(FluidTypeBase.MILK,
 			BodyCoveringType.MILK,
 			FluidFlavour.MILK,
@@ -399,13 +358,6 @@ public enum FluidType implements BodyPartTypeInterface {
 			Util.newArrayListOfValues("rabbit"),
 			Util.newArrayListOfValues(),
 			Race.RABBIT_MORPH),
-	
-	MILK_BAT_MORPH(FluidTypeBase.MILK,
-			BodyCoveringType.MILK,
-			FluidFlavour.MILK,
-			Util.newArrayListOfValues("bat"),
-			Util.newArrayListOfValues(),
-			Race.BAT_MORPH),
 	
 	MILK_ALLIGATOR_MORPH(FluidTypeBase.MILK,
 			BodyCoveringType.MILK,

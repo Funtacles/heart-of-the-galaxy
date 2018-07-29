@@ -120,19 +120,6 @@ public class Eye implements BodyPartInterface, Serializable {
 								+ "[npc.Name] now has [style.boldDemon(demonic eyes)]");
 				}
 				break;
-			case IMP:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" By the time you hesitantly open them again, they've changed into impish eyes, with smaller-than-average pupils and large irises."
-								+ "<br/>"
-								+ "You now have [style.boldImp(impish eyes)]");
-				} else {
-					UtilText.transformationContentSB.append(
-								" By the time [npc.she] hesitantly opens them again, they've changed into impish eyes, with smaller-than-average pupils and large irises."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldImp(impish eyes)]");
-				}
-				break;
 			case COW_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -235,19 +222,6 @@ public class Eye implements BodyPartInterface, Serializable {
 								" By the time [npc.she] hesitantly opens them again, they've changed into rabbit-like eyes, with larger-than-average pupils and small irises."
 								+ "<br/>"
 								+ "[npc.Name] now has [style.boldRabbitMorph(rabbit-like eyes)]");
-				}
-				break;
-			case BAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" By the time you hesitantly open them again, they've changed into bat-like eyes, with larger-than-average pupils and small irises."
-								+ "<br/>"
-								+ "You now have [style.boldBatMorph(bat-like eyes)]");
-				} else {
-					UtilText.transformationContentSB.append(
-								" By the time [npc.she] hesitantly opens them again, they've changed into bat-like eyes, with larger-than-average pupils and small irises."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldBatMorph(bat-like eyes)]");
 				}
 				break;
 			case ALLIGATOR_MORPH:

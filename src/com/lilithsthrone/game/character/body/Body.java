@@ -285,20 +285,11 @@ public class Body implements Serializable, XMLSaving {
 	}
 	
 	public void addDiscoveredBodyCoveringsFromMaterial(BodyMaterial bodyMaterial) {
-		if(bodyMaterial==BodyMaterial.SLIME) {
-			coveringsDiscovered.add(BodyCoveringType.SLIME_SCLERA);
-			coveringsDiscovered.add(BodyCoveringType.SLIME_NIPPLES);
-			coveringsDiscovered.add(BodyCoveringType.SLIME_MOUTH);
-			coveringsDiscovered.add(BodyCoveringType.SLIME_ANUS);
-			coveringsDiscovered.add(BodyCoveringType.SLIME_VAGINA);
-			coveringsDiscovered.add(BodyCoveringType.SLIME_PENIS);
-		} else {
-			coveringsDiscovered.add(BodyCoveringType.EYE_SCLERA);
-			coveringsDiscovered.add(BodyCoveringType.NIPPLES);
-			coveringsDiscovered.add(BodyCoveringType.TONGUE);
-			coveringsDiscovered.add(BodyCoveringType.MOUTH);
-			coveringsDiscovered.add(BodyCoveringType.ANUS);
-		}
+		coveringsDiscovered.add(BodyCoveringType.EYE_SCLERA);
+		coveringsDiscovered.add(BodyCoveringType.NIPPLES);
+		coveringsDiscovered.add(BodyCoveringType.TONGUE);
+		coveringsDiscovered.add(BodyCoveringType.MOUTH);
+		coveringsDiscovered.add(BodyCoveringType.ANUS);
 	}
 	
 	public static BodyCoveringType getBodyHairCoveringType(Race race) {
@@ -313,8 +304,6 @@ public class Body implements Serializable, XMLSaving {
 				return BodyCoveringType.BODY_HAIR_BOVINE_FUR;
 			case DEMON:
 				return BodyCoveringType.BODY_HAIR_DEMON;
-			case IMP:
-				return BodyCoveringType.BODY_HAIR_IMP;
 			case DOG_MORPH:
 				return BodyCoveringType.BODY_HAIR_CANINE_FUR;
 			case ALLIGATOR_MORPH:
@@ -331,10 +320,6 @@ public class Body implements Serializable, XMLSaving {
 				return BodyCoveringType.BODY_HAIR_SQUIRREL_FUR;
 			case WOLF_MORPH:
 				return BodyCoveringType.BODY_HAIR_LYCAN_FUR;
-			case SLIME:
-				return BodyCoveringType.SLIME;
-			case BAT_MORPH:
-				return BodyCoveringType.BODY_HAIR_BAT_FUR;
 			case RAT_MORPH:
 				return BodyCoveringType.BODY_HAIR_RAT_FUR;
 			case RABBIT_MORPH:
@@ -1463,8 +1448,7 @@ public class Body implements Serializable, XMLSaving {
 	}
 
 	private String getCoveredInDescriptor(GameCharacter owner) {
-		if(owner.getRace()==Race.SLIME
-				|| owner.getRace()==Race.ELEMENTAL_EARTH
+		if(owner.getRace()==Race.ELEMENTAL_EARTH
 				|| owner.getRace()==Race.ELEMENTAL_WATER
 				|| owner.getRace()==Race.ELEMENTAL_AIR
 				|| owner.getRace()==Race.ELEMENTAL_FIRE
@@ -1557,19 +1541,6 @@ public class Body implements Serializable, XMLSaving {
 		switch(this.getBodyMaterial()) {
 			case FLESH:
 				break;
-			case SLIME:
-				if (owner.isPlayer()) {
-					sb.append("<p>"
-								+ "Your entire body, save for a small, glowing sphere in the place where your heart should be, is made out of [pc.skinFullDescription(true)]!"
-								+ " You don't need to have any parts of your body pierced in order to equip jewellery, as you can freely morph your body at will!"
-							+ "</p>");
-				} else {
-					sb.append("<p>"
-								+ "[npc.NamePos] entire body, save for a small, glowing sphere in the place where [npc.her] heart should be, is made out of [npc.skinFullDescription(true)]!"
-								+ " [npc.She] doesn't need to have any parts of [npc.her] body pierced in order to equip jewellery, as [npc.she] can freely morph [npc.her] body at will!"
-							+ "</p>");
-				}
-				break;
 			case AIR:
 			case ARCANE:
 			case STONE:
@@ -1642,9 +1613,6 @@ public class Body implements Serializable, XMLSaving {
 			case DEMON_COMMON:
 				sb.append(", perfectly proportioned face.");
 				break;
-			case IMP:
-				sb.append(", impish face.");
-				break;
 			case DOG_MORPH:
 				sb.append(", anthropomorphic dog-like face, complete with a canine muzzle.");
 				break;
@@ -1674,9 +1642,6 @@ public class Body implements Serializable, XMLSaving {
 				break;
 			case RABBIT_MORPH:
 				sb.append(", anthropomorphic rabbit-like face, with a cute little muzzle.");
-				break;
-			case BAT_MORPH:
-				sb.append(", anthropomorphic bat-like face, with a cute little muzzle.");
 				break;
 			case HORSE_MORPH:
 				sb.append(", anthropomorphic horse-like face, with a long, equine muzzle.");
@@ -1730,9 +1695,6 @@ public class Body implements Serializable, XMLSaving {
 				case DEMON_COMMON:
 					sb.append(", silken hair");
 					break;
-				case IMP:
-					sb.append(", silken hair");
-					break;
 				case ANGEL:
 					sb.append(", silken hair");
 					break;
@@ -1764,9 +1726,6 @@ public class Body implements Serializable, XMLSaving {
 					sb.append(", fur-like hair");
 					break;
 				case RABBIT_MORPH:
-					sb.append(", fur-like hair");
-					break;
-				case BAT_MORPH:
 					sb.append(", fur-like hair");
 					break;
 				case HORSE_MORPH:
@@ -1955,9 +1914,6 @@ public class Body implements Serializable, XMLSaving {
 			case DEMON_COMMON:
 				sb.append(" demonic eyes");
 				break;
-			case IMP:
-				sb.append(" impish eyes");
-				break;
 			case DOG_MORPH:
 				sb.append(" dog-like eyes");
 				break;
@@ -1990,9 +1946,6 @@ public class Body implements Serializable, XMLSaving {
 				break;
 			case RABBIT_MORPH:
 				sb.append(" rabbit-like eyes");
-				break;
-			case BAT_MORPH:
-				sb.append(" bat-like eyes");
 				break;
 		}
 		
@@ -2069,12 +2022,6 @@ public class Body implements Serializable, XMLSaving {
 					sb.append(" You have a pair of pointed, demonic ears, which are "+getCoveredInDescriptor(owner)+" [pc.earFullDescription(true)]" + (ear.isPierced() ? ", and which have been pierced" : "") + ".");
 				else
 					sb.append(" [npc.She] has a pair of pointed, demonic ears, which are "+getCoveredInDescriptor(owner)+" [npc.earFullDescription(true)]" + (ear.isPierced() ? ", and which have been pierced" : "") + ".");
-				break;
-			case IMP:
-				if (owner.isPlayer())
-					sb.append(" You have a pair of pointed, impish ears, which are "+getCoveredInDescriptor(owner)+" [pc.earFullDescription(true)]" + (ear.isPierced() ? ", and which have been pierced" : "") + ".");
-				else
-					sb.append(" [npc.She] has a pair of pointed, impish ears, which are "+getCoveredInDescriptor(owner)+" [npc.earFullDescription(true)]" + (ear.isPierced() ? ", and which have been pierced" : "") + ".");
 				break;
 			case DOG_MORPH:
 				if (owner.isPlayer())
@@ -2163,13 +2110,6 @@ public class Body implements Serializable, XMLSaving {
 					sb.append(" You have a pair of "+(ear.isPierced() ? "pierced, " : "")+"floppy, rabbit-like ears, which are positioned high up on your head and are are "+getCoveredInDescriptor(owner)+" [pc.earFullDescription(true)].");
 				} else {
 					sb.append(" [npc.She] has a pair of "+(ear.isPierced() ? "pierced, " : "")+"floppy, rabbit-like ears, which are positioned high up on [npc.her] head and are "+getCoveredInDescriptor(owner)+" [npc.earFullDescription(true)].");
-				}
-				break;
-			case BAT_MORPH:
-				if (owner.isPlayer()) {
-					sb.append(" You have a pair of "+(ear.isPierced() ? "pierced, " : "")+"triangular, bat-like ears, which are positioned high up on your head and are are "+getCoveredInDescriptor(owner)+" [pc.earFullDescription(true)].");
-				} else {
-					sb.append(" [npc.She] has a pair of "+(ear.isPierced() ? "pierced, " : "")+"triangular, bat-like ears, which are positioned high up on [npc.her] head and are "+getCoveredInDescriptor(owner)+" [npc.earFullDescription(true)].");
 				}
 				break;
 			case HORSE_MORPH:
@@ -2955,22 +2895,6 @@ public class Body implements Serializable, XMLSaving {
 							+ " Where [npc.her] hands should be, [npc.she] has two feathered forefingers and a thumb, each of which ends in a little blunt claw."
 							+ " Although slightly less dexterous than a human hand, [npc.sheIs] still able to use [npc.her] digits to form a hand-like grip.");
 				break;
-			case BAT_MORPH:
-				if (owner.isPlayer())
-					sb.append("Your arms have transformed into "+armDeterminer+" huge bat-like wings, "+getCoveredInDescriptor(owner)+" [pc.armFullDescription(true)]."
-							+ " Where your hands should be, you have two forefingers and a thumb, each of which ends in a little blunt claw."
-							+ " Although slightly less dexterous than a human hand, you're still able to use your remaining digits to form a hand-like grip.");
-				else
-					sb.append("In place of arms and hands, [npc.she] has "+armDeterminer+" huge bat-like wings, "+getCoveredInDescriptor(owner)+" [npc.armFullDescription(true)]."
-							+ " Where [npc.her] hands should be, [npc.she] has two forefingers and a thumb, each of which ends in a little blunt claw."
-							+ " Although slightly less dexterous than a human hand, [npc.sheIs] still able to use [npc.her] digits to form a hand-like grip.");
-				break;
-			case IMP:
-				if (owner.isPlayer())
-					sb.append("You have "+armDeterminer+" slender, human-looking arms and hands, which are "+getCoveredInDescriptor(owner)+" [pc.armFullDescription(true)].");
-				else
-					sb.append("[npc.She] has "+armDeterminer+" slender human-looking arms and hands, which are "+getCoveredInDescriptor(owner)+" [npc.armFullDescription(true)].");
-				break;
 			case RABBIT_MORPH:
 				if (owner.isPlayer())
 					sb.append("You have "+armDeterminer+" arms, which are "+getCoveredInDescriptor(owner)+" [pc.armFullDescription(true)]."
@@ -3152,12 +3076,6 @@ public class Body implements Serializable, XMLSaving {
 				else
 					sb.append("[npc.Her] demonic legs are "+getCoveredInDescriptor(owner)+" [npc.legFullDescription(true)], and [npc.her] feet are formed into hard hoofs.");
 				break;
-			case IMP:
-				if (owner.isPlayer())
-					sb.append("Your legs and feet are human in shape, but are "+getCoveredInDescriptor(owner)+" [pc.legFullDescription(true)].");
-				else
-					sb.append("[npc.Her] legs and feet are human in shape, but are "+getCoveredInDescriptor(owner)+" [npc.legFullDescription(true)].");
-				break;
 			case DOG_MORPH:
 				if (owner.isPlayer())
 					sb.append("Your legs are "+getCoveredInDescriptor(owner)+" [pc.legFullDescription(true)],"
@@ -3237,12 +3155,6 @@ public class Body implements Serializable, XMLSaving {
 				else
 					sb.append("[npc.Her] upper thighs are "+getCoveredInDescriptor(owner)+" [npc.legFullDescription(true)], which transition into leathery bird-like skin just above [npc.her] knee."
 							+ " While [npc.her] legs still retain a human-like shape, [npc.her] feet have transformed into bird-like talons.");
-				break;
-			case BAT_MORPH:
-				if (owner.isPlayer())
-					sb.append("Your legs are "+getCoveredInDescriptor(owner)+" [pc.legFullDescription(true)], and your feet are formed into anthropomorphic bat-like paws, complete with claws and leathery pads.");
-				else
-					sb.append("[npc.Her] legs are "+getCoveredInDescriptor(owner)+" [npc.legFullDescription(true)], and [npc.her] feet are formed into anthropomorphic bat-like paws, complete with claws and leathery pads.");
 				break;
 			case RABBIT_MORPH:
 				if (owner.isPlayer())
@@ -3357,13 +3269,6 @@ public class Body implements Serializable, XMLSaving {
 						sb.append("Growing from [npc.her] shoulder-blades, [npc.she] has a pair of [npc.wingSize] angelic wings, which are covered in [npc.wingFullDescription(true)].");
 					}
 					break;
-				case IMP:
-					if (owner.isPlayer()) {
-						sb.append("Growing from your shoulder-blades, you have a pair of [pc.wingSize] bat-like wings, which are covered in [pc.wingFullDescription(true)].");
-					} else {
-						sb.append("Growing from [npc.her] shoulder-blades, [npc.she] has a pair of [npc.wingSize] bat-like wings, which are covered in [npc.wingFullDescription(true)].");
-					}
-					break;
 				case NONE:
 					break;
 			}
@@ -3431,13 +3336,6 @@ public class Body implements Serializable, XMLSaving {
 							} else {
 								sb.append("a [npc.tailColour(true)] demonic tail, tipped with "+owner.getCovering(BodyCoveringType.HAIR_DEMON).getFullDescription(owner, true)
 										+", over which [npc.she] has complete control, and [npc.she] can easily use it to grip and hold objects.");
-							}
-							break;
-						case IMP:
-							if (owner.isPlayer()) {
-								sb.append("a spaded, [pc.tailColour(true)] impish tail, over which you have complete control, and you can easily use it to grip and hold objects.");
-							} else {
-								sb.append("a spaded, [npc.tailColour(true)] impish tail, over which [npc.she] has complete control, and [npc.she] can easily use it to grip and hold objects.");
 							}
 							break;
 						case DOG_MORPH:
@@ -3575,13 +3473,6 @@ public class Body implements Serializable, XMLSaving {
 							} else {
 								sb.append("[npc.tailColour(true)] demonic tails, tipped with "+owner.getCovering(BodyCoveringType.HAIR_DEMON).getFullDescription(owner, true)
 										+", over which [npc.she] has complete control, and [npc.she] can easily use them to grip and hold objects.");
-							}
-							break;
-						case IMP:
-							if (owner.isPlayer()) {
-								sb.append("spaded, [pc.tailColour(true)] impish tails, over which you have complete control, and you can easily use them to grip and hold objects.");
-							} else {
-								sb.append("spaded, [npc.tailColour(true)] impish tails, over which [npc.she] has complete control, and [npc.she] can easily use them to grip and hold objects.");
 							}
 							break;
 						case DOG_MORPH:
@@ -3789,10 +3680,6 @@ public class Body implements Serializable, XMLSaving {
 			case RUBBER:
 			case STONE:
 				race = Race.ELEMENTAL_EARTH;
-				this.raceStage = RaceStage.GREATER;
-				break;
-			case SLIME:
-				race = Race.SLIME;
 				this.raceStage = RaceStage.GREATER;
 				break;
 		}
@@ -4020,14 +3907,6 @@ public class Body implements Serializable, XMLSaving {
 				}
 				break;
 				
-			case IMP:
-				if (isPlayer) {
-					descriptionSB.append("You have an impish, [pc.anusFullDescription(true)]");
-				} else {
-					descriptionSB.append("[npc.She] has an impish, [npc.anusFullDescription(true)]");
-				}
-				break;
-				
 			case DOG_MORPH:
 				if (isPlayer) {
 					descriptionSB.append("You have a canine, [pc.anusFullDescription(true)]");
@@ -4081,14 +3960,6 @@ public class Body implements Serializable, XMLSaving {
 					descriptionSB.append("You have a rabbit-like, [pc.anusFullDescription(true)]");
 				} else {
 					descriptionSB.append("[npc.She] has a rabbit-like, [npc.anusFullDescription(true)]");
-				}
-				break;
-				
-			case BAT_MORPH:
-				if (isPlayer) {
-					descriptionSB.append("You have a bat-like, [pc.anusFullDescription(true)]");
-				} else {
-					descriptionSB.append("[npc.She] has a bat-like, [npc.anusFullDescription(true)]");
 				}
 				break;
 				
@@ -4834,9 +4705,6 @@ public class Body implements Serializable, XMLSaving {
 			case DEMON_COMMON:
 				descriptionSB.append(" demonic cock");
 				break;
-			case IMP:
-				descriptionSB.append(" impish cock");
-				break;
 			case BOVINE:
 				descriptionSB.append(" bovine cock");
 				break;
@@ -4863,9 +4731,6 @@ public class Body implements Serializable, XMLSaving {
 				break;
 			case RABBIT_MORPH:
 				descriptionSB.append(" rabbit-like cock");
-				break;
-			case BAT_MORPH:
-				descriptionSB.append(" bat-like cock");
 				break;
 			case EQUINE:
 				descriptionSB.append(" equine cock");
@@ -5546,20 +5411,6 @@ public class Body implements Serializable, XMLSaving {
 					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" an")+" avian pussy, with [pc.labiaSize], [pc.pussyPrimaryColour(true)] labia and [pc.pussySecondaryColour(true)] inner-walls.");
 				} else {
 					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" an")+" avian pussy, with [npc.labiaSize], [npc.pussyPrimaryColour(true)] labia and [npc.pussySecondaryColour(true)] inner-walls.");
-				}
-				break;
-			case BAT_MORPH:
-				if (isPlayer) {
-					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" a")+" bat-morph's pussy, with [pc.labiaSize], [pc.pussyPrimaryColour(true)] labia and [pc.pussySecondaryColour(true)] inner-walls.");
-				} else {
-					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" a")+" bat-morph's pussy, with [npc.labiaSize], [npc.pussyPrimaryColour(true)] labia and [npc.pussySecondaryColour(true)] inner-walls.");
-				}
-				break;
-			case IMP:
-				if (isPlayer) {
-					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" an")+" impish pussy, with [pc.labiaSize], [pc.pussyPrimaryColour(true)] labia and [pc.pussySecondaryColour(true)] inner-walls.");
-				} else {
-					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" an")+" impish pussy, with [npc.labiaSize], [npc.pussyPrimaryColour(true)] labia and [npc.pussySecondaryColour(true)] inner-walls.");
 				}
 				break;
 			case RABBIT_MORPH:
@@ -6503,9 +6354,6 @@ public class Body implements Serializable, XMLSaving {
 				case DEMON:
 					coverings.put(BodyCoveringType.BODY_HAIR_DEMON, new Covering(BodyCoveringType.BODY_HAIR_DEMON, coverings.get(BodyCoveringType.HAIR_DEMON).getPrimaryColour()));
 					break;
-				case IMP:
-					coverings.put(BodyCoveringType.BODY_HAIR_IMP, new Covering(BodyCoveringType.BODY_HAIR_IMP, coverings.get(BodyCoveringType.HAIR_IMP).getPrimaryColour()));
-					break;
 				case DOG_MORPH:
 					coverings.put(BodyCoveringType.BODY_HAIR_CANINE_FUR, new Covering(BodyCoveringType.BODY_HAIR_CANINE_FUR, coverings.get(BodyCoveringType.HAIR_CANINE_FUR).getPrimaryColour()));
 					break;
@@ -6530,8 +6378,6 @@ public class Body implements Serializable, XMLSaving {
 				case HUMAN:
 					coverings.put(BodyCoveringType.BODY_HAIR_HUMAN, new Covering(BodyCoveringType.BODY_HAIR_HUMAN, coverings.get(BodyCoveringType.HAIR_HUMAN).getPrimaryColour()));
 					break;
-				case SLIME:
-					break;
 				case SQUIRREL_MORPH:
 					coverings.put(BodyCoveringType.BODY_HAIR_SQUIRREL_FUR, new Covering(BodyCoveringType.BODY_HAIR_SQUIRREL_FUR, coverings.get(BodyCoveringType.HAIR_SQUIRREL_FUR).getPrimaryColour()));
 					break;
@@ -6540,9 +6386,6 @@ public class Body implements Serializable, XMLSaving {
 					break;
 				case RABBIT_MORPH:
 					coverings.put(BodyCoveringType.BODY_HAIR_RABBIT_FUR, new Covering(BodyCoveringType.BODY_HAIR_RABBIT_FUR, coverings.get(BodyCoveringType.HAIR_RABBIT_FUR).getPrimaryColour()));
-					break;
-				case BAT_MORPH:
-					coverings.put(BodyCoveringType.BODY_HAIR_BAT_FUR, new Covering(BodyCoveringType.BODY_HAIR_BAT_FUR, coverings.get(BodyCoveringType.HAIR_BAT_FUR).getPrimaryColour()));
 					break;
 				case WOLF_MORPH:
 					coverings.put(BodyCoveringType.BODY_HAIR_LYCAN_FUR, new Covering(BodyCoveringType.BODY_HAIR_LYCAN_FUR, coverings.get(BodyCoveringType.HAIR_LYCAN_FUR).getPrimaryColour()));
@@ -6605,9 +6448,6 @@ public class Body implements Serializable, XMLSaving {
 					case DEMON:
 						coverings.put(BodyCoveringType.BODY_HAIR_DEMON, new Covering(BodyCoveringType.BODY_HAIR_DEMON, coverings.get(BodyCoveringType.HAIR_DEMON).getPrimaryColour()));
 						break;
-					case IMP:
-						coverings.put(BodyCoveringType.BODY_HAIR_IMP, new Covering(BodyCoveringType.BODY_HAIR_IMP, coverings.get(BodyCoveringType.HAIR_IMP).getPrimaryColour()));
-						break;
 					case DOG_MORPH:
 						coverings.put(BodyCoveringType.BODY_HAIR_CANINE_FUR, new Covering(BodyCoveringType.BODY_HAIR_CANINE_FUR, coverings.get(BodyCoveringType.HAIR_CANINE_FUR).getPrimaryColour()));
 						break;
@@ -6632,8 +6472,6 @@ public class Body implements Serializable, XMLSaving {
 					case HUMAN:
 						coverings.put(BodyCoveringType.BODY_HAIR_HUMAN, new Covering(BodyCoveringType.BODY_HAIR_HUMAN, coverings.get(BodyCoveringType.HAIR_HUMAN).getPrimaryColour()));
 						break;
-					case SLIME:
-						break;
 					case SQUIRREL_MORPH:
 						coverings.put(BodyCoveringType.BODY_HAIR_SQUIRREL_FUR, new Covering(BodyCoveringType.BODY_HAIR_SQUIRREL_FUR, coverings.get(BodyCoveringType.HAIR_SQUIRREL_FUR).getPrimaryColour()));
 						break;
@@ -6642,9 +6480,6 @@ public class Body implements Serializable, XMLSaving {
 						break;
 					case RABBIT_MORPH:
 						coverings.put(BodyCoveringType.BODY_HAIR_RABBIT_FUR, new Covering(BodyCoveringType.BODY_HAIR_RABBIT_FUR, coverings.get(BodyCoveringType.HAIR_RABBIT_FUR).getPrimaryColour()));
-						break;
-					case BAT_MORPH:
-						coverings.put(BodyCoveringType.BODY_HAIR_BAT_FUR, new Covering(BodyCoveringType.BODY_HAIR_BAT_FUR, coverings.get(BodyCoveringType.HAIR_BAT_FUR).getPrimaryColour()));
 						break;
 					case WOLF_MORPH:
 						coverings.put(BodyCoveringType.BODY_HAIR_LYCAN_FUR, new Covering(BodyCoveringType.BODY_HAIR_LYCAN_FUR, coverings.get(BodyCoveringType.HAIR_LYCAN_FUR).getPrimaryColour()));
@@ -6665,130 +6500,106 @@ public class Body implements Serializable, XMLSaving {
 		
 		// Make all orifice colours the same as their surroundings:
 		if(updateSkin) {
-			if(this.getBodyMaterial()==BodyMaterial.SLIME) {
-				coverings.put(BodyCoveringType.SLIME_ANUS, new Covering(BodyCoveringType.SLIME_ANUS, CoveringPattern.ORIFICE_ANUS,
-						coverings.get(BodyCoveringType.SLIME).getPrimaryColour(), false, coverings.get(BodyCoveringType.SLIME).getPrimaryColour(), false));
-				
-				coverings.put(BodyCoveringType.SLIME_NIPPLES, new Covering(BodyCoveringType.SLIME_NIPPLES, CoveringPattern.ORIFICE_NIPPLE,
-						coverings.get(BodyCoveringType.SLIME).getPrimaryColour(), false, coverings.get(BodyCoveringType.SLIME).getPrimaryColour(), false));
-				
-				coverings.put(BodyCoveringType.SLIME_MOUTH, new Covering(BodyCoveringType.SLIME_MOUTH, CoveringPattern.ORIFICE_MOUTH,
-						coverings.get(BodyCoveringType.SLIME).getPrimaryColour(), false, coverings.get(BodyCoveringType.SLIME).getPrimaryColour(), false));
-				
-				coverings.put(BodyCoveringType.SLIME_VAGINA, new Covering(BodyCoveringType.SLIME_VAGINA, CoveringPattern.ORIFICE_VAGINA,
-						coverings.get(BodyCoveringType.SLIME).getPrimaryColour(), false, coverings.get(BodyCoveringType.SLIME).getPrimaryColour(), false));
-
-				coverings.put(BodyCoveringType.SLIME_PENIS, new Covering(BodyCoveringType.SLIME_PENIS, CoveringPattern.NONE,
-						coverings.get(BodyCoveringType.SLIME).getPrimaryColour(), false, coverings.get(BodyCoveringType.SLIME).getPrimaryColour(), false));
-				
+			switch(ass.getType().getRace()) {
+				case ANGEL:
+					coverings.put(BodyCoveringType.ANUS, new Covering(BodyCoveringType.ANUS, CoveringPattern.ORIFICE_ANUS, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+					break;
+				case DEMON:
+					coverings.put(BodyCoveringType.ANUS, new Covering(BodyCoveringType.ANUS, CoveringPattern.ORIFICE_ANUS, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+					break;
+				default:
+					coverings.put(BodyCoveringType.ANUS, new Covering(BodyCoveringType.ANUS, CoveringPattern.ORIFICE_ANUS, coverings.get(BodyCoveringType.HUMAN).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+					break;
+			}
+			
+			switch(breast.getType().getRace()) {
+				case ANGEL:
+					coverings.put(BodyCoveringType.NIPPLES, new Covering(BodyCoveringType.NIPPLES, CoveringPattern.ORIFICE_NIPPLE, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+					break;
+				case DEMON:
+					coverings.put(BodyCoveringType.NIPPLES, new Covering(BodyCoveringType.NIPPLES, CoveringPattern.ORIFICE_NIPPLE, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+					break;
+				default:
+					coverings.put(BodyCoveringType.NIPPLES, new Covering(BodyCoveringType.NIPPLES, CoveringPattern.ORIFICE_NIPPLE, coverings.get(BodyCoveringType.HUMAN).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+					break;
+			}
+			
+			switch(face.getType().getRace()) {
+				case ANGEL:
+					coverings.put(BodyCoveringType.MOUTH, new Covering(BodyCoveringType.MOUTH, CoveringPattern.ORIFICE_MOUTH, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+					break;
+				case DEMON:
+					coverings.put(BodyCoveringType.MOUTH, new Covering(BodyCoveringType.MOUTH, CoveringPattern.ORIFICE_MOUTH, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+					break;
+				default:
+					coverings.put(BodyCoveringType.MOUTH, new Covering(BodyCoveringType.MOUTH, CoveringPattern.ORIFICE_MOUTH, coverings.get(BodyCoveringType.HUMAN).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+					break;
+			}
+			
+			if(vagina.getType().getRace()!=null) {
+				switch(vagina.getType().getRace()) {
+					case ANGEL:
+						coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+						break;
+					case DEMON:
+						coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+						break;
+					default:
+						coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.HUMAN).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+						break;
+				}
 			} else {
-				switch(ass.getType().getRace()) {
+				switch(getRace()) {
 					case ANGEL:
-						coverings.put(BodyCoveringType.ANUS, new Covering(BodyCoveringType.ANUS, CoveringPattern.ORIFICE_ANUS, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+						coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
 						break;
 					case DEMON:
-						coverings.put(BodyCoveringType.ANUS, new Covering(BodyCoveringType.ANUS, CoveringPattern.ORIFICE_ANUS, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+						coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
 						break;
 					default:
-						coverings.put(BodyCoveringType.ANUS, new Covering(BodyCoveringType.ANUS, CoveringPattern.ORIFICE_ANUS, coverings.get(BodyCoveringType.HUMAN).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+						coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.HUMAN).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
 						break;
 				}
-				
-				switch(breast.getType().getRace()) {
+			}
+			
+			if(penis.getType().getRace()!=null) {
+				switch(penis.getType().getRace()) {
 					case ANGEL:
-						coverings.put(BodyCoveringType.NIPPLES, new Covering(BodyCoveringType.NIPPLES, CoveringPattern.ORIFICE_NIPPLE, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+						coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
 						break;
 					case DEMON:
-						coverings.put(BodyCoveringType.NIPPLES, new Covering(BodyCoveringType.NIPPLES, CoveringPattern.ORIFICE_NIPPLE, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+						coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+						break;
+					case DOG_MORPH: case WOLF_MORPH:
+						coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, Colour.SKIN_RED, false, Colour.ORIFICE_INTERIOR, false));
 						break;
 					default:
-						coverings.put(BodyCoveringType.NIPPLES, new Covering(BodyCoveringType.NIPPLES, CoveringPattern.ORIFICE_NIPPLE, coverings.get(BodyCoveringType.HUMAN).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+						coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.HUMAN).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
 						break;
 				}
-				
-				switch(face.getType().getRace()) {
+			} else {
+				switch(getRace()) {
 					case ANGEL:
-						coverings.put(BodyCoveringType.MOUTH, new Covering(BodyCoveringType.MOUTH, CoveringPattern.ORIFICE_MOUTH, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+						coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
 						break;
 					case DEMON:
-						coverings.put(BodyCoveringType.MOUTH, new Covering(BodyCoveringType.MOUTH, CoveringPattern.ORIFICE_MOUTH, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+						coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+						break;
+					case DOG_MORPH: case WOLF_MORPH:
+						coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, Colour.SKIN_RED, false, Colour.ORIFICE_INTERIOR, false));
 						break;
 					default:
-						coverings.put(BodyCoveringType.MOUTH, new Covering(BodyCoveringType.MOUTH, CoveringPattern.ORIFICE_MOUTH, coverings.get(BodyCoveringType.HUMAN).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
+						coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.HUMAN).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
 						break;
-				}
-				
-				if(vagina.getType().getRace()!=null) {
-					switch(vagina.getType().getRace()) {
-						case ANGEL:
-							coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-							break;
-						case DEMON:
-							coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-							break;
-						default:
-							coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.HUMAN).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-							break;
-					}
-				} else {
-					switch(getRace()) {
-						case ANGEL:
-							coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-							break;
-						case DEMON:
-							coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-							break;
-						default:
-							coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.HUMAN).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-							break;
-					}
-				}
-				
-				if(penis.getType().getRace()!=null) {
-					switch(penis.getType().getRace()) {
-						case ANGEL:
-							coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-							break;
-						case DEMON:
-							coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-							break;
-						case DOG_MORPH: case WOLF_MORPH:
-							coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, Colour.SKIN_RED, false, Colour.ORIFICE_INTERIOR, false));
-							break;
-						default:
-							coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.HUMAN).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-							break;
-					}
-				} else {
-					switch(getRace()) {
-						case ANGEL:
-							coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-							break;
-						case DEMON:
-							coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-							break;
-						case DOG_MORPH: case WOLF_MORPH:
-							coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, Colour.SKIN_RED, false, Colour.ORIFICE_INTERIOR, false));
-							break;
-						default:
-							coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.HUMAN).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-							break;
-					}
 				}
 			}
 		}
 	}
 	
 	public boolean isAbleToFlyFromArms() {
-		if(this.getBodyMaterial()==BodyMaterial.SLIME) {
-			return false;
-		}
 		return arm.getType().allowsFlight();
 	}
 	public boolean isAbleToFlyFromWings() {
-		if(this.getBodyMaterial()==BodyMaterial.SLIME) {
-			return false;
-		}
 		return (wing.getType().allowsFlight() && wing.getSize().isSizeAllowsFlight());
 	}
 

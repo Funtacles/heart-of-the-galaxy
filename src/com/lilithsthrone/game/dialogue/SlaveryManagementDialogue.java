@@ -19,7 +19,6 @@ import com.lilithsthrone.game.character.body.Skin;
 import com.lilithsthrone.game.character.body.Vagina;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
 import com.lilithsthrone.game.character.body.types.FaceType;
-import com.lilithsthrone.game.character.body.valueEnums.BodyMaterial;
 import com.lilithsthrone.game.character.body.valueEnums.PiercingType;
 import com.lilithsthrone.game.character.markings.TattooCounterType;
 import com.lilithsthrone.game.character.markings.TattooType;
@@ -1785,36 +1784,30 @@ public class SlaveryManagementDialogue {
 					SLAVE_MANAGEMENT_COSMETICS_COVERINGS){
 				@Override
 				public void effects() {
-					
 					CoveringsNamesMap = new LinkedHashMap<>();
-
-					if(BodyChanging.getTarget().getBodyMaterial()==BodyMaterial.SLIME) {
-						CoveringsNamesMap.put(BodyCoveringType.SLIME, Util.newArrayListOfValues("SLIME"));
-					} else {
-						for(BodyPartInterface bp : BodyChanging.getTarget().getAllBodyParts()){
-							if(bp.getType().getBodyCoveringType(BodyChanging.getTarget())!=null
-									&& !(bp instanceof Hair)
-									&& !(bp instanceof Eye)) {
-								
-								String name = bp.getName(BodyChanging.getTarget());
-								if(bp instanceof Skin) {
-									name = "torso";
-								} else if(bp instanceof Vagina) {
-									name = "vagina";
-								}
-								
-								if(CoveringsNamesMap.containsKey(bp.getType().getBodyCoveringType(BodyChanging.getTarget()))) {
-									CoveringsNamesMap.get(bp.getType().getBodyCoveringType(BodyChanging.getTarget())).add(name);
-								} else {
-									CoveringsNamesMap.put(bp.getType().getBodyCoveringType(BodyChanging.getTarget()), Util.newArrayListOfValues(name));
-								}
+					for(BodyPartInterface bp : BodyChanging.getTarget().getAllBodyParts()){
+						if(bp.getType().getBodyCoveringType(BodyChanging.getTarget())!=null
+								&& !(bp instanceof Hair)
+								&& !(bp instanceof Eye)) {
+							
+							String name = bp.getName(BodyChanging.getTarget());
+							if(bp instanceof Skin) {
+								name = "torso";
+							} else if(bp instanceof Vagina) {
+								name = "vagina";
+							}
+							
+							if(CoveringsNamesMap.containsKey(bp.getType().getBodyCoveringType(BodyChanging.getTarget()))) {
+								CoveringsNamesMap.get(bp.getType().getBodyCoveringType(BodyChanging.getTarget())).add(name);
+							} else {
+								CoveringsNamesMap.put(bp.getType().getBodyCoveringType(BodyChanging.getTarget()), Util.newArrayListOfValues(name));
 							}
 						}
-						CoveringsNamesMap.put(BodyCoveringType.ANUS, Util.newArrayListOfValues("anus"));
-						CoveringsNamesMap.put(BodyCoveringType.MOUTH, Util.newArrayListOfValues("mouth"));
-						CoveringsNamesMap.put(BodyCoveringType.NIPPLES, Util.newArrayListOfValues("nipples"));
-						CoveringsNamesMap.put(BodyCoveringType.TONGUE, Util.newArrayListOfValues("tongue"));
 					}
+					CoveringsNamesMap.put(BodyCoveringType.ANUS, Util.newArrayListOfValues("anus"));
+					CoveringsNamesMap.put(BodyCoveringType.MOUTH, Util.newArrayListOfValues("mouth"));
+					CoveringsNamesMap.put(BodyCoveringType.NIPPLES, Util.newArrayListOfValues("nipples"));
+					CoveringsNamesMap.put(BodyCoveringType.TONGUE, Util.newArrayListOfValues("tongue"));
 				}
 			};
 
@@ -1926,15 +1919,7 @@ public class SlaveryManagementDialogue {
 					+ "</h6>"
 					+CharacterModificationUtils.getKatesDivHairLengths(true, "Hair Length", "Hair length determines what hair styles [npc.namePos] able to have. The longer [npc.her] [npc.hair], the more styles are available.")
 
-					+CharacterModificationUtils.getKatesDivHairStyles(true, "Hair Style", "Hair style availability is determined by [npc.namePos] [npc.hair] length.")
-					
-					+(BodyChanging.getTarget().getBodyMaterial()!=BodyMaterial.SLIME
-						?CharacterModificationUtils.getKatesDivCoveringsNew(
-								true, BodyChanging.getTarget().getCovering(BodyChanging.getTarget().getHairType().getBodyCoveringType(BodyChanging.getTarget())).getType(),
-								UtilText.parse(BodyChanging.getTarget(), "[npc.Hair] Colour"),
-								"All hair recolourings are permanent, so if you want to change your colour again at a later time, you'll have to visit Kate again.", true, true)
-						:"")
-					);
+					+CharacterModificationUtils.getKatesDivHairStyles(true, "Hair Style", "Hair style availability is determined by [npc.namePos] [npc.hair] length."));
 		}
 		
 		@Override

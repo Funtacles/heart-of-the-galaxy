@@ -141,7 +141,6 @@ public class Elemental extends NPC {
 			case FIRE:
 				return SpellSchool.FIRE;
 			case FLESH:
-			case SLIME:
 				break;
 			case RUBBER:
 			case STONE:

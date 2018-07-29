@@ -20,8 +20,6 @@ public enum WingType implements BodyPartTypeInterface {
 
 	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, Race.DEMON, true),
 
-	IMP(BodyCoveringType.IMP, Race.IMP, true),
-
 	ANGEL(BodyCoveringType.ANGEL_FEATHER, Race.ANGEL, true);
 
 	private BodyCoveringType skinType;
@@ -64,8 +62,6 @@ public enum WingType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("angelic", "huge", "feathered");
 			case DEMON_COMMON:
 				return UtilText.returnStringAtRandom("demonic", "bat-like");
-			case IMP:
-				return UtilText.returnStringAtRandom("impish", "bat-like");
 			case NONE:
 				return "";
 		}
@@ -77,8 +73,6 @@ public enum WingType implements BodyPartTypeInterface {
 			case ANGEL:
 				return "angelic";
 			case DEMON_COMMON:
-				return "bat-like";
-			case IMP:
 				return "bat-like";
 			case NONE:
 				return "none";

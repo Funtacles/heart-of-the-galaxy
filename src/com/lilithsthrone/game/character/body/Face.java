@@ -177,19 +177,6 @@ public class Face implements BodyPartInterface, Serializable {
 							+ "</p>"));
 				}
 				break;
-			case IMP:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" Thankfully, the alarming feeling is over within a few moments, and you discover that you've been left with an impish, human-looking face, covered in [pc.faceSkin+].<br/>"
-								+ "You now have an [style.boldImp(impish face)], covered in [pc.faceFullDescription], and within your mouth, you have an [style.boldImp(impish tongue)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(UtilText.parse(owner,
-								" Thankfully for [npc.herHim], the transformation only lasts a matter of moments, leaving [npc.herHim] with an impish, human-looking face, covered in [npc.faceSkin+].<br/>"
-								+ "[npc.Name] now has an [style.boldImp(impish face)], covered in [npc.faceFullDescription], and within [npc.her] mouth, [npc.she] has an [style.boldImp(impish tongue)]."
-							+ "</p>"));
-				}
-				break;
 			case DOG_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -353,21 +340,6 @@ public class Face implements BodyPartInterface, Serializable {
 								" [npc.Her] nose and mouth twitch and transform as they push out into an anthropomorphic rabbit-like muzzle, and [npc.her] tongue flattens and shifts into a little pink rabbit-like tongue."
 								+ " A layer of [npc.faceSkin+] quickly grows to cover [npc.her] new face, and as the transformation finally comes to an end, [npc.sheIs] left panting as [npc.she] tries to recover and catch [npc.her] breath.<br/>"
 								+ "[npc.Name] now has an anthropomorphic [style.boldRabbitMorph(rabbit-like face)], covered in [npc.faceFullDescription], and within [npc.her] mouth, [npc.she] has a [style.boldRabbitMorph(little rabbit-like tongue)]."
-							+ "</p>"));
-				}
-				break;
-			case BAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" You feel your nose and mouth twitching and transforming as they push out into an anthropomorphic bat-like muzzle, and your tongue flattens and shifts into a little pink bat-like tongue."
-								+ " A layer of [pc.faceSkin+] quickly grows to cover your new face, and as the transformation finally comes to an end, you're left panting as you try to recover and catch your breath.<br/>"
-								+ "You now have an anthropomorphic [style.boldBatMorph(bat-like face)], covered in [pc.faceFullDescription], and within your mouth, you have a [style.boldBatMorph(little bat-like tongue)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(UtilText.parse(owner,
-								" [npc.Her] nose and mouth twitch and transform as they push out into an anthropomorphic bat-like muzzle, and [npc.her] tongue flattens and shifts into a little pink bat-like tongue."
-								+ " A layer of [npc.faceSkin+] quickly grows to cover [npc.her] new face, and as the transformation finally comes to an end, [npc.sheIs] left panting as [npc.she] tries to recover and catch [npc.her] breath.<br/>"
-								+ "[npc.Name] now has an anthropomorphic [style.boldBatMorph(bat-like face)], covered in [npc.faceFullDescription], and within [npc.her] mouth, [npc.she] has a [style.boldBatMorph(little bat-like tongue)]."
 							+ "</p>"));
 				}
 				break;

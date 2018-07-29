@@ -22,8 +22,6 @@ public enum TesticleType implements BodyPartTypeInterface {
 
 	DEMON_COMMON(BodyCoveringType.PENIS, FluidType.CUM_DEMON, Race.DEMON, false),
 
-	IMP(BodyCoveringType.PENIS, FluidType.CUM_IMP, Race.IMP, false),
-
 	BOVINE(BodyCoveringType.BOVINE_FUR, FluidType.CUM_COW_MORPH, Race.COW_MORPH, false),
 	
 	CANINE(BodyCoveringType.CANINE_FUR, FluidType.CUM_DOG_MORPH, Race.DOG_MORPH, false),
@@ -46,11 +44,8 @@ public enum TesticleType implements BodyPartTypeInterface {
 
 	RAT_MORPH(BodyCoveringType.PENIS, FluidType.CUM_RAT_MORPH, Race.RAT_MORPH, false),
 	
-	RABBIT_MORPH(BodyCoveringType.PENIS, FluidType.CUM_RABBIT_MORPH, Race.RABBIT_MORPH, false),
+	RABBIT_MORPH(BodyCoveringType.PENIS, FluidType.CUM_RABBIT_MORPH, Race.RABBIT_MORPH, false);
 
-	BAT_MORPH(BodyCoveringType.PENIS, FluidType.CUM_BAT_MORPH, Race.BAT_MORPH, false);
-
-	
 	private BodyCoveringType skinType;
 	private FluidType fluidType;
 	private Race race;

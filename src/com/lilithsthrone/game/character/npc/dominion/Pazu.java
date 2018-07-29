@@ -45,19 +45,9 @@ public class Pazu extends NPC {
 	public Pazu(boolean isImported) {
 		super(new NameTriplet("Pazu"),
 				"Pazu is a harpy matriarch, and a particularly gorgeous one at that. She is new to the job and needs your help in whipping her flock into shape.",
-				/* TODO (Once quest advances)
-				 *  Pazu is a harpy matriarch, and a particularly gorgeous one at that. Despite this, he is actually a male harpy, a fact that he keeps hidden from everyone else for obvious reasons.
-				 *  He has a friendly relationship with you, so you can visit his nest at any time*
-				 * TODO (Once lover)
-				 *  Pazu is a beautiful male harpy, and also your boyfriend. Despite being an ex-matriarch, he can act rather shy and bashful, and is still rather naïve.
-				 *  He adores with all his heart, but due to this, he's not keen on sharing you with anybody else.
-				 * TODO ( If he opens his candy shop and you're not his lover)
-				 *  Pazu is a beautiful male harpy, and the owner of a candy shop. He used to be a harpy matriarch, but left the oppressing nests in search of a simpler life.
-				 *  (if he opens the shop and is still your lover, his description is the same but with, "He also owns a candy shop in the shopping arcade." at the end)
-				 */
-				25, Month.JUNE, 1, //TODO
+				25, Month.JUNE, 1,
 				1, Gender.M_P_MALE, RacialBody.HARPY, RaceStage.LESSER,
-				new CharacterInventory(1), WorldType.JUNGLE, PlaceType.JUNGLE_CLUB, true); //TODO He's in the jungle for now ^^
+				new CharacterInventory(1), WorldType.JUNGLE, PlaceType.JUNGLE_CLUB, true);
 		
 		this.setPersonality(Util.newHashMapOfValues(
 				new Value<>(PersonalityTrait.AGREEABLENESS, PersonalityWeight.LOW),

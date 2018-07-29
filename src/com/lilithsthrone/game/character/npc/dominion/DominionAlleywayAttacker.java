@@ -84,14 +84,11 @@ public class DominionAlleywayAttacker extends NPC {
 				switch(s) {
 					// No spawn chance:
 					case ANGEL:
-					case BAT_MORPH:
 					case DEMON:
 					case HARPY:
 					case HARPY_RAVEN:
 					case HARPY_BALD_EAGLE:
 					case HUMAN:
-					case IMP:
-					case IMP_ALPHA:
 					case FOX_ASCENDANT:
 					case FOX_ASCENDANT_FENNEC:
 					case ELEMENTAL_AIR:
@@ -104,37 +101,6 @@ public class DominionAlleywayAttacker extends NPC {
 					// Canals spawn only:
 					case ALLIGATOR_MORPH:
 						addToSubspeciesMap(canalSpecies?20:0, gender, s, availableRaces);
-						break;
-					case SLIME:
-					case SLIME_ALLIGATOR:
-					case SLIME_ANGEL:
-					case SLIME_CAT:
-					case SLIME_CAT_LYNX:
-					case SLIME_CAT_LEOPARD_SNOW:
-					case SLIME_CAT_LEOPARD:
-					case SLIME_CAT_LION:
-					case SLIME_CAT_TIGER:
-					case SLIME_CAT_CHEETAH:
-					case SLIME_CAT_CARACAL:
-					case SLIME_COW:
-					case SLIME_DEMON:
-					case SLIME_DOG:
-					case SLIME_DOG_DOBERMANN:
-					case SLIME_DOG_BORDER_COLLIE:
-					case SLIME_FOX:
-					case SLIME_FOX_FENNEC:
-					case SLIME_HARPY:
-					case SLIME_HARPY_RAVEN:
-					case SLIME_HARPY_BALD_EAGLE:
-					case SLIME_HORSE:
-					case SLIME_IMP:
-					case SLIME_REINDEER:
-					case SLIME_SQUIRREL:
-					case SLIME_BAT:
-					case SLIME_RAT:
-					case SLIME_WOLF:
-					case SLIME_RABBIT:
-						addToSubspeciesMap(canalSpecies?2:0, gender, s, availableRaces);
 						break;
 					case RAT_MORPH:
 						addToSubspeciesMap(canalSpecies?10:0, gender, s, availableRaces);

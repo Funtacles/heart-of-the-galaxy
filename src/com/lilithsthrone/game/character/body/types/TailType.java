@@ -25,8 +25,6 @@ public enum TailType implements BodyPartTypeInterface {
 	
 	DEMON_HAIR_TIP(BodyCoveringType.DEMON_COMMON, Race.DEMON, true, false),
 
-	IMP(BodyCoveringType.IMP, Race.IMP, true, true),
-
 	DOG_MORPH(BodyCoveringType.CANINE_FUR, Race.DOG_MORPH, false, false),
 	
 	DOG_MORPH_STUBBY(BodyCoveringType.CANINE_FUR, Race.DOG_MORPH, false, false),
@@ -132,8 +130,6 @@ public enum TailType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("spaded", "demonic");
 			case DEMON_HAIR_TIP:
 				return UtilText.returnStringAtRandom("hair-tipped", "demonic");
-			case IMP:
-				return UtilText.returnStringAtRandom("spaded", "impish");
 			case DOG_MORPH:
 				return UtilText.returnStringAtRandom("dog-like");
 			case DOG_MORPH_STUBBY:
@@ -181,8 +177,6 @@ public enum TailType implements BodyPartTypeInterface {
 				return "spaded";
 			case DEMON_HAIR_TIP:
 				return "hair-tipped";
-			case IMP:
-				return "spaded";
 			case DOG_MORPH:
 				return "canine";
 			case DOG_MORPH_STUBBY:
@@ -224,7 +218,6 @@ public enum TailType implements BodyPartTypeInterface {
 	public String getTailTipDescriptor(GameCharacter gc) {
 		switch(this){
 			case DEMON_COMMON:
-			case IMP:
 				return UtilText.returnStringAtRandom("spaded");
 			default:
 				return UtilText.returnStringAtRandom("");

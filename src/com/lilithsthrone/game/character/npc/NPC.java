@@ -491,22 +491,16 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.STR_INGREDIENT_WOLF_WHISKEY));
 				case HUMAN:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.INT_INGREDIENT_VANILLA_WATER));
-				case SLIME:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.SEX_INGREDIENT_SLIME_QUENCHER));
 				case ANGEL:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.DYE_BRUSH));
 				case DEMON:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.COR_INGREDIENT_LILITHS_GIFT));
-				case IMP:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.COR_INGREDIENT_IMPISH_BREW));
 				case HARPY:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.SEX_INGREDIENT_HARPY_PERFUME));
 				case ALLIGATOR_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.STR_INGREDIENT_SWAMP_WATER));
 				case SQUIRREL_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.FIT_INGREDIENT_SQUIRREL_JAVA));
-				case BAT_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.INT_INGREDIENT_FRUIT_BAT_SQUASH));
 				case RAT_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.STR_INGREDIENT_BLACK_RATS_RUM));
 				case RABBIT_MORPH:
@@ -543,22 +537,16 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_WOLF_MORPH));
 				case HUMAN:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_HUMAN));
-				case SLIME:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_SLIME));
 				case ANGEL:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.DYE_BRUSH));
 				case DEMON:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_DEMON));
-				case IMP:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_IMP));
 				case HARPY:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_HARPY));
 				case ALLIGATOR_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_ALLIGATOR_MORPH));
 				case SQUIRREL_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_SQUIRREL_MORPH));
-				case BAT_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_BAT_MORPH));
 				case RAT_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_RAT_MORPH));
 				case RABBIT_MORPH:
@@ -595,15 +583,9 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_WOLF_MORPH));
 				case HUMAN:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_HUMAN));
-				case SLIME:
-					if(this.hasFetish(Fetish.FETISH_TRANSFORMATION_GIVING)) {
-						return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_SLIME));
-					} else {
-						return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.SEX_INGREDIENT_SLIME_QUENCHER));
-					}
 				case ANGEL:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_HUMAN));
-				case DEMON: case IMP:
+				case DEMON:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_DEMON));
 				case HARPY:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_HARPY));
@@ -611,8 +593,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_ALLIGATOR_MORPH));
 				case SQUIRREL_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_SQUIRREL_MORPH));
-				case BAT_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_BAT_MORPH));
 				case RAT_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_RAT_MORPH));
 				case RABBIT_MORPH:
@@ -959,17 +939,12 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 				case RAT_MORPH:
 					itemType = ItemType.RACE_INGREDIENT_RAT_MORPH;
 					break;
-				case BAT_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_BAT_MORPH;
-					break;
 				case RABBIT_MORPH:
 					itemType = ItemType.RACE_INGREDIENT_RABBIT_MORPH;
 					break;
 				case ANGEL:
 				case DEMON:
-				case IMP:
 				case HUMAN:
-				case SLIME:
 				case ELEMENTAL_AIR:
 				case ELEMENTAL_ARCANE:
 				case ELEMENTAL_EARTH:

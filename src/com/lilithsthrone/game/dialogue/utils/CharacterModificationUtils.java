@@ -581,11 +581,6 @@ public class CharacterModificationUtils {
 						+ "<div class='normal-button"+(index==3?" selected":"")+"' id='"+id+"_3' style='width:18%; margin-right:2%; text-align:center;"+(index==3?" color:"+sexColours[index].toWebHexString()+";":"")+"'>"+values[3]+"</div>"
 						+ "<div class='normal-button"+(index==4?" selected":"")+"' id='"+id+"_4' style='width:18%; margin-right:2%; text-align:center;"+(index==4?" color:"+sexColours[index].toWebHexString()+";":"")+"'>"+values[4]+"</div>"
 					+ "</div>"
-						//TODO
-//					+ "<div class='container-full-width inner' style='width:calc(100%);margin:0;padding:0;'>"
-//						+ "Virginity lost: "
-//						+ (Main.game.getPlayer().getVirginityLoss(associatedSexType)==null?"[style.boldDisabled(N/A)]":Main.game.getPlayer().getVirginityLoss(associatedSexType))
-//					+ "</div>"
 				+ "</div>";
 	}
 	
@@ -1094,22 +1089,21 @@ public class CharacterModificationUtils {
 	}
 	
 	public static String getSelfTransformArmChoiceDiv(List<Race> availableRaces) {
-		
-		if(BodyChanging.getTarget().getRace()==Race.SLIME) {
+		if(BodyChanging.getTarget().getArmType().getRace()==Race.DEMON) {
 			contentSB.setLength(0);
 			
 			for(ArmType arm : ArmType.values()) {
-				if(arm.getRace() !=null && availableRaces.contains(arm.getRace())) {
+				if(arm.getRace() !=null && arm.getRace() == Race.DEMON) {
 					if(BodyChanging.getTarget().getArmType() == arm) {
 						contentSB.append(
 								"<div class='cosmetics-button active'>"
-									+ "<b style='color:"+arm.getRace().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(arm.getTransformName())+"</b>"
+									+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(arm.getTransformName())+"</b>"
 								+ "</div>");
 						
 					} else {
 						contentSB.append(
 								"<div id='CHANGE_ARM_"+arm+"' class='cosmetics-button'>"
-									+ "<span style='color:"+arm.getRace().getColour().getShades()[0]+";'>"+Util.capitaliseSentence(arm.getTransformName())+"</span>"
+									+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(arm.getTransformName())+"</span>"
 								+ "</div>");
 					}
 				}
@@ -1122,64 +1116,35 @@ public class CharacterModificationUtils {
 					contentSB.toString(), true);
 			
 		} else {
-			if(BodyChanging.getTarget().getArmType().getRace()==Race.DEMON) {
-				contentSB.setLength(0);
-				
-				for(ArmType arm : ArmType.values()) {
-					if(arm.getRace() !=null && arm.getRace() == Race.DEMON) {
-						if(BodyChanging.getTarget().getArmType() == arm) {
-							contentSB.append(
-									"<div class='cosmetics-button active'>"
-										+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(arm.getTransformName())+"</b>"
-									+ "</div>");
-							
-						} else {
-							contentSB.append(
-									"<div id='CHANGE_ARM_"+arm+"' class='cosmetics-button'>"
-										+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(arm.getTransformName())+"</span>"
-									+ "</div>");
-						}
-					}
-				}
-	
-				return applyWrapper("Arms",
-						(BodyChanging.getTarget().isPlayer()
-							?"Change your arm type."
-							:UtilText.parse(BodyChanging.getTarget(), "Change [npc.namePos] arm type.")),
-						contentSB.toString(), true);
-				
-			} else {
-				return ("<div class='cosmetics-inner-container'>"
-						+ "<h5 style='text-align:center;'>"
-							+"Arms"
-						+"</h5>"
-						+ "<p style='text-align:center;'>"
-							+ (BodyChanging.getTarget().isPlayer()
-								?"You can only change your arm type if your arms are already demonic in nature."
-								:UtilText.parse(BodyChanging.getTarget(), "You can only change [npc.namePos] arm type if [npc.her] arms are already demonic in nature."))
-						+ "</p>"
-						+ "</div>");
-			}
+			return ("<div class='cosmetics-inner-container'>"
+					+ "<h5 style='text-align:center;'>"
+						+"Arms"
+					+"</h5>"
+					+ "<p style='text-align:center;'>"
+						+ (BodyChanging.getTarget().isPlayer()
+							?"You can only change your arm type if your arms are already demonic in nature."
+							:UtilText.parse(BodyChanging.getTarget(), "You can only change [npc.namePos] arm type if [npc.her] arms are already demonic in nature."))
+					+ "</p>"
+					+ "</div>");
 		}
 	}
 	
 	public static String getSelfTransformLegChoiceDiv(List<Race> availableRaces) {
-
-		if(BodyChanging.getTarget().getRace()==Race.SLIME) {
+		if(BodyChanging.getTarget().getLegType().getRace()==Race.DEMON) {
 			contentSB.setLength(0);
 			
 			for(LegType leg : LegType.values()) {
-				if(leg.getRace() !=null && availableRaces.contains(leg.getRace())) {
+				if(leg.getRace() !=null && leg.getRace() == Race.DEMON) {
 					if(BodyChanging.getTarget().getLegType() == leg) {
 						contentSB.append(
 								"<div class='cosmetics-button active'>"
-									+ "<b style='color:"+leg.getRace().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(leg.getTransformName())+"</b>"
+									+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(leg.getTransformName())+"</b>"
 								+ "</div>");
 						
 					} else {
 						contentSB.append(
 								"<div id='CHANGE_LEG_"+leg+"' class='cosmetics-button'>"
-									+ "<span style='color:"+leg.getRace().getColour().getShades()[0]+";'>"+Util.capitaliseSentence(leg.getTransformName())+"</span>"
+									+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(leg.getTransformName())+"</span>"
 								+ "</div>");
 					}
 				}
@@ -1191,65 +1156,36 @@ public class CharacterModificationUtils {
 						:UtilText.parse(BodyChanging.getTarget(), "Change [npc.namePos] leg type.")),
 					contentSB.toString(), true);
 			
-			
 		} else {
-			if(BodyChanging.getTarget().getLegType().getRace()==Race.DEMON) {
-				contentSB.setLength(0);
-				
-				for(LegType leg : LegType.values()) {
-					if(leg.getRace() !=null && leg.getRace() == Race.DEMON) {
-						if(BodyChanging.getTarget().getLegType() == leg) {
-							contentSB.append(
-									"<div class='cosmetics-button active'>"
-										+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(leg.getTransformName())+"</b>"
-									+ "</div>");
-							
-						} else {
-							contentSB.append(
-									"<div id='CHANGE_LEG_"+leg+"' class='cosmetics-button'>"
-										+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(leg.getTransformName())+"</span>"
-									+ "</div>");
-						}
-					}
-				}
-	
-				return applyWrapper("Legs",
-						(BodyChanging.getTarget().isPlayer()
-							?"Change your leg type."
-							:UtilText.parse(BodyChanging.getTarget(), "Change [npc.namePos] leg type.")),
-						contentSB.toString(), true);
-				
-			} else {
-				return ("<div class='cosmetics-inner-container'>"
-						+ "<h5 style='text-align:center;'>"
-							+"Legs"
-						+"</h5>"
-						+ "<p style='text-align:center;'>"
-							+ (BodyChanging.getTarget().isPlayer()
-								?"You can only change your leg type if your legs are already demonic in nature."
-								:UtilText.parse(BodyChanging.getTarget(), "You can only change [npc.namePos] leg type if [npc.her] legs are already demonic in nature."))
-						+ "</p>"
-						+ "</div>");
-			}
+			return ("<div class='cosmetics-inner-container'>"
+					+ "<h5 style='text-align:center;'>"
+						+"Legs"
+					+"</h5>"
+					+ "<p style='text-align:center;'>"
+						+ (BodyChanging.getTarget().isPlayer()
+							?"You can only change your leg type if your legs are already demonic in nature."
+							:UtilText.parse(BodyChanging.getTarget(), "You can only change [npc.namePos] leg type if [npc.her] legs are already demonic in nature."))
+					+ "</p>"
+					+ "</div>");
 		}
 	}
 	
 	public static String getSelfTransformFaceChoiceDiv(List<Race> availableRaces) {
-		if(BodyChanging.getTarget().getRace()==Race.SLIME) {
+		if(BodyChanging.getTarget().getFaceType().getRace()==Race.DEMON) {
 			contentSB.setLength(0);
 			
 			for(FaceType face : FaceType.values()) {
-				if(face.getRace() !=null && availableRaces.contains(face.getRace())) {
+				if(face.getRace() !=null && face.getRace() == Race.DEMON) {
 					if(BodyChanging.getTarget().getFaceType() == face) {
 						contentSB.append(
 								"<div class='cosmetics-button active'>"
-									+ "<b style='color:"+face.getRace().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(face.getTransformName())+"</b>"
+									+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(face.getTransformName())+"</b>"
 								+ "</div>");
 						
 					} else {
 						contentSB.append(
 								"<div id='CHANGE_FACE_"+face+"' class='cosmetics-button'>"
-									+ "<span style='color:"+face.getRace().getColour().getShades()[0]+";'>"+Util.capitaliseSentence(face.getTransformName())+"</span>"
+									+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(face.getTransformName())+"</span>"
 								+ "</div>");
 					}
 				}
@@ -1262,44 +1198,16 @@ public class CharacterModificationUtils {
 					contentSB.toString(), true);
 			
 		} else {
-			if(BodyChanging.getTarget().getFaceType().getRace()==Race.DEMON) {
-				contentSB.setLength(0);
-				
-				for(FaceType face : FaceType.values()) {
-					if(face.getRace() !=null && face.getRace() == Race.DEMON) {
-						if(BodyChanging.getTarget().getFaceType() == face) {
-							contentSB.append(
-									"<div class='cosmetics-button active'>"
-										+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(face.getTransformName())+"</b>"
-									+ "</div>");
-							
-						} else {
-							contentSB.append(
-									"<div id='CHANGE_FACE_"+face+"' class='cosmetics-button'>"
-										+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(face.getTransformName())+"</span>"
-									+ "</div>");
-						}
-					}
-				}
-	
-				return applyWrapper("Face",
-						(BodyChanging.getTarget().isPlayer()
-							?"Change your face type."
-							:UtilText.parse(BodyChanging.getTarget(), "Change [npc.namePos] face type.")),
-						contentSB.toString(), true);
-				
-			} else {
-				return ("<div class='cosmetics-inner-container'>"
-						+ "<h5 style='text-align:center;'>"
-							+"Face"
-						+"</h5>"
-						+ "<p style='text-align:center;'>"
-							+ (BodyChanging.getTarget().isPlayer()
-								?"You can only change your face type if your face is already demonic in nature."
-								:UtilText.parse(BodyChanging.getTarget(), "You can only change [npc.namePos] face type if [npc.her] face is already demonic in nature."))
-						+ "</p>"
-						+ "</div>");
-			}
+			return ("<div class='cosmetics-inner-container'>"
+					+ "<h5 style='text-align:center;'>"
+						+"Face"
+					+"</h5>"
+					+ "<p style='text-align:center;'>"
+						+ (BodyChanging.getTarget().isPlayer()
+							?"You can only change your face type if your face is already demonic in nature."
+							:UtilText.parse(BodyChanging.getTarget(), "You can only change [npc.namePos] face type if [npc.her] face is already demonic in nature."))
+					+ "</p>"
+					+ "</div>");
 		}
 	}
 	

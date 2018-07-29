@@ -23,8 +23,6 @@ public enum MouthType implements BodyPartTypeInterface {
 
 	DEMON_COMMON(BodyCoveringType.MOUTH, Race.DEMON),
 
-	IMP(BodyCoveringType.MOUTH, Race.IMP),
-
 	DOG_MORPH(BodyCoveringType.MOUTH, Race.DOG_MORPH),
 	
 	WOLF_MORPH(BodyCoveringType.MOUTH, Race.WOLF_MORPH),
@@ -40,8 +38,6 @@ public enum MouthType implements BodyPartTypeInterface {
 	RAT_MORPH(BodyCoveringType.MOUTH, Race.RAT_MORPH),
 	
 	RABBIT_MORPH(BodyCoveringType.MOUTH, Race.RABBIT_MORPH),
-	
-	BAT_MORPH(BodyCoveringType.MOUTH, Race.BAT_MORPH),
 	
 	ALLIGATOR_MORPH(BodyCoveringType.MOUTH, Race.ALLIGATOR_MORPH),
 	

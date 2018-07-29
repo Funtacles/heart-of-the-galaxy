@@ -23,8 +23,6 @@ public enum ArmType implements BodyPartTypeInterface {
 
 	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, Race.DEMON),
 
-	IMP(BodyCoveringType.IMP, Race.IMP),
-
 	COW_MORPH(BodyCoveringType.BOVINE_FUR, Race.COW_MORPH),
 	
 	DOG_MORPH(BodyCoveringType.CANINE_FUR, Race.DOG_MORPH),
@@ -46,13 +44,6 @@ public enum ArmType implements BodyPartTypeInterface {
 	RAT_MORPH(BodyCoveringType.RAT_FUR, Race.RAT_MORPH),
 
 	RABBIT_MORPH(BodyCoveringType.RABBIT_FUR, Race.RABBIT_MORPH),
-	
-	BAT_MORPH(BodyCoveringType.BAT_SKIN, Race.BAT_MORPH) {
-		@Override
-		public boolean allowsFlight() {
-			return true;
-		}
-	},
 	
 	HARPY(BodyCoveringType.FEATHERS, Race.HARPY) {
 		@Override
@@ -93,7 +84,6 @@ public enum ArmType implements BodyPartTypeInterface {
 	public String getNameSingular(GameCharacter gc) {
 		switch(this){
 			case HARPY:
-			case BAT_MORPH:
 				return UtilText.returnStringAtRandom("wing");
 			default:
 				return UtilText.returnStringAtRandom("arm");
@@ -104,7 +94,6 @@ public enum ArmType implements BodyPartTypeInterface {
 	public String getNamePlural(GameCharacter gc) {
 		switch(this){
 			case HARPY:
-			case BAT_MORPH:
 				return UtilText.returnStringAtRandom("wings");
 			default:
 				return UtilText.returnStringAtRandom("arms");
@@ -120,8 +109,6 @@ public enum ArmType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("furry", "fur-coated");
 			case DEMON_COMMON:
 				return UtilText.returnStringAtRandom("flawless");
-			case IMP:
-				return UtilText.returnStringAtRandom("");
 			case DOG_MORPH:
 				return UtilText.returnStringAtRandom("furry", "fur-coated");
 			case COW_MORPH:
@@ -142,8 +129,6 @@ public enum ArmType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("furry", "fur-coated");
 			case FOX_MORPH:
 				return UtilText.returnStringAtRandom("furry", "fur-coated");
-			case BAT_MORPH:
-				return UtilText.returnStringAtRandom("bat-like");
 			case RAT_MORPH:
 				return UtilText.returnStringAtRandom("furry", "fur-coated");
 			case RABBIT_MORPH:
@@ -160,8 +145,6 @@ public enum ArmType implements BodyPartTypeInterface {
 				return "feline";
 			case DEMON_COMMON:
 				return "demonic";
-			case IMP:
-				return "impish";
 			case DOG_MORPH:
 				return "canine";
 			case COW_MORPH:
@@ -182,8 +165,6 @@ public enum ArmType implements BodyPartTypeInterface {
 				return "lupine";
 			case FOX_MORPH:
 				return "vulpine";
-			case BAT_MORPH:
-				return "bat";
 			case RAT_MORPH:
 				return "rat";
 			case RABBIT_MORPH:
@@ -223,7 +204,7 @@ public enum ArmType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("delicate", "soft", "feminine");
 				case CAT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "feminine", "cat-like", "paw-like", "furry", "feline");
-				case DEMON_COMMON: case IMP:
+				case DEMON_COMMON:
 					return UtilText.returnStringAtRandom("delicate", "soft", "feminine");
 				case DOG_MORPH:
 					return UtilText.returnStringAtRandom("soft", "feminine", "dog-like", "paw-like", "furry", "canine");
@@ -249,8 +230,6 @@ public enum ArmType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("soft", "feminine", "rat-like", "claw-like", "furry", "rodent");
 				case RABBIT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "feminine", "rabbit-like", "paw-like", "furry");
-				case BAT_MORPH:
-					return UtilText.returnStringAtRandom("feminine", "bat-like");
 			}
 		} else {
 			switch(this){
@@ -258,7 +237,7 @@ public enum ArmType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("soft", "delicate");
 				case CAT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "delicate", "cat-like", "paw-like", "furry", "feline");
-				case DEMON_COMMON: case IMP:
+				case DEMON_COMMON:
 					return UtilText.returnStringAtRandom("");
 				case DOG_MORPH:
 					return UtilText.returnStringAtRandom("dog-like", "paw-like", "furry", "canine");
@@ -284,8 +263,6 @@ public enum ArmType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("rat-like", "claw-like", "furry", "rodent");
 				case RABBIT_MORPH:
 					return UtilText.returnStringAtRandom("rabbit-like", "paw-like", "furry");
-				case BAT_MORPH:
-					return UtilText.returnStringAtRandom("bat-like");
 			}
 		}
 		
@@ -313,7 +290,7 @@ public enum ArmType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("delicate", "soft", "feminine");
 				case CAT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "feminine", "padded", "feline");
-				case DEMON_COMMON: case IMP:
+				case DEMON_COMMON:
 					return UtilText.returnStringAtRandom("delicate", "soft", "feminine");
 				case DOG_MORPH:
 					return UtilText.returnStringAtRandom("soft", "feminine", "padded", "canine");
@@ -339,8 +316,6 @@ public enum ArmType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("soft", "feminine", "rat-like", "claw-like", "furry", "rodent");
 				case RABBIT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "feminine", "rabbit-like", "paw-like", "furry");
-				case BAT_MORPH:
-					return UtilText.returnStringAtRandom("soft", "feminine", "bat-like");
 			}
 		} else {
 			switch(this){
@@ -348,7 +323,7 @@ public enum ArmType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("soft", "delicate");
 				case CAT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "delicate", "padded", "feline");
-				case DEMON_COMMON: case IMP:
+				case DEMON_COMMON:
 					return UtilText.returnStringAtRandom("");
 				case DOG_MORPH:
 					return UtilText.returnStringAtRandom("dog-like", "padded", "canine");
@@ -374,8 +349,6 @@ public enum ArmType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("rat-like", "claw-like", "furry", "rodent");
 				case RABBIT_MORPH:
 					return UtilText.returnStringAtRandom("rabbit-like", "paw-like", "furry");
-				case BAT_MORPH:
-					return UtilText.returnStringAtRandom("bat-like");
 			}
 		}
 		

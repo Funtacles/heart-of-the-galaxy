@@ -34,8 +34,6 @@ public enum BodyMaterial {
 			false,
 			true),
 	
-	SLIME("slime", Colour.RACE_SLIME, DamageType.PHYSICAL, false, true, false),
-
 	// Fire elementals:
 	
 	FIRE("fire", "burning", Colour.BASE_ORANGE, DamageType.FIRE, false, false, false),

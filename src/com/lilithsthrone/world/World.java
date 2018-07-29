@@ -70,11 +70,7 @@ public class World implements Serializable, XMLSaving {
 		
 		WorldType type = WorldType.EMPTY;
 		String worldType = parentElement.getAttribute("worldType");
-		if(worldType.equals("SEWERS")) {
-			type = WorldType.SUBMISSION;
-		} else {
-			type = WorldType.valueOf(worldType);
-		}
+		type = WorldType.valueOf(worldType);
 		
 		return new World(width, height, newGrid, type);
 	}

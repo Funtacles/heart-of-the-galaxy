@@ -38,21 +38,6 @@ public class BodyCoveringTemplateFactory {
 		return createSkin(Util.newArrayListOfValues(CoveringPattern.NONE), skinColors, null, Colour.allSkinColours);
 	}
 	
-	public static BodyCoveringTemplate createSlime(CoveringPattern basePattern, List<CoveringPattern> coverPatterns) {
-		return new BodyCoveringTemplate("a layer of",
-				false,
-				"slime",
-				"slime",
-				Util.newArrayListOfValues(CoveringModifier.GOOEY),
-				null,
-				Util.newArrayListOfValues(basePattern),
-				coverPatterns,
-				Colour.naturalSlimeColours,
-				Colour.dyeSlimeColours,
-				Colour.naturalSlimeColours,
-				Colour.dyeSlimeColours);
-	}
-	
 	public static BodyCoveringTemplate createFurSkin(List<CoveringModifier> modifiers, List<CoveringPattern> patterns) {
 		return createFur("a layer of", "fur", modifiers, patterns);
 	}

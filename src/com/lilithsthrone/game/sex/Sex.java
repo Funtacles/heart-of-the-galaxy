@@ -23,7 +23,6 @@ import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.types.PenisType;
 import com.lilithsthrone.game.character.body.types.TailType;
 import com.lilithsthrone.game.character.body.types.VaginaType;
-import com.lilithsthrone.game.character.body.valueEnums.BodyMaterial;
 import com.lilithsthrone.game.character.body.valueEnums.Capacity;
 import com.lilithsthrone.game.character.body.valueEnums.CumProduction;
 import com.lilithsthrone.game.character.body.valueEnums.OrificePlasticity;
@@ -2239,11 +2238,6 @@ public class Sex {
 	private static void calculateWetAreas(boolean onSexInit) {
 		
 		for(GameCharacter character : Sex.getAllParticipants()) {
-			if(character.getBodyMaterial()==BodyMaterial.SLIME && onSexInit) {
-				for(SexAreaOrifice orifice : SexAreaOrifice.values()) {
-					addLubrication(character, orifice, character, LubricationType.SLIME, !onSexInit);
-				}
-			}
 			addLubrication(character, SexAreaOrifice.MOUTH, character, LubricationType.SALIVA, !onSexInit);
 			addLubrication(character, SexAreaPenetration.TONGUE, character, LubricationType.SALIVA, !onSexInit);
 			
@@ -3653,44 +3647,6 @@ public class Sex {
 		
 		updateAvailableActions();
 	}
-	
-	//TODO not used???
-//	public static void setSexPositionSlot(GameCharacter character, SexPositionSlot slot) {
-//		// Check to see if character is in this sex scene:
-//		if(!Sex.dominants.keySet().contains(character) && !Sex.submissives.keySet().contains(character)) {
-//			throw new IllegalArgumentException("This character is not in this sex scene!");
-//		}
-//		
-//		// Check to see if this slot is available:
-//		if(getPosition().getSlotTargets().keySet().contains(slot)
-//				|| slot==SexPositionSlot.MISC_WATCHING) {
-//			for(Entry<GameCharacter, SexPositionSlot> e : dominants.entrySet()) {
-//				if(!e.getKey().equals(character)) {
-//					if(getPosition().getSlotTargets().keySet().contains(e.getValue())) {
-//						throw new IllegalArgumentException("A dominant participant ("+character.getName()+") is already occupying this slot ("+slot+")!");
-//					}
-//				}
-//			}
-//			for(Entry<GameCharacter, SexPositionSlot> e : submissives.entrySet()) {
-//				if(!e.getKey().equals(character)) {
-//					if(getPosition().getSlotTargets().keySet().contains(e.getValue())) {
-//						throw new IllegalArgumentException("A submissive participant ("+character.getName()+") is already occupying this slot ("+slot+")!");
-//					}
-//				}
-//			}
-//		} else {
-//			throw new IllegalArgumentException("This slot ("+slot+") is not available in this position ("+getPosition()+")!");
-//		}
-//		
-//		if(Sex.dominants.keySet().contains(character)) {
-//			Sex.dominants.put(character, slot);
-//		}
-//		if(Sex.submissives.keySet().contains(character)) {
-//			Sex.submissives.put(character, slot);
-//		}
-//		
-//		updateAvailableActions();
-//	}
 	
 	public static boolean isDom(GameCharacter character) {
 		return Sex.dominants.keySet().contains(character);

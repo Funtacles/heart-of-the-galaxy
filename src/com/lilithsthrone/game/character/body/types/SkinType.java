@@ -19,8 +19,6 @@ public enum SkinType implements BodyPartTypeInterface {
 
 	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, Race.DEMON),
 
-	IMP(BodyCoveringType.IMP, Race.IMP),
-
 	DOG_MORPH(BodyCoveringType.CANINE_FUR, Race.DOG_MORPH),
 
 	LYCAN(BodyCoveringType.LYCAN_FUR, Race.WOLF_MORPH),
@@ -34,8 +32,6 @@ public enum SkinType implements BodyPartTypeInterface {
 	RAT_MORPH(BodyCoveringType.RAT_FUR, Race.RAT_MORPH),
 
 	RABBIT_MORPH(BodyCoveringType.RABBIT_FUR, Race.RABBIT_MORPH),
-
-	BAT_MORPH(BodyCoveringType.BAT_FUR, Race.BAT_MORPH),
 
 	ALLIGATOR_MORPH(BodyCoveringType.ALLIGATOR_SCALES, Race.ALLIGATOR_MORPH),
 
@@ -78,8 +74,6 @@ public enum SkinType implements BodyPartTypeInterface {
 				return "feather";
 			case ALLIGATOR_SCALES:
 				return "scale";
-			case SLIME:
-				return "slime";
 			default:
 				return coveringType.getName(gc);
 		}
@@ -92,8 +86,6 @@ public enum SkinType implements BodyPartTypeInterface {
 				return "feathers";
 			case ALLIGATOR_SCALES:
 				return "scales";
-			case SLIME:
-				return "slime";
 			default:
 				return coveringType.getNamePlural(gc);
 		}
@@ -107,8 +99,6 @@ public enum SkinType implements BodyPartTypeInterface {
 				return "bovine";
 			case DEMON_COMMON:
 				return "demonic";
-			case IMP:
-				return "impish";
 			case DOG_MORPH:
 				return "canine";
 			case HARPY:
@@ -131,8 +121,6 @@ public enum SkinType implements BodyPartTypeInterface {
 				return "rabbit";
 			case ANGEL:
 				return "angel";
-			case BAT_MORPH:
-				return "bat";
 			case HUMAN:
 				return "human";
 		}
@@ -150,8 +138,6 @@ public enum SkinType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("cow-like");
 			case DEMON_COMMON:
 				return UtilText.returnStringAtRandom("demonic");
-			case IMP:
-				return UtilText.returnStringAtRandom("impish");
 			case DOG_MORPH:
 				return UtilText.returnStringAtRandom("dog-like");
 			case SQUIRREL_MORPH:
@@ -170,8 +156,6 @@ public enum SkinType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("wolf-like");
 			case FOX_MORPH:
 				return UtilText.returnStringAtRandom("fox-like");
-			case BAT_MORPH:
-				return UtilText.returnStringAtRandom("bat-like");
 			case RAT_MORPH:
 				return UtilText.returnStringAtRandom("rat-like");
 			case RABBIT_MORPH:
