@@ -13,7 +13,6 @@ import com.lilithsthrone.game.character.body.types.PenisType;
 import com.lilithsthrone.game.character.body.valueEnums.CumProduction;
 import com.lilithsthrone.game.character.body.valueEnums.PenetrationModifier;
 import com.lilithsthrone.game.character.fetishes.Fetish;
-import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.LilayasRoom;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.sex.ArousalIncrease;
 import com.lilithsthrone.game.sex.OrgasmCumTarget;
@@ -1180,13 +1179,6 @@ public class GenericOrgasms {
 							
 						}
 					}
-					
-				case LILAYA_PANTIES:
-					LilayasRoom.lilayasPanties.setDirty(true);
-					return UtilText.parse(characterOrgasming,
-							" directly into Lilaya's panties."
-							+ " You can't help but let out [pc.a_moan+] as you watch your [pc.cum+] pool in the soft fabric,"
-								+ " and you give your [pc.cock+] a few extra strokes as you imagine your demonic aunt blushing as she slides the cum-saturated underwear up over her hot pussy.");
 			}
 			
 			// Continued description for cumming inside:
@@ -1684,17 +1676,9 @@ public class GenericOrgasms {
 			}
 		}
 		
-		if(targetArea == OrgasmCumTarget.LILAYA_PANTIES && !Main.game.getPlayer().hasPenisIgnoreDildo()) {
-			genericOrgasmSB.append(" As you squeal and pant, you bring Lilaya's panties up to your face, and breathe in your demonic aunt's musky, perfume-laced scent as you imagine her masturbating into the soft fabric.");
-		}
-		
 		if(characterOrgasming.isVaginaSquirter()) {
 			if(characterOrgasming.isPlayer()) {
 				genericOrgasmSB.append(" As your inner muscles spasm and quiver with delight, a huge spurt of female ejaculate squirts out from your [npc1.pussy+].");
-				if(targetArea == OrgasmCumTarget.LILAYA_PANTIES) {
-					genericOrgasmSB.append(" You quickly drop Lilaya's panties down between your legs, squirting directly into her underwear as you let out [pc.a_moan+].");
-					LilayasRoom.lilayasPanties.setDirty(true);
-				}
 			} else {
 				genericOrgasmSB.append(" As [npc1.namePos] inner muscles spasm and quiver with delight, a huge spurt of female ejaculate squirts out from [npc1.her] [npc1.pussy+].");
 			}

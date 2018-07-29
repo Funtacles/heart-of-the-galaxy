@@ -487,10 +487,7 @@ public class Library {
 
 		@Override
 		public Response getResponse(int responseTab, int city) {
-			if (city == 1) {
-				return bookResponse(ItemType.BOOK_HARPY, Race.HARPY);
-
-			} else if (city == 2) {
+			if (city == 2) {
 				return bookResponse(ItemType.BOOK_DEMON, Race.DEMON);
 
 			} else if (city == 3) {
@@ -507,9 +504,6 @@ public class Library {
 
 			} else if (city == 7) {
 				return bookResponse(ItemType.BOOK_HUMAN, Race.HUMAN);
-
-			} else if (city == 8) {
-				return bookResponse(ItemType.BOOK_ALLIGATOR_MORPH, Race.ALLIGATOR_MORPH);
 
 			} else if (city == 12) {
 				return bookResponse(ItemType.BOOK_RAT_MORPH, Race.RAT_MORPH);

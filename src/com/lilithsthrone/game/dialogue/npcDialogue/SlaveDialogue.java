@@ -1205,9 +1205,6 @@ public class SlaveDialogue {
 				case PUBLIC_STOCKS:
 					UtilText.nodeContentSB.append("Wanting to encourage [npc.name] to do [npc.her] best while being publicly used in the stocks in Slaver Alley, you ask [npc.her] how [npc.sheIs] finding it.");
 					break;
-				case PROSTITUTE:
-					UtilText.nodeContentSB.append("Wanting to encourage [npc.name] to do [npc.her] best while working as a prostitute in Angel's Kiss, you ask [npc.her] how [npc.sheIs] finding it.");
-					break;
 				case MILKING:
 					UtilText.nodeContentSB.append("Wanting to encourage [npc.name] to do [npc.her] best while working in the milking stalls, you ask [npc.her] how [npc.sheIs] finding it.");
 					break;

@@ -14,11 +14,8 @@ import com.lilithsthrone.game.Weather;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.gender.GenderPreference;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.Cultist;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.DominionSuccubusAttacker;
-import com.lilithsthrone.game.character.npc.dominion.Lumi;
-import com.lilithsthrone.game.character.npc.dominion.RentalMommy;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
@@ -39,7 +36,6 @@ import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Vector2i;
 import com.lilithsthrone.world.WorldType;
-import com.lilithsthrone.world.places.PlaceType;
 import com.lilithsthrone.utils.Util.Value;
 
 /**
@@ -114,23 +110,6 @@ public enum Encounter {
 				
 				return Main.game.getActiveNPC().getEncounterDialogue();
 				
-			} else if(node == EncounterType.SPECIAL_DOMINION_CULTIST
-					&& Main.game.getCurrentWeather() != Weather.MAGIC_STORM
-					&& Main.game.getDateNow().getMonth().equals(Month.OCTOBER)
-					&& Main.game.getNonCompanionCharactersPresent().isEmpty()
-					&& Main.game.getNumberOfWitches()<4
-					&& Main.game.getPlayerCell().getPlace().getPlaceType() == PlaceType.DOMINION_STREET) {
-				
-				Main.game.setActiveNPC(new Cultist());
-				
-				try {
-					Main.game.addNPC(Main.game.getActiveNPC(), false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-	
-				return Main.game.getActiveNPC().getEncounterDialogue();
-				
 			} else if(node == EncounterType.DOMINION_STREET_FIND_HAPPINESS
 					&& Main.game.getPlayer().getName().equalsIgnoreCase("Kinariu")
 					&& !Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.foundHappiness)) {
@@ -153,8 +132,6 @@ public enum Encounter {
 				if(time.getMonth().equals(Month.MAY) /*&& time.getDayOfWeek().equals(DayOfWeek.SUNDAY)*/ && time.getDayOfMonth()>7 && time.getDayOfMonth()<=14
 						&& !Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.mommyFound)
 						&& Main.game.getCurrentWeather()!=Weather.MAGIC_STORM) {
-					
-					Main.game.setActiveNPC(new RentalMommy());
 					
 					try {
 						Main.game.addNPC(Main.game.getActiveNPC(), false);
@@ -183,9 +160,6 @@ public enum Encounter {
 				
 				// Prioritise re-encountering the NPC on this tile:
 				for(NPC npc : Main.game.getNonCompanionCharactersPresent()) {
-					if(npc instanceof Lumi) {
-						return null;
-					}
 					Main.game.setActiveNPC(npc);
 					return Main.game.getActiveNPC().getEncounterDialogue();
 				}

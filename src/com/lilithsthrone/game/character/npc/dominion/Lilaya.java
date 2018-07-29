@@ -281,7 +281,6 @@ public class Lilaya extends NPC {
 								Main.game.getDialogueFlags().values.add(DialogueFlagValue.waitingOnLilayaPregnancyResults);
 							}
 							Main.game.getLilaya().washAllOrifices();
-							Main.game.getRose().setLocation(WorldType.LILAYAS_HOUSE_GROUND_FLOOR, PlaceType.LILAYA_HOME_LAB, false);
 						}
 					};
 					
@@ -289,7 +288,6 @@ public class Lilaya extends NPC {
 					return new Response("Continue", "Leave the lab and let Lilaya carry on with her work.", Lab.LAB_EXIT){
 						@Override
 						public void effects() {
-							Main.game.getRose().setLocation(WorldType.LILAYAS_HOUSE_GROUND_FLOOR, PlaceType.LILAYA_HOME_LAB, false);
 							Main.game.getLilaya().washAllOrifices();
 						}
 					};

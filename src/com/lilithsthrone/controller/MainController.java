@@ -51,11 +51,9 @@ import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.DialogueNodeType;
 import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
 import com.lilithsthrone.game.dialogue.places.dominion.CityHall;
-import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.SuccubisSecrets;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.story.CharacterCreation;
 import com.lilithsthrone.game.dialogue.utils.BodyChanging;
-import com.lilithsthrone.game.dialogue.utils.CharacterModificationUtils;
 import com.lilithsthrone.game.dialogue.utils.CharactersPresentDialogue;
 import com.lilithsthrone.game.dialogue.utils.EnchantmentDialogue;
 import com.lilithsthrone.game.dialogue.utils.InventoryDialogue;
@@ -540,20 +538,6 @@ public class MainController implements Initializable {
 									Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenPField').innerHTML=document.getElementById('new_save_name').value;");
 									EnchantmentDialogue.saveEnchant(Main.mainController.getWebEngine().getDocument().getElementById("hiddenPField").getTextContent(), false);
 									Main.game.setContent(new Response("Save", "", Main.game.getCurrentDialogueNode()));
-								}
-							}
-						}
-						if(Main.game.getCurrentDialogueNode() == SuccubisSecrets.SHOP_BEAUTY_SALON_TATTOOS_ADD
-								|| Main.game.getCurrentDialogueNode() == SlaveryManagementDialogue.SLAVE_MANAGEMENT_TATTOOS_ADD
-								|| Main.game.getCurrentDialogueNode() == CharacterCreation.CHOOSE_ADVANCED_APPEARANCE_TATTOOS_ADD){
-							if((boolean) Main.mainController.getWebEngine().executeScript("document.getElementById('tattoo_name') === document.activeElement")) {
-								allowInput = false;
-								if (event.getCode() == KeyCode.ENTER) {
-									enterConsumed = true;
-									Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-								} else {
-									Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenPField').innerHTML=document.getElementById('tattoo_name').value;");
-									CharacterModificationUtils.tattoo.getWriting().setText(Main.mainController.getWebEngine().getDocument().getElementById("hiddenPField").getTextContent());
 								}
 							}
 						}

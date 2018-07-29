@@ -417,7 +417,6 @@ public class Lab {
 							public void effects() {
 								Main.game.getDialogueFlags().values.add(DialogueFlagValue.hadSexWithLilaya);
 								Main.game.getDialogueFlags().values.remove(DialogueFlagValue.waitingOnLilayaPregnancyResults);
-								Main.game.getRose().setLocation(WorldType.LILAYAS_HOUSE_FIRST_FLOOR, PlaceType.LILAYA_HOME_ROOM_ROSE, false);
 							}
 						};
 						
@@ -444,7 +443,6 @@ public class Lab {
 							public void effects() {
 								Main.game.getDialogueFlags().values.add(DialogueFlagValue.hadSexWithLilaya);
 								Main.game.getDialogueFlags().values.remove(DialogueFlagValue.waitingOnLilayaPregnancyResults);
-								Main.game.getRose().setLocation(WorldType.LILAYAS_HOUSE_FIRST_FLOOR, PlaceType.LILAYA_HOME_ROOM_ROSE, false);
 							}
 						};
 					}
@@ -567,8 +565,6 @@ public class Lab {
 						@Override
 						public void effects() {
 							Main.game.getDialogueFlags().values.remove(DialogueFlagValue.roseToldOnYou);
-							Main.game.getPlayer().setLocation(WorldType.LILAYAS_HOUSE_FIRST_FLOOR, PlaceType.LILAYA_HOME_ROOM_LILAYA, true);
-							Main.game.getLilaya().setLocation(WorldType.LILAYAS_HOUSE_FIRST_FLOOR, PlaceType.LILAYA_HOME_ROOM_LILAYA, true);
 							Main.game.getLilaya().resetInventory();
 							
 							Main.game.getLilaya().equipClothingFromNowhere(
@@ -604,10 +600,7 @@ public class Lab {
 						};
 						
 					} else {
-						if(Main.game.getArthur().getLocationPlace().getPlaceType()==PlaceType.LILAYA_HOME_LAB) {
-							return new Response("\"Tests\"", "Lilaya can't run any \"tests\" on you while Arthur is still present in her lab. Find him a suitable room first.", null);
-							
-						} else if (Main.game.getDialogueFlags().values.contains(DialogueFlagValue.hadSexWithLilaya)) {
+						if (Main.game.getDialogueFlags().values.contains(DialogueFlagValue.hadSexWithLilaya)) {
 							return new Response("\"Tests\"", "Let Lilaya know that you're here to let her run more of her \"tests\" on you.", AUNT_HOME_LABORATORY_TESTING_MORE_SEX){
 								@Override
 								public void effects() {
@@ -1867,7 +1860,6 @@ public class Lab {
 					@Override
 					public void effects() {
 						Main.game.getDialogueFlags().values.add(DialogueFlagValue.hadSexWithLilaya);
-						Main.game.getRose().setLocation(WorldType.LILAYAS_HOUSE_FIRST_FLOOR, PlaceType.LILAYA_HOME_ROOM_ROSE, false);
 					}
 				};
 
@@ -2112,7 +2104,6 @@ public class Lab {
 					@Override
 					public void effects() {
 						Main.game.getDialogueFlags().values.add(DialogueFlagValue.hadSexWithLilaya);
-						Main.game.getRose().setLocation(WorldType.LILAYAS_HOUSE_FIRST_FLOOR, PlaceType.LILAYA_HOME_ROOM_ROSE, false);
 					}
 				};
 
@@ -3172,14 +3163,6 @@ public class Lab {
 					case DOG_MORPH: case DOG_MORPH_DOBERMANN: case DOG_MORPH_BORDER_COLLIE:
 						litterSB.append(" smiling");
 						break;
-					case ALLIGATOR_MORPH:
-						litterSB.append(" tough");
-						break;
-					case HARPY:
-					case HARPY_RAVEN:
-					case HARPY_BALD_EAGLE:
-						litterSB.append(" feminine");
-						break;
 					case HORSE_MORPH:
 					case HORSE_MORPH_ZEBRA:
 						litterSB.append(" strong");
@@ -3199,9 +3182,6 @@ public class Lab {
 						break;
 					case WOLF_MORPH:
 						litterSB.append(" powerful");
-						break;
-					case RAT_MORPH:
-						litterSB.append(" grinning");
 						break;
 				}
 				litterSB.append(" <b style='color:"+ Colour.MASCULINE.toWebHexString()+ ";'>"+ (Main.game.getPlayer().getLastLitterBirthed().getSonsFromFather() > 1
@@ -3248,14 +3228,6 @@ public class Lab {
 					case DOG_MORPH: case DOG_MORPH_DOBERMANN: case DOG_MORPH_BORDER_COLLIE:
 						litterSB.append(" smiling");
 						break;
-					case ALLIGATOR_MORPH:
-						litterSB.append(" tough");
-						break;
-					case HARPY:
-					case HARPY_RAVEN:
-					case HARPY_BALD_EAGLE:
-						litterSB.append(" feminine");
-						break;
 					case HORSE_MORPH:
 					case HORSE_MORPH_ZEBRA:
 						litterSB.append(" strong");
@@ -3275,9 +3247,6 @@ public class Lab {
 						break;
 					case WOLF_MORPH:
 						litterSB.append(" powerful");
-						break;
-					case RAT_MORPH:
-						litterSB.append(" grinning");
 						break;
 				}
 				litterSB.append(" <b style='color:"+ Colour.MASCULINE.toWebHexString()+ ";'>"+ (Main.game.getPlayer().getLastLitterBirthed().getSonsFromMother() > 1
@@ -3324,14 +3293,6 @@ public class Lab {
 					case DOG_MORPH: case DOG_MORPH_DOBERMANN: case DOG_MORPH_BORDER_COLLIE:
 						litterSB.append(" playful");
 						break;
-					case ALLIGATOR_MORPH:
-						litterSB.append(" tough");
-						break;
-					case HARPY:
-					case HARPY_RAVEN:
-					case HARPY_BALD_EAGLE:
-						litterSB.append(" feminine");
-						break;
 					case HORSE_MORPH:
 					case HORSE_MORPH_ZEBRA:
 						litterSB.append(" confident");
@@ -3350,9 +3311,6 @@ public class Lab {
 						litterSB.append(" happy");
 						break;
 					case WOLF_MORPH:
-						litterSB.append(" grinning");
-						break;
-					case RAT_MORPH:
 						litterSB.append(" grinning");
 						break;
 				}
@@ -3400,14 +3358,6 @@ public class Lab {
 					case DOG_MORPH: case DOG_MORPH_DOBERMANN: case DOG_MORPH_BORDER_COLLIE:
 						litterSB.append(" playful");
 						break;
-					case ALLIGATOR_MORPH:
-						litterSB.append(" tough");
-						break;
-					case HARPY:
-					case HARPY_RAVEN:
-					case HARPY_BALD_EAGLE:
-						litterSB.append(" feminine");
-						break;
 					case HORSE_MORPH:
 					case HORSE_MORPH_ZEBRA:
 						litterSB.append(" confident");
@@ -3426,9 +3376,6 @@ public class Lab {
 						litterSB.append(" happy");
 						break;
 					case WOLF_MORPH:
-						litterSB.append(" grinning");
-						break;
-					case RAT_MORPH:
 						litterSB.append(" grinning");
 						break;
 				}

@@ -457,33 +457,6 @@ public class Tail implements BodyPartInterface, Serializable {
 							);
 				}
 				break;
-			case ALLIGATOR_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							(owner.getTailCount()==1
-								?" A scaly, alligator-like tail sprouts from just above your ass, rapidly growing in size until it's almost as long as your body."
-									+ " You quickly discover that you can swish it from side to side with considerable force."
-									+ "<br/>"
-									+ "You now have an [style.boldGatorMorph(alligator-like tail)]"
-								:" [pc.TailCount] scaly, alligator-like tails sprout from just above your ass, rapidly growing in size until they're each almost as long as your body."
-									+ " You quickly discover that you can swish them from side to side with considerable force."
-									+ "<br/>"
-									+ "You now have [pc.tailCount] [style.boldGatorMorph(alligator-like tails)]")
-							);
-				} else {
-					UtilText.transformationContentSB.append(
-							(owner.getTailCount()==1
-								?" A scaly, alligator-like tail sprouts from just above [npc.her] ass, rapidly growing in size until it's almost as long as [npc.her] body."
-									+ " [npc.She] quickly discovers that [npc.she] can swish it from side to side with considerable force."
-									+ "<br/>"
-									+ "[npc.Name] now has an [style.boldGatorMorph(alligator-like tail)]"
-								:" [npc.TailCount] scaly, alligator-like tails sprout from just above [npc.her] ass, rapidly growing in size until they're each almost as long as [npc.her] body."
-									+ " [npc.She] quickly discovers that [npc.she] can swish them from side to side with considerable force."
-									+ "<br/>"
-									+ "[npc.Name] now has [npc.tailCount] [style.boldGatorMorph(alligator-like tails)]")
-							);
-				}
-				break;
 			case SQUIRREL_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(

@@ -15,7 +15,6 @@ import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
 import com.lilithsthrone.game.dialogue.responses.ResponseSex;
-import com.lilithsthrone.game.dialogue.responses.ResponseTrade;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.sex.SexPositionSlot;
 import com.lilithsthrone.game.sex.managers.dominion.SMStocks;
@@ -480,7 +479,6 @@ public class SlaverAlleyDialogue {
 						return new Response(UtilText.parse(biddingNPC, "[npc.Name] sold"), "You didn't win the auction, but there's always next time, right?", AUCTION_BLOCK) {
 							@Override
 							public void effects() {
-								Main.game.getFinch().removeSlave(biddingNPC);
 								Main.game.banishNPC(biddingNPC);
 							}
 						};
@@ -807,10 +805,7 @@ public class SlaverAlleyDialogue {
 		@Override
 		public Response getResponse(int responseTab, int index) {
 			if(Main.game.getPlayer().isHasSlaverLicense()) {
-				if (index == 1) {
-					return new ResponseTrade("Trade", "Buy slavery-related items.", Main.game.getFinch());
-
-				} else if (index == 5) {
+				if (index == 5) {
 					return new Response("Slave Manager", "Open the slave management screen.", SlaveryManagementDialogue.getSlaveryOverviewDialogue());
 
 				} else if (index == 0) {

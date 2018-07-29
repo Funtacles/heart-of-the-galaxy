@@ -12,9 +12,7 @@ import com.lilithsthrone.game.sex.sexActions.SexActionInterface;
 import com.lilithsthrone.game.sex.sexActions.SexActionPresets;
 import com.lilithsthrone.game.sex.sexActions.SexActionType;
 import com.lilithsthrone.game.sex.sexActions.baseActionsMisc.GenericOrgasms;
-import com.lilithsthrone.game.sex.sexActions.dominion.CultistSexActions;
 import com.lilithsthrone.game.sex.sexActions.dominion.GloryHole;
-import com.lilithsthrone.game.sex.sexActions.dominion.MasturbationPanties;
 import com.lilithsthrone.game.sex.sexActions.dominion.ToiletStall;
 import com.lilithsthrone.game.sex.sexActions.dominion.VickyDominating;
 import com.lilithsthrone.game.sex.sexActions.submission.BreedingStallBack;
@@ -596,24 +594,6 @@ public enum SexPositionType {
 		}
 	},
 	
-	PANTY_MASTURBATION("Kneeling",
-			true,
-			false,
-			Util.newArrayListOfValues(MasturbationPanties.class), Util.newHashMapOfValues(
-					new Value<>(
-							SexPositionSlot.MASTURBATING_KNEELING,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.MASTURBATING_KNEELING,
-									new SexActionInteractions(
-											null)))))) {
-		@Override
-		public String getDescription() {
-			return UtilText.parse(Sex.getCharacterInPosition(SexPositionSlot.MASTURBATING_KNEELING),
-					"[npc.NameIs] kneeling on the floor, ready to masturbate with the panties clenched in [npc.her] [npc.hand].");
-		}
-	},
-	
 	STOCKS_SEX("Stocks sex",
 			true,
 			false,
@@ -1106,164 +1086,6 @@ public enum SexPositionType {
 		public String getDescription() {
 			return "You're lying back on top of Arcane Arts' front desk, with the aggressive owner, Vicky, standing between your [pc.legs]."
 					+ " She lets out a menacing growl as she steps forwards, preparing to fuck you in the missionary position.";
-		}
-	},
-	
-	KNEELING_ORAL_CULTIST("Kneeling",
-			true,
-			false,
-			Util.newArrayListOfValues(CultistSexActions.class), Util.newHashMapOfValues(
-					new Value<>(
-							SexPositionSlot.KNEELING_RECEIVING_ORAL_CULTIST,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.KNEELING_PERFORMING_ORAL_CULTIST,
-									new SexActionInteractions(
-											Util.mergeMaps(
-													SexActionPresets.tailToUpperTorso,
-													SexActionPresets.tentacleToUpperTorso,
-													SexActionPresets.vaginaToMouth,
-													SexActionPresets.penisToMouth))))),
-					new Value<>(
-							SexPositionSlot.KNEELING_PERFORMING_ORAL_CULTIST,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.KNEELING_RECEIVING_ORAL_CULTIST,
-									new SexActionInteractions(
-											SexActionPresets.fingerToLowerHalf)))))) {
-		@Override
-		public String getDescription() {
-			return "You're kneeling at the feet of [npc.name], with your [pc.face+] hovering just inches away from [npc.her] groin.";
-		}
-	},
-	
-	MISSIONARY_ALTAR_CULTIST("Missionary on altar",
-			true,
-			false,
-			Util.newArrayListOfValues(CultistSexActions.class), Util.newHashMapOfValues(
-					new Value<>(
-							SexPositionSlot.MISSIONARY_ALTAR_LYING_ON_ALTAR,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.MISSIONARY_ALTAR_STANDING_BETWEEN_LEGS,
-									new SexActionInteractions(
-										Util.mergeMaps(
-											SexActionPresets.tailToAllAreas,
-											SexActionPresets.tentacleToAllAreas))),
-							new Value<>(
-									SexPositionSlot.MISSIONARY_ALTAR_KNEELING_BETWEEN_LEGS,
-									new SexActionInteractions(
-											Util.mergeMaps(
-													SexActionPresets.tailToUpperTorso,
-													SexActionPresets.tentacleToUpperTorso,
-													SexActionPresets.vaginaToMouth,
-													SexActionPresets.penisToMouth,
-													SexActionPresets.assToMouth))))),
-					new Value<>(
-							SexPositionSlot.MISSIONARY_ALTAR_STANDING_BETWEEN_LEGS,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.MISSIONARY_ALTAR_LYING_ON_ALTAR,
-									new SexActionInteractions(
-											Util.mergeMaps(
-													SexActionPresets.appendagesToAllAreas,
-													SexActionPresets.groinToVagina,
-													SexActionPresets.groinToAss,
-													SexActionPresets.kissing,
-													SexActionPresets.mouthToBreasts,
-													SexActionPresets.breastsToMouth))))),
-					new Value<>(
-							SexPositionSlot.MISSIONARY_ALTAR_KNEELING_BETWEEN_LEGS,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.MISSIONARY_ALTAR_LYING_ON_ALTAR,
-									new SexActionInteractions(
-											SexActionPresets.fingerToLowerHalf)))))) {
-		@Override
-		public String getDescription() {//TODO
-			if(Sex.getSexPositionSlot(Main.game.getPlayer())==SexPositionSlot.MISSIONARY_ALTAR_LYING_ON_ALTAR) {
-				if(Sex.getSexPositionSlot(Sex.getActivePartner())==SexPositionSlot.MISSIONARY_ALTAR_STANDING_BETWEEN_LEGS) {
-					return "You're lying back on top of the chapel's altar, and [npc.namePos] standing between your [pc.legs], ready to have some fun with you in the missionary position.";
-				} else {
-					return "You're lying back on top of the chapel's altar, and [npc.namePos] kneeling down between your [pc.legs], ready to have some oral fun with you in the missionary position.";
-				}
-				
-			} else if(Sex.getSexPositionSlot(Main.game.getPlayer())==SexPositionSlot.MISSIONARY_ALTAR_STANDING_BETWEEN_LEGS) {
-				return "[npc.Name] is lying back on top of the chapel's altar, and you're standing between [npc.her] [npc.legs], ready to have some fun in the missionary position.";
-				
-			} else {
-				return "[npc.Name] is lying back on top of the chapel's altar, and you're kneeling down between [npc.her] [npc.legs], ready to have some oral fun in the missionary position.";
-			}
-		}
-	},
-	
-	MISSIONARY_ALTAR_SEALED_CULTIST("Missionary on altar",
-			true,
-			false,
-			Util.newArrayListOfValues(CultistSexActions.class), Util.newHashMapOfValues(
-					new Value<>(
-							SexPositionSlot.MISSIONARY_ALTAR_SEALED_LYING_ON_ALTAR,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.MISSIONARY_ALTAR_SEALED_STANDING_BETWEEN_LEGS,
-									new SexActionInteractions(
-										Util.mergeMaps(
-											SexActionPresets.tailToAllAreas,
-											SexActionPresets.tentacleToAllAreas))),
-							new Value<>(
-									SexPositionSlot.MISSIONARY_ALTAR_SEALED_KNEELING_BETWEEN_LEGS,
-									new SexActionInteractions(
-											Util.mergeMaps(
-													SexActionPresets.tailToUpperTorso,
-													SexActionPresets.tentacleToUpperTorso,
-													SexActionPresets.vaginaToMouth,
-													SexActionPresets.penisToMouth,
-													SexActionPresets.assToMouth))))),
-					new Value<>(
-							SexPositionSlot.MISSIONARY_ALTAR_SEALED_STANDING_BETWEEN_LEGS,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.MISSIONARY_ALTAR_SEALED_LYING_ON_ALTAR,
-									new SexActionInteractions(
-											Util.mergeMaps(
-													SexActionPresets.appendagesToAllAreas,
-													SexActionPresets.groinToVagina,
-													SexActionPresets.groinToAss,
-													SexActionPresets.kissing,
-													SexActionPresets.mouthToBreasts,
-													SexActionPresets.breastsToMouth))))),
-					new Value<>(
-							SexPositionSlot.MISSIONARY_ALTAR_SEALED_KNEELING_BETWEEN_LEGS,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.MISSIONARY_ALTAR_SEALED_LYING_ON_ALTAR,
-									new SexActionInteractions(
-											SexActionPresets.fingerToLowerHalf)))))) {
-		@Override
-		public String getDescription() {//TODO
-			if(Sex.getSexPositionSlot(Main.game.getPlayer())==SexPositionSlot.MISSIONARY_ALTAR_SEALED_LYING_ON_ALTAR) {
-				return "You're lying back on top of the chapel's altar, and [npc.namePos] standing between your [pc.legs], ready to have some fun with you in the missionary position.";
-			} else if(Sex.getSexPositionSlot(Main.game.getPlayer())==SexPositionSlot.MISSIONARY_ALTAR_SEALED_STANDING_BETWEEN_LEGS) {
-				return "[npc.Name] is lying back on top of the chapel's altar, and you're standing between [npc.her] [npc.legs], ready to have some fun in the missionary position.";
-			} else {
-				return "[npc.Name] is lying back on top of the chapel's altar, and you're kneeling down between [npc.her] [npc.legs], ready to have some oral fun in the missionary position.";
-			}
-		}
-		
-		@Override
-		public boolean isActionBlocked(GameCharacter performer, GameCharacter target, SexActionInterface action) {
-			
-			if(Sex.getSexPositionSlot(performer) == SexPositionSlot.MISSIONARY_ALTAR_SEALED_LYING_ON_ALTAR) {
-				if((action.getActionType()==SexActionType.ONGOING
-						|| action.getActionType()==SexActionType.START_ONGOING
-						|| action.getActionType()==SexActionType.REQUIRES_NO_PENETRATION
-						|| action.getActionType()==SexActionType.REQUIRES_EXPOSED
-						|| action.getActionType()==SexActionType.REQUIRES_NO_PENETRATION_AND_EXPOSED)) {
-					return true;
-				}
-			}
-			
-			return super.isActionBlocked(performer, target, action);
 		}
 	},
 	

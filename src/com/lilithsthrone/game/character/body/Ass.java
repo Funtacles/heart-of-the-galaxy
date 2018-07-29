@@ -267,19 +267,6 @@ public class Ass implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case ALLIGATOR_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							"You now have an [style.boldGatorMorph(alligator-morph ass)], covered in [pc.assFullDescription].<br/>"
-							+ "You have also been left with [style.boldGatorMorph(an alligator-morph)] [pc.assholeFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-							"[npc.She] now has an [style.boldGatorMorph(alligator-morph ass)], covered in [npc.assFullDescription].<br/>"
-							+ "[npc.She] has also been left with [style.boldGatorMorph(an alligator-morph)] [npc.assholeFullDescription]."
-							+ "</p>");
-				}
-				break;
 			case HARPY:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(

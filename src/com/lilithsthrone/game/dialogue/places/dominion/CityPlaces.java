@@ -8,15 +8,9 @@ import com.lilithsthrone.game.Season;
 import com.lilithsthrone.game.Weather;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.Cultist;
-import com.lilithsthrone.game.character.npc.dominion.ReindeerOverseer;
-import com.lilithsthrone.game.character.npc.dominion.RentalMommy;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
-import com.lilithsthrone.game.dialogue.npcDialogue.dominion.CultistDialogue;
-import com.lilithsthrone.game.dialogue.npcDialogue.dominion.ReindeerOverseerDialogue;
-import com.lilithsthrone.game.dialogue.npcDialogue.dominion.RentalMommyDialogue;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -202,64 +196,13 @@ public class CityPlaces {
 						+ " You see your breath exiting your mouth in a little cloud of condensation, but despite the clear evidence of the air's freezing temperature, your arcane aura protects your body from feeling the cold."
 					+ "</p>");
 			}
-			
-			for(NPC npc : Main.game.getNonCompanionCharactersPresent()) {
-				if(npc instanceof Cultist) {
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "<b style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>Cultist's Chapel:</b><br/>"
-								+ UtilText.parse(npc, "You remember that [npc.namePos] chapel is near here, and, if you were so inclined, you could easily find it again...")
-							+ "</p>");
-					break;
-				}
-				
-				if(npc instanceof ReindeerOverseer) {
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "<b style='color:"+Colour.RACE_REINDEER_MORPH.toWebHexString()+";'>Reindeer Workers:</b><br/>"
-								+ (Main.game.getCurrentWeather()==Weather.MAGIC_STORM
-									?UtilText.parse(npc, "The reindeer-morphs have all taken shelter from the ongoing arcane storm."
-											+ " If you wanted to speak with their overseer, you'd need to come back after the storm has passed.")
-									:UtilText.parse(npc, "A large group of reindeer-morphs are hard at work shovelling snow."
-											+ " Their leader, [npc.a_race], is shouting out orders and travelling to-and-fro between the workers to make sure that the job is being done to [npc.her] satisfaction."
-											+ " Although the workers look to be far too busy to stop and talk, you'd probably be able to catch a word with the overseer if you wanted to."))
-							+ "</p>");
-					break;
-				}
-			}
-			
+
 			return UtilText.nodeContentSB.toString();
 		}
 
 		@Override
 		public Response getResponse(int responseTab, int index) {
 			List<Response> responses = new ArrayList<>();
-			for(NPC npc : Main.game.getNonCompanionCharactersPresent()) {
-				if(npc instanceof Cultist) {
-					responses.add(new Response("Chapel", UtilText.parse(npc, "Visit [npc.namePos] chapel again."), CultistDialogue.ENCOUNTER_CHAPEL_REPEAT) {
-							@Override
-							public void effects() {
-								Main.game.setActiveNPC(npc);
-							}
-						});
-				}
-				
-				if(npc instanceof ReindeerOverseer) {
-					if(Main.game.getCurrentWeather()==Weather.MAGIC_STORM) {
-						responses.add(new Response("Overseer",
-								"The reindeer-morph workers are currently sheltering from the ongoing arcane storm. You'll have to come back later if you wanted to speak to the overseer.",
-								null));
-					} else {
-						responses.add(new Response("Overseer", UtilText.parse(npc, "Walk up to [npc.name] and say hello."), ReindeerOverseerDialogue.ENCOUNTER_START) {
-								@Override
-								public void effects() {
-									Main.game.setActiveNPC(npc);
-									npc.setPlayerKnowsName(true);
-								}
-							});
-					}
-				}
-			}
 			
 			if(index == 0) {
 				return null;
@@ -494,21 +437,6 @@ public class CityPlaces {
 
 		@Override
 		public Response getResponse(int responseTab, int index) {
-			if(index==1) {
-				for(NPC npc : Main.game.getNonCompanionCharactersPresent()) {
-					if(npc instanceof RentalMommy) {
-						if(Main.game.getCurrentWeather()==Weather.MAGIC_STORM) {
-							return new Response("Mommy", "'Mommy' is not sitting on her usual bench, and you suppose that she's waiting out the current storm inside her house.", null);
-						}
-						return new Response("Mommy", "You see 'Mommy' sitting on the wooden bench outside her house. Walk up to her and say hello.", RentalMommyDialogue.ENCOUNTER) {
-							@Override
-							public void effects() {
-								Main.game.setActiveNPC(npc);	
-							}
-						};
-					}
-				}
-			}
 			return null;
 		}
 	};

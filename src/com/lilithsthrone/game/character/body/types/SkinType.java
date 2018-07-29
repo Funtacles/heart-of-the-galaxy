@@ -33,8 +33,6 @@ public enum SkinType implements BodyPartTypeInterface {
 
 	RABBIT_MORPH(BodyCoveringType.RABBIT_FUR, Race.RABBIT_MORPH),
 
-	ALLIGATOR_MORPH(BodyCoveringType.ALLIGATOR_SCALES, Race.ALLIGATOR_MORPH),
-
 	HORSE_MORPH(BodyCoveringType.HORSE_HAIR, Race.HORSE_MORPH),
 
 	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH),
@@ -113,8 +111,6 @@ public enum SkinType implements BodyPartTypeInterface {
 				return "vulpine";
 			case SQUIRREL_MORPH:
 				return "fluffy";
-			case ALLIGATOR_MORPH:
-				return "alligator";
 			case RAT_MORPH:
 				return "rat";
 			case RABBIT_MORPH:
@@ -142,8 +138,6 @@ public enum SkinType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("dog-like");
 			case SQUIRREL_MORPH:
 				return UtilText.returnStringAtRandom("squirrel-like");
-			case ALLIGATOR_MORPH:
-				return UtilText.returnStringAtRandom("alligator-like");
 			case HARPY:
 				return UtilText.returnStringAtRandom("bird-like");
 			case HORSE_MORPH:

@@ -503,9 +503,6 @@ public class BodyChanging {
 								:UtilText.parse(BodyChanging.getTarget(), "<i>Get [npc.name] to focus [npc.her] demonic transformative powers on changing aspects of [npc.her] breasts.</i>"))
 						+ "</div>"
 							
-	//					Breasts:
-	//						 * 	TODO milk-related changes
-						
 						+ CharacterModificationUtils.getSelfTransformBreastSizeDiv()
 						
 						+"<div style='clear:left;'>"
@@ -549,9 +546,6 @@ public class BodyChanging {
 								:UtilText.parse(BodyChanging.getTarget(), "<i>Get [npc.name] to focus [npc.her] efforts on changing aspects of [npc.her] slimy breasts.</i>"))
 						+ "</div>"
 							
-	//					Breasts:
-	//						 * 	TODO milk-related changes
-						
 						+ CharacterModificationUtils.getSelfTransformBreastChoiceDiv(slimeRaces)
 						
 						+ CharacterModificationUtils.getSelfTransformBreastSizeDiv()

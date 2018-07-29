@@ -53,7 +53,6 @@ public class SlaveImport extends NPC {
 	public void applyNewlyImportedSlaveVariables() {
 		// If the slave has only just been imported:
 //		if(this.getOwnerId().isEmpty()) {
-			Main.game.getFinch().addSlave(this);
 			this.setLocation(WorldType.SLAVER_ALLEY, PlaceType.SLAVER_ALLEY_AUCTIONING_BLOCK, true);
 			
 			this.endPregnancy(false);

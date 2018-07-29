@@ -9,7 +9,6 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.effects.Perk;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.eventLog.EventLogEntry;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Util;
@@ -129,53 +128,6 @@ public enum SlaveJob {
 				return 1f;
 			} else {
 				return -5f;
-			}
-		}
-	},
-	
-	PROSTITUTE(10, "Prostitute", "Prostitute", "Assign this slave to work as a prostitute at the brothel 'Angel's Kiss'.",
-			-0.25f, 0.5f,
-			200, 0, 0.5f,
-			Util.newArrayListOfValues(
-					SlaveJobSetting.SEX_ORAL,
-					SlaveJobSetting.SEX_VAGINAL,
-					SlaveJobSetting.SEX_ANAL,
-					SlaveJobSetting.SEX_NIPPLES),
-			null,
-			null,
-			WorldType.ANGELS_KISS_FIRST_FLOOR,
-			PlaceType.ANGELS_KISS_BEDROOM) {
-		
-		@Override
-		public float getAffectionGain(GameCharacter slave) {
-			if(slave.hasFetish(Fetish.FETISH_CUM_ADDICT)) {
-				return 1f;
-			} else {
-				return -0.25f;
-			}
-		}
-		
-		@Override
-		public boolean isAvailable(GameCharacter character) {
-			if(!Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.prostitutionLicenseObtained)) {
-				return false;
-			}
-			return super.isAvailable(character);
-		}
-
-		@Override
-		public String getAvailabilityText(GameCharacter character) {
-			if(!Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.prostitutionLicenseObtained)) {
-				return "You do not have permission from Angel to send your slaves to work in her brothel!";
-				
-			} else if(character.getOwner().getSlavesWorkingJob(this)>=this.getSlaveLimit()) {
-				return "You have already assigned the maximum number of slaves to this job!";
-				
-			} else if(character.getHomeLocationPlace().getPlaceType() == PlaceType.SLAVER_ALLEY_SLAVERY_ADMINISTRATION) {
-				return "Slaves cannot work out of the cells at slavery administration. Move them into a room first!";
-				
-			} else {
-				return "This job is available!";
 			}
 		}
 	},

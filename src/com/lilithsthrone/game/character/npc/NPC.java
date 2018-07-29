@@ -497,8 +497,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.COR_INGREDIENT_LILITHS_GIFT));
 				case HARPY:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.SEX_INGREDIENT_HARPY_PERFUME));
-				case ALLIGATOR_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.STR_INGREDIENT_SWAMP_WATER));
 				case SQUIRREL_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.FIT_INGREDIENT_SQUIRREL_JAVA));
 				case RAT_MORPH:
@@ -541,17 +539,13 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.DYE_BRUSH));
 				case DEMON:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_DEMON));
-				case HARPY:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_HARPY));
-				case ALLIGATOR_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_ALLIGATOR_MORPH));
 				case SQUIRREL_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_SQUIRREL_MORPH));
 				case RAT_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_RAT_MORPH));
 				case RABBIT_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_RABBIT_MORPH));
-				case ELEMENTAL_AIR: //TODO books
+				case ELEMENTAL_AIR:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.AIR)));
 				case ELEMENTAL_ARCANE:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.ARCANE)));
@@ -589,8 +583,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_DEMON));
 				case HARPY:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_HARPY));
-				case ALLIGATOR_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_ALLIGATOR_MORPH));
 				case SQUIRREL_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_SQUIRREL_MORPH));
 				case RAT_MORPH:
@@ -927,10 +919,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					break;
 				case WOLF_MORPH:
 					itemType = ItemType.RACE_INGREDIENT_WOLF_MORPH;
-					reaction = "Time to turn you into a "+raceName+"!";
-					break;
-				case ALLIGATOR_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_ALLIGATOR_MORPH;
 					reaction = "Time to turn you into a "+raceName+"!";
 					break;
 				case COW_MORPH:
@@ -1378,14 +1366,9 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 			
 		} else {
 		
-			// Chance for predator races to prefer prey races:
-			if(getRace()==Race.CAT_MORPH && Math.random()>0.8f) {
-				species = Subspecies.HARPY;
-			}
 			if((getRace()==Race.WOLF_MORPH || getRace()==Race.DOG_MORPH) && Math.random()>0.8f) {
 				List<Subspecies> availableRaces = new ArrayList<>();
 				availableRaces.add(Subspecies.CAT_MORPH);
-				availableRaces.add(Subspecies.HARPY);
 				availableRaces.add(Subspecies.COW_MORPH);
 				availableRaces.add(Subspecies.SQUIRREL_MORPH);
 				species = availableRaces.get(Util.random.nextInt(availableRaces.size()));
@@ -1396,7 +1379,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 				List<Subspecies> availableRaces = new ArrayList<>();
 				availableRaces.add(Subspecies.CAT_MORPH);
 				availableRaces.add(Subspecies.DOG_MORPH);
-				availableRaces.add(Subspecies.HARPY);
 				availableRaces.add(Subspecies.HORSE_MORPH);
 				availableRaces.add(Subspecies.HUMAN);
 				availableRaces.add(Subspecies.SQUIRREL_MORPH);

@@ -170,30 +170,6 @@ public class ItemEffectType {
 		}
 	};
 	
-	public static AbstractItemEffectType BOOK_READ_ALLIGATOR_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"Adds alligator-morph encyclopedia entry.",
-			"[style.boldExcellent(+5)] [style.boldAlligatorMorph("+Attribute.DAMAGE_ALLIGATOR_MORPH.getName()+")]",
-			"[style.boldExcellent(+5)] [style.boldAlligatorMorph("+Attribute.RESISTANCE_ALLIGATOR_MORPH.getName()+")]"),
-			Colour.RACE_ALLIGATOR_MORPH) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getBookEffect(Race.ALLIGATOR_MORPH, ItemType.BOOK_ALLIGATOR_MORPH);
-		}
-	};
-	
-	public static AbstractItemEffectType BOOK_READ_HARPY = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"Adds harpy encyclopedia entry.",
-			"[style.boldExcellent(+5)] [style.boldHarpy("+Attribute.DAMAGE_HARPY.getName()+")]",
-			"[style.boldExcellent(+5)] [style.boldHarpy("+Attribute.RESISTANCE_HARPY.getName()+")]"),
-			Colour.RACE_HARPY) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getBookEffect(Race.HARPY, ItemType.BOOK_HARPY);
-		}
-	};
-	
 	public static AbstractItemEffectType BOOK_READ_HORSE_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"Adds horse-morph encyclopedia entry.",
 			"[style.boldExcellent(+5)] [style.boldHorseMorph("+Attribute.DAMAGE_HORSE_MORPH.getName()+")]",
@@ -2784,35 +2760,6 @@ public class ItemEffectType {
 		@Override
 		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
 			return getRacialEffect(Race.FOX_MORPH, primaryModifier, secondaryModifier, potency, user, target).applyEffect();
-		}
-	};
-	
-	public static AbstractItemEffectType RACE_ALLIGATOR_MORPH = new AbstractItemEffectType(null,
-			Colour.RACE_ALLIGATOR_MORPH) {
-
-		@Override
-		public List<TFModifier> getPrimaryModifiers() {
-			return TFModifier.getTFRacialBodyPartsList();
-		}
-
-		@Override
-		public List<TFModifier> getSecondaryModifiers(TFModifier primaryModifier) {
-			return getRacialSecondaryModifiers(Race.ALLIGATOR_MORPH, primaryModifier);
-		}
-		
-		@Override
-		public List<TFPotency> getPotencyModifiers(TFModifier primaryModifier, TFModifier secondaryModifier) {
-			return getRacialPotencyModifiers(Race.ALLIGATOR_MORPH, primaryModifier, secondaryModifier);
-		}
-		
-		@Override
-		public List<String> getEffectsDescription(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target) {
-			return Util.newArrayListOfValues(getRacialEffect(Race.ALLIGATOR_MORPH, primaryModifier, secondaryModifier, potency, user, target).getDescriptionPlusChangeDescription());
-		}
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getRacialEffect(Race.ALLIGATOR_MORPH, primaryModifier, secondaryModifier, potency, user, target).applyEffect();
 		}
 	};
 	

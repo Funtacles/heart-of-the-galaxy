@@ -78,7 +78,6 @@ import com.lilithsthrone.game.character.fetishes.FetishDesire;
 import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.gender.PronounType;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.Cultist;
 import com.lilithsthrone.game.character.npc.dominion.DominionSuccubusAttacker;
 import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.persona.Name;
@@ -1503,7 +1502,7 @@ public class CharacterUtils {
 		}
 		
 		desiresAssigned = 0;
-		if(character instanceof Cultist || character instanceof DominionSuccubusAttacker) { // Cultists and succubus attackers like raping
+		if(character instanceof DominionSuccubusAttacker) { // Cultists and succubus attackers like raping
 			availableFetishes.remove(Fetish.FETISH_NON_CON_DOM);
 		}
 		

@@ -34,8 +34,6 @@ public enum HairType implements BodyPartTypeInterface {
 
 	COW_MORPH(BodyCoveringType.HAIR_BOVINE_FUR, Race.COW_MORPH),
 
-	ALLIGATOR_MORPH(BodyCoveringType.HAIR_SCALES_ALLIGATOR, Race.ALLIGATOR_MORPH),
-
 	SQUIRREL_MORPH(BodyCoveringType.HAIR_SQUIRREL_FUR, Race.SQUIRREL_MORPH),
 
 	RAT_MORPH(BodyCoveringType.HAIR_RAT_FUR, Race.RAT_MORPH),
@@ -114,8 +112,6 @@ public enum HairType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("dog-like");
 			case SQUIRREL_MORPH:
 				return UtilText.returnStringAtRandom("squirrel-like");
-			case ALLIGATOR_MORPH:
-				return UtilText.returnStringAtRandom("alligator-like");
 			case HARPY:
 				return UtilText.returnStringAtRandom("bird-like");
 			case HORSE_MORPH:
@@ -162,8 +158,6 @@ public enum HairType implements BodyPartTypeInterface {
 				return "bovine";
 			case SQUIRREL_MORPH:
 				return "furry";
-			case ALLIGATOR_MORPH:
-				return "alligator";
 			case HARPY:
 				return "avian";
 			case HORSE_MORPH:

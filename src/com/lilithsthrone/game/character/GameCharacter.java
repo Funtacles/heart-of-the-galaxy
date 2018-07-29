@@ -118,10 +118,8 @@ import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.markings.Scar;
 import com.lilithsthrone.game.character.markings.Tattoo;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.Cultist;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.DominionSuccubusAttacker;
-import com.lilithsthrone.game.character.npc.dominion.ReindeerOverseer;
 import com.lilithsthrone.game.character.npc.misc.Elemental;
 import com.lilithsthrone.game.character.npc.misc.NPCOffspring;
 import com.lilithsthrone.game.character.persona.History;
@@ -1354,12 +1352,6 @@ public abstract class GameCharacter implements XMLSaving {
 						
 					} else if(character instanceof DominionSuccubusAttacker) {
 						placeType = PlaceType.DOMINION_DARK_ALLEYS;
-						
-					} else if(character instanceof Cultist) {
-						placeType = PlaceType.DOMINION_STREET;
-						
-					} else if(character instanceof ReindeerOverseer) {
-						placeType = PlaceType.DOMINION_STREET;
 						
 					} else { // Catch if no location found:
 						placeType = PlaceType.DOMINION_BACK_ALLEYS;
@@ -2981,9 +2973,6 @@ public abstract class GameCharacter implements XMLSaving {
 			case SQUIRREL_MORPH:
 				value = 6000;
 				break;
-			case ALLIGATOR_MORPH:
-				value = 10000;
-				break;
 			case WOLF_MORPH: case FOX_MORPH:
 				value = 10000;
 				break;
@@ -3528,15 +3517,12 @@ public abstract class GameCharacter implements XMLSaving {
 			}
 		}
 		switch(this.getWorldLocation()) {
-			case ANGELS_KISS_FIRST_FLOOR:
-			case ANGELS_KISS_GROUND_FLOOR:
 			case DOMINION:
 			case EMPTY:
 			case SLAVER_ALLEY:
 			case JUNGLE:
 			case LILAYAS_HOUSE_FIRST_FLOOR:
 			case LILAYAS_HOUSE_GROUND_FLOOR:
-			case NIGHTLIFE_CLUB:
 				break;
 			case SHOPPING_ARCADE:
 				if(this.getLocationPlace().getPlaceType()!=PlaceType.SHOPPING_ARCADE_PATH) {
@@ -3544,8 +3530,6 @@ public abstract class GameCharacter implements XMLSaving {
 				}
 				break;
 			case SUPPLIER_DEN:
-			case ZARANIX_HOUSE_FIRST_FLOOR:
-			case ZARANIX_HOUSE_GROUND_FLOOR:
 				return "You can't have sex with [npc.name] in Zaranix's house!";
 		}
 		for(GameCharacter character : Main.game.getCharactersPresent()) {

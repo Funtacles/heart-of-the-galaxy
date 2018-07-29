@@ -133,15 +133,6 @@ public class SlaveryUtil implements XMLSaving {
 				slavesAtJob.get(slave.getSlaveJob()).add(slave);
 				
 			} else {
-				if(slave.getSlaveJob()==SlaveJob.PROSTITUTE) {
-					// Remove client before leaving:
-					List<NPC> charactersPresent = Main.game.getCharactersPresent(slave.getWorldLocation(), slave.getLocation());
-					for(NPC npc : charactersPresent) {
-						if(npc instanceof GenericSexualPartner) {
-							Main.game.banishNPC(npc);
-						}
-					}
-				}
 				slave.setLocation(slave.getHomeWorldLocation(), slave.getHomeLocation(), false);
 				slavesResting.add(slave);
 			}
@@ -228,18 +219,7 @@ public class SlaveryUtil implements XMLSaving {
 			}
 			// Standard events:
 			if(!eventAdded) {
-				if(slave.getSlaveJob()==SlaveJob.PROSTITUTE) {
-					// Remove client:
-					List<NPC> charactersPresent = Main.game.getCharactersPresent(slave.getWorldLocation(), slave.getLocation());
-					for(NPC npc : charactersPresent) {
-						if(npc instanceof GenericSexualPartner) {
-//							System.out.println("partner removed for "+slave.getName());
-							Main.game.banishNPC(npc);
-						}
-					}
-				}
-				
-				if(Math.random()<0.05f || slave.getSlaveJob()==SlaveJob.MILKING || (Math.random()<0.5f && (slave.getSlaveJob()==SlaveJob.PUBLIC_STOCKS || slave.getSlaveJob()==SlaveJob.PROSTITUTE))) {
+				if(Math.random()<0.05f || slave.getSlaveJob()==SlaveJob.MILKING || (Math.random()<0.5f && (slave.getSlaveJob()==SlaveJob.PUBLIC_STOCKS))) {
 					List<SlaveryEventLogEntry> entries = generateEvents(hour, slave);
 					for(SlaveryEventLogEntry e : entries) {
 						Main.game.addSlaveryEvent(day, slave, e);
@@ -532,238 +512,7 @@ public class SlaveryUtil implements XMLSaving {
 						}
 					}
 					break;
-					
-				case PUBLIC_STOCKS:
-					effectDescriptions = new StringBuilder();
-					effects = new ArrayList<>();
-					settingsEnabled = getSexSettingsEnabled(slave);
-					
-					GenericSexualPartner stocksPartner;
-					
-					if(Math.random()<0.25f) {
-						stocksPartner = new GenericSexualPartner(Gender.F_P_V_B_FUTANARI, WorldType.ANGELS_KISS_FIRST_FLOOR, slave.getLocation(), false);
-					} else {
-						stocksPartner = new GenericSexualPartner(Gender.M_P_MALE, WorldType.ANGELS_KISS_FIRST_FLOOR, slave.getLocation(), false);
-					}
-					
-					// If no settings are able to be used, or if a random roll is greater than 0.8, just add a groping event:
-					if(settingsEnabled.isEmpty() || Math.random()>0.8f) {
-							effectDescriptions.append(UtilText.parse(stocksPartner,
-									UtilText.returnStringAtRandom(
-											"[npc.A_race] groped and molested "+UtilText.parse(slave, "[npc.namePos] exposed body!"),
-											"[npc.A_race] roughly molested "+UtilText.parse(slave, "[npc.namePos] vulnerable body!"),
-											"[npc.A_race] spent some time groping and fondling every part of "+UtilText.parse(slave, "[npc.namePos] body!"))));
 
-						effects.add("<span style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>Molested:</span> "+effectDescriptions.toString());
-						effectDescriptions.setLength(0);
-						
-					} else {
-						SlaveJobSetting eventGenerated = settingsEnabled.get(Util.random.nextInt(settingsEnabled.size()));
-						
-						switch(eventGenerated) {
-							case SEX_ANAL:
-								effectDescriptions.append(UtilText.parse(stocksPartner,
-										UtilText.returnStringAtRandom(
-												"[npc.A_race] came deep inside "+UtilText.parse(slave, "[npc.namePos] [npc.asshole+]!"),
-												"[npc.A_race] roughly fucked "+UtilText.parse(slave, "[npc.namePos] [npc.asshole+], before filling [npc.herHim] with"+UtilText.parse(Main.game.getGenericFemaleNPC()," [npc.cum+]!")),
-												"[npc.A_race] filled "+UtilText.parse(slave, "[npc.namePos] [npc.asshole+]")+UtilText.parse(Main.game.getGenericFemaleNPC()," with [npc.her] [npc.cum+], "))));
-	
-								effects.add("<span style='color:"+Colour.CUM.toWebHexString()+";'>Anal Creampie:</span> "+effectDescriptions.toString());
-								effectDescriptions.setLength(0);
-								slave.calculateGenericSexEffects(false, stocksPartner, new SexType(SexParticipantType.NORMAL, SexAreaOrifice.ANUS, SexAreaPenetration.PENIS));
-								
-								break;
-								
-							case SEX_ORAL:
-								effectDescriptions.append(UtilText.parse(stocksPartner,
-										UtilText.returnStringAtRandom(
-												"[npc.A_race] came deep down "+UtilText.parse(slave, "[npc.namePos] throat!"),
-												"[npc.A_race] roughly face-fucked "+UtilText.parse(slave, "[npc.name], before filling [npc.her] stomach with"+UtilText.parse(Main.game.getGenericFemaleNPC()," [npc.cum+]!")),
-												"[npc.A_race] filled "+UtilText.parse(slave, "[npc.namePos] stomach")+UtilText.parse(Main.game.getGenericFemaleNPC()," with [npc.her] [npc.cum+]!"))));
-	
-								effects.add("<span style='color:"+Colour.CUM.toWebHexString()+";'>Swallowed Cum:</span> "+effectDescriptions.toString());
-								effectDescriptions.setLength(0);
-
-								slave.calculateGenericSexEffects(false, stocksPartner, new SexType(SexParticipantType.NORMAL, SexAreaOrifice.MOUTH, SexAreaPenetration.PENIS));
-								break;
-								
-							case SEX_NIPPLES:
-								effectDescriptions.append(UtilText.parse(stocksPartner,
-										UtilText.returnStringAtRandom(
-												"[npc.A_race] came deep inside "+UtilText.parse(slave, "[npc.namePos] [npc.nipples+]!"),
-												"[npc.A_race] roughly fucked "+UtilText.parse(slave, "[npc.namePos] [npc.nipples+], before filling [npc.her] [npc.breasts+] with"+UtilText.parse(Main.game.getGenericFemaleNPC()," [npc.cum+]!")),
-												"[npc.A_race] filled "+UtilText.parse(slave, "[npc.namePos] [npc.nipples+]")+UtilText.parse(Main.game.getGenericFemaleNPC()," with [npc.her] [npc.cum+], "))));
-	
-								effects.add("<span style='color:"+Colour.CUM.toWebHexString()+";'>Nipple Creampie:</span> "+effectDescriptions.toString());
-								effectDescriptions.setLength(0);
-
-								slave.calculateGenericSexEffects(false, stocksPartner, new SexType(SexParticipantType.NORMAL, SexAreaOrifice.NIPPLE, SexAreaPenetration.PENIS));
-								break;
-								
-							case SEX_VAGINAL:
-								effectDescriptions.append(UtilText.parse(stocksPartner,
-										UtilText.returnStringAtRandom(
-												"[npc.A_race] came deep inside "+UtilText.parse(slave, "[npc.namePos] [npc.pussy+], "),
-												"[npc.A_race] roughly fucked "+UtilText.parse(slave, "[npc.namePos] [npc.pussy+], "),
-												"[npc.A_race] filled "+UtilText.parse(slave, "[npc.namePos] [npc.pussy+]")+UtilText.parse(Main.game.getGenericFemaleNPC()," with [npc.her] [npc.cum+], "))));
-
-								slave.calculateGenericSexEffects(false, stocksPartner, new SexType(SexParticipantType.NORMAL, SexAreaOrifice.VAGINA, SexAreaPenetration.PENIS));
-	
-								if(slave.isVisiblyPregnant()) {
-									effectDescriptions.append(UtilText.parse(slave, "but as [npc.sheIs] already pregnant, the only result is a fresh creampie..."));
-									effects.add("<span style='color:"+Colour.CUM.toWebHexString()+";'>Pussy Creampie:</span> "+effectDescriptions.toString());
-									effectDescriptions.setLength(0);
-									
-								} else if(!slave.getSlavePermissionSettings().get(SlavePermission.PREGNANCY).contains(SlavePermissionSetting.PREGNANCY_PROMISCUITY_PILLS)) {
-									effectDescriptions.append(UtilText.parse(slave, "resulting in a risk of pregnancy!"));
-									effects.add("<span style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>Pregnancy Risk:</span> "+effectDescriptions.toString());
-									effectDescriptions.setLength(0);
-									
-								} else {
-									if(slave.isHasAnyPregnancyEffects()) {
-										effectDescriptions.append(UtilText.parse(slave, "but as [npc.sheIs] on promiscuity pills, there's no chance of [npc.herHim] getting pregnant. ([npc.She] already has a risk of pregnancy from a previous encounter, however...)"));
-									} else {
-										effectDescriptions.append(UtilText.parse(slave, "but as [npc.sheIs] on promiscuity pills, there's no chance of [npc.herHim] getting pregnant."));
-									}
-									effects.add("<span style='color:"+Colour.CUM.toWebHexString()+";'>Pussy Creampie:</span> "+effectDescriptions.toString());
-									effectDescriptions.setLength(0);
-								}
-								
-								break;
-								
-							default:
-								break;
-						
-						}
-					}
-
-					events.add(new SlaveryEventLogEntry(hour, slave,
-							SlaveEvent.JOB_PUBLIC_STOCKS,
-							Util.newArrayListOfValues(
-									SlaveEventTag.JOB_STOCKS_USED),
-							effects,
-							true));
-					return events;
-					
-				case PROSTITUTE:
-					effectDescriptions = new StringBuilder();
-					effects = new ArrayList<>();
-					settingsEnabled = getSexSettingsEnabled(slave);
-					GenericSexualPartner partner;
-					
-					
-					if(Math.random()<0.25f) {
-						partner = new GenericSexualPartner(Gender.F_P_V_B_FUTANARI, WorldType.ANGELS_KISS_FIRST_FLOOR, slave.getLocation(), false);
-					} else {
-						partner = new GenericSexualPartner(Gender.M_P_MALE, WorldType.ANGELS_KISS_FIRST_FLOOR, slave.getLocation(), false);
-					}
-					try {
-						Main.game.addNPC(partner, false);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-//					System.out.println("partner spawned for "+slave.getName()+": "+partner.getWorldLocation()+" "+partner.getLocation().getX()+", "+partner.getLocation().getY());
-					
-					// If no settings are able to be used, or if a random roll is greater than 0.8, just add a groping event:
-					if(settingsEnabled.isEmpty() || Math.random()>0.8f) {
-						effectDescriptions.append(UtilText.parse(partner,
-								UtilText.returnStringAtRandom(
-										"[npc.A_race] groped and molested "+UtilText.parse(slave, "[npc.namePos] exposed body!"),
-										"[npc.A_race] roughly molested "+UtilText.parse(slave, "[npc.namePos] vulnerable body!"),
-										"[npc.A_race] spent some time groping and fondling every part of "+UtilText.parse(slave, "[npc.namePos] body!"))));
-
-						effects.add("<span style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>Molested:</span> "+effectDescriptions.toString());
-						effectDescriptions.setLength(0);
-						
-					} else {
-						SlaveJobSetting eventGenerated = settingsEnabled.get(Util.random.nextInt(settingsEnabled.size()));
-						
-						switch(eventGenerated) {
-							case SEX_ANAL:
-								effectDescriptions.append(UtilText.parse(partner,
-										UtilText.returnStringAtRandom(
-												"[npc.A_race] came deep inside "+UtilText.parse(slave, "[npc.namePos] [npc.asshole+]!"),
-												"[npc.A_race] roughly fucked "+UtilText.parse(slave, "[npc.namePos] [npc.asshole+], before filling [npc.herHim] with")+" [npc.cum+]!",
-												"[npc.A_race] filled "+UtilText.parse(slave, "[npc.namePos] [npc.asshole+]")+" with [npc.her] [npc.cum+]!")));
-									
-								effects.add("<span style='color:"+Colour.CUM.toWebHexString()+";'>Anal Creampie:</span> "+effectDescriptions.toString());
-								effectDescriptions.setLength(0);
-
-								slave.calculateGenericSexEffects(false, partner, new SexType(SexParticipantType.NORMAL, SexAreaOrifice.ANUS, SexAreaPenetration.PENIS));
-								break;
-								
-							case SEX_ORAL:
-								effectDescriptions.append(UtilText.parse(partner,
-										UtilText.returnStringAtRandom(
-												"[npc.A_race] came deep down "+UtilText.parse(slave, "[npc.namePos] throat!"),
-												"[npc.A_race] roughly face-fucked "+UtilText.parse(slave, "[npc.name], before filling [npc.her] stomach with"+UtilText.parse(partner," [npc.cum+]!")),
-												"[npc.A_race] filled "+UtilText.parse(slave, "[npc.namePos] stomach")+UtilText.parse(partner," with [npc.her] [npc.cum+]!"))));
-	
-								effects.add("<span style='color:"+Colour.CUM.toWebHexString()+";'>Swallowed Cum:</span> "+effectDescriptions.toString());
-								effectDescriptions.setLength(0);
-
-								slave.calculateGenericSexEffects(false, partner, new SexType(SexParticipantType.NORMAL, SexAreaOrifice.MOUTH, SexAreaPenetration.PENIS));
-								break;
-								
-							case SEX_NIPPLES:
-								effectDescriptions.append(UtilText.parse(partner,
-										UtilText.returnStringAtRandom(
-												"[npc.A_race] came deep inside "+UtilText.parse(slave, "[npc.namePos] [npc.nipples+]!"),
-												"[npc.A_race] roughly fucked "+UtilText.parse(slave, "[npc.namePos] [npc.nipples+], before filling [npc.her] [npc.breasts+] with"+UtilText.parse(partner," [npc.cum+]!")),
-												"[npc.A_race] filled "+UtilText.parse(slave, "[npc.namePos] [npc.nipples+]")+UtilText.parse(partner," with [npc.her] [npc.cum+]!"))));
-									
-	
-								effects.add("<span style='color:"+Colour.CUM.toWebHexString()+";'>Nipple Creampie:</span> "+effectDescriptions.toString());
-								effectDescriptions.setLength(0);
-								slave.calculateGenericSexEffects(false, partner, new SexType(SexParticipantType.NORMAL, SexAreaOrifice.NIPPLE, SexAreaPenetration.PENIS));
-								break;
-								
-							case SEX_VAGINAL:
-								effectDescriptions.append(UtilText.parse(partner,
-										UtilText.returnStringAtRandom(
-												"[npc.A_race] came deep inside "+UtilText.parse(slave, "[npc.namePos] [npc.pussy+], "),
-												"[npc.A_race] roughly fucked "+UtilText.parse(slave, "[npc.namePos] [npc.pussy+], "),
-												"[npc.A_race] filled "+UtilText.parse(slave, "[npc.namePos] [npc.pussy+]")+UtilText.parse(partner," with [npc.her] [npc.cum+], "))));
-
-								slave.calculateGenericSexEffects(false, partner, new SexType(SexParticipantType.NORMAL, SexAreaOrifice.VAGINA, SexAreaPenetration.PENIS));
-								
-								if(slave.isVisiblyPregnant()) {
-									effectDescriptions.append(UtilText.parse(slave, "but as [npc.sheIs] already pregnant, the only result is a fresh creampie..."));
-									effects.add("<span style='color:"+Colour.CUM.toWebHexString()+";'>Pussy Creampie:</span> "+effectDescriptions.toString());
-									effectDescriptions.setLength(0);
-									
-								} else if(!slave.getSlavePermissionSettings().get(SlavePermission.PREGNANCY).contains(SlavePermissionSetting.PREGNANCY_PROMISCUITY_PILLS)) {
-									effectDescriptions.append(UtilText.parse(slave, "resulting in a risk of pregnancy!"));
-									effects.add("<span style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>Pregnancy Risk:</span> "+effectDescriptions.toString());
-									effectDescriptions.setLength(0);
-									
-								} else {
-									if(slave.isHasAnyPregnancyEffects()) {
-										effectDescriptions.append(UtilText.parse(slave, "but as [npc.sheIs] on promiscuity pills, there's no chance of [npc.herHim] getting pregnant. ([npc.She] already has a risk of pregnancy from a previous encounter, however...)"));
-									} else {
-										effectDescriptions.append(UtilText.parse(slave, "but as [npc.sheIs] on promiscuity pills, there's no chance of [npc.herHim] getting pregnant."));
-									}
-									effects.add("<span style='color:"+Colour.CUM.toWebHexString()+";'>Pussy Creampie:</span> "+effectDescriptions.toString());
-									effectDescriptions.setLength(0);
-								}
-								
-								break;
-								
-							default:
-								break;
-						
-						}
-					}
-
-					events.add(new SlaveryEventLogEntry(hour, slave,
-							SlaveEvent.JOB_PROSTITUTE,
-							Util.newArrayListOfValues(
-									SlaveEventTag.JOB_PROSTITUTE_USED),
-							effects,
-							true));
-					return events;
-					
-					
 				case IDLE:
 					// Can not reach :3
 					break;
@@ -997,8 +746,6 @@ public class SlaveryUtil implements XMLSaving {
 							case PUBLIC_STOCKS:
 								//TODO 
 							case MILKING:
-								//TODO 
-							case PROSTITUTE:
 								//TODO 
 								break;
 						}

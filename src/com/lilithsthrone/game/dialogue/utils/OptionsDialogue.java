@@ -1290,11 +1290,7 @@ public class OptionsDialogue {
 					case ELEMENTAL_EARTH:
 					case ELEMENTAL_FIRE:
 					case ELEMENTAL_WATER:
-					case HARPY:
-					case HARPY_RAVEN:
-					case HARPY_BALD_EAGLE:
 					case HUMAN:
-					case ALLIGATOR_MORPH:
 					case CAT_MORPH:
 					case CAT_MORPH_LYNX:
 					case CAT_MORPH_LEOPARD_SNOW:
@@ -1316,7 +1312,6 @@ public class OptionsDialogue {
 					case DOG_MORPH:
 					case DOG_MORPH_DOBERMANN:
 					case DOG_MORPH_BORDER_COLLIE:
-					case RAT_MORPH:
 					case RABBIT_MORPH:
 					case RABBIT_MORPH_LOP:
 						UtilText.nodeContentSB.append(getSubspeciesPreferencesPanel(subspecies, i%2==0));

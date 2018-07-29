@@ -409,41 +409,6 @@ public enum RacialBody {
 			GenitalArrangement.NORMAL) {
 	
 	},
-
-	// REPTILE:
-	ALLIGATOR_MORPH(Util.newHashMapOfValues(
-	            new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(20f, 40f)),
-	            new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f)),
-	            new Value<Attribute, AttributeRange>(Attribute.MAJOR_CORRUPTION, new AttributeRange(20f, 30f))),
-		    AntennaType.NONE,
-		    ArmType.ALLIGATOR_MORPH, 1,
-		    AssType.ALLIGATOR_MORPH, AssSize.TWO_SMALL, AssSize.TWO_SMALL, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
-		    BreastType.ALLIGATOR_MORPH,
-		    CupSize.FLAT, 1, Lactation.ZERO_NONE, Capacity.ZERO_IMPENETRABLE, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT, NippleSize.ZERO_TINY, NippleShape.NORMAL, AreolaeSize.ZERO_TINY, 1,
-		    CupSize.AA, 1, Lactation.ZERO_NONE, Capacity.ZERO_IMPENETRABLE, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT, NippleSize.ZERO_TINY, NippleShape.NORMAL, AreolaeSize.TWO_BIG, 1,
-		    185, 25, BodySize.THREE_LARGE.getMedianValue(), Muscle.THREE_MUSCULAR.getMedianValue(),
-		    178, 95, BodySize.TWO_AVERAGE.getMedianValue(), Muscle.TWO_TONED.getMedianValue(),
-		    EarType.ALLIGATOR_MORPH,
-		    EyeType.ALLIGATOR_MORPH,
-		    FaceType.ALLIGATOR_MORPH, LipSize.ONE_AVERAGE, LipSize.ONE_AVERAGE,
-		    HairType.ALLIGATOR_MORPH, HairLength.ZERO_BALD, HairLength.ZERO_BALD,
-		    LegType.ALLIGATOR_MORPH,
-		    SkinType.ALLIGATOR_MORPH, BodyMaterial.FLESH,
-			HornLength.ZERO_TINY, HornLength.ZERO_TINY, Util.newArrayListOfValues(HornType.NONE),
-		    PenisType.ALLIGATOR_MORPH, PenisSize.THREE_LARGE, PenisGirth.THREE_THICK,
-		    PenisType.NONE, PenisSize.TWO_AVERAGE, PenisGirth.THREE_THICK,
-		    TesticleSize.FOUR_HUGE, 2, CumProduction.FIVE_HUGE,
-		    TailType.ALLIGATOR_MORPH,
-			TentacleType.NONE,
-		    VaginaType.ALLIGATOR_MORPH, Wetness.SEVEN_DROOLING, Capacity.ONE_EXTREMELY_TIGHT, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.SEVEN_ELASTIC, OrificePlasticity.ZERO_RUBBERY,
-		    WingType.NONE, WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-		    GenitalArrangement.CLOACA) {
-		
-		@Override
-		public boolean isHairTypeLinkedToFaceType() {
-			return true;
-		}
-	},
 	
 	// RODENTS:
 	SQUIRREL_MORPH(Util.newHashMapOfValues(
@@ -780,8 +745,6 @@ public enum RacialBody {
 				return RacialBody.DOG_MORPH;
 			case FOX_MORPH:
 				return RacialBody.FOX_MORPH;
-			case ALLIGATOR_MORPH:
-				return RacialBody.ALLIGATOR_MORPH;
 			case HARPY:
 				return RacialBody.HARPY;
 			case HORSE_MORPH:

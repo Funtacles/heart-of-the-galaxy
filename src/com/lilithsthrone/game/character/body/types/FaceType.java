@@ -40,8 +40,6 @@ public enum FaceType implements BodyPartTypeInterface {
 
 	RABBIT_MORPH(BodyCoveringType.RABBIT_FUR, MouthType.RABBIT_MORPH, TongueType.RABBIT_MORPH, Race.RABBIT_MORPH),
 
-	ALLIGATOR_MORPH(BodyCoveringType.ALLIGATOR_SCALES, MouthType.ALLIGATOR_MORPH, TongueType.ALLIGATOR_MORPH, Race.ALLIGATOR_MORPH),
-
 	HORSE_MORPH(BodyCoveringType.HORSE_HAIR, MouthType.HORSE_MORPH, TongueType.HORSE_MORPH, Race.HORSE_MORPH),
 
 	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, MouthType.REINDEER_MORPH, TongueType.REINDEER_MORPH, Race.REINDEER_MORPH),
@@ -73,8 +71,6 @@ public enum FaceType implements BodyPartTypeInterface {
 	@Override
 	public String getNameSingular(GameCharacter gc) {
 		switch(this){
-			case ALLIGATOR_MORPH:
-				return UtilText.returnStringAtRandom("snout", "face");
 			case ANGEL:
 			case DEMON_COMMON:
 			case HARPY:
@@ -100,8 +96,6 @@ public enum FaceType implements BodyPartTypeInterface {
 	@Override
 	public String getNamePlural(GameCharacter gc) {
 		switch(this){
-			case ALLIGATOR_MORPH:
-				return UtilText.returnStringAtRandom("snouts", "faces");
 			case ANGEL:
 			case DEMON_COMMON:
 			case HARPY:
@@ -142,8 +136,6 @@ public enum FaceType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("anthropomorphic dog-like", "dog-like", "canine");
 			case SQUIRREL_MORPH:
 				return UtilText.returnStringAtRandom("anthropomorphic squirrel-like", "squirrel-like", "rodent");
-			case ALLIGATOR_MORPH:
-				return UtilText.returnStringAtRandom("anthropomorphic alligator-like", "alligator-like", "reptile");
 			case HARPY:
 				return UtilText.returnStringAtRandom("anthropomorphic bird-like", "bird-like");
 			case HORSE_MORPH:
@@ -180,8 +172,6 @@ public enum FaceType implements BodyPartTypeInterface {
 				return "bovine";
 			case SQUIRREL_MORPH:
 				return "furry";
-			case ALLIGATOR_MORPH:
-				return "alligator";
 			case HARPY:
 				return "avian";
 			case HORSE_MORPH:

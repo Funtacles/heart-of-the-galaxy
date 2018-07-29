@@ -412,21 +412,6 @@ public class Penis implements BodyPartInterface, Serializable {
 							+ "[npc.She] has [style.boldCatMorph([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" feline balls)], covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldCatMorph(feline cum)].");
 				}
 				break;
-			case ALLIGATOR_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							"Letting out an involuntary moan, you feel your penis shifting into a new form, and you're hit by a wave of overwhelming arousal as your shaft grows erect and the head smoothes over.<br/>"
-							+ "You now have an [style.boldGatorMorph(alligator penis)], covered in [pc.penisFullDescription].<br/>"
-							+ "You have [style.boldGatorMorph([pc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" reptilian balls)],"
-									+ " covered in [pc.ballsFullDescription(true)], which produce [pc.cumColour(true)] [style.boldGatorMorph(alligator-morph cum)].");
-				} else {
-					UtilText.transformationContentSB.append(
-							"Letting out an involuntary moan, [npc.name] feels [npc.her] penis shifting into a new form, and [npc.sheIs] hit by a wave of overwhelming arousal as [npc.her] shaft grows erect and the head smoothes over.<br/>"
-							+ "[npc.She] now has an [style.boldGatorMorph(alligator penis)], covered in [npc.penisFullDescription].<br/>"
-							+ "[npc.She] has [style.boldGatorMorph([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" reptilian balls)],"
-									+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldGatorMorph(alligator-morph cum)].");
-				}
-				break;
 			case SQUIRREL:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(

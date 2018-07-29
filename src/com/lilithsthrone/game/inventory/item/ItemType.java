@@ -1889,55 +1889,6 @@ public class ItemType {
 		}
 	};
 	
-	public static AbstractItemType RACE_INGREDIENT_ALLIGATOR_MORPH = new AbstractItemType(250,
-			"a",
-			false,
-			"Gator's Gumbo",
-			"Gator's Gumbo",
-			"An iron bowl, complete with a sealable lid."
-				+ " The contents take the form of a delicious-smelling variety of gumbo, containing meat, okra, and a variety of other mysterious vegetables.",
-			"raceGatorMorphGatorsGumbo",
-			Colour.RACE_ALLIGATOR_MORPH,
-			null,
-			null,
-			Rarity.RARE,
-			TFEssence.ARCANE,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.RACE_ALLIGATORS_GUMBO)),
-			Util.newArrayListOfValues(
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
-					ItemTag.RACIAL_TF_ITEM)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public AbstractItemEffectType getEnchantmentEffect() {
-			return ItemEffectType.RACE_ALLIGATOR_MORPH;
-		}
-
-		@Override
-		public AbstractItemType getEnchantmentItemType(List<ItemEffect> effects) {
-			return ELIXIR;
-		}
-
-		@Override
-		public String getUseName() {
-			return "eat";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"You remove the lid from the bowl of 'Gator's Gumbo' and start eating the rich meal contained within."
-							+ " The delicious, slightly spicy taste of seafood instantly fills your mouth, but you don't take any time to really relish the flavour,"
-							+ " as you can't help but greedily gulp down the tangy mess and move on to your next mouthful.",
-					"You pull out the bowl of 'Gator's Gumbo', and, after removing the lid, force [npc.name] to eat the contents.",
-					"[npc.Name] pulls out a bowl of 'Gator's Gumbo', and, quickly removing the lid, wolfs down the rich meal contained within.",
-					"[npc.Name] pulls out a bowl of 'Gator's Gumbo', and, after quickly removing the lid, [npc.she] forces you to eat it."
-						+ " The delicious, slightly spicy taste of seafood instantly fills your mouth, but you don't take any time to really relish the flavour,"
-							+ " as you can't help but greedily gulp down the tangy mess and move on to your next mouthful.");
-		}
-	};
-	
 	public static AbstractItemType RACE_INGREDIENT_WOLF_MORPH = new AbstractItemType(250,
 			"a package of",
 			false,
@@ -3591,21 +3542,6 @@ public class ItemType {
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BOOK_READ_DOG_MORPH)),
 			Util.newArrayListOfValues(ItemTag.BOOK));
 	
-	public static AbstractItemType BOOK_ALLIGATOR_MORPH = createBookItem(250,
-			null,
-			false,
-			"Rasselin' Gators",
-			"Rasselin' Gators",
-			"A book all about alligator-morphs, detailing their society and place within Dominion.",
-			"book_race_gator_morph",
-			Colour.RACE_ALLIGATOR_MORPH,
-			null,
-			null,
-			Rarity.LEGENDARY,
-			null,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BOOK_READ_ALLIGATOR_MORPH)),
-			Util.newArrayListOfValues(ItemTag.BOOK));
-
 	public static AbstractItemType BOOK_FOX_MORPH = new AbstractItemType(250,
 			null,
 			false,
@@ -3642,21 +3578,6 @@ public class ItemType {
 					"[npc.Name] produces a book, titled 'Skulking Vulpines', which [npc.she] then forces you to read...");
 		}
 	};
-	
-	public static AbstractItemType BOOK_HARPY = createBookItem(250,
-			null,
-			false,
-			"All About Harpies",
-			"All About Harpies'",
-			"A book all about harpies, detailing their society and place within Dominion.",
-			"book_race_harpy",
-			Colour.RACE_HARPY,
-			null,
-			null,
-			Rarity.LEGENDARY,
-			null,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BOOK_READ_HARPY)),
-			Util.newArrayListOfValues(ItemTag.BOOK));
 	
 	public static AbstractItemType BOOK_HORSE_MORPH = createBookItem(250,
 			null,

@@ -6,7 +6,6 @@ import com.lilithsthrone.game.character.attributes.CorruptionLevel;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
-import com.lilithsthrone.game.dialogue.places.dominion.RedLightDistrict;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseCombat;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
@@ -20,7 +19,6 @@ import com.lilithsthrone.game.sex.managers.universal.SMStanding;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Util.Value;
-import com.lilithsthrone.world.WorldType;
 import com.lilithsthrone.world.places.PlaceType;
 
 /**
@@ -349,22 +347,7 @@ public class AlleywayProstituteDialogue {
 				};
 				
 			} else if (index == 5 && Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.prostitutionLicenseObtained)) {
-				if(RedLightDistrict.isSpaceForMoreProstitutes()) {
-					return new Response("Angel's Kiss", "Offer [npc.name] a job at Angel's Kiss.", ALLEY_PROSTITUTE_SAVED) {
-						@Override
-						public void effects() {
-							Main.game.getPlayer().incrementKarma(25);
-							Main.game.getActiveNPC().setDescription(UtilText.parse(Main.game.getActiveNPC(), "You first found [npc.name] in the alleyways of Dominion, where [npc.she] was illegally selling [npc.her] body."
-									+ " You offered [npc.herHim] the chance to move and work out of Angel's Kiss; an offer that [npc.she] happily accepted."));
-							Main.game.getTextEndStringBuilder().append(Main.game.getActiveNPC().incrementAffection(Main.game.getPlayer(), 50));
-							Main.game.getActiveNPC().setRandomUnoccupiedLocation(WorldType.ANGELS_KISS_GROUND_FLOOR, PlaceType.ANGELS_KISS_BEDROOM, true);
-						}
-					};
-					
-				} else {
-					return new Response("Angel's Kiss", "There's no room available at Angel's Kiss for another prostitute...", null);
-				}
-				
+				return new Response("Angel's Kiss", "There's no room available at Angel's Kiss for another prostitute...", null);
 			} else {
 				return null;
 			}

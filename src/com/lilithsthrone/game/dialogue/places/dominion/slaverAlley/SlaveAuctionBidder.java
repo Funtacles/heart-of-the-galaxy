@@ -78,7 +78,7 @@ public class SlaveAuctionBidder {
 	
 	public static SlaveAuctionBidder generateNewSlaveAuctionBidder(NPC slave) {
 		
-		Subspecies[] races = new Subspecies[] {Subspecies.CAT_MORPH, Subspecies.COW_MORPH, Subspecies.DEMON, Subspecies.DOG_MORPH, Subspecies.HARPY, Subspecies.HORSE_MORPH, Subspecies.HUMAN, Subspecies.SQUIRREL_MORPH, Subspecies.WOLF_MORPH};
+		Subspecies[] races = new Subspecies[] {Subspecies.CAT_MORPH, Subspecies.COW_MORPH, Subspecies.DEMON, Subspecies.DOG_MORPH, Subspecies.HORSE_MORPH, Subspecies.HUMAN, Subspecies.SQUIRREL_MORPH, Subspecies.WOLF_MORPH};
 		
 		// I did consider basing gender on slave's preferences, so that players who export their own character aren't turned-off by the fact their character is being sold to a gender they don't like, but I figured that maybe some people are into that too...
 		Gender[] genders = new Gender[] {Gender.F_V_B_FEMALE, Gender.F_P_V_B_FUTANARI, Gender.M_P_MALE};

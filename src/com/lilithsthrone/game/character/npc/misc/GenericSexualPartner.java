@@ -83,22 +83,6 @@ public class GenericSexualPartner extends NPC {
 					case ELEMENTAL_WATER:
 						break;
 						
-					// Low spawn chance:
-					case ALLIGATOR_MORPH:
-						addToSubspeciesMap(5, gender, s, availableRaces);
-						break;
-					case RAT_MORPH:
-						addToSubspeciesMap(5, gender, s, availableRaces);
-						break;
-					case HARPY:
-						addToSubspeciesMap(4, gender, s, availableRaces);
-						break;
-					case HARPY_RAVEN:
-						addToSubspeciesMap(1, gender, s, availableRaces);
-						break;
-					case HARPY_BALD_EAGLE:
-						addToSubspeciesMap(1, gender, s, availableRaces);
-						break;
 					case HUMAN:
 						addToSubspeciesMap(5, gender, s, availableRaces);
 						break;
@@ -246,17 +230,8 @@ public class GenericSexualPartner extends NPC {
 	private boolean playerRequested = false;
 	
 	@Override
-	public void generateSexChoices(GameCharacter target, SexType request) {
-		if(this.getLocationPlace().getPlaceType()==PlaceType.WATERING_HOLE_TOILETS && Sex.getTurn()>1) {
-			playerRequested = true;
-		}
-		
-		super.generateSexChoices(target, request);
-	}
-	
-	@Override
 	public Set<SexPositionSlot> getSexPositionPreferences(GameCharacter target) {
-		if(this.getLocationPlace().getPlaceType()!=PlaceType.WATERING_HOLE_TOILETS || playerRequested) {
+		if(playerRequested) {
 			return super.getSexPositionPreferences(target);
 		}
 		
@@ -273,7 +248,7 @@ public class GenericSexualPartner extends NPC {
 
 	@Override
 	public SexType getForeplayPreference(GameCharacter target) {
-		if(this.getLocationPlace().getPlaceType()!=PlaceType.WATERING_HOLE_TOILETS || playerRequested) {
+		if(playerRequested) {
 			return super.getForeplayPreference(target);
 		}
 		
@@ -288,7 +263,7 @@ public class GenericSexualPartner extends NPC {
 
 	@Override
 	public SexType getMainSexPreference(GameCharacter target) {
-		if(this.getLocationPlace().getPlaceType()!=PlaceType.WATERING_HOLE_TOILETS || playerRequested) {
+		if(playerRequested) {
 			return super.getMainSexPreference(target);
 		}
 		

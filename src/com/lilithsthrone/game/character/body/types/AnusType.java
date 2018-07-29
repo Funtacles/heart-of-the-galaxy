@@ -42,8 +42,6 @@ public enum AnusType implements BodyPartTypeInterface {
 	
 	REINDEER_MORPH(BodyCoveringType.ANUS, Race.REINDEER_MORPH, OrificeModifier.PUFFY),
 	
-	ALLIGATOR_MORPH(BodyCoveringType.ANUS, Race.ALLIGATOR_MORPH),
-	
 	HARPY(BodyCoveringType.ANUS, Race.HARPY);
 
 	private BodyCoveringType skinType;

@@ -2,7 +2,6 @@ package com.lilithsthrone.game.character.npc.dominion;
 
 import java.time.Month;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -15,7 +14,6 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.misc.GenericSexualPartner;
 import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.persona.Name;
 import com.lilithsthrone.game.character.race.RaceStage;
@@ -85,9 +83,6 @@ public class DominionAlleywayAttacker extends NPC {
 					// No spawn chance:
 					case ANGEL:
 					case DEMON:
-					case HARPY:
-					case HARPY_RAVEN:
-					case HARPY_BALD_EAGLE:
 					case HUMAN:
 					case FOX_ASCENDANT:
 					case FOX_ASCENDANT_FENNEC:
@@ -96,14 +91,6 @@ public class DominionAlleywayAttacker extends NPC {
 					case ELEMENTAL_EARTH:
 					case ELEMENTAL_FIRE:
 					case ELEMENTAL_WATER:
-						break;
-						
-					// Canals spawn only:
-					case ALLIGATOR_MORPH:
-						addToSubspeciesMap(canalSpecies?20:0, gender, s, availableRaces);
-						break;
-					case RAT_MORPH:
-						addToSubspeciesMap(canalSpecies?10:0, gender, s, availableRaces);
 						break;
 						
 					// Special spawns:
@@ -234,32 +221,6 @@ public class DominionAlleywayAttacker extends NPC {
 	
 	@Override
 	public void hourlyUpdate() {
-		if(this.getHistory()==History.NPC_PROSTITUTE && this.getLocationPlace().getPlaceType()==PlaceType.ANGELS_KISS_BEDROOM) {
-			// Remove client:
-			List<NPC> charactersPresent = Main.game.getCharactersPresent(this.getWorldLocation(), this.getLocation());
-			if(charactersPresent.size()>1) {
-				for(NPC npc : charactersPresent) {
-					if(npc instanceof GenericSexualPartner) {
-	//					System.out.println("partner removed for "+slave.getName());
-						Main.game.banishNPC(npc);
-					}
-				}
-				
-			} else if(Math.random()<0.33f) { // Add client:
-				GenericSexualPartner partner;
-				
-				if(Math.random()<0.25f) {
-					partner = new GenericSexualPartner(Gender.F_P_V_B_FUTANARI, this.getWorldLocation(), this.getLocation(), false);
-				} else {
-					partner = new GenericSexualPartner(Gender.M_P_MALE, this.getWorldLocation(), this.getLocation(), false);
-				}
-				try {
-					Main.game.addNPC(partner, false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
 	}
 	
 	@Override

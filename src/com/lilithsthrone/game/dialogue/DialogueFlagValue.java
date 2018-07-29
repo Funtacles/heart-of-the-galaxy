@@ -113,21 +113,6 @@ public enum DialogueFlagValue {
 	// Slaver Alley:
 	finchIntroduced,
 	
-	// Zaranix:
-	zaranixDiscoveredHome,
-	zaranixMaidsHostile,
-	zaranixKnockedOnDoor,
-	zaranixKickedDownDoor,
-	
-	zaranixAmberSubdued,
-	zaranixKatherineSubdued,
-	zaranixKellySubdued,
-	
-	amberRepeatEncountered,
-	katherineRepeatEncountered,
-	kellyRepeatEncountered,
-	zaranixRepeatEncountered,
-	
 	// Lumi:
 	lumiMet,
 	lumiDisabled,

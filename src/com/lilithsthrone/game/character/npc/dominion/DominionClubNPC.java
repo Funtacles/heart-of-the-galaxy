@@ -20,7 +20,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.CharacterInventory;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Util;
-import com.lilithsthrone.utils.Vector2i;
 import com.lilithsthrone.world.WorldType;
 import com.lilithsthrone.world.places.PlaceType;
 
@@ -125,15 +124,6 @@ public class DominionClubNPC extends NPC {
 	@Override
 	public boolean isUnique() {
 		return false;
-	}
-	
-	@Override
-	public Vector2i getLocation() {
-		if(this.getWorldLocation()==WorldType.NIGHTLIFE_CLUB
-				&& Main.game.getPlayer().getWorldLocation()==WorldType.NIGHTLIFE_CLUB) {
-			return Main.game.getPlayer().getLocation();
-		}
-		return location;
 	}
 	
 	@Override

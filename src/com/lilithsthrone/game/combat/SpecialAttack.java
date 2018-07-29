@@ -10,7 +10,6 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.body.types.ArmType;
 import com.lilithsthrone.game.character.body.types.FaceType;
 import com.lilithsthrone.game.character.body.types.LegType;
-import com.lilithsthrone.game.character.body.types.TailType;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -2064,57 +2063,6 @@ public enum SpecialAttack {
 		}
 	},
 	
-	ALLIGATOR_TAIL_SWIPE(50,
-			"tail swipe",
-			"tailSwipeIcon",
-			Colour.RACE_ALLIGATOR_MORPH,
-			DamageType.PHYSICAL,
-			25,
-			DamageVariance.HIGH,
-			6,
-			Util.newHashMapOfValues(new Value<StatusEffect, Integer>(StatusEffect.DAZED, 2))) {
-		@Override
-		public String applyEffect(GameCharacter caster, GameCharacter target, boolean isHit, boolean isCritical) {
-
-			float damage = Attack.calculateSpecialAttackDamage(caster, target, damageType, this.getDamage(), damageVariance, isCritical);
-
-			descriptionSB = new StringBuilder();
-
-			descriptionSB.append(UtilText.parse(caster, target,
-					"<p>"
-						+ "[npc.Name] [npc.verb(turn)] to one side, swinging [npc.her] huge, alligator-like tail straight at [npc2.name]."
-						+ (isHit
-								? " [npc.Her] appendage connects fully with [npc2.namePos] body, causing considerable damage and dazing [npc2.herHim] from the powerful blow!"
-								: " [npc2.She] manages to dodge the attack, and [npc.name] [npc.verb(end)] up swiping at nothing more than thin air.")
-					+ "</p>")
-					+ getDamageAndCostDescription(caster, target, this.getCooldown(), damage, isHit, isCritical));
-			
-			// If attack hits, apply damage and effects:
-			if (isHit) {
-				descriptionSB.append(target.incrementHealth(caster, -damage));
-				for (Entry<StatusEffect, Integer> se : getStatusEffects().entrySet())
-					target.addStatusEffect(se.getKey(), se.getValue());
-			}
-			
-			return descriptionSB.toString();
-			
-		}
-
-		@Override
-		public String getDescription(GameCharacter owner) {
-			if (owner.isPlayer())
-				return "Your powerful alligator-like tail can be swung at someone to cause huge damage!";
-			else
-				return UtilText.parse(owner,
-						"[npc.NamePos] powerful alligator-like tail can be swung at someone to cause huge damage!");
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter owner) {
-			return owner.getTailType() == TailType.ALLIGATOR_MORPH;
-		}
-	},
-
 	CAT_SCRATCH(50,
 			"scratch",
 			"scratchIcon",

@@ -114,14 +114,6 @@ public class ShoppingArcadeDialogue {
 					}
 				};
 
-			} else if (index == 7) {
-				return new ResponseEffectsOnly("Nyan's Clothing Emporium", "Fast travel to Nyan's Clothing Emporium."){
-					@Override
-					public void effects() {
-						Main.game.setActiveWorld(Main.game.getWorlds().get(WorldType.SHOPPING_ARCADE), PlaceType.SHOPPING_ARCADE_NYANS_SHOP, true);
-					}
-				};
-
 			} else if (index == 8) {
 				return new ResponseEffectsOnly("Arcane Arts", "Fast travel to Arcane Arts."){
 					@Override
@@ -135,14 +127,6 @@ public class ShoppingArcadeDialogue {
 					@Override
 					public void effects() {
 						Main.game.setActiveWorld(Main.game.getWorlds().get(WorldType.SHOPPING_ARCADE), PlaceType.SHOPPING_ARCADE_KATES_SHOP, true);
-					}
-				};
-
-			} else if (index == 10) {
-				return new ResponseEffectsOnly("Pix's Playground", "Fast travel to the gym, 'Pix's Playground'."){
-					@Override
-					public void effects() {
-						Main.game.setActiveWorld(Main.game.getWorlds().get(WorldType.SHOPPING_ARCADE), PlaceType.SHOPPING_ARCADE_PIXS_GYM, true);
 					}
 				};
 

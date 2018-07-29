@@ -1734,10 +1734,8 @@ public class CharacterCreation {
 
 	private static void applySkipPrologueStart() {
 		Main.game.getPlayer().addCharacterEncountered(Main.game.getLilaya());
-		Main.game.getPlayer().addCharacterEncountered(Main.game.getRose());
 		
 		Main.getProperties().addRaceDiscovered(Main.game.getLilaya().getRace());
-		Main.getProperties().addRaceDiscovered(Main.game.getRose().getRace());
 
 		moveNPCOutOfPlayerTile();
 		Main.game.setPrologueFinished(true);
@@ -1765,17 +1763,7 @@ public class CharacterCreation {
 		
 		@Override
 		public Response getResponse(int responseTab, int index) {
-			if (index == 1) {
-				return new Response("Start Game", "Use this character and start the game at the very beginning, with trying to find Arthur in the museum.", PrologueDialogue.INTRO){
-					@Override
-					public void effects() {
-						Main.game.getTextEndStringBuilder().append(Main.game.getPlayer().startQuest(QuestLine.MAIN));
-						
-						applyGameStart();
-					}
-				};
-				
-			} else if (index == 2) {
+			if (index == 2) {
 				return new ResponseEffectsOnly("Skip prologue", "Start the game and skip the prologue.<br/><br/><i style='color:" + Colour.GENERIC_BAD.toWebHexString() + ";'>Not recommended for first time playing!</i>"){
 					@Override
 					public void effects() {
@@ -1915,18 +1903,7 @@ public class CharacterCreation {
 		
 		@Override
 		public Response getResponse(int responseTab, int index) {
-			if (index == 1) {
-				return new Response("Start", "Use this character and start the game at the very beginning.", PrologueDialogue.INTRO_2){
-					@Override
-					public void effects() {
-						Main.game.getPlayer().resetAllQuests();
-						Main.game.getPlayer().getCharactersEncountered().clear();
-						Main.game.getTextEndStringBuilder().append(Main.game.getPlayer().startQuest(QuestLine.MAIN));
-						applyGameStart();
-					}
-				};
-				
-			} else if (index == 2) {
+			if (index == 2) {
 				return new ResponseEffectsOnly("Skip prologue", "Start the game and skip the prologue.<br/><br/><i style='color:" + Colour.GENERIC_BAD.toWebHexString() + ";'>Not recommended for first time playing!</i>"){
 					@Override
 					public void effects() {

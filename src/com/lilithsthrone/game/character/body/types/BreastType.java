@@ -43,8 +43,6 @@ public enum BreastType implements BodyPartTypeInterface {
 	
 	RABBIT_MORPH(NippleType.RABBIT_MORPH, FluidType.MILK_RABBIT_MORPH, BodyCoveringType.RABBIT_FUR, Race.RABBIT_MORPH),
 	
-	ALLIGATOR_MORPH(NippleType.ALLIGATOR_MORPH, FluidType.MILK_ALLIGATOR_MORPH, BodyCoveringType.ALLIGATOR_SCALES, Race.ALLIGATOR_MORPH),
-	
 	HORSE_MORPH(NippleType.HORSE_MORPH, FluidType.MILK_HORSE_MORPH, BodyCoveringType.HORSE_HAIR, Race.HORSE_MORPH),
 	
 	REINDEER_MORPH(NippleType.REINDEER_MORPH, FluidType.MILK_REINDEER_MORPH, BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH),
@@ -148,8 +146,6 @@ public enum BreastType implements BodyPartTypeInterface {
 				return "bovine";
 			case SQUIRREL_MORPH:
 				return "furry";
-			case ALLIGATOR_MORPH:
-				return "alligator";
 			case HARPY:
 				return "feathered";
 			case HORSE_MORPH:

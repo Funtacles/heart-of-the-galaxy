@@ -74,9 +74,6 @@ public class SlaveInStocks extends NPC {
 					// No spawn chance:
 					case ANGEL:
 					case DEMON:
-					case HARPY:
-					case HARPY_RAVEN:
-					case HARPY_BALD_EAGLE:
 					case HUMAN:
 					case FOX_ASCENDANT:
 					case FOX_ASCENDANT_FENNEC:
@@ -92,14 +89,6 @@ public class SlaveInStocks extends NPC {
 						if(Main.game.getSeason()==Season.WINTER && Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.hasSnowedThisWinter)) {
 							addToSubspeciesMap(10, gender, s, availableRaces);
 						}
-						break;
-						
-					// Rare spawns:
-					case ALLIGATOR_MORPH:
-						addToSubspeciesMap(5, gender, s, availableRaces);
-						break;
-					case RAT_MORPH:
-						addToSubspeciesMap(5, gender, s, availableRaces);
 						break;
 						
 					// Common spawns:

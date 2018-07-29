@@ -7,30 +7,22 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.valueEnums.Femininity;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.Rose;
 import com.lilithsthrone.game.character.persona.SexualOrientation;
 import com.lilithsthrone.game.character.quests.Quest;
 import com.lilithsthrone.game.character.quests.QuestLine;
-import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
 import com.lilithsthrone.game.dialogue.npcDialogue.SlaveDialogue;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
-import com.lilithsthrone.game.dialogue.responses.ResponseSex;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
-import com.lilithsthrone.game.sex.SexPositionSlot;
-import com.lilithsthrone.game.sex.managers.dominion.SMRoseHands;
 import com.lilithsthrone.game.slavery.MilkingRoom;
 import com.lilithsthrone.game.slavery.SlaveJob;
 import com.lilithsthrone.game.slavery.SlavePermissionSetting;
 import com.lilithsthrone.main.Main;
-import com.lilithsthrone.utils.BaseColour;
 import com.lilithsthrone.utils.Colour;
-import com.lilithsthrone.utils.Util;
-import com.lilithsthrone.utils.Util.Value;
 import com.lilithsthrone.world.WorldType;
 import com.lilithsthrone.world.places.GenericPlace;
 import com.lilithsthrone.world.places.PlaceType;
@@ -1590,60 +1582,6 @@ public class LilayaHomeGeneric {
 		}
 	};
 	
-	public static final DialogueNodeOld ROOM_ROSE = new DialogueNodeOld("Rose's Room", ".", false) {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public int getMinutesPassed() {
-			return 1;
-		}
-
-		@Override
-		public String getContent() {
-			return "<p>"
-					+ "Evidence of Rose's close relationship with Lilaya is apparent as you approach the cat-girl's room."
-					+ " Hanging on the door, there's a little home-made sign bearing her name, and underneath, in what is clearly Lilaya's handwriting, a little message reads: <i>'Lilaya's favourite pet'</i>."
-				+ "</p>"
-				+ "<p>"
-					+ "The door appears to be locked at the moment, and there's no sound of anyone stirring within."
-					+ " Rose seems to only allow herself some rest when she's sure that nobody else is around who might need her, so she's probably off in another part of the house at the moment."
-				+ "</p>"
-				+ "<p>"
-					+ "You notice that there's a little bell set into the wall beside her door, and you wonder if you should try ringing it to get Rose to come up to her room."
-				+ "</p>";
-		}
-
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 1) {
-				return new Response("Call for Rose", "Lilaya's slave, Rose, is always close at hand. If you were to ring the little bell beside her bedroom's door, she'd be sure to come running.", AUNT_HOME_ROSE){
-					@Override
-					public void effects() {
-						roseContent = "<p>"
-									+ "Deciding that you'd like to talk to Rose, you decide to push the little bell that's situated beside her bedroom's door, causing a faint ringing noise to echo up from somewhere else in the house."
-									+ " Despite the enormous size of Lilaya's home, Rose never seems to be far away, and you soon hear her walking down the corridor as she rushes to respond to your call."
-								+ "</p>"
-								+ "<p>"
-									+ "As she approaches, you see her cat-like tail swishing from side to side, and you notice one of her ears twitch as she sees you standing outside her bedroom waiting for her."
-									+ " Realising that you're obviously wanting to have a talk, she curtsies before issuing a greeting."
-								+ "</p>"
-								+ "<p>"
-									+ "[rose.speech("+(Main.game.isDayTime() ? "Good day," : "Good evening,")+")]"
-									+ " she says."
-									+ " [rose.speech(How may I help you?)]"
-								+ "</p>";
-						
-						Main.game.getDialogueFlags().values.remove(DialogueFlagValue.auntHomeJustEntered);
-						Main.game.getRose().setLocation(Main.game.getActiveWorld().getWorldType(), Main.game.getPlayer().getLocation(), false);
-					}
-				};
-				
-			} else {
-				return null;
-			}
-		}
-	};
-	
 	public static final DialogueNodeOld GARDEN = new DialogueNodeOld("Garden courtyard", ".", false) {
 		private static final long serialVersionUID = 1L;
 
@@ -1804,235 +1742,6 @@ public class LilayaHomeGeneric {
 			} else {
 				return null;
 			}
-		}
-	};
-	
-	private static String roseContent = "";
-	private static boolean askedAboutDuties = false;
-	public static final DialogueNodeOld AUNT_HOME_ROSE = new DialogueNodeOld("", "", true) {
-		/**
-		 */
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getLabel() {
-			return Main.game.getLilaya().getName()
-					+ "'s Home";
-		}
-
-		@Override
-		public String getContent() {
-			return roseContent;
-		}
-
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 1) {
-				return new Response("Lilaya", "Ask Rose about her owner, Lilaya.", AUNT_HOME_ROSE){
-					@Override
-					public void effects() {
-						askedAboutDuties = false;
-						roseContent = "<p>"
-								+ UtilText.parsePlayerSpeech("What can you tell me about Lilaya? She seems to be quite... reclusive,")
-								+ " you ask."
-								+ "</p>"
-								+ "<p>"
-								+ UtilText.parseSpeech("Yes, I suppose she does give that impression,", Main.game.getRose())
-								+ " Rose replies, "
-								+ UtilText.parseSpeech("but I'm afraid that I can't tell you much about her."
-										+ " It's not my place to talk about my Mistress behind her back, as I'm sure you can understand."
-										+ " If you want to know more about her, you'll have to get to know her better.", Main.game.getRose())
-								+ "</p>"
-								+ "<p>"
-								+ "Rose blushes and fidgets nervously on the spot, obviously feeling very awkward about telling you that she can't help you out."
-								+ " You suppose that she's right, though."
-								+ " It would be a big breach of trust if Rose were to start telling you Lilaya's secrets."
-								+ "</p>";
-					}
-				};
-
-			} else if (index == 2) {
-				return new Response("Slavery", "Ask Rose how she became a slave.", AUNT_HOME_ROSE){
-					@Override
-					public void effects() {
-						askedAboutDuties = false;
-						roseContent = "<p>"
-									+ "Not really sure about the best way to approach the subject, you decide to just ask your question outright, and hope that you don't cause Rose any offence, "
-									+ UtilText.parsePlayerSpeech("If you don't mind me asking, how did you end up as a slave?")
-								+ "</p>"
-								+ "<p>"
-									+ "Rose smiles to put you at ease, obviously sensing that you're a bit hesitant to broach the subject. "
-									+ UtilText.parseSpeech("Well, like most other slaves, I sold myself into slavery.", Main.game.getRose())
-								+ "</p>"
-								+ "<p>"
-									+ "You can't help but feel shocked as you hear that Rose willingly became a slave, but before you can ask why, she seems to sense your incoming question and continues, "
-									+ "[rose.speech(When you sell yourself as a slave, all your debts and crimes are forgiven, so many people choose a life of slavery in order to escape their past."
-											+ " I suppose I'm somewhat of an unusual case, though, because I didn't have anything to run away from."
-											+ " You see, I used to work as a maid for Lilaya's mother, Lyssieth, and while working for her, Lilaya and I grew very close...)]"
-								+ "</p>"
-								+ "<p>"
-									+ "Rose suddenly blushes, and you notice that her tail has wrapped itself tightly around her leg."
-									+ " She's obviously thinking back to when she first met Lilaya, and as she takes a moment to move past her recollection of the past, you wonder how she ended up selling herself into slavery."
-								+ "</p>"
-								+ "<p>"
-									+ "You don't have to wonder for too long, as after a moment, Rose suddenly remembers that you're here, and continues,"
-									+ " [rose.speech(Lyssieth didn't approve of how much time we were spending together, and when Lilaya started to insist that we call each other 'sister', her mother didn't take it well..."
-											+ " I was called before her and told that I was to be fired, and never to speak to Lilaya again."
-											+ " I didn't have any family or friends, and meeting Lilaya was, and still is, the best thing to ever have happened to me."
-											+ " At my suggestion, we agreed that the only way Lyssieth would tolerate my presence would be if I became Lilaya's slave."
-											+ " We were forbidden from referring to each other as 'sister', which we still keep to now, even though Lyssieth isn't around anymore, but when we're in private, we..."
-											+ " I-I've said too much...)]"
-								+ "</p>"
-								+ "<p>"
-									+ "From the moment you saw them interacting with each other, you knew Lilaya and Rose were close, but even so, the revelation that Rose sacrificed her freedom so that they could be together takes you by surprise."
-									+ " As Rose starts blushing, you realise that they must truly love each other, and you feel a little bit awkward at having Rose tell you about this intimate part of their relationship."
-								+ "</p>";
-					}
-				};
-
-			} else if (index == 3) {
-				return new Response("World", "Ask Rose to tell you something about this world.", AUNT_HOME_ROSE){
-					@Override
-					public void effects() {
-						askedAboutDuties = false;
-						roseContent = "<p>"
-								+ "You wonder if Rose can tell you anything interesting about this world. "
-								+ UtilText.parsePlayerSpeech("What can you tell me about this world?")
-								+ "</p>"
-								+ "<p>"
-								+ UtilText.parseSpeech("Well, I don't really know what's different here compared to where you come from, so without spending all day telling you every detail about this place,"
-										+ " I'll just give you some general information, ", Main.game.getRose())
-								+ " Rose replies helpfully. "
-								+ UtilText.parseSpeech("Basically, this world is ruled by queen Lilith, who's the most powerful demon to ever have lived."
-										+ " She lives here in Dominion, in that huge tower that can be seen from miles around."
-										+ " Although she personally rules over Dominion, she allows her daughters, the Lilin, to control other parts of her domain."
-										+ " Surrounding Dominion, there are four different areas of control, each ruled by a different Lilin;"
-										+ " the jungle, ruled by Lyxias; the Foloi Fields, ruled by Lunette; the desert, ruled by Lisophia; and the Endless Sea, ruled by Lirecea.", Main.game.getRose())
-								+ "</p>"
-								+ "<p>"
-								+ "It seems as though every Lilin's name beings with an 'L', and you wonder how Rose is able to remember all these unusual names."
-								+ " Even though Rose's information was quite limited, you're still grateful that she's told you a little more about how this world works."
-								+ "</p>"
-								+ "<p>"
-								+ "From the way she finished her last sentence, you thought Rose had finished, but instead, she continues, "
-								+ UtilText.parseSpeech("If you're looking for more information about the culture and ways of Dominion, then I suppose I can give you a few pointers as well."
-										+ " The four most common races are cat, dog, horse, and wolf-morphs."
-										+ " Although there are several other races that inhabit this world, a lot of the more exotic ones tend to stay in the outer regions."
-										+ " There aren't many humans in our world, as most of them transform themselves in order to fit in with Dominion society a bit easier."
-										+ " Oh, speaking of which, watch out what you eat and drink, as there are many transformative consumables that will alter your body."
-										+ " So, unless you want to end up looking more like me, you shouldn't taste everything you find.", Main.game.getRose())
-								+ "</p>"
-								+ "<p>"
-								+ "With that last warning, Rose looks like she's finished, and you wonder if you should ask her anything else, or leave her to carry on with her dusting."
-								+ "</p>";
-					}
-				};
-
-			} else if (index == 4) {
-				return new Response("Duties", "Ask Rose about what duties she's expected to perform.", AUNT_HOME_ROSE){
-					@Override
-					public void effects() {
-						askedAboutDuties = true;
-						roseContent = "<p>"
-								+ "Being curious about the sort of things Rose is expected to do as a slave, you ask her, "
-								+ UtilText.parsePlayerSpeech("So, what sort of things do you have to do for Lilaya?")
-								+ "</p>"
-								+ "<p>"
-								+ "Rose's cheeks suddenly flush red, and although you asked your question in innocence, you realise that Rose's thoughts have instantly turned to some of her more intimate duties. "
-								+ UtilText.parseSpeech("E-Erm, well, ah, y-you know, demons get pretty horny, and Lilaya's no different,", Main.game.getRose())
-								+ " she stammers, before regaining her composure. "
-								+ UtilText.parseSpeech("But other than that, I spend most of my time cleaning and cooking. You've got no idea how much dusting this place requires!", Main.game.getRose())
-								+ "</p>"
-								+ "<p>"
-								+ "As she says this, you suddenly become aware that she's holding a little feather duster, of the same 'French-maid' style as the rest of her uniform."
-								+ " Looking at the little instrument, you find your gaze being curiously drawn to Rose's delicate hands."
-								+ "</p>"
-								+ "<p>"
-								+ "Sensing what you're looking at, Rose suddenly blushes, and blurts out, "
-								+ UtilText.parseSpeech("I use a duster like this so I don't have to get my hands dirty!"
-										+ " You know, I take really good care of them, but Lilaya never seems to notice...", Main.game.getRose())
-								+ "</p>"
-								+ "<p>"
-								+ "You don't quite know what's come over you, but you're finding it hard to think of anything other than Rose's perfect, feminine hands."
-								+ " As you watch, she places her duster down on a little table next to you, and, with a little step forwards, she starts to gently rub her hands together,"
-									+ " sliding her slender, feminine fingers over each other and making little moaning noises."
-								+ " With a gulp, you suddenly realise that she's displaying them for your benefit, and as she looks up into your eyes, she makes a pleading little whine."
-								+ "</p>";
-					}
-				};
-
-			} else if (index == 5 && askedAboutDuties) {
-				return new Response("Rose's hands", "You've never noticed how amazing Rose's hands are before...", ROSE_HANDS){
-					@Override
-					public boolean isSexHighlight() {
-						return true;
-					}
-				};
-
-			} else if (index == 0) {
-				return new Response("Dismiss", "Let Rose get back on with her work.", ROOM_ROSE){
-					@Override
-					public void effects() {
-						askedAboutDuties = false;
-						Main.game.getRose().setLocation(WorldType.LILAYAS_HOUSE_GROUND_FLOOR, PlaceType.LILAYA_HOME_LAB, false);
-					}
-					
-					@Override
-					public DialogueNodeOld getNextDialogue() {
-						return Main.game.getActiveWorld().getCell(Main.game.getPlayer().getLocation()).getPlace().getDialogue(true);
-					}
-				};
-
-			} else {
-				return null;
-			}
-		}
-	};
-
-	public static final DialogueNodeOld ROSE_HANDS = new DialogueNodeOld("", "", true) {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getLabel() {
-			return "Rose's hands";
-		}
-
-		@Override
-		public String getContent() {
-			return "<p>"
-					+ "As Rose steps forwards, you find yourself unable to look at anything but her hands... her amazing hands... "
-					+ "[pc.thought(Holy shit... Look at those hands!)]"
-					+ "</p>"
-					+ "<p>"
-					+ "As her cat-like tail swishes excitedly behind her, Rose holds up her perfect, angelic hands."
-					+ " Her soft, pale skin almost seems to glow as she steps closer and closer, and you subconsciously start reaching out towards her delicate fingers."
-					+ " Her nails are painted a soft shade of pink, and as your fingertips touch with hers, you feel her soft warmth radiating into your [pc.armSkin]."
-					+ "</p>"
-					+ "<p>"
-					+ "The moment you make physical contact, Rose lets out a desperate moan, and as her cheeks somehow manage to flush an ever deeper shade of crimson, she sighs, "
-					+ "[rose.speech(~Aah!~ Yes! Lilaya never appreciates how much effort I put into keeping my hands so nice and soft! ~Yes!~ Take me! Take me now!)]"
-					+ "</p>";
-		}
-
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 1) {
-				return new ResponseSex("Hand-holding", "Warning: This content contains extreme descriptions of hand-holding, finger sucking, and even palm-licking."
-						+ " <b>Please remember that you need to have read the disclaimer before playing this game!</b> <b style='color:"+BaseColour.CRIMSON.toWebHexString()+";'>18+ only!</b>",
-						true, false,
-						new SMRoseHands(
-								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.HAND_SEX_DOM_ROSE)),
-								Util.newHashMapOfValues(new Value<>(Main.game.getRose(), SexPositionSlot.HAND_SEX_SUB_ROSE))),
-						null, Rose.END_HAND_SEX);
-
-			} else {
-				return null;
-			}
-		}
-
-		@Override
-		public boolean isInventoryDisabled() {
-			return true;
 		}
 	};
 }

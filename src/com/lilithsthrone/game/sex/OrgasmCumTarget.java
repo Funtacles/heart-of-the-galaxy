@@ -7,9 +7,6 @@ package com.lilithsthrone.game.sex;
  */
 public enum OrgasmCumTarget {
 
-	// Specials:
-	LILAYA_PANTIES("into Lilaya's panties"),
-	
 	WALL("up the wall"),
 	FLOOR("onto floor"),
 	
