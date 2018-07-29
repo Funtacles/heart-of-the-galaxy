@@ -19,8 +19,6 @@ import com.lilithsthrone.utils.Util;
 public enum AssType implements BodyPartTypeInterface {
 	HUMAN(BodyCoveringType.HUMAN, AnusType.HUMAN, Race.HUMAN),
 	
-	ANGEL(BodyCoveringType.ANGEL, AnusType.ANGEL, Race.ANGEL),
-	
 	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, AnusType.DEMON_COMMON, Race.DEMON),
 	
 	DOG_MORPH(BodyCoveringType.CANINE_FUR, AnusType.DOG_MORPH, Race.DOG_MORPH),
@@ -92,8 +90,6 @@ public enum AssType implements BodyPartTypeInterface {
 		switch(Util.random.nextInt(2)){
 			case 0:
 				switch (this) {
-					case ANGEL:
-						return UtilText.returnStringAtRandom("angelic", "perfect");
 					case DEMON_COMMON:
 						return UtilText.returnStringAtRandom("demonic", "perfect");
 					default:
@@ -122,8 +118,6 @@ public enum AssType implements BodyPartTypeInterface {
 	
 	public String getTransformName() {
 		switch(this){
-			case ANGEL:
-				return "angelic";
 			case CAT_MORPH:
 				return "feline";
 			case DEMON_COMMON:

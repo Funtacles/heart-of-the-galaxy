@@ -18,9 +18,7 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 public enum WingType implements BodyPartTypeInterface {
 	NONE(null, null, false),
 
-	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, Race.DEMON, true),
-
-	ANGEL(BodyCoveringType.ANGEL_FEATHER, Race.ANGEL, true);
+	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, Race.DEMON, true);
 
 	private BodyCoveringType skinType;
 	private Race race;
@@ -58,8 +56,6 @@ public enum WingType implements BodyPartTypeInterface {
 
 	public String getDescriptor(GameCharacter gc) {
 		switch(this){
-			case ANGEL:
-				return UtilText.returnStringAtRandom("angelic", "huge", "feathered");
 			case DEMON_COMMON:
 				return UtilText.returnStringAtRandom("demonic", "bat-like");
 			case NONE:
@@ -70,8 +66,6 @@ public enum WingType implements BodyPartTypeInterface {
 	
 	public String getTransformName() {
 		switch(this){
-			case ANGEL:
-				return "angelic";
 			case DEMON_COMMON:
 				return "bat-like";
 			case NONE:

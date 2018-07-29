@@ -108,21 +108,6 @@ public class Arm implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case ANGEL:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" Within a matter of moments, they've changed into slender, human-like arms, complete with human-like hands."
-								+ " Despite their somewhat-normal appearance, they have a subtle, alluring quality to them that reveals their true angelic nature.<br/>"
-								+ "You now have [style.boldAngel(angelic arms and hands)], which are covered in [pc.armFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" Within a matter of moments, they've changed into slender, human-like arms, complete with human-like hands."
-								+ " Despite their somewhat-normal appearance, they have a subtle, alluring quality to them that reveals their true angelic nature.<br/>"
-								+ "[npc.Name] now has [style.boldAngel(angelic arms and hands)], which are covered in [npc.armFullDescription]."
-							+ "</p>");
-				}
-				break;
 			case DEMON_COMMON:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(

@@ -19,8 +19,6 @@ public enum ArmType implements BodyPartTypeInterface {
 
 	HUMAN(BodyCoveringType.HUMAN, Race.HUMAN),
 
-	ANGEL(BodyCoveringType.HUMAN, Race.ANGEL),
-
 	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, Race.DEMON),
 
 	COW_MORPH(BodyCoveringType.BOVINE_FUR, Race.COW_MORPH),
@@ -101,8 +99,6 @@ public enum ArmType implements BodyPartTypeInterface {
 	@Override
 	public String getDescriptor(GameCharacter gc) {
 		switch(this){
-			case ANGEL:
-				return UtilText.returnStringAtRandom("delicate");
 			case CAT_MORPH:
 				return UtilText.returnStringAtRandom("furry", "fur-coated");
 			case DEMON_COMMON:
@@ -135,8 +131,6 @@ public enum ArmType implements BodyPartTypeInterface {
 	
 	public String getTransformName() {
 		switch(this){
-			case ANGEL:
-				return "angelic";
 			case CAT_MORPH:
 				return "feline";
 			case DEMON_COMMON:
@@ -194,8 +188,6 @@ public enum ArmType implements BodyPartTypeInterface {
 	public String getHandsDescriptor(GameCharacter gc) {
 		if (gc.isFeminine()) {
 			switch(this){
-				case ANGEL:
-					return UtilText.returnStringAtRandom("delicate", "soft", "feminine");
 				case CAT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "feminine", "cat-like", "paw-like", "furry", "feline");
 				case DEMON_COMMON:
@@ -225,8 +217,6 @@ public enum ArmType implements BodyPartTypeInterface {
 			}
 		} else {
 			switch(this){
-				case ANGEL:
-					return UtilText.returnStringAtRandom("soft", "delicate");
 				case CAT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "delicate", "cat-like", "paw-like", "furry", "feline");
 				case DEMON_COMMON:
@@ -276,8 +266,6 @@ public enum ArmType implements BodyPartTypeInterface {
 	public String getFingersDescriptor(GameCharacter gc) {
 		if (gc.isFeminine()) {
 			switch(this){
-				case ANGEL:
-					return UtilText.returnStringAtRandom("delicate", "soft", "feminine");
 				case CAT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "feminine", "padded", "feline");
 				case DEMON_COMMON:
@@ -307,8 +295,6 @@ public enum ArmType implements BodyPartTypeInterface {
 			}
 		} else {
 			switch(this){
-				case ANGEL:
-					return UtilText.returnStringAtRandom("soft", "delicate");
 				case CAT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "delicate", "padded", "feline");
 				case DEMON_COMMON:

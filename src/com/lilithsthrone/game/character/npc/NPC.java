@@ -468,9 +468,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		if(rnd<=0.05) {
 			return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.FETISH_UNREFINED));
 			
-		} else if(rnd<=0.1) {
-			return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.ADDICTION_REMOVAL));
-			
 		} else if(rnd <= 0.6) {
 			switch(getRace()) {
 				case NONE:
@@ -491,8 +488,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.STR_INGREDIENT_WOLF_WHISKEY));
 				case HUMAN:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.INT_INGREDIENT_VANILLA_WATER));
-				case ANGEL:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.DYE_BRUSH));
 				case DEMON:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.COR_INGREDIENT_LILITHS_GIFT));
 				case HARPY:
@@ -535,8 +530,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_WOLF_MORPH));
 				case HUMAN:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_HUMAN));
-				case ANGEL:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.DYE_BRUSH));
 				case DEMON:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_DEMON));
 				case SQUIRREL_MORPH:
@@ -576,10 +569,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 				case WOLF_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_WOLF_MORPH));
 				case HUMAN:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_HUMAN));
-				case ANGEL:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_HUMAN));
-				case DEMON:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_DEMON));
 				case HARPY:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_HARPY));
@@ -867,7 +856,7 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		int numberOfTransformations = Main.game.getPlayer().hasFetish(Fetish.FETISH_TRANSFORMATION_RECEIVING)?2 + Util.random.nextInt(7):1 + Util.random.nextInt(4);
 		List<ItemEffect> effects = new ArrayList<>();
 		
-		AbstractItemType itemType = ItemType.RACE_INGREDIENT_HUMAN;
+		AbstractItemType itemType = ItemType.RACE_INGREDIENT_RAT_MORPH;
 		String reaction = "Time to transform you!";
 		String raceName = "human";
 		
@@ -930,7 +919,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 				case RABBIT_MORPH:
 					itemType = ItemType.RACE_INGREDIENT_RABBIT_MORPH;
 					break;
-				case ANGEL:
 				case DEMON:
 				case HUMAN:
 				case ELEMENTAL_AIR:

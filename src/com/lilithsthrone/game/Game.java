@@ -45,7 +45,6 @@ import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.Kate;
 import com.lilithsthrone.game.character.npc.dominion.Lilaya;
-import com.lilithsthrone.game.character.npc.dominion.Ralph;
 import com.lilithsthrone.game.character.npc.dominion.SlaveInStocks;
 import com.lilithsthrone.game.character.npc.dominion.SupplierLeader;
 import com.lilithsthrone.game.character.npc.dominion.SupplierPartner;
@@ -770,8 +769,6 @@ public class Game implements Serializable, XMLSaving {
 			lilaya.setAffection(Main.game.getPlayer(), AffectionLevel.POSITIVE_ONE_FRIENDLY.getMedianValue());
 			
 			// Shopping Promenade:
-			
-			addNPC(new Ralph(), false);
 			
 			addNPC(new Vicky(), false);
 			
@@ -2393,10 +2390,6 @@ public class Game implements Serializable, XMLSaving {
 
 	public NPC getLilaya() {
 		return (NPC) this.getNPCById(getUniqueNPCId(Lilaya.class));
-	}
-
-	public NPC getRalph() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Ralph.class));
 	}
 
 	public NPC getVicky() {

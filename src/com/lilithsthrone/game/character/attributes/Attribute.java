@@ -324,12 +324,6 @@ public enum Attribute {
 	
 	// Racial:
 	
-	DAMAGE_ANGEL(0, -100, 100, "angelic damage", "Angelic damage", "swordIcon", Colour.RACE_ANGEL, "angelic-obliteration", "angelic-mercy", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases damage vs angels.";
-		}
-	},
 	DAMAGE_CAT_MORPH(0, -100, 100, "cat-morph damage", "Cat-morph damage", "swordIcon", Colour.RACE_CAT_MORPH, "cat-morph-obliteration", "cat-morph-mercy", null) {
 		@Override
 		public String getDescription(GameCharacter owner) {
@@ -463,12 +457,6 @@ public enum Attribute {
 		}
 	},
 	
-	RESISTANCE_ANGEL(0, -100, 100, "angelic resistance", "Angelic resistance", "shieldIcon", Colour.RACE_ANGEL, "angelic-immunity", "angelic-vulnerability", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases resistance vs damage inflicted by angels.";
-		}
-	},
 	RESISTANCE_CAT_MORPH(0, -100, 100, "cat-morph resistance", "Cat-morph resistance", "shieldIcon", Colour.RACE_CAT_MORPH, "cat-morph-immunity", "cat-morph-vulnerability", null) {
 		@Override
 		public String getDescription(GameCharacter owner) {

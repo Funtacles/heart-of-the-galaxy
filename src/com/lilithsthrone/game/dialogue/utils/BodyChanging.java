@@ -96,24 +96,6 @@ public class BodyChanging {
 	static {
 		for(Race r : Race.values()) {
 			slimeRaces.add(r);
-//			switch(r) {
-//				case ALLIGATOR_MORPH:
-//				case CAT_MORPH:
-//				case COW_MORPH:
-//				case DEMON:
-//				case DOG_MORPH:
-//				case HARPY:
-//				case HORSE_MORPH:
-//				case HUMAN:
-//				case IMP:
-//				case REINDEER_MORPH:
-//				case SQUIRREL_MORPH:
-//				case WOLF_MORPH:
-//					slimeRaces.add(r);
-//					break;
-//				case ANGEL:
-//					break;
-//			}
 		}
 	}
 	

@@ -66,34 +66,6 @@ public enum Race {
 			FurryPreference.NORMAL,
 			false),
 
-	// ANGEL:
-	ANGEL("angel",
-			"angels",
-			"angel",
-			"angel",
-			"angel",
-			"angel",
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "ANGEL_BASIC"),
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "ANGEL_ADVANCED"),
-
-			Colour.CLOTHING_WHITE,
-			Disposition.CIVILIZED,
-			StatusEffect.PURE_HUMAN,
-			Util.newArrayListOfValues(
-					Attack.MAIN,
-					Attack.SPELL),
-			false,
-			0.25f,
-			1,
-			1,
-			Attribute.DAMAGE_ANGEL,
-			Attribute.RESISTANCE_ANGEL,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			false),
-
 	// DEMON:
 	DEMON("demon",
 			"demons",

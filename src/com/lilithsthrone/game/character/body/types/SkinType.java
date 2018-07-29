@@ -13,8 +13,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 public enum SkinType implements BodyPartTypeInterface {
 	HUMAN(BodyCoveringType.HUMAN, Race.HUMAN),
 
-	ANGEL(BodyCoveringType.ANGEL, Race.ANGEL),
-
 	COW_MORPH(BodyCoveringType.BOVINE_FUR, Race.COW_MORPH),
 
 	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, Race.DEMON),
@@ -115,8 +113,6 @@ public enum SkinType implements BodyPartTypeInterface {
 				return "rat";
 			case RABBIT_MORPH:
 				return "rabbit";
-			case ANGEL:
-				return "angel";
 			case HUMAN:
 				return "human";
 		}
@@ -126,8 +122,6 @@ public enum SkinType implements BodyPartTypeInterface {
 	@Override
 	public String getDescriptor(GameCharacter gc) {
 		switch(this){
-			case ANGEL:
-				return UtilText.returnStringAtRandom("angelic");
 			case CAT_MORPH:
 				return UtilText.returnStringAtRandom("cat-like");
 			case COW_MORPH:

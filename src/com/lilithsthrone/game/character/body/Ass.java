@@ -111,19 +111,6 @@ public class Ass implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case ANGEL:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							"You now have an [style.boldAngel(angelic ass)], covered in [pc.assFullDescription].<br/>"
-							+ "You have also been left with [style.boldAngel(an angelic)] [pc.assholeFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-							"[npc.She] now has a [style.boldAngel(angelic ass)], covered in [npc.assFullDescription].<br/>"
-							+ "[npc.She] has also been left with [style.boldAngel(an angelic)] [npc.assholeFullDescription]."
-							+ "</p>");
-				}
-				break;
 			case DEMON_COMMON:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(

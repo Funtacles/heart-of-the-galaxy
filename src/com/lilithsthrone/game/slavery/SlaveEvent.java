@@ -47,8 +47,6 @@ public enum SlaveEvent {
 	
 	JOB_PUBLIC_STOCKS("Locked in Stocks", "[npc.Name] was locked into the public stocks in Slaver Alley..."),
 	
-	JOB_PROSTITUTE("Prostitute", "[npc.Name] worked as a prostitute in Angel's Kiss."),
-
 	JOB_IDLE("Resting", "<i>Placeholder event.</i>"),
 	;
 	

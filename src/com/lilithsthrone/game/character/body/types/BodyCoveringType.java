@@ -40,23 +40,6 @@ public enum BodyCoveringType {
 			Colour.naturalFurColours,
 			Colour.allCoveringColours),
 	
-	ANGEL(BodyCoveringTemplateFactory.createTopSkin(
-			Util.newArrayListOfValues(CoveringPattern.NONE),
-			Colour.humanSkinColours)),
-
-	ANGEL_FEATHER("a layer of",
-			true,
-			"feathers",
-			"feather",
-			Util.newArrayListOfValues(CoveringModifier.SMOOTH),
-			null,
-			Util.newArrayListOfValues(CoveringPattern.NONE),
-			CoveringPattern.allHairCoveringPatterns,
-			Util.newArrayListOfValues(Colour.COVERING_WHITE),
-			Util.mergeLists(Colour.dyeFeatherColours, Colour.naturalFeatherColours),
-			Util.newArrayListOfValues(Colour.COVERING_WHITE),
-			Util.mergeLists(Colour.dyeFeatherColours, Colour.naturalFeatherColours)),
-	
 	DEMON_COMMON(BodyCoveringTemplateFactory.createTopSkin(
 			Util.newArrayListOfValues(CoveringPattern.NONE),
 			Colour.demonSkinColours)),
@@ -279,8 +262,6 @@ public enum BodyCoveringType {
 
 	HAIR_HUMAN(BodyCoveringTemplateFactory.createHeadHair(CoveringModifier.SMOOTH)),
 	
-	HAIR_ANGEL(BodyCoveringTemplateFactory.createHeadHair(CoveringModifier.SILKEN)),
-	
 	HAIR_FOX_FUR("a layer of",
 			false,
 			"hair",
@@ -339,8 +320,6 @@ public enum BodyCoveringType {
 	// BODY HAIR:
 	
 	BODY_HAIR_HUMAN(BodyCoveringTemplateFactory.createBodyHair(CoveringModifier.COARSE)),
-
-	BODY_HAIR_ANGEL(BodyCoveringTemplateFactory.createBodyHair(CoveringModifier.SILKEN)),
 
 	BODY_HAIR_DEMON(BodyCoveringTemplateFactory.createBodyHair(CoveringModifier.SILKEN)),
 
@@ -412,8 +391,6 @@ public enum BodyCoveringType {
 	// EYES:
 	
 	EYE_HUMAN(BodyCoveringTemplateFactory.createEyeIrisesHeterochromiaNaturallyOccuring()),
-
-	EYE_ANGEL(BodyCoveringTemplateFactory.createEyeIrises()),
 
 	EYE_DEMON_COMMON(BodyCoveringTemplateFactory.createEyeIrisesWithCustomColors(
 			Colour.naturalDemonIrisColours, Colour.dyeDemonIrisColours)),

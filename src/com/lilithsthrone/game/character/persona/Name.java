@@ -254,7 +254,6 @@ public enum Name {
 		
 		switch(gc.getRace()) {
 			case NONE:
-			case ANGEL:
 			case CAT_MORPH:
 			case COW_MORPH:
 			case DEMON:
@@ -301,7 +300,6 @@ public enum Name {
 		
 		switch(r) {
 			case NONE:
-			case ANGEL:
 			case CAT_MORPH:
 			case COW_MORPH:
 			case DOG_MORPH:

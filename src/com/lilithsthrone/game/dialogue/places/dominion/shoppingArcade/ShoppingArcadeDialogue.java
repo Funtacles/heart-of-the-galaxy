@@ -106,14 +106,6 @@ public class ShoppingArcadeDialogue {
 					}
 				};
 
-			} else if (index == 6) {
-				return new ResponseEffectsOnly("Ralph's Snacks", "Fast travel to Ralph's Snacks."){
-					@Override
-					public void effects() {
-						Main.game.setActiveWorld(Main.game.getWorlds().get(WorldType.SHOPPING_ARCADE), PlaceType.SHOPPING_ARCADE_RALPHS_SHOP, true);
-					}
-				};
-
 			} else if (index == 8) {
 				return new ResponseEffectsOnly("Arcane Arts", "Fast travel to Arcane Arts."){
 					@Override

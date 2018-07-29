@@ -31,8 +31,6 @@ public enum DialogueFlagValue {
 	
 	
 	// Introductions:
-	angelIntroduced,
-	angelsOfficeIntroduced,
 	bunnyIntroduced,
 	loppyIntroduced,
 	ashleyIntroduced,

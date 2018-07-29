@@ -91,51 +91,6 @@ public enum RacialBody {
 			WingType.NONE, WingSize.ZERO_TINY, WingSize.ZERO_TINY,
 			GenitalArrangement.NORMAL),
 
-	// ANGEL:
-	ANGEL(Util.newHashMapOfValues(
-				new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(20f, 40f)),
-				new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(20f, 30f)),
-				new Value<Attribute, AttributeRange>(Attribute.MAJOR_CORRUPTION, new AttributeRange(0f, 0f))),
-			AntennaType.NONE,
-			ArmType.ANGEL, 1,
-			AssType.ANGEL, AssSize.TWO_SMALL, AssSize.TWO_SMALL, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
-			BreastType.ANGEL,
-			CupSize.FLAT, 1, Lactation.ZERO_NONE, Capacity.ZERO_IMPENETRABLE, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT, NippleSize.ZERO_TINY, NippleShape.NORMAL, AreolaeSize.ZERO_TINY, 1,
-			CupSize.A, 1, Lactation.ZERO_NONE, Capacity.ZERO_IMPENETRABLE, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT, NippleSize.ZERO_TINY, NippleShape.NORMAL, AreolaeSize.TWO_BIG, 1,
-			170, 25, BodySize.THREE_LARGE.getMedianValue(), Muscle.FOUR_RIPPED.getMedianValue(),
-			170, 95, BodySize.ONE_SLENDER.getMedianValue(), Muscle.FOUR_RIPPED.getMedianValue(),
-			EarType.ANGEL,
-			EyeType.ANGEL,
-			FaceType.ANGEL, LipSize.ONE_AVERAGE, LipSize.TWO_FULL,
-			HairType.ANGEL, HairLength.TWO_SHORT, HairLength.FOUR_MID_BACK,
-			LegType.ANGEL,
-			SkinType.ANGEL, BodyMaterial.FLESH,
-			HornLength.ZERO_TINY, HornLength.ZERO_TINY, Util.newArrayListOfValues(HornType.NONE),
-			PenisType.ANGEL, PenisSize.FOUR_HUGE, PenisGirth.TWO_AVERAGE,
-			PenisType.NONE, PenisSize.TWO_AVERAGE, PenisGirth.TWO_AVERAGE,
-			TesticleSize.FOUR_HUGE, 2, CumProduction.SEVEN_MONSTROUS,
-			TailType.NONE,
-			TentacleType.NONE,
-			VaginaType.ANGEL, Wetness.SEVEN_DROOLING, Capacity.ONE_EXTREMELY_TIGHT, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.SEVEN_ELASTIC, OrificePlasticity.ZERO_RUBBERY,
-			WingType.ANGEL, WingSize.THREE_LARGE, WingSize.THREE_LARGE,
-			GenitalArrangement.NORMAL) {
-
-		@Override
-		public Map<PersonalityTrait, PersonalityWeight> getPersonality() {
-			return Util.newHashMapOfValues(
-					new Value<>(PersonalityTrait.AGREEABLENESS, PersonalityWeight.HIGH),
-					new Value<>(PersonalityTrait.CONSCIENTIOUSNESS, PersonalityWeight.HIGH),
-					new Value<>(PersonalityTrait.EXTROVERSION, PersonalityWeight.AVERAGE),
-					new Value<>(PersonalityTrait.NEUROTICISM, PersonalityWeight.AVERAGE),
-					new Value<>(PersonalityTrait.ADVENTUROUSNESS, PersonalityWeight.AVERAGE));
-		}
-		
-		@Override
-		public SexualOrientation getSexualOrientation(Gender gender) {
-			return SexualOrientation.AMBIPHILIC;
-		}
-	},
-
 	// DEMON:
 	DEMON(Util.newHashMapOfValues(
 				new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(20f, 40f)),
@@ -728,8 +683,6 @@ public enum RacialBody {
 		switch (race) {
 			case NONE:
 				break;
-			case ANGEL:
-				return RacialBody.ANGEL;
 			case CAT_MORPH:
 				return RacialBody.CAT_MORPH;
 			case COW_MORPH:
@@ -766,18 +719,12 @@ public enum RacialBody {
 	}
 	
 	/**
-	 * <b>Does not include angels or slimes</b>
 	 * @param gender
 	 * @return
 	 */
 	public static RacialBody getRandomCommonRacialBodyFromPreferences(Gender gender) {
 		
 		List<Race> availableRaces = new ArrayList<>();
-		for(Race r : Race.values()) {
-			if(r != Race.ANGEL) {
-				availableRaces.add(r);
-			}
-		}
 		
 		if(gender.isFeminine()) {
 			for(Entry<Subspecies, FurryPreference> entry : Main.getProperties().getSubspeciesFeminineFurryPreferencesMap().entrySet()) {

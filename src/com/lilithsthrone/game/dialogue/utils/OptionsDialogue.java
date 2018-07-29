@@ -1283,7 +1283,6 @@ public class OptionsDialogue {
 			int i=0;
 			for(Subspecies subspecies : Subspecies.values()) {
 				switch(subspecies) {
-					case ANGEL:
 					case DEMON:
 					case ELEMENTAL_AIR:
 					case ELEMENTAL_ARCANE:

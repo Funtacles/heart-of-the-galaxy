@@ -2944,9 +2944,6 @@ public abstract class GameCharacter implements XMLSaving {
 		switch(this.getRace()) {
 			case NONE:
 				break;
-			case ANGEL:
-				value = 80000;
-				break;
 			case CAT_MORPH: case DOG_MORPH:
 				value = 8000;
 				break;

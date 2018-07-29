@@ -19,8 +19,6 @@ public enum LegType implements BodyPartTypeInterface {
 
 	HUMAN(FootStructure.PLANTIGRADE, BodyCoveringType.HUMAN, Race.HUMAN),
 
-	ANGEL(FootStructure.PLANTIGRADE, BodyCoveringType.ANGEL, Race.ANGEL),
-
 	COW_MORPH(FootStructure.UNGULIGRADE, BodyCoveringType.BOVINE_FUR, Race.COW_MORPH),
 	
 	DEMON_COMMON(FootStructure.PLANTIGRADE, BodyCoveringType.DEMON_COMMON, Race.DEMON),
@@ -84,8 +82,6 @@ public enum LegType implements BodyPartTypeInterface {
 	@Override
 	public String getDescriptor(GameCharacter gc) {
 		switch(this){
-			case ANGEL:
-				return UtilText.returnStringAtRandom("delicate", "radiant");
 			case CAT_MORPH:
 				return UtilText.returnStringAtRandom("furry", "fur-coated", "anthropomorphic cat-like");
 			case COW_MORPH:
@@ -120,8 +116,6 @@ public enum LegType implements BodyPartTypeInterface {
 	
 	public String getTransformName() {
 		switch(this){
-			case ANGEL:
-				return "angelic";
 			case CAT_MORPH:
 				return "feline";
 			case DEMON_COMMON:
@@ -195,8 +189,6 @@ public enum LegType implements BodyPartTypeInterface {
 	public String getFeetDescriptor(GameCharacter gc) {
 		if (gc.isFeminine()) {
 			switch(this){
-				case ANGEL:
-					return UtilText.returnStringAtRandom("delicate", "soft", "feminine");
 				case CAT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "feminine", "cat-like", "paw-like", "furry", "feline");
 				case COW_MORPH:
@@ -228,8 +220,6 @@ public enum LegType implements BodyPartTypeInterface {
 			}
 		} else {
 			switch(this){
-				case ANGEL:
-					return UtilText.returnStringAtRandom("soft", "delicate");
 				case CAT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "delicate", "cat-like", "paw-like", "furry", "feline");
 				case COW_MORPH:
@@ -294,8 +284,6 @@ public enum LegType implements BodyPartTypeInterface {
 	public String getToesDescriptor(GameCharacter gc) {
 		if (gc.isFeminine()) {
 			switch(this){
-				case ANGEL:
-					return UtilText.returnStringAtRandom("delicate", "soft", "feminine");
 				case CAT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "feminine", "cat-like", "paw-like", "furry", "feline");
 				case COW_MORPH:
@@ -327,8 +315,6 @@ public enum LegType implements BodyPartTypeInterface {
 			}
 		} else {
 			switch(this){
-				case ANGEL:
-					return UtilText.returnStringAtRandom("soft", "delicate");
 				case CAT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "delicate", "cat-like", "paw-like", "furry", "feline");
 				case COW_MORPH:

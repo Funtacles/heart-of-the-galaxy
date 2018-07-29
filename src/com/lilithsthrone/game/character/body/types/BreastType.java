@@ -23,8 +23,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 public enum BreastType implements BodyPartTypeInterface {
 	HUMAN(NippleType.HUMAN, FluidType.MILK_HUMAN, BodyCoveringType.HUMAN, Race.HUMAN),
 
-	ANGEL(NippleType.ANGEL, FluidType.MILK_ANGEL, BodyCoveringType.ANGEL, Race.ANGEL),
-
 	DEMON_COMMON(NippleType.DEMON_COMMON, FluidType.MILK_DEMON_COMMON, BodyCoveringType.DEMON_COMMON, Race.DEMON),
 	
 	DOG_MORPH(NippleType.DOG_MORPH, FluidType.MILK_DOG_MORPH, BodyCoveringType.CANINE_FUR, Race.DOG_MORPH),
@@ -134,8 +132,6 @@ public enum BreastType implements BodyPartTypeInterface {
 	
 	public String getTransformName() {
 		switch(this){
-			case ANGEL:
-				return "angelic";
 			case CAT_MORPH:
 				return "feline";
 			case DEMON_COMMON:

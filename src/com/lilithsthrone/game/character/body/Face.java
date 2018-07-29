@@ -151,19 +151,6 @@ public class Face implements BodyPartInterface, Serializable {
 							+ "</p>"));
 				}
 				break;
-			case ANGEL:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" Thankfully, the alarming feeling is over within a few moments, and you discover that you've been left with an angelic, human-looking face, covered in [pc.faceSkin+].<br/>"
-								+ "You now have an [style.boldAngel(angelic face)], covered in [pc.faceFullDescription], and within your mouth, you have an [style.boldAngel(angelic tongue)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(UtilText.parse(owner,
-								" Thankfully for [npc.herHim], the transformation only lasts a matter of moments, leaving [npc.herHim] with an angelic, human-looking face, covered in [npc.faceSkin+].<br/>"
-								+ "[npc.Name] now has an [style.boldAngel(angelic face)], covered in [npc.faceFullDescription], and within [npc.her] mouth, [npc.she] has an [style.boldAngel(angelic tongue)]."
-							+ "</p>"));
-				}
-				break;
 			case DEMON_COMMON:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(

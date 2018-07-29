@@ -31,7 +31,6 @@ import com.lilithsthrone.game.sex.sexActions.universal.Missionary;
 import com.lilithsthrone.game.sex.sexActions.universal.PetMounting;
 import com.lilithsthrone.game.sex.sexActions.universal.PetOral;
 import com.lilithsthrone.game.sex.sexActions.universal.PixShower;
-import com.lilithsthrone.game.sex.sexActions.universal.RalphOral;
 import com.lilithsthrone.game.sex.sexActions.universal.SixtyNine;
 import com.lilithsthrone.game.sex.sexActions.universal.Standing;
 import com.lilithsthrone.game.sex.sexActions.universal.StocksSex;
@@ -861,36 +860,6 @@ public enum SexPositionType {
 		public String getDescription() {
 			return UtilText.parse(Sex.getCharacterInPosition(SexPositionSlot.PET_ORAL_ON_ALL_FOURS), Sex.getCharacterInPosition(SexPositionSlot.PET_ORAL_COCKED_LEG),
 					"[npc.NameIs] down on all fours, with [npc2.namePos] [npc2.leg] hooked over [npc.her] neck, leaving [npc.her] face just inches away from [npc2.namePos] [npc2.cock+].");
-		}
-	},
-	
-	UNDER_DESK_RALPH("Under desk",
-			false,
-			false,
-			Util.newArrayListOfValues(RalphOral.class), Util.newHashMapOfValues(
-					new Value<>(
-							SexPositionSlot.KNEELING_RECEIVING_ORAL_RALPH,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.KNEELING_PERFORMING_ORAL_RALPH,
-									new SexActionInteractions(
-										Util.mergeMaps(
-											SexActionPresets.tailToUpperTorso,
-											SexActionPresets.tentacleToUpperTorso,
-											SexActionPresets.vaginaToMouth,
-											SexActionPresets.penisToMouth,
-											SexActionPresets.groinToGroin,
-											SexActionPresets.penisToAss))))),
-					new Value<>(
-							SexPositionSlot.KNEELING_PERFORMING_ORAL_RALPH,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.KNEELING_RECEIVING_ORAL_RALPH,
-									new SexActionInteractions(
-											SexActionPresets.fingerToLowerHalf)))))) {
-		@Override
-		public String getDescription() {
-			return "You're kneeling under Ralph's counter, with your face just inches away from his crotch.";
 		}
 	},
 	

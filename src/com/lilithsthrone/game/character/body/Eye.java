@@ -263,8 +263,6 @@ public class Eye implements BodyPartInterface, Serializable {
 								+ "[npc.Name] now has [style.boldHarpy(harpy eyes)]");
 				}
 				break;
-			case ANGEL://TODO
-				break;
 		}
 		
 		UtilText.transformationContentSB.append(", with [style.boldGenericTF([npc.irisShape])], [npc.irisFullDescription(true)] and [style.boldGenericTF([npc.pupilShape])], [npc.pupilFullDescription(true)]."
