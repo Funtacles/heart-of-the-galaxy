@@ -244,28 +244,6 @@ public enum ParserTarget {
 		}
 	},
 	
-	BRAX(Util.newArrayListOfValues("brax"), "") {
-		public String getDescription() {
-			return Main.game.getBrax().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getBrax();
-		}
-	},
-	
-	CANDI(Util.newArrayListOfValues("candi"), "") {
-		public String getDescription() {
-			return Main.game.getCandi().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getCandi();
-		}
-	},
-	
 	SCARLETT(Util.newArrayListOfValues("scarlett"), "") {
 		public String getDescription() {
 			return Main.game.getScarlett().getDescription();
@@ -274,101 +252,6 @@ public enum ParserTarget {
 		@Override
 		public GameCharacter getCharacter(String tag) {
 			return Main.game.getScarlett();
-		}
-	},
-	
-	ALEXA(Util.newArrayListOfValues("alexa"), "") {
-		public String getDescription() {
-			return Main.game.getAlexa().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getAlexa();
-		}
-	},
-	
-	HARPY_BIMBO(Util.newArrayListOfValues(
-			"brittany",
-			"bimboHarpy",
-			"harpyBimbo"), "") {
-		public String getDescription() {
-			return Main.game.getHarpyBimbo().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getHarpyBimbo();
-		}
-	},
-	
-	HARPY_BIMBO_COMPANION(Util.newArrayListOfValues(
-			"lauren",
-			"bimboHarpyCompanion",
-			"harpyBimboCompanion"), "") {
-		public String getDescription() {
-			return Main.game.getHarpyBimboCompanion().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getHarpyBimboCompanion();
-		}
-	},
-	
-	HARPY_DOMINANT(Util.newArrayListOfValues(
-			"diana",
-			"dominantHarpy",
-			"harpyDominant"), "") {
-		public String getDescription() {
-			return Main.game.getHarpyDominant().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getHarpyDominant();
-		}
-	},
-	
-	HARPY_DOMINANT_COMPANION(Util.newArrayListOfValues(
-			"harley",
-			"dominantHarpyCompanion",
-			"harpyDominantCompanion"), "") {
-		public String getDescription() {
-			return Main.game.getHarpyDominantCompanion().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getHarpyDominantCompanion();
-		}
-	},
-	
-	HARPY_NYMPHO(Util.newArrayListOfValues(
-			"lexi",
-			"nymphoHarpy",
-			"harpyNympho"), "") {
-		public String getDescription() {
-			return Main.game.getHarpyNympho().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getHarpyNympho();
-		}
-	},
-	
-	HARPY_NYMPHO_COMPANION(Util.newArrayListOfValues(
-			"max",
-			"nymphoHarpyCompanion",
-			"harpyNymphoCompanion"), "") {
-		public String getDescription() {
-			return Main.game.getHarpyNymphoCompanion().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getHarpyNymphoCompanion();
 		}
 	},
 	

@@ -43,23 +43,14 @@ import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.gender.GenderPreference;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.Alexa;
 import com.lilithsthrone.game.character.npc.dominion.Amber;
 import com.lilithsthrone.game.character.npc.dominion.Angel;
 import com.lilithsthrone.game.character.npc.dominion.Arthur;
 import com.lilithsthrone.game.character.npc.dominion.Ashley;
-import com.lilithsthrone.game.character.npc.dominion.Brax;
 import com.lilithsthrone.game.character.npc.dominion.Bunny;
-import com.lilithsthrone.game.character.npc.dominion.CandiReceptionist;
 import com.lilithsthrone.game.character.npc.dominion.Cultist;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.Finch;
-import com.lilithsthrone.game.character.npc.dominion.HarpyBimbo;
-import com.lilithsthrone.game.character.npc.dominion.HarpyBimboCompanion;
-import com.lilithsthrone.game.character.npc.dominion.HarpyDominant;
-import com.lilithsthrone.game.character.npc.dominion.HarpyDominantCompanion;
-import com.lilithsthrone.game.character.npc.dominion.HarpyNympho;
-import com.lilithsthrone.game.character.npc.dominion.HarpyNymphoCompanion;
 import com.lilithsthrone.game.character.npc.dominion.Jules;
 import com.lilithsthrone.game.character.npc.dominion.Kalahari;
 import com.lilithsthrone.game.character.npc.dominion.Kate;
@@ -617,7 +608,6 @@ public class Game implements Serializable, XMLSaving {
 					}
 					if(Main.isVersionOlderThan(loadingVersion, "0.2.1.5")) {
 						gen.worldGeneration(WorldType.DOMINION);
-						gen.worldGeneration(WorldType.HARPY_NEST);
 					}
 					if(Main.isVersionOlderThan(loadingVersion, "0.2.2")) {
 						gen.worldGeneration(WorldType.DOMINION);
@@ -869,15 +859,6 @@ public class Game implements Serializable, XMLSaving {
 			lilaya.setAffection(rose, AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
 			rose.setAffection(lilaya, AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
 			
-			Brax brax = new Brax();
-			addNPC(brax, false);
-	
-			CandiReceptionist candiReceptionist = new CandiReceptionist();
-			addNPC(candiReceptionist, false);
-	
-			brax.setAffection(candiReceptionist, AffectionLevel.POSITIVE_TWO_LIKE.getMedianValue());
-			candiReceptionist.setAffection(brax, AffectionLevel.POSITIVE_TWO_LIKE.getMedianValue());
-
 			// Shopping Promenade:
 			
 			addNPC(new Ralph(), false);
@@ -895,40 +876,8 @@ public class Game implements Serializable, XMLSaving {
 			Scarlett scarlett = new Scarlett();
 			addNPC(scarlett, false);
 			
-			Alexa alexa = new Alexa();
-			addNPC(alexa, false);
-			
-			alexa.setAffection(scarlett, AffectionLevel.NEGATIVE_FOUR_HATE.getMedianValue());
-			scarlett.setAffection(alexa, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
 			scarlett.setAffection(Main.game.getPlayer(), AffectionLevel.NEGATIVE_TWO_DISLIKE.getMedianValue());
-			
-			HarpyBimbo harpyBimbo = new HarpyBimbo();
-			addNPC(harpyBimbo, false);
-			
-			HarpyBimboCompanion harpyBimboCompanion = new HarpyBimboCompanion();
-			addNPC(harpyBimboCompanion, false);
 	
-			harpyBimbo.setAffection(harpyBimboCompanion, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-			harpyBimboCompanion.setAffection(harpyBimbo, AffectionLevel.POSITIVE_FIVE_WORSHIP.getMedianValue());
-			
-			HarpyDominant harpyDominant = new HarpyDominant();
-			addNPC(harpyDominant, false);
-	
-			HarpyDominantCompanion harpyDominantCompanion = new HarpyDominantCompanion();
-			addNPC(harpyDominantCompanion, false);
-	
-			harpyDominant.setAffection(harpyDominantCompanion, AffectionLevel.POSITIVE_ONE_FRIENDLY.getMedianValue());
-			harpyDominantCompanion.setAffection(harpyDominant, AffectionLevel.POSITIVE_FIVE_WORSHIP.getMedianValue());
-			
-			HarpyNympho harpyNympho = new HarpyNympho();
-			addNPC(harpyNympho, false);
-	
-			HarpyNymphoCompanion harpyNymphoCompanion = new HarpyNymphoCompanion();
-			addNPC(harpyNymphoCompanion, false);
-	
-			harpyNympho.setAffection(harpyNymphoCompanion, AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
-			harpyNymphoCompanion.setAffection(harpyNympho, AffectionLevel.POSITIVE_FIVE_WORSHIP.getMedianValue());
-			
 			addNPC(new Pazu(), false);
 			
 			addNPC(new Finch(), false);
@@ -2617,14 +2566,6 @@ public class Game implements Serializable, XMLSaving {
 		return (NPC) this.getNPCById(getUniqueNPCId(Rose.class));
 	}
 
-	public NPC getBrax() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Brax.class));
-	}
-
-//	public NPC getArthur() {
-//		return arthur;
-//	}
-
 	public NPC getPix() {
 		return (NPC) this.getNPCById(getUniqueNPCId(Pix.class));
 	}
@@ -2649,40 +2590,8 @@ public class Game implements Serializable, XMLSaving {
 		return (NPC) this.getNPCById(getUniqueNPCId(Scarlett.class));
 	}
 	
-	public NPC getAlexa() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Alexa.class));
-	}
-
-	public NPC getHarpyBimbo() {
-		return (NPC) this.getNPCById(getUniqueNPCId(HarpyBimbo.class));
-	}
-
-	public NPC getHarpyDominant() {
-		return (NPC) this.getNPCById(getUniqueNPCId(HarpyDominant.class));
-	}
-
-	public NPC getHarpyNympho() {
-		return (NPC) this.getNPCById(getUniqueNPCId(HarpyNympho.class));
-	}
-
-	public NPC getHarpyBimboCompanion() {
-		return (NPC) this.getNPCById(getUniqueNPCId(HarpyBimboCompanion.class));
-	}
-
-	public NPC getHarpyDominantCompanion() {
-		return (NPC) this.getNPCById(getUniqueNPCId(HarpyDominantCompanion.class));
-	}
-
-	public NPC getHarpyNymphoCompanion() {
-		return (NPC) this.getNPCById(getUniqueNPCId(HarpyNymphoCompanion.class));
-	}
-
 	public NPC getPazu() {
 		return (NPC) this.getNPCById(getUniqueNPCId(Pazu.class));
-	}
-	
-	public NPC getCandi() {
-		return (NPC) this.getNPCById(getUniqueNPCId(CandiReceptionist.class));
 	}
 	
 	public NPC getFinch() {

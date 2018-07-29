@@ -39,7 +39,6 @@ public enum WorldType {
 					new Value<>(new Color(0xff80ff), PlaceType.DOMINION_DEMON_HOME),
 					new Value<>(new Color(0xff9100), PlaceType.DOMINION_DEMON_HOME_ARTHUR),
 					new Value<>(new Color(0x8000ff), PlaceType.DOMINION_CITY_HALL),
-					new Value<>(new Color(0xff00ff), PlaceType.DOMINION_LILITHS_TOWER),
 
 					new Value<>(new Color(0x8080ff), PlaceType.DOMINION_EXIT_TO_SEA),
 					new Value<>(new Color(0xff4a00), PlaceType.DOMINION_EXIT_TO_FIELDS),
@@ -47,12 +46,10 @@ public enum WorldType {
 					new Value<>(new Color(0xffff80), PlaceType.DOMINION_EXIT_TO_DESERT),
 					
 					new Value<>(new Color(0x008080), PlaceType.DOMINION_STREET_HARPY_NESTS),
-					new Value<>(new Color(0x00ff80), PlaceType.DOMINION_HARPY_NESTS_ENTRANCE),
 
 					new Value<>(new Color(0x004000), PlaceType.DOMINION_PLAZA),
 					new Value<>(new Color(0x00ffff), PlaceType.DOMINION_AUNTS_HOME),
 					new Value<>(new Color(0xffff00), PlaceType.DOMINION_SHOPPING_ARCADE),
-					new Value<>(new Color(0x0000ff), PlaceType.DOMINION_ENFORCER_HQ),
 					new Value<>(new Color(0x000080), PlaceType.DOMINION_NIGHTLIFE_DISTRICT),
 					new Value<>(new Color(0xff0000), PlaceType.DOMINION_SLAVER_ALLEY),
 					new Value<>(new Color(0x4bff00), PlaceType.DOMINION_PARK),
@@ -145,22 +142,6 @@ public enum WorldType {
 					new Value<>(new Color(0x008000), PlaceType.ZARANIX_GF_GARDEN),
 					new Value<>(new Color(0xff8000), PlaceType.ZARANIX_GF_GARDEN_ENTRY))),
 
-	HARPY_NEST("Harpy Nests",
-			Colour.BASE_CRIMSON,
-			1,
-			"/com/lilithsthrone/res/map/dominion/harpyNests/harpyNests.png",
-			Util.newHashMapOfValues(
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-					
-					new Value<>(new Color(0x808080), PlaceType.HARPY_NESTS_WALKWAYS),
-					new Value<>(new Color(0x404040), PlaceType.HARPY_NESTS_WALKWAYS_BRIDGE),
-					
-					new Value<>(new Color(0x00ff80), PlaceType.HARPY_NESTS_ENTRANCE_ENFORCER_POST),
-					new Value<>(new Color(0xff0000), PlaceType.HARPY_NESTS_HARPY_NEST_RED),
-					new Value<>(new Color(0xff00ff), PlaceType.HARPY_NESTS_HARPY_NEST_PINK),
-					new Value<>(new Color(0xffff00), PlaceType.HARPY_NESTS_HARPY_NEST_YELLOW),
-					new Value<>(new Color(0xff9100), PlaceType.HARPY_NESTS_ALEXAS_NEST))),
-	
 	SLAVER_ALLEY("Slaver Alley",
 			Colour.BASE_RED,
 			1,
@@ -209,19 +190,6 @@ public enum WorldType {
 					new Value<>(new Color(0xff00ff), PlaceType.SUPPLIER_DEPOT_STORAGE_ROOM),
 					new Value<>(new Color(0x00ff00), PlaceType.SUPPLIER_DEPOT_OFFICE))),
 	
-	ENFORCER_HQ("Enforcer HQ",
-			Colour.BASE_BLUE,
-			1,
-			"/com/lilithsthrone/res/map/dominion/enforcerHQ/enforcerHQ.png",
-			Util.newHashMapOfValues(
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-					new Value<>(new Color(0x808080), PlaceType.ENFORCER_HQ_CORRIDOR),
-					new Value<>(new Color(0xff0000), PlaceType.ENFORCER_HQ_ENTRANCE),
-					new Value<>(new Color(0xffff00), PlaceType.ENFORCER_HQ_GUARDED_DOOR),
-					new Value<>(new Color(0x8000ff), PlaceType.ENFORCER_HQ_WAITING_AREA),
-					new Value<>(new Color(0x0080ff), PlaceType.ENFORCER_HQ_RECEPTION_DESK),
-					new Value<>(new Color(0xff8000), PlaceType.ENFORCER_HQ_BRAXS_OFFICE))),
-
 	ANGELS_KISS_GROUND_FLOOR("Angel's Kiss",
 			Colour.BASE_MAGENTA,
 			1,

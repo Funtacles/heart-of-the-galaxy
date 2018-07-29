@@ -118,19 +118,10 @@ import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.markings.Scar;
 import com.lilithsthrone.game.character.markings.Tattoo;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.Alexa;
 import com.lilithsthrone.game.character.npc.dominion.Cultist;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.DominionSuccubusAttacker;
-import com.lilithsthrone.game.character.npc.dominion.HarpyBimbo;
-import com.lilithsthrone.game.character.npc.dominion.HarpyBimboCompanion;
-import com.lilithsthrone.game.character.npc.dominion.HarpyDominant;
-import com.lilithsthrone.game.character.npc.dominion.HarpyDominantCompanion;
-import com.lilithsthrone.game.character.npc.dominion.HarpyNestsAttacker;
-import com.lilithsthrone.game.character.npc.dominion.HarpyNympho;
-import com.lilithsthrone.game.character.npc.dominion.HarpyNymphoCompanion;
 import com.lilithsthrone.game.character.npc.dominion.ReindeerOverseer;
-import com.lilithsthrone.game.character.npc.dominion.Scarlett;
 import com.lilithsthrone.game.character.npc.misc.Elemental;
 import com.lilithsthrone.game.character.npc.misc.NPCOffspring;
 import com.lilithsthrone.game.character.persona.History;
@@ -1351,17 +1342,11 @@ public abstract class GameCharacter implements XMLSaving {
 			
 			WorldType worldType = WorldType.valueOf(((Element)element.getElementsByTagName("worldLocation").item(0)).getAttribute("value"));
 			
-			if((worldType==WorldType.DOMINION || worldType==WorldType.HARPY_NEST) && Main.isVersionOlderThan(version, "0.2.1.5")) {
+			if((worldType==WorldType.DOMINION) && Main.isVersionOlderThan(version, "0.2.1.5")) {
 				PlaceType placeType = PlaceType.DOMINION_BACK_ALLEYS;
 				
 				if(character.isPlayer()) {
-					if(worldType==WorldType.DOMINION) {
-						placeType = PlaceType.DOMINION_AUNTS_HOME;
-						
-					} else {
-						placeType = PlaceType.HARPY_NESTS_ENTRANCE_ENFORCER_POST;
-					}
-					
+					placeType = PlaceType.DOMINION_AUNTS_HOME;
 				} else {
 					
 					if(character instanceof DominionAlleywayAttacker) {
@@ -1376,34 +1361,10 @@ public abstract class GameCharacter implements XMLSaving {
 					} else if(character instanceof ReindeerOverseer) {
 						placeType = PlaceType.DOMINION_STREET;
 						
-					} else if(character instanceof HarpyNestsAttacker) {
-						placeType = PlaceType.HARPY_NESTS_WALKWAYS;
-						
-					} else if(character instanceof HarpyBimbo || character instanceof HarpyBimboCompanion) {
-						placeType = PlaceType.HARPY_NESTS_HARPY_NEST_YELLOW;
-						
-					} else if(character instanceof HarpyDominant || character instanceof HarpyDominantCompanion) {
-						placeType = PlaceType.HARPY_NESTS_HARPY_NEST_RED;
-						
-					} else if(character instanceof HarpyNympho || character instanceof HarpyNymphoCompanion) {
-						placeType = PlaceType.HARPY_NESTS_HARPY_NEST_PINK;
-						
-					} else if(character instanceof Scarlett || character instanceof Alexa) {
-						placeType = PlaceType.HARPY_NESTS_ALEXAS_NEST;
-						
 					} else { // Catch if no location found:
-						if(worldType==WorldType.DOMINION) {
-							placeType = PlaceType.DOMINION_BACK_ALLEYS;
-							
-						}  else {
-							placeType = PlaceType.HARPY_NESTS_WALKWAYS;
-						}
+						placeType = PlaceType.DOMINION_BACK_ALLEYS;
 					}
 				}
-				
-//				if(Main.game.getWorlds().get(worldType).getRandomUnoccupiedCell(placeType) == null) {
-//					System.out.println(worldType+", "+placeType);
-//				}
 				
 				character.setLocation(
 						worldType,
@@ -3572,15 +3533,11 @@ public abstract class GameCharacter implements XMLSaving {
 			case DOMINION:
 			case EMPTY:
 			case SLAVER_ALLEY:
-			case HARPY_NEST:
 			case JUNGLE:
 			case LILAYAS_HOUSE_FIRST_FLOOR:
 			case LILAYAS_HOUSE_GROUND_FLOOR:
 			case NIGHTLIFE_CLUB:
 				break;
-				
-			case ENFORCER_HQ:
-				return "You can't have sex in the Enforcer HQ!";
 			case SHOPPING_ARCADE:
 				if(this.getLocationPlace().getPlaceType()!=PlaceType.SHOPPING_ARCADE_PATH) {
 					return "This isn't a suitable place to be having sex with [npc.name]!";

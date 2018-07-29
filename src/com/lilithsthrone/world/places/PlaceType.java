@@ -19,15 +19,8 @@ import com.lilithsthrone.game.dialogue.places.JunglePlaces;
 import com.lilithsthrone.game.dialogue.places.dominion.CityHall;
 import com.lilithsthrone.game.dialogue.places.dominion.CityPlaces;
 import com.lilithsthrone.game.dialogue.places.dominion.DemonHome;
-import com.lilithsthrone.game.dialogue.places.dominion.EnforcerHQDialogue;
-import com.lilithsthrone.game.dialogue.places.dominion.LilithsTower;
 import com.lilithsthrone.game.dialogue.places.dominion.NightlifeDistrict;
 import com.lilithsthrone.game.dialogue.places.dominion.RedLightDistrict;
-import com.lilithsthrone.game.dialogue.places.dominion.harpyNests.HarpyNestAlexa;
-import com.lilithsthrone.game.dialogue.places.dominion.harpyNests.HarpyNestBimbo;
-import com.lilithsthrone.game.dialogue.places.dominion.harpyNests.HarpyNestDominant;
-import com.lilithsthrone.game.dialogue.places.dominion.harpyNests.HarpyNestNympho;
-import com.lilithsthrone.game.dialogue.places.dominion.harpyNests.HarpyNestsDialogue;
 import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.Lab;
 import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.Library;
 import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.LilayaHomeGeneric;
@@ -104,25 +97,6 @@ public enum PlaceType {
 		}
 	},
 	
-	DOMINION_LILITHS_TOWER("Lilith's Tower", "dominion/lilithsTowerIcon", BaseColour.PURPLE, Colour.MAP_BACKGROUND_PINK, LilithsTower.OUTSIDE, null, false, false, true, "in the streets of Dominion") {
-
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return DOMINION_PLAZA.getSpeciesPopulatingArea();
-		}
-	},
-	
-	DOMINION_ENFORCER_HQ("Enforcer HQ", "dominion/enforcerHQIcon", BaseColour.BLUE, Colour.MAP_BACKGROUND, EnforcerHQDialogue.EXTERIOR, Encounter.DOMINION_STREET, false, false, true, "in the streets of Dominion") {
-		@Override
-		public boolean isDangerous() {
-			return Main.game.getCurrentWeather() == Weather.MAGIC_STORM;
-		}
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return DOMINION_PLAZA.getSpeciesPopulatingArea();
-		}
-	},
-	
 	DOMINION_DEMON_HOME_GATE("Demon Home Gates", "dominion/gate", BaseColour.PINK_LIGHT, Colour.MAP_BACKGROUND_PINK, DemonHome.DEMON_HOME_GATE, null, false, false, true, "in the streets of Demon Home") {
 		@Override
 		public List<Subspecies> getSpeciesPopulatingArea() {
@@ -156,17 +130,6 @@ public enum PlaceType {
 	},
 	
 	DOMINION_STREET_HARPY_NESTS("Dominion Streets", null, null, Colour.MAP_BACKGROUND_DARK, CityPlaces.STREET_SHADED, Encounter.DOMINION_STREET, false, false, true, "in the streets of Dominion") {
-		@Override
-		public boolean isDangerous() {
-			return Main.game.getCurrentWeather() == Weather.MAGIC_STORM;
-		}
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return DOMINION_PLAZA.getSpeciesPopulatingArea();
-		}
-	},
-	
-	DOMINION_HARPY_NESTS_ENTRANCE("Harpy Nests Entrance", "dominion/harpyNestIcon", BaseColour.MAGENTA, Colour.MAP_BACKGROUND_DARK, HarpyNestsDialogue.OUTSIDE, Encounter.DOMINION_STREET, false, false, true, "in the streets of Dominion") {
 		@Override
 		public boolean isDangerous() {
 			return Main.game.getCurrentWeather() == Weather.MAGIC_STORM;
@@ -302,101 +265,6 @@ public enum PlaceType {
 			return Bearing.SOUTH;
 		}
 	},
-	
-	
-	
-	
-	ENFORCER_HQ_CORRIDOR("Corridor", null, BaseColour.BLACK, Colour.MAP_BACKGROUND, EnforcerHQDialogue.CORRIDOR, null, false, true, true, "in the Enforcer HQ"),
-
-	ENFORCER_HQ_WAITING_AREA("Waiting area", "dominion/enforcerHQ/waitingRoom", BaseColour.BROWN, Colour.MAP_BACKGROUND, EnforcerHQDialogue.WAITING_AREA, null, false, true, true, "in the Enforcer HQ"),
-	
-	ENFORCER_HQ_RECEPTION_DESK("Reception desk", "dominion/enforcerHQ/receptionDesk", BaseColour.BLUE_LIGHT, Colour.MAP_BACKGROUND, EnforcerHQDialogue.RECEPTION_DESK, null, false, true, true, "in Candi's office"),
-	
-	ENFORCER_HQ_GUARDED_DOOR("Guarded door", "dominion/enforcerHQ/guardedDoor", BaseColour.CRIMSON, Colour.MAP_BACKGROUND, EnforcerHQDialogue.GUARDED_DOOR, null, false, true, true, "in the Enforcer HQ"),
-	
-	ENFORCER_HQ_BRAXS_OFFICE("Brax's Office", "dominion/enforcerHQ/braxsOffice", BaseColour.BLUE_STEEL, Colour.MAP_BACKGROUND, EnforcerHQDialogue.INTERIOR_BRAX, null, false, true, true, "in his office") {
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.braxEncountered)) {
-				return EnforcerHQDialogue.INTERIOR_BRAX_REPEAT;
-				
-			} else {
-				return EnforcerHQDialogue.INTERIOR_BRAX;
-			}
-		}
-	},
-
-	ENFORCER_HQ_ENTRANCE("Entranceway", "dominion/enforcerHQ/exit", BaseColour.RED, Colour.MAP_BACKGROUND, EnforcerHQDialogue.ENTRANCE, null, false, true, true, ""),
-	
-	
-	
-	
-	// Standard tiles:
-	HARPY_NESTS_WALKWAYS("Walkway", null, BaseColour.BLACK, Colour.MAP_BACKGROUND, HarpyNestsDialogue.WALKWAY, Encounter.HARPY_NEST_WALKWAYS, true, false, true, "in the Harpy Nests") {
-		@Override
-		public boolean isDangerous() {
-			return !Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_HARPY_PACIFICATION) || Main.game.getCurrentWeather()==Weather.MAGIC_STORM;
-		}
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			if(Main.game.getCurrentWeather() == Weather.MAGIC_STORM) {
-				return super.getSpeciesPopulatingArea();
-			} else {
-				return Subspecies.getWorldSpecies().get(WorldType.HARPY_NEST);
-			}
-		}
-	},
-	
-	HARPY_NESTS_WALKWAYS_BRIDGE("Walkway Bridge", "dominion/harpyNests/bridge", BaseColour.GREY, Colour.MAP_BACKGROUND, HarpyNestsDialogue.WALKWAY_BRIDGE, Encounter.HARPY_NEST_WALKWAYS, true, false, true, "in the Harpy Nests") {
-		@Override
-		public boolean isDangerous() {
-			return !Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_HARPY_PACIFICATION) || Main.game.getCurrentWeather()==Weather.MAGIC_STORM;
-		}
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return HARPY_NESTS_WALKWAYS.getSpeciesPopulatingArea();
-		}
-	},
-
-	// Places:
-	HARPY_NESTS_ENTRANCE_ENFORCER_POST("Enforcer post", "dominion/harpyNests/exit", BaseColour.RED, Colour.MAP_BACKGROUND, HarpyNestsDialogue.ENTRANCE_ENFORCER_POST, null, false, true, true, "in the Harpy Nests") {
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return Subspecies.getWorldSpecies().get(WorldType.DOMINION);
-		}
-	},
-	
-	HARPY_NESTS_ALEXAS_NEST("Alexa's nest", "dominion/harpyNests/nestAlexa", BaseColour.GOLD, Colour.MAP_BACKGROUND, HarpyNestAlexa.ALEXAS_NEST_EXTERIOR, null, false, false, true, "in Alexa's nest"){
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return HARPY_NESTS_WALKWAYS.getSpeciesPopulatingArea();
-		}
-	},
-	
-	HARPY_NESTS_HARPY_NEST_RED("Harpy nest", "dominion/harpyNests/nestRed", BaseColour.CRIMSON, Colour.MAP_BACKGROUND, HarpyNestDominant.HARPY_NEST_DOMINANT, null, false, false, true, "in Diana's nest"){
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return HARPY_NESTS_WALKWAYS.getSpeciesPopulatingArea();
-		}
-	},
-	
-	HARPY_NESTS_HARPY_NEST_PINK("Harpy nest", "dominion/harpyNests/nestPink", BaseColour.PINK_LIGHT, Colour.MAP_BACKGROUND, HarpyNestNympho.HARPY_NEST_NYMPHO, null, false, false, true, "in Lexi's nest"){
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return HARPY_NESTS_WALKWAYS.getSpeciesPopulatingArea();
-		}
-	},
-	
-	HARPY_NESTS_HARPY_NEST_YELLOW("Harpy nest", "dominion/harpyNests/nestYellow", BaseColour.YELLOW_LIGHT, Colour.MAP_BACKGROUND, HarpyNestBimbo.HARPY_NEST_BIMBO, null, false, false, true, "in Brittany's nest"){
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return HARPY_NESTS_WALKWAYS.getSpeciesPopulatingArea();
-		}
-	},
-		
-		
-	
-	
 	
 	// Standard tiles:
 	JUNGLE_PATH("Jungle Path", null, BaseColour.GREEN, Colour.MAP_BACKGROUND, JunglePlaces.PATH, null, false, false, true, "in the jungle"),
@@ -972,12 +840,7 @@ public enum PlaceType {
 	SLAVER_ALLEY_SCARLETTS_SHOP("Scarlett's Shop", "dominion/slaverAlley/scarlettsStall", BaseColour.CRIMSON, Colour.MAP_BACKGROUND, ScarlettsShop.SCARLETTS_SHOP_EXTERIOR, null, false, true, true, "in Slaver's Alley"){
 		@Override
 		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressLessThan(QuestLine.MAIN, Quest.MAIN_1_F_SCARLETTS_FATE)) { // Scarlett owns the shop:
-				return ScarlettsShop.SCARLETTS_SHOP_EXTERIOR;
-				
-			} else { // Alexa owns the shop:
-				return ScarlettsShop.ALEXAS_SHOP_EXTERIOR;
-			}
+			return ScarlettsShop.SCARLETTS_SHOP_EXTERIOR;
 		}	
 	},
 	

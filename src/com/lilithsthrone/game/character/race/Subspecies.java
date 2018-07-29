@@ -832,7 +832,6 @@ public enum Subspecies {
 			SubspeciesPreference.FOUR_ABUNDANT,
 			"A typical harpy.",
 			Util.newArrayListOfValues(
-					WorldType.HARPY_NEST,
 					WorldType.NIGHTLIFE_CLUB)),
 	
 	HARPY_RAVEN("statusEffects/raceHarpy",
@@ -847,7 +846,6 @@ public enum Subspecies {
 			SubspeciesPreference.ONE_LOW,
 			"A harpy that has dark black feathers, resembling those of a raven.",
 			Util.newArrayListOfValues(
-					WorldType.HARPY_NEST,
 					WorldType.NIGHTLIFE_CLUB)) {
 		@Override
 		public void applySpeciesChanges(Body body) {
@@ -868,7 +866,6 @@ public enum Subspecies {
 			SubspeciesPreference.ONE_LOW,
 			"A harpy that has dark brown feathers covering their body, with white feathers on their head, resembling the colouring of a bald eagle.",
 			Util.newArrayListOfValues(
-					WorldType.HARPY_NEST,
 					WorldType.NIGHTLIFE_CLUB)) {
 		@Override
 		public void applySpeciesChanges(Body body) {
