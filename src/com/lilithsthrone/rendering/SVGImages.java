@@ -53,7 +53,7 @@ public enum SVGImages {
 			responseSubResist, responseSubNormal, responseSubEager,
 			responseDomGentle, responseDomNormal, responseDomRough,
 			
-			NPCWarningMale, NPCWarningFemale, NPCWarningDemon,
+			NPCWarningMale, NPCWarningFemale,
 
 			stopwatch,
 			
@@ -359,9 +359,6 @@ public enum SVGImages {
 			NPCWarningFemale = Util.inputStreamToString(is);
 			NPCWarningFemale = setColour(NPCWarningFemale, Colour.FEMININE_PLUS);
 			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/UIElements/responseNPC.svg");
-			NPCWarningDemon = Util.inputStreamToString(is);
-			NPCWarningDemon = setColour(NPCWarningDemon, Colour.GENERIC_ARCANE);
-			
 			
 
 			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/UIElements/stopwatch.svg");
@@ -924,10 +921,6 @@ public enum SVGImages {
 
 	public String getNPCWarningFemale() {
 		return NPCWarningFemale;
-	}
-
-	public String getNPCWarningDemon() {
-		return NPCWarningDemon;
 	}
 
 	public String getCoverableAreaMouth() {

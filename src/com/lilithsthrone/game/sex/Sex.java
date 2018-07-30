@@ -522,10 +522,6 @@ public class Sex {
 			}
 		}
 		
-		if(SexFlags.playerGrewDemonicCock) {
-			Main.game.getPlayer().setPenisType(PenisType.NONE);
-		}
-		
 		for(GameCharacter participant : Sex.getAllParticipants()) {
 			if(participant instanceof NPC) {
 				((NPC) participant).setLastTimeHadSex(Main.game.getMinutesPassed(), Sex.getNumberOfOrgasms(participant)>0);

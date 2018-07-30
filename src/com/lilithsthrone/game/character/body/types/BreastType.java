@@ -23,8 +23,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 public enum BreastType implements BodyPartTypeInterface {
 	HUMAN(NippleType.HUMAN, FluidType.MILK_HUMAN, BodyCoveringType.HUMAN, Race.HUMAN),
 
-	DEMON_COMMON(NippleType.DEMON_COMMON, FluidType.MILK_DEMON_COMMON, BodyCoveringType.DEMON_COMMON, Race.DEMON),
-	
 	DOG_MORPH(NippleType.DOG_MORPH, FluidType.MILK_DOG_MORPH, BodyCoveringType.CANINE_FUR, Race.DOG_MORPH),
 	
 	WOLF_MORPH(NippleType.WOLF_MORPH, FluidType.MILK_WOLF_MORPH, BodyCoveringType.LYCAN_FUR, Race.WOLF_MORPH),
@@ -43,9 +41,7 @@ public enum BreastType implements BodyPartTypeInterface {
 	
 	HORSE_MORPH(NippleType.HORSE_MORPH, FluidType.MILK_HORSE_MORPH, BodyCoveringType.HORSE_HAIR, Race.HORSE_MORPH),
 	
-	REINDEER_MORPH(NippleType.REINDEER_MORPH, FluidType.MILK_REINDEER_MORPH, BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH),
-	
-	HARPY(NippleType.HARPY, FluidType.MILK_HARPY, BodyCoveringType.FEATHERS, Race.HARPY);
+	REINDEER_MORPH(NippleType.REINDEER_MORPH, FluidType.MILK_REINDEER_MORPH, BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH);
 
 	private NippleType nippleType;
 	private FluidType fluidType;
@@ -134,16 +130,12 @@ public enum BreastType implements BodyPartTypeInterface {
 		switch(this){
 			case CAT_MORPH:
 				return "feline";
-			case DEMON_COMMON:
-				return "demonic";
 			case DOG_MORPH:
 				return "canine";
 			case COW_MORPH:
 				return "bovine";
 			case SQUIRREL_MORPH:
 				return "furry";
-			case HARPY:
-				return "feathered";
 			case HORSE_MORPH:
 				return "equine";
 			case REINDEER_MORPH:

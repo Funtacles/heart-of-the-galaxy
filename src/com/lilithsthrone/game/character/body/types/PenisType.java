@@ -28,8 +28,6 @@ public enum PenisType implements BodyPartTypeInterface {
 
 	BOVINE(BodyCoveringType.PENIS, TesticleType.BOVINE, Race.COW_MORPH, PenetrationModifier.TAPERED, PenetrationModifier.VEINY, PenetrationModifier.SHEATHED),
 
-	DEMON_COMMON(BodyCoveringType.PENIS, TesticleType.DEMON_COMMON, Race.DEMON, PenetrationModifier.RIBBED, PenetrationModifier.TENTACLED, PenetrationModifier.PREHENSILE),
-
 	CANINE(BodyCoveringType.PENIS, TesticleType.CANINE, Race.DOG_MORPH, PenetrationModifier.KNOTTED, PenetrationModifier.SHEATHED, PenetrationModifier.TAPERED),
 	
 	LUPINE(BodyCoveringType.PENIS, TesticleType.LUPINE, Race.WOLF_MORPH, PenetrationModifier.KNOTTED, PenetrationModifier.SHEATHED, PenetrationModifier.TAPERED),
@@ -42,8 +40,6 @@ public enum PenisType implements BodyPartTypeInterface {
 
 	REINDEER_MORPH(BodyCoveringType.PENIS, TesticleType.REINDEER_MORPH, Race.REINDEER_MORPH, PenetrationModifier.FLARED, PenetrationModifier.SHEATHED),
 
-	AVIAN(BodyCoveringType.PENIS, TesticleType.AVIAN, Race.HARPY, PenetrationModifier.SHEATHED),
-	
 	SQUIRREL(BodyCoveringType.PENIS, TesticleType.SQUIRREL, Race.SQUIRREL_MORPH, PenetrationModifier.SHEATHED),
 	
 	RAT_MORPH(BodyCoveringType.PENIS, TesticleType.RAT_MORPH, Race.RAT_MORPH, PenetrationModifier.SHEATHED),
@@ -98,14 +94,10 @@ public enum PenisType implements BodyPartTypeInterface {
 		switch(Util.random.nextInt(3)){
 			case 0:
 				switch(this){
-					case AVIAN:
-						return UtilText.returnStringAtRandom("avian");
 					case BOVINE:
 						return UtilText.returnStringAtRandom("bovine", "bull-", "bull-like", "bestial");
 					case CANINE:
 						return UtilText.returnStringAtRandom("canine", "dog-", "dog-like", "bestial");
-					case DEMON_COMMON:
-						return UtilText.returnStringAtRandom("demonic", "demon-");
 					case EQUINE:
 						return UtilText.returnStringAtRandom("equine", "horse-", "horse-like", "bestial");
 					case REINDEER_MORPH:
@@ -148,14 +140,10 @@ public enum PenisType implements BodyPartTypeInterface {
 	
 	public String getTransformName() {
 		switch(this){
-			case AVIAN:
-				return "avian";
 			case BOVINE:
 				return "bovine";
 			case CANINE:
 				return "canine";
-			case DEMON_COMMON:
-				return "demonic";
 			case EQUINE:
 				return "equine";
 			case REINDEER_MORPH:
@@ -238,12 +226,6 @@ public enum PenisType implements BodyPartTypeInterface {
 				break;
 			case NONE:
 				return UtilText.returnStringAtRandom("");
-			case AVIAN:
-				prefix = UtilText.returnStringAtRandom("harpy-", "avian-");
-				break;
-			case DEMON_COMMON:
-				prefix = UtilText.returnStringAtRandom("demon-");
-				break;
 			case HUMAN:
 				break;
 			case LUPINE:
@@ -277,8 +259,6 @@ public enum PenisType implements BodyPartTypeInterface {
 	
 	public String getCumDescriptor() {
 		switch(this){
-			case DEMON_COMMON:
-				return UtilText.returnStringAtRandom("corruptive", "corrupted", "potent", "thick", "hot");
 			case NONE:
 				return UtilText.returnStringAtRandom("");
 			default:

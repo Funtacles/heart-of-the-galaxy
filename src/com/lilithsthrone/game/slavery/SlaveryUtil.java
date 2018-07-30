@@ -17,19 +17,13 @@ import com.lilithsthrone.game.character.body.types.VaginaType;
 import com.lilithsthrone.game.character.body.valueEnums.CupSize;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
-import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.misc.GenericSexualPartner;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
 import com.lilithsthrone.game.dialogue.eventLog.SlaveryEventLogEntry;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.sex.SexAreaOrifice;
-import com.lilithsthrone.game.sex.SexAreaPenetration;
-import com.lilithsthrone.game.sex.SexParticipantType;
-import com.lilithsthrone.game.sex.SexType;
 import com.lilithsthrone.main.Main;
-import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.XMLSaving;
 import com.lilithsthrone.utils.Vector2i;
@@ -295,14 +289,10 @@ public class SlaveryUtil implements XMLSaving {
 		
 		SlaveJob job = slave.getSlaveJob();
 
-		StringBuilder effectDescriptions = new StringBuilder();
-		List<String> effects = new ArrayList<>();
-		List<SlaveJobSetting> settingsEnabled = new ArrayList<>();
-		
 		List<SlaveryEventLogEntry> events = new ArrayList<>();
 		
-		if(slave.getWorkHours()[hour] && job != SlaveJob.IDLE) { // Slave is working:
-			switch (job) { //TODO
+		if(slave.getWorkHours()[hour] && job != SlaveJob.IDLE) {
+			switch (job) {
 				case CLEANING:
 					events.add(new SlaveryEventLogEntry(hour, slave, SlaveEvent.JOB_CLEANING, true));
 					return events;
@@ -523,23 +513,6 @@ public class SlaveryUtil implements XMLSaving {
 		}
 
 		return events;
-	}
-	
-	private List<SlaveJobSetting> getSexSettingsEnabled(NPC slave) {
-		List<SlaveJobSetting> settingsEnabled = new ArrayList<>();
-		if(slave.hasVagina() && slave.getSlaveJobSettings().contains(SlaveJobSetting.SEX_VAGINAL) && slave.isAbleToAccessCoverableArea(CoverableArea.VAGINA, true)) {
-			settingsEnabled.add(SlaveJobSetting.SEX_VAGINAL);
-		}
-		if(slave.getSlaveJobSettings().contains(SlaveJobSetting.SEX_ANAL) && slave.isAbleToAccessCoverableArea(CoverableArea.ANUS, true)) {
-			settingsEnabled.add(SlaveJobSetting.SEX_ANAL);
-		}
-		if(slave.getSlaveJobSettings().contains(SlaveJobSetting.SEX_ORAL) && slave.isAbleToAccessCoverableArea(CoverableArea.MOUTH, true)) {
-			settingsEnabled.add(SlaveJobSetting.SEX_ORAL);
-		}
-		if(slave.isBreastFuckableNipplePenetration() && slave.getSlaveJobSettings().contains(SlaveJobSetting.SEX_NIPPLES) && slave.isAbleToAccessCoverableArea(CoverableArea.NIPPLES, true)) {
-			settingsEnabled.add(SlaveJobSetting.SEX_NIPPLES);
-		}
-		return settingsEnabled;
 	}
 	
 	private String getTestSubjectFeminineTransformation(NPC slave) {

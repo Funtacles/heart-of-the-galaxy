@@ -14,8 +14,6 @@ import com.lilithsthrone.game.character.body.Hair;
 import com.lilithsthrone.game.character.body.Skin;
 import com.lilithsthrone.game.character.body.Vagina;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
-import com.lilithsthrone.game.character.body.types.FaceType;
-import com.lilithsthrone.game.character.body.types.TailType;
 import com.lilithsthrone.game.character.body.valueEnums.PiercingType;
 import com.lilithsthrone.game.character.markings.TattooCounterType;
 import com.lilithsthrone.game.character.markings.TattooType;
@@ -607,10 +605,6 @@ public class SuccubisSecrets {
 							}
 						}
 					}
-					if(Main.game.getPlayer().getTailType()==TailType.DEMON_HAIR_TIP && !CoveringsNamesMap.containsKey(BodyCoveringType.HAIR_DEMON)) {
-						CoveringsNamesMap.put(BodyCoveringType.HAIR_DEMON, Util.newArrayListOfValues(BodyCoveringType.HAIR_DEMON.getName(Main.game.getPlayer())));
-					}
-					
 					if(Main.getProperties().hasValue(PropertyValue.pubicHairContent)) {
 						CoveringsNamesMap.putIfAbsent(Main.game.getPlayer().getPubicHairType().getType(), new ArrayList<>());
 						CoveringsNamesMap.get(Main.game.getPlayer().getPubicHairType().getType()).add("growing around your pubic region");
@@ -780,12 +774,7 @@ public class SuccubisSecrets {
 					
 				} else if(bct == BodyCoveringType.MOUTH) {
 					title = "Lips & Throat";
-					if(Main.game.getPlayer().getFaceType() == FaceType.HARPY) {
-						description = "This is the colour of your beak. The secondary colour determines what the insides of your mouth and throat look like.";
-					} else {
-						description = "This is the skin that's currently covering your lips. The secondary colour determines what the insides of your mouth and throat look like.";
-					}
-					
+					description = "This is the skin that's currently covering your lips. The secondary colour determines what the insides of your mouth and throat look like.";
 				} else if(bct == BodyCoveringType.TONGUE) {
 					title = "Tongue";
 					description = "This is the skin that's currently covering your tongue.";
@@ -1136,7 +1125,7 @@ public class SuccubisSecrets {
 					return new Response("Apply ("+UtilText.formatAsMoney(value, "span")+")", "Tell Kate that you'd like her to give you this tattoo.", SHOP_BEAUTY_SALON_TATTOOS) {
 						@Override
 						public void effects() {
-							Main.game.getTextStartStringBuilder().append(Main.game.getPlayer().incrementMoney(-value)); //TODO Kate description
+							Main.game.getTextStartStringBuilder().append(Main.game.getPlayer().incrementMoney(-value)); 
 
 							Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenPField').innerHTML=document.getElementById('tattoo_name').value;");
 							CharacterModificationUtils.tattoo.getWriting().setText(Main.mainController.getWebEngine().getDocument().getElementById("hiddenPField").getTextContent());

@@ -18,8 +18,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 public enum AnusType implements BodyPartTypeInterface {
 	HUMAN(BodyCoveringType.ANUS, Race.HUMAN),
 	
-	DEMON_COMMON(BodyCoveringType.ANUS, Race.DEMON, OrificeModifier.RIBBED, OrificeModifier.TENTACLED, OrificeModifier.MUSCLE_CONTROL),
-	
 	COW_MORPH(BodyCoveringType.ANUS, Race.COW_MORPH),
 	
 	DOG_MORPH(BodyCoveringType.ANUS, Race.DOG_MORPH),
@@ -38,10 +36,8 @@ public enum AnusType implements BodyPartTypeInterface {
 	
 	HORSE_MORPH(BodyCoveringType.ANUS, Race.HORSE_MORPH, OrificeModifier.PUFFY),
 	
-	REINDEER_MORPH(BodyCoveringType.ANUS, Race.REINDEER_MORPH, OrificeModifier.PUFFY),
+	REINDEER_MORPH(BodyCoveringType.ANUS, Race.REINDEER_MORPH, OrificeModifier.PUFFY);
 	
-	HARPY(BodyCoveringType.ANUS, Race.HARPY);
-
 	private BodyCoveringType skinType;
 	private Race race;
 	private List<OrificeModifier> defaultRacialOrificeModifiers;
@@ -87,8 +83,6 @@ public enum AnusType implements BodyPartTypeInterface {
 	@Override
 	public String getDescriptor(GameCharacter gc) {
 		switch(this){
-			case DEMON_COMMON:
-				return UtilText.returnStringAtRandom("demonic", "irresistible");
 			case HORSE_MORPH:
 				return UtilText.returnStringAtRandom("horse-like", "equine");
 			case COW_MORPH:

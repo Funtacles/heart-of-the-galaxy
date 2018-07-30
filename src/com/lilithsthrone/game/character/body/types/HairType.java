@@ -18,8 +18,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 public enum HairType implements BodyPartTypeInterface {
 	HUMAN(BodyCoveringType.HAIR_HUMAN, Race.HUMAN),
 
-	DEMON_COMMON(BodyCoveringType.HAIR_DEMON, Race.DEMON),
-	
 	DOG_MORPH(BodyCoveringType.HAIR_CANINE_FUR, Race.DOG_MORPH),
 
 	LYCAN(BodyCoveringType.HAIR_LYCAN_FUR, Race.WOLF_MORPH),
@@ -40,9 +38,7 @@ public enum HairType implements BodyPartTypeInterface {
 
 	HORSE_MORPH(BodyCoveringType.HAIR_HORSE_HAIR, Race.HORSE_MORPH),
 
-	REINDEER_MORPH(BodyCoveringType.HAIR_REINDEER_FUR, Race.REINDEER_MORPH),
-
-	HARPY(BodyCoveringType.HAIR_HARPY, Race.HARPY);
+	REINDEER_MORPH(BodyCoveringType.HAIR_REINDEER_FUR, Race.REINDEER_MORPH);
 
 	
 	private BodyCoveringType coveringType;
@@ -102,14 +98,10 @@ public enum HairType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("cat-like");
 			case COW_MORPH:
 				return UtilText.returnStringAtRandom("cow-like");
-			case DEMON_COMMON:
-				return UtilText.returnStringAtRandom("demonic");
 			case DOG_MORPH:
 				return UtilText.returnStringAtRandom("dog-like");
 			case SQUIRREL_MORPH:
 				return UtilText.returnStringAtRandom("squirrel-like");
-			case HARPY:
-				return UtilText.returnStringAtRandom("bird-like");
 			case HORSE_MORPH:
 				return UtilText.returnStringAtRandom("horse-like");
 			case REINDEER_MORPH:
@@ -144,16 +136,12 @@ public enum HairType implements BodyPartTypeInterface {
 				return "feline";
 			case CAT_MORPH_SIDEFLUFF:
 				return UtilText.returnStringAtRandom("feline sidefluff");
-			case DEMON_COMMON:
-				return "demonic";
 			case DOG_MORPH:
 				return "canine";
 			case COW_MORPH:
 				return "bovine";
 			case SQUIRREL_MORPH:
 				return "furry";
-			case HARPY:
-				return "avian";
 			case HORSE_MORPH:
 				return "equine";
 			case REINDEER_MORPH:

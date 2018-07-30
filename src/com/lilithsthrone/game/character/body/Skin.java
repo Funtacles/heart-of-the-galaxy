@@ -94,23 +94,6 @@ public class Skin implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case DEMON_COMMON:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" After just a few moments, the transformation comes to an end, and you let out a deep sigh as the itching finally stops, leaving your torso covered with demonic skin."
-								+ " It's far smoother than regular human skin, and you notice that the colour tones all over your body have become perfectly balanced in order to help show off your figure."
-								+ "<br/>"
-								+ "You now have [style.boldDemon(demonic)], [pc.skinFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" After just a few moments, the transformation comes to an end, and [npc.she] lets out a deep sigh as the itching finally stops, leaving [npc.her] torso covered with demonic skin."
-								+ " It's far smoother than regular human skin, and the colour tones all over [npc.her] body have become perfectly balanced in order to help show off [npc.her] figure."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldDemon(demonic)], [npc.skinFullDescription]."
-							+ "</p>");
-				}
-				break;
 			case DOG_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -196,23 +179,6 @@ public class Skin implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case REINDEER_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" After just a few moments, the transformation comes to an end, and you let out a deep sigh as the itching finally stops, leaving your torso covered with short, reindeer-like hair."
-								+ " Your new fur looks very sleek, and helps to show off your figure, although it's a little coarse to the touch."
-								+ "<br/>"
-								+ "You now have [style.boldReindeerMorph(rangiferine)], [pc.skinFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" After just a few moments, the transformation comes to an end, and [npc.she] lets out a deep sigh as the itching finally stops, leaving [npc.her] torso covered with short, reindeer-like hair."
-								+ " [npc.Her] new fur looks very sleek, and helps to show off [npc.her] figure, although it's a little coarse to the touch."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldReindeerMorph(rangiferine)], [npc.skinFullDescription]."
-							+ "</p>");
-				}
-				break;
 			case COW_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -278,23 +244,6 @@ public class Skin implements BodyPartInterface, Serializable {
 								+ " [npc.Her] new fur follows the lines of [npc.her] figure and is extremely smooth and soft."
 								+ "<br/>"
 								+ "[npc.Name] now has [style.boldRabbitMorph(rabbit-like)], [npc.skinFullDescription]."
-							+ "</p>");
-				}
-				break;
-			case HARPY:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" After just a few moments, the transformation comes to an end, and you let out a deep sigh as the itching finally stops, leaving your torso covered with a layer of beautiful, overlapping feathers."
-								+ " Your new feathers follow the lines of your figure, and are extremely smooth and soft to the touch."
-								+ "<br/>"
-								+ "You now have [style.boldHarpy(avian)], [pc.skinFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" After just a few moments, the transformation comes to an end, and [npc.she] lets out a deep sigh as the itching finally stops, leaving [npc.her] torso covered with beautiful, overlapping feathers."
-								+ " [npc.Her] new feathers follow the lines of [npc.her] figure, and are extremely smooth and soft to the touch."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldHarpy(avian)], [npc.skinFullDescription]."
 							+ "</p>");
 				}
 				break;

@@ -19,8 +19,6 @@ public enum TongueType implements BodyPartTypeInterface {
 
 	HUMAN(BodyCoveringType.TONGUE, Race.HUMAN, 1),
 
-	DEMON_COMMON(BodyCoveringType.TONGUE, Race.DEMON, 1, TongueModifier.BIFURCATED),
-	
 	DOG_MORPH(BodyCoveringType.TONGUE, Race.DOG_MORPH, 1),
 
 	WOLF_MORPH(BodyCoveringType.TONGUE, Race.WOLF_MORPH, 1),
@@ -34,8 +32,6 @@ public enum TongueType implements BodyPartTypeInterface {
 	HORSE_MORPH(BodyCoveringType.TONGUE, Race.HORSE_MORPH, 1),
 
 	REINDEER_MORPH(BodyCoveringType.TONGUE, Race.REINDEER_MORPH, 1),
-
-	TENGU(BodyCoveringType.TONGUE, Race.HARPY, 1),
 
 	SQUIRREL_MORPH(BodyCoveringType.TONGUE, Race.SQUIRREL_MORPH, 1),
 
@@ -84,8 +80,6 @@ public enum TongueType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("thin", "cat-like");
 			case COW_MORPH:
 				return UtilText.returnStringAtRandom("wide", "strong", "cow-like");
-			case DEMON_COMMON:
-				return UtilText.returnStringAtRandom("");
 			case DOG_MORPH:
 				return UtilText.returnStringAtRandom("wide", "dog-like");
 			case HORSE_MORPH:
@@ -96,8 +90,6 @@ public enum TongueType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("");
 			case SQUIRREL_MORPH:
 				return UtilText.returnStringAtRandom("");
-			case TENGU:
-				return UtilText.returnStringAtRandom("bird-like");
 			case RAT_MORPH:
 				return UtilText.returnStringAtRandom("");
 			case RABBIT_MORPH:

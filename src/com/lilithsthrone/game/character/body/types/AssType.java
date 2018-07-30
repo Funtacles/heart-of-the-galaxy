@@ -19,8 +19,6 @@ import com.lilithsthrone.utils.Util;
 public enum AssType implements BodyPartTypeInterface {
 	HUMAN(BodyCoveringType.HUMAN, AnusType.HUMAN, Race.HUMAN),
 	
-	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, AnusType.DEMON_COMMON, Race.DEMON),
-	
 	DOG_MORPH(BodyCoveringType.CANINE_FUR, AnusType.DOG_MORPH, Race.DOG_MORPH),
 	
 	COW_MORPH(BodyCoveringType.BOVINE_FUR, AnusType.COW_MORPH, Race.COW_MORPH),
@@ -39,10 +37,8 @@ public enum AssType implements BodyPartTypeInterface {
 	
 	HORSE_MORPH(BodyCoveringType.HORSE_HAIR, AnusType.HORSE_MORPH, Race.HORSE_MORPH),
 	
-	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, AnusType.REINDEER_MORPH, Race.REINDEER_MORPH),
+	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, AnusType.REINDEER_MORPH, Race.REINDEER_MORPH);
 	
-	HARPY(BodyCoveringType.FEATHERS, AnusType.HARPY, Race.HARPY);
-
 	private BodyCoveringType skinType;
 	private AnusType anusType;
 	private Race race;
@@ -90,8 +86,6 @@ public enum AssType implements BodyPartTypeInterface {
 		switch(Util.random.nextInt(2)){
 			case 0:
 				switch (this) {
-					case DEMON_COMMON:
-						return UtilText.returnStringAtRandom("demonic", "perfect");
 					default:
 						return UtilText.returnStringAtRandom("");
 				}
@@ -120,16 +114,12 @@ public enum AssType implements BodyPartTypeInterface {
 		switch(this){
 			case CAT_MORPH:
 				return "feline";
-			case DEMON_COMMON:
-				return "demonic";
 			case DOG_MORPH:
 				return "canine";
 			case COW_MORPH:
 				return "bovine";
 			case SQUIRREL_MORPH:
 				return "furry";
-			case HARPY:
-				return "feathered";
 			case HORSE_MORPH:
 				return "equine";
 			case REINDEER_MORPH:

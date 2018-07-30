@@ -114,32 +114,6 @@ public class Leg implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case DEMON_COMMON:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" They quickly shift into a pair of smooth, slender legs, and you let out a gasp as a layer of flawless, demonic skin rapidly grows to cover them."
-								+ " As they finish transforming, you almost lose your balance and fall over as the bones in your feet start to shift and rearrange themselves."
-								+ " After a moment, they've transformed into slender human-like feet, ending in soft, delicate toes.<br/>"
-								+ "You now have [style.boldDemon(demonic legs and feet)], which are covered in [pc.legFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" They quickly shift into a pair of smooth, slender legs, and [npc.she] lets out a gasp as a layer of flawless, demonic skin rapidly grows to cover them."
-								+ " As they finish transforming, [npc.she] almost loses [npc.her] balance as the bones in [npc.her] feet start to shift and rearrange themselves."
-								+ " After a moment, they've transformed into slender human-like feet, ending in soft, delicate toes.<br/>"
-								+ "[npc.Name] now has [style.boldDemon(demonic legs and feet)], which are covered in [npc.legFullDescription]."
-							+ "</p>");
-				}
-				break;
-			case DEMON_HOOFED:
-				UtilText.transformationContentSB.append(
-							" They quickly shift into a pair of smooth, slender legs, and [npc.name] [npc.verb(let)] out a gasp as a layer of flawless, demonic skin rapidly grows to cover them."
-							+ " As [npc.her] new skin spreads down to the ends of [npc.her] toes, they suddenly push together, and [npc.she] [npc.verb(let)] out a cry as a thick, hoof-like nail grows in their place,"
-								+ " quickly transforming to turn [npc.her] feet into hard, demonic hoofs."
-							+ " As the transformation ends, [npc.she] [npc.verb(see)] that [npc.her] new skin smoothly transitions into the [npc.skin] covering the rest of [npc.her] body at [npc.her] upper-thigh.<br/>"
-							+ "[npc.NameIsFull] left with [style.boldDemon(demonic legs and hoofed feet)], which are covered in [pc.legFullDescription]."
-						+ "</p>");
-				break;
 			case DOG_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -311,25 +285,6 @@ public class Leg implements BodyPartInterface, Serializable {
 								+ " As [npc.her] new fur spreads down to the ends of [npc.her] toes, [npc.her] toenails thicken into blunt claws, and soft little pads grow to cover [npc.her] soles, leaving [npc.herHim] with long, paw-like feet."
 								+ " As the transformation ends, [npc.she] sees that [npc.her] new fur smoothly transitions into the [npc.skin] covering the rest of [npc.her] body at [npc.her] upper-thigh.<br/>"
 								+ "[npc.Name] now has anthropomorphic, [style.boldRabbitMorph(rabbit-like legs and feet)], which are covered in [npc.legFullDescription]."
-							+ "</p>");
-				}
-				break;
-			case HARPY:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" A layer of scaly, bird-like leather quickly grows over your legs as they shift into a new form."
-								+ " As your new leathery skin spreads down to the ends of your toes, your feet start to undergo an extreme transformation."
-								+ " Your toes combine together and re-shape themselves into three forward-facing talons, as a fourth, thumb-like talon branches out behind them."
-								+ " As the transformation ends, a layer of attractive feathers grow around your upper-thigh, smoothly transitioning into the leathery skin which now covers your lower-legs.<br/>"
-								+ "You're left with anthropomorphic, [style.boldHarpy(bird-like legs and talons in place of feet)], which are covered in [pc.legFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" A layer of scaly, bird-like leather quickly grows over [npc.her] legs as they shift into a new form."
-								+ " As [npc.her] new leathery skin spreads down to the ends of [npc.her] toes, [npc.her] feet start to undergo an extreme transformation."
-								+ " [npc.Her] toes combine together and re-shape themselves into three forward-facing talons, as a fourth, thumb-like talon branches out behind them."
-								+ " As the transformation ends, a layer of attractive feathers grow around [npc.her] upper-thigh, smoothly transitioning into the leathery skin which now covers [npc.her] lower-legs.<br/>"
-								+ "[npc.Name] now has anthropomorphic, [style.boldHarpy(bird-like legs and talons in place of feet)], which are covered in [npc.legFullDescription]."
 							+ "</p>");
 				}
 				break;

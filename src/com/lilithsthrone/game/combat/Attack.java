@@ -118,12 +118,6 @@ public enum Attack {
 			damage *= (attacker.getAttributeValue(Attribute.CRITICAL_DAMAGE) / 100f);
 		}
 		
-		if(attacker.isPlayer()||Main.game.getPlayer().hasCompanion(attacker)) {
-			damage *= Main.getProperties().difficultyLevel.getDamageModifierPlayer();
-		} else {
-			damage *= Main.getProperties().difficultyLevel.getDamageModifierNPC();
-		}
-		
 		// Round float value to nearest 1 decimal place:
 		damage = (Math.round(damage*10))/10f;
 
@@ -150,12 +144,6 @@ public enum Attack {
 		// Is critical:
 		if (critical) {
 			finalDamage *= (attacker.getAttributeValue(Attribute.CRITICAL_DAMAGE) / 100f);
-		}
-		
-		if(attacker.isPlayer()||Main.game.getPlayer().hasCompanion(attacker)) {
-			finalDamage *= Main.getProperties().difficultyLevel.getDamageModifierPlayer();
-		} else {
-			finalDamage *= Main.getProperties().difficultyLevel.getDamageModifierNPC();
 		}
 		
 		// Round float value to nearest 1 decimal place:
@@ -186,12 +174,6 @@ public enum Attack {
 			finalDamage *= (attacker.getAttributeValue(Attribute.CRITICAL_DAMAGE) / 100f);
 		}
 		
-		if(attacker.isPlayer()||Main.game.getPlayer().hasCompanion(attacker)) {
-			finalDamage *= Main.getProperties().difficultyLevel.getDamageModifierPlayer();
-		} else {
-			finalDamage *= Main.getProperties().difficultyLevel.getDamageModifierNPC();
-		}
-
 		// Round float value to nearest 1 decimal place:
 		finalDamage = (Math.round(finalDamage*10))/10f;
 

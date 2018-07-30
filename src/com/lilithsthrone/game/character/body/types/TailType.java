@@ -21,10 +21,6 @@ import com.lilithsthrone.utils.Util;
 public enum TailType implements BodyPartTypeInterface {
 	NONE(null, null, false, false),
 
-	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, Race.DEMON, true, true),
-	
-	DEMON_HAIR_TIP(BodyCoveringType.DEMON_COMMON, Race.DEMON, true, false),
-
 	DOG_MORPH(BodyCoveringType.CANINE_FUR, Race.DOG_MORPH, false, false),
 	
 	DOG_MORPH_STUBBY(BodyCoveringType.CANINE_FUR, Race.DOG_MORPH, false, false),
@@ -53,9 +49,7 @@ public enum TailType implements BodyPartTypeInterface {
 	
 	HORSE_MORPH_ZEBRA(BodyCoveringType.HAIR_HORSE_HAIR, Race.HORSE_MORPH, false, false),
 
-	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH, false, false),
-	
-	HARPY(BodyCoveringType.FEATHERS, Race.HARPY, false, false);
+	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH, false, false);
 
 	private BodyCoveringType skinType;
 	private Race race;
@@ -77,15 +71,11 @@ public enum TailType implements BodyPartTypeInterface {
 	public String getDeterminer(GameCharacter gc) {
 		if(gc.getTailCount()==1) {
 			switch(this){
-				case HARPY:
-					return "a plume of";
 				default:
 					return "";
 			}
 		} else {
 			switch(this){
-				case HARPY:
-					return Util.intToString(gc.getTailCount())+" plumes of";
 				default:
 					return Util.intToString(gc.getTailCount());
 			}
@@ -96,8 +86,6 @@ public enum TailType implements BodyPartTypeInterface {
 	@Override
 	public String getNameSingular(GameCharacter gc) {
 		switch(this){
-			case HARPY:
-				return UtilText.returnStringAtRandom("tail feathers");
 			default:
 				return UtilText.returnStringAtRandom("tail");
 		}
@@ -106,8 +94,6 @@ public enum TailType implements BodyPartTypeInterface {
 	@Override
 	public String getNamePlural(GameCharacter gc) {
 		switch(this){
-			case HARPY:
-				return UtilText.returnStringAtRandom("tail feathers");
 			default:
 				return UtilText.returnStringAtRandom("tails");
 		}
@@ -124,16 +110,10 @@ public enum TailType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("cat-like", "tufted");
 			case COW_MORPH:
 				return UtilText.returnStringAtRandom("cow-like", "tufted");
-			case DEMON_COMMON:
-				return UtilText.returnStringAtRandom("spaded", "demonic");
-			case DEMON_HAIR_TIP:
-				return UtilText.returnStringAtRandom("hair-tipped", "demonic");
 			case DOG_MORPH:
 				return UtilText.returnStringAtRandom("dog-like");
 			case DOG_MORPH_STUBBY:
 				return UtilText.returnStringAtRandom("stubby", "dog-like");
-			case HARPY:
-				return UtilText.returnStringAtRandom("colourful", "bird-like");
 			case HORSE_MORPH:
 				return UtilText.returnStringAtRandom("horse-like");
 			case HORSE_MORPH_ZEBRA:
@@ -169,16 +149,10 @@ public enum TailType implements BodyPartTypeInterface {
 				return "tufted feline";
 			case COW_MORPH:
 				return "bovine";
-			case DEMON_COMMON:
-				return "spaded";
-			case DEMON_HAIR_TIP:
-				return "hair-tipped";
 			case DOG_MORPH:
 				return "canine";
 			case DOG_MORPH_STUBBY:
 				return "stubby canine";
-			case HARPY:
-				return "plume";
 			case HORSE_MORPH:
 				return "horse";
 			case HORSE_MORPH_ZEBRA:
@@ -210,12 +184,7 @@ public enum TailType implements BodyPartTypeInterface {
 	}
 	
 	public String getTailTipDescriptor(GameCharacter gc) {
-		switch(this){
-			case DEMON_COMMON:
-				return UtilText.returnStringAtRandom("spaded");
-			default:
-				return UtilText.returnStringAtRandom("");
-		}
+		return UtilText.returnStringAtRandom("");
 	}
 
 	@Override

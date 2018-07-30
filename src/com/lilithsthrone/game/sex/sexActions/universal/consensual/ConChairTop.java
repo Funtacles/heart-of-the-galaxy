@@ -2,11 +2,8 @@ package com.lilithsthrone.game.sex.sexActions.universal.consensual;
 
 import com.lilithsthrone.game.character.attributes.CorruptionLevel;
 import com.lilithsthrone.game.character.body.CoverableArea;
-import com.lilithsthrone.game.character.body.types.BreastType;
-import com.lilithsthrone.game.character.body.types.VaginaType;
 import com.lilithsthrone.game.character.body.valueEnums.CupSize;
 import com.lilithsthrone.game.character.fetishes.Fetish;
-import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.sex.ArousalIncrease;
@@ -206,20 +203,14 @@ public class ConChairTop {
 					UtilText.returnStringAtRandom(
 					"You reach down and start to eagerly pinch and rub at [npc.name(The)]'s [npc.nipples+], quickly causing [npc.herHim] to start squealing and moaning in delight as [npc.she] begs you not to stop.",
 					
-					(Sex.getActivePartner().getBreastType()==BreastType.DEMON_COMMON
-					?"[npc.name(The)]'s [npc.nipples] look exactly like cute little pussies, and you can't resist reaching down to tug and pinch at their outer folds."
-							+ " The lewd screams and moans that suddenly erupt from [npc.her] mouth tell you that [npc.she] likes this sort of treatment."
-					:"[npc.name(The)]'s [npc.nipples+] are fully on display, and you can't resist reaching down to tug and pinch at them."
-							+ " The [npc.moans+] that suddenly erupt from [npc.her] mouth tell you that [npc.she] likes this sort of treatment."),
+					"[npc.name(The)]'s [npc.nipples+] are fully on display, and you can't resist reaching down to tug and pinch at them."
+							+ " The [npc.moans+] that suddenly erupt from [npc.her] mouth tell you that [npc.she] likes this sort of treatment.",
+					
+					"You tease your fingers around each of [npc.namePos] [npc.nipples]. Not satisfied with the intensity of the resulting [npc.moans], you decide to start pinching and tugging at them instead,"
+						+ " which, much to your delight, causes [npc.herHim] to let out a desperate scream of ecstasy.",
 							
-					(Sex.getActivePartner().getBreastType()==BreastType.DEMON_COMMON
-					?"You tease your fingers around each of [npc.namePos] demonic little nipple-cunts. Not satisfied with the intensity of the resulting [npc.moans], you decide to start pinching and tugging at them instead,"
-							+ " which, much to your delight, causes [npc.herHim] to let out a desperate scream of ecstasy."
-					:"You tease your fingers around each of [npc.namePos] [npc.nipples]. Not satisfied with the intensity of the resulting [npc.moans], you decide to start pinching and tugging at them instead,"
-						+ " which, much to your delight, causes [npc.herHim] to let out a desperate scream of ecstasy."),
-							
-					"[npc.name(The)]'s [npc.breastRows] [npc.breasts+] are fully exposed, and before you know what you're doing, you're pinching and squeezing [npc.her] [npc.nipples+] as [npc.she] moans beneath you."));
-			
+					"[npc.name(The)]'s [npc.breastRows] [npc.breasts+] are fully exposed, and before you know what you're doing, you're pinching and squeezing [npc.her] [npc.nipples+] as [npc.she] moans beneath you.")
+			);
 			switch (Sex.getActivePartner().getBreastStoredMilk()) {
 				case ONE_TRICKLE:
 					descriptionSB.append(" As you squeeze down on [npc.her] [npc.nipples], a small trickle of [npc.milk] leaks out onto your fingertips.");
@@ -1895,7 +1886,6 @@ public class ConChairTop {
 		@Override
 		public boolean isBaseRequirementsMet() {
 			return Sex.getActivePartner().isFeminine()
-					&& Sex.getActivePartner().getRace()==Race.DEMON
 					&& Sex.getActivePartner().getRaceStage()==RaceStage.GREATER;
 		}
 
@@ -2128,9 +2118,7 @@ public class ConChairTop {
 		@Override
 		public String getDescription() {
 			return UtilText.returnStringAtRandom(
-					"Without any warning, [npc.name] suddenly wraps [npc.her] [npc.legs] around your lower back and pulls forwards, forcing you to bury your [pc.cock+] deep into [npc.her] [npc.pussy+]."
-							+(Sex.getActivePartner().getVaginaType()==VaginaType.DEMON_COMMON?" [npc.She] giggles and holds you there for a moment, massaging your [pc.cock] with [npc.her] [npc.pussy]'s little tentacles, before finally releasing you.":""),
-					
+					"Without any warning, [npc.name] suddenly wraps [npc.her] [npc.legs] around your lower back and pulls forwards, forcing you to bury your [pc.cock+] deep into [npc.her] [npc.pussy+].",
 					"[npc.NamePos] [npc.legs+] suddenly reach up and wrap themselves around you."
 							+ " With one forceful pull, [npc.she] slams your [pc.cock+] deep into her needy [npc.pussy], letting out [npc.a_moan+] as [npc.she] leg-locks you for a few seconds before releasing you.",
 					

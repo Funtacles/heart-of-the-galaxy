@@ -17,9 +17,7 @@ import com.lilithsthrone.utils.Util;
  * @author Innoxia
  */
 public enum TentacleType implements BodyPartTypeInterface {
-	NONE(null, null, false),
-
-	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, Race.DEMON, true);
+	NONE(null, null, false);
 
 	private BodyCoveringType skinType;
 	private Race race;
@@ -71,8 +69,6 @@ public enum TentacleType implements BodyPartTypeInterface {
 	@Override
 	public String getDescriptor(GameCharacter gc) {
 		switch(this){
-			case DEMON_COMMON:
-				return UtilText.returnStringAtRandom("demonic");
 			case NONE:
 				return UtilText.returnStringAtRandom("");
 		}
@@ -82,8 +78,6 @@ public enum TentacleType implements BodyPartTypeInterface {
 	
 	public String getTransformName() {
 		switch(this){
-			case DEMON_COMMON:
-				return "demonic";
 			case NONE:
 				return "none";
 		}
@@ -99,8 +93,6 @@ public enum TentacleType implements BodyPartTypeInterface {
 	
 	public String getTentacleTipDescriptor(GameCharacter gc) {
 		switch(this){
-			case DEMON_COMMON:
-				return UtilText.returnStringAtRandom("rounded");
 			default:
 				return UtilText.returnStringAtRandom("");
 		}

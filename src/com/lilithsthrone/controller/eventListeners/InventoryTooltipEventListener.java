@@ -755,27 +755,17 @@ public class InventoryTooltipEventListener implements EventListener {
 							+ "</b>"
 							+ " <b style='color:" + absWep.getDamageType().getMultiplierAttribute().getColour().toWebHexString() + ";'>Damage</b>");
 		}
-
-//		if (absWep.getEffects().size() != 0) { TODO enchanting effects
-//			for (ItemEffect e : absWep.getEffects()) {
-//				for(String s : e.getEffectsDescription(owner, owner)) {
-//					tooltipSB.append("<br/>"+ s);
-//				}
-//			}
-			for(Entry<Attribute, Integer> entry : absWep.getAttributeModifiers().entrySet()) {
-				tooltipSB.append("<br/>"+ 
-						(entry.getValue()<0
-								?"[style.boldBad("+entry.getValue()+")] "
-								:"[style.boldGood(+"+entry.getValue()+")] ")
-						+ "<b style='color:"+entry.getKey().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(entry.getKey().getName())+"</b>");
-			}
-//		} else {
-//			tooltipSB.append("<br/>[style.colourDisabled(No bonuses)]");
-//		}
-		
-			for(Spell s : absWep.getSpells()) {
-				tooltipSB.append("<br/><b style='color:"+Colour.DAMAGE_TYPE_SPELL.toWebHexString()+";'>Grants Spell</b><b>:</b> <b style='color:"+s.getSpellSchool().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(s.getName())+"</b>");
-			}
+		for(Entry<Attribute, Integer> entry : absWep.getAttributeModifiers().entrySet()) {
+			tooltipSB.append("<br/>"+ 
+					(entry.getValue()<0
+							?"[style.boldBad("+entry.getValue()+")] "
+							:"[style.boldGood(+"+entry.getValue()+")] ")
+					+ "<b style='color:"+entry.getKey().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(entry.getKey().getName())+"</b>");
+		}
+	
+		for(Spell s : absWep.getSpells()) {
+			tooltipSB.append("<br/><b style='color:"+Colour.DAMAGE_TYPE_SPELL.toWebHexString()+";'>Grants Spell</b><b>:</b> <b style='color:"+s.getSpellSchool().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(s.getName())+"</b>");
+		}
 			
 		tooltipSB.append("</div>");
 		

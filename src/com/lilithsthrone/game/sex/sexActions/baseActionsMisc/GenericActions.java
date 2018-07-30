@@ -5,17 +5,11 @@ import java.util.List;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.CorruptionLevel;
 import com.lilithsthrone.game.character.attributes.LustLevel;
-import com.lilithsthrone.game.character.body.CoverableArea;
-import com.lilithsthrone.game.character.body.types.PenisType;
-import com.lilithsthrone.game.character.body.valueEnums.CumProduction;
-import com.lilithsthrone.game.character.body.valueEnums.PenisSize;
 import com.lilithsthrone.game.character.fetishes.Fetish;
-import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.sex.ArousalIncrease;
 import com.lilithsthrone.game.sex.Sex;
 import com.lilithsthrone.game.sex.SexAreaOrifice;
-import com.lilithsthrone.game.sex.SexFlags;
 import com.lilithsthrone.game.sex.SexPace;
 import com.lilithsthrone.game.sex.SexParticipantType;
 import com.lilithsthrone.game.sex.SexPositionSlot;
@@ -33,105 +27,6 @@ import com.lilithsthrone.utils.Util;
  * @author Innoxia
  */
 public class GenericActions {
-	
-	public static final SexAction PLAYER_SELF_GROW_PENIS = new SexAction(
-			SexActionType.ONGOING,
-			ArousalIncrease.ONE_MINIMUM,
-			ArousalIncrease.TWO_LOW,
-			CorruptionLevel.ONE_VANILLA,
-			null,
-			SexParticipantType.SELF) {
-		
-		@Override
-		public String getActionTitle() {
-			return "Grow cock (self)";
-		}
-
-		@Override
-		public String getActionDescription() {
-			return "Use your demonic powers to grow a cock for yourself. <b>You will automatically transform the grown cock away when sex ends.</b>";
-		}
-
-		@Override
-		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().getRace()==Race.DEMON
-					&& !Main.game.getPlayer().hasPenis()
-					&& Sex.getCharacterPerformingAction().isPlayer();
-		}
-
-		@Override
-		public String getDescription() {
-			return "Deciding to use your demonic powers to grow a nice thick cock, you grin at [npc2.name] as you [npc.moanVerb],"
-					+ " [npc.speech(You're going to love this!)]";
-		}
-
-		@Override
-		public String applyEffectsString() {
-			SexFlags.playerGrewDemonicCock = true;
-			
-			StringBuilder sb = new StringBuilder();
-			sb.append(Main.game.getPlayer().setPenisType(PenisType.DEMON_COMMON));
-			if(Main.game.getPlayer().getPenisRawCumStorageValue() < CumProduction.FIVE_HUGE.getMedianValue()) {
-				sb.append(Main.game.getPlayer().setPenisCumStorage(CumProduction.FIVE_HUGE.getMedianValue()));
-				Main.game.getPlayer().fillCumToMaxStorage();
-			}
-			if(Main.game.getPlayer().getPenisRawSizeValue() < PenisSize.FIVE_ENORMOUS.getMedianValue()) {
-				sb.append(Main.game.getPlayer().setPenisSize(PenisSize.FIVE_ENORMOUS.getMedianValue()));
-			}
-			return sb.toString();
-		}
-	};
-	
-	public static final SexAction PLAYER_GET_PARTNER_TO_GROW_PENIS = new SexAction(
-			SexActionType.ONGOING,
-			ArousalIncrease.ONE_MINIMUM,
-			ArousalIncrease.TWO_LOW,
-			CorruptionLevel.ONE_VANILLA,
-			null,
-			SexParticipantType.NORMAL) {
-		
-		@Override
-		public String getActionTitle() {
-			return "Grow cock";
-		}
-
-		@Override
-		public String getActionDescription() {
-			return "Get [npc2.name] to grow a demonic cock.";
-		}
-
-		@Override
-		public boolean isBaseRequirementsMet() {
-			return !Sex.isMasturbation()
-					&& Sex.getActivePartner().getRace()==Race.DEMON
-					&& !Sex.getActivePartner().hasPenis()
-					&& Sex.getCharacterPerformingAction().isPlayer();
-		}
-
-		@Override
-		public String getDescription() {
-			return "You decide that you'd like [npc2.name] to use [npc2.her] transformative powers to grow a nice thick demonic cock for you."
-					+ " Grinning down at [npc2.herHim], you tell [npc2.herHim] as much, [npc.speech(Why don't you grow a nice big cock, so we can have even more fun!)]"
-					+ "<br/><br/>"
-					+(Sex.getActivePartner().isCoverableAreaExposed(CoverableArea.PENIS)
-						?"[npc2.Name] lets out a little giggle, and as you look down at [npc2.her] naked groin, you see a large bump start to form beneath [npc2.her] [npc2.skin]."
-								+ " Before you have any time to change your mind, it quickly grows out into a fat demonic cock, and as you stare down at the little wriggling bumps that press out all along its shaft,"
-								+ " a little spurt of precum shoots out onto your stomach."
-						:"[npc2.Name] lets out a little giggle, and as you look down at [npc2.her] groin, you see a huge bulge quickly form beneath the fabric of [npc2.her] "
-								+Sex.getActivePartner().getHighestZLayerCoverableArea(CoverableArea.VAGINA).getName()+"."
-								+ " Before you have any time to change your mind, [npc2.name] lets out [npc2.a_moan+], and you realise that [npc2.sheIs] now got a huge demonic cock hiding beneath [npc2.her] clothing.");
-		}
-
-		@Override
-		public void applyEffects() {
-			Sex.getActivePartner().setPenisType(PenisType.DEMON_COMMON);
-			Sex.getActivePartner().setPenisCumStorage(CumProduction.FIVE_HUGE.getMedianValue());
-			Sex.getActivePartner().fillCumToMaxStorage();
-			Sex.getActivePartner().setTesticleSize(0);
-			Sex.getActivePartner().setPenisSize(PenisSize.FIVE_ENORMOUS.getMedianValue());
-		}
-	};
-
 	
 	public static final SexAction PLAYER_HYPNOTIC_SUGGESTION_LUST_DECREASE = new SexAction(
 			SexActionType.ONGOING,

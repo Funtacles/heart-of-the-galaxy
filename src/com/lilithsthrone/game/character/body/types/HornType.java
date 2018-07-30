@@ -14,27 +14,23 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
  * @author Innoxia
  */
 public enum HornType implements BodyPartTypeInterface {
-	NONE("", null, null),
+	NONE("", null),
 
-	BOVINE_CURVED("curved", BodyCoveringType.HORN, Race.COW_MORPH),
-	BOVINE_STRAIGHT("straight", BodyCoveringType.HORN, Race.COW_MORPH),
+	BOVINE_CURVED("curved", BodyCoveringType.HORN),
+	BOVINE_STRAIGHT("straight", BodyCoveringType.HORN),
 	
-	REINDEER_RACK("multi-branched", BodyCoveringType.ANTLER_REINDEER, Race.REINDEER_MORPH),
+	REINDEER_RACK("multi-branched", BodyCoveringType.ANTLER_REINDEER),
 	
-	CURLED("curled", BodyCoveringType.HORN, Race.DEMON),
-	SPIRAL("spiral", BodyCoveringType.HORN, Race.DEMON),
-	CURVED("curved", BodyCoveringType.HORN, Race.DEMON),
-	SWEPT_BACK("swept-back", BodyCoveringType.HORN, Race.DEMON),
-	STRAIGHT("straight", BodyCoveringType.HORN, Race.DEMON);
-	
-	//TODO if add any more, add more TFModifiers for enchanting
+	CURLED("curled", BodyCoveringType.HORN),
+	SPIRAL("spiral", BodyCoveringType.HORN),
+	CURVED("curved", BodyCoveringType.HORN),
+	SWEPT_BACK("swept-back", BodyCoveringType.HORN),
+	STRAIGHT("straight", BodyCoveringType.HORN);
 	
 	private BodyCoveringType skinType;
-	private Race race;
 	
-	private HornType(String descriptor, BodyCoveringType skinType, Race race) {
+	private HornType(String descriptor, BodyCoveringType skinType) {
 		this.skinType = skinType;
-		this.race = race;
 	}
 
 	@Override
@@ -115,7 +111,7 @@ public enum HornType implements BodyPartTypeInterface {
 
 	@Override
 	public Race getRace() {
-		return race;
+		return Race.HUMAN;
 	}
 	
 	public static List<HornType> getHornTypesSuitableForTransformation(List<HornType> options) {

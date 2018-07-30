@@ -78,21 +78,11 @@ public class Face implements BodyPartInterface, Serializable {
 	}
 	
 	public String getNoseNameSingular(GameCharacter gc) {
-		switch(type) {
-			case HARPY:
-				return "beak";
-			default:
-				return "nose";
-		}
+		return "nose";
 	}
 	
 	public String getNoseNamePlural(GameCharacter gc) {
-		switch(type) {
-			case HARPY:
-				return "beaks";
-			default:
-				return "noses";
-		}
+		return "noses";
 	}
 
 	public String getNoseDescriptor(GameCharacter gc) {
@@ -148,19 +138,6 @@ public class Face implements BodyPartInterface, Serializable {
 					UtilText.transformationContentSB.append(UtilText.parse(owner,
 								" Thankfully for [npc.herHim], the transformation only lasts a matter of moments, leaving [npc.herHim] with a normal human face, covered in [npc.faceSkin+].<br/>"
 								+ "[npc.Name] now has a [style.boldHuman(human face)], covered in [npc.faceFullDescription], and within [npc.her] mouth, [npc.she] has a [style.boldHuman(human tongue)]."
-							+ "</p>"));
-				}
-				break;
-			case DEMON_COMMON:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" Thankfully, the alarming feeling is over within a few moments, and you discover that you've been left with a demonic, human-looking face, covered in [pc.faceSkin+].<br/>"
-								+ "You now have a [style.boldDemon(demonic face)], covered in [pc.faceFullDescription], and within your mouth, you have a [style.boldDemon(demonic tongue)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(UtilText.parse(owner,
-								" Thankfully for [npc.herHim], the transformation only lasts a matter of moments, leaving [npc.herHim] with a demonic, human-looking face, covered in [npc.faceSkin+].<br/>"
-								+ "[npc.Name] now has a [style.boldDemon(demonic face)], covered in [npc.faceFullDescription], and within [npc.her] mouth, [npc.she] has a [style.boldDemon(demonic tongue)]."
 							+ "</p>"));
 				}
 				break;
@@ -315,36 +292,6 @@ public class Face implements BodyPartInterface, Serializable {
 							+ "</p>"));
 				}
 				break;
-			case HARPY:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" You feel your nose and mouth twitching and transforming as they fuse together and push out into a short beak, and your tongue grows longer and thinner, turning into a bird-like tongue."
-								+ " A layer of [pc.faceSkin+] quickly grows to cover your new face, and as the transformation finally comes to an end, you're left panting as you try to recover and catch your breath."
-								+ " You find, much to your relief, that you're able to harden or soften the edges of your beak, allowing you to portray facial emotions as well as wrap your beak's edges around anything you might want to put in your mouth<br/>"
-								+ "You now have an anthropomorphic [style.boldHarpy(bird-like face)], covered in [pc.faceFullDescription], and within your mouth, you have a [style.boldHarpy(thin, bird-like tongue)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(UtilText.parse(owner,
-								" [npc.Her] nose and mouth twitch and transform as they fuse together and push out into a short beak, and [npc.her] tongue grows longer and thinner, turning into a bird-like tongue."
-								+ " A layer of [npc.faceSkin+] quickly grows to cover [npc.her] new face, and as the transformation finally comes to an end, [npc.sheIs] left panting as [npc.she] tries to recover and catch [npc.her] breath."
-								+ " [npc.She] finds, much to [npc.her] relief, that [npc.sheIs] able to harden or soften the edges of [npc.her] beak,"
-									+ " allowing [npc.herHim] to portray facial emotions as well as wrap [npc.her] beak's edges around anything [npc.she] might want to put in [npc.her] mouth<br/>"
-								+ "[npc.Name] now has an anthropomorphic [style.boldHarpy(bird-like face)], covered in [npc.faceFullDescription], and within [npc.her] mouth, [npc.she] has a [style.boldHarpy(thin, bird-like tongue)]."
-							+ "</p>"));
-				}
-				break;
-//			default:
-//				if (owner.isPlayer()) {
-//					UtilText.transformationContentSB.append(
-//								" Within a matter of moments, a layer of [pc.faceFullDescription] has quickly grown over your new face.<br/>"
-//								+ "As the transformation comes to an end, you're left with [style.boldTfLesser([pc.face+])], which is covered in [pc.faceFullDescription]."
-//							+ "</p>");
-//				} else {
-//					UtilText.transformationContentSB.append(UtilText.parse(owner,
-//								" Within a matter of moments, a layer of [npc.faceFullDescription] has quickly grown over [npc.her] new face.<br/>"
-//								+ "As the transformation comes to an end, [npc.name] is left with [style.boldTfLesser([npc.face+])], which is covered in [npc.faceFullDescription]."
-//							+ "</p>"));
-//				}
 		}
 		return UtilText.parse(owner, UtilText.transformationContentSB.toString())
 				+ "<br/><br/>"

@@ -91,7 +91,7 @@ public class BodyChanging {
 		}
 	}
 
-	private static List<Race> demonRace = Util.newArrayListOfValues(Race.DEMON);
+	private static List<Race> demonRace = new ArrayList<>();
 	private static List<Race> slimeRaces = new ArrayList<>();
 	static {
 		for(Race r : Race.values()) {
@@ -100,8 +100,7 @@ public class BodyChanging {
 	}
 	
 	private static boolean isDemonTFMenu() {
-		return BodyChanging.getTarget().getRace()==Race.DEMON
-				|| BodyChanging.getTarget() instanceof Elemental;
+		return BodyChanging.getTarget() instanceof Elemental;
 	}
 	
 	public static final DialogueNodeOld BODY_CHANGING_CORE = new DialogueNodeOld("Core", "", true) {

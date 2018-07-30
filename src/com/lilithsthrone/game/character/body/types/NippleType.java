@@ -19,8 +19,6 @@ public enum NippleType implements BodyPartTypeInterface {
 	
 	HUMAN(BodyCoveringType.NIPPLES, Race.HUMAN),
 
-	DEMON_COMMON(BodyCoveringType.NIPPLES, Race.DEMON),
-
 	DOG_MORPH(BodyCoveringType.NIPPLES, Race.DOG_MORPH),
 	
 	WOLF_MORPH(BodyCoveringType.NIPPLES, Race.WOLF_MORPH),
@@ -39,9 +37,7 @@ public enum NippleType implements BodyPartTypeInterface {
 	
 	HORSE_MORPH(BodyCoveringType.NIPPLES, Race.HORSE_MORPH),
 	
-	REINDEER_MORPH(BodyCoveringType.NIPPLES, Race.REINDEER_MORPH),
-	
-	HARPY(BodyCoveringType.NIPPLES, Race.HARPY);
+	REINDEER_MORPH(BodyCoveringType.NIPPLES, Race.REINDEER_MORPH);
 
 	
 	private BodyCoveringType skinType;
@@ -98,9 +94,6 @@ public enum NippleType implements BodyPartTypeInterface {
 		String descriptor[];
 		
 		switch(this){
-			case DEMON_COMMON:
-				descriptor = new String[] { "demonic", "irresistible" };
-				break;
 			case HUMAN:
 				descriptor = new String[] { "" };
 				break;

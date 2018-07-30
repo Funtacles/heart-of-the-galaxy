@@ -103,19 +103,6 @@ public class Hair implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case DEMON_COMMON:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" The feeling goes away almost as quickly as it came, leaving you with silky, demonic hair.<br/>"
-								+ "You now have [pc.hairColour] [style.boldDemon(demonic hair)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" The transformation only lasts a matter of moments, leaving [npc.herHim] with silky, demonic hair.<br/>"
-								+ "[npc.Name] now has [npc.hairColour] [style.boldDemon(demonic hair)]."
-							+ "</p>");
-				}
-				break;
 			case DOG_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -256,19 +243,6 @@ public class Hair implements BodyPartInterface, Serializable {
 					UtilText.transformationContentSB.append(
 								" The transformation only lasts a matter of moments, leaving [npc.herHim] with fur-like hair.<br/>"
 								+ "[npc.Name] now has [npc.hairColour] [style.boldRabbitMorph(rabbit-like hair)]."
-							+ "</p>");
-				}
-				break;
-			case HARPY:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" The feeling goes away almost as quickly as it came, leaving you with a plume of feathers in place of hair.<br/>"
-								+ "You now have [pc.hairColour] [style.boldHarpy(harpy feathers in place of hair)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" The transformation only lasts a matter of moments, leaving [npc.herHim] with a plume of feathers in place of hair.<br/>"
-								+ "[npc.Name] now has [npc.hairColour] [style.boldHarpy(harpy feathers in place of hair)]."
 							+ "</p>");
 				}
 				break;

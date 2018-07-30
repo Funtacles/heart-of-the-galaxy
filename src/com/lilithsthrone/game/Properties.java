@@ -39,7 +39,6 @@ import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.game.inventory.weapon.WeaponType;
-import com.lilithsthrone.game.settings.DifficultyLevel;
 import com.lilithsthrone.game.settings.ForcedFetishTendency;
 import com.lilithsthrone.game.settings.ForcedTFTendency;
 import com.lilithsthrone.game.settings.KeyCodeWithModifiers;
@@ -80,8 +79,6 @@ public class Properties implements Serializable {
 	public int pregnancyLactationLimit = 1000;
 	
 	public Set<PropertyValue> values;
-	
-	public DifficultyLevel difficultyLevel = DifficultyLevel.NORMAL;
 	
 	public AndrogynousIdentification androgynousIdentification = AndrogynousIdentification.CLOTHING_FEMININE;
 
@@ -223,9 +220,6 @@ public class Properties implements Serializable {
 			
 			createXMLElementWithValue(doc, settings, "forcedFetishPercentage", String.valueOf(forcedFetishPercentage));
 
-			createXMLElementWithValue(doc, settings, "difficultyLevel", difficultyLevel.toString());
-			
-			
 			
 			// Game key binds:
 			Element keyBinds = doc.createElement("keyBinds");
@@ -553,10 +547,6 @@ public class Properties implements Serializable {
 				
 				if(element.getElementsByTagName("preferredArtist").item(0)!=null) {
 					preferredArtist =((Element)element.getElementsByTagName("preferredArtist").item(0)).getAttribute("value");
-				}
-				
-				if(element.getElementsByTagName("difficultyLevel").item(0)!=null) {
-					difficultyLevel = DifficultyLevel.valueOf(((Element)element.getElementsByTagName("difficultyLevel").item(0)).getAttribute("value"));
 				}
 				
 				if(element.getElementsByTagName("androgynousIdentification").item(0)!=null) {

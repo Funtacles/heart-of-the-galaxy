@@ -119,7 +119,6 @@ import com.lilithsthrone.game.character.markings.Scar;
 import com.lilithsthrone.game.character.markings.Tattoo;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
-import com.lilithsthrone.game.character.npc.dominion.DominionSuccubusAttacker;
 import com.lilithsthrone.game.character.npc.misc.Elemental;
 import com.lilithsthrone.game.character.npc.misc.NPCOffspring;
 import com.lilithsthrone.game.character.persona.History;
@@ -164,7 +163,6 @@ import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
-import com.lilithsthrone.game.settings.DifficultyLevel;
 import com.lilithsthrone.game.sex.LubricationType;
 import com.lilithsthrone.game.sex.PregnancyDescriptor;
 import com.lilithsthrone.game.sex.Sex;
@@ -1349,9 +1347,6 @@ public abstract class GameCharacter implements XMLSaving {
 					
 					if(character instanceof DominionAlleywayAttacker) {
 						placeType = PlaceType.DOMINION_BACK_ALLEYS;
-						
-					} else if(character instanceof DominionSuccubusAttacker) {
-						placeType = PlaceType.DOMINION_DARK_ALLEYS;
 						
 					} else { // Catch if no location found:
 						placeType = PlaceType.DOMINION_BACK_ALLEYS;
@@ -2953,16 +2948,12 @@ public abstract class GameCharacter implements XMLSaving {
 			case REINDEER_MORPH:
 				value = 18000;
 				break;
-			case DEMON:
 			case ELEMENTAL_AIR:
 			case ELEMENTAL_ARCANE:
 			case ELEMENTAL_EARTH:
 			case ELEMENTAL_FIRE:
 			case ELEMENTAL_WATER:
 				value = 60000;
-				break;
-			case HARPY:
-				value = 12000;
 				break;
 			case HUMAN:
 				value = 4000;
@@ -11474,19 +11465,11 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 	
 	public int getLevel() {
-		if(this.isPlayer()
-				|| !Main.getProperties().difficultyLevel.isNPCLevelScaling()
-				|| (this.getPartyLeader()!=null && this.getPartyLeader().isPlayer())) {
+		if(this.isPlayer() || (this.getPartyLeader()!=null && this.getPartyLeader().isPlayer())) {
 			return level;
 			
 		} else {
-			if(Main.getProperties().difficultyLevel == DifficultyLevel.HELL) {
-				if(level < Main.game.getPlayer().getLevel() * 2) {
-					return Main.game.getPlayer().getLevel() * 2;
-				} else {
-					return level;
-				}
-			} else if(level < Main.game.getPlayer().getLevel()) {
+			if(level < Main.game.getPlayer().getLevel()) {
 				return Main.game.getPlayer().getLevel();
 			} else {
 				return level;
@@ -13594,8 +13577,7 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 	
 	public boolean isAbleToSelfTransform() {
-		return this instanceof Elemental
-				|| this.getRace()==Race.DEMON;
+		return this instanceof Elemental;
 	}
 	
 	public Race getAntennaRace() {
@@ -16165,41 +16147,20 @@ public abstract class GameCharacter implements XMLSaving {
 		
 		switch(this.getBodyMaterial()) {
 			case AIR:
-				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
-					return body.getCoverings().get(BodyCoveringType.AIR_HAIR);
-				}
 				return body.getCoverings().get(BodyCoveringType.AIR);
 			case ARCANE:
-				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
-					return body.getCoverings().get(BodyCoveringType.ARCANE_HAIR);
-				}
 				return body.getCoverings().get(BodyCoveringType.ARCANE);
 			case FIRE:
-				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
-					return body.getCoverings().get(BodyCoveringType.FIRE_HAIR);
-				}
 				return body.getCoverings().get(BodyCoveringType.FIRE);
 			case FLESH:
 				break;
 			case ICE:
-				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
-					return body.getCoverings().get(BodyCoveringType.ICE_HAIR);
-				}
 				return body.getCoverings().get(BodyCoveringType.ICE);
 			case RUBBER:
-				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
-					return body.getCoverings().get(BodyCoveringType.RUBBER_HAIR);
-				}
 				return body.getCoverings().get(BodyCoveringType.RUBBER);
 			case STONE:
-				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
-					return body.getCoverings().get(BodyCoveringType.STONE_HAIR);
-				}
 				return body.getCoverings().get(BodyCoveringType.STONE);
 			case WATER:
-				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
-					return body.getCoverings().get(BodyCoveringType.WATER_HAIR);
-				}
 				return body.getCoverings().get(BodyCoveringType.WATER);
 		}
 		

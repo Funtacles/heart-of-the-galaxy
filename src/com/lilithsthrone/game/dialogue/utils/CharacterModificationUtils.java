@@ -15,16 +15,13 @@ import com.lilithsthrone.game.character.body.Breast;
 import com.lilithsthrone.game.character.body.Covering;
 import com.lilithsthrone.game.character.body.Testicle;
 import com.lilithsthrone.game.character.body.types.AntennaType;
-import com.lilithsthrone.game.character.body.types.ArmType;
 import com.lilithsthrone.game.character.body.types.AssType;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
 import com.lilithsthrone.game.character.body.types.BreastType;
 import com.lilithsthrone.game.character.body.types.EarType;
 import com.lilithsthrone.game.character.body.types.EyeType;
-import com.lilithsthrone.game.character.body.types.FaceType;
 import com.lilithsthrone.game.character.body.types.HairType;
 import com.lilithsthrone.game.character.body.types.HornType;
-import com.lilithsthrone.game.character.body.types.LegType;
 import com.lilithsthrone.game.character.body.types.PenisType;
 import com.lilithsthrone.game.character.body.types.SkinType;
 import com.lilithsthrone.game.character.body.types.TailType;
@@ -1089,126 +1086,42 @@ public class CharacterModificationUtils {
 	}
 	
 	public static String getSelfTransformArmChoiceDiv(List<Race> availableRaces) {
-		if(BodyChanging.getTarget().getArmType().getRace()==Race.DEMON) {
-			contentSB.setLength(0);
-			
-			for(ArmType arm : ArmType.values()) {
-				if(arm.getRace() !=null && arm.getRace() == Race.DEMON) {
-					if(BodyChanging.getTarget().getArmType() == arm) {
-						contentSB.append(
-								"<div class='cosmetics-button active'>"
-									+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(arm.getTransformName())+"</b>"
-								+ "</div>");
-						
-					} else {
-						contentSB.append(
-								"<div id='CHANGE_ARM_"+arm+"' class='cosmetics-button'>"
-									+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(arm.getTransformName())+"</span>"
-								+ "</div>");
-					}
-				}
-			}
-
-			return applyWrapper("Arms",
-					(BodyChanging.getTarget().isPlayer()
-						?"Change your arm type."
-						:UtilText.parse(BodyChanging.getTarget(), "Change [npc.namePos] arm type.")),
-					contentSB.toString(), true);
-			
-		} else {
-			return ("<div class='cosmetics-inner-container'>"
-					+ "<h5 style='text-align:center;'>"
-						+"Arms"
-					+"</h5>"
-					+ "<p style='text-align:center;'>"
-						+ (BodyChanging.getTarget().isPlayer()
-							?"You can only change your arm type if your arms are already demonic in nature."
-							:UtilText.parse(BodyChanging.getTarget(), "You can only change [npc.namePos] arm type if [npc.her] arms are already demonic in nature."))
-					+ "</p>"
-					+ "</div>");
-		}
+		return ("<div class='cosmetics-inner-container'>"
+				+ "<h5 style='text-align:center;'>"
+					+"Arms"
+				+"</h5>"
+				+ "<p style='text-align:center;'>"
+					+ (BodyChanging.getTarget().isPlayer()
+						?"You can only change your arm type if your arms are already demonic in nature."
+						:UtilText.parse(BodyChanging.getTarget(), "You can only change [npc.namePos] arm type if [npc.her] arms are already demonic in nature."))
+				+ "</p>"
+				+ "</div>");
 	}
 	
 	public static String getSelfTransformLegChoiceDiv(List<Race> availableRaces) {
-		if(BodyChanging.getTarget().getLegType().getRace()==Race.DEMON) {
-			contentSB.setLength(0);
-			
-			for(LegType leg : LegType.values()) {
-				if(leg.getRace() !=null && leg.getRace() == Race.DEMON) {
-					if(BodyChanging.getTarget().getLegType() == leg) {
-						contentSB.append(
-								"<div class='cosmetics-button active'>"
-									+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(leg.getTransformName())+"</b>"
-								+ "</div>");
-						
-					} else {
-						contentSB.append(
-								"<div id='CHANGE_LEG_"+leg+"' class='cosmetics-button'>"
-									+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(leg.getTransformName())+"</span>"
-								+ "</div>");
-					}
-				}
-			}
-
-			return applyWrapper("Legs",
-					(BodyChanging.getTarget().isPlayer()
-						?"Change your leg type."
-						:UtilText.parse(BodyChanging.getTarget(), "Change [npc.namePos] leg type.")),
-					contentSB.toString(), true);
-			
-		} else {
-			return ("<div class='cosmetics-inner-container'>"
-					+ "<h5 style='text-align:center;'>"
-						+"Legs"
-					+"</h5>"
-					+ "<p style='text-align:center;'>"
-						+ (BodyChanging.getTarget().isPlayer()
-							?"You can only change your leg type if your legs are already demonic in nature."
-							:UtilText.parse(BodyChanging.getTarget(), "You can only change [npc.namePos] leg type if [npc.her] legs are already demonic in nature."))
-					+ "</p>"
-					+ "</div>");
-		}
+		return ("<div class='cosmetics-inner-container'>"
+				+ "<h5 style='text-align:center;'>"
+					+"Legs"
+				+"</h5>"
+				+ "<p style='text-align:center;'>"
+					+ (BodyChanging.getTarget().isPlayer()
+						?"You can only change your leg type if your legs are already demonic in nature."
+						:UtilText.parse(BodyChanging.getTarget(), "You can only change [npc.namePos] leg type if [npc.her] legs are already demonic in nature."))
+				+ "</p>"
+				+ "</div>");
 	}
 	
 	public static String getSelfTransformFaceChoiceDiv(List<Race> availableRaces) {
-		if(BodyChanging.getTarget().getFaceType().getRace()==Race.DEMON) {
-			contentSB.setLength(0);
-			
-			for(FaceType face : FaceType.values()) {
-				if(face.getRace() !=null && face.getRace() == Race.DEMON) {
-					if(BodyChanging.getTarget().getFaceType() == face) {
-						contentSB.append(
-								"<div class='cosmetics-button active'>"
-									+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(face.getTransformName())+"</b>"
-								+ "</div>");
-						
-					} else {
-						contentSB.append(
-								"<div id='CHANGE_FACE_"+face+"' class='cosmetics-button'>"
-									+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(face.getTransformName())+"</span>"
-								+ "</div>");
-					}
-				}
-			}
-
-			return applyWrapper("Face",
-					(BodyChanging.getTarget().isPlayer()
-						?"Change your face type."
-						:UtilText.parse(BodyChanging.getTarget(), "Change [npc.namePos] face type.")),
-					contentSB.toString(), true);
-			
-		} else {
-			return ("<div class='cosmetics-inner-container'>"
-					+ "<h5 style='text-align:center;'>"
-						+"Face"
-					+"</h5>"
-					+ "<p style='text-align:center;'>"
-						+ (BodyChanging.getTarget().isPlayer()
-							?"You can only change your face type if your face is already demonic in nature."
-							:UtilText.parse(BodyChanging.getTarget(), "You can only change [npc.namePos] face type if [npc.her] face is already demonic in nature."))
-					+ "</p>"
-					+ "</div>");
-		}
+		return ("<div class='cosmetics-inner-container'>"
+				+ "<h5 style='text-align:center;'>"
+					+"Face"
+				+"</h5>"
+				+ "<p style='text-align:center;'>"
+					+ (BodyChanging.getTarget().isPlayer()
+						?"You can only change your face type if your face is already demonic in nature."
+						:UtilText.parse(BodyChanging.getTarget(), "You can only change [npc.namePos] face type if [npc.her] face is already demonic in nature."))
+				+ "</p>"
+				+ "</div>");
 	}
 	
 	public static String getSelfTransformBodyChoiceDiv(List<Race> availableRaces) {
@@ -1600,13 +1513,13 @@ public class CharacterModificationUtils {
 			if(BodyChanging.getTarget().hasAssOrificeModifier(orificeMod)) {
 				contentSB.append(
 						"<div  id='CHANGE_ANUS_MOD_"+orificeMod+"' class='cosmetics-button active'>"
-							+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(orificeMod.getName())+"</b>"
+							+ "<b>"+Util.capitaliseSentence(orificeMod.getName())+"</b>"
 						+ "</div>");
 				
 			} else {
 				contentSB.append(
 						"<div id='CHANGE_ANUS_MOD_"+orificeMod+"' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(orificeMod.getName())+"</span>"
+							+ "<span>"+Util.capitaliseSentence(orificeMod.getName())+"</span>"
 						+ "</div>");
 			}
 		}
@@ -1625,13 +1538,13 @@ public class CharacterModificationUtils {
 			if(BodyChanging.getTarget().getBreastSize() == breastSize) {
 				contentSB.append(
 						"<div class='cosmetics-button active'>"
-							+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(breastSize.getCupSizeName())+"</b>"
+							+ "<b>"+Util.capitaliseSentence(breastSize.getCupSizeName())+"</b>"
 						+ "</div>");
 				
 			} else {
 				contentSB.append(
 						"<div id='BREAST_SIZE_"+breastSize+"' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(breastSize.getCupSizeName())+"</span>"
+							+ "<span>"+Util.capitaliseSentence(breastSize.getCupSizeName())+"</span>"
 						+ "</div>");
 			}
 		}
@@ -1650,13 +1563,13 @@ public class CharacterModificationUtils {
 			if(BodyChanging.getTarget().getBreastShape() == bs) {
 				contentSB.append(
 						"<div class='cosmetics-button active'>"
-							+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(bs.getName())+"</b>"
+							+ "<b>"+Util.capitaliseSentence(bs.getName())+"</b>"
 						+ "</div>");
 				
 			} else {
 				contentSB.append(
 						"<div id='BREAST_SHAPE_"+bs+"' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(bs.getName())+"</span>"
+							+ "<span>"+Util.capitaliseSentence(bs.getName())+"</span>"
 						+ "</div>");
 			}
 		}
@@ -1675,13 +1588,13 @@ public class CharacterModificationUtils {
 			if(BodyChanging.getTarget().getBreastRows() == i) {
 				contentSB.append(
 						"<div class='cosmetics-button active'>"
-							+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(Util.intToString(i))+"</b>"
+							+ "<b>"+Util.capitaliseSentence(Util.intToString(i))+"</b>"
 						+ "</div>");
 				
 			} else {
 				contentSB.append(
 						"<div id='BREAST_COUNT_"+i+"' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(Util.intToString(i))+"</span>"
+							+ "<span>"+Util.capitaliseSentence(Util.intToString(i))+"</span>"
 						+ "</div>");
 			}
 		}
@@ -1700,13 +1613,13 @@ public class CharacterModificationUtils {
 			if(BodyChanging.getTarget().getNippleCountPerBreast() == i) {
 				contentSB.append(
 						"<div class='cosmetics-button active'>"
-							+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(Util.intToString(i))+"</b>"
+							+ "<b>"+Util.capitaliseSentence(Util.intToString(i))+"</b>"
 						+ "</div>");
 				
 			} else {
 				contentSB.append(
 						"<div id='NIPPLE_COUNT_"+i+"' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(Util.intToString(i))+"</span>"
+							+ "<span>"+Util.capitaliseSentence(Util.intToString(i))+"</span>"
 						+ "</div>");
 			}
 		}
@@ -1725,13 +1638,13 @@ public class CharacterModificationUtils {
 			if(BodyChanging.getTarget().getNippleSize() == ns) {
 				contentSB.append(
 						"<div class='cosmetics-button active'>"
-							+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(ns.getName())+"</b>"
+							+ "<b>"+Util.capitaliseSentence(ns.getName())+"</b>"
 						+ "</div>");
 				
 			} else {
 				contentSB.append(
 						"<div id='NIPPLE_SIZE_"+ns+"' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(ns.getName())+"</span>"
+							+ "<span>"+Util.capitaliseSentence(ns.getName())+"</span>"
 						+ "</div>");
 			}
 		}
@@ -1750,13 +1663,13 @@ public class CharacterModificationUtils {
 			if(BodyChanging.getTarget().getAreolaeSize() == as) {
 				contentSB.append(
 						"<div class='cosmetics-button active'>"
-							+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(as.getName())+"</b>"
+							+ "<b>"+Util.capitaliseSentence(as.getName())+"</b>"
 						+ "</div>");
 				
 			} else {
 				contentSB.append(
 						"<div id='AREOLAE_SIZE_"+as+"' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(as.getName())+"</span>"
+							+ "<span>"+Util.capitaliseSentence(as.getName())+"</span>"
 						+ "</div>");
 			}
 		}
@@ -1877,13 +1790,13 @@ public class CharacterModificationUtils {
 			if(BodyChanging.getTarget().hasNippleOrificeModifier(orificeMod)) {
 				contentSB.append(
 						"<div id='CHANGE_NIPPLE_MOD_"+orificeMod+"' class='cosmetics-button active'>"
-							+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(orificeMod.getName())+"</b>"
+							+ "<b>"+Util.capitaliseSentence(orificeMod.getName())+"</b>"
 						+ "</div>");
 				
 			} else {
 				contentSB.append(
 						"<div id='CHANGE_NIPPLE_MOD_"+orificeMod+"' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(orificeMod.getName())+"</span>"
+							+ "<span>"+Util.capitaliseSentence(orificeMod.getName())+"</span>"
 						+ "</div>");
 			}
 		}
@@ -2087,13 +2000,13 @@ public class CharacterModificationUtils {
 			if(BodyChanging.getTarget().hasVaginaOrificeModifier(orificeMod)) {
 				contentSB.append(
 						"<div id='CHANGE_VAGINA_MOD_"+orificeMod+"' class='cosmetics-button active'>"
-							+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(orificeMod.getName())+"</b>"
+							+ "<b>"+Util.capitaliseSentence(orificeMod.getName())+"</b>"
 						+ "</div>");
 				
 			} else {
 				contentSB.append(
 						"<div id='CHANGE_VAGINA_MOD_"+orificeMod+"' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(orificeMod.getName())+"</span>"
+							+ "<span>"+Util.capitaliseSentence(orificeMod.getName())+"</span>"
 						+ "</div>");
 			}
 		}
@@ -2187,13 +2100,13 @@ public class CharacterModificationUtils {
 			if(BodyChanging.getTarget().hasVaginaUrethraOrificeModifier(orificeMod)) {
 				contentSB.append(
 						"<div id='CHANGE_VAGINA_URETHRA_MOD_"+orificeMod+"' class='cosmetics-button active'>"
-							+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(orificeMod.getName())+"</b>"
+							+ "<b>"+Util.capitaliseSentence(orificeMod.getName())+"</b>"
 						+ "</div>");
 				
 			} else {
 				contentSB.append(
 						"<div id='CHANGE_VAGINA_URETHRA_MOD_"+orificeMod+"' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(orificeMod.getName())+"</span>"
+							+ "<span>"+Util.capitaliseSentence(orificeMod.getName())+"</span>"
 						+ "</div>");
 			}
 		}
@@ -2321,13 +2234,13 @@ public class CharacterModificationUtils {
 			if(BodyChanging.getTarget().getTesticleCount() == i) {
 				contentSB.append(
 						"<div class='cosmetics-button active'>"
-							+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(Util.intToString(i))+"</b>"
+							+ "<b>"+Util.capitaliseSentence(Util.intToString(i))+"</b>"
 						+ "</div>");
 				
 			} else {
 				contentSB.append(
 						"<div id='TESTICLE_COUNT_"+i+"' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(Util.intToString(i))+"</span>"
+							+ "<span>"+Util.capitaliseSentence(Util.intToString(i))+"</span>"
 						+ "</div>");
 			}
 		}
@@ -2346,18 +2259,18 @@ public class CharacterModificationUtils {
 		if(BodyChanging.getTarget().isInternalTesticles()) {
 			contentSB.append(
 					"<div id='TESTICLES_INTERNAL_OFF' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>External</span>"
+							+ "<span>External</span>"
 					+ "</div>"
 					+"<div class='cosmetics-button active'>"
-						+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>Internal</b>"
+						+ "<b>Internal</b>"
 					+ "</div>");
 		} else {
 			contentSB.append(
 					"<div class='cosmetics-button active'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>External</span>"
+							+ "<span>External</span>"
 					+ "</div>"
 					+"<div id='TESTICLES_INTERNAL_ON' class='cosmetics-button'>"
-						+ "<b style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>Internal</b>"
+						+ "<b>Internal</b>"
 					+ "</div>");
 		}
 		
@@ -2462,13 +2375,13 @@ public class CharacterModificationUtils {
 			if(BodyChanging.getTarget().hasPenisModifier(orificeMod)) {
 				contentSB.append(
 						"<div id='CHANGE_PENIS_MOD_"+orificeMod+"' class='cosmetics-button active'>"
-							+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(orificeMod.getName())+"</b>"
+							+ "<b>"+Util.capitaliseSentence(orificeMod.getName())+"</b>"
 						+ "</div>");
 				
 			} else {
 				contentSB.append(
 						"<div id='CHANGE_PENIS_MOD_"+orificeMod+"' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(orificeMod.getName())+"</span>"
+							+ "<span>"+Util.capitaliseSentence(orificeMod.getName())+"</span>"
 						+ "</div>");
 			}
 		}
@@ -2487,13 +2400,13 @@ public class CharacterModificationUtils {
 			if(BodyChanging.getTarget().hasUrethraOrificeModifier(orificeMod)) {
 				contentSB.append(
 						"<div id='CHANGE_URETHRA_MOD_"+orificeMod+"' class='cosmetics-button active'>"
-							+ "<b style='color:"+Colour.RACE_DEMON.toWebHexString()+";'>"+Util.capitaliseSentence(orificeMod.getName())+"</b>"
+							+ "<b>"+Util.capitaliseSentence(orificeMod.getName())+"</b>"
 						+ "</div>");
 				
 			} else {
 				contentSB.append(
 						"<div id='CHANGE_URETHRA_MOD_"+orificeMod+"' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.RACE_DEMON.getShades()[0]+";'>"+Util.capitaliseSentence(orificeMod.getName())+"</span>"
+							+ "<span>"+Util.capitaliseSentence(orificeMod.getName())+"</span>"
 						+ "</div>");
 			}
 		}
@@ -3490,7 +3403,6 @@ public class CharacterModificationUtils {
 		return contentSB.toString();
 	}
 	
-	//TODO reset on open
 	private static Map<BodyCoveringType, Covering> coveringsToBeApplied = new HashMap<>();
 	
 	public static Map<BodyCoveringType, Covering> getCoveringsToBeApplied() {

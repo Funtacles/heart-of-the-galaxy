@@ -48,21 +48,6 @@ public enum Subspecies {
 			Util.newArrayListOfValues(
 					WorldType.DOMINION)),
 
-	// DEMON:
-	DEMON("statusEffects/raceDemon",
-			"demon",
-			"demons",
-			"incubus",
-			"succubus",
-			"incubi",
-			"succubi",
-			Race.DEMON,
-			Colour.RACE_DEMON,
-			SubspeciesPreference.FOUR_ABUNDANT,
-			"A typical demon.",
-			Util.newArrayListOfValues(
-					WorldType.DOMINION)),
-	
 	// BOVINES:
 	COW_MORPH("statusEffects/raceCowMorph",
 			"cow-morph",
@@ -913,8 +898,6 @@ public enum Subspecies {
 				return Subspecies.CAT_MORPH;
 			case COW_MORPH:
 				return Subspecies.COW_MORPH;
-			case DEMON:
-				return Subspecies.DEMON;
 			case DOG_MORPH:
 				return Subspecies.DOG_MORPH;
 			case FOX_MORPH:
@@ -1014,13 +997,12 @@ public enum Subspecies {
 			case COW_MORPH:
 				subspecies = Subspecies.COW_MORPH;
 				break;
-			case DEMON:
 			case ELEMENTAL_AIR:
 			case ELEMENTAL_ARCANE:
 			case ELEMENTAL_EARTH:
 			case ELEMENTAL_FIRE:
 			case ELEMENTAL_WATER:
-				subspecies = Subspecies.DEMON;
+				subspecies = Subspecies.HUMAN;
 				break;
 			case DOG_MORPH:
 				subspecies = Subspecies.DOG_MORPH;

@@ -66,35 +66,6 @@ public enum Race {
 			FurryPreference.NORMAL,
 			false),
 
-	// DEMON:
-	DEMON("demon",
-			"demons",
-			"incubus",
-			"succubus",
-			"incubi",
-			"succubi",
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "DEMON_BASIC"),
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "DEMON_ADVANCED"),
-
-			Colour.RACE_DEMON,
-			Disposition.CIVILIZED,
-			StatusEffect.DEMON,
-			Util.newArrayListOfValues(
-					Attack.SPECIAL_ATTACK,
-					Attack.SEDUCTION,
-					Attack.SPELL),
-			false,
-			0.75f,
-			2,
-			3,
-			Attribute.DAMAGE_DEMON,
-			Attribute.RESISTANCE_DEMON,
-			FurryPreference.MAXIMUM,
-			FurryPreference.MAXIMUM,
-			false),
-
 	// BOVINES:
 	COW_MORPH("cow-morph",
 			"cow-morphs",
@@ -369,35 +340,6 @@ public enum Race {
 			FurryPreference.NORMAL,
 			true),
 	
-	// AVIAN:
-	HARPY("harpy",
-			"harpies",
-			"harpy",
-			"harpy",
-			"harpies",
-			"harpies",
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "HARPY_BASIC"),
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "HARPY_ADVANCED"),
-			
-			Colour.RACE_HARPY,
-			Disposition.NEUTRAL,
-			StatusEffect.HARPY,
-			Util.newArrayListOfValues(
-					Attack.SEDUCTION,
-					Attack.SPECIAL_ATTACK),
-			true,
-			0.5f,
-			3,
-			4,
-			Attribute.DAMAGE_HARPY,
-			Attribute.RESISTANCE_HARPY,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			false),
-	
-
 	// ELEMENTALS:
 	ELEMENTAL_EARTH("earth elemental",
 			"earth elementals",

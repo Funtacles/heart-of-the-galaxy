@@ -18,8 +18,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 public enum EarType implements BodyPartTypeInterface {
 	HUMAN(BodyCoveringType.HUMAN, Race.HUMAN),
 
-	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, Race.DEMON),
-
 	DOG_MORPH(BodyCoveringType.CANINE_FUR, Race.DOG_MORPH),
 	DOG_MORPH_POINTED(BodyCoveringType.CANINE_FUR, Race.DOG_MORPH),
 	DOG_MORPH_FOLDED(BodyCoveringType.CANINE_FUR, Race.DOG_MORPH),
@@ -45,9 +43,7 @@ public enum EarType implements BodyPartTypeInterface {
 	
 	HORSE_MORPH(BodyCoveringType.HORSE_HAIR, Race.HORSE_MORPH),
 
-	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH),
-
-	HARPY(BodyCoveringType.FEATHERS, Race.HARPY);
+	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH);
 
 	private BodyCoveringType skinType;
 	private Race race;
@@ -86,8 +82,6 @@ public enum EarType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("tufted", "furry", "fur-coated", "cat-like");
 			case COW_MORPH:
 				return UtilText.returnStringAtRandom("furry", "fur-coated", "cow-like");
-			case DEMON_COMMON:
-				return UtilText.returnStringAtRandom("pointed", "demonic");
 			case DOG_MORPH:
 				return UtilText.returnStringAtRandom("floppy", "furry", "fur-coated", "dog-like");
 			case DOG_MORPH_POINTED:
@@ -96,8 +90,6 @@ public enum EarType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("folded", "furry", "fur-coated", "dog-like");
 			case SQUIRREL_MORPH:
 				return UtilText.returnStringAtRandom("furry", "fur-coated", "squirrel-like");
-			case HARPY:
-				return UtilText.returnStringAtRandom("feathered", "feather-covered");
 			case HORSE_MORPH:
 				return UtilText.returnStringAtRandom("equine", "horse-like");
 			case REINDEER_MORPH:
@@ -126,8 +118,6 @@ public enum EarType implements BodyPartTypeInterface {
 				return "feline";
 			case CAT_MORPH_TUFTED:
 				return "tufted feline";
-			case DEMON_COMMON:
-				return "demonic";
 			case DOG_MORPH:
 				return "canine";
 			case DOG_MORPH_POINTED:
@@ -138,8 +128,6 @@ public enum EarType implements BodyPartTypeInterface {
 				return "bovine";
 			case SQUIRREL_MORPH:
 				return "furry";
-			case HARPY:
-				return "avian";
 			case HORSE_MORPH:
 				return "equine";
 			case REINDEER_MORPH:

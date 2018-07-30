@@ -25,8 +25,6 @@ public enum VaginaType implements BodyPartTypeInterface {
 
 	HUMAN(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_HUMAN, Race.HUMAN),
 
-	DEMON_COMMON(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_DEMON, Race.DEMON, OrificeModifier.MUSCLE_CONTROL, OrificeModifier.TENTACLED),
-
 	DOG_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_DOG_MORPH, Race.DOG_MORPH),
 
 	WOLF_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_WOLF_MORPH, Race.WOLF_MORPH),
@@ -45,9 +43,7 @@ public enum VaginaType implements BodyPartTypeInterface {
 
 	HORSE_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_HORSE_MORPH, Race.HORSE_MORPH, OrificeModifier.PUFFY),
 
-	REINDEER_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_REINDEER_MORPH, Race.REINDEER_MORPH, OrificeModifier.PUFFY),
-
-	HARPY(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_HARPY, Race.HARPY);
+	REINDEER_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_REINDEER_MORPH, Race.REINDEER_MORPH, OrificeModifier.PUFFY);
 
 	private BodyCoveringType skinType;
 	private FluidType fluidType;
@@ -157,8 +153,6 @@ public enum VaginaType implements BodyPartTypeInterface {
 		switch(Util.random.nextInt(3)){
 			case 0:
 				switch(this){
-					case DEMON_COMMON:
-						return UtilText.returnStringAtRandom("irresistible", "demonic");
 					case DOG_MORPH:
 						return UtilText.returnStringAtRandom("hot", "animalistic", "dog-like", "canine");
 					case WOLF_MORPH:
@@ -177,8 +171,6 @@ public enum VaginaType implements BodyPartTypeInterface {
 						return UtilText.returnStringAtRandom("hot");
 					case NONE:
 						return UtilText.returnStringAtRandom("");
-					case HARPY:
-						return UtilText.returnStringAtRandom("hot", "bird-like", "avian");
 					case SQUIRREL_MORPH:
 						return UtilText.returnStringAtRandom("hot", "squirrel-like", "rodent");
 					case RAT_MORPH:
@@ -205,14 +197,10 @@ public enum VaginaType implements BodyPartTypeInterface {
 
 	public String getTransformName() {
 		switch(this){
-			case HARPY:
-				return "avian";
 			case COW_MORPH:
 				return "bovine";
 			case DOG_MORPH:
 				return "canine";
-			case DEMON_COMMON:
-				return "demonic";
 			case HORSE_MORPH:
 				return "equine";
 			case REINDEER_MORPH:

@@ -72,7 +72,6 @@ public class GenericSexualPartner extends NPC {
 			for(Subspecies s : Subspecies.values()) {
 				switch(s) {
 					// No spawn chance:
-					case DEMON:
 					case FOX_ASCENDANT:
 					case FOX_ASCENDANT_FENNEC:
 					case ELEMENTAL_AIR:

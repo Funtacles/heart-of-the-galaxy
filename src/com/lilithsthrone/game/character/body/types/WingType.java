@@ -8,7 +8,6 @@ import java.util.Map;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.body.Body;
 import com.lilithsthrone.game.character.race.Race;
-import com.lilithsthrone.game.dialogue.utils.UtilText;
 
 /**
  * @since 0.1.0
@@ -16,9 +15,7 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
  * @author Innoxia
  */
 public enum WingType implements BodyPartTypeInterface {
-	NONE(null, null, false),
-
-	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, Race.DEMON, true);
+	NONE(null, null, false);
 
 	private BodyCoveringType skinType;
 	private Race race;
@@ -56,8 +53,6 @@ public enum WingType implements BodyPartTypeInterface {
 
 	public String getDescriptor(GameCharacter gc) {
 		switch(this){
-			case DEMON_COMMON:
-				return UtilText.returnStringAtRandom("demonic", "bat-like");
 			case NONE:
 				return "";
 		}
@@ -66,8 +61,6 @@ public enum WingType implements BodyPartTypeInterface {
 	
 	public String getTransformName() {
 		switch(this){
-			case DEMON_COMMON:
-				return "bat-like";
 			case NONE:
 				return "none";
 		}

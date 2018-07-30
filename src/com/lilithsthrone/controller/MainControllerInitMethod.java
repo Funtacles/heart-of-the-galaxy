@@ -2585,8 +2585,6 @@ public class MainControllerInitMethod {
 				}
 				
 
-				// ------------ Demonic/Slime transformations -------------- //
-				
 				for(ArmType armType: ArmType.values()) {
 					id = "CHANGE_ARM_"+armType;
 					if (((EventTarget) MainController.document.getElementById(id)) != null) {
@@ -2891,16 +2889,6 @@ public class MainControllerInitMethod {
 					if (((EventTarget) MainController.document.getElementById(id)) != null) {
 						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
 							BodyChanging.getTarget().setNipplePlasticity(plasticity.getValue());
-							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-						}, false);
-					}
-				}
-				
-				for(int i : CharacterModificationUtils.demonLactationValues) {
-					id = "LACTATION_"+i;
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							BodyChanging.getTarget().setBreastMilkStorage(i);
 							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
 						}, false);
 					}

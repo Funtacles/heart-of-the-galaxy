@@ -11,7 +11,6 @@ import java.util.List;
 import com.lilithsthrone.game.Game;
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.CharacterUtils;
-import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.body.valueEnums.CupSize;
 import com.lilithsthrone.game.character.body.valueEnums.Lactation;
 import com.lilithsthrone.game.character.fetishes.Fetish;
@@ -21,16 +20,13 @@ import com.lilithsthrone.game.character.gender.GenderNames;
 import com.lilithsthrone.game.character.gender.GenderPreference;
 import com.lilithsthrone.game.character.gender.GenderPronoun;
 import com.lilithsthrone.game.character.gender.PronounType;
-import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.race.FurryPreference;
 import com.lilithsthrone.game.character.race.Subspecies;
-import com.lilithsthrone.game.combat.Combat;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.DialogueNodeType;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
 import com.lilithsthrone.game.dialogue.story.CharacterCreation;
-import com.lilithsthrone.game.settings.DifficultyLevel;
 import com.lilithsthrone.game.settings.ForcedFetishTendency;
 import com.lilithsthrone.game.settings.ForcedTFTendency;
 import com.lilithsthrone.game.settings.KeyboardAction;
@@ -561,16 +557,7 @@ public class OptionsDialogue {
 					+ " Although it makes scene transitions a little prettier, it is off by default, as it can cause some annoying lag in inventory screens."
 					+ "</p>"
 					
-					+"<p>"
-					+ "<b>Difficulty (Currently set to "+Main.getProperties().difficultyLevel.getName()+"):</b>");
-			
-			for(DifficultyLevel dl : DifficultyLevel.values()) {
-				UtilText.nodeContentSB.append("<br/>"+(
-						Main.getProperties().difficultyLevel==dl
-							?"<b style='color:"+dl.getColour().toWebHexString()+";'>"+Util.capitaliseSentence(dl.getName())+"</b> "+dl.getDescription()
-							:"<span style='color:"+dl.getColour().getShades()[0]+";'>"+Util.capitaliseSentence(dl.getName())+"</span> [style.colourDisabled("+dl.getDescription()+")]")
-						 );
-			}
+					+"<p>");
 			
 			UtilText.nodeContentSB.append("</p>");
 			
@@ -641,40 +628,6 @@ public class OptionsDialogue {
 						Main.saveProperties();
 					}
 				};
-				
-			} else if (index == 6) {
-				return new Response("Difficulty: "+Main.getProperties().difficultyLevel.getName(), "Cycle the game's difficulty.", OPTIONS){
-					@Override
-					public void effects() {
-						switch(Main.getProperties().difficultyLevel) {
-							case NORMAL:
-								Main.getProperties().difficultyLevel = DifficultyLevel.LEVEL_SCALING;
-								break;
-							case LEVEL_SCALING:
-								Main.getProperties().difficultyLevel = DifficultyLevel.HARD;
-								break;
-							case HARD:
-								Main.getProperties().difficultyLevel = DifficultyLevel.NIGHTMARE;
-								break;
-							case NIGHTMARE:
-								Main.getProperties().difficultyLevel = DifficultyLevel.HELL;
-								break;
-							case HELL:
-								Main.getProperties().difficultyLevel = DifficultyLevel.NORMAL;
-								break;
-						}
-						Main.saveProperties();
-						
-						for(NPC npc : Main.game.getAllNPCs()) {
-							if(Main.game.isInCombat() && (Combat.getEnemies().contains(npc) || Combat.getAllies().contains(npc))) {
-							} else {
-								npc.setMana(npc.getAttributeValue(Attribute.MANA_MAXIMUM));
-								npc.setHealth(npc.getAttributeValue(Attribute.HEALTH_MAXIMUM));
-							}
-						}
-					}
-				};
-				
 			} else if (index == 7) {
 				return new Response("Gender pronouns", "Customise all gender pronouns and names.", OPTIONS_PRONOUNS);
 				
@@ -1283,7 +1236,6 @@ public class OptionsDialogue {
 			int i=0;
 			for(Subspecies subspecies : Subspecies.values()) {
 				switch(subspecies) {
-					case DEMON:
 					case ELEMENTAL_AIR:
 					case ELEMENTAL_ARCANE:
 					case ELEMENTAL_EARTH:

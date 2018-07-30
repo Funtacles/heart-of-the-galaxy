@@ -12,7 +12,6 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.body.Covering;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
 import com.lilithsthrone.game.character.body.types.HornType;
-import com.lilithsthrone.game.character.body.types.LegType;
 import com.lilithsthrone.game.character.body.types.PenisType;
 import com.lilithsthrone.game.character.body.valueEnums.BodySize;
 import com.lilithsthrone.game.character.body.valueEnums.CupSize;
@@ -74,7 +73,7 @@ public class Kate extends NPC {
 		super(new NameTriplet("Kate"), "Kate is a demon who owns the beauty salon 'Succubi's Secrets'."
 				+ " Despite being incredibly good at what she does, she's exceedingly lazy, and prefers to keep the exterior of her shop looking run-down so as to scare off potential customers.",
 				37, Month.SEPTEMBER, 9,
-				10, Gender.F_V_B_FEMALE, RacialBody.DEMON, RaceStage.GREATER,
+				10, Gender.F_V_B_FEMALE, RacialBody.HUMAN, RaceStage.GREATER,
 				new CharacterInventory(10), WorldType.SHOPPING_ARCADE, PlaceType.SHOPPING_ARCADE_KATES_SHOP, true);
 
 		this.setPersonality(Util.newHashMapOfValues(
@@ -133,17 +132,12 @@ public class Kate extends NPC {
 			
 			this.setSexualOrientation(SexualOrientation.AMBIPHILIC);
 	
-			this.setEyeCovering(new Covering(BodyCoveringType.EYE_DEMON_COMMON, Colour.EYE_GREEN));
-			this.setHairCovering(new Covering(BodyCoveringType.HAIR_DEMON, Colour.COVERING_RED), true);
 			this.setHairLength(HairLength.THREE_SHOULDER_LENGTH.getMedianValue());
 			this.setHairStyle(HairStyle.SIDECUT);
-			this.setSkinCovering(new Covering(BodyCoveringType.DEMON_COMMON, Colour.SKIN_PINK), true);
 			
 			this.setHornType(HornType.CURLED);
 			this.setSkinCovering(new Covering(BodyCoveringType.HORN, Colour.HORN_DARK_GREY), true);
 
-			this.setLegType(LegType.DEMON_COMMON);
-			
 			this.setBreastSize(CupSize.F.getMeasurement());
 			
 			this.setMuscle(Muscle.THREE_MUSCULAR.getMedianValue());
@@ -180,15 +174,12 @@ public class Kate extends NPC {
 		
 		this.setWingSize(WingSize.ONE_SMALL.getValue());
 		
-		this.setHairCovering(new Covering(BodyCoveringType.HAIR_DEMON, Colour.COVERING_RED), true);
 		this.setHairLength(HairLength.THREE_SHOULDER_LENGTH.getMedianValue());
 		this.setHairStyle(HairStyle.SIDECUT);
 
 		this.setHornType(HornType.CURLED);
 		this.setSkinCovering(new Covering(BodyCoveringType.HORN, Colour.HORN_DARK_GREY), true);
 
-		this.setLegType(LegType.DEMON_COMMON);
-		
 		this.deleteAllEquippedClothing();
 
 		this.setPiercedEar(true);

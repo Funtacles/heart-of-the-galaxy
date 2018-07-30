@@ -99,19 +99,6 @@ public class Tentacle implements BodyPartInterface, Serializable {
 						+ "<br/>"
 						+ "[npc.Name] now [npc.has] [style.boldTfGeneric(no tentacles)]");
 				break;
-			case DEMON_COMMON:
-				UtilText.transformationContentSB.append(
-						(owner.getTentacleCount()==1
-							?" A demonic, spaded tentacle sprouts from the middle of [npc.her] spine, rapidly growing in size until it's roughly as long as [npc.sheIsFull] tall."
-								+ " [npc.She] quickly [npc.verb(discover)] that [npc.she] [npc.has] complete control over where it goes, allowing [npc.herHim] to use it like a third limb."
-								+ "<br/>"
-								+ "[npc.Name] now [npc.has] a [style.boldDemon(demonic tentacle)]"
-							:" [npc.TentacleCount] demonic, spaded tentacles sprout from the middle of [npc.her] spine, rapidly growing in size until they're roughly as long as [npc.sheIsFull] tall."
-								+ " [npc.She] quickly [npc.verb(discover)] that [npc.she] [npc.has] complete control over where they go, allowing [npc.herHim] to use them like extra limbs."
-								+ "<br/>"
-								+ "[npc.Name] now [npc.has] [npc.tentacleCount] [style.boldDemon(demonic tentacles)]")
-						);
-				break;
 		}
 		
 		this.type = type;

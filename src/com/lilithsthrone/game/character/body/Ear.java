@@ -102,21 +102,6 @@ public class Ear implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case DEMON_COMMON:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" They quickly shift into delicate, human-like ears, but with long, pointed tips, all covered in [pc.earFullDescriptionColour]."
-								+ "<br/>"
-								+ "You now have [style.boldDemon(pointed, demonic ears)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" They quickly shift into delicate, human-like ears, but with long, pointed tips, all covered in [npc.earFullDescriptionColour]."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldDemon(pointed, demonic ears)]."
-							+ "</p>");
-				}
-				break;
 			case DOG_MORPH: case DOG_MORPH_POINTED: case DOG_MORPH_FOLDED:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -335,23 +320,6 @@ public class Ear implements BodyPartInterface, Serializable {
 								+ " A layer of [npc.earFullDescriptionColour] grows to cover them, and as the transformation finishes, [npc.she] experimentally twitches [npc.her] new rangiferine ears back and forth."
 								+ "<br/>"
 								+ "[npc.Name] now has [style.boldReindeerMorph(anthropomorphic, reindeer-like ears)]."
-							+ "</p>");
-				}
-				break;
-			case HARPY:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" They quickly shrink down into little nubs as most of the external cartilage shifts down into the sides of your head."
-								+ " A layer of [pc.earFullDescriptionColour] grow to cover your now-fully-internal ears, and as the transformation finishes, you discover that you've now got a pair of beautifully-feathered harpy ears."
-								+ "<br/>"
-								+ "You now have [style.boldHarpy(internal, feather-covered harpy ears)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" They quickly shrink down into little nubs as most of the external cartilage shifts down into the sides of [npc.her] head."
-								+ " A layer of [npc.earFullDescriptionColour] grow to cover [npc.her] now-fully-internal ears, and as the transformation finishes, [npc.sheIs] left with a pair of beautifully-feathered harpy ears."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldHarpy(internal, feather-covered harpy ears)]."
 							+ "</p>");
 				}
 				break;

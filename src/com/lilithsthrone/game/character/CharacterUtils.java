@@ -78,7 +78,6 @@ import com.lilithsthrone.game.character.fetishes.FetishDesire;
 import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.gender.PronounType;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.DominionSuccubusAttacker;
 import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.persona.Name;
 import com.lilithsthrone.game.character.persona.NameTriplet;
@@ -1180,7 +1179,7 @@ public class CharacterUtils {
 		}
 		
 		// Penis:
-		if(character.hasPenis() || character.getRace()==Race.DEMON) {
+		if(character.hasPenis()) {
 			character.setPenisVirgin(true);
 			if(Math.random()>0.15f
 					|| character.getHistory()==History.NPC_PROSTITUTE
@@ -1502,10 +1501,7 @@ public class CharacterUtils {
 		}
 		
 		desiresAssigned = 0;
-		if(character instanceof DominionSuccubusAttacker) { // Cultists and succubus attackers like raping
-			availableFetishes.remove(Fetish.FETISH_NON_CON_DOM);
-		}
-		
+
 		availableFetishes.remove(Fetish.FETISH_CUM_STUD); // Who doesn't like cumming? :3
 		
 		while(desiresAssigned < numberOfNegativeDesires && !availableFetishes.isEmpty()) {

@@ -40,15 +40,6 @@ public enum BodyCoveringType {
 			Colour.naturalFurColours,
 			Colour.allCoveringColours),
 	
-	DEMON_COMMON(BodyCoveringTemplateFactory.createTopSkin(
-			Util.newArrayListOfValues(CoveringPattern.NONE),
-			Colour.demonSkinColours)),
-	
-	IMP(BodyCoveringTemplateFactory.createTopSkin(
-			Util.newArrayListOfValues(CoveringPattern.NONE),
-			Colour.demonSkinColours)),
-
-
 	BAT_SKIN(BodyCoveringTemplateFactory.createBottomSkin(Colour.humanSkinColours)),
 	
 	BAT_FUR(BodyCoveringTemplateFactory.createFurSkin(
@@ -277,10 +268,6 @@ public enum BodyCoveringType {
 			Colour.naturalHairColours,
 			Colour.allCoveringColours),
 
-	HAIR_DEMON(BodyCoveringTemplateFactory.createHeadHair(CoveringModifier.SILKEN)),
-
-	HAIR_IMP(BodyCoveringTemplateFactory.createHeadHair(CoveringModifier.SILKEN)),
-	
 	HAIR_CANINE_FUR(BodyCoveringTemplateFactory.createFurHeadHair(CoveringModifier.FURRY)),
 
 	HAIR_LYCAN_FUR(BodyCoveringTemplateFactory.createFurHeadHair(CoveringModifier.FURRY)),
@@ -320,10 +307,6 @@ public enum BodyCoveringType {
 	// BODY HAIR:
 	
 	BODY_HAIR_HUMAN(BodyCoveringTemplateFactory.createBodyHair(CoveringModifier.COARSE)),
-
-	BODY_HAIR_DEMON(BodyCoveringTemplateFactory.createBodyHair(CoveringModifier.SILKEN)),
-
-	BODY_HAIR_IMP(BodyCoveringTemplateFactory.createBodyHair(CoveringModifier.SILKEN)),
 
 	BODY_HAIR_CANINE_FUR(BodyCoveringTemplateFactory.createBodyHair(CoveringModifier.FURRY)),
 
@@ -392,12 +375,6 @@ public enum BodyCoveringType {
 	
 	EYE_HUMAN(BodyCoveringTemplateFactory.createEyeIrisesHeterochromiaNaturallyOccuring()),
 
-	EYE_DEMON_COMMON(BodyCoveringTemplateFactory.createEyeIrisesWithCustomColors(
-			Colour.naturalDemonIrisColours, Colour.dyeDemonIrisColours)),
-
-	EYE_IMP(BodyCoveringTemplateFactory.createEyeIrisesWithCustomColors(
-			Colour.naturalDemonIrisColours, Colour.dyeDemonIrisColours)),
-	
 	EYE_DOG_MORPH(BodyCoveringTemplateFactory.createEyeIrises()),
 
 	EYE_LYCAN(BodyCoveringTemplateFactory.createEyeIrisesWithCustomColors(

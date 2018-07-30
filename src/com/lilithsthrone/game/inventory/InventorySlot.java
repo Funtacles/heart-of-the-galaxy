@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.body.types.ArmType;
 import com.lilithsthrone.game.character.body.types.LegType;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -259,20 +258,8 @@ public enum InventorySlot {
 			return Race.HORSE_MORPH;
 		}
 		
-		if (character.getLegType() == LegType.DEMON_HOOFED && this == InventorySlot.FOOT) {
-			return Race.DEMON;
-		}
-		
 		if (character.getLegType() == LegType.REINDEER_MORPH && this == InventorySlot.FOOT) {
 			return Race.REINDEER_MORPH;
-		}
-		
-		if (character.getLegType() == LegType.HARPY && this == InventorySlot.FOOT) {
-			return Race.HARPY;
-		}
-		
-		if (character.getArmType() == ArmType.HARPY && (this == InventorySlot.HAND || this == InventorySlot.FINGER)) {
-			return Race.HARPY;
 		}
 		
 		if (character.getLegType() == LegType.COW_MORPH && this == InventorySlot.FOOT) {
@@ -308,14 +295,6 @@ public enum InventorySlot {
 						"[npc.NamePos] horse-like hoofs prevent [npc.herHim] from wearing footwear of any kind!");
 		}
 		
-		if (character.getLegType() == LegType.DEMON_HOOFED && this == InventorySlot.FOOT) {
-			if(character.isPlayer())
-				return "Your demonic hoofs prevent you from wearing footwear of any kind!";
-			else
-				return UtilText.parse(character,
-						"[npc.NamePos] demonic hoofs prevent [npc.herHim] from wearing footwear of any kind!");
-		}
-		
 		if (character.getLegType() == LegType.REINDEER_MORPH && this == InventorySlot.FOOT) {
 			if(character.isPlayer())
 				return "Your reindeer-like hoofs prevent you from wearing footwear of any kind!";
@@ -330,30 +309,6 @@ public enum InventorySlot {
 			else
 				return UtilText.parse(character,
 						"[npc.NamePos] cow-like hoofs prevent [npc.herHim] from wearing footwear of any kind!");
-		}
-		
-		if (character.getLegType() == LegType.HARPY && this == InventorySlot.FOOT) {
-			if(character.isPlayer())
-				return "Your bird-like talons prevent you from wearing footwear of any kind!";
-			else
-				return UtilText.parse(character,
-						"[npc.NamePos] bird-like talons prevent [npc.herHim] from wearing footwear of any kind!");
-		}
-		
-		if (character.getArmType() == ArmType.HARPY && this == InventorySlot.HAND) {
-			if(character.isPlayer())
-				return "You can't fit anything onto your harpy wings!";
-			else
-				return UtilText.parse(character,
-						"[npc.Name] can't fit anything onto [npc.her] harpy wings!");
-		}
-		
-		if (character.getArmType() == ArmType.HARPY && this == InventorySlot.FINGER) {
-			if(character.isPlayer())
-				return "You only have a single thumb in the middle of your harpy wings, so you can't wear anything that would require fingers!";
-			else
-				return UtilText.parse(character,
-						"[npc.Name] doesn't have any fingers on [npc.her] harpy wings!");
 		}
 		
 		return null;

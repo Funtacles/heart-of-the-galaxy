@@ -27,7 +27,6 @@ public class SexFlags implements Serializable {
 	// Generic:
 	public static boolean mutualOrgasmsAllowed;
 	public static List<GameCharacter> playerPreparedForCharactersOrgasm;
-	public static boolean playerGrewDemonicCock;
 	public static boolean playerDeniedPartner;
 	
 	// Position requests:
@@ -86,7 +85,6 @@ public class SexFlags implements Serializable {
 		mutualOrgasmsAllowed = true;
 		playerPreparedForCharactersOrgasm = new ArrayList<>();
 		
-		playerGrewDemonicCock = false;
 		playerDeniedPartner = false;
 		
 		resetRequests();

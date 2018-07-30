@@ -102,7 +102,6 @@ public enum Colour {
 
 	RACE_UNKNOWN(false, BaseColour.BLACK, "black", Util.newArrayListOfValues("unknown")),
 	RACE_HUMAN(false, BaseColour.BLUE_STEEL, "pale blue", Util.newArrayListOfValues("human")),
-	RACE_DEMON(false, BaseColour.PURPLE_LIGHT, "light purple", Util.newArrayListOfValues("demon")),
 	RACE_IMP(false, BaseColour.PURPLE, "purple", Util.newArrayListOfValues("imp")),
 	RACE_DOG_MORPH(false, BaseColour.BROWN, "brown", Util.newArrayListOfValues("dogMorph", "dog")),
 	RACE_CAT_MORPH(false, BaseColour.VIOLET, "violet", Util.newArrayListOfValues("catMorph", "cat")),
@@ -362,7 +361,7 @@ public enum Colour {
 
 	// Body parts:
 
-	// Skin (Human and Demon):
+	// Skin (Human):
 	SKIN_PORCELAIN(false, Util.newColour(0xDBCDB9), Util.newColour(0xDBCDB9), "porcelain"),
 	SKIN_PALE(false, Util.newColour(0xFBF4E9), Util.newColour(0x534946), "pale"),
 	SKIN_LIGHT(false, BaseColour.YELLOW_LIGHT, "light"),
@@ -592,35 +591,6 @@ public enum Colour {
 	public static List<Colour> ratSkinColours = Util.newArrayListOfValues(
 			Colour.SKIN_PINK_LIGHT);
 	
-	public static List<Colour> demonSkinColours = Util.newArrayListOfValues(
-			Colour.SKIN_PORCELAIN,
-			Colour.SKIN_PALE,
-			Colour.SKIN_LIGHT,
-			Colour.SKIN_ROSY,
-			Colour.SKIN_TANNED,
-			Colour.SKIN_OLIVE,
-			Colour.SKIN_CHOCOLATE,
-			Colour.SKIN_DARK,
-			Colour.SKIN_EBONY,
-			Colour.SKIN_IVORY,
-			Colour.SKIN_GREY,
-			Colour.SKIN_RED,
-			Colour.SKIN_RED_DARK,
-			Colour.SKIN_BROWN,
-			Colour.SKIN_AMBER,
-			Colour.SKIN_YELLOW,
-			Colour.SKIN_GREEN,
-			Colour.SKIN_GREEN_DARK,
-			Colour.SKIN_BLUE_LIGHT,
-			Colour.SKIN_BLUE,
-			Colour.SKIN_BLUE_DARK,
-			Colour.SKIN_PERIWINKLE,
-			Colour.SKIN_LILAC,
-			Colour.SKIN_PURPLE,
-			Colour.SKIN_PURPLE_DARK,
-			Colour.SKIN_PINK_LIGHT,
-			Colour.SKIN_PINK);
-
 	public static List<Colour> allSkinColours = Util.newArrayListOfValues(
 			Colour.SKIN_PORCELAIN,
 			Colour.SKIN_PALE,
@@ -855,31 +825,6 @@ public enum Colour {
 			Colour.EYE_BLACK,
 			Colour.COVERING_RAINBOW);
 
-	public static List<Colour> naturalDemonIrisColours = Util.newArrayListOfValues(
-			Colour.EYE_BROWN,
-			Colour.EYE_AMBER,
-			Colour.EYE_HAZEL,
-			Colour.EYE_BLUE,
-			Colour.EYE_AQUA,
-			Colour.EYE_GREEN,
-			Colour.EYE_GREY,
-			Colour.EYE_RED,
-			Colour.EYE_CRIMSON,
-			Colour.EYE_ORANGE,
-			Colour.EYE_YELLOW,
-			Colour.EYE_PINK,
-			Colour.EYE_VIOLET,
-			Colour.EYE_PERIWINKLE,
-			Colour.EYE_LILAC,
-			Colour.EYE_PURPLE,
-			Colour.EYE_BLACK);
-	
-	public static List<Colour> dyeDemonIrisColours = Util.newArrayListOfValues(
-			Colour.EYE_SILVER,
-			Colour.EYE_GOLD,
-			Colour.COVERING_RAINBOW);
-	
-	
 	public static List<Colour> naturalPredatorIrisColours = Util.newArrayListOfValues(
 			Colour.EYE_BROWN,
 			Colour.EYE_AMBER,
