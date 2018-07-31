@@ -114,11 +114,9 @@ public enum Colour {
 	RACE_CAT_MORPH_LEOPARD_SNOW(false, BaseColour.SILVER, "silver", Util.newArrayListOfValues("leopardSnowMorph", "snowLeopard", "snep", "leopardSnow", "snowLeopardMorph")),
 	RACE_COW_MORPH(false, BaseColour.TAN, "tan", Util.newArrayListOfValues("cowMorph", "cow")),
 	RACE_HORSE_MORPH(false, BaseColour.ORANGE, "orange", Util.newArrayListOfValues("horseMorph", "horse")),
-	RACE_REINDEER_MORPH(false, BaseColour.BROWN_DARK, "dark brown", Util.newArrayListOfValues("reindeerMorph", "reindeer")),
 	RACE_WOLF_MORPH(false, BaseColour.BLACK, "black", Util.newArrayListOfValues("wolfMorph", "wolf")),
 	RACE_FOX_MORPH(false, BaseColour.GINGER, "ginger", Util.newArrayListOfValues("foxMorph", "fox")),
 	RACE_HARPY(false, BaseColour.PINK_LIGHT, "light pink", Util.newArrayListOfValues("harpy")),
-	RACE_SLIME(false, BaseColour.PINK, "pink", Util.newArrayListOfValues("slime")),
 	RACE_SQUIRREL_MORPH(false, BaseColour.GINGER, "ginger", Util.newArrayListOfValues("squirrelMorph", "squirrel")),
 	RACE_RAT_MORPH(false, BaseColour.BROWN_DARK, "dark brown", Util.newArrayListOfValues("ratMorph", "rat")),
 	RACE_RABBIT_MORPH(false, BaseColour.BROWN_DARK, "dark brown", Util.newArrayListOfValues("rabbitMorph", "rabbit")),
@@ -391,69 +389,6 @@ public enum Colour {
 	SKIN_IVORY(false, BaseColour.WHITE, "ivory"),
 	SKIN_GREY(false, BaseColour.GREY, "grey"),
 
-	// Slime types:
-
-	SLIME_RED(false, BaseColour.RED, "translucent red"),
-	SLIME_RED_DARK(false, BaseColour.RED_DARK, "translucent dark red"),
-	SLIME_BROWN_DARK(false, BaseColour.BROWN_DARK, "translucent dark brown"),
-	SLIME_BROWN(false, BaseColour.BROWN, "translucent brown"),
-	SLIME_ORANGE(false, BaseColour.ORANGE, "translucent orange"),
-	SLIME_TAN(false, BaseColour.TAN, "translucent tan"),
-	SLIME_YELLOW(false, BaseColour.YELLOW, "translucent yellow"),
-	SLIME_AMBER(false, BaseColour.AMBER, "translucent amber"),
-	SLIME_PINK_DARK(false, BaseColour.PINK_DEEP, "translucent dark pink"),
-	SLIME_PINK(false, BaseColour.PINK, "translucent pink"),
-	SLIME_PINK_LIGHT(false, BaseColour.PINK_LIGHT, "translucent light pink"),
-	SLIME_GREEN(false, BaseColour.GREEN, "translucent green"),
-	SLIME_GREEN_DARK(false, BaseColour.GREEN_DARK, "translucent dark green"),
-	SLIME_BLUE_LIGHT(false, BaseColour.BLUE_LIGHT, "translucent light blue"),
-	SLIME_BLUE(false, BaseColour.BLUE, "translucent blue"),
-	SLIME_BLUE_DARK(false, BaseColour.BLUE_DARK, "translucent dark blue"),
-	SLIME_PERIWINKLE(false, BaseColour.PERIWINKLE, "translucent periwinkle"),
-	SLIME_LILAC(false, BaseColour.LILAC, "translucent lilac"),
-	SLIME_PURPLE(false, BaseColour.PURPLE, "translucent purple"),
-	SLIME_PURPLE_DARK(false, BaseColour.PURPLE_DARK, "translucent dark purple"),
-	SLIME_CLEAR(false, BaseColour.WHITE, "clear"),
-	SLIME_GREY(false, BaseColour.GREY, "translucent grey"),
-	SLIME_BLACK(false, BaseColour.BLACK, "translucent black"),
-	SLIME_WHITE(false, BaseColour.WHITE, "translucent white"),
-	SLIME_RAINBOW(false, BaseColour.PINK,
-			"translucent "
-			+ "<span style='color:#E64C4C;'>r</span>"
-			+ "<span style='color:#E6854C;'>a</span>"
-			+ "<span style='color:#E6C74C;'>i</span>"
-			+ "<span style='color:#6EE64C;'>n</span>"
-			+ "<span style='color:#4CB2E6;'>b</span>"
-			+ "<span style='color:#AD4CE6;'>o</span>"
-			+ "<span style='color:#E64CA8;'>w</span>") {
-		public boolean isRainbow() {
-			return true;
-		}
-	},
-
-	// Feathers:
-//	FEATHERS_RED(false, BaseColour.RED, "red"),
-//	FEATHERS_RED_DARK(false, BaseColour.RED_DARK, "dark red"),
-//	FEATHERS_BROWN_DARK(false, BaseColour.BROWN_DARK, "dark brown"),
-//	FEATHERS_BROWN(false, BaseColour.BROWN, "brown"),
-//	FEATHERS_TAN(false, BaseColour.TAN, "tan"),
-//	FEATHERS_ORANGE(false, BaseColour.ORANGE, "orange"),
-//	FEATHERS_GINGER(false, BaseColour.GINGER, "ginger"),
-//	FEATHERS_BLEACH_BLONDE(false, BaseColour.YELLOW_LIGHT, "bleach-blonde"),
-//	FEATHERS_AMBER(false, BaseColour.AMBER, "amber"),
-//	FEATHERS_PINK(false, BaseColour.PINK, "pink"),
-//	FEATHERS_GREEN(false, BaseColour.GREEN, "green"),
-//	FEATHERS_GREEN_DARK(false, BaseColour.GREEN_DARK, "dark green"),
-//	FEATHERS_BLUE_LIGHT(false, BaseColour.BLUE_LIGHT, "light blue"),
-//	FEATHERS_BLUE(false, BaseColour.BLUE, "blue"),
-//	FEATHERS_BLUE_DARK(false, BaseColour.BLUE_DARK, "dark blue"),
-//	FEATHERS_PERIWINKLE(false, BaseColour.PERIWINKLE, "periwinkle"),
-//	FEATHERS_PURPLE(false, BaseColour.PURPLE, "purple"),
-//	FEATHERS_PURPLE_DARK(false, BaseColour.PURPLE_DARK, "dark purple"),
-//	FEATHERS_GREY(false, BaseColour.GREY, "grey"),
-//	FEATHERS_BLACK(false, BaseColour.BLACK, "black"),
-//	FEATHERS_WHITE(false, BaseColour.WHITE, "white"),
-
 	// Horns:
 	HORN_WHITE(false, BaseColour.WHITE, "ivory"),
 	HORN_GREY(false, BaseColour.GREY, "grey"),
@@ -622,36 +557,6 @@ public enum Colour {
 			Colour.COVERING_RAINBOW);
 
 
-	public static List<Colour> naturalSlimeColours = Util.newArrayListOfValues(
-			Colour.SLIME_CLEAR,
-			Colour.SLIME_WHITE,
-			Colour.SLIME_GREY,
-			Colour.SLIME_BLACK,
-			Colour.SLIME_RED,
-			Colour.SLIME_RED_DARK,
-			Colour.SLIME_BROWN_DARK,
-			Colour.SLIME_BROWN,
-			Colour.SLIME_TAN,
-			Colour.SLIME_YELLOW,
-			Colour.SLIME_AMBER,
-			Colour.SLIME_GREEN,
-			Colour.SLIME_GREEN_DARK,
-			Colour.SLIME_BLUE_LIGHT,
-			Colour.SLIME_BLUE,
-			Colour.SLIME_BLUE_DARK,
-			Colour.SLIME_PERIWINKLE,
-			Colour.SLIME_LILAC,
-			Colour.SLIME_PURPLE,
-			Colour.SLIME_PURPLE_DARK,
-			Colour.SLIME_PINK_DARK,
-			Colour.SLIME_PINK,
-			Colour.SLIME_PINK_LIGHT
-			);
-	
-	public static List<Colour> dyeSlimeColours = Util.newArrayListOfValues(
-			Colour.SLIME_RAINBOW
-	);
-	
 	public static List<Colour> naturalFeatherColours = Util.newArrayListOfValues(
 			Colour.COVERING_WHITE,
 			Colour.COVERING_GREY,

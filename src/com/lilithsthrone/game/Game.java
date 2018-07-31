@@ -35,17 +35,13 @@ import com.lilithsthrone.game.character.CharacterImportSetting;
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.PlayerCharacter;
-import com.lilithsthrone.game.character.attributes.AffectionLevel;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
-import com.lilithsthrone.game.character.gender.GenderPreference;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.Kate;
-import com.lilithsthrone.game.character.npc.dominion.Lilaya;
-import com.lilithsthrone.game.character.npc.dominion.SlaveInStocks;
 import com.lilithsthrone.game.character.npc.dominion.SupplierLeader;
 import com.lilithsthrone.game.character.npc.dominion.SupplierPartner;
 import com.lilithsthrone.game.character.npc.dominion.TestNPC;
@@ -59,7 +55,6 @@ import com.lilithsthrone.game.character.npc.misc.SlaveImport;
 import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.character.race.RacialBody;
-import com.lilithsthrone.game.combat.Spell;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueFlags;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
@@ -79,7 +74,6 @@ import com.lilithsthrone.game.dialogue.utils.InventoryDialogue;
 import com.lilithsthrone.game.dialogue.utils.MiscDialogue;
 import com.lilithsthrone.game.dialogue.utils.PhoneDialogue;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
-import com.lilithsthrone.game.inventory.item.AbstractItem;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.settings.KeyCodeWithModifiers;
@@ -96,7 +90,6 @@ import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Vector2i;
 import com.lilithsthrone.utils.XMLSaving;
 import com.lilithsthrone.world.Cell;
-import com.lilithsthrone.world.Generation;
 import com.lilithsthrone.world.World;
 import com.lilithsthrone.world.WorldType;
 import com.lilithsthrone.world.places.PlaceType;
@@ -577,32 +570,6 @@ public class Game implements Serializable, XMLSaving {
 					}
 				}
 				
-				// Add missing world types:
-				for(WorldType wt : WorldType.values()) {
-					Generation gen = new Generation();
-					if(Main.isVersionOlderThan(loadingVersion, "0.1.99.5")) {
-						gen.worldGeneration(WorldType.SHOPPING_ARCADE);
-					}
-					if(Main.isVersionOlderThan(loadingVersion, "0.2.1.5")) {
-						gen.worldGeneration(WorldType.DOMINION);
-					}
-					if(Main.isVersionOlderThan(loadingVersion, "0.2.2")) {
-						gen.worldGeneration(WorldType.DOMINION);
-						gen.worldGeneration(WorldType.SLAVER_ALLEY);
-					}
-					if(Main.isVersionOlderThan(loadingVersion, "0.2.8.1")) {
-						gen.worldGeneration(WorldType.EMPTY);
-					}
-					if(Main.game.worlds.get(wt)==null) {
-						gen.worldGeneration(wt);
-					}
-				}
-
-				if(Main.isVersionOlderThan(loadingVersion, "0.2.4")) {
-					AbstractItem spellBook = AbstractItemType.generateItem(ItemType.getSpellBookType(Spell.ICE_SHARD));
-					Main.game.getWorlds().get(WorldType.LILAYAS_HOUSE_FIRST_FLOOR).getCell(PlaceType.LILAYA_HOME_ROOM_PLAYER).getInventory().addItem(spellBook);
-				}
-				
 				if(debug) {
 					System.out.println("Maps finished");
 				}
@@ -762,12 +729,6 @@ public class Game implements Serializable, XMLSaving {
 			
 			addNPC(new TestNPC(), false);
 
-			// Story:
-			
-			Lilaya lilaya = new Lilaya();
-			addNPC(lilaya, false);
-			lilaya.setAffection(Main.game.getPlayer(), AffectionLevel.POSITIVE_ONE_FRIENDLY.getMedianValue());
-			
 			// Shopping Promenade:
 			
 			addNPC(new Vicky(), false);
@@ -828,36 +789,7 @@ public class Game implements Serializable, XMLSaving {
 			Main.game.getPlayer().resetDaysOrgasmCount();
 		}
 		
-		if(pendingSlaveInStocksReset && Main.game.getPlayer().getLocationPlace().getPlaceType()!=PlaceType.SLAVER_ALLEY_PUBLIC_STOCKS) {
-			List<NPC> npcsToBanish = new ArrayList<>();
-			for(NPC npc : Main.game.getCharactersPresent(Main.game.getWorlds().get(WorldType.SLAVER_ALLEY).getCell(PlaceType.SLAVER_ALLEY_PUBLIC_STOCKS))) {
-				if(npc instanceof SlaveInStocks) {
-					npcsToBanish.add(npc);
-				}
-			}
-			for(NPC npc : npcsToBanish) {
-				Main.game.banishNPC(npc);
-			}
-			
-			for(int i=0; i<4; i++) {
-				SlaveInStocks slave = new SlaveInStocks(GenderPreference.getGenderFromUserPreferences(false, false));
-				if(Math.random()>0.5f) {
-					Main.game.getGenericFemaleNPC().addSlave(slave);
-				} else {
-					Main.game.getGenericMaleNPC().addSlave(slave);	
-				}
-				try {
-					Main.game.addNPC(slave, false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			
-			pendingSlaveInStocksReset = false;
-		}
-		
 		handleAtmosphericConditions(turnTime);
-
 		
 		// Apply status effects and update all NPCs:
 		isInNPCUpdateLoop = true;
@@ -965,17 +897,9 @@ public class Game implements Serializable, XMLSaving {
 			}
 			
 			if(npc.hasStatusEffect(StatusEffect.PREGNANT_3) && (minutesPassed - npc.getTimeProgressedToFinalPregnancyStage())>(12*60)) {
-				if(npc instanceof Lilaya) {
-					if(!Main.game.getDialogueFlags().values.contains(DialogueFlagValue.reactedToPregnancyLilaya)) {
-						// Lilaya will only end pregnancy after you've seen it.
-						npc.endPregnancy(true);
-					}
-					
-				} else {
-					npc.endPregnancy(true);
-					if(npc instanceof Kate) {
-						Main.game.getDialogueFlags().values.remove(DialogueFlagValue.reactedToKatePregnancy);
-					}
+				npc.endPregnancy(true);
+				if(npc instanceof Kate) {
+					Main.game.getDialogueFlags().values.remove(DialogueFlagValue.reactedToKatePregnancy);
 				}
 			}
 			
@@ -2386,10 +2310,6 @@ public class Game implements Serializable, XMLSaving {
 
 	public NPC getTestNPC() {
 		return (NPC) this.getNPCById(getUniqueNPCId(TestNPC.class));
-	}
-
-	public NPC getLilaya() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Lilaya.class));
 	}
 
 	public NPC getVicky() {

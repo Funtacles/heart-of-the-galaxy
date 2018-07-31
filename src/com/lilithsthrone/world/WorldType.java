@@ -45,7 +45,6 @@ public enum WorldType {
 					new Value<>(new Color(0x008080), PlaceType.DOMINION_STREET_HARPY_NESTS),
 
 					new Value<>(new Color(0x004000), PlaceType.DOMINION_PLAZA),
-					new Value<>(new Color(0x00ffff), PlaceType.DOMINION_AUNTS_HOME),
 					new Value<>(new Color(0xffff00), PlaceType.DOMINION_SHOPPING_ARCADE),
 					new Value<>(new Color(0xff0000), PlaceType.DOMINION_SLAVER_ALLEY),
 					new Value<>(new Color(0x4bff00), PlaceType.DOMINION_PARK)
@@ -63,48 +62,6 @@ public enum WorldType {
 					new Value<>(new Color(0xffff00), PlaceType.GENERIC_HOLDING_CELL),
 					new Value<>(new Color(0x0080ff), PlaceType.GENERIC_MUSEUM))),
 	
-	LILAYAS_HOUSE_GROUND_FLOOR("Lilaya's Home",
-			Colour.BASE_BLUE_LIGHT,
-			1,
-			"/com/lilithsthrone/res/map/dominion/lilayasHome/lilayas_home_ground_floor.png",
-			Util.newHashMapOfValues(
-					
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-					new Value<>(new Color(0x808080), PlaceType.LILAYA_HOME_CORRIDOR),
-					new Value<>(new Color(0xff0000), PlaceType.LILAYA_HOME_ENTRANCE_HALL),
-					new Value<>(new Color(0x008000), PlaceType.LILAYA_HOME_GARDEN),
-					new Value<>(new Color(0xff8000), PlaceType.LILAYA_HOME_LAB),
-					new Value<>(new Color(0xffff00), PlaceType.LILAYA_HOME_BIRTHING_ROOM),
-					new Value<>(new Color(0xff80ff), PlaceType.LILAYA_HOME_KITCHEN),
-					new Value<>(new Color(0x00ffff), PlaceType.LILAYA_HOME_LIBRARY),
-//					new Value<>(new Color(0x8000ff), LilayasHome.LILAYA_HOME_ROOM),
-					new Value<>(new Color(0x8000ff), PlaceType.LILAYA_HOME_FOUNTAIN),
-					new Value<>(new Color(0xff0080), PlaceType.LILAYA_HOME_ROOM_GARDEN_GROUND_FLOOR),
-					new Value<>(new Color(0xff00ff), PlaceType.LILAYA_HOME_ROOM_WINDOW_GROUND_FLOOR),
-					new Value<>(new Color(0x00ff00), PlaceType.LILAYA_HOME_STAIR_UP))){
-		@Override
-		public boolean isRevealedOnStart() {
-			return true;
-		}
-	},
-	
-	LILAYAS_HOUSE_FIRST_FLOOR("Lilaya's Home",
-			Colour.BASE_BLUE_LIGHT,
-			1,
-			"/com/lilithsthrone/res/map/dominion/lilayasHome/lilayas_home_first_floor.png",
-			Util.newHashMapOfValues(
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-					new Value<>(new Color(0x808080), PlaceType.LILAYA_HOME_CORRIDOR),
-					new Value<>(new Color(0xff00ff), PlaceType.LILAYA_HOME_ROOM_WINDOW_FIRST_FLOOR),
-					new Value<>(new Color(0xff0080), PlaceType.LILAYA_HOME_ROOM_GARDEN_FIRST_FLOOR),
-					new Value<>(new Color(0x00ffff), PlaceType.LILAYA_HOME_ROOM_PLAYER),
-					new Value<>(new Color(0xff0000), PlaceType.LILAYA_HOME_STAIR_DOWN))){
-		@Override
-		public boolean isRevealedOnStart() {
-			return true;
-		}
-	},
-	
 	SLAVER_ALLEY("Slaver Alley",
 			Colour.BASE_RED,
 			1,
@@ -115,7 +72,6 @@ public enum WorldType {
 					new Value<>(new Color(0xff0000), PlaceType.SLAVER_ALLEY_ENTRANCE),
 					new Value<>(new Color(0xff00ff), PlaceType.SLAVER_ALLEY_MARKET_STALL),
 					new Value<>(new Color(0x0000ff), PlaceType.SLAVER_ALLEY_SLAVERY_ADMINISTRATION),
-					new Value<>(new Color(0xff0080), PlaceType.SLAVER_ALLEY_SCARLETTS_SHOP),
 					new Value<>(new Color(0xffff00), PlaceType.SLAVER_ALLEY_AUCTIONING_BLOCK),
 					new Value<>(new Color(0x00ff00), PlaceType.SLAVER_ALLEY_PUBLIC_STOCKS))),
 	

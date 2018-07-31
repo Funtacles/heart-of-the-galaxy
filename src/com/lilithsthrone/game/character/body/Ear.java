@@ -306,23 +306,6 @@ public class Ear implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case REINDEER_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" They quickly take on a distinctly reindeer-like shape by growing out and narrowing down into long, slightly-folded ovals."
-								+ " A layer of [pc.earFullDescriptionColour] grows to cover them, and as the transformation finishes, you discover that you're able to twitch your new rangiferine ears back and forth."
-								+ "<br/>"
-								+ "You now have [style.boldReindeerMorph(anthropomorphic, reindeer-like ears)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" They quickly take on a distinctly reindeer-like shape by growing out and narrowing down into long, slightly-folded ovals."
-								+ " A layer of [npc.earFullDescriptionColour] grows to cover them, and as the transformation finishes, [npc.she] experimentally twitches [npc.her] new rangiferine ears back and forth."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldReindeerMorph(anthropomorphic, reindeer-like ears)]."
-							+ "</p>");
-				}
-				break;
 		}
 		
 		return UtilText.parse(owner, UtilText.transformationContentSB.toString())

@@ -17,20 +17,13 @@ import com.lilithsthrone.game.dialogue.encounters.Encounter;
 import com.lilithsthrone.game.dialogue.places.JunglePlaces;
 import com.lilithsthrone.game.dialogue.places.dominion.CityHall;
 import com.lilithsthrone.game.dialogue.places.dominion.CityPlaces;
-import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.Lab;
-import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.Library;
-import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.LilayaHomeGeneric;
-import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.RoomPlayer;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.ArcaneArts;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.DreamLover;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.ShoppingArcadeDialogue;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.SuccubisSecrets;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.SupplierDepot;
-import com.lilithsthrone.game.dialogue.places.dominion.slaverAlley.ScarlettsShop;
 import com.lilithsthrone.game.dialogue.places.dominion.slaverAlley.SlaverAlleyDialogue;
 import com.lilithsthrone.game.inventory.CharacterInventory;
-import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
-import com.lilithsthrone.game.inventory.clothing.ClothingType;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.BaseColour;
 import com.lilithsthrone.utils.Bearing;
@@ -108,17 +101,6 @@ public enum PlaceType {
 	},
 	
 	DOMINION_CITY_HALL("City Hall", "dominion/townHallIcon",  BaseColour.LILAC, Colour.MAP_BACKGROUND, CityHall.OUTSIDE, Encounter.DOMINION_STREET, false, false, true, "in the streets of Dominion") {
-		@Override
-		public boolean isDangerous() {
-			return Main.game.getCurrentWeather() == Weather.MAGIC_STORM;
-		}
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return DOMINION_PLAZA.getSpeciesPopulatingArea();
-		}
-	},
-	
-	DOMINION_AUNTS_HOME("Lilaya's Home", "dominion/homeIcon", BaseColour.BLUE_LIGHT, Colour.MAP_BACKGROUND, LilayaHomeGeneric.OUTSIDE, Encounter.DOMINION_STREET, false, false, true, "in the streets of Dominion") {
 		@Override
 		public boolean isDangerous() {
 			return Main.game.getCurrentWeather() == Weather.MAGIC_STORM;
@@ -239,219 +221,7 @@ public enum PlaceType {
 //			return EntranceType.ALIGNED_FLIP_VERTICAL;
 //		}
 	},
-	
-	
-	
-	// Ground floor:
-	
-	LILAYA_HOME_CORRIDOR("Corridor", null, BaseColour.GREY, Colour.MAP_BACKGROUND, LilayaHomeGeneric.CORRIDOR, Encounter.LILAYAS_HOME_CORRIDOR, false, true, false, "in Lilaya's Home"),
-	
-	LILAYA_HOME_ROOM_WINDOW_GROUND_FLOOR("Room", "dominion/lilayasHome/room", BaseColour.GREY, Colour.MAP_BACKGROUND, LilayaHomeGeneric.ROOM_WINDOW, null, false, true, false, "in Lilaya's Home") {
-		@Override
-		public ArrayList<PlaceUpgrade> getStartingPlaceUpgrades() {
-			return Util.newArrayListOfValues(PlaceUpgrade.LILAYA_EMPTY_ROOM);
-		}
-		@Override
-		public ArrayList<PlaceUpgrade> getAvailablePlaceUpgrades(Set<PlaceUpgrade> upgrades) {
-			if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM)) {
-				return PlaceUpgrade.getSlaveQuartersUpgradesSingle();
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM_DOUBLE)) {
-				return PlaceUpgrade.getSlaveQuartersUpgradesDouble();
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-				return PlaceUpgrade.getMilkingUpgrades();
-			}
-			
-			return PlaceUpgrade.getCoreRoomUpgrades();
-		}
-		@Override
-		public String getSVGString(Set<PlaceUpgrade> upgrades) {
-			if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM)) {
-				return PlaceType.getSVGOverride("dominion/lilayasHome/roomSlave", Colour.BASE_CRIMSON);
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-				return PlaceType.getSVGOverride("dominion/lilayasHome/roomMilking", Colour.BASE_ORANGE);
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM_DOUBLE)) {
-				return PlaceType.getSVGOverride("dominion/lilayasHome/roomSlaveDouble", Colour.BASE_MAGENTA);
-				
-			} else {
-				return SVGString;
-			}
-		}
-		@Override
-		public boolean isAbleToBeUpgraded() {
-			return true;
-		}
-		@Override
-		public String getPlaceNameAppendFormat(int count) {
-			return " G-"+String.format("%02d", count);
-		}
-	},
-	
-	LILAYA_HOME_ROOM_GARDEN_GROUND_FLOOR("Garden Room", "dominion/lilayasHome/room", BaseColour.GREY, Colour.MAP_BACKGROUND, LilayaHomeGeneric.ROOM_GARDEN_GROUND_FLOOR, null, false, true, false, "in Lilaya's Home") {
-		@Override
-		public ArrayList<PlaceUpgrade> getStartingPlaceUpgrades() {
-			return Util.newArrayListOfValues(PlaceUpgrade.LILAYA_EMPTY_ROOM);
-		}
-		@Override
-		public ArrayList<PlaceUpgrade> getAvailablePlaceUpgrades(Set<PlaceUpgrade> upgrades) {
-			if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM)) {
-				return PlaceUpgrade.getSlaveQuartersUpgradesSingle();
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM_DOUBLE)) {
-				return PlaceUpgrade.getSlaveQuartersUpgradesDouble();
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-				return PlaceUpgrade.getMilkingUpgrades();
-			}
-			
-			return PlaceUpgrade.getCoreRoomUpgrades();
-		}
-		@Override
-		public String getSVGString(Set<PlaceUpgrade> upgrades) {
-			if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM)) {
-				return PlaceType.getSVGOverride("dominion/lilayasHome/roomSlave", Colour.BASE_CRIMSON);
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-				return PlaceType.getSVGOverride("dominion/lilayasHome/roomMilking", Colour.BASE_ORANGE);
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM_DOUBLE)) {
-				return PlaceType.getSVGOverride("dominion/lilayasHome/roomSlaveDouble", Colour.BASE_MAGENTA);
-				
-			} else {
-				return SVGString;
-			}
-		}
-		@Override
-		public boolean isAbleToBeUpgraded() {
-			return true;
-		}
-		@Override
-		public String getPlaceNameAppendFormat(int count) {
-			return " GG-"+String.format("%02d", count);
-		}
-	},
-	
-	LILAYA_HOME_ROOM_WINDOW_FIRST_FLOOR("Room", "dominion/lilayasHome/room", BaseColour.GREY, Colour.MAP_BACKGROUND, LilayaHomeGeneric.ROOM_WINDOW, null, false, true, false, "in Lilaya's Home") {
-		@Override
-		public ArrayList<PlaceUpgrade> getStartingPlaceUpgrades() {
-			return Util.newArrayListOfValues(PlaceUpgrade.LILAYA_EMPTY_ROOM);
-		}
-		@Override
-		public ArrayList<PlaceUpgrade> getAvailablePlaceUpgrades(Set<PlaceUpgrade> upgrades) {
-			if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM)) {
-				return PlaceUpgrade.getSlaveQuartersUpgradesSingle();
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM_DOUBLE)) {
-				return PlaceUpgrade.getSlaveQuartersUpgradesDouble();
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-				return PlaceUpgrade.getMilkingUpgrades();
-			}
-			
-			return PlaceUpgrade.getCoreRoomUpgrades();
-		}
-		@Override
-		public String getSVGString(Set<PlaceUpgrade> upgrades) {
-			if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM)) {
-				return PlaceType.getSVGOverride("dominion/lilayasHome/roomSlave", Colour.BASE_CRIMSON);
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-				return PlaceType.getSVGOverride("dominion/lilayasHome/roomMilking", Colour.BASE_ORANGE);
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM_DOUBLE)) {
-				return PlaceType.getSVGOverride("dominion/lilayasHome/roomSlaveDouble", Colour.BASE_MAGENTA);
-				
-			} else {
-				return SVGString;
-			}
-		}
-		@Override
-		public boolean isAbleToBeUpgraded() {
-			return true;
-		}
-		@Override
-		public String getPlaceNameAppendFormat(int count) {
-			return " F-"+String.format("%02d", count);
-		}
-	},
-	
-	LILAYA_HOME_ROOM_GARDEN_FIRST_FLOOR("Garden Room", "dominion/lilayasHome/room", BaseColour.GREY, Colour.MAP_BACKGROUND, LilayaHomeGeneric.ROOM_GARDEN, null, false, true, false, "in Lilaya's Home") {
-		@Override
-		public ArrayList<PlaceUpgrade> getStartingPlaceUpgrades() {
-			return Util.newArrayListOfValues(PlaceUpgrade.LILAYA_EMPTY_ROOM);
-		}
-		@Override
-		public ArrayList<PlaceUpgrade> getAvailablePlaceUpgrades(Set<PlaceUpgrade> upgrades) {
-			if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM)) {
-				return PlaceUpgrade.getSlaveQuartersUpgradesSingle();
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM_DOUBLE)) {
-				return PlaceUpgrade.getSlaveQuartersUpgradesDouble();
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-				return PlaceUpgrade.getMilkingUpgrades();
-			}
-			
-			return PlaceUpgrade.getCoreRoomUpgrades();
-		}
-		@Override
-		public String getSVGString(Set<PlaceUpgrade> upgrades) {
-			if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM)) {
-				return PlaceType.getSVGOverride("dominion/lilayasHome/roomSlave", Colour.BASE_CRIMSON);
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-				return PlaceType.getSVGOverride("dominion/lilayasHome/roomMilking", Colour.BASE_ORANGE);
-				
-			} else if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM_DOUBLE)) {
-				return PlaceType.getSVGOverride("dominion/lilayasHome/roomSlaveDouble", Colour.BASE_MAGENTA);
-				
-			} else {
-				return SVGString;
-			}
-		}
-		@Override
-		public boolean isAbleToBeUpgraded() {
-			return true;
-		}
-		@Override
-		public String getPlaceNameAppendFormat(int count) {
-			return " FG-"+String.format("%02d", count);
-		}
-	},
-	
-	LILAYA_HOME_ARTHUR_ROOM("Arthur's Room", "dominion/lilayasHome/roomArthur", BaseColour.BLUE_STEEL, Colour.MAP_BACKGROUND, LilayaHomeGeneric.ROOM_ARTHUR, null, false, true, false, "in Arthur's Room"),
-	
-	LILAYA_HOME_BIRTHING_ROOM("Room", "dominion/lilayasHome/roomBirthing", BaseColour.PINK, Colour.MAP_BACKGROUND, LilayaHomeGeneric.BIRTHING_ROOM, null, false, true, false, "in Lilaya's Home"),
-	
-	LILAYA_HOME_KITCHEN("Kitchen", "dominion/lilayasHome/kitchen", BaseColour.TAN, Colour.MAP_BACKGROUND, LilayaHomeGeneric.KITCHEN, null, false, true, false, "in Lilaya's kitchen"),
-	
-	LILAYA_HOME_LIBRARY("Library", "dominion/lilayasHome/library", BaseColour.TEAL, Colour.MAP_BACKGROUND, Library.LIBRARY, null, false, true, false, "in Lilaya's library"),
-	
-	LILAYA_HOME_STAIR_UP("Staircase", "dominion/lilayasHome/stairsUp", BaseColour.GREEN_LIGHT, Colour.MAP_BACKGROUND, LilayaHomeGeneric.STAIRCASE_UP, null, false, true, false, "in Lilaya's Home"),
-	
-	LILAYA_HOME_ENTRANCE_HALL("Entrance Hall", "dominion/lilayasHome/entranceHall", BaseColour.RED, Colour.MAP_BACKGROUND, LilayaHomeGeneric.ENTRANCE_HALL, null, false, true, false, "in Lilaya's Home"),
-	
-	LILAYA_HOME_LAB("Lilaya's Lab", "dominion/lilayasHome/lab", BaseColour.ORANGE, Colour.MAP_BACKGROUND, Lab.LAB, null, false, true, false, "in Lilaya's lab") {
-		@Override
-		public void applyInventoryInit(CharacterInventory inventory) {
-			inventory.addClothing(AbstractClothingType.generateClothing(ClothingType.SCIENTIST_EYES_SAFETY_GOGGLES, Colour.CLOTHING_BLACK, false));
-		}
-	},
-	
-	LILAYA_HOME_GARDEN("Garden", "dominion/lilayasHome/garden", BaseColour.GREEN, Colour.MAP_BACKGROUND, LilayaHomeGeneric.GARDEN, null, false, false, false, "in Lilaya's garden"),
-	
-	LILAYA_HOME_FOUNTAIN("Fountain", "dominion/lilayasHome/fountain", BaseColour.BLUE_LIGHT, Colour.MAP_BACKGROUND, LilayaHomeGeneric.FOUNTAIN, null, false, false, false, "in Lilaya's garden"),
-	
 
-	// First floor:
-
-	LILAYA_HOME_ROOM_PLAYER("Your Room", "dominion/lilayasHome/roomPlayer", BaseColour.AQUA, Colour.MAP_BACKGROUND, RoomPlayer.ROOM, null, false, true, false, "in your room"),
-	
-	LILAYA_HOME_STAIR_DOWN("Staircase", "dominion/lilayasHome/stairsDown", BaseColour.RED, Colour.MAP_BACKGROUND, LilayaHomeGeneric.STAIRCASE_DOWN, null, false, true, false, "in Lilaya's Home"),
-	
 	// Shopping arcade:
 	
 	SHOPPING_ARCADE_PATH("Arcade", null, BaseColour.BLACK, Colour.MAP_BACKGROUND, ShoppingArcadeDialogue.ARCADE, null, false, true, true, "in the Shopping Arcade") {
@@ -570,13 +340,6 @@ public enum PlaceType {
 		public ArrayList<PlaceUpgrade> getStartingPlaceUpgrades() {
 			return Util.newArrayListOfValues(PlaceUpgrade.SLAVERY_ADMINISTRATION_CELLS);
 		}
-	},
-	
-	SLAVER_ALLEY_SCARLETTS_SHOP("Scarlett's Shop", "dominion/slaverAlley/scarlettsStall", BaseColour.CRIMSON, Colour.MAP_BACKGROUND, ScarlettsShop.SCARLETTS_SHOP_EXTERIOR, null, false, true, true, "in Slaver's Alley"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			return ScarlettsShop.SCARLETTS_SHOP_EXTERIOR;
-		}	
 	},
 	
 	SLAVER_ALLEY_ENTRANCE("Gateway", "dominion/slaverAlley/exit", BaseColour.RED, Colour.MAP_BACKGROUND, SlaverAlleyDialogue.GATEWAY, null, false, true, true, "in Slaver's Alley") {

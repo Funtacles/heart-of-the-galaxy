@@ -158,7 +158,7 @@ public class PhoneDialogue {
 						}
 					};
 				} else {
-					return new Response("Transform", "Only demons and slimes can transform themselves!", null);
+					return new Response("Transform", "Only demons can transform themselves!", null);
 				}
 				
 			} else if (index == 0){

@@ -109,46 +109,6 @@ public enum Name {
 					
 					new NameTriplet("Wildlight", "Wildlight", "Wildlight"))),
 	
-	// Similar to equine names
-	REINDEER(Util.newArrayListOfValues(
-			
-			new NameTriplet("Dasher", "Dasher", "Dasher"),
-			new NameTriplet("Dancer", "Dancer", "Dancer"),
-			new NameTriplet("Prancer", "Prancer", "Prancer"),
-			new NameTriplet("Vixen", "Vixen", "Vixen"),
-			new NameTriplet("Comet", "Comet", "Comet"),
-			new NameTriplet("Cupid", "Cupid", "Cupid"),
-			new NameTriplet("Dunder", "Dunder", "Dunder"),
-			new NameTriplet("Blixem", "Blixem", "Blixem"),
-			
-			new NameTriplet("Aqua", "Aqua", "Aqua"),
-			
-			new NameTriplet("Bramble", "Bramble", "Bramble"),
-
-			new NameTriplet("Dasher", "Dasher", "Dasher"),
-			new NameTriplet("Dazzle", "Dazzle", "Dazzle"),
-
-			new NameTriplet("Flint", "Flint", "Flint"),
-			
-			new NameTriplet("Fleet", "Fleet", "Fleet"),
-			
-			new NameTriplet("Midnight", "Midnight", "Midnight"),
-			new NameTriplet("Moonwind", "Moonwind", "Moonwind"),
-
-			new NameTriplet("Nimbus", "Nimbus", "Nimbus"),
-
-			new NameTriplet("Pearl", "Pearl", "Pearl"),
-			new NameTriplet("Prixie", "Prixie", "Prixie"),
-			
-			new NameTriplet("Skyfeet", "Skyfeet", "Skyfeet"),
-			new NameTriplet("Starr", "Starr", "Starr"),
-			new NameTriplet("Spirit", "Spirit", "Spirit"),
-			
-			new NameTriplet("Thundermane", "Thundermane", "Thundermane"),
-			new NameTriplet("Twilight", "Twilight", "Twilight"),
-			
-			new NameTriplet("Wildlight", "Wildlight", "Wildlight"))),
-	
 	// No offence if your name is on here... x_x
 	PROSTITUTE(Util.newArrayListOfValues(
 					new NameTriplet("Amber", "Amber", "Amber"),
@@ -270,9 +230,6 @@ public enum Name {
 			case ELEMENTAL_WATER:
 				break;
 				
-			case REINDEER_MORPH:
-				name = Name.REINDEER;
-				break;
 			case HORSE_MORPH:
 				name = Name.EQUINE;
 				break;
@@ -315,9 +272,6 @@ public enum Name {
 			case ELEMENTAL_FIRE:
 			case ELEMENTAL_WATER:
 				return getDemonName();
-			case REINDEER_MORPH:
-				name = Name.REINDEER;
-				break;
 			case HORSE_MORPH:
 				name = Name.EQUINE;
 				break;

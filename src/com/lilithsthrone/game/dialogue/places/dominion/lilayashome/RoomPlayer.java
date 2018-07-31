@@ -15,14 +15,11 @@ import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
 import com.lilithsthrone.game.dialogue.responses.Response;
-import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.sex.SexAreaOrifice;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
-import com.lilithsthrone.world.WorldType;
-import com.lilithsthrone.world.places.PlaceType;
 
 /**
  * @since 0.1.75
@@ -186,22 +183,6 @@ public class RoomPlayer {
 				return new Response("Slavery Overview", "You'll need a slaver license before you can access this menu!",  null);
 			}
 			
-		} else if (index == 6) {
-			return new ResponseEffectsOnly("Entrance hall", "Fast travel down to the entrance hall."){
-				@Override
-				public void effects() {
-					Main.game.setActiveWorld(Main.game.getWorlds().get(WorldType.LILAYAS_HOUSE_GROUND_FLOOR), PlaceType.LILAYA_HOME_ENTRANCE_HALL, true);
-				}
-			};
-
-		} else if (index == 7) {
-			return new ResponseEffectsOnly("Lilaya's Lab", "Fast travel down to Lilaya's laboratory."){
-				@Override
-				public void effects() {
-					Main.game.setActiveWorld(Main.game.getWorlds().get(WorldType.LILAYAS_HOUSE_GROUND_FLOOR), PlaceType.LILAYA_HOME_LAB, true);
-				}
-			};
-
 		} else {
 			return null;
 		}
@@ -398,9 +379,6 @@ public class RoomPlayer {
 					+ "You notice that on each page of the calendar, there's a few paragraphs detailing the events that occur during that month."
 					+ "</p>");
 			
-			// TODO probably not the best place to put it?
-			Main.game.getDialogueFlags().values.add(DialogueFlagValue.knowsDate);
-			
 			return UtilText.nodeContentSB.toString();
 		}
 
@@ -412,9 +390,6 @@ public class RoomPlayer {
 				
 			} else if(index==1) {
 				return new Response("October", "Read the information on October's page.", AUNT_HOME_PLAYERS_ROOM_CALENDAR_OCTOBER);
-				
-			} else if(index==2) {
-				return new Response("December", "Read the information on December's page.", AUNT_HOME_PLAYERS_ROOM_CALENDAR_DECEMBER);
 				
 			} else {
 				return null;
@@ -472,72 +447,6 @@ public class RoomPlayer {
 				
 			} else if(index==1) {
 				return new Response("October", "You're already reading October's page!", null);
-				
-			} else if(index==2) {
-				return new Response("December", "Read the information on December's page.", AUNT_HOME_PLAYERS_ROOM_CALENDAR_DECEMBER);
-				
-			} else {
-				return null;
-			}
-		}
-	};
-	
-	public static final DialogueNodeOld AUNT_HOME_PLAYERS_ROOM_CALENDAR_DECEMBER = new DialogueNodeOld("Your Room", "", false) {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getContent() {
-			UtilText.nodeContentSB.setLength(0);
-			
-			if(Main.game.getPlayer().getSexualOrientation()==SexualOrientation.ANDROPHILIC) {
-				UtilText.nodeContentSB.append(
-						"<p>"
-							+ "You turn the calendar to the month of December, and discover that the model adorning this page is a muscular reindeer-boy, who's grinning as he presents his huge cock to the viewer."
-							+ " After gazing at the picture for a few moments, you force yourself to look away and read the information that's written beneath:"
-						+ "</p>");
-			} else {
-				UtilText.nodeContentSB.append(
-						"<p>"
-							+ "You turn the calendar to the month of December, and discover that the model adorning this page is a curvy reindeer-girl, who's bending over a wooden table and presenting her wet pussy to the viewer."
-							+ " After gazing at the picture for a few moments, you force yourself to look away and read the information that's written beneath:"
-						+ "</p>");
-			}
-
-			UtilText.nodeContentSB.append(
-					"<h4 style='text-align:center;'>"
-							+ "<span style='color:"+Colour.BASE_RED.toWebHexString()+";'>December</span>"
-							+ "<br/>"
-							+ "<span style='color:"+Colour.BASE_GOLD.toWebHexString()+";'>Yuletide</span>"
-					+ "</h4>"
-					+ "<i>"
-					+ "<p>"
-						+ "The celebration of Yuletide is held throughout the month of December, and sometimes even drags on through January and February!"
-						+ " Giving gifts, holding feasts, and throwing parties are the ways in which Yuletide is celebrated."
-						+ " As this celebration coincides with the arrival of the reindeer-morphs in Dominion, it has become tradition for the gifts given during Yuletide to be items purchased from these reindeer-morphs."
-					+ "</p>"
-					+ "<p>"
-						+ "The figure associated with this season is the Lilin 'J&oacute;lnir' (meaning 'the Yule one', or 'Yule figure')."
-						+ " Not much is known about this Lilin, other than the obvious fact that their name breaks with the tradition of all Lilin's names beginning with an 'L', and that they are the leader of the 'Wild Hunt'."
-					+ "</p>"
-					+ "<p>"
-						+ "Consisting of a wandering horde of summoned arcane elementals, the 'Wild Hunt' was driven away from Dominion many years ago, and is now only found during Yuletide out in the Foloi Fields and the forests nearby."
-					+ "</p>"
-					+ "</i>");
-			
-			return UtilText.nodeContentSB.toString();
-		}
-
-
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 0) {
-				return new Response("Back", "Stop reading about October.", AUNT_HOME_PLAYERS_ROOM_CALENDAR);
-				
-			} else if(index==1) {
-				return new Response("October", "Read the information on October's page.", AUNT_HOME_PLAYERS_ROOM_CALENDAR_OCTOBER);
-				
-			} else if(index==2) {
-				return new Response("December", "You're already reading December's page.", null);
 				
 			} else {
 				return null;

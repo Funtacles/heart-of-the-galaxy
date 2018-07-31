@@ -5124,7 +5124,7 @@ public class UtilText {
 				true,
 				true,
 				"",
-				"Returns the name of the 'skin' covering this body part. This could, in fact, be quite different from skin, for example: fur, keratin, scales, slime, etc.",
+				"Returns the name of the 'skin' covering this body part. This could, in fact, be quite different from skin, for example: fur, keratin, scales, etc.",
 				bodyPart){
 			@Override
 			public String parse(String command, String arguments, String target) {

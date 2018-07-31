@@ -304,8 +304,6 @@ public class Body implements Serializable, XMLSaving {
 				return BodyCoveringType.BODY_HAIR_CANINE_FUR;
 			case HORSE_MORPH:
 				return BodyCoveringType.BODY_HAIR_HORSE_HAIR;
-			case REINDEER_MORPH:
-				return BodyCoveringType.BODY_HAIR_REINDEER_HAIR;
 			case HUMAN:
 				return BodyCoveringType.BODY_HAIR_HUMAN;
 			case SQUIRREL_MORPH:
@@ -1610,9 +1608,6 @@ public class Body implements Serializable, XMLSaving {
 			case HORSE_MORPH:
 				sb.append(", anthropomorphic horse-like face, with a long, equine muzzle.");
 				break;
-			case REINDEER_MORPH:
-				sb.append(", anthropomorphic reindeer-like face, with a long, reindeer-like muzzle.");
-				break;
 		}
 		
 		// Lynx side fluff
@@ -1682,9 +1677,6 @@ public class Body implements Serializable, XMLSaving {
 					break;
 				case HORSE_MORPH:
 					sb.append(", horse-like hair");
-					break;
-				case REINDEER_MORPH:
-					sb.append(", reindeer-like hair");
 					break;
 			
 			}
@@ -1766,10 +1758,8 @@ public class Body implements Serializable, XMLSaving {
 		
 		// Horns:
 		String hornDescription = "horns protrude from the upper sides";
-		String antlerDescription = "multi-branched antlers protrude from the upper sides";
 		if(owner.getHornRows()==1 && owner.getHornsPerRow()==1) {
 			hornDescription = "horn protrudes from the middle";
-			antlerDescription = "multi-branched antler protrudes from the middle";
 		}
 		
 		switch (horn.getType()) {
@@ -1788,13 +1778,6 @@ public class Body implements Serializable, XMLSaving {
 					sb.append(" "+Util.capitaliseSentence(horn.getDeterminer(owner))+" "+horn.getHornLength().getDescriptor()+", [pc.hornColour(true)], curved "+hornDescription+" of your forehead.");
 				} else {
 					sb.append(" "+Util.capitaliseSentence(horn.getDeterminer(owner))+" "+horn.getHornLength().getDescriptor()+", [npc.hornColour(true)], curved "+hornDescription+" of [npc.her] forehead.");
-				}
-				break;
-			case REINDEER_RACK:
-				if (owner.isPlayer()) {
-					sb.append(" "+Util.capitaliseSentence(horn.getDeterminer(owner))+" "+horn.getHornLength().getDescriptor()+", [pc.hornColour(true)], "+antlerDescription+" of your forehead.");
-				} else {
-					sb.append(" "+Util.capitaliseSentence(horn.getDeterminer(owner))+" "+horn.getHornLength().getDescriptor()+", [npc.hornColour(true)], "+antlerDescription+" of [npc.her] forehead.");
 				}
 				break;
 			case SPIRAL:
@@ -1861,9 +1844,6 @@ public class Body implements Serializable, XMLSaving {
 				break;
 			case HORSE_MORPH:
 				sb.append(" horse-like eyes");
-				break;
-			case REINDEER_MORPH:
-				sb.append(" reindeer-like eyes");
 				break;
 			case HUMAN:
 				sb.append(" normal, human eyes");
@@ -2030,12 +2010,6 @@ public class Body implements Serializable, XMLSaving {
 					sb.append(" You have a pair of "+(ear.isPierced() ? "pierced, " : "")+"upright, horse-like ears, which are positioned high up on your head and are are "+getCoveredInDescriptor(owner)+" [pc.earFullDescription(true)].");
 				else
 					sb.append(" [npc.She] has a pair of "+(ear.isPierced() ? "pierced, " : "")+"upright, horse-like ears, which are positioned high up on [npc.her] head and are "+getCoveredInDescriptor(owner)+" [npc.earFullDescription(true)].");
-				break;
-			case REINDEER_MORPH:
-				if (owner.isPlayer())
-					sb.append(" You have a pair of oval-shaped, reindeer-like ears, which are "+getCoveredInDescriptor(owner)+" [pc.earFullDescription(true)]" + (ear.isPierced() ? ", and which have been pierced" : "") + ".");
-				else
-					sb.append(" [npc.She] has a pair of oval-shaped, reindeer-like ears, which are "+getCoveredInDescriptor(owner)+" [npc.earFullDescription(true)]" + (ear.isPierced() ? ", and which have been pierced" : "") + ".");
 				break;
 		}
 		
@@ -2762,14 +2736,6 @@ public class Body implements Serializable, XMLSaving {
 					sb.append("[npc.She] has "+armDeterminer+" arms, which are "+getCoveredInDescriptor(owner)+" [npc.armFullDescription(true)]."
 							+ " [npc.Her] hands, while human in shape, have tough little hoof-like nails.");
 				break;
-			case REINDEER_MORPH:
-				if (owner.isPlayer())
-					sb.append("You have "+armDeterminer+" arms, which are "+getCoveredInDescriptor(owner)+" [pc.armFullDescription(true)]."
-								+ " Your hands, while human in shape, have tough little hoof-like nails.");
-				else
-					sb.append("[npc.She] has "+armDeterminer+" arms, which are "+getCoveredInDescriptor(owner)+" [npc.armFullDescription(true)]."
-							+ " [npc.Her] hands, while human in shape, have tough little hoof-like nails.");
-				break;
 			case RABBIT_MORPH:
 				if (owner.isPlayer())
 					sb.append("You have "+armDeterminer+" arms, which are "+getCoveredInDescriptor(owner)+" [pc.armFullDescription(true)]."
@@ -2973,14 +2939,6 @@ public class Body implements Serializable, XMLSaving {
 					sb.append("[npc.Her] legs are "+getCoveredInDescriptor(owner)+" [npc.legFullDescription(true)],"
 							+ " and [npc.her] feet are formed into anthropomorphic horse-like hoofs.");
 				break;
-			case REINDEER_MORPH:
-				if (owner.isPlayer())
-					sb.append("Your legs are "+getCoveredInDescriptor(owner)+" <span style='color:[pc.legColourHex];'>[pc.legColour] [pc.legSkin]</span>,"
-							+ " and your feet are formed into anthropomorphic reindeer-like hoofs.");
-				else
-					sb.append("[npc.Her] legs are "+getCoveredInDescriptor(owner)+" <span style='color:[npc.legColourHex];'>[npc.legColour] [npc.legSkin]</span>,"
-							+ " and [npc.her] feet are formed into anthropomorphic reindeer-like hoofs.");
-				break;
 			case COW_MORPH:
 				if (owner.isPlayer())
 					sb.append("Your legs are "+getCoveredInDescriptor(owner)+" [pc.legFullDescription(true)],"
@@ -3170,13 +3128,6 @@ public class Body implements Serializable, XMLSaving {
 						case HORSE_MORPH_ZEBRA:
 							sb.append("a [npc.tailColour(true)] zebra-like tail, which [npc.she] can swipe from side to side, but other than that, [npc.she] [npc.does]n't have much control over it.");
 							break;
-						case REINDEER_MORPH:
-							if (owner.isPlayer()) {
-								sb.append("a short, [pc.tailColour(true)] reindeer-like tail.");
-							} else {
-								sb.append("a short, [npc.tailColour(true)] reindeer-like tail.");
-							}
-							break;
 						case COW_MORPH:
 							if (owner.isPlayer()) {
 								sb.append("a long, [pc.tailColour(true)] cow-like tail, which you can swipe from side to side, but other than that, you don't have much control over it.");
@@ -3276,13 +3227,6 @@ public class Body implements Serializable, XMLSaving {
 							break;
 						case HORSE_MORPH_ZEBRA:
 							sb.append("[npc.tailColour(true)] zebra-like tails, which [npc.she] can swipe from side to side, but other than that, [npc.she] [npc.does]n't have much control over them.");
-							break;
-						case REINDEER_MORPH:
-							if (owner.isPlayer()) {
-								sb.append("short, [pc.tailColour(true)] reindeer-like tails.");
-							} else {
-								sb.append("short, [npc.tailColour(true)] reindeer-like tails.");
-							}
 							break;
 						case COW_MORPH:
 							if (owner.isPlayer()) {
@@ -3705,14 +3649,6 @@ public class Body implements Serializable, XMLSaving {
 				}
 				break;
 				
-			case REINDEER_MORPH:
-				if (isPlayer) {
-					descriptionSB.append("You have a rangiferine, [pc.anusFullDescription(true)]");
-				} else {
-					descriptionSB.append("[npc.She] has a rangiferine, [npc.anusFullDescription(true)]");
-				}
-				break;
-				
 			case COW_MORPH:
 				if (isPlayer) {
 					descriptionSB.append("You have a bovine, [pc.anusFullDescription(true)]");
@@ -4121,9 +4057,6 @@ public class Body implements Serializable, XMLSaving {
 					case PINEAPPLE:
 						descriptionSB.append(" Your [pc.milk] tastes of pineapple.");
 						break;
-					case SLIME:
-						descriptionSB.append(" Your [pc.milk] is mostly tasteless, but very sweet.");
-						break;
 					case STRAWBERRY:
 						descriptionSB.append(" Your [pc.milk] tastes of strawberries.");
 						break;
@@ -4324,9 +4257,6 @@ public class Body implements Serializable, XMLSaving {
 						case PINEAPPLE:
 							descriptionSB.append(" [npc.Her] [npc.milk] tastes of pineapple.");
 							break;
-						case SLIME:
-							descriptionSB.append(" [npc.Her] [npc.milk] is mostly tasteless, but very sweet.");
-							break;
 						case STRAWBERRY:
 							descriptionSB.append(" [npc.Her] [npc.milk] tastes of strawberries.");
 							break;
@@ -4446,9 +4376,6 @@ public class Body implements Serializable, XMLSaving {
 				break;
 			case EQUINE:
 				descriptionSB.append(" equine cock");
-				break;
-			case REINDEER_MORPH:
-				descriptionSB.append(" rangiferine cock");
 				break;
 			case DILDO:
 				descriptionSB.append(" dildo");
@@ -4945,9 +4872,6 @@ public class Body implements Serializable, XMLSaving {
 				case PINEAPPLE:
 					descriptionSB.append(" tastes of pineapple.");
 					break;
-				case SLIME:
-					descriptionSB.append(" is mostly tasteless, but very sweet.");
-					break;
 				case STRAWBERRY:
 					descriptionSB.append(" tastes of strawberries.");
 					break;
@@ -5082,13 +5006,6 @@ public class Body implements Serializable, XMLSaving {
 					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" an")+" equine pussy, with [pc.labiaSize], [pc.pussyPrimaryColour(true)] labia and [pc.pussySecondaryColour(true)] inner-walls.");
 				} else {
 					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" an")+" equine pussy, with [npc.labiaSize], [npc.pussyPrimaryColour(true)] labia and [npc.pussySecondaryColour(true)] inner-walls.");
-				}
-				break;
-			case REINDEER_MORPH:
-				if (isPlayer) {
-					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" an")+" rangiferine pussy, with [pc.labiaSize], [pc.pussyPrimaryColour(true)] labia and [pc.pussySecondaryColour(true)] inner-walls.");
-				} else {
-					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" an")+" rangiferine pussy, with [npc.labiaSize], [npc.pussyPrimaryColour(true)] labia and [npc.pussySecondaryColour(true)] inner-walls.");
 				}
 				break;
 			case RABBIT_MORPH:
@@ -6024,9 +5941,6 @@ public class Body implements Serializable, XMLSaving {
 				case HORSE_MORPH:
 					coverings.put(BodyCoveringType.BODY_HAIR_HORSE_HAIR, new Covering(BodyCoveringType.BODY_HAIR_HORSE_HAIR, coverings.get(BodyCoveringType.HAIR_HORSE_HAIR).getPrimaryColour()));
 					break;
-				case REINDEER_MORPH:
-					coverings.put(BodyCoveringType.BODY_HAIR_REINDEER_HAIR, new Covering(BodyCoveringType.BODY_HAIR_REINDEER_HAIR, coverings.get(BodyCoveringType.HAIR_REINDEER_FUR).getPrimaryColour()));
-					break;
 				case COW_MORPH:
 					coverings.put(BodyCoveringType.BODY_HAIR_BOVINE_FUR, new Covering(BodyCoveringType.BODY_HAIR_BOVINE_FUR, coverings.get(BodyCoveringType.HAIR_BOVINE_FUR).getPrimaryColour()));
 					break;
@@ -6068,11 +5982,6 @@ public class Body implements Serializable, XMLSaving {
 	 */
 	public void updateCoverings(boolean updateEyes, boolean updateHair, boolean updateBodyHairColours, boolean updateSkin) {
 		
-//		if(this.getBodyMaterial()==BodyMaterial.SLIME) {
-//			coverings.put(BodyCoveringType.SLIME, new Covering
-//					(BodyCoveringType.SLIME, coverings.get(BodyCoveringType.SLIME).getPattern(), coverings.get(BodyCoveringType.SLIME).getPrimaryColour(), false, coverings.get(BodyCoveringType.SLIME).getPrimaryColour(), false));
-//		}
-		
 		// Make eyes normal:
 		if(updateEyes) {
 			coverings.put(BodyCoveringType.EYE_HUMAN, new Covering
@@ -6105,9 +6014,6 @@ public class Body implements Serializable, XMLSaving {
 						break;
 					case HORSE_MORPH:
 						coverings.put(BodyCoveringType.BODY_HAIR_HORSE_HAIR, new Covering(BodyCoveringType.BODY_HAIR_HORSE_HAIR, coverings.get(BodyCoveringType.HAIR_HORSE_HAIR).getPrimaryColour()));
-						break;
-					case REINDEER_MORPH:
-						coverings.put(BodyCoveringType.BODY_HAIR_REINDEER_HAIR, new Covering(BodyCoveringType.BODY_HAIR_REINDEER_HAIR, coverings.get(BodyCoveringType.HAIR_REINDEER_FUR).getPrimaryColour()));
 						break;
 					case COW_MORPH:
 						coverings.put(BodyCoveringType.BODY_HAIR_BOVINE_FUR, new Covering(BodyCoveringType.BODY_HAIR_BOVINE_FUR, coverings.get(BodyCoveringType.HAIR_BOVINE_FUR).getPrimaryColour()));

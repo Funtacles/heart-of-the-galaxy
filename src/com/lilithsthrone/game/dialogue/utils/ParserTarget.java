@@ -165,19 +165,6 @@ public enum ParserTarget {
 		}
 	},
 	
-	LILAYA(Util.newArrayListOfValues(
-			"lilaya",
-			"aunt"), "") {
-		public String getDescription() {
-			return Main.game.getLilaya().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getLilaya();
-		}
-	},
-	
 	KATE(Util.newArrayListOfValues("kate"), "") {
 		public String getDescription() {
 			return Main.game.getKate().getDescription();

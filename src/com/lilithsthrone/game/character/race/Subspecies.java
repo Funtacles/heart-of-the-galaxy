@@ -618,20 +618,6 @@ public enum Subspecies {
 		}
 	},
 
-	REINDEER_MORPH("statusEffects/raceReindeerMorph",
-			"reindeer-morph",
-			"reindeer-morphs",
-			"reindeer-boy",
-			"reindeer-girl",
-			"reindeer-boys",
-			"reindeer-girls",
-			Race.REINDEER_MORPH,
-			Colour.RACE_REINDEER_MORPH,
-			SubspeciesPreference.FOUR_ABUNDANT,
-			"A typical bipedal reindeer-morph.",
-			Util.newArrayListOfValues(
-					WorldType.DOMINION)),
-	
 	// RODENTS:
 	SQUIRREL_MORPH("statusEffects/raceSquirrelMorph",
 			"squirrel-morph",
@@ -775,9 +761,6 @@ public enum Subspecies {
 	},
 	
 	;
-	//TENGU(Race.TENGU.getName(), Race.TENGU, RacialBody.TENGU, SubspeciesPreference.TWO_LOW,
-	//		"A hermetic kind of "+Race.HARPY.getName());
-
 	
 	private String name, namePlural, singularMaleName, singularFemaleName, pluralMaleName, pluralFemaleName;
 	private Race race;
@@ -908,8 +891,6 @@ public enum Subspecies {
 				return Subspecies.HUMAN;
 			case RABBIT_MORPH:
 				return Subspecies.RABBIT_MORPH;
-			case REINDEER_MORPH:
-				return Subspecies.REINDEER_MORPH;
 			case SQUIRREL_MORPH:
 				return Subspecies.SQUIRREL_MORPH;
 			case WOLF_MORPH:
@@ -1055,9 +1036,6 @@ public enum Subspecies {
 				break;
 			case HUMAN:
 				subspecies = Subspecies.HUMAN;
-				break;
-			case REINDEER_MORPH:
-				subspecies = Subspecies.REINDEER_MORPH;
 				break;
 			case SQUIRREL_MORPH:
 				subspecies = Subspecies.SQUIRREL_MORPH;

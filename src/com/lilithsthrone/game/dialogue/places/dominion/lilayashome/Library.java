@@ -8,7 +8,6 @@ import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.combat.Spell;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
-import com.lilithsthrone.game.dialogue.npcDialogue.SlaveDialogue;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
@@ -99,22 +98,11 @@ public class Library {
 
 		@Override
 		public Response getResponse(int responseTab, int index) {
-			List<NPC> charactersPresent = Main.game.getNonCompanionCharactersPresent();
-			
 			if (index==0) {
 				return null;
 			 
 			} else if (index == 1) {
 				return new Response("Browse the Shelves", "Read one of the many books available in the library.", BROWSE_BOOKS);
-
-			} else if(index-2<charactersPresent.size()) {
-				return new Response(UtilText.parse(charactersPresent.get(index-2), "[npc.Name]"), UtilText.parse(charactersPresent.get(index-2), "Interact with [npc.name]."), SlaveDialogue.SLAVE_START) {
-					@Override
-					public void effects() {
-						Main.game.setActiveNPC(charactersPresent.get(index-2));
-					}
-				};
-					
 			} else {
 				return null;
 			}
@@ -546,9 +534,6 @@ public class Library {
 
 			} else if (field == 3) {
 				return bookResponse(ItemType.BOOK_RABBIT_MORPH, Race.RABBIT_MORPH);
-
-			} else if (field == 4) {
-				return bookResponse(ItemType.BOOK_REINDEER_MORPH, Race.REINDEER_MORPH);
 
 			} else if (field == 0) {
 				return new Response("Back to the shelves", "Return to strolling the shelves.", BROWSE_BOOKS);

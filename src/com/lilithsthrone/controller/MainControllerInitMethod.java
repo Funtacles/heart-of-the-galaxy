@@ -101,11 +101,9 @@ import com.lilithsthrone.game.combat.Spell;
 import com.lilithsthrone.game.combat.SpellSchool;
 import com.lilithsthrone.game.combat.SpellUpgrade;
 import com.lilithsthrone.game.dialogue.DebugDialogue;
-import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.DialogueNodeType;
 import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
-import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.LilayaHomeGeneric;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.SuccubisSecrets;
 import com.lilithsthrone.game.dialogue.places.dominion.slaverAlley.SlaverAlleyDialogue;
 import com.lilithsthrone.game.dialogue.responses.Response;
@@ -1030,23 +1028,13 @@ public class MainControllerInitMethod {
 					id = placeUpgrade+"_BUY";
 					if (((EventTarget) MainController.document.getElementById(id)) != null) {
 						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							if(placeUpgrade!=PlaceUpgrade.LILAYA_ARTHUR_ROOM) {
-								Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
-									@Override
-									public void effects() {
-										SlaveryManagementDialogue.cellToInspect.addPlaceUpgrade(placeUpgrade);
-										Main.game.getPlayer().incrementMoney(-placeUpgrade.getInstallCost());
-									}
-								});
-							} else {
-								Main.game.setContent(new Response("", "", LilayaHomeGeneric.ROOM_ARTHUR_INSTALLATION){
-									@Override
-									public void effects() {
-										SlaveryManagementDialogue.cellToInspect.addPlaceUpgrade(placeUpgrade);
-										Main.game.getDialogueFlags().setFlag(DialogueFlagValue.arthursRoomInstalled, true);
-									}
-								});
-							}
+							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
+								@Override
+								public void effects() {
+									SlaveryManagementDialogue.cellToInspect.addPlaceUpgrade(placeUpgrade);
+									Main.game.getPlayer().incrementMoney(-placeUpgrade.getInstallCost());
+								}
+							});
 						}, false);
 						
 						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);

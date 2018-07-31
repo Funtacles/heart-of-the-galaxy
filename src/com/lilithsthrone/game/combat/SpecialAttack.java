@@ -1909,57 +1909,6 @@ public enum SpecialAttack {
 		}
 	},
 
-	ANTLER_HEADBUTT(50,
-			"Headbutt",
-			"hornsIcon",
-			Colour.DAMAGE_TYPE_PHYSICAL,
-			DamageType.PHYSICAL,
-			20,
-			DamageVariance.LOW,
-			5,
-			Util.newHashMapOfValues(new Value<StatusEffect, Integer>(StatusEffect.DAZED, 2))) {
-		@Override
-		public String applyEffect(GameCharacter caster, GameCharacter target, boolean isHit, boolean isCritical) {
-
-			float damage = Attack.calculateSpecialAttackDamage(caster, target, damageType, this.getDamage(), damageVariance, isCritical);
-
-			descriptionSB = new StringBuilder();
-
-			descriptionSB.append(UtilText.parse(caster, target,
-					"<p>"
-						+ "With a burst of energy, [npc.name] [npc.verb(leap)] forwards, trying to butt [npc.her] head into [npc2.name]."
-						+ (isHit
-								? " [npc.She] [npc.verb(manage)] to make contact; ramming [npc.her] forehead into [npc2.namePos] body and whacking [npc2.herHim] with the sides of [npc.her] antlers."
-											+ " [npc2.Name] [npc.verb(stagger)] back from the impact, having had the wind knocked out of [npc.herHim]."
-								: " [npc2.Name] [npc2.verb(manage)] to jump to one side, and there's an audible whoosh as [npc.namePos] antlers swipe through the air.")
-					+ "</p>")
-					+ getDamageAndCostDescription(caster, target, this.getCooldown(), damage, isHit, isCritical));
-			
-			// If attack hits, apply damage and effects:
-			if (isHit) {
-				descriptionSB.append(target.incrementHealth(caster, -damage));
-				for (Entry<StatusEffect, Integer> se : getStatusEffects().entrySet())
-					target.addStatusEffect(se.getKey(), se.getValue());
-			}
-			
-			return descriptionSB.toString();
-		}
-
-		@Override
-		public String getDescription(GameCharacter owner) {
-			if (owner.isPlayer()) {
-				return "Your anthropomorphic reindeer-like head and antlers can be used to deliver a powerful attack.";
-			} else {
-				return UtilText.parse(owner, "[npc.NamePos] anthropomorphic reindeer-like head and antlers can be used to deliver a powerful attack.");
-			}
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter owner) {
-			return owner.getFaceType() == FaceType.REINDEER_MORPH && owner.hasHorns();
-		}
-	},
-
 	WOLF_SAVAGE(50,
 			"savage attack",
 			"savageIcon",

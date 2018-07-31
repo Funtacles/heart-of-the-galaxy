@@ -891,52 +891,6 @@ public class ClothingType {
 		}
 	};
 	
-	public static AbstractClothingType HEAD_ANTLER_HEADBAND = new AbstractClothingType(60,
-			"an",
-			false,
-			"antler headband",
-			"antler headbands",
-			"A thin band of metal that sits atop your head.",
-			1,
-			null,
-			InventorySlot.HEAD,
-			Rarity.COMMON,
-			null,
-			"head_antler_headband",
-			null,
-			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, Util.newArrayListOfValues(ClothingAccess.HEAD), null, null, null)),
-			null,
-			ColourListPresets.JUST_BROWN.getPresetColourList(),
-			null,
-			null,
-			null,
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull on the antler headband.",
-					"You push the antler headband onto [npc.namePos] head.",
-					null,
-					"[npc.Name] pulls the antler headband onto [npc.her] head.",
-					"[npc.Name] pushes the antler headband onto your head.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You take off your antler headband.",
-					"You take off [npc.namePos] antler headband.",
-					null,
-					"[npc.Name] takes [npc.her] antler headband off.",
-					"[npc.Name] takes your antler headband off.",
-					null, null, null);
-		}
-	};
-
 	// EYES
 	public static AbstractClothingType EYES_GLASSES = new AbstractClothingType(800,
 			"a pair of",
@@ -2225,49 +2179,6 @@ public class ClothingType {
 			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
 	};
 
-	public static AbstractClothingType TORSO_OVER_CHRISTMAS_SWEATER = new AbstractClothingType(100,
-			"a",
-			false,
-			"festive sweater",
-			"festive sweaters",
-			"A festive sweater, made from some sort of woolly fabric and decorated with a series of incredibly tasteful and refined patterns.",
-			1,
-			null,
-			InventorySlot.TORSO_OVER,
-			Rarity.COMMON,
-			null,
-			"torso_over_christmas_sweater",
-			null,
-			Util.newArrayListOfValues(
-					new BlockedParts(DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(
-									ClothingAccess.ARMS_UP_TO_SHOULDER,
-									ClothingAccess.HEAD),
-							null,
-							Util.newArrayListOfValues(ClothingAccess.ARMS_UP_TO_SHOULDER), 
-							null),
-					new BlockedParts(DisplacementType.PULLS_UP,
-							null,
-							Util.newArrayListOfValues(
-									CoverableArea.BREASTS,
-									CoverableArea.NIPPLES,
-									CoverableArea.STOMACH,
-									CoverableArea.BACK),
-							Util.newArrayListOfValues(
-									ClothingAccess.CHEST,
-									ClothingAccess.WAIST),
-							PresetConcealmentLists.CONCEALED_FULL_TORSO.getPresetInventorySlotList())),
-
-			null,
-			ColourListPresets.NOT_WHITE.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_WHITE.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
-	};
-	
 	public static AbstractClothingType TORSO_KEYHOLE_SWEATER = new AbstractClothingType(350,
 			"a",
 			false,
@@ -10331,54 +10242,6 @@ public class ClothingType {
 	};
 	
 	
-	public static AbstractClothingType KIMONO_HAIR_KANZASHI = new AbstractClothingType(500,
-			"a",
-			false,
-			"kanzashi",
-			"kanzashi",
-			"A traditional Japanese hair ornament, composed primarily of folded cloth flowers.",
-			1,
-			Femininity.FEMININE,
-			InventorySlot.HAIR,
-			Rarity.EPIC,
-			ClothingSet.GEISHA,
-			"kimono_hair_kanzashi",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.MAJOR_BOOST, 0)),
-			null,
-			null,
-			ColourListPresets.KIMONO.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_WHITE.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.KIMONO.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You tie up your [pc.hair] and fasten the kanzashi in place.",
-					"You tie up [npc.namePos] [npc.hair] and fasten the kanzashi in place.",
-					null,
-					"[npc.Name] ties up [npc.her] [npc.hair] and fastens the kanzashi in place.",
-					"[npc.Name] ties up your [pc.hair] and fastens the kanzashi in place.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You take off your kanzashi.",
-					"You take off [npc.namePos] kanzashi.",
-					null,
-					"[npc.Name] takes [npc.her] kanzashi off.",
-					"[npc.Name] takes your kanzashi off.",
-					null, null, null);
-		}
-
-	};
-	
 	public static AbstractClothingType KIMONO_DRESS = new AbstractClothingType(3000,
 			"a",
 			false,
@@ -10438,7 +10301,7 @@ public class ClothingType {
 			ColourListPresets.ALL.getPresetColourList(),
 			ColourListPresets.KIMONO.getPresetColourList(),
 			ColourListPresets.ALL.getPresetColourList(),
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT, ItemTag.DRESS)){
+			Util.newArrayListOfValues(ItemTag.DRESS)){
 
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -10460,57 +10323,6 @@ public class ClothingType {
 					"[npc.Name] takes [npc.her] kimono off.",
 					"[npc.Name] takes your kimono off.",
 					null, null, null);
-		}
-	};
-	
-	public static AbstractClothingType KIMONO_GETA = new AbstractClothingType(350,
-			"a pair of",
-			true,
-			"geta",
-			"geta",
-			"These sandals have a slightly elevated wooden base, and are held onto the foot by means of a cloth thong.",
-			1,
-			Femininity.FEMININE,
-			InventorySlot.FOOT,
-			Rarity.EPIC,
-			ClothingSet.GEISHA,
-			"kimono_foot_geta",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(ClothingAccess.FEET),
-							null, null, null)),
-			null,
-			ColourListPresets.KIMONO.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_BLACK.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You slip your [pc.feet] into the geta.",
-					"You push [npc.namePos] [npc.feet] into the geta.",
-					"You force the geta onto [npc.namePos] [npc.feet].",
-					"[npc.Name] slips [npc.her] [npc.feet] into the geta.",
-					"[npc.Name] pushes your [pc.feet] into the geta.",
-					"[npc.Name] forces the geta onto your [pc.feet].", null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You slide off your geta.",
-					"You pull [npc.namePos] geta off.",
-					"You grab [npc.namePos] [npc.feet] and pull [npc.her] geta off.",
-					"[npc.Name] slides off [npc.her] geta.",
-					"[npc.Name] pulls off your geta.",
-					"[npc.Name] grabs your [pc.feet] and pulls your geta off.", null, null);
 		}
 	};
 	
@@ -10578,7 +10390,7 @@ public class ClothingType {
 			ColourListPresets.ALL.getPresetColourList(),
 			ColourListPresets.JUST_GREY.getPresetColourList(),
 			ColourListPresets.ALL.getPresetColourList(),
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT, ItemTag.DRESS)){
+			Util.newArrayListOfValues(ItemTag.DRESS)){
 
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -10602,418 +10414,6 @@ public class ClothingType {
 					null, null, null);
 		}
 	};
-	
-	public static AbstractClothingType KIMONO_HAORI = new AbstractClothingType(750,
-			"a",
-			false,
-			"men's haori",
-			"men's haori",
-			"A traditional thigh-length kimono-style jacket.",
-			1,
-			Femininity.MASCULINE,
-			InventorySlot.TORSO_OVER,
-			Rarity.EPIC,
-			ClothingSet.RONIN,
-			"kimono_torso_over_haori",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_PHYSICAL, TFPotency.MAJOR_BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(ClothingAccess.ARMS_UP_TO_SHOULDER),
-							Util.newArrayListOfValues(CoverableArea.BACK),
-							Util.newArrayListOfValues(ClothingAccess.ARMS_UP_TO_SHOULDER),
-							null)),
-			null,
-			Util.newArrayListOfValues(
-							Colour.CLOTHING_BLACK,
-							Colour.CLOTHING_GREY,
-							Colour.CLOTHING_BLUE),
-			ColourListPresets.ALL.getPresetColourList(),
-			null,
-			null,
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
-		
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull on the haori.",
-					"You guide [npc.namePos] [npc.arms] through the haori's sleeves as you pull it on [npc.herHim].",
-					null,
-					"[npc.Name] pulls on the haori.",
-					"[npc.Name] guides your [pc.arms] through the haori's sleeves as [npc.she] pulls it on you.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You take off your haori.",
-					"You pull off [npc.namePos] haori.",
-					null,
-					"[npc.Name] takes [npc.her] haori off.",
-					"[npc.Name] pulls your haori off.",
-					null, null, null);
-		}
-	};
-	
-	public static AbstractClothingType KIMONO_MENS_GETA = new AbstractClothingType(350,
-			"a pair of",
-			true,
-			"men's geta",
-			"men's geta",
-			"These sandals have a slightly elevated wooden base, and are held onto the foot by means of a cloth thong.",
-			1,
-			Femininity.MASCULINE,
-			InventorySlot.FOOT,
-			Rarity.EPIC,
-			ClothingSet.RONIN,
-			"kimono_foot_mens_geta",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_PHYSICAL, TFPotency.BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(ClothingAccess.FEET), 
-							null, null, null)),
-			null,
-			Util.newArrayListOfValues(
-							Colour.CLOTHING_BLACK,
-							Colour.CLOTHING_GREY,
-							Colour.CLOTHING_BLUE),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_BLACK.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You slip your [pc.feet] into the geta.",
-					"You push [npc.namePos] [npc.feet] into the geta.",
-					"You force the geta onto [npc.namePos] [npc.feet].",
-					"[npc.Name] slips [npc.her] [npc.feet] into the geta.",
-					"[npc.Name] pushes your [pc.feet] into the geta.",
-					"[npc.Name] forces the geta onto your [pc.feet].", null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You slide off your geta.",
-					"You pull [npc.namePos] geta off.",
-					"You grab [npc.namePos] [npc.feet] and pull [npc.her] geta off.",
-					"[npc.Name] slides off [npc.her] geta.",
-					"[npc.Name] pulls off your geta.",
-					"[npc.Name] grabs your [pc.feet] and pulls your geta off.", null, null);
-		}
-	};
-	
-	
-	public static AbstractClothingType JOLNIR_HAT = new AbstractClothingType(400,
-			"a",
-			false,
-			"J&oacute;lnir's hat",
-			"J&oacute;lnir's hats",
-			"A hat made in the same style as that worn by the Yule figure.",
-			1,
-			null,
-			InventorySlot.HEAD,
-			Rarity.EPIC,
-			ClothingSet.JOLNIR,
-			"jolnir_head_hat",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.CRITICAL_DAMAGE, TFPotency.MAJOR_BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(ClothingAccess.HEAD),
-							null, null, null)),
-			null,
-			ColourListPresets.JUST_RED.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_WHITE.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You put on J&oacute;lnir's hat.",
-					"You place J&oacute;lnir's hat onto [npc.namePos] head.",
-					null,
-					"[npc.Name] puts on J&oacute;lnir's hat.",
-					"[npc.Name] places J&oacute;lnir's hat onto your head.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You take off J&oacute;lnir's hat.",
-					"You take off [npc.namePos] J&oacute;lnir's hat.",
-					null,
-					"[npc.Name] takes J&oacute;lnir's hat off.",
-					"[npc.Name] takes your J&oacute;lnir's hat off.",
-					null, null, null);
-		}
-
-	};
-	
-	public static AbstractClothingType JOLNIR_COAT = new AbstractClothingType(750,
-			"a",
-			false,
-			"J&oacute;lnir's coat",
-			"J&oacute;lnir's coats",
-			"A coat similar to the one worn by the Yule figure.",
-			5,
-			null,
-			InventorySlot.TORSO_OVER,
-			Rarity.EPIC,
-			ClothingSet.JOLNIR,
-			"jolnir_torso_over_coat",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.SPELL_COST_MODIFIER, TFPotency.MAJOR_BOOST, 0), 
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_SPELLS, TFPotency.MAJOR_BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(ClothingAccess.ARMS_UP_TO_SHOULDER),
-							null,
-							Util.newArrayListOfValues(ClothingAccess.ARMS_UP_TO_SHOULDER),
-							PresetConcealmentLists.CONCEALED_FULL_TORSO.getPresetInventorySlotList())),
-			null,
-			ColourListPresets.JUST_RED.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_WHITE.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_BLACK.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
-		
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull on the coat.",
-					"You guide [npc.namePos] [npc.arms] through the coat's sleeves as you pull it on [npc.herHim].",
-					null,
-					"[npc.Name] pulls on the coat.",
-					"[npc.Name] guides your [pc.arms] through the coat's sleeves as [npc.she] pulls it on you.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You take off your coat.",
-					"You pull off [npc.namePos] coat.",
-					null,
-					"[npc.Name] takes [npc.her] coat off.",
-					"[npc.Name] pulls your coat off.",
-					null, null, null);
-		}
-	};
-	
-	public static AbstractClothingType JOLNIR_DRESS = new AbstractClothingType(900,
-			"a",
-			false,
-			"J&oacute;lnir's dress",
-			"J&oacute;lnir's dresses",
-			"A dress made to be in the same style as the clothing worn by the Yule figure.",
-			5,
-			Femininity.FEMININE,
-			InventorySlot.TORSO_UNDER,
-			Rarity.EPIC,
-			ClothingSet.JOLNIR,
-			"jolnir_torso_dress",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.SPELL_COST_MODIFIER, TFPotency.MAJOR_BOOST, 0), 
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_SPELLS, TFPotency.MAJOR_BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(
-									ClothingAccess.ARMS_UP_TO_SHOULDER,
-									ClothingAccess.HEAD),
-							Util.newArrayListOfValues(
-									CoverableArea.BREASTS,
-									CoverableArea.NIPPLES,
-									CoverableArea.STOMACH,
-									CoverableArea.BACK),
-							Util.newArrayListOfValues(
-									ClothingAccess.CHEST,
-									ClothingAccess.WAIST),
-							PresetConcealmentLists.CONCEALED_PARTIAL_TORSO.getPresetInventorySlotList()),
-					new BlockedParts(
-							DisplacementType.PULLS_UP,
-							null,
-							Util.newArrayListOfValues(
-									CoverableArea.ANUS,
-									CoverableArea.PENIS,
-									CoverableArea.VAGINA),
-							Util.newArrayListOfValues(ClothingAccess.GROIN),
-							PresetConcealmentLists.CONCEALED_GROIN.getPresetInventorySlotList())),
-			null,
-			ColourListPresets.JUST_RED.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_WHITE.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_BLACK.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT, ItemTag.DRESS)){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull on the J&oacute;lnir's dress, tidying the skirt down before moving the straps into a comfortable position on your shoulders.",
-					"You pull the J&oacute;lnir's dress over [npc.namePos] head and down around [npc.her] torso, tidying the skirt before moving the straps to sit comfortably on [npc.her] shoulders.",
-					null,
-					"[npc.Name] pulls on the J&oacute;lnir's dress, tidying the skirt down before moving the straps into a comfortable position on [npc.her] shoulders.",
-					"[npc.Name] pulls the J&oacute;lnir's dress over your head and down around your torso, tidying the skirt before moving the straps to sit comfortably on your shoulders.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull your J&oacute;lnir's dress up over your head and take it off.",
-					"You pull [npc.namePos] J&oacute;lnir's dress up over [npc.her] head and take it off.",
-					null,
-					"[npc.Name] pulls [npc.her] J&oacute;lnir's dress up over [npc.her] head and takes it off.",
-					"[npc.Name] pulls your J&oacute;lnir's dress up over your head and takes it off.",
-					null, null, null);
-		}
-
-		@Override
-		public String displaceText(GameCharacter clothingOwner, GameCharacter clothingRemover, DisplacementType dt, boolean rough) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull up the skirt of your J&oacute;lnir's dress.",
-					"You pull up the skirt of [npc.namePos] J&oacute;lnir's dress.",
-					null,
-					"[npc.Name] pulls up the skirt of [npc.her] J&oacute;lnir's dress.",
-					"[npc.Name] pulls up the skirt of your J&oacute;lnir's dress.",
-					null, null, null);
-		}
-
-		@Override
-		public String replaceText(GameCharacter clothingOwner, GameCharacter clothingRemover, DisplacementType dt, boolean rough) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull your J&oacute;lnir's dress back down into its proper position.",
-					"You pull [npc.namePos] J&oacute;lnir's dress back down into its proper position.",
-					null,
-					"[npc.Name] pulls [npc.her] J&oacute;lnir's dress back down into its proper position.",
-					"[npc.Name] your J&oacute;lnir's dress back down into its proper position.",
-					null, null, null);
-		}
-	};
-	
-	public static AbstractClothingType JOLNIR_BOOTS = new AbstractClothingType(500,
-			"a pair of",
-			true,
-			"J&oacute;lnir's boot",
-			"J&oacute;lnir's boots",
-			"A pair of boots, of the sort worn by the Yule figure.",
-			1,
-			Femininity.MASCULINE,
-			InventorySlot.FOOT,
-			Rarity.EPIC,
-			ClothingSet.JOLNIR,
-			"jolnir_foot_boots",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.CRITICAL_CHANCE, TFPotency.MAJOR_BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(ClothingAccess.FEET),
-							null, null, null)),
-			null,
-			ColourListPresets.JUST_RED.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_BLACK.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_WHITE.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You push your [pc.feet] into the boots.",
-					"You push [npc.namePos] [npc.feet] into the boots.",
-					"You force the boots onto [npc.namePos] [npc.feet].",
-					"[npc.Name] pushes [npc.her] [npc.feet] into the boots.",
-					"[npc.Name] pushes your [pc.feet] into the boots.",
-					"[npc.Name] forces the boots onto your [pc.feet].", null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull off your boots.",
-					"You pull [npc.namePos] boots off.",
-					"You grab [npc.namePos] [npc.feet] and pull [npc.her] boots off.",
-					"[npc.Name] pulls off [npc.her] boots.",
-					"[npc.Name] pulls off your boots.",
-					"[npc.Name] grabs your [pc.feet] and pulls your boots off.", null, null);
-		}
-	};
-	
-	public static AbstractClothingType JOLNIR_BOOTS_FEMININE = new AbstractClothingType(750,
-			"a pair of",
-			true,
-			"J&oacute;lnir's heeled boot",
-			"J&oacute;lnir's heeled boots",
-			"A pair of boots, of the same style as those worn by the Yule figure.",
-			1,
-			Femininity.FEMININE,
-			InventorySlot.FOOT,
-			Rarity.EPIC,
-			ClothingSet.JOLNIR,
-			"jolnir_foot_boots_feminine",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.CRITICAL_CHANCE, TFPotency.MAJOR_BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(ClothingAccess.FEET),
-							null, null, null)),
-			null,
-			ColourListPresets.JUST_RED.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_BLACK.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_WHITE.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You push your [pc.feet] into the boots.",
-					"You push [npc.namePos] [npc.feet] into the boots.",
-					"You force the boots onto [npc.namePos] [npc.feet].",
-					"[npc.Name] pushes [npc.her] [npc.feet] into the boots.",
-					"[npc.Name] pushes your [pc.feet] into the boots.",
-					"[npc.Name] forces the boots onto your [pc.feet].", null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull off your boots.",
-					"You pull [npc.namePos] boots off.",
-					"You grab [npc.namePos] [npc.feet] and pull [npc.her] boots off.",
-					"[npc.Name] pulls off [npc.her] boots.",
-					"[npc.Name] pulls off your boots.",
-					"[npc.Name] grabs your [pc.feet] and pulls your boots off.", null, null);
-		}
-	};
-	
 	
 	public static AbstractClothingType SCIENTIST_TORSO_OVER_LAB_COAT = new AbstractClothingType(800,
 			"a",
@@ -11227,7 +10627,6 @@ public class ClothingType {
 			null,
 			null, 
 			Util.newArrayListOfValues(
-					ItemTag.REINDEER_GIFT,
 					ItemTag.SOLD_BY_NYAN)){
 		
 
@@ -11278,7 +10677,6 @@ public class ClothingType {
 			null,
 			null,
 			Util.newArrayListOfValues(
-					ItemTag.REINDEER_GIFT,
 					ItemTag.SOLD_BY_NYAN)){
 
 		@Override
@@ -11482,7 +10880,6 @@ public class ClothingType {
 			null,
 			null,
 			Util.newArrayListOfValues(
-					ItemTag.REINDEER_GIFT,
 					ItemTag.SOLD_BY_NYAN)){
 
 		@Override
@@ -11567,67 +10964,6 @@ public class ClothingType {
 		}
 	};
 
-	public static AbstractClothingType HEAD_SLIME_QUEENS_TIARA = new AbstractClothingType(10000,
-			"the",
-			false,
-			"Slime Queen's Tiara",
-			"Slime Queen's Tiaras",
-			"Worn by the Slime Queen, this tiara consists of a thin band of metal, studded with precious gemstones.",
-			1,
-			Femininity.FEMININE,
-			InventorySlot.HEAD,
-			Rarity.LEGENDARY,
-			null,
-			"head_slime_queens_tiara",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.CRITICAL_DAMAGE, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.CRITICAL_DAMAGE, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.CRITICAL_DAMAGE, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.CRITICAL_DAMAGE, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.CRITICAL_DAMAGE, TFPotency.MAJOR_BOOST, 0)),
-			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, Util.newArrayListOfValues(ClothingAccess.HEAD), null, null, null)),
-			null,
-			ColourListPresets.JUST_GOLD.getPresetColourList(),
-			ColourListPresets.ALL_METAL.getPresetColourList(),
-			ColourListPresets.JUST_DARK_RED.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_GOLD.getPresetColourList(),
-			ColourListPresets.ALL_METAL.getPresetColourList(),
-			null){
-		
-		@Override
-		public int getEnchantmentLimit() {
-			return 10;
-		}
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You place the tiara on your head.",
-					"You place the tiara on [npc.namePos] head.",
-					null,
-					"[npc.Name] places the tiara on [npc.her] head.",
-					"[npc.Name] places the tiara on your head.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You take off your tiara.",
-					"You take off [npc.namePos] tiara.",
-					null,
-					"[npc.Name] takes [npc.her] tiara off.",
-					"[npc.Name] takes your tiara off.",
-					null, null, null);
-		}
-	};
-	
 	
 	private static List<AbstractClothingType> allClothing, moddedClothingList;
 	
@@ -11772,8 +11108,6 @@ public class ClothingType {
 					allClothing.add(ct);
 					
 					if(ct==ClothingType.PENIS_CONDOM
-							|| ct==ClothingType.TORSO_OVER_CHRISTMAS_SWEATER
-							|| ct==ClothingType.HEAD_ANTLER_HEADBAND
 							|| ct==ClothingType.PIERCING_EAR_SNOW_FLAKES
 							|| ct==ClothingType.PIERCING_NOSE_SNOWFLAKE_STUD
 							|| ct==ClothingType.NECK_SNOWFLAKE_NECKLACE) {

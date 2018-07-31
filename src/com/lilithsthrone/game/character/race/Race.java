@@ -231,35 +231,6 @@ public enum Race {
 			FurryPreference.NORMAL,
 			true),
 
-	
-	 REINDEER_MORPH("reindeer-morph",
-			"reindeer-morphs",
-			"reindeer-boy",
-			"reindeer-girl",
-			"reindeer-boys",
-			"reindeer-girls",
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "REINDEER_MORPH_BASIC"),
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "REINDEER_MORPH_ADVANCED"),
-		 
-	  Colour.RACE_REINDEER_MORPH,
-			Disposition.CIVILIZED,
-			StatusEffect.REINDEER_MORPH,
-			Util.newArrayListOfValues(
-					Attack.MAIN,
-					Attack.SPECIAL_ATTACK),
-			true,
-			0.5f,
-			1,
-			2,
-			Attribute.DAMAGE_REINDEER_MORPH,
-			Attribute.RESISTANCE_REINDEER_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
-			
-
 	SQUIRREL_MORPH("squirrel-morph",
 			"squirrel-morphs",
 			"squirrel-boy",

@@ -2121,38 +2121,6 @@ public enum StatusEffect {
 		}
 	},
 	
-	REINDEER_MORPH(1000,
-			"reindeer-morph",
-			null,
-			Colour.RACE_REINDEER_MORPH,
-			true,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, 5f),
-					new Value<Attribute, Float>(Attribute.RESISTANCE_ICE, 10f)),
-			null) {
-
-		@Override
-		public String getDescription(GameCharacter target) {
-			if (target.isPlayer()) {
-				return "Your reindeer-like body grants you significant resistance to the cold, as well as an increase in strength and fitness.";
-			} else {
-				return UtilText.parse(target, "[npc.NamePos] reindeer-like body grants [npc.herHim] significant resistance to the cold, as well as an increase in strength and fitness.");
-			}
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return target.getRace() == Race.REINDEER_MORPH
-					&& !target.isRaceConcealed()
-					&& target.getRaceStage() == RaceStage.GREATER;
-		}
-
-		@Override
-		public String getSVGString(GameCharacter owner) {
-			return owner.getSubspecies().getSVGString(owner);
-		}
-	},
-
 	// BOVINE:
 	COW_MORPH(1000,
 			"cow-morph",
@@ -3721,34 +3689,6 @@ public enum StatusEffect {
 
 		@Override
 		public String applyEffect(GameCharacter target, int minutesPassed) {
-//			if(minutesPassed>0 && Math.random() > Math.pow(0.999f, minutesPassed)) {
-//				String milkLoss = target.incrementBreastStoredMilk(-target.getBreastRawMilkStorageValue()/4);
-//				AbstractClothing nippleClothing = target.getLowestZLayerCoverableArea(CoverableArea.NIPPLES);
-//				AbstractClothing nippleTopClothing = target.getHighestZLayerCoverableArea(CoverableArea.NIPPLES);
-//				if(nippleClothing!=null) {
-//					nippleClothing.setDirty(true);
-//				}
-//				if(target.isPlayer()) {
-//					return "<p>"
-//								+ "For the past several minutes, an increasingly desperate desire to squeeze down on your full, milk-swollen breasts has been building up within you."
-//								+ " Feeling as though you just can't bear it any longer, you give in, and, reaching up to your "
-//								+ (nippleClothing==null
-//									?"exposed [pc.breasts], you greedily start massaging and pinching at your engorged [pc.nipples]."
-//										+ " Instantly, a spurt of [pc.milk+] shoots out all over your [pc.fingers], and you let out a deep, satisfied sigh as an immense feeling of relief washes over you..."
-//									:"covered [pc.breasts], you greedily start massaging and pinching at your "+nippleTopClothing.getName()+", pushing "
-//										+(nippleClothing.equals(nippleTopClothing)
-//												?(nippleTopClothing.getClothingType().isPlural()
-//														?"them"
-//														:"it")
-//												:"your "+nippleClothing.getName())
-//										+" down roughly against your engorged [pc.nipples] in your desperation to get some relief."
-//										+ " Instantly, a spurt of [pc.milk+] shoots out into your clothing, and you let out a deep, satisfied sigh as an immense feeling of relief washes over you...")
-//							+ "</p>"
-//							+ ""//TODO bra dirtied
-//							+milkLoss;
-//				}
-//			}
-			
 			return "";
 		}
 
@@ -5933,30 +5873,6 @@ public enum StatusEffect {
 		
 	},
 	
-	COMBAT_BONUS_HARPY(
-			80,
-			"harpy intuition",
-			"combatBonusHarpy",
-			Colour.RACE_HARPY,
-			true,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, 2f),
-					new Value<Attribute, Float>(Attribute.DAMAGE_HARPY, 25f),
-					new Value<Attribute, Float>(Attribute.RESISTANCE_HARPY, 25f)),
-			null) {		@Override
-		public String getDescription(GameCharacter target) {
-			if(target == null) {
-				return "";
-			}
-			if (target.isPlayer()) {
-				return "After absorbing a specially-enchanted arcane essence, you find that you're able to accurately predict how harpies will behave.";
-			} else {
-				return UtilText.parse(target, "After absorbing a specially-enchanted arcane essence, [npc.name] is able to accurately predict how harpies will behave.");
-			}
-		}
-		
-	},
-	
 	COMBAT_BONUS_HORSE_MORPH(
 			80,
 			"horse-morph intuition",
@@ -5976,30 +5892,6 @@ public enum StatusEffect {
 				return "After absorbing a specially-enchanted arcane essence, you find that you're able to accurately predict how horse-morphs will behave.";
 			} else {
 				return UtilText.parse(target, "After absorbing a specially-enchanted arcane essence, [npc.name] is able to accurately predict how horse-morphs will behave.");
-			}
-		}
-		
-	},
-	
-	COMBAT_BONUS_REINDEER_MORPH(
-			80,
-			"reindeer-morph intuition",
-			"combatBonusReindeerMorph",
-			Colour.RACE_REINDEER_MORPH,
-			true,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, 2f),
-					new Value<Attribute, Float>(Attribute.DAMAGE_REINDEER_MORPH, 25f),
-					new Value<Attribute, Float>(Attribute.RESISTANCE_REINDEER_MORPH, 25f)),
-			null) {		@Override
-		public String getDescription(GameCharacter target) {
-			if(target == null) {
-				return "";
-			}
-			if (target.isPlayer()) {
-				return "After absorbing a specially-enchanted arcane essence, you find that you're able to accurately predict how reindeer-morphs will behave.";
-			} else {
-				return UtilText.parse(target, "After absorbing a specially-enchanted arcane essence, [npc.name] is able to accurately predict how reindeer-morphs will behave.");
 			}
 		}
 		
@@ -6194,32 +6086,6 @@ public enum StatusEffect {
 			}
 		}
 	},
-	
-	COMBAT_BONUS_SLIME(
-			80,
-			"slime intuition",
-			"combatBonusSlime",
-			Colour.RACE_SLIME,
-			true,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, 2f),
-					new Value<Attribute, Float>(Attribute.DAMAGE_SLIME, 25f),
-					new Value<Attribute, Float>(Attribute.RESISTANCE_SLIME, 25f)),
-			null) {		@Override
-		public String getDescription(GameCharacter target) {
-			if(target == null) {
-				return "";
-			}
-			if (target.isPlayer()) {
-				return "After absorbing a specially-enchanted arcane essence, you find that you're able to accurately predict how slimes will behave.";
-			} else {
-				return UtilText.parse(target, "After absorbing a specially-enchanted arcane essence, [npc.name] is able to accurately predict how slimes will behave.");
-			}
-		}
-		
-	},
-	
-	
 	
 
 	// COMBAT EFFECTS:

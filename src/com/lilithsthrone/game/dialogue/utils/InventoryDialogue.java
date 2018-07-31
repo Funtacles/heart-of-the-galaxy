@@ -143,9 +143,6 @@ public class InventoryDialogue {
 		
 		@Override
 		public Response getResponse(int responseTab, int index) {
-			//TODO sex end
-			// What does that even mean? BlobSweats
-			
 			if (index == 0) {
 				return getCloseInventoryResponse();
 			}

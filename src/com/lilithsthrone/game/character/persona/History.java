@@ -14,10 +14,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
  */
 public enum History {
 	
-	// Unique:
-
-	REINDEER_OVERSEER(false, false, null, "overseer", "-"),
-	
 	// NPC histories:
 
 	UNEMPLOYED_NPC(false, false, Perk.JOB_UNEMPLOYED, "unemployed", "[npc.NameIsFull] unemployed."),

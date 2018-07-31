@@ -35,9 +35,7 @@ public enum EyeType implements BodyPartTypeInterface {
 
 	RABBIT_MORPH(BodyCoveringType.EYE_RABBIT, Race.RABBIT_MORPH, 1, EyeShape.ROUND, EyeShape.ROUND),
 	
-	HORSE_MORPH(BodyCoveringType.EYE_HORSE_MORPH, Race.HORSE_MORPH, 1, EyeShape.ROUND, EyeShape.HORIZONTAL),
-
-	REINDEER_MORPH(BodyCoveringType.EYE_REINDEER_MORPH, Race.REINDEER_MORPH, 1, EyeShape.ROUND, EyeShape.HORIZONTAL);
+	HORSE_MORPH(BodyCoveringType.EYE_HORSE_MORPH, Race.HORSE_MORPH, 1, EyeShape.ROUND, EyeShape.HORIZONTAL);
 
 	
 	private BodyCoveringType coveringType;
@@ -86,8 +84,6 @@ public enum EyeType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("squirrel-like");
 			case HORSE_MORPH:
 				return UtilText.returnStringAtRandom("horse-like");
-			case REINDEER_MORPH:
-				return UtilText.returnStringAtRandom("reindeer-like");
 			case HUMAN:
 				return UtilText.returnStringAtRandom("");
 			case LYCAN:
@@ -114,8 +110,6 @@ public enum EyeType implements BodyPartTypeInterface {
 				return "squirrel-like";
 			case HORSE_MORPH:
 				return "equine";
-			case REINDEER_MORPH:
-				return "rangiferine";
 			case HUMAN:
 				return "human";
 			case LYCAN:

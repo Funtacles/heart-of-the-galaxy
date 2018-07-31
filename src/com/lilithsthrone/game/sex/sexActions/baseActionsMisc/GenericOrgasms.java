@@ -1245,9 +1245,6 @@ public class GenericOrgasms {
 								case PINEAPPLE:
 									cumTargetSB.append(" The unusual taste of [npc1.namePos] pineapple-flavoured");
 									break;
-								case SLIME:
-									cumTargetSB.append(" The unusual taste of [npc1.namePos] sweet");
-									break;
 								case STRAWBERRY:
 									cumTargetSB.append(" The unusual taste of [npc1.namePos] strawberry-flavoured");
 									break;

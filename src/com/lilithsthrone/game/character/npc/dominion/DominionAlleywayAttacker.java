@@ -6,7 +6,6 @@ import java.util.Map;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.lilithsthrone.game.Season;
 import com.lilithsthrone.game.Weather;
 import com.lilithsthrone.game.character.CharacterImportSetting;
 import com.lilithsthrone.game.character.CharacterUtils;
@@ -19,9 +18,7 @@ import com.lilithsthrone.game.character.persona.Name;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.character.race.Subspecies;
-import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
-import com.lilithsthrone.game.dialogue.npcDialogue.SlaveDialogue;
 import com.lilithsthrone.game.dialogue.npcDialogue.dominion.AlleywayAttackerDialogue;
 import com.lilithsthrone.game.dialogue.npcDialogue.dominion.AlleywayProstituteDialogue;
 import com.lilithsthrone.game.dialogue.responses.Response;
@@ -91,14 +88,6 @@ public class DominionAlleywayAttacker extends NPC {
 					case ELEMENTAL_WATER:
 						break;
 						
-					// Special spawns:
-					case REINDEER_MORPH:
-						if(Main.game.getSeason()==Season.WINTER && Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.hasSnowedThisWinter)) {
-							addToSubspeciesMap(canalSpecies?1:10, gender, s, availableRaces);
-						}
-						break;
-						
-					// Regular spawns:
 					case CAT_MORPH:
 						addToSubspeciesMap(canalSpecies?5:20, gender, s, availableRaces);
 						break;
@@ -203,8 +192,6 @@ public class DominionAlleywayAttacker extends NPC {
 			setMana(getAttributeValue(Attribute.MANA_MAXIMUM));
 			setHealth(getAttributeValue(Attribute.HEALTH_MAXIMUM));
 		}
-
-		this.setEnslavementDialogue(SlaveDialogue.DEFAULT_ENSLAVEMENT_DIALOGUE);
 	}
 	
 	@Override

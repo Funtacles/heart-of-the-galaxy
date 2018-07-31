@@ -150,7 +150,7 @@ public class CharactersPresentDialogue {
 				} else if (index == 2) {
 					
 					if(!characterViewed.isAbleToSelfTransform()) {
-						return new Response("Transformations", "Only demons and slimes can transform themselves on command...", null);
+						return new Response("Transformations", "Only demons can transform themselves on command...", null);
 						
 					} else if(!Main.game.isSavedDialogueNeutral()) {
 						return new Response("Transformations", "You're in the middle of something right now! (Can only be used when in a tile's default dialogue.)", null);

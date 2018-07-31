@@ -1,7 +1,6 @@
 package com.lilithsthrone.game.dialogue.story;
 
 import java.io.File;
-import java.time.LocalDateTime;
 
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.Weather;
@@ -28,7 +27,6 @@ import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.combat.DamageType;
-import com.lilithsthrone.game.combat.Spell;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
@@ -41,9 +39,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
-import com.lilithsthrone.game.inventory.item.AbstractItem;
-import com.lilithsthrone.game.inventory.item.AbstractItemType;
-import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.game.inventory.weapon.WeaponType;
 import com.lilithsthrone.game.sex.SexAreaOrifice;
@@ -138,7 +133,6 @@ public class CharacterCreation {
 	
 	public static void resetBodyAppearance() {
 		Main.game.getPlayer().setSkinCovering(new Covering(BodyCoveringType.HUMAN, Colour.SKIN_LIGHT), true);
-		Main.game.getLilaya().setSkinCovering(new Covering(BodyCoveringType.HUMAN, Main.game.getPlayer().getCovering(BodyCoveringType.HUMAN).getPrimaryColour()), true);
 		Main.game.getPlayer().setSkinCovering(new Covering(BodyCoveringType.EYE_HUMAN, Colour.EYE_BROWN), true);
 		Main.game.getPlayer().setHairCovering(new Covering(BodyCoveringType.HAIR_HUMAN, Colour.COVERING_BROWN), true);
 		Main.game.getPlayer().setBreastShape(BreastShape.ROUND);
@@ -1604,9 +1598,6 @@ public class CharacterCreation {
 							+ " you explain,"
 							+ " [pc.speech(mostly doing admin and paper work.)]");
 					break;
-				case REINDEER_OVERSEER:
-					// "Well, if you hadn't already noticed, I'm actually an anthropomorphic reindeer, and I come down from the snowy mountains to shovel snow in the city every winter. :D"
-					break;
 				case SOLDIER:
 					UtilText.nodeContentSB.append(
 							"[pc.speech(I'm in the army,)]"
@@ -1720,10 +1711,6 @@ public class CharacterCreation {
 	private static void applyGameStart() {
 		Main.getProperties().addRaceDiscovered(Race.HUMAN);
 		
-		Main.game.getLilaya().setSkinCovering(new Covering(BodyCoveringType.HUMAN, Main.game.getPlayer().getCovering(BodyCoveringType.HUMAN).getPrimaryColour()), true);
-
-		Main.game.getLilaya().setBirthday(LocalDateTime.of(Main.game.getPlayer().getBirthday().getYear()-22, Main.game.getLilaya().getBirthMonth(), Main.game.getLilaya().getDayOfBirth(), 12, 0));
-		
 		Main.game.clearTextStartStringBuilder();
 		Main.game.clearTextEndStringBuilder();
 
@@ -1733,10 +1720,6 @@ public class CharacterCreation {
 	}
 
 	private static void applySkipPrologueStart() {
-		Main.game.getPlayer().addCharacterEncountered(Main.game.getLilaya());
-		
-		Main.getProperties().addRaceDiscovered(Main.game.getLilaya().getRace());
-
 		moveNPCOutOfPlayerTile();
 		Main.game.setPrologueFinished(true);
 	}
@@ -1776,12 +1759,8 @@ public class CharacterCreation {
 						Main.game.getPlayer().setMoney(500);
 						Main.game.getPlayer().equipMainWeaponFromNowhere(AbstractWeaponType.generateWeapon(WeaponType.MELEE_CHAOS_RARE, DamageType.FIRE));
 						
-						AbstractItem spellBook = AbstractItemType.generateItem(ItemType.getSpellBookType(Spell.ICE_SHARD));
-						Main.game.getWorlds().get(WorldType.LILAYAS_HOUSE_FIRST_FLOOR).getCell(PlaceType.LILAYA_HOME_ROOM_PLAYER).getInventory().addItem(spellBook);
-						
 						applyGameStart();
 						applySkipPrologueStart();
-						Main.game.getPlayer().setLocation(WorldType.LILAYAS_HOUSE_FIRST_FLOOR, PlaceType.LILAYA_HOME_ROOM_PLAYER);
 						Main.game.setContent(new Response("", "", Main.game.getDefaultDialogueNoEncounter()));
 					}
 				};
@@ -1917,12 +1896,8 @@ public class CharacterCreation {
 						Main.game.getPlayer().setMoney(500);
 						Main.game.getPlayer().equipMainWeaponFromNowhere(AbstractWeaponType.generateWeapon(WeaponType.MELEE_CHAOS_RARE, DamageType.FIRE));
 						
-						AbstractItem spellBook = AbstractItemType.generateItem(ItemType.getSpellBookType(Spell.ICE_SHARD));
-						Main.game.getWorlds().get(WorldType.LILAYAS_HOUSE_FIRST_FLOOR).getCell(PlaceType.LILAYA_HOME_ROOM_PLAYER).getInventory().addItem(spellBook);
-						
 						applyGameStart();
 						applySkipPrologueStart();
-						Main.game.getPlayer().setLocation(WorldType.LILAYAS_HOUSE_FIRST_FLOOR, PlaceType.LILAYA_HOME_ROOM_PLAYER);
 						Main.game.setContent(new Response("", "", Main.game.getDefaultDialogueNoEncounter()));
 					}
 				};

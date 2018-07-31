@@ -1206,7 +1206,7 @@ public class DebugDialogue {
 										+ "<i style='color:"+Colour.CLOTHING_YELLOW.toWebHexString()+";'>(What the hell are you doing Innoxia?! You said my scenes were going to be re-written weeks ago!)</i>]<br/>"
 					+ "outputs:<br/>"
 					+ "'Lilaya storms up to Innoxia, shouting angrily in response to finding out that her sex scenes haven't been fixed yet, "
-						+UtilText.parseSpeech("What the hell are you doing Innoxia?! You said my scenes were going to be re-written weeks ago!", Main.game.getLilaya())+"'"
+						+UtilText.parseSpeech("What the hell are you doing Innoxia?! You said my scenes were going to be re-written weeks ago!", Main.game.getPlayer())+"'"
 					
 					+ "</p>";
 		}

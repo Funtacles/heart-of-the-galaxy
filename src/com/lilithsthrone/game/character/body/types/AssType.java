@@ -35,9 +35,7 @@ public enum AssType implements BodyPartTypeInterface {
 	
 	CAT_MORPH(BodyCoveringType.FELINE_FUR, AnusType.CAT_MORPH, Race.CAT_MORPH),
 	
-	HORSE_MORPH(BodyCoveringType.HORSE_HAIR, AnusType.HORSE_MORPH, Race.HORSE_MORPH),
-	
-	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, AnusType.REINDEER_MORPH, Race.REINDEER_MORPH);
+	HORSE_MORPH(BodyCoveringType.HORSE_HAIR, AnusType.HORSE_MORPH, Race.HORSE_MORPH);
 	
 	private BodyCoveringType skinType;
 	private AnusType anusType;
@@ -122,8 +120,6 @@ public enum AssType implements BodyPartTypeInterface {
 				return "furry";
 			case HORSE_MORPH:
 				return "equine";
-			case REINDEER_MORPH:
-				return "rangiferine";
 			case HUMAN:
 				return "human";
 			case WOLF_MORPH:

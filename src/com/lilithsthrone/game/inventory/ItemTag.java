@@ -11,7 +11,6 @@ public enum ItemTag {
 
 	NOT_FOR_SALE,
 	
-	REINDEER_GIFT,
 	SOLD_BY_NYAN,
 	SOLD_BY_KATE,
 	SOLD_BY_FINCH,

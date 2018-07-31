@@ -8,7 +8,6 @@ import java.util.Set;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.lilithsthrone.game.Season;
 import com.lilithsthrone.game.character.CharacterImportSetting;
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
@@ -22,7 +21,6 @@ import com.lilithsthrone.game.character.persona.NameTriplet;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.character.race.Subspecies;
-import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.CharacterInventory;
@@ -83,13 +81,6 @@ public class GenericSexualPartner extends NPC {
 						
 					case HUMAN:
 						addToSubspeciesMap(5, gender, s, availableRaces);
-						break;
-						
-					// Special spawns:
-					case REINDEER_MORPH:
-						if(Main.game.getSeason()==Season.WINTER && Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.hasSnowedThisWinter)) {
-							addToSubspeciesMap(10, gender, s, availableRaces);
-						}
 						break;
 						
 					// Regular spawns:

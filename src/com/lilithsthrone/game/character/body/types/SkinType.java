@@ -49,8 +49,6 @@ public enum SkinType implements BodyPartTypeInterface {
 	@Override
 	public boolean isDefaultPlural() {
 		switch(coveringType) {
-			case HAIR_HARPY:
-				return true;
 			case ALLIGATOR_SCALES:
 				return true;
 			default:
@@ -61,8 +59,6 @@ public enum SkinType implements BodyPartTypeInterface {
 	@Override
 	public String getNameSingular(GameCharacter gc) {
 		switch(coveringType) {
-			case HAIR_HARPY:
-				return "feather";
 			case ALLIGATOR_SCALES:
 				return "scale";
 			default:
@@ -73,8 +69,6 @@ public enum SkinType implements BodyPartTypeInterface {
 	@Override
 	public String getNamePlural(GameCharacter gc) {
 		switch(coveringType) {
-			case HAIR_HARPY:
-				return "feathers";
 			case ALLIGATOR_SCALES:
 				return "scales";
 			default:

@@ -342,12 +342,6 @@ public enum Attribute {
 			return "Increases damage vs dog-morphs.";
 		}
 	},
-	DAMAGE_HARPY(0, -100, 100, "harpy damage", "Harpy damage", "swordIcon", Colour.RACE_HARPY, "harpy-obliteration", "harpy-mercy", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases damage vs harpies.";
-		}
-	},
 	DAMAGE_HORSE_MORPH(0, -100, 100, "horse-morph damage", "Horse-morph damage", "swordIcon", Colour.RACE_HORSE_MORPH, "horse-morph-obliteration", "horse-morph-mercy", null) {
 		@Override
 		public String getDescription(GameCharacter owner) {
@@ -358,12 +352,6 @@ public enum Attribute {
 		@Override
 		public String getDescription(GameCharacter owner) {
 			return "Increases damage vs imps.";
-		}
-	},
-	DAMAGE_REINDEER_MORPH(0, -100, 100, "reindeer-morph damage", "Reindeer-morph damage", "swordIcon", Colour.RACE_REINDEER_MORPH, "reindeer-morph-obliteration", "reindeer-morph-mercy", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases damage vs reindeer-morphs.";
 		}
 	},
 	DAMAGE_HUMAN(0, -100, 100, "human damage", "Human damage", "swordIcon", Colour.RACE_HUMAN, "human-obliteration", "human-mercy", null) {
@@ -412,12 +400,6 @@ public enum Attribute {
 		@Override
 		public String getDescription(GameCharacter owner) {
 			return "Increases damage vs fox-morphs.";
-		}
-	},
-	DAMAGE_SLIME(0, -100, 100, "slime damage", "Slime damage", "swordIcon", Colour.RACE_SLIME, "slime-obliteration", "slime-mercy", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases damage vs slimes.";
 		}
 	},
 	DAMAGE_ELEMENTAL_EARTH(0, -100, 100, "earth elemental damage", "Earth elemental damage", "swordIcon", Colour.SPELL_SCHOOL_EARTH, "earth elemental-obliteration", "earth elemental-mercy", null) {
@@ -469,12 +451,6 @@ public enum Attribute {
 			return "Increases resistance vs damage inflicted by dog-morphs.";
 		}
 	},
-	RESISTANCE_HARPY(0, -100, 100, "harpy resistance", "Harpy resistance", "shieldIcon", Colour.RACE_HARPY, "harpy-immunity", "harpy-vulnerability", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases resistance vs damage inflicted by harpies.";
-		}
-	},
 	RESISTANCE_HORSE_MORPH(0, -100, 100, "horse-morph resistance", "Horse-morph resistance", "shieldIcon", Colour.RACE_HORSE_MORPH, "horse-morph-immunity", "horse-morph-vulnerability", null) {
 		@Override
 		public String getDescription(GameCharacter owner) {
@@ -485,12 +461,6 @@ public enum Attribute {
 		@Override
 		public String getDescription(GameCharacter owner) {
 			return "Increases resistance vs damage inflicted by imps.";
-		}
-	},
-	RESISTANCE_REINDEER_MORPH(0, -100, 100, "reindeer-morph resistance", "Reindeer-morph resistance", "shieldIcon", Colour.RACE_REINDEER_MORPH, "reindeer-morph-immunity", "reindeer-morph-vulnerability", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases resistance vs damage inflicted by reindeer-morphs.";
 		}
 	},
 	RESISTANCE_HUMAN(0, -100, 100, "human resistance", "Human resistance", "shieldIcon", Colour.RACE_HUMAN, "human-immunity", "human-vulnerability", null) {
@@ -539,12 +509,6 @@ public enum Attribute {
 		@Override
 		public String getDescription(GameCharacter owner) {
 			return "Increases resistance vs damage inflicted by fox-morphs.";
-		}
-	},
-	RESISTANCE_SLIME(0, -100, 100, "slime resistance", "Slime resistance", "shieldIcon", Colour.RACE_SLIME, "slime-immunity", "slime-vulnerability", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases resistance vs damage inflicted by slimes.";
 		}
 	},
 	RESISTANCE_ELEMENTAL_EARTH(0, -100, 100, "earth elemental resistance", "Earth elemental resistance", "swordIcon", Colour.SPELL_SCHOOL_EARTH, "earth elemental-immunity", "earth elemental-vulnerability", null) {

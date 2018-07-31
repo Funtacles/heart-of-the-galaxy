@@ -72,8 +72,7 @@ public class Vicky extends NPC {
 			ItemType.RACE_INGREDIENT_HORSE_MORPH,
 			ItemType.RACE_INGREDIENT_WOLF_MORPH,
 			ItemType.RACE_INGREDIENT_SQUIRREL_MORPH,
-			ItemType.RACE_INGREDIENT_COW_MORPH,
-			ItemType.RACE_INGREDIENT_REINDEER_MORPH};
+			ItemType.RACE_INGREDIENT_COW_MORPH};
 	
 	private static List<AbstractItemType> availableSpellBooks = new ArrayList<>();
 	

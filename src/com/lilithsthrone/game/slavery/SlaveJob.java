@@ -35,8 +35,7 @@ public enum SlaveJob {
 	IDLE(-1, "Idle", "Idle", "Do not assign any job to this slave.",
 			0, 0,
 			0, 0, 0,
-			null, null, null,
-			null, null) {
+			null, null, null) {
 		public boolean isAvailable(GameCharacter character) {
 			return true;
 		}
@@ -45,9 +44,7 @@ public enum SlaveJob {
 	CLEANING(20, "maid", "manservant", "Assign this slave to help Rose keep the house clean, deal with visitors, and perform all sorts of menial housework.",
 			0, 0.5f,
 			80, 0f, 0.1f,
-			null, null, null,
-			WorldType.LILAYAS_HOUSE_GROUND_FLOOR,
-			PlaceType.LILAYA_HOME_CORRIDOR) {
+			null, null, null) {
 		@Override
 		public EventLogEntry getHourlyEvent(long hour, NPC slave, List<NPC> otherNPCsPresent) {
 			return new EventLogEntry(Main.game.getDayNumber()-1*24l+hour, "[style.colourDisabled(Nothing)]", "");
@@ -55,60 +52,19 @@ public enum SlaveJob {
 		
 		@Override
 		public void sendToWorkLocation(GameCharacter slave) {
-			if(slave.getLocationPlace().getPlaceType() == PlaceType.LILAYA_HOME_CORRIDOR) {
-				slave.moveToAdjacentMatchingCellType();
-			
-			} else {
-				// 50/50 of being upstairs or downstairs:
-				WorldType worldTypeToUse = WorldType.LILAYAS_HOUSE_FIRST_FLOOR;
-				if(Math.random()>0.5f) {
-					worldTypeToUse = WorldType.LILAYAS_HOUSE_GROUND_FLOOR;
-				}
-				
-				slave.setRandomLocation(worldTypeToUse, PlaceType.LILAYA_HOME_CORRIDOR, false);
-			}
+
 		}
 	},
 	
 	LIBRARY(5, "librarian", "librarian", "Assign this slave to work in Lilaya's library.",
 			0, 0.25f,
 			80, 0, 0.1f,
-			null, null, null,
-			WorldType.LILAYAS_HOUSE_GROUND_FLOOR,
-			PlaceType.LILAYA_HOME_LIBRARY),
+			null, null, null),
 	
 	KITCHEN(5, "cook", "cook", "Assign this slave to work in Lilaya's kitchen as a cook.",
 			0, 0.25f,
 			80, 0, 0.05f,
-			null, null, null,
-			WorldType.LILAYAS_HOUSE_GROUND_FLOOR,
-			PlaceType.LILAYA_HOME_KITCHEN),
-	
-	LAB_ASSISTANT(1, "lab assistant", "lab assistant", "Assign this slave to help Lilaya in her lab.",
-			0, 0.25f,
-			100, 0, 0.2f,
-			null, null, null,
-			WorldType.LILAYAS_HOUSE_GROUND_FLOOR,
-			PlaceType.LILAYA_HOME_LAB),
-
-	TEST_SUBJECT(5, "test subject", "test subject", "Allow Lilaya to use this slave as a test subject for her experiments.",
-			-0.5f, 0.5f,
-			150, 0, 0,
-			Util.newArrayListOfValues(
-					SlaveJobSetting.TEST_SUBJECT_ALLOW_TRANSFORMATIONS_FEMALE,
-					SlaveJobSetting.TEST_SUBJECT_ALLOW_TRANSFORMATIONS_MALE),
-			null, null,
-			WorldType.LILAYAS_HOUSE_GROUND_FLOOR,
-			PlaceType.LILAYA_HOME_LAB) {
-		@Override
-		public float getAffectionGain(GameCharacter slave) {
-			if(slave.hasFetish(Fetish.FETISH_TRANSFORMATION_RECEIVING)) {
-				return 0.5f;
-			} else {
-				return -0.5f;
-			}
-		}
-	},
+			null, null, null),
 	
 	PUBLIC_STOCKS(5, "public use", "public use", "Assign this slave to be locked in the public-use stocks in slaver ally.",
 			-5f, 1f,
@@ -119,9 +75,7 @@ public enum SlaveJob {
 					SlaveJobSetting.SEX_ANAL,
 					SlaveJobSetting.SEX_NIPPLES),
 			null,
-			null,
-			WorldType.SLAVER_ALLEY,
-			PlaceType.SLAVER_ALLEY_PUBLIC_STOCKS) {
+			null) {
 		@Override
 		public float getAffectionGain(GameCharacter slave) {
 			if(slave.hasFetish(Fetish.FETISH_NON_CON_SUB)) {
@@ -146,9 +100,7 @@ public enum SlaveJob {
 							SlaveJobSetting.MILKING_ARTISAN,
 							SlaveJobSetting.MILKING_NO_PREFERENCE))),
 			Util.newArrayListOfValues(
-					SlaveJobSetting.MILKING_NO_PREFERENCE),
-			WorldType.LILAYAS_HOUSE_GROUND_FLOOR,
-			PlaceType.LILAYA_HOME_ROOM_WINDOW_GROUND_FLOOR) {
+					SlaveJobSetting.MILKING_NO_PREFERENCE)) {
 
 		@Override
 		public int getSlaveLimit() {
@@ -235,9 +187,7 @@ public enum SlaveJob {
 			float obedienceIncomeModifier,
 			List<SlaveJobSetting> mutualSettings,
 			Map<String, List<SlaveJobSetting>> mutuallyExclusiveSettings,
-			List<SlaveJobSetting> defaultMutuallyExclusiveSettings,
-			WorldType worldLocation,
-			PlaceType placeLocation) {
+			List<SlaveJobSetting> defaultMutuallyExclusiveSettings) {
 		
 		this.slaveLimit = slaveLimit;
 		this.nameFeminine = nameFeminine;
@@ -266,9 +216,6 @@ public enum SlaveJob {
 		} else {
 			this.defaultMutuallyExclusiveSettings = defaultMutuallyExclusiveSettings;
 		}
-		
-		this.worldLocation = worldLocation;
-		this.placeLocation = placeLocation;
 	}
 	
 	public int getSlaveLimit() {

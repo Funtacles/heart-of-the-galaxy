@@ -66,8 +66,8 @@ public class PlayerCharacter extends GameCharacter implements XMLSaving {
 
 	private List<String> charactersEncountered;
 	
-	public PlayerCharacter(NameTriplet nameTriplet, int level, LocalDateTime birthday, Gender gender, RacialBody startingRace, RaceStage stage, CharacterInventory inventory, WorldType startingWorld, PlaceType startingPlace) {
-		super(nameTriplet, "", level, birthday, gender, startingRace, stage, new CharacterInventory(0), startingWorld, startingPlace);
+	public PlayerCharacter(NameTriplet nameTriplet, int level, LocalDateTime birthday, Gender gender, RacialBody startingRace, RaceStage stage, CharacterInventory inventory) {
+		super(nameTriplet, "", level, birthday, gender, startingRace, stage, new CharacterInventory(0), WorldType.EMPTY, PlaceType.GENERIC_EMPTY_TILE);
 
 		this.setSexualOrientation(SexualOrientation.AMBIPHILIC);
 		
@@ -153,7 +153,7 @@ public class PlayerCharacter extends GameCharacter implements XMLSaving {
 	}
 	
 	public static PlayerCharacter loadFromXML(StringBuilder log, Element parentElement, Document doc, CharacterImportSetting... settings) {
-		PlayerCharacter character = new PlayerCharacter(new NameTriplet(""), 0, null, Gender.F_V_B_FEMALE, RacialBody.HUMAN, RaceStage.HUMAN, new CharacterInventory(0), WorldType.DOMINION, PlaceType.DOMINION_AUNTS_HOME);
+		PlayerCharacter character = new PlayerCharacter(new NameTriplet(""), 0, null, Gender.F_V_B_FEMALE, RacialBody.HUMAN, RaceStage.HUMAN, new CharacterInventory(0));
 		
 		GameCharacter.loadGameCharacterVariablesFromXML(character, log, parentElement, doc, settings);
 
@@ -262,33 +262,6 @@ public class PlayerCharacter extends GameCharacter implements XMLSaving {
 			}
 		}
 		
-		
-//		// Slaves:
-//		
-//		Element slavesOwned = (Element) parentElement.getElementsByTagName("slavesExported").item(0);
-//		if(slavesOwned!=null) {
-//			for(int i=0; i< slavesOwned.getElementsByTagName("character").getLength(); i++){
-//				Element e = ((Element)slavesOwned.getElementsByTagName("character").item(i));
-//				
-//				SlaveImport slave = SlaveImport.loadFromXML2(log, e, doc);
-//				
-//				//TODO move into slave's import:
-//				slave.setMana(slave.getAttributeValue(Attribute.MANA_MAXIMUM));
-//				slave.setHealth(slave.getAttributeValue(Attribute.HEALTH_MAXIMUM));
-//				slave.setStamina(slave.getAttributeValue(Attribute.STAMINA_MAXIMUM));
-//				
-//				try {
-//					Main.game.getSlaveImports().add(slave);
-////					character.addSlave(slave);
-//					slave.setLocation(WorldType.SLAVER_ALLEY, PlaceType.SLAVER_ALLEY_SLAVERY_ADMINISTRATION, true);
-//					
-//				} catch (Exception e1) {
-//					e1.printStackTrace();
-//				}
-//			}
-//		}
-		
-		
 		return character;
 	}
 
@@ -390,9 +363,6 @@ public class PlayerCharacter extends GameCharacter implements XMLSaving {
 	
 	@Override
 	public boolean isRelatedTo(GameCharacter character) {
-		if(character.equals(Main.game.getLilaya())) {
-			return true;
-		}
 		return super.isRelatedTo(character);
 	}
 	

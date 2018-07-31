@@ -47,9 +47,7 @@ public enum TailType implements BodyPartTypeInterface {
 	
 	HORSE_MORPH(BodyCoveringType.HAIR_HORSE_HAIR, Race.HORSE_MORPH, false, false),
 	
-	HORSE_MORPH_ZEBRA(BodyCoveringType.HAIR_HORSE_HAIR, Race.HORSE_MORPH, false, false),
-
-	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH, false, false);
+	HORSE_MORPH_ZEBRA(BodyCoveringType.HAIR_HORSE_HAIR, Race.HORSE_MORPH, false, false);
 
 	private BodyCoveringType skinType;
 	private Race race;
@@ -118,8 +116,6 @@ public enum TailType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("horse-like");
 			case HORSE_MORPH_ZEBRA:
 				return UtilText.returnStringAtRandom("zebra-like");
-			case REINDEER_MORPH:
-				return UtilText.returnStringAtRandom("reindeer-like");
 			case LYCAN:
 				return UtilText.returnStringAtRandom("wolf-like");
 			case FOX_MORPH:
@@ -157,8 +153,6 @@ public enum TailType implements BodyPartTypeInterface {
 				return "horse";
 			case HORSE_MORPH_ZEBRA:
 				return UtilText.returnStringAtRandom("zebra");
-			case REINDEER_MORPH:
-				return "rangiferine";
 			case LYCAN:
 				return "lupine";
 			case FOX_MORPH:

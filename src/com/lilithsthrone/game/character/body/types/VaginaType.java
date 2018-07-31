@@ -41,9 +41,7 @@ public enum VaginaType implements BodyPartTypeInterface {
 
 	COW_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_COW_MORPH, Race.COW_MORPH),
 
-	HORSE_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_HORSE_MORPH, Race.HORSE_MORPH, OrificeModifier.PUFFY),
-
-	REINDEER_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_REINDEER_MORPH, Race.REINDEER_MORPH, OrificeModifier.PUFFY);
+	HORSE_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_HORSE_MORPH, Race.HORSE_MORPH, OrificeModifier.PUFFY);
 
 	private BodyCoveringType skinType;
 	private FluidType fluidType;
@@ -165,8 +163,6 @@ public enum VaginaType implements BodyPartTypeInterface {
 						return UtilText.returnStringAtRandom("hot", "animalistic", "cow-like", "bovine");
 					case HORSE_MORPH:
 						return UtilText.returnStringAtRandom("hot", "animalistic", "equine");
-					case REINDEER_MORPH:
-						return UtilText.returnStringAtRandom("hot", "animalistic", "reindeer-like", "rangiferine");
 					case HUMAN:
 						return UtilText.returnStringAtRandom("hot");
 					case NONE:
@@ -203,8 +199,6 @@ public enum VaginaType implements BodyPartTypeInterface {
 				return "canine";
 			case HORSE_MORPH:
 				return "equine";
-			case REINDEER_MORPH:
-				return "rangiferine";
 			case CAT_MORPH:
 				return "feline";
 			case HUMAN:

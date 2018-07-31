@@ -835,149 +835,6 @@ public class ItemType {
 		}
 	};
 	
-	public static AbstractItemType FIT_INGREDIENT_EGG_NOG = new AbstractItemType(30,
-			"a bottle of",
-			false,
-			"Rudolph's Egg nog",
-			"Rudolph's Egg nogs",
-			"A carton of 'Rudolph's Egg Nog'."
-				+ " A label on the front shows the drink's namesake, a buff, stark-naked reindeer-boy, drinking a glass of this carton's contents while receiving oral sex from three enraptured reindeer-girls.",
-			"attributeReindeerMorphDrink",
-			Colour.ATTRIBUTE_PHYSIQUE,
-			null,
-			null,
-			Rarity.UNCOMMON,
-			TFEssence.ARCANE,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.FIT_EGG_NOG)),
-			Util.newArrayListOfValues(
-					ItemTag.REINDEER_GIFT,
-					ItemTag.ATTRIBUTE_TF_ITEM)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public AbstractItemEffectType getEnchantmentEffect() {
-			return ItemEffectType.ATTRIBUTE_PHYSIQUE;
-		}
-
-		@Override
-		public AbstractItemType getEnchantmentItemType(List<ItemEffect> effects) {
-			return POTION;
-		}
-
-		@Override
-		public String getUseName() {
-			return "drink";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"You open the carton and start drinking the bottle of 'Rudolph's Egg Nog'."
-						+ " Although the creamy, sweet taste is similar to that of the egg nog you remember drinking in your old world,"
-						+ " as you finish gulping down the last of the carton's contents, you find that a strange, slightly salty aftertaste lingers on your tongue.",
-					"Opening the carton, you bring the bottle of 'Rudolph's Egg Nog' to [npc.namePos] lips, before tilting [npc.her] head back and forcing [npc.herHim] to quickly gulp down the liquid.",
-					"[npc.Name] pulls out a carton of 'Rudolph's Egg Nog', and, after quickly opening it, [npc.she] promptly downs the entire bottle.",
-					"[npc.Name] pulls out a carton of 'Rudolph's Egg Nog', and, after quickly opening it, [npc.she] brings it to your lips before tilting your head back and forcing you to quickly gulp down the contents."
-						+ " Although the creamy, sweet taste is similar to that of the egg nog you remember drinking in your old world,"
-						+ " as you finish gulping down the last of the carton's contents, you find that a strange, slightly salty aftertaste lingers on your tongue.");
-		}
-	};
-	
-	public static AbstractItemType SEX_INGREDIENT_HARPY_PERFUME = new AbstractItemType(250,
-			"a bottle of",
-			false,
-			"Harpy Perfume",
-			"Harpy Perfumes",
-			"A glass bottle of what looks to be a kind of feminine perfume."
-				+ " There's a stylised image of a harpy's wings on the front of the bottle.",
-			"attributeHarpyPerfume",
-			Colour.GENERIC_SEX,
-			null,
-			null,
-			Rarity.UNCOMMON,
-			TFEssence.ARCANE,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.SEX_HARPY_PERFUME)),
-			Util.newArrayListOfValues(
-					ItemTag.ATTRIBUTE_TF_ITEM)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public AbstractItemEffectType getEnchantmentEffect() {
-			return ItemEffectType.ATTRIBUTE_SEXUAL;
-		}
-
-		@Override
-		public AbstractItemType getEnchantmentItemType(List<ItemEffect> effects) {
-			return POTION;
-		}
-
-		@Override
-		public String getUseName() {
-			return "spray";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"You take in a deep breath of an intoxicating feminine scent as you spray a little squirt of the 'Harpy Perfume' onto your neck."
-						+ " Looking down at the curiously now-empty bottle of perfume, you feel a bubbly wave of excitement running through you, and without thinking, you find yourself letting out a very girly giggle.",
-					"You spray a little squirt of the 'Harpy Perfume' onto [npc.namePos] neck.",
-					"[npc.Name] pulls out a bottle of 'Harpy Perfume', and, after quickly popping off the cap, [npc.she] promptly sprays a little squirt onto [npc.her] neck.",
-					"[npc.Name] pulls out a bottle of 'Harpy Perfume', and, after quickly popping off the cap, [npc.she] sprays a little squirt onto your neck."
-						+ " You instantly feel a bubbly wave of excitement running through you, and without thinking, you find yourself letting out a very girly giggle.");
-		}
-	};
-	
-	public static AbstractItemType SEX_INGREDIENT_SLIME_QUENCHER = new AbstractItemType(250,
-			"a bottle of",
-			false,
-			"Slime Quencher",
-			"Slime Quenchers",
-			"A small glass bottle of luminescent, fizzy pop."
-					+ " The label on the front reads 'Slime Quencher', and, to one side, there's a picture of a completely naked slime-girl pressing her breasts together and smiling at you.",
-			"attributeSlimeDrink",
-			Colour.GENERIC_SEX,
-			null,
-			null,
-			Rarity.UNCOMMON,
-			TFEssence.ARCANE,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.SEX_SLIME_DRINK)),
-			Util.newArrayListOfValues(
-					ItemTag.BAT_CAVERNS_SPAWN,
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
-					ItemTag.ATTRIBUTE_TF_ITEM)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public AbstractItemEffectType getEnchantmentEffect() {
-			return ItemEffectType.ATTRIBUTE_SEXUAL;
-		}
-
-		@Override
-		public AbstractItemType getEnchantmentItemType(List<ItemEffect> effects) {
-			return POTION;
-		}
-
-		@Override
-		public String getUseName() {
-			return "drink";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"You pop off the cap and start drinking the bottle of 'Slime Quencher'."
-						+ " The recognisable taste of a sugary energy drink fills your mouth, and you greedily gulp down the all of the glowing liquid in a matter of seconds.",
-					"Popping off the cap, you bring the bottle of 'Slime Quencher' to [npc.namePos] lips, before tilting [npc.her] head back and forcing [npc.herHim] to quickly gulp down the liquid.",
-					"[npc.Name] pulls out a bottle of 'Slime Quencher', and, after quickly popping off the cap, [npc.she] promptly downs the entire bottle.",
-					"[npc.Name] pulls out a bottle of 'Slime Quencher', and, after quickly popping off the cap, [npc.she] brings it to your lips before tilting your head back and forcing you to quickly gulp down the contents."
-						+ " The recognisable taste of a sugary energy drink fills your mouth, and, with [npc.namePos] help, you greedily gulp down the all of the glowing liquid in a matter of seconds.");
-		}
-	};
-	
 	public static AbstractItemType SEX_INGREDIENT_BUNNY_JUICE = new AbstractItemType(250,
 			"a bottle of",
 			false,
@@ -1022,53 +879,6 @@ public class ItemType {
 					"[npc.Name] pulls out a bottle of 'Bunny Juice', and, after quickly unscrewing the cap, [npc.she] promptly downs the entire bottle.",
 					"[npc.Name] pulls out a bottle of 'Bunny Juice', and, after quickly unscrewing the cap, [npc.she] brings it to your lips before tilting your head back and forcing you to quickly gulp down the contents."
 						+ " An intense taste of carrots instantly fills your mouth, and as you swallow the delicious liquid, you discover that it has an unusually sweet aftertaste.");
-		}
-	};
-	
-	public static AbstractItemType SEX_INGREDIENT_MINCE_PIE = new AbstractItemType(10,
-			"a",
-			false,
-			"mince pie",
-			"mince pies",
-			"A sweet pie, filled with a mixture of dried fruits and spices."
-					+ " Curiously, the pie seems to remain permanently warm to the touch, revealing that an enchantment of some sort must have been placed on it...",
-			"attributeNoRaceMincePie",
-			Colour.GENERIC_SEX,
-			null,
-			null,
-			Rarity.UNCOMMON,
-			TFEssence.ARCANE,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.SEX_MINCE_PIE)),
-			Util.newArrayListOfValues(
-					ItemTag.REINDEER_GIFT,
-					ItemTag.ATTRIBUTE_TF_ITEM)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public AbstractItemEffectType getEnchantmentEffect() {
-			return ItemEffectType.ATTRIBUTE_SEXUAL;
-		}
-
-		@Override
-		public AbstractItemType getEnchantmentItemType(List<ItemEffect> effects) {
-			return POTION;
-		}
-
-		@Override
-		public String getUseName() {
-			return "eat";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"You bring the enchanted mince pie up to your mouth, before taking an experimental bite."
-						+ " The warm, spiced fruit filling is absolutely delicious, leading you to greedily wolf down the entire pie.",
-					"You bring the enchanted mince pie up to [npc.namePos] mouth, before feeding it to [npc.herHim].",
-					"[npc.Name] pulls out a mince pie, and promptly wolfs it down.",
-					"[npc.Name] brings an enchanted mince pie up to your mouth, before starting to feed it to you."
-						+ " The warm, spiced fruit filling is absolutely delicious, and you greedily wolf down the entire pie.");
 		}
 	};
 	
@@ -1262,50 +1072,6 @@ public class ItemType {
 					"[npc.Name] pulls out a glass vial of 'Fetish Endowment', and, after quickly pulling out the stopper, [npc.she] promptly downs the entire bottle.",
 					"[npc.Name] pulls out a glass vial of 'Fetish Endowment', and, after quickly pulling out the stopper,"
 							+ " [npc.she] brings it to your lips before tilting your head back and forcing you to quickly gulp down the sickly sweet liquid that's contained within.");
-		}
-	};
-	
-	public static AbstractItemType MUSHROOM = new AbstractItemType(500,
-			"a cluster of",
-			true,
-			"Glowing Mushroom",
-			"Glowing Mushrooms",
-			"Bioluminescent mushrooms such as these are commonly found growing in the Bat Caverns."
-					+ " The slimes which call those caverns their home are particularly fond of consuming these mushrooms, which is what causes their bodies to glow.",
-			"mushrooms",
-			Colour.BASE_BLUE_LIGHT,
-			null,
-			null,
-			Rarity.EPIC,
-			null,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.MUSHROOMS)),
-			Util.newArrayListOfValues(
-					ItemTag.BAT_CAVERNS_SPAWN)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public boolean isAbleToBeUsedInSex() {
-			return true;
-		}
-
-		@Override
-		public boolean isAbleToBeUsedInCombat() {
-			return true;
-		}
-
-		@Override
-		public String getUseName() {
-			return "eat";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"You pop the small cluster of glowing mushrooms into your mouth, and as you chew and swallow them down, you discover that they have a refreshing, minty taste.",
-					"You pop the small cluster of glowing mushrooms into [npc.namePos] mouth, before making sure that [npc.she] chews and swallows them down.",
-					"[npc.Name] pops a small cluster of glowing mushrooms into [npc.her] mouth, before chewing and swallowing them down.",
-					"[npc.Name] pops a small cluster of glowing mushrooms into your mouth, and as [npc.she] makes you chew and swallow them down, you discover that they have a refreshing, minty taste.");
 		}
 	};
 	
@@ -1740,54 +1506,6 @@ public class ItemType {
 					"[npc.Name] pulls out a 'Sugar Carrot Cube', and, quickly unwrapping the paper packaging, pops it into [npc.her] mouth and swallows it down.",
 					"[npc.Name] pulls out a 'Sugar Carrot Cube', and, after tearing off the paper packaging, [npc.she] forces you to eat it."
 						+ " The strong taste of carrots instantly fills your mouth, but before you have any time to relish the flavour, you find that it's dissolved in your saliva, and you've gulped down the sugary mess.");
-		}
-	};
-	
-	public static AbstractItemType RACE_INGREDIENT_REINDEER_MORPH = new AbstractItemType(250,
-			"a",
-			false,
-			"Sugar Cookie",
-			"Sugar Cookies",
-			"An individually-wrapped, icing-and-sprinkles-topped sugar cookie, which looks, rather surprisingly, extremely normal.",
-			"raceReindeerMorphSugarCookie",
-			Colour.RACE_REINDEER_MORPH,
-			null,
-			null,
-			Rarity.RARE,
-			TFEssence.ARCANE,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.RACE_SUGAR_COOKIE)),
-			Util.newArrayListOfValues(
-					ItemTag.REINDEER_GIFT,
-					ItemTag.RACIAL_TF_ITEM)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public AbstractItemEffectType getEnchantmentEffect() {
-			return ItemEffectType.RACE_REINDEER_MORPH;
-		}
-
-		@Override
-		public AbstractItemType getEnchantmentItemType(List<ItemEffect> effects) {
-			return ELIXIR;
-		}
-
-		@Override
-		public String getUseName() {
-			return "eat";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"You unwrap the 'Sugar Cookie' from its protective packaging and pop it into your mouth."
-						+ " Although it looked normal enough, you soon discover that the taste is anything but, being both extremely sweet and salty at the same time."
-						+ " Despite the unusual combination of flavours, it's tasty enough, and you soon find yourself having eaten the whole cookie.",
-					"You pull out the 'Sugar Cookie', and, after tearing off the packaging, force [npc.name] to eat it.",
-					"[npc.Name] pulls out a 'Sugar Cookie', and, quickly unwrapping the paper packaging, pops it into [npc.her] mouth and swallows it down.",
-					"[npc.Name] pulls out a 'Sugar Cookie', and, after tearing off the paper packaging, [npc.she] forces you to eat it."
-						+ " Although it looked normal enough, you soon discover that the taste is anything but, being both extremely sweet and salty at the same time."
-						+ " Despite the unusual combination of flavours, it's tasty enough, and you soon find yourself having eaten the whole cookie.");
 		}
 	};
 	
@@ -2248,44 +1966,6 @@ public class ItemType {
 		}
 	};
 	
-	public static AbstractItemType BOTTLED_ESSENCE_HARPY = new AbstractItemType(
-			50,
-			null,
-			false,
-			"Bottled Harpy Essence",
-			"Bottled Harpy Essences",
-			"A small glass bottle, with a little cork stopper wedged firmly in the top."
-					+ " Inside, the swirling "+Colour.RACE_HARPY.getName()+" glow of an arcane essence, imbued with the energy of a harpy, flickers and swirls about in a mesmerising, cyclical pattern.",
-			"bottledEssenceHarpy",
-			Colour.RACE_HARPY,
-			null,
-			null,
-			Rarity.EPIC,
-			null,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BOTTLED_ESSENCE_HARPY)),
-			Util.newArrayListOfValues(ItemTag.ESSENCE)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getUseName() {
-			return "absorb";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getEssenceAbsorbtionText(Colour.RACE_HARPY, user, target);
-		}
-		
-		public boolean isAbleToBeUsed(GameCharacter target) {
-			return target.isPlayer();
-		}
-		
-		public String getUnableToBeUsedDescription(GameCharacter target) {
-			return "Only people with a demonic-strength aura are able to absorb arcane essences!";
-		}
-	};
-	
 	public static AbstractItemType BOTTLED_ESSENCE_HORSE_MORPH = new AbstractItemType(
 			50,
 			null,
@@ -2313,44 +1993,6 @@ public class ItemType {
 		@Override
 		public String getUseDescription(GameCharacter user, GameCharacter target) {
 			return getEssenceAbsorbtionText(Colour.RACE_HORSE_MORPH, user, target);
-		}
-		
-		public boolean isAbleToBeUsed(GameCharacter target) {
-			return target.isPlayer();
-		}
-		
-		public String getUnableToBeUsedDescription(GameCharacter target) {
-			return "Only people with a demonic-strength aura are able to absorb arcane essences!";
-		}
-	};
-	
-	public static AbstractItemType BOTTLED_ESSENCE_REINDEER_MORPH = new AbstractItemType(
-			50,
-			null,
-			false,
-			"Bottled Reindeer-morph Essence",
-			"Bottled Reindeer-morph Essences",
-			"A small glass bottle, with a little cork stopper wedged firmly in the top."
-					+ " Inside, the swirling "+Colour.RACE_REINDEER_MORPH.getName()+" glow of an arcane essence, imbued with the energy of a reindeer-morph, flickers and swirls about in a mesmerising, cyclical pattern.",
-			"bottledEssenceReindeerMorph",
-			Colour.RACE_REINDEER_MORPH,
-			null,
-			null,
-			Rarity.EPIC,
-			null,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BOTTLED_ESSENCE_REINDEER_MORPH)),
-			Util.newArrayListOfValues(ItemTag.ESSENCE)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getUseName() {
-			return "absorb";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getEssenceAbsorbtionText(Colour.RACE_REINDEER_MORPH, user, target);
 		}
 		
 		public boolean isAbleToBeUsed(GameCharacter target) {
@@ -3179,21 +2821,6 @@ public class ItemType {
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BOOK_READ_HORSE_MORPH)),
 			Util.newArrayListOfValues(ItemTag.BOOK));
 	
-	public static AbstractItemType BOOK_REINDEER_MORPH = createBookItem(250,
-			null,
-			false,
-			"The Eight",
-			"The Eight",
-			"A book all about reindeer-morphs.",
-			"book_race_reindeer_morph",
-			Colour.RACE_REINDEER_MORPH,
-			null,
-			null,
-			Rarity.LEGENDARY,
-			null,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BOOK_READ_REINDEER_MORPH)),
-			Util.newArrayListOfValues(ItemTag.BOOK));
-	
 	public static AbstractItemType BOOK_HUMAN = createBookItem(250,
 			null,
 			false,
@@ -3268,47 +2895,6 @@ public class ItemType {
 			null,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BOOK_READ_WOLF_MORPH)),
 			Util.newArrayListOfValues(ItemTag.BOOK));
-	
-	public static AbstractItemType PRESENT = new AbstractItemType(250,
-			"a",
-			false,
-			"Yuletide Gift",
-			"Yuletide Gift",
-			"A wrapped present, sold by one of the reindeer-morph overseers in Dominion. It contains a random item from their store, and can also be given as a gift to your offspring, slaves, or Lilaya.",
-			"present",
-			Colour.GENERIC_ARCANE,
-			null,
-			null,
-			Rarity.RARE,
-			null,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.PRESENT)), null) {
-
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public boolean isAbleToBeUsed(GameCharacter target) {
-			return !(target.isInventoryFull() && Main.game.getPlayerCell().getInventory().isInventoryFull());
-		}
-
-		@Override
-		public String getUnableToBeUsedDescription(GameCharacter target) {
-			return "There's no space in your inventory or on the ground for whatever item is contained within!";
-		}
-		
-		@Override
-		public String getUseName() {
-			return "open";
-		}
-		
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"You untie the ribbon and peel off the wrapping paper, before opening the box to discover what's inside...",
-					"You force [npc.name] to untie the ribbon and peel off the wrapping paper, before getting [npc.herHim] to open the box to discover what's inside...",
-					"[npc.Name] produces a present, and then proceeds to untie the ribbon and peel off the wrapping paper, before opening the box to discover what's inside...",
-					"[npc.Name] produces a present, and then proceeds to make you untie the ribbon and peel off the wrapping paper, before getting you to open the box to discover what's inside...");
-		}
-	};
 	
 	public static AbstractItemType GIFT_ROSE = new AbstractItemType(
 			100,

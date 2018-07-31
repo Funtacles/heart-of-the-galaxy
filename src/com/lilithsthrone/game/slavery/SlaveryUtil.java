@@ -12,13 +12,8 @@ import org.w3c.dom.NodeList;
 
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.body.CoverableArea;
-import com.lilithsthrone.game.character.body.types.PenisType;
-import com.lilithsthrone.game.character.body.types.VaginaType;
-import com.lilithsthrone.game.character.body.valueEnums.CupSize;
 import com.lilithsthrone.game.character.effects.StatusEffect;
-import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
 import com.lilithsthrone.game.dialogue.eventLog.SlaveryEventLogEntry;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -301,10 +296,6 @@ public class SlaveryUtil implements XMLSaving {
 					events.add(new SlaveryEventLogEntry(hour, slave, SlaveEvent.JOB_COOKING, true));
 					return events;
 					
-				case LAB_ASSISTANT:
-					events.add(new SlaveryEventLogEntry(hour, slave, SlaveEvent.JOB_LAB_ASSISTANT, true));
-					return events;
-					
 				case LIBRARY:
 					events.add(new SlaveryEventLogEntry(hour, slave, SlaveEvent.JOB_LIBRARIAN, true));
 					return events;
@@ -401,108 +392,6 @@ public class SlaveryUtil implements XMLSaving {
 						}
 					}
 					return events;
-					
-				case TEST_SUBJECT:
-					if(slave.getSlaveJobSettings().isEmpty()) {
-						if(slave.hasFetish(Fetish.FETISH_TRANSFORMATION_RECEIVING)) {
-							slave.incrementAffection(Main.game.getPlayer(), 1);
-							slave.incrementAffection(Main.game.getLilaya(), 5);
-							events.add(new SlaveryEventLogEntry(hour, slave,
-									SlaveEvent.JOB_TEST_SUBJECT,
-									Util.newArrayListOfValues(
-											SlaveEventTag.JOB_LILAYA_INTRUSIVE_TESTING),
-									Util.newArrayListOfValues(
-                      "[style.boldGood(+1)] [style.boldAffection(Affection)]",
-											"[style.boldGood(+5)] [style.boldAffection(Affection towards Lilaya)]"),
-									true));
-
-							return events;
-							
-						} else {
-							slave.incrementAffection(Main.game.getPlayer(), -1);
-							slave.incrementAffection(Main.game.getLilaya(), -5);
-							events.add(new SlaveryEventLogEntry(hour, slave,
-									SlaveEvent.JOB_TEST_SUBJECT,
-									Util.newArrayListOfValues(
-											SlaveEventTag.JOB_LILAYA_INTRUSIVE_TESTING),
-									Util.newArrayListOfValues(
-											"[style.boldBad(-1)] [style.boldAffection(Affection)]",
-											"[style.boldBad(-5)] [style.boldAffection(Affection towards Lilaya)]"),
-									true));
-							return events;
-
-						}
-						
-					} else {
-						switch(slave.getSlaveJobSettings().get(Util.random.nextInt(slave.getSlaveJobSettings().size()))) {
-							case TEST_SUBJECT_ALLOW_TRANSFORMATIONS_FEMALE:
-								List<String> list = new ArrayList<>();
-								if(slave.hasFetish(Fetish.FETISH_TRANSFORMATION_RECEIVING)) {
-									slave.incrementAffection(Main.game.getPlayer(), 1);
-									slave.incrementAffection(Main.game.getLilaya(), 5);
-									list.add("[style.boldGood(+1)] [style.boldAffection(Affection)]");
-									list.add("[style.boldGood(+5)] [style.boldAffection(Affection towards Lilaya)]");
-								} else {
-									slave.incrementAffection(Main.game.getPlayer(), -1);
-									slave.incrementAffection(Main.game.getLilaya(), -5);
-									list.add("[style.boldBad(-1)] [style.boldAffection(Affection)]");
-									list.add("[style.boldBad(-5)] [style.boldAffection(Affection towards Lilaya)]");
-								}
-
-								String tf = "";
-								if(slave.getSlaveJobSettings().contains(SlaveJobSetting.TEST_SUBJECT_ALLOW_TRANSFORMATIONS_MALE)) {
-									tf = getTestSubjectFutanariTransformation(slave);
-								} else {
-									tf = getTestSubjectFeminineTransformation(slave);
-								}
-								if(!tf.isEmpty()) {
-									list.add(tf);
-								}
-								events.add(new SlaveryEventLogEntry(hour, slave,
-										SlaveEvent.JOB_TEST_SUBJECT,
-										Util.newArrayListOfValues(
-												SlaveEventTag.JOB_LILAYA_FEMININE_TF),
-										list,
-										true));
-								return events;
-								
-							case TEST_SUBJECT_ALLOW_TRANSFORMATIONS_MALE:
-								List<String> list2 = new ArrayList<>();
-								if(slave.hasFetish(Fetish.FETISH_TRANSFORMATION_RECEIVING)) {
-									slave.incrementAffection(Main.game.getPlayer(), 1);
-									slave.incrementAffection(Main.game.getLilaya(), 5);
-									list2.add("[style.boldGood(+1)] [style.boldAffection(Affection)]");
-									list2.add("[style.boldGood(+5)] [style.boldAffection(Affection towards Lilaya)]");
-								} else {
-									slave.incrementAffection(Main.game.getPlayer(), -1);
-									slave.incrementAffection(Main.game.getLilaya(), -5);
-									list2.add("[style.boldBad(-1)] [style.boldAffection(Affection)]");
-									list2.add("[style.boldBad(-5)] [style.boldAffection(Affection towards Lilaya)]");
-								}
-								
-								String tf2 = "";
-								if(slave.getSlaveJobSettings().contains(SlaveJobSetting.TEST_SUBJECT_ALLOW_TRANSFORMATIONS_FEMALE)) {
-									tf2 = getTestSubjectFutanariTransformation(slave);
-								} else {
-									tf2 = getTestSubjectMasculineTransformation(slave);
-								}
-								if(!tf2.isEmpty()) {
-									list2.add(tf2);
-								}
-								events.add(new SlaveryEventLogEntry(hour, slave,
-										SlaveEvent.JOB_TEST_SUBJECT,
-										Util.newArrayListOfValues(
-												SlaveEventTag.JOB_LILAYA_MASCULINE_TF),
-										list2,
-										true));
-								return events;
-								
-							default:
-								break;
-						}
-					}
-					break;
-
 				case IDLE:
 					// Can not reach :3
 					break;
@@ -513,97 +402,6 @@ public class SlaveryUtil implements XMLSaving {
 		}
 
 		return events;
-	}
-	
-	private String getTestSubjectFeminineTransformation(NPC slave) {
-		if(slave.hasPenis()) {
-			slave.setPenisType(PenisType.NONE);
-			if(!slave.hasVagina()) {
-				slave.setVaginaType(RacialBody.valueOfRace(slave.getRace()).getVaginaType());
-			}
-			return "[style.boldShrink(Lost penis)], [style.boldGrow(gained vagina)]";
-		}
-		
-		if(!slave.hasVagina()) {
-			slave.setVaginaType(RacialBody.valueOfRace(slave.getRace()).getVaginaType());
-			return "[style.boldGrow(Gained vagina)]";
-		}
-		
-		if(Math.random()>0.5f) {
-			if(slave.getFemininityValue()<100) {
-				int increment = Util.random.nextInt(5)+1;
-				slave.incrementFemininity(increment);
-				return "[style.boldGrow(+"+increment+")] [style.boldFeminine(Femininity)]";
-			}
-		}
-		
-		if(slave.getBreastSize().getMeasurement() < CupSize.GG.getMeasurement()) {
-			int increment = Util.random.nextInt(1)+1;
-			slave.incrementBreastSize(increment);
-			return "[style.boldGrow(Gained "+Util.capitaliseSentence(slave.getBreastSize().getCupSizeName())+"-cup breasts)]";
-		}
-		
-		return "";
-	}
-	
-	private String getTestSubjectMasculineTransformation(NPC slave) {
-		if(slave.hasVagina()) {
-			slave.setVaginaType(VaginaType.NONE);
-			if(!slave.hasPenis()) {
-				slave.setPenisType(RacialBody.valueOfRace(slave.getRace()).getPenisType());
-			}
-			return "[style.boldShrink(Lost vagina)], [style.boldGrow(gained penis)]";
-		}
-		
-		if(!slave.hasPenis()) {
-			slave.setPenisType(RacialBody.valueOfRace(slave.getRace()).getPenisType());
-			return "[style.boldGrow(Gained penis)]";
-		}
-		
-		if(Math.random()>0.5f) {
-			if(slave.getFemininityValue()>0) {
-				int increment = Util.random.nextInt(5)+1;
-				slave.incrementFemininity(-increment);
-				return "[style.boldShrink(-"+increment+")] [style.boldFeminine(Femininity)]";
-			}
-		}
-		
-		if(slave.getBreastSize().getMeasurement() > 0) {
-			int increment = Util.random.nextInt(1)+1;
-			slave.incrementBreastSize(-increment);
-			return "[style.boldShrink(Breasts shrunk to "+Util.capitaliseSentence(slave.getBreastSize().getCupSizeName())+"-cups)]";
-		}
-		
-		return "";
-	}
-	
-	private String getTestSubjectFutanariTransformation(NPC slave) {
-		
-		if(!slave.hasVagina()) {
-			slave.setVaginaType(RacialBody.valueOfRace(slave.getRace()).getVaginaType());
-			return "[style.boldGrow(Gained vagina)]";
-		}
-		
-		if(!slave.hasPenis()) {
-			slave.setPenisType(RacialBody.valueOfRace(slave.getRace()).getPenisType());
-			return "[style.boldGrow(Gained penis)]";
-		}
-		
-		if(Math.random()>0.5f) {
-			if(slave.getFemininityValue()<100) {
-				int increment = Util.random.nextInt(5)+1;
-				slave.incrementFemininity(increment);
-				return "[style.boldGrow(+"+increment+")] [style.boldFeminine(Femininity)]";
-			}
-		}
-		
-		if(slave.getBreastSize().getMeasurement() < CupSize.GG.getMeasurement()) {
-			int increment = Util.random.nextInt(1)+1;
-			slave.incrementBreastSize(increment);
-			return "[style.boldGrow(Gained "+Util.capitaliseSentence(slave.getBreastSize().getCupSizeName())+"-cup breasts)]";
-		}
-		
-		return "";
 	}
 	
 	/**
@@ -691,17 +489,6 @@ public class SlaveryUtil implements XMLSaving {
 										Util.newArrayListOfValues(UtilText.parse(slave, npc,
 												"While working in the kitchen, [npc1.name] saw [npc2.name] enter the pantry alone,"
 														+ " and couldn't resist following [npc2.herHim] inside, before locking the door and giving [npc2.herHim] a "+slave.getTheoreticalSexPaceDomPreference().getName()+" fucking."
-												+ (impregnationAttempt?"<br/>[style.colourSex([npc2.Name] might have gotten pregnant!)]":"")
-												+ (gettingPregnantAttempt?"<br/>[style.colourSex([npc1.Name] might have gotten pregnant!)]":""))),
-										true);
-								
-							case LAB_ASSISTANT: case TEST_SUBJECT:
-								return new SlaveryEventLogEntry(hour,
-										slave,
-										SlaveEvent.SLAVE_SEX,
-										null,
-										Util.newArrayListOfValues(UtilText.parse(slave, npc,
-												"When Lilaya left the lab to take a break, [npc1.name] used the opportunity to give [npc2.name] a "+slave.getTheoreticalSexPaceDomPreference().getName()+" fucking on one of the lab's tables."
 												+ (impregnationAttempt?"<br/>[style.colourSex([npc2.Name] might have gotten pregnant!)]":"")
 												+ (gettingPregnantAttempt?"<br/>[style.colourSex([npc1.Name] might have gotten pregnant!)]":""))),
 										true);

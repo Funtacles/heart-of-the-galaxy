@@ -30,8 +30,6 @@ public enum TesticleType implements BodyPartTypeInterface {
 
 	EQUINE(BodyCoveringType.PENIS, FluidType.CUM_HORSE_MORPH, Race.HORSE_MORPH, false),
 
-	REINDEER_MORPH(BodyCoveringType.PENIS, FluidType.CUM_REINDEER_MORPH, Race.REINDEER_MORPH, false),
-
 	SQUIRREL(BodyCoveringType.SQUIRREL_FUR, FluidType.CUM_SQUIRREL_MORPH, Race.SQUIRREL_MORPH, false),
 
 	RAT_MORPH(BodyCoveringType.PENIS, FluidType.CUM_RAT_MORPH, Race.RAT_MORPH, false),

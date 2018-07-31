@@ -19,8 +19,6 @@ public enum HornType implements BodyPartTypeInterface {
 	BOVINE_CURVED("curved", BodyCoveringType.HORN),
 	BOVINE_STRAIGHT("straight", BodyCoveringType.HORN),
 	
-	REINDEER_RACK("multi-branched", BodyCoveringType.ANTLER_REINDEER),
-	
 	CURLED("curled", BodyCoveringType.HORN),
 	SPIRAL("spiral", BodyCoveringType.HORN),
 	CURVED("curved", BodyCoveringType.HORN),
@@ -45,22 +43,12 @@ public enum HornType implements BodyPartTypeInterface {
 	
 	@Override
 	public String getNameSingular(GameCharacter gc) {
-		switch(this){
-			case REINDEER_RACK:
-				return "antler";
-			default:
-				return UtilText.returnStringAtRandom("horn");
-		}
+		return UtilText.returnStringAtRandom("horn");
 	}
 	
 	@Override
 	public String getNamePlural(GameCharacter gc) {
-		switch(this){
-			case REINDEER_RACK:
-				return "antlers";
-			default:
-				return UtilText.returnStringAtRandom("horns");
-		}
+		return UtilText.returnStringAtRandom("horns");
 	}
 
 	@Override
@@ -70,8 +58,6 @@ public enum HornType implements BodyPartTypeInterface {
 				return "";
 			case SWEPT_BACK:
 				return UtilText.returnStringAtRandom("swept-back");
-			case REINDEER_RACK:
-				return UtilText.returnStringAtRandom("branching");
 			case STRAIGHT: case BOVINE_STRAIGHT:
 				return UtilText.returnStringAtRandom("straight");
 			case CURLED:
@@ -90,8 +76,6 @@ public enum HornType implements BodyPartTypeInterface {
 				return "none";
 			case SWEPT_BACK:
 				return UtilText.returnStringAtRandom("swept-back");
-			case REINDEER_RACK:
-				return UtilText.returnStringAtRandom("branching");
 			case STRAIGHT: case BOVINE_STRAIGHT:
 				return UtilText.returnStringAtRandom("straight");
 			case CURLED:

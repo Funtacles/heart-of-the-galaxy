@@ -98,16 +98,6 @@ public enum DialogueFlagValue {
 	feminisedBrax,
 	bimbofiedBrax,
 	
-	// Harpy Nests:
-	hasHarpyNestAccess,
-	bimboEncountered,
-	bimboPacified,
-	dominantEncountered,
-	dominantPacified,
-	nymphoEncountered,
-	nymphoPacified,
-	punishedByAlexa,
-	
 	// Slaver Alley:
 	finchIntroduced,
 	
@@ -115,16 +105,6 @@ public enum DialogueFlagValue {
 	lumiMet,
 	lumiDisabled,
 	lumiPromisedDinner,
-	
-	// Slime Queen's Tower:
-	slimeGuardsIntroduced,
-	slimeGuardsBluffed,
-	slimeGuardsDefeated,
-	slimeRoyalGuardIntroduced,
-	slimeRoyalGuardDefeated,
-	slimeQueenHelped,
-	slimeQueenConvinced,
-	slimeQueenForced,
 	
 	// Gambling Den:
 	axelToldAboutVengar,

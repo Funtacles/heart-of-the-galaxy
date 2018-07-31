@@ -365,10 +365,6 @@ public class SlaveryManagementDialogue {
 						+ getRoomEntry(!place.isAbleToBeUpgraded(), true, cell, charactersPresent, affectionChange, obedienceChange)
 					+"</div>");
 
-			// Lilaya's home:
-			UtilText.nodeContentSB.append(getWorldRooms(WorldType.LILAYAS_HOUSE_GROUND_FLOOR));
-			UtilText.nodeContentSB.append(getWorldRooms(WorldType.LILAYAS_HOUSE_FIRST_FLOOR));
-
 			// Slaver alley:
 			UtilText.nodeContentSB.append(getWorldRooms(WorldType.SLAVER_ALLEY));
 			
@@ -479,13 +475,12 @@ public class SlaveryManagementDialogue {
 	
 	public static List<Cell> getImportantCells() {
 		if(importantCells.isEmpty()) {
-			WorldType[] importantWorlds = new WorldType[] {WorldType.LILAYAS_HOUSE_GROUND_FLOOR, WorldType.LILAYAS_HOUSE_FIRST_FLOOR};
+			WorldType[] importantWorlds = new WorldType[] {};
 			for(WorldType wt : importantWorlds) {
 				Cell[][] cellGrid = Main.game.getWorlds().get(wt).getCellGrid();
 				for(int i = 0; i< cellGrid.length; i++) {
 					for(int j = 0; j < cellGrid[0].length; j++) {
-						if(cellGrid[i][j].getPlace().getPlaceType()!=PlaceType.LILAYA_HOME_CORRIDOR
-								&& cellGrid[i][j].getPlace().getPlaceType()!=PlaceType.GENERIC_IMPASSABLE) {
+						if(cellGrid[i][j].getPlace().getPlaceType()!=PlaceType.GENERIC_IMPASSABLE) {
 							importantCells.add(cellGrid[i][j]);
 						}
 					}

@@ -41,9 +41,7 @@ public enum EarType implements BodyPartTypeInterface {
 	RABBIT_MORPH(BodyCoveringType.RABBIT_FUR, Race.RABBIT_MORPH),
 	RABBIT_MORPH_FLOPPY(BodyCoveringType.RABBIT_FUR, Race.RABBIT_MORPH),
 	
-	HORSE_MORPH(BodyCoveringType.HORSE_HAIR, Race.HORSE_MORPH),
-
-	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH);
+	HORSE_MORPH(BodyCoveringType.HORSE_HAIR, Race.HORSE_MORPH);
 
 	private BodyCoveringType skinType;
 	private Race race;
@@ -92,8 +90,6 @@ public enum EarType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("furry", "fur-coated", "squirrel-like");
 			case HORSE_MORPH:
 				return UtilText.returnStringAtRandom("equine", "horse-like");
-			case REINDEER_MORPH:
-				return UtilText.returnStringAtRandom("rangiferine", "reindeer-like");
 			case HUMAN:
 				return UtilText.returnStringAtRandom("");
 			case LYCAN:
@@ -130,8 +126,6 @@ public enum EarType implements BodyPartTypeInterface {
 				return "furry";
 			case HORSE_MORPH:
 				return "equine";
-			case REINDEER_MORPH:
-				return "rangiferine";
 			case HUMAN:
 				return "human";
 			case LYCAN:

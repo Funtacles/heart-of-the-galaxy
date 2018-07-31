@@ -35,9 +35,7 @@ public enum LegType implements BodyPartTypeInterface {
 
 	CAT_MORPH(FootStructure.DIGITIGRADE, BodyCoveringType.FELINE_FUR, Race.CAT_MORPH),
 
-	HORSE_MORPH(FootStructure.UNGULIGRADE, BodyCoveringType.HORSE_HAIR, Race.HORSE_MORPH),
-
-	REINDEER_MORPH(FootStructure.UNGULIGRADE, BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH);
+	HORSE_MORPH(FootStructure.UNGULIGRADE, BodyCoveringType.HORSE_HAIR, Race.HORSE_MORPH);
 	
 	
 	private FootStructure defaultFootStructure;
@@ -85,8 +83,6 @@ public enum LegType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("furry", "fur-coated", "anthropomorphic dog-like");
 			case HORSE_MORPH:
 				return UtilText.returnStringAtRandom("hoofed", "hair-coated", "anthropomorphic horse-like");
-			case REINDEER_MORPH:
-				return UtilText.returnStringAtRandom("hoofed", "hair-coated", "anthropomorphic reindeer-like");
 			case HUMAN:
 				return UtilText.returnStringAtRandom("");
 			case SQUIRREL_MORPH:
@@ -115,8 +111,6 @@ public enum LegType implements BodyPartTypeInterface {
 				return "furry";
 			case HORSE_MORPH:
 				return "equine";
-			case REINDEER_MORPH:
-				return "rangiferine";
 			case HUMAN:
 				return "human";
 			case LYCAN:
@@ -145,7 +139,6 @@ public enum LegType implements BodyPartTypeInterface {
 		switch(this){
 			case COW_MORPH:
 			case HORSE_MORPH:
-			case REINDEER_MORPH:
 				return UtilText.returnStringAtRandom("foot", "talon");
 			default:
 				return UtilText.returnStringAtRandom("foot");
@@ -156,8 +149,6 @@ public enum LegType implements BodyPartTypeInterface {
 		switch(this){
 		case COW_MORPH:
 			case HORSE_MORPH:
-			case REINDEER_MORPH:
-				return UtilText.returnStringAtRandom("feet", "talons");
 			default:
 				return UtilText.returnStringAtRandom("feet");
 		}
@@ -174,8 +165,6 @@ public enum LegType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("soft", "feminine", "dog-like", "paw-like", "furry", "canine");
 				case HORSE_MORPH:
 					return UtilText.returnStringAtRandom("feminine", "horse-like", "equine");
-				case REINDEER_MORPH:
-					return UtilText.returnStringAtRandom("feminine", "reindeer-like", "rangiferine");
 				case HUMAN:
 					return UtilText.returnStringAtRandom("soft", "feminine");
 				case LYCAN:
@@ -199,8 +188,6 @@ public enum LegType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("dog-like", "paw-like", "furry", "canine");
 				case HORSE_MORPH:
 					return UtilText.returnStringAtRandom("horse-like", "equine");
-				case REINDEER_MORPH:
-					return UtilText.returnStringAtRandom("feminine", "reindeer-like", "rangiferine");
 				case HUMAN:
 					return UtilText.returnStringAtRandom("");
 				case LYCAN:
@@ -222,7 +209,6 @@ public enum LegType implements BodyPartTypeInterface {
 		switch(this){
 			case COW_MORPH:
 			case HORSE_MORPH:
-			case REINDEER_MORPH:
 				return UtilText.returnStringAtRandom("hoof");
 			default:
 				return UtilText.returnStringAtRandom("toe");
@@ -233,7 +219,6 @@ public enum LegType implements BodyPartTypeInterface {
 		switch(this){
 			case COW_MORPH:
 			case HORSE_MORPH:
-			case REINDEER_MORPH:
 				return UtilText.returnStringAtRandom("hoof");
 			default:
 				return UtilText.returnStringAtRandom("toes");
@@ -251,8 +236,6 @@ public enum LegType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("soft", "feminine", "dog-like", "paw-like", "furry", "canine");
 				case HORSE_MORPH:
 					return UtilText.returnStringAtRandom("feminine", "horse-like", "equine");
-				case REINDEER_MORPH:
-					return UtilText.returnStringAtRandom("feminine", "reindeer-like", "rangiferine");
 				case HUMAN:
 					return UtilText.returnStringAtRandom("soft", "feminine");
 				case LYCAN:
@@ -276,8 +259,6 @@ public enum LegType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("dog-like", "paw-like", "furry", "canine");
 				case HORSE_MORPH:
 					return UtilText.returnStringAtRandom("horse-like", "equine");
-				case REINDEER_MORPH:
-					return UtilText.returnStringAtRandom("feminine", "reindeer-like", "rangiferine");
 				case HUMAN:
 					return UtilText.returnStringAtRandom("");
 				case LYCAN:

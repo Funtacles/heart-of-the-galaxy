@@ -213,33 +213,6 @@
 	]]>
 	</htmlContent>
 
-	<!-- REINDEER-MORPHS -->
-
-	<htmlContent tag="REINDEER_MORPH_BASIC"><![CDATA[
-	<p>
-		Reindeer-morphs are one of the rarer anthropomorphic races found in this world, and are almost exclusively found in the snowy tundra area far from Dominion.
-		 A large pair of multiple-branching antlers are usually enough to identify a reindeer-morph, the rounded shape of which is noticeably different from the sharper antlers of the more common deer-morphs.
-	</p>
-	]]>
-	</htmlContent>
-
-	<htmlContent tag="REINDEER_MORPH_ADVANCED"><![CDATA[
-	<p>
-		Reindeer-morphs are, for most of the year, an extremely rare sight to see outside of their traditional tundra homeland.
-		 During the winter months, however, large groups of reindeer-morphs travel to Dominion, where they work to keep the streets shovelled clear of snow.
-		 These reindeer work-gangs usually operate under a dominant male or female reindeer-morph, although on occasion some groups can be found to be working for an overseer of a different race.
-	</p>
-	<p>
-		Reindeer-morphs, like all non-demonic races, get heavily affected by arcane storms.
-		 Being exposed to arcane thunder will make reindeer-boys enter a potent rut, which, when combined with their strength and stamina, makes them very dangerous to meet in the middle of an arcane storm.
-		 Reindeer-girls will react to arcane thunder by going into heat, and will force themselves on anyone they might come across.
-	</p>
-	<p>
-		A reindeer-morph's offspring will be a mixture of reindeer-morphs and offspring of their partner's race.
-	</p>
-	]]>
-	</htmlContent>
-
 	<!-- SQUIRREL-MORPHS -->
 
 	<htmlContent tag="SQUIRREL_MORPH_BASIC"><![CDATA[
@@ -377,89 +350,6 @@
 		 They are impregnated in much the same way as a human, but instead of giving birth to live young, a clutch of eggs will grow inside an alligator-girl's womb once she's been fertilised.
 		 Pregnancy advances just like that of other common races, but when it comes time to give birth, the alligator-girl will seek out a safe place to lay her eggs.
 		 After incubating her clutch for for approximately eighteen to twenty-four hours, the alligator-morph's young will hatch, with the resulting offspring being a mixture of alligator-morphs and offspring of their partner's race.
-	</p>
-	]]>
-	</htmlContent>
-
-	<!-- SLIMES -->
-
-	<htmlContent tag="SLIME_BASIC"><![CDATA[
-	<p>
-		Slimes are one of the rarer races of this world.
-		 The vast majority of their population resides in the watery undercity of Submission, but they can also be found in small numbers all over the world.
-		 Slimes are very easy to identify, as their entire body is made out of gooey slime, with a glowing core in the place where their heart should be.
-	</p>
-	]]>
-	</htmlContent>
-
-	<htmlContent tag="SLIME_ADVANCED"><![CDATA[
-	<p>
-		Just like most races, the personality of slimes differs greatly from individual to individual, with the vast majority being pleasant, law-abiding citizens.
-		 There are a minority, however, who believe that their diet should consist solely of sexual fluids, and these troublemakers have show no hesitation in attacking innocent travellers to milk for their next meal...
-	</p>
-	<p>
-		Slimes survive entirely on a liquid diet, transforming any fluid that they ingest (or extract out of absorbed solids) into more slime.
-		 Just like any other liquid, their slimy bodies evaporate over time, requiring them to maintain a regular fluid intake.
-	</p>
-	<p>
-		Slimes, like all non-demonic races, get heavily affected by arcane storms.
-		 Being exposed to arcane thunder will make slimes desperately seek out someone to milk for fluids.
-		 Upon finding and subduing a suitable target, slimes will continuously milk their victim until their hunger is well satisfied.
-	</p>
-	<p>
-		Slime pregnancies work in a very different manner to all others.
-		 Regardless of whether a slime looks feminine or masculine, or whether they have transformed to give themselves a vagina or not, all slimes can be impregnated.
-		 If any cum reaches their core, new cores may later split off, before growing inside them for the same length of time as a regular pregnancy.
-		 When fully grown, the parent slime will split into multiple new slimes, with each of the new cores moving into a new slime body.
-	</p>
-	]]>
-	</htmlContent>
-
-	<!-- HARPIES -->
-
-	<htmlContent tag="HARPY_BASIC"><![CDATA[
-	<p>
-		Harpies have human bodies and faces, but in place of arms, they have huge, feathered wings.
-		 Their legs are similarly bird-like in appearance, and are covered in leathery, bird-like skin, with talons in place of feet.
-		 In stark contrast to most mythological tales, harpies are exceptionally beautiful, and their feathers come in all sorts of brightly coloured varieties.
-	</p>
-	]]>
-	</htmlContent>
-
-	<htmlContent tag="HARPY_ADVANCED"><![CDATA[
-	<p>
-		Although harpies live in Dominion, they're almost never seen walking down at street level.
-		 Instead, most of the buildings in Dominion have had their rooves converted into 'harpy nests'.
-		 These nests are large communal living spaces, where harpies in the same flock will live together.
-		 Each nest will be controlled by the most attractive harpy in the flock, who is commonly referred to as the flock's matriarch.
-	</p>
-	<p>
-		Harpy society is both matriarchal and very insular, and can seem quite alarming to an outside observer.
-		 All harpy society is based on femininity and beauty, and the more attractive a harpy is, the higher they are on the social ladder.
-		 Any harpies that are not part of a flock will be mercilessly bullied and taunted by members of other flocks until they submit to the protection of a matriarch.
-	</p>
-	<p>
-		Each matriarch will have their own way for a harpy to show submission, but some of the more common demands involve public humiliation, or having to offer themselves as sexual relief for the rest of the flock.
-		 Once the matriarch decides that their display of submission has been acceptable, the harpy will be accepted into the flock,
-			 although they will often continue to be treated as a servant or slave by any harpies that are more attractive than they are.
-	</p>
-	<p>
-		Most harpies, no matter if they're male or female, are gynephilic, with the odd exception being ambiphilic.
-		 Due to this fact, male harpies do their best to look as feminine as possible, in order to appear attractive to the harpy females.
-		 Despite their best efforts, however, male harpies are never as feminine as the females, which causes them to be treated as the lowest of the low, and will be mercilessly bullied by all females in the flock.
-		 Harpy males seem to think that this arrangement is worthwhile, as if they do a good job of obeying their mistress's commands, they will sometimes be offered sex as a reward.
-	</p>
-	<p>
-		All harpies, both male and female, have a well-deserved reputation for being narcissists, and are only interested in being more attractive than the other harpies in their flock.
-		 They will take extreme offence at being called ugly, and can quickly be driven into a blind rage by anyone doing so.
-	</p>
-	<p>
-		Harpy pregnancies are a mix between mammalian and avian reproduction.
-		 They are impregnated in much the same way as a human, but instead of giving birth to live young, a clutch of eggs will grow inside a harpy's womb once she's been fertilised.
-		 Pregnancy advances just like that of other common races, but when it comes time to give birth, the harpy will seek out a safe place to lay her eggs.
-		 After laying is complete, the mother becomes fiercely protective of her clutch, and will refuse to sleep while she incubates her eggs for approximately eighteen to twenty-four hours.
-		 Once the eggs finally hatch, the mother will usually collapse from exhaustion.
-		 The resulting offspring will be a mixture of harpies and offspring of their partner's race.
 	</p>
 	]]>
 	</htmlContent>

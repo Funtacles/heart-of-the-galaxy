@@ -1253,7 +1253,6 @@ public class OptionsDialogue {
 					case COW_MORPH:
 					case HORSE_MORPH:
 					case HORSE_MORPH_ZEBRA:
-					case REINDEER_MORPH:
 					case SQUIRREL_MORPH:
 					case WOLF_MORPH:
 					case FOX_MORPH:

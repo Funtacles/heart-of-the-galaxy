@@ -20,8 +20,6 @@ import com.lilithsthrone.game.dialogue.utils.InventoryInteraction;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
-import com.lilithsthrone.game.inventory.item.AbstractItemType;
-import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.sex.Sex;
 import com.lilithsthrone.game.sex.SexPace;
 import com.lilithsthrone.game.sex.SexPositionSlot;
@@ -1420,23 +1418,6 @@ public class DominionOffspringDialogue {
 								Main.mainController.openInventory(offspring(), InventoryInteraction.FULL_MANAGEMENT);
 							}
 						};
-					}
-					
-				} else if (index == 7) {
-					if(Main.game.getPlayer().hasItemType(ItemType.PRESENT)) {
-						return new Response("Give Present", "Give [npc.name] the present that you're carrying.", OFFSPRING_PRESENT) {
-							@Override
-							public void effects() {
-								Main.game.getPlayer().removeItem(AbstractItemType.generateItem(ItemType.PRESENT));
-								
-								Main.game.getTextEndStringBuilder().append(Main.game.getActiveNPC().incrementAffection(Main.game.getPlayer(), 15));
-								
-								offspring().setFlag(NPCFlagValue.flagOffspringApartmentIntroduced, true);
-								Main.game.getDialogueFlags().offspringDialogueTokens--;
-							}
-						};
-					} else {
-						return null;
 					}
 					
 				} else if (index == 8) {

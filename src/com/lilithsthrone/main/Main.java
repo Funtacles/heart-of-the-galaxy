@@ -32,8 +32,6 @@ import com.lilithsthrone.game.sex.Sex;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.CreditsSlot;
 import com.lilithsthrone.world.Generation;
-import com.lilithsthrone.world.WorldType;
-import com.lilithsthrone.world.places.PlaceType;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -466,7 +464,7 @@ public class Main extends Application {
 					e.printStackTrace();
 				}
 				
-				Main.game.setPlayer(new PlayerCharacter(new NameTriplet("Player"), 1, null, Gender.M_P_MALE, RacialBody.HUMAN, RaceStage.HUMAN, null, WorldType.EMPTY, PlaceType.GENERIC_MUSEUM));
+				Main.game.setPlayer(new PlayerCharacter(new NameTriplet("Player"), 1, null, Gender.M_P_MALE, RacialBody.HUMAN, RaceStage.HUMAN, null));
 
 				Main.game.initNewGame(startingDialogueNode);
 

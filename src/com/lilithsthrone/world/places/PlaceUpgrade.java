@@ -9,8 +9,6 @@ import com.lilithsthrone.game.character.body.FluidGirlCum;
 import com.lilithsthrone.game.character.body.FluidMilk;
 import com.lilithsthrone.game.character.body.valueEnums.FluidFlavour;
 import com.lilithsthrone.game.character.body.valueEnums.FluidModifier;
-import com.lilithsthrone.game.character.quests.Quest;
-import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.slavery.MilkingRoom;
@@ -59,46 +57,6 @@ public enum PlaceUpgrade {
 			GenericPlace place = c.getPlace();
 			for(PlaceUpgrade upgrade : PlaceUpgrade.values()) {
 				if(upgrade != LILAYA_EMPTY_ROOM) {
-					place.removePlaceUpgrade(c, upgrade);
-				}
-			}
-		}
-		
-		@Override
-		public boolean isAvailable(Cell cell) {
-			return Main.game.getCharactersTreatingCellAsHome(cell).isEmpty() && !cell.getPlace().getPlaceUpgrades().contains(LILAYA_ARTHUR_ROOM);
-		}
-
-		@Override
-		public String getAvailabilityDescription(Cell cell) {
-			if(Main.game.getCharactersTreatingCellAsHome(cell).isEmpty()) {
-				return "";
-			} else {
-				return "This room needs to be unoccupied in order to purchase this modification.";
-			}
-		}
-	},
-	
-	LILAYA_ARTHUR_ROOM(true,
-			Colour.RACE_HUMAN,
-			"Arthur's Room",
-			"Help Rose to move arcane instrumentation into this room in order to make it suitable for Arthur to stay in. <b>This is a permanent modification, and can never be undone!</b>",
-			"This room now belongs to Arthur, who uses it as his personal lab-cum-bedroom.",
-			"This room is unoccupied, and although Rose seems to be doing an excellent job of keeping it clean and well-dusted, it seems a shame that it's not being used to its full potential...",
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			null) {
-		@Override
-		public void applyInstallationEffects(Cell c) {
-			GenericPlace place = c.getPlace();
-			place.setPlaceType(PlaceType.LILAYA_HOME_ARTHUR_ROOM);
-			
-			for(PlaceUpgrade upgrade : PlaceUpgrade.values()) {
-				if(upgrade != LILAYA_ARTHUR_ROOM) {
 					place.removePlaceUpgrade(c, upgrade);
 				}
 			}
@@ -163,7 +121,7 @@ public enum PlaceUpgrade {
 		
 		@Override
 		public boolean isAvailable(Cell cell) {
-			return Main.game.getCharactersTreatingCellAsHome(cell).isEmpty() && !cell.getPlace().getPlaceUpgrades().contains(LILAYA_ARTHUR_ROOM);
+			return Main.game.getCharactersTreatingCellAsHome(cell).isEmpty();
 		}
 		
 		@Override
@@ -380,7 +338,7 @@ public enum PlaceUpgrade {
 		
 		@Override
 		public boolean isAvailable(Cell cell) {
-			return Main.game.getCharactersTreatingCellAsHome(cell).isEmpty() && !cell.getPlace().getPlaceUpgrades().contains(LILAYA_ARTHUR_ROOM);
+			return Main.game.getCharactersTreatingCellAsHome(cell).isEmpty();
 		}
 
 		@Override
@@ -437,8 +395,7 @@ public enum PlaceUpgrade {
 		
 		@Override
 		public boolean isAvailable(Cell cell) {
-			return (Main.game.getCharactersTreatingCellAsHome(cell).isEmpty()
-					&& !cell.getPlace().getPlaceUpgrades().contains(LILAYA_ARTHUR_ROOM))
+			return (Main.game.getCharactersTreatingCellAsHome(cell).isEmpty())
 					|| cell.getPlace().getPlaceUpgrades().contains(LILAYA_SLAVE_ROOM);
 		}
 		
@@ -695,27 +652,24 @@ public enum PlaceUpgrade {
 	private static ArrayList<PlaceUpgrade> coreRoomUpgrades, slaveQuartersUpgradesSingle, slaveQuartersUpgradesDouble, getMilkingUpgrades;
 	
 	public static ArrayList<PlaceUpgrade> getCoreRoomUpgrades() {
-		if(Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.arthursRoomInstalled) || Main.game.getPlayer().isQuestProgressLessThan(QuestLine.MAIN, Quest.MAIN_1_J_ARTHURS_ROOM)) {
+		if(Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.arthursRoomInstalled)) {
 			ArrayList<PlaceUpgrade> listArthurRemoved = new ArrayList<>(coreRoomUpgrades);
-			listArthurRemoved.remove(PlaceUpgrade.LILAYA_ARTHUR_ROOM);
 			return listArthurRemoved;
 		}
 		return coreRoomUpgrades;
 	}
 
 	public static ArrayList<PlaceUpgrade> getSlaveQuartersUpgradesSingle() {
-		if(Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.arthursRoomInstalled) || Main.game.getPlayer().isQuestProgressLessThan(QuestLine.MAIN, Quest.MAIN_1_J_ARTHURS_ROOM)) {
+		if(Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.arthursRoomInstalled)) {
 			ArrayList<PlaceUpgrade> listArthurRemoved = new ArrayList<>(slaveQuartersUpgradesSingle);
-			listArthurRemoved.remove(PlaceUpgrade.LILAYA_ARTHUR_ROOM);
 			return listArthurRemoved;
 		}
 		return slaveQuartersUpgradesSingle;
 	}
 	
 	public static ArrayList<PlaceUpgrade> getSlaveQuartersUpgradesDouble() {
-		if(Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.arthursRoomInstalled) || Main.game.getPlayer().isQuestProgressLessThan(QuestLine.MAIN, Quest.MAIN_1_J_ARTHURS_ROOM)) {
+		if(Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.arthursRoomInstalled)) {
 			ArrayList<PlaceUpgrade> listArthurRemoved = new ArrayList<>(slaveQuartersUpgradesDouble);
-			listArthurRemoved.remove(PlaceUpgrade.LILAYA_ARTHUR_ROOM);
 			return listArthurRemoved;
 		}
 		return slaveQuartersUpgradesDouble;
@@ -730,9 +684,7 @@ public enum PlaceUpgrade {
 				PlaceUpgrade.LILAYA_SLAVE_ROOM,
 				PlaceUpgrade.LILAYA_SLAVE_ROOM_DOUBLE,
 				
-				PlaceUpgrade.LILAYA_MILKING_ROOM,
-				
-				PlaceUpgrade.LILAYA_ARTHUR_ROOM);
+				PlaceUpgrade.LILAYA_MILKING_ROOM);
 		
 		slaveQuartersUpgradesSingle = Util.newArrayListOfValues(
 				PlaceUpgrade.LILAYA_SLAVE_ROOM_ROOM_SERVICE,
@@ -744,8 +696,7 @@ public enum PlaceUpgrade {
 				PlaceUpgrade.LILAYA_SLAVE_ROOM_OBEDIENCE_TRAINER,
 
 				PlaceUpgrade.LILAYA_SLAVE_ROOM_DOUBLE,
-				PlaceUpgrade.LILAYA_EMPTY_ROOM,
-				PlaceUpgrade.LILAYA_ARTHUR_ROOM);
+				PlaceUpgrade.LILAYA_EMPTY_ROOM);
 		
 		slaveQuartersUpgradesDouble = Util.newArrayListOfValues(
 				PlaceUpgrade.LILAYA_SLAVE_ROOM_ROOM_SERVICE,
@@ -756,8 +707,7 @@ public enum PlaceUpgrade {
 				PlaceUpgrade.LILAYA_SLAVE_ROOM_ARCANE_INSTRUMENTS,
 				PlaceUpgrade.LILAYA_SLAVE_ROOM_OBEDIENCE_TRAINER,
 				
-				PlaceUpgrade.LILAYA_EMPTY_ROOM,
-				PlaceUpgrade.LILAYA_ARTHUR_ROOM);
+				PlaceUpgrade.LILAYA_EMPTY_ROOM);
 		
 		getMilkingUpgrades = Util.newArrayListOfValues(
 				PlaceUpgrade.LILAYA_MILKING_ROOM_ARTISAN_MILKERS,

@@ -482,8 +482,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.INT_INGREDIENT_GRAPE_JUICE));
 				case HORSE_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.STR_INGREDIENT_EQUINE_CIDER));
-				case REINDEER_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.FIT_INGREDIENT_EGG_NOG));
 				case WOLF_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.STR_INGREDIENT_WOLF_WHISKEY));
 				case HUMAN:
@@ -520,8 +518,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_FOX_MORPH));
 				case HORSE_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_HORSE_MORPH));
-				case REINDEER_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_REINDEER_MORPH));
 				case WOLF_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_WOLF_MORPH));
 				case HUMAN:
@@ -558,8 +554,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_FOX_MORPH));
 				case HORSE_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_HORSE_MORPH));
-				case REINDEER_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_REINDEER_MORPH));
 				case WOLF_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_WOLF_MORPH));
 				case HUMAN:
@@ -880,14 +874,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 						reaction = "Time to turn you into my little mare!";
 					} else {
 						reaction = "Time to turn you into my very own stallion!";
-					}
-					break;
-				case REINDEER_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_REINDEER_MORPH;
-					if (getPreferredBody().getGender().isFeminine()) {
-						reaction = "Time to turn you into my little doe!";
-					} else {
-						reaction = "Time to turn you into my very own buck!";
 					}
 					break;
 				case SQUIRREL_MORPH:

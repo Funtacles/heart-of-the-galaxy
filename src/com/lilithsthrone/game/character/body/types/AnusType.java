@@ -34,9 +34,7 @@ public enum AnusType implements BodyPartTypeInterface {
 	
 	CAT_MORPH(BodyCoveringType.ANUS, Race.CAT_MORPH),
 	
-	HORSE_MORPH(BodyCoveringType.ANUS, Race.HORSE_MORPH, OrificeModifier.PUFFY),
-	
-	REINDEER_MORPH(BodyCoveringType.ANUS, Race.REINDEER_MORPH, OrificeModifier.PUFFY);
+	HORSE_MORPH(BodyCoveringType.ANUS, Race.HORSE_MORPH, OrificeModifier.PUFFY);
 	
 	private BodyCoveringType skinType;
 	private Race race;

@@ -1341,16 +1341,11 @@ public abstract class GameCharacter implements XMLSaving {
 			if((worldType==WorldType.DOMINION) && Main.isVersionOlderThan(version, "0.2.1.5")) {
 				PlaceType placeType = PlaceType.DOMINION_BACK_ALLEYS;
 				
-				if(character.isPlayer()) {
-					placeType = PlaceType.DOMINION_AUNTS_HOME;
-				} else {
+				if(character instanceof DominionAlleywayAttacker) {
+					placeType = PlaceType.DOMINION_BACK_ALLEYS;
 					
-					if(character instanceof DominionAlleywayAttacker) {
-						placeType = PlaceType.DOMINION_BACK_ALLEYS;
-						
-					} else { // Catch if no location found:
-						placeType = PlaceType.DOMINION_BACK_ALLEYS;
-					}
+				} else { // Catch if no location found:
+					placeType = PlaceType.DOMINION_BACK_ALLEYS;
 				}
 				
 				character.setLocation(
@@ -2945,9 +2940,6 @@ public abstract class GameCharacter implements XMLSaving {
 			case COW_MORPH: case HORSE_MORPH:
 				value = 15000;
 				break;
-			case REINDEER_MORPH:
-				value = 18000;
-				break;
 			case ELEMENTAL_AIR:
 			case ELEMENTAL_ARCANE:
 			case ELEMENTAL_EARTH:
@@ -3509,8 +3501,6 @@ public abstract class GameCharacter implements XMLSaving {
 			case EMPTY:
 			case SLAVER_ALLEY:
 			case JUNGLE:
-			case LILAYAS_HOUSE_FIRST_FLOOR:
-			case LILAYAS_HOUSE_GROUND_FLOOR:
 				break;
 			case SHOPPING_ARCADE:
 				if(this.getLocationPlace().getPlaceType()!=PlaceType.SHOPPING_ARCADE_PATH) {
@@ -13660,9 +13650,6 @@ public abstract class GameCharacter implements XMLSaving {
 					if(bct == BodyCoveringType.HORN) {
 						bctName = "horn";
 					}
-					if(bct == BodyCoveringType.ANTLER_REINDEER) {
-						bctName = "antler";
-					}
 					
 					if(displayColourDiscovered) {
 						if(isPlayer()) {
@@ -14604,34 +14591,6 @@ public abstract class GameCharacter implements XMLSaving {
 					+ "</p>";
 		}
 		
-		if(type==BodyMaterial.FLESH) {
-			if(this.isPlayer()) {
-				tfDescription = "<p>"
-									+ "Your slimy body starts to tingle all over, and as you look down at your [pc.arms], you see the slime that they're made up of starting to get more and more opaque."
-									+ " As your slime starts to solidify, you feel the little glowing core in the centre of your body start to break up and disperse throughout your torso."
-								+ "</p>"
-								+ "<p>"
-									+ "With a sharp gasp, you feel the transformation speed up, and within just a few moments, your entire body has reverted to being made out of flesh and blood."
-								+ "</p>"
-								+ "<p>"
-									+ "Your body is now made out of [style.boldTfGeneric(flesh)]!"
-								+ "</p>";
-				
-			} else {
-				tfDescription = UtilText.parse(this,
-						"<p>"
-							+ "[npc.NamePos] slimy body starts to tingle all over, and as [npc.she] looks down at [npc.her] [npc.arms], [npc.she] sees the slime that they're made up of starting to get more and more opaque."
-							+ " As her slime starts to solidify, the little glowing core in the place where [npc.her] heart should be starts to break up and disperse throughout [npc.her] torso."
-						+ "</p>"
-						+ "<p>"
-							+ "With a sharp gasp, [npc.she] feels the transformation speed up, and within just a few moments, [npc.her] entire body has reverted to being made out of flesh and blood."
-						+ "</p>"
-						+ "<p>"
-							+ "[npc.NamePos] body is now made out of [style.boldTfGeneric(flesh)]!"
-						+ "</p>");
-			}
-		}
-
 		body.setBodyMaterial(type);
 		postTransformationCalculation(false);
 		

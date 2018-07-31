@@ -35,11 +35,6 @@ public class DialogueFlags implements Serializable, XMLSaving {
 	// Amount of dialogue choices you can make before offspring interaction ends:
 	public int offspringDialogueTokens = 2;
 	
-	// Reindeer event related flags:
-	private Set<String> reindeerEncounteredIDs = new HashSet<>();
-	private Set<String> reindeerWorkedForIDs = new HashSet<>();
-	private Set<String> reindeerFuckedIDs = new HashSet<>();
-	
 	// Supplier storage rooms checked:
 	public Set<Vector2i> supplierStorageRoomsChecked = new HashSet<>();
 	
@@ -80,10 +75,6 @@ public class DialogueFlags implements Serializable, XMLSaving {
 		for(DialogueFlagValue value : values) {
 			CharacterUtils.createXMLElementWithValue(doc, valuesElement, "dialogueValue", value.toString());
 		}
-		
-		saveSet(element, doc, reindeerEncounteredIDs, "reindeerEncounteredIDs");
-		saveSet(element, doc, reindeerWorkedForIDs, "reindeerWorkedForIDs");
-		saveSet(element, doc, reindeerFuckedIDs, "reindeerFuckedIDs");
 		
 		Element supplierStorageRoomsCheckedElement = doc.createElement("supplierStorageRoomsChecked");
 		element.appendChild(supplierStorageRoomsCheckedElement);
@@ -134,10 +125,6 @@ public class DialogueFlags implements Serializable, XMLSaving {
 			newFlags.values.remove(DialogueFlagValue.eponaIntroduced);
 		}
 
-		loadSet(parentElement, doc, newFlags.reindeerEncounteredIDs, "reindeerEncounteredIDs");
-		loadSet(parentElement, doc, newFlags.reindeerWorkedForIDs, "reindeerWorkedForIDs");
-		loadSet(parentElement, doc, newFlags.reindeerFuckedIDs, "reindeerFuckedIDs");
-		
 		if(parentElement.getElementsByTagName("supplierStorageRoomsChecked").item(0)!=null) {
 			for(int i=0; i<((Element) parentElement.getElementsByTagName("supplierStorageRoomsChecked").item(0)).getElementsByTagName("location").getLength(); i++){
 				Element e = (Element) ((Element) parentElement.getElementsByTagName("supplierStorageRoomsChecked").item(0)).getElementsByTagName("location").item(i);
@@ -151,29 +138,6 @@ public class DialogueFlags implements Serializable, XMLSaving {
 		return newFlags;
 	}
 	
-	private static void saveSet(Element parentElement, Document doc, Set<String> set, String title) {
-		Element valuesElement = doc.createElement(title);
-		parentElement.appendChild(valuesElement);
-		for(String value : set) {
-			CharacterUtils.createXMLElementWithValue(doc, valuesElement, "value", value.toString());
-		}
-	}
-	
-	private static void loadSet(Element parentElement, Document doc, Set<String> set, String title) {
-		try {
-			if(parentElement.getElementsByTagName(title).item(0)!=null) {
-				for(int i=0; i<((Element) parentElement.getElementsByTagName(title).item(0)).getElementsByTagName("value").getLength(); i++){
-					Element e = (Element) ((Element) parentElement.getElementsByTagName(title).item(0)).getElementsByTagName("value").item(i);
-				
-					set.add(e.getAttribute("value"));
-				}
-			}
-		} catch(Exception ex) {
-			// What is this...
-			System.err.println("Whoopsie :^)"); // Prints out "Whoopsie :^) to the error output stream."
-		}
-	}
-
 	public boolean hasFlag(DialogueFlagValue flag) {
 		return values.contains(flag);
 	}
@@ -233,40 +197,6 @@ public class DialogueFlags implements Serializable, XMLSaving {
 		this.slaveryManagerSlaveSelected = slaveryManagerSlaveSelected;
 	}
 
-	// Reindeer event:
-	
-	public void addReindeerEncountered(String reindeerID) {
-		reindeerEncounteredIDs.add(reindeerID);
-	}
-	
-	public boolean hasEncounteredReindeer(String reindeerID) {
-		return reindeerEncounteredIDs.contains(reindeerID);
-	}
-	
-	public boolean hasEncounteredAnyReindeers() {
-		return !reindeerEncounteredIDs.isEmpty();
-	}
-	
-	public void addReindeerDailyWorkedFor(String reindeerID) {
-		reindeerWorkedForIDs.add(reindeerID);
-	}
-	
-	public boolean hasWorkedForReindeer(String reindeerID) {
-		return reindeerWorkedForIDs.contains(reindeerID);
-	}
-	
-	public void addReindeerDailyFucked(String reindeerID) {
-		reindeerFuckedIDs.add(reindeerID);
-	}
-	
-	public boolean hasFuckedReindeer(String reindeerID) {
-		return reindeerFuckedIDs.contains(reindeerID);
-	}
-	
-	public void dailyReindeerReset(String reindeerID) {
-		reindeerWorkedForIDs.remove(reindeerID);
-	}
-	
 	public void resetNyanActions() {
 		this.setFlag(DialogueFlagValue.nyanTalkedTo, false);
 		this.setFlag(DialogueFlagValue.nyanComplimented, false);
