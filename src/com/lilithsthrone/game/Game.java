@@ -45,7 +45,6 @@ import com.lilithsthrone.game.character.npc.dominion.Kate;
 import com.lilithsthrone.game.character.npc.dominion.SupplierLeader;
 import com.lilithsthrone.game.character.npc.dominion.SupplierPartner;
 import com.lilithsthrone.game.character.npc.dominion.TestNPC;
-import com.lilithsthrone.game.character.npc.dominion.Vicky;
 import com.lilithsthrone.game.character.npc.misc.GenericAndrogynousNPC;
 import com.lilithsthrone.game.character.npc.misc.GenericFemaleNPC;
 import com.lilithsthrone.game.character.npc.misc.GenericMaleNPC;
@@ -730,8 +729,6 @@ public class Game implements Serializable, XMLSaving {
 			addNPC(new TestNPC(), false);
 
 			// Shopping Promenade:
-			
-			addNPC(new Vicky(), false);
 			
 			addNPC(new Kate(), false);
 
@@ -1509,9 +1506,7 @@ public class Game implements Serializable, XMLSaving {
 				&& (!node.equals(InventoryDialogue.DYE_CLOTHING)
 						&& !node.equals(InventoryDialogue.DYE_CLOTHING_CHARACTER_CREATION)
 						&& !node.equals(InventoryDialogue.DYE_EQUIPPED_CLOTHING)
-						&& !node.equals(InventoryDialogue.DYE_EQUIPPED_CLOTHING_CHARACTER_CREATION)
-						&& !node.equals(InventoryDialogue.DYE_EQUIPPED_WEAPON)
-						&& !node.equals(InventoryDialogue.DYE_WEAPON));
+						&& !node.equals(InventoryDialogue.DYE_EQUIPPED_CLOTHING_CHARACTER_CREATION));
 	}
 	
 	private static boolean isContentScroll(DialogueNodeOld node) {
@@ -1527,9 +1522,7 @@ public class Game implements Serializable, XMLSaving {
 				|| node.equals(InventoryDialogue.DYE_CLOTHING)
 				|| node.equals(InventoryDialogue.DYE_CLOTHING_CHARACTER_CREATION)
 				|| node.equals(InventoryDialogue.DYE_EQUIPPED_CLOTHING)
-				|| node.equals(InventoryDialogue.DYE_EQUIPPED_CLOTHING_CHARACTER_CREATION)
-				|| node.equals(InventoryDialogue.DYE_EQUIPPED_WEAPON)
-				|| node.equals(InventoryDialogue.DYE_WEAPON);
+				|| node.equals(InventoryDialogue.DYE_EQUIPPED_CLOTHING_CHARACTER_CREATION);
 	}
 	
 	private String getTitleDiv(String title) {
@@ -2310,10 +2303,6 @@ public class Game implements Serializable, XMLSaving {
 
 	public NPC getTestNPC() {
 		return (NPC) this.getNPCById(getUniqueNPCId(TestNPC.class));
-	}
-
-	public NPC getVicky() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Vicky.class));
 	}
 
 	public NPC getKate() {

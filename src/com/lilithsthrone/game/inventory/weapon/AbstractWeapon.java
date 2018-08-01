@@ -1,9 +1,7 @@
 package com.lilithsthrone.game.inventory.weapon;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map.Entry;
 
 import org.w3c.dom.Document;
@@ -15,8 +13,6 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.combat.Attack;
 import com.lilithsthrone.game.combat.DamageType;
-import com.lilithsthrone.game.combat.Spell;
-import com.lilithsthrone.game.combat.SpellSchool;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.AbstractCoreItem;
 import com.lilithsthrone.game.inventory.InventorySlot;
@@ -38,7 +34,6 @@ public abstract class AbstractWeapon extends AbstractCoreItem implements Seriali
 	private AbstractWeaponType weaponType;
 	private DamageType damageType;
 	private Attribute coreEnchantment;
-	private List<Spell> spells;
 	private Colour primaryColour;
 	private Colour secondaryColour;
 
@@ -49,14 +44,6 @@ public abstract class AbstractWeapon extends AbstractCoreItem implements Seriali
 		damageType = dt;
 		
 		coreEnchantment = null;
-		
-		spells = new ArrayList<>();
-		if (weaponType.getSpells() != null) {
-			this.spells.addAll(weaponType.getSpells());
-		}
-		if (weaponType.getGenerationSpells(damageType) != null) {
-			this.spells.addAll(weaponType.getGenerationSpells(damageType));
-		}
 		
 		if(weaponType.getGenerationAttributeModifiers(damageType)!=null) {
 			for(Entry<Attribute, Integer> e : weaponType.getGenerationAttributeModifiers(damageType).entrySet()) {
@@ -86,7 +73,6 @@ public abstract class AbstractWeapon extends AbstractCoreItem implements Seriali
 						&& ((AbstractWeapon)o).getSecondaryColour()==secondaryColour
 						&& ((AbstractWeapon)o).getDamageType()==damageType
 						&& ((AbstractWeapon)o).getCoreEnchantment()==coreEnchantment
-						&& ((AbstractWeapon)o).getSpells().equals(spells)
 						){
 					return true;
 				}
@@ -109,7 +95,6 @@ public abstract class AbstractWeapon extends AbstractCoreItem implements Seriali
 		if(coreEnchantment!=null) {
 			result = 31 * result + coreEnchantment.hashCode();
 		}
-		result = 31 * result + spells.hashCode();
 		return result;
 	}
 	
@@ -135,11 +120,6 @@ public abstract class AbstractWeapon extends AbstractCoreItem implements Seriali
 		
 		Element innerElement = doc.createElement("spells");
 		element.appendChild(innerElement);
-		for(Spell s : this.getSpells()) {
-			Element spell = doc.createElement("spell");
-			innerElement.appendChild(spell);
-			CharacterUtils.addAttribute(doc, spell, "value", s.toString());
-		}
 		
 		return element;
 	}
@@ -168,17 +148,6 @@ public abstract class AbstractWeapon extends AbstractCoreItem implements Seriali
 			Element e = ((Element)modifierElements.item(i));
 			try {
 				weapon.getAttributeModifiers().put(Attribute.valueOf(e.getAttribute("attribute")), Integer.valueOf(e.getAttribute("value")));
-			} catch(Exception ex) {
-			}
-		}
-		
-		weapon.spells = new ArrayList<>();
-		element = (Element)parentElement.getElementsByTagName("spells").item(0);
-		NodeList spellElements = element.getElementsByTagName("spell");
-		for(int i=0; i<spellElements.getLength(); i++){
-			Element e = ((Element)spellElements.item(i));
-			try {
-				weapon.spells.add(Spell.valueOf(e.getAttribute("value")));
 			} catch(Exception ex) {
 			}
 		}
@@ -245,23 +214,6 @@ public abstract class AbstractWeapon extends AbstractCoreItem implements Seriali
 			descriptionSB.append(".</p>");
 		}
 
-		if (!spells.isEmpty()) {
-			descriptionSB.append("<p>Its arcane power grants you the ability to cast ");
-			int i = 0;
-			for (Spell s : spells) {
-				if (i != 0) {
-					if (i + 1 == spells.size())
-						descriptionSB.append(" and ");
-					else
-						descriptionSB.append(", ");
-				}
-
-				descriptionSB.append("<b style='color:" + s.getSpellSchool().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(s.getName()) + "</b>");
-				i++;
-			}
-			descriptionSB.append(".</p>");
-		}
-		
 		descriptionSB.append("<p>It has a value of " + UtilText.formatAsMoney(getValue()) + ".</p>");
 
 		return descriptionSB.toString();
@@ -333,16 +285,8 @@ public abstract class AbstractWeapon extends AbstractCoreItem implements Seriali
 		return weaponType.getSVGImage(damageType, this.getPrimaryColour(), this.getSecondaryColour());
 	}
 
-	public List<Spell> getSpells() {
-		return spells;
-	}
-
 	public Attribute getCoreEnchantment() {
 		return coreEnchantment;
-	}
-	
-	public SpellSchool getSpellSchool() {
-		return this.getDamageType().getSpellSchool();
 	}
 	
 	public boolean isAbleToBeUsed(GameCharacter user, GameCharacter target) {

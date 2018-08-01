@@ -560,12 +560,6 @@ public enum RacialBody {
 				return RacialBody.CAT_MORPH;
 			case COW_MORPH:
 				return RacialBody.COW_MORPH;
-			case ELEMENTAL_AIR:
-			case ELEMENTAL_ARCANE:
-			case ELEMENTAL_EARTH:
-			case ELEMENTAL_FIRE:
-			case ELEMENTAL_WATER:
-				return RacialBody.HUMAN;
 			case DOG_MORPH:
 				return RacialBody.DOG_MORPH;
 			case FOX_MORPH:

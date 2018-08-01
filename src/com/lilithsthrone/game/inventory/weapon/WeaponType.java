@@ -10,16 +10,13 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.combat.DamageType;
 import com.lilithsthrone.game.combat.DamageVariance;
-import com.lilithsthrone.game.combat.Spell;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.Rarity;
-import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.ColourListPresets;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Util.Value;
-import com.lilithsthrone.world.places.PlaceType;
 
 /**
  * @since 0.1.84
@@ -49,7 +46,6 @@ public class WeaponType {
 			8,
 			0,
 			DamageVariance.MEDIUM,
-			null,
 			null,
 			null,
 			null,
@@ -100,25 +96,6 @@ public class WeaponType {
 			}
 			return null;
 		}
-		
-		@Override
-		public List<Spell> getGenerationSpells(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newArrayListOfValues(Spell.FIREBALL);
-				case ICE:
-					return Util.newArrayListOfValues(Spell.ICE_SHARD);
-				case LUST:
-					return Util.newArrayListOfValues(Spell.ARCANE_AROUSAL);
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newArrayListOfValues(Spell.SLAM);
-				case POISON:
-					return Util.newArrayListOfValues(Spell.POISON_VAPOURS);
-			}
-			return null;
-		}
 	};
 	
 	public static AbstractWeaponType MELEE_CHAOS_EPIC = new AbstractWeaponType(1500,
@@ -142,7 +119,6 @@ public class WeaponType {
 			12,
 			0,
 			DamageVariance.MEDIUM,
-			null,
 			null,
 			null,
 			null,
@@ -193,25 +169,6 @@ public class WeaponType {
 			}
 			return null;
 		}
-		
-		@Override
-		public List<Spell> getGenerationSpells(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newArrayListOfValues(Spell.FIREBALL);
-				case ICE:
-					return Util.newArrayListOfValues(Spell.ICE_SHARD);
-				case LUST:
-					return Util.newArrayListOfValues(Spell.ARCANE_AROUSAL);
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newArrayListOfValues(Spell.SLAM);
-				case POISON:
-					return Util.newArrayListOfValues(Spell.POISON_VAPOURS);
-			}
-			return null;
-		}
 	};
 	
 	public static AbstractWeaponType MELEE_CHAOS_LEGENDARY = new AbstractWeaponType(2500,
@@ -235,7 +192,6 @@ public class WeaponType {
 			16,
 			0,
 			DamageVariance.LOW,
-			null,
 			null,
 			null,
 			null,
@@ -296,25 +252,6 @@ public class WeaponType {
 			}
 			return null;
 		}
-
-		@Override
-		public List<Spell> getGenerationSpells(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newArrayListOfValues(Spell.FIREBALL);
-				case ICE:
-					return Util.newArrayListOfValues(Spell.ICE_SHARD);
-				case LUST:
-					return Util.newArrayListOfValues(Spell.ARCANE_AROUSAL);
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newArrayListOfValues(Spell.SLAM);
-				case POISON:
-					return Util.newArrayListOfValues(Spell.POISON_VAPOURS);
-			}
-			return null;
-		}
 	};
 	
 	public static AbstractWeaponType MELEE_ZWEIHANDER = new AbstractWeaponType(5000,
@@ -338,7 +275,6 @@ public class WeaponType {
 			20,
 			0,
 			DamageVariance.MEDIUM,
-			null,
 			null,
 			ColourListPresets.JUST_BLACK.getPresetColourList(),
 			ColourListPresets.ALL.getPresetColourList(),
@@ -445,7 +381,6 @@ public class WeaponType {
 			0,
 			DamageVariance.LOW,
 			null,
-			null,
 			ColourListPresets.JUST_BLACK.getPresetColourList(),
 			ColourListPresets.ALL.getPresetColourList(),
 			ColourListPresets.JUST_STEEL.getPresetColourList(),
@@ -550,7 +485,6 @@ public class WeaponType {
 			0,
 			DamageVariance.HIGH,
 			null,
-			null,
 			ColourListPresets.JUST_STEEL.getPresetColourList(),
 			ColourListPresets.ALL_METAL.getPresetColourList(),
 			ColourListPresets.JUST_STEEL.getPresetColourList(),
@@ -632,96 +566,6 @@ public class WeaponType {
 			return null;
 		}
 	};
-
-	// OFFHAND
-	public static AbstractWeaponType OFFHAND_CHAOS_RARE = new AbstractWeaponType(1000,
-			false,
-			"a",
-			"it",
-			false,
-			"chaos feather",
-			"chaos feathers",
-			"Feather Bolt",
-			"A magical feather, the power of which can be harnessed as a weapon."
-					+ " Feathers like this are rumoured to have been plucked from a Lilin's wings.",
-			InventorySlot.WEAPON_OFFHAND,
-			"rangedFeather1",
-			Rarity.RARE,
-			Util.newArrayListOfValues(DamageType.PHYSICAL, DamageType.FIRE, DamageType.ICE, DamageType.POISON),
-			8,
-			0,
-			DamageVariance.HIGH,
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.SOLD_BY_VICKY)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String equipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(focus)] on the energy in the feather."
-					+ " As [npc.she] [npc.does] so, it dissolves and flows into [npc.her] body, granting [npc.herHim] the ability to perform magical attacks at range.");
-		}
-
-		@Override
-		public String unequipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(focus)] on the energy inside of [npc.herHim], forcing it out from [npc.her] body."
-					+ " As [npc.she] [npc.does] so, it reforms back into a chaos feather.");
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter character, GameCharacter target, boolean isHit) {
-			return genericRangedAttackDescription(character, target, isHit);
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter user, GameCharacter target) {
-			return UtilText.parse(target,
-					"Use your feather's power to shoot a bolt of energy at [npc.name]!");
-		}
-		
-		@Override
-		public Map<Attribute, Integer> getGenerationAttributeModifiers(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_FIRE, 5));
-				case ICE:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_ICE, 5));
-				case LUST:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_PHYSICAL, 5));
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_PHYSICAL, 5));
-				case POISON:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_POISON, 5));
-			}
-			return null;
-		}
-		
-		@Override
-		public List<Spell> getGenerationSpells(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newArrayListOfValues(Spell.FIREBALL);
-				case ICE:
-					return Util.newArrayListOfValues(Spell.ICE_SHARD);
-				case LUST:
-					return Util.newArrayListOfValues(Spell.ARCANE_AROUSAL);
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newArrayListOfValues(Spell.SLAM);
-				case POISON:
-					return Util.newArrayListOfValues(Spell.POISON_VAPOURS);
-			}
-			return null;
-		}
-	};
 	
 	public static AbstractWeaponType OFFHAND_CHAOS_EPIC = new AbstractWeaponType(1500,
 			false,
@@ -740,7 +584,6 @@ public class WeaponType {
 			14,
 			0,
 			DamageVariance.HIGH,
-			null,
 			null,
 			null,
 			null,
@@ -791,25 +634,6 @@ public class WeaponType {
 			}
 			return null;
 		}
-		
-		@Override
-		public List<Spell> getGenerationSpells(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newArrayListOfValues(Spell.FIREBALL);
-				case ICE:
-					return Util.newArrayListOfValues(Spell.ICE_SHARD);
-				case LUST:
-					return Util.newArrayListOfValues(Spell.ARCANE_AROUSAL);
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newArrayListOfValues(Spell.SLAM);
-				case POISON:
-					return Util.newArrayListOfValues(Spell.POISON_VAPOURS);
-			}
-			return null;
-		}
 	};
 	
 	// I made this in one of my lunch breaks x_x
@@ -829,7 +653,6 @@ public class WeaponType {
 			100000,
 			0,
 			DamageVariance.LOW,
-			null,
 			null,
 			null,
 			null,
@@ -861,265 +684,6 @@ public class WeaponType {
 		}
 	};
 	
-	public static AbstractWeaponType RANGED_MUSKET = new AbstractWeaponType(15000,
-			false,
-			"an",
-			"it",
-			false,
-			"Arcane Musket",
-			"Arcane Muskets",
-			"Fire Musket",
-			"Carried by Lyssieth's demonic guard, these smoothbore long guns fire bolts of arcane energy instead of bullets."
-					+ " Each discharge drains one arcane essence from the user, meaning that only those who have the ability to absorb arcane essences can fire it.",
-			InventorySlot.WEAPON_MAIN,
-			"arcaneMusket",
-			Rarity.LEGENDARY,
-			Util.newArrayListOfValues(
-					DamageType.PHYSICAL),
-			25,
-			1,
-			DamageVariance.LOW,
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-			null) {
-		
-		private static final long serialVersionUID = 1L;
-				
-		@Override
-		public String equipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(ready)] [npc.her] musket.");
-		}
-
-		@Override
-		public String unequipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(put)] [npc.her] musket away.");
-		}
-		
-		@Override
-		public String getAttackDescription(GameCharacter character, GameCharacter target, boolean isHit) {
-			if(isHit) {
-				if(character.isPlayer()) {
-					return UtilText.parse(target,
-							UtilText.returnStringAtRandom(
-								"You point your arcane musket at [npc.name] and pull the trigger, unleashing a blast of arcane power that strikes [npc.herHim] right in the chest!",
-								"Taking aim at [npc.name] with your musket, you pull the trigger, unleashing a powerful blast of arcane energy that slams into [npc.her] torso!",
-								"You fire your musket at [npc.name], blasting forth a powerful jolt of arcane energy that strikes [npc.herHim] straight in the chest!"));
-					
-				} else {
-					return UtilText.parse(character,
-							UtilText.returnStringAtRandom(
-								"[npc.Name] points [npc.her] arcane musket at you and pulls the trigger, unleashing a blast of arcane power that strikes you right in the chest!",
-								"Taking aim at you with [npc.her] musket, [npc.name] pulls the trigger, unleashing a powerful blast of arcane energy that slams into your torso!",
-								"[npc.Name] fires [npc.her] musket at you, blasting forth a powerful jolt of arcane energy that strikes you straight in the chest!"));
-				}
-				
-			} else {
-				if(character.isPlayer()) {
-					return UtilText.parse(target,
-							UtilText.returnStringAtRandom(
-								"You point you arcane musket at [npc.name] and pull the trigger, but, much to your dismay, the blast of arcane power misses its target!",
-								"Taking aim at [npc.name] with your musket, you pull the trigger, but unfortunately the blast of arcane power that you unleash misses your target!",
-								"You fire your musket at [npc.name], blasting forth a powerful jolt of arcane energy that unfortunately fails to hit your target!"));
-					
-				} else {
-					return UtilText.parse(character,
-							UtilText.returnStringAtRandom(
-									"[npc.Name] points [npc.her] arcane musket at you and pulls the trigger, but, much to [npc.her] dismay, the blast of arcane power misses you!",
-									"Taking aim at you with [npc.her] musket, [npc.name] pulls the trigger, but thankfully the blast of arcane power that [npc.she] unleashes misses you!",
-									"[npc.Name] fires [npc.her] musket at you, blasting forth a powerful jolt of arcane energy that thankfully fails to hit you!"));
-				}
-			}
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter user, GameCharacter target) {
-			return UtilText.parse(target,
-					"Point your musket at [npc.name] and fire!");
-		}
-	};
-	
-	public static AbstractWeaponType MAIN_WITCH_BROOM = new AbstractWeaponType(5000,
-			true,
-			"a",
-			"it",
-			false,
-			"Witch's Broom",
-			"Witch's Brooms",
-			"Broom Swipe",
-			"An old-fashioned wooden broom, consisting of a long pole with a bundle of flexible twigs attached to one end."
-					+ " The opposite end of the pole widens out a little, where there's a curious engraving of a pentagram etched into the wood.",
-			InventorySlot.WEAPON_MAIN,
-			"primary_witch_broom",
-			Rarity.EPIC,
-			Util.newArrayListOfValues(
-					DamageType.PHYSICAL,
-					DamageType.FIRE,
-					DamageType.ICE,
-					DamageType.POISON),
-			5,
-			0,
-			DamageVariance.LOW,
-			Util.newHashMapOfValues(new Value<Attribute, Integer>(Attribute.MAJOR_ARCANE, 5)),
-			Util.newArrayListOfValues(
-					Spell.WITCH_SEAL,
-					Spell.WITCH_CHARM),
-			null,
-			null,
-			null,
-			null,
-			null) {
-		
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public String equipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(ready)] [npc.her] broom.");
-		}
-
-		@Override
-		public String unequipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(put)] [npc.her] broom away.");
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter character, GameCharacter target, boolean isHit) {
-			if(isHit) {
-				if(character.isPlayer()) {
-					return UtilText.parse(target,
-							UtilText.returnStringAtRandom(
-								"You whack [npc.namePos] [npc.arm] with your broom.",
-								"You swipe your broom at [npc.namePos] [npc.legs], and manage to hit [npc.herHim] in the shins.",
-								"You swing your broom at [npc.name], grinning as the end makes contact with [npc.her] torso."));
-					
-				} else {
-					return UtilText.parse(character,
-							UtilText.returnStringAtRandom(
-								"[npc.Name] whacks your [pc.arm] with [npc.her] broom.",
-								"[npc.Name] swipes [npc.her] broom at your [pc.legs], and manages to hit you in the shins.",
-								"[npc.Name] swings [npc.her] broom at you, grinning as the end makes contact with your torso."));
-				}
-				
-			} else {
-				if(character.isPlayer()) {
-					return UtilText.parse(target,
-							UtilText.returnStringAtRandom(
-								"You try to whack [npc.name] with your broom, but [npc.she] manages to grab the shaft and push you away.",
-								"You attempt to swipe your broom at [npc.namePos] [npc.legs], but [npc.she] jumps back and manages to avoid the blow.",
-								"You swing your broom at [npc.name], but [npc.she] manages to duck at the last moment and avoid the blow."));
-					
-				} else {
-					return UtilText.parse(character,
-							UtilText.returnStringAtRandom(
-								"[npc.Name] tries to whack you with [npc.her] broom, but you manage to grab the shaft and push [npc.herHim] away.",
-								"[npc.Name] attempts to swipe [npc.her] broom at your [pc.legs], but you jump back and manage to avoid the blow.",
-								"[npc.Name] swings [npc.her] broom at you, but you manage to duck at the last moment and avoid the blow."));
-				}
-			}
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter user, GameCharacter target) {
-			return UtilText.parse(target,
-					"Swipe the broom at [npc.name]!");
-		}
-	};
-	
-	public static AbstractWeaponType MAIN_FEATHER_DUSTER = new AbstractWeaponType(250,
-			true,
-			"a",
-			"it",
-			false,
-			"feather duster",
-			"feather dusters",
-			"Duster Tickle",
-			"A short-handled feather duster, ideal for keeping a house clean, but not much use in combat...",
-			InventorySlot.WEAPON_MAIN,
-			"feather_duster",
-			Rarity.EPIC,
-			Util.newArrayListOfValues(DamageType.PHYSICAL),
-			2,
-			0,
-			DamageVariance.LOW,
-			Util.newHashMapOfValues(new Value<Attribute, Integer>(Attribute.MAJOR_PHYSIQUE, 5)),
-			null,
-			null,
-			null,
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.SOLD_BY_VICKY)) {
-		
-		private static final long serialVersionUID = 1L;
-		
-		
-		@Override
-
-		public String getDescription() {
-			if(Main.game.getPlayer().getLocationPlace().getPlaceType()==PlaceType.SHOPPING_ARCADE_ASHLEYS_SHOP) {
-				return "A short-handled feather duster, ideal for keeping a house clean, but not much use in combat..."
-						+ " [Ashley.speech(A feather duster: the epitome of romance, at least for those who don't know anything about their lover, other than that they're the person who keeps the house clean.)]";
-//						+ " Surely, that's all that's going on with their lives, right?)]";
-			} else {
-				return "A short-handled feather duster, ideal for keeping a house clean, but not much use in combat...";
-			}
-		}
-		
-		@Override
-		public String equipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(ready)] [npc.her] feather duster.");
-		}
-
-		@Override
-		public String unequipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(put)] [npc.her] feather duster away.");
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter character, GameCharacter target, boolean isHit) {
-			if(isHit) {
-				if(character.isPlayer()) {
-					return UtilText.parse(target,
-							UtilText.returnStringAtRandom(
-								"You tickle [npc.namePos] [npc.arm] with your feather duster.",
-								"You swipe your feather duster at [npc.namePos] [npc.legs], and manage to tickle [npc.her] shins.",
-								"You swing your feather duster at [npc.name], grinning as you tickle [npc.her] torso."));
-					
-				} else {
-					return UtilText.parse(character,
-							UtilText.returnStringAtRandom(
-								"[npc.Name] tickles your [pc.arm] with [npc.her] feather duster.",
-								"[npc.Name] swipes [npc.her] feather duster at your [pc.legs], and manages to tickle your shins.",
-								"[npc.Name] swings [npc.her] feather duster at you, grinning as [npc.she] tickles your torso."));
-				}
-				
-			} else {
-				if(character.isPlayer()) {
-					return UtilText.parse(target,
-							UtilText.returnStringAtRandom(
-								"You try to tickle [npc.name] with your feather duster, but [npc.she] manages to push you away.",
-								"You attempt to swipe your feather duster at [npc.namePos] [npc.legs], but [npc.she] jumps back and manages to avoid the tickling.",
-								"You swing your feather duster at [npc.name], but [npc.she] manages to duck at the last moment and avoid the tickling."));
-					
-				} else {
-					return UtilText.parse(character,
-							UtilText.returnStringAtRandom(
-								"[npc.Name] tries to tickle you with [npc.her] feather duster, but you manage to grab the shaft and push [npc.herHim] away.",
-								"[npc.Name] attempts to swipe [npc.her] feather duster at your [pc.legs], but you jump back and manage to avoid the tickling.",
-								"[npc.Name] swings [npc.her] feather duster at you, but you manage to duck at the last moment and avoid the tickling."));
-				}
-			}
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter user, GameCharacter target) {
-			return UtilText.parse(target,
-					"Tickle [npc.name] with your feather duster!");
-		}
-	};
-
 	public static List<AbstractWeaponType> rareWeapons = new ArrayList<>(), allweapons = new ArrayList<>();
 	
 	public static Map<AbstractWeaponType, String> weaponToIdMap = new HashMap<>();

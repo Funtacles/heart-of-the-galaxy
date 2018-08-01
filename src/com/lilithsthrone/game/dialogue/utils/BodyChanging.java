@@ -6,7 +6,6 @@ import java.util.List;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
 import com.lilithsthrone.game.character.body.types.HornType;
-import com.lilithsthrone.game.character.npc.misc.Elemental;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.DialogueNodeType;
@@ -144,13 +143,11 @@ public class BodyChanging {
 								:UtilText.parse(BodyChanging.getTarget(), "The colour of the demonic skin that's covering [npc.namePos] body.")),
 							true, true)
 					
-					+ (BodyChanging.getTarget() instanceof Elemental
-							?""
-							:CharacterModificationUtils.getKatesDivCoveringsNew(false, BodyChanging.getTarget().getBodyHairCoveringType(), "Body Hair Colour",
+					+ CharacterModificationUtils.getKatesDivCoveringsNew(false, BodyChanging.getTarget().getBodyHairCoveringType(), "Body Hair Colour",
 								(BodyChanging.getTarget().isPlayer()
 									?"The colour of your demonic body hair."
 									:UtilText.parse(BodyChanging.getTarget(), "The colour of the [npc.namePos] demonic body hair.")),
-								true, true));
+								true, true);
 		}
 		
 		@Override

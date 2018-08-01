@@ -97,9 +97,6 @@ import com.lilithsthrone.game.character.persona.SexualOrientation;
 import com.lilithsthrone.game.character.race.FurryPreference;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.combat.DamageType;
-import com.lilithsthrone.game.combat.Spell;
-import com.lilithsthrone.game.combat.SpellSchool;
-import com.lilithsthrone.game.combat.SpellUpgrade;
 import com.lilithsthrone.game.dialogue.DebugDialogue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.DialogueNodeType;
@@ -3939,39 +3936,6 @@ public class MainControllerInitMethod {
 				}
 			}
 			
-			if(Main.game.getCurrentDialogueNode()==InventoryDialogue.DYE_WEAPON
-					|| Main.game.getCurrentDialogueNode()==InventoryDialogue.DYE_EQUIPPED_WEAPON) {
-				AbstractWeaponType weapon = InventoryDialogue.getWeapon().getWeaponType();
-				for (Colour c : weapon.getAllAvailablePrimaryColours()) {
-					id = "PRIMARY_"+weapon.hashCode() + "_" + c.toString();
-					if ((EventTarget) MainController.document.getElementById(id) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							InventoryDialogue.dyePreviewPrimary = c;
-							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						InventoryTooltipEventListener el2 = new InventoryTooltipEventListener().setDyeWeaponPrimary(InventoryDialogue.getWeapon(), c);
-						MainController.addEventListener(MainController.document, id, "mouseenter", el2, false);
-					}
-				}
-				for (Colour c : weapon.getAllAvailableSecondaryColours()) {
-					id = "SECONDARY_"+weapon.hashCode() + "_" + c.toString();
-					if ((EventTarget) MainController.document.getElementById(id) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							InventoryDialogue.dyePreviewSecondary = c;
-							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						InventoryTooltipEventListener el2 = new InventoryTooltipEventListener().setDyeWeaponSecondary(InventoryDialogue.getWeapon(), c);
-						MainController.addEventListener(MainController.document, id, "mouseenter", el2, false);
-					}
-				}
-			}
-			
 			for (AbstractClothingType clothing : ClothingType.getAllClothing()) {
 				for (Colour colour : clothing.getAllAvailablePrimaryColours()) {
 					if ((EventTarget) MainController.document.getElementById(clothing.hashCode() + "_" + colour.toString()) != null) {
@@ -4026,41 +3990,6 @@ public class MainControllerInitMethod {
 						}, false);
 					}
 				}
-			}
-			
-			if (Main.game.getCurrentDialogueNode() == PhoneDialogue.CHARACTER_SPELLS_ARCANE
-					|| Main.game.getCurrentDialogueNode() == PhoneDialogue.CHARACTER_SPELLS_EARTH
-					|| Main.game.getCurrentDialogueNode() == PhoneDialogue.CHARACTER_SPELLS_WATER
-					|| Main.game.getCurrentDialogueNode() == PhoneDialogue.CHARACTER_SPELLS_AIR
-					|| Main.game.getCurrentDialogueNode() == PhoneDialogue.CHARACTER_SPELLS_FIRE) {
-				for(Spell s : Spell.values()) {
-					id = "SPELL_TREE_" + s;
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseenter", new TooltipInformationEventListener().setSpell(s, Main.game.getPlayer()), false);
-						
-					}
-					for(List<TreeEntry<SpellSchool, SpellUpgrade>> upgradeList : s.getSpellUpgradeTree().values()) {
-						for(TreeEntry<SpellSchool, SpellUpgrade> upgrade : upgradeList) {
-							id = "SPELL_UPGRADE_" + upgrade.getEntry();
-							if (((EventTarget) MainController.document.getElementById(id)) != null) {
-								MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-								MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-								MainController.addEventListener(MainController.document, id, "mouseenter", new TooltipInformationEventListener().setSpellUpgrade(upgrade.getEntry(), Main.game.getPlayer()), false);
-								
-								((EventTarget) MainController.document.getElementById(id)).addEventListener("click", event -> {
-									if(Spell.isSpellUpgradeAvailable(Main.game.getPlayer(), s, upgrade) && Main.game.getPlayer().getSpellUpgradePoints(upgrade.getCategory())>=upgrade.getEntry().getPointCost()) {
-										Main.game.getPlayer().addSpellUpgrade(upgrade.getEntry());
-										Main.game.getPlayer().incrementSpellUpgradePoints(upgrade.getCategory(), -upgrade.getEntry().getPointCost());
-										Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-									}
-								}, false);
-							}
-						}
-					}
-				}
-				
 			}
 			
 			// Level up dialogue:

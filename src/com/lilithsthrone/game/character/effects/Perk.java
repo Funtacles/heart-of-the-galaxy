@@ -416,24 +416,6 @@ public enum Perk {
 		}
 	},
 	
-	ELEMENTALIST_5(20,
-			false,
-			"elementalist V",
-			PerkCategory.BOTH,
-			"perks/elementalist5",
-			Colour.ATTRIBUTE_ARCANE,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Integer>(Attribute.DAMAGE_FIRE, 5),
-					new Value<Attribute, Integer>(Attribute.DAMAGE_ICE, 5),
-					new Value<Attribute, Integer>(Attribute.DAMAGE_POISON, 5)),
-			null) {
-
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "You are learning how to harness arcane elements more effectively.";
-		}
-	},
-	
 	
 	ARCANE_BASE(20,
 			false,

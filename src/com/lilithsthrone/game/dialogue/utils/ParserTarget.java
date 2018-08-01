@@ -176,17 +176,6 @@ public enum ParserTarget {
 		}
 	},
 	
-	VICKY(Util.newArrayListOfValues("vicky"), "") {
-		public String getDescription() {
-			return Main.game.getVicky().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getVicky();
-		}
-	},
-	
 	WOLFGANG(Util.newArrayListOfValues(
 			"wolfgang",
 			"supplierLeader"), "") {

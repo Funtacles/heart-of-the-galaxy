@@ -27,7 +27,6 @@ import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
-import com.lilithsthrone.utils.Util.Value;
 
 /**
  * Singleton enforced by Enum.<br/>
@@ -61,7 +60,6 @@ public enum Combat {
 
 	// For use in repeat last action:
 	private static Attack previousAction;
-	private static Spell previouslyUsedSpell;
 	private static SpecialAttack previouslyUsedSpecialAttack;
 
 	private Combat() {
@@ -118,19 +116,6 @@ public enum Combat {
 		
 		String startingEffect = "";
 		
-		if(Main.game.getPlayer().hasSpellUpgrade(SpellUpgrade.TELEPATHIC_COMMUNICATION_3)) {
-			Main.game.getPlayer().addStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_POWER_OF_SUGGESTION, 11);
-			startingEffect = Spell.getBasicStatusEffectApplication(Main.game.getPlayer(), true, Util.newHashMapOfValues(new Value<>(StatusEffect.TELEPATHIC_COMMUNICATION_POWER_OF_SUGGESTION, 10)));
-			
-		} else if(Main.game.getPlayer().hasSpellUpgrade(SpellUpgrade.TELEPATHIC_COMMUNICATION_2)) {
-			Main.game.getPlayer().addStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_PROJECTED_TOUCH, 11);
-			startingEffect = Spell.getBasicStatusEffectApplication(Main.game.getPlayer(), true, Util.newHashMapOfValues(new Value<>(StatusEffect.TELEPATHIC_COMMUNICATION_PROJECTED_TOUCH, 10)));
-			
-		} else if(Main.game.getPlayer().hasSpellUpgrade(SpellUpgrade.TELEPATHIC_COMMUNICATION_1)) {
-			Main.game.getPlayer().addStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION, 11);
-			startingEffect = Spell.getBasicStatusEffectApplication(Main.game.getPlayer(), true, Util.newHashMapOfValues(new Value<>(StatusEffect.TELEPATHIC_COMMUNICATION, 10)));
-		}
-		
 		if(openingDescriptions!=null && openingDescriptions.containsKey(Main.game.getPlayer())) {
 			combatStringBuilder.append(getCharactersTurnDiv(Main.game.getPlayer(),
 					"Preparation",
@@ -157,19 +142,6 @@ public enum Combat {
 		
 		for(NPC enemy : enemies) {
 			startingEffect="";
-			if(enemy.hasSpellUpgrade(SpellUpgrade.TELEPATHIC_COMMUNICATION_3)) {
-				enemy.addStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_POWER_OF_SUGGESTION, 11);
-				startingEffect = Spell.getBasicStatusEffectApplication(enemy, true, Util.newHashMapOfValues(new Value<>(StatusEffect.TELEPATHIC_COMMUNICATION_POWER_OF_SUGGESTION, 10)));
-				
-			} else if(enemy.hasSpellUpgrade(SpellUpgrade.TELEPATHIC_COMMUNICATION_2)) {
-				enemy.addStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_PROJECTED_TOUCH, 11);
-				startingEffect = Spell.getBasicStatusEffectApplication(enemy, true, Util.newHashMapOfValues(new Value<>(StatusEffect.TELEPATHIC_COMMUNICATION_PROJECTED_TOUCH, 10)));
-				
-			} else if(enemy.hasSpellUpgrade(SpellUpgrade.TELEPATHIC_COMMUNICATION_1)) {
-				enemy.addStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION, 11);
-				startingEffect = Spell.getBasicStatusEffectApplication(enemy, true, Util.newHashMapOfValues(new Value<>(StatusEffect.TELEPATHIC_COMMUNICATION, 10)));
-			}
-			
 			if(openingDescriptions!=null && openingDescriptions.containsKey(enemy)) {
 				combatStringBuilder.append(getCharactersTurnDiv(enemy, "", openingDescriptions.get(enemy) + startingEffect));
 			} else {
@@ -252,11 +224,6 @@ public enum Combat {
 							Main.game.getPlayer().addClothing((AbstractClothing) item, false);
 						}
 					}
-				}
-				if(enemy.isElementalSummoned()) {
-					enemy.removeCompanion(enemy.getElemental());
-					enemy.getElemental().returnToHome();
-					postCombatStringBuilder.append(UtilText.parse(enemy, enemy.getElemental(), "<div class='container-full-width' style='text-align:center;'>[npc1.NamePos] elemental, [npc2.name], is [style.boldTerrible(dispelled)]!</div>"));
 				}
 			}
 
@@ -342,20 +309,6 @@ public enum Combat {
 			int moneyLoss = (-enemies.get(0).getLootMoney()/2)*enemies.size();
 			Main.game.getPlayer().incrementMoney(moneyLoss);
 			postCombatStringBuilder.append("<div class='container-full-width' style='text-align:center;'>You [style.boldBad(lost)] " + UtilText.formatAsMoney(Math.abs(Main.game.getPlayer().getMoney()==0?money:moneyLoss)) + "!</div>");
-			
-			// Remove elementals:
-			if(Main.game.getPlayer().isElementalSummoned()) {
-				Main.game.getPlayer().removeCompanion(Main.game.getPlayer().getElemental());
-				Main.game.getPlayer().getElemental().returnToHome();
-				postCombatStringBuilder.append(UtilText.parse(Main.game.getPlayer().getElemental(), "<div class='container-full-width' style='text-align:center;'>Your elemental, [npc.name], is [style.boldTerrible(dispelled)]!</div>"));
-			}
-			for(NPC ally : allies) {
-				if(ally.isElementalSummoned()) {
-					ally.removeCompanion(ally.getElemental());
-					ally.getElemental().returnToHome();
-					postCombatStringBuilder.append(UtilText.parse(ally, ally.getElemental(), "<div class='container-full-width' style='text-align:center;'>[npc1.NamePos] elemental, [npc2.name], is [style.boldTerrible(dispelled)]!</div>"));
-				}
-			}
 			
 			for(NPC enemy : enemies) {
 				enemy.setWonCombatCount(enemy.getWonCombatCount()+1);
@@ -728,45 +681,6 @@ public enum Combat {
 				}
 			}
 			
-			if(responseTab==2) { // Spells
-				int spellIndex = index==0?14:(index<15?index-1:index);
-				
-				if(Main.game.getPlayer().getAllSpells().size()>spellIndex) {
-					if(Main.game.getPlayer().getMana() < Main.game.getPlayer().getAllSpells().get(spellIndex).getModifiedCost(Main.game.getPlayer())) {
-						return new Response(Util.capitaliseSentence(Main.game.getPlayer().getAllSpells().get(spellIndex).getName()),
-								"You don't have enough aura to cast this spell! (Requires "+Main.game.getPlayer().getAllSpells().get(spellIndex).getModifiedCost(Main.game.getPlayer())+" aura.)",
-								null);
-					}
-					if(Main.game.getPlayer().getAllSpells().get(spellIndex).getType()==SpellType.OFFENSIVE
-							&& (Combat.getAllies().contains(Combat.getTargetedCombatant(Main.game.getPlayer()))
-									|| Combat.getTargetedCombatant(Main.game.getPlayer()).isPlayer())) {
-						return new Response(Util.capitaliseSentence(Main.game.getPlayer().getAllSpells().get(spellIndex).getName()),
-								"You can only cast this spell on an enemy!",
-								null);
-					}
-					return new Response(Util.capitaliseSentence(Main.game.getPlayer().getAllSpells().get(spellIndex).getName()),
-							getSpellDescription(Main.game.getPlayer().getAllSpells().get(spellIndex),
-							null),
-							ENEMY_ATTACK){
-						@Override
-						public void effects() {
-							attackSpell(Main.game.getPlayer(), Main.game.getPlayer().getAllSpells().get(spellIndex));
-							endCombatTurn();
-							previousAction = Attack.SPELL;
-							previouslyUsedSpell = Main.game.getPlayer().getAllSpells().get(spellIndex);
-						}
-						@Override
-						public Colour getHighlightColour() {
-							return Main.game.getPlayer().getAllSpells().get(spellIndex).getSpellSchool().getColour();
-						}
-					};
-					
-				} else {
-					return null;
-				}
-			}
-			
-			
 			if (index == 0) {
 				if (escapeChance == 0) {
 					return new Response("Escape", "You can't run from this fight!", null);
@@ -860,20 +774,6 @@ public enum Combat {
 
 			} else if (index == 10) {
 				switch (previousAction) {
-					case SPELL:
-						if(Main.game.getPlayer().getMana() < previouslyUsedSpell.getModifiedCost(Main.game.getPlayer())) {
-							return new Response(Util.capitaliseSentence(previouslyUsedSpell.getName()),
-									"You don't have enough aura to cast this spell!",
-									null);
-						}
-						return new Response(Util.capitaliseSentence(previouslyUsedSpell.getName()), getSpellDescription(previouslyUsedSpell, null), ENEMY_ATTACK){
-							@Override
-							public void effects() {
-								attackSpell(Main.game.getPlayer(), previouslyUsedSpell);
-								endCombatTurn();
-							}
-						};
-
 					case SPECIAL_ATTACK:
 						int cooldown = Combat.getCooldown(Main.game.getPlayer(), previouslyUsedSpecialAttack);
 						if(cooldown==0) {
@@ -1150,73 +1050,6 @@ public enum Combat {
 	private static String applyExtraAttackEffects(GameCharacter attacker, GameCharacter target, Attack attackType, boolean isHit) {
 		StringBuilder extraAttackEffectsSB = new StringBuilder();
 		
-		if(attacker.hasStatusEffect(StatusEffect.CLOAK_OF_FLAMES_1)
-				|| attacker.hasStatusEffect(StatusEffect.CLOAK_OF_FLAMES_2)
-				|| attacker.hasStatusEffect(StatusEffect.CLOAK_OF_FLAMES_3)) {
-			float cloakOfFlamesDamage = Math.round(5 * (1 + (Util.getModifiedDropoffValue(attacker.getAttributeValue(Attribute.DAMAGE_FIRE), 100)/100f)));
-			cloakOfFlamesDamage *= 1 - (Util.getModifiedDropoffValue(target.getAttributeValue(Attribute.RESISTANCE_FIRE), 100)/100f);
-			cloakOfFlamesDamage = (Math.round(cloakOfFlamesDamage*10))/10f;
-			if (cloakOfFlamesDamage < 1) {
-				cloakOfFlamesDamage = 1;
-			}
-			target.incrementHealth(-cloakOfFlamesDamage);
-			
-			if(attacker.isPlayer()) {
-				extraAttackEffectsSB.append(UtilText.parse(target, "<p>[npc.Name] takes an extra <b>"+cloakOfFlamesDamage+"</b> [style.boldFire(Fire Damage)] from your [style.boldFire(Cloak of Flames)]!</p>"));
-			} else {
-				if(target.isPlayer()) {
-					extraAttackEffectsSB.append(UtilText.parse(attacker, "<p>You take an extra <b>"+cloakOfFlamesDamage+"</b> [style.boldFire(Fire Damage)] from [npc.namePos] [style.boldFire(Cloak of Flames)]!</p>"));
-				} else {
-					extraAttackEffectsSB.append(UtilText.parse(attacker, target, "<p>[npc2.Name] takes an extra <b>"+cloakOfFlamesDamage+"</b> [style.boldFire(Fire Damage)] from [npc1.namePos] [style.boldFire(Cloak of Flames)]!</p>"));
-				}
-			}
-		}
-		
-		if(target.hasStatusEffect(StatusEffect.CLOAK_OF_FLAMES_3)
-				&& (((attackType==Attack.MAIN || attackType==Attack.DUAL) && (attacker.getMainWeapon() == null || attacker.getMainWeapon().getWeaponType().isMelee()))
-						|| ((attackType==Attack.OFFHAND || attackType==Attack.DUAL) && (attacker.getOffhandWeapon() == null || attacker.getOffhandWeapon().getWeaponType().isMelee())))) {
-			float cloakOfFlamesDamage = Math.round(5 * (1 + (Util.getModifiedDropoffValue(target.getAttributeValue(Attribute.DAMAGE_FIRE), 100)/100f)));
-			cloakOfFlamesDamage *= 1 - (Util.getModifiedDropoffValue(attacker.getAttributeValue(Attribute.RESISTANCE_FIRE), 100)/100f);
-			cloakOfFlamesDamage = (Math.round(cloakOfFlamesDamage*10))/10f;
-			if (cloakOfFlamesDamage < 1) {
-				cloakOfFlamesDamage = 1;
-			}
-			attacker.incrementHealth(-cloakOfFlamesDamage);
-			
-			if(attacker.isPlayer()) {
-				extraAttackEffectsSB.append(UtilText.parse(target, "<p>You take <b>"+cloakOfFlamesDamage+"</b> [style.boldFire(Fire Damage)] from [npc.namePos] [style.boldFire(Ring of Fire)]!</p>"));
-			} else {
-				if(target.isPlayer()) {
-					extraAttackEffectsSB.append(UtilText.parse(attacker, "<p>[npc.Name] takes <b>"+cloakOfFlamesDamage+"</b> [style.boldFire(Fire Damage)] from your [style.boldFire(Ring of Fire)]!</p>"));
-				} else {
-					extraAttackEffectsSB.append(UtilText.parse(attacker, target, "<p>[npc1.Name] takes <b>"+cloakOfFlamesDamage+"</b> [style.boldFire(Fire Damage)] from [npc2.namePos] [style.boldFire(Ring of Fire)]!</p>"));
-				}
-			}
-		}
-		
-		if(attacker.hasStatusEffect(StatusEffect.MELEE_FIRE)
-				&& isHit
-				&& (((attackType==Attack.MAIN || attackType==Attack.DUAL) && (attacker.getMainWeapon() == null || attacker.getMainWeapon().getWeaponType().isMelee()))
-						|| ((attackType==Attack.OFFHAND || attackType==Attack.DUAL) && (attacker.getOffhandWeapon() == null || attacker.getOffhandWeapon().getWeaponType().isMelee())))) {
-			float fireDamage = Math.round(2 * (1 + (Util.getModifiedDropoffValue(attacker.getAttributeValue(Attribute.DAMAGE_FIRE), 100)/100f)));
-			fireDamage *= 1 - (Util.getModifiedDropoffValue(target.getAttributeValue(Attribute.RESISTANCE_FIRE), 100)/100f);
-			fireDamage = (Math.round(fireDamage*10))/10f;
-			if (fireDamage < 1) {
-				fireDamage = 1;
-			}
-			target.incrementHealth(-fireDamage);
-			
-			if(attacker.isPlayer()) {
-				extraAttackEffectsSB.append(UtilText.parse(target, "<p>[npc.Name] takes an extra <b>"+fireDamage+"</b> [style.boldFire(Fire Damage)] from your [style.boldFire(Flaming Strikes)]!</p>"));
-			} else {
-				if(target.isPlayer()) {
-					extraAttackEffectsSB.append(UtilText.parse(attacker, "<p>You take an extra <b>"+fireDamage+"</b> [style.boldFire(Fire Damage)] from [npc.namePos] [style.boldFire(Flaming Strikes)]!</p>"));
-				} else {
-					extraAttackEffectsSB.append(UtilText.parse(attacker, target, "<p>[npc2.Name] takes an extra <b>"+fireDamage+"</b> [style.boldFire(Fire Damage)] from [npc1.namePos] [style.boldFire(Flaming Strikes)]!</p>"));
-				}
-			}
-		}
-		
 		return extraAttackEffectsSB.toString();
 	}
 	
@@ -1318,55 +1151,7 @@ public enum Combat {
 			target.incrementLust(lustDamage);
 		}
 		
-		if(attacker.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_POWER_OF_SUGGESTION)) {
-			target.addStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_POWER_OF_SUGGESTION_TARGETED, 3);
-			attackStringBuilder.append(Spell.getBasicStatusEffectApplication(target, false, Util.newHashMapOfValues(new Value<>(StatusEffect.TELEPATHIC_COMMUNICATION_POWER_OF_SUGGESTION_TARGETED, 2))));
-		}
-		
 		combatStringBuilder.append(getCharactersTurnDiv(attacker, "Seduction", attackStringBuilder.toString()));
-	}
-
-	private static void attackSpell(GameCharacter attacker, Spell spell) {
-		GameCharacter target = getTargetedAlliedCombatant(attacker);
-		boolean isHit = true;
-		
-		if(!spell.isBeneficial(attacker, target)) {
-			target = getTargetedCombatant(attacker);
-		}
-		
-		if(spell.getType()==SpellType.OFFENSIVE) {
-			isHit = Attack.rollForHit(attacker, target);
-		}
-		
-		boolean critical = Attack.rollForCritical(attacker, target, spell);
-
-		attackStringBuilder = new StringBuilder();
-
-		attackStringBuilder.append(getPregnancyProtectionText(attacker, target));
-
-//		attackStringBuilder.append(attacker.getSpellDescription());
-		attackStringBuilder.append(spell.applyEffect(attacker, target, isHit, critical));
-		
-		if(isHit && critical && !spell.isBeneficial(attacker, target) && attacker.hasTraitActivated(Perk.ARCANE_CRITICALS)) {
-			target.addStatusEffect(StatusEffect.ARCANE_WEAKNESS, 2);
-			if(attacker.isPlayer()) {
-				attackStringBuilder.append(
-						"<p>"
-							+ UtilText.parse(target, "Your [style.boldExcellent(critical)] spell applies [style.boldArcane(arcane weakness)] to [npc.name]!")
-						+ "</p>");
-			} else {
-				attackStringBuilder.append(
-						"<p>"
-							+ UtilText.parse(attacker, "[npc.NamePos] [style.boldExcellent(critical)] spell applies [style.boldArcane(arcane weakness)] to "+(target.isPlayer()?"you":UtilText.parse(target, "[npc.name]"))+"!")
-						+ "</p>");
-			}
-		}
-
-		if(!isHit) {
-			attackStringBuilder.append(applyExtraMissEffects(attacker, target));
-		}
-		
-		combatStringBuilder.append(getCharactersTurnDiv(attacker, Util.capitaliseSentence(spell.getName()), attackStringBuilder.toString()));
 	}
 
 	private static void attackSpecialAttack(GameCharacter attacker, SpecialAttack specialAttack) {
@@ -1389,24 +1174,6 @@ public enum Combat {
 	
 	private static String applyExtraMissEffects(GameCharacter attacker, GameCharacter target) {
 		StringBuilder extraAttackEffectsSB = new StringBuilder();
-		
-		if(attacker.hasStatusEffect(StatusEffect.RAIN_CLOUD_DOWNPOUR_FOR_CLOUDBURST)) {
-			attacker.removeStatusEffect(StatusEffect.RAIN_CLOUD);
-			attacker.removeStatusEffect(StatusEffect.RAIN_CLOUD_CLOUDBURST);
-			attacker.removeStatusEffect(StatusEffect.RAIN_CLOUD_DEEP_CHILL);
-			attacker.removeStatusEffect(StatusEffect.RAIN_CLOUD_DOWNPOUR);
-			attacker.removeStatusEffect(StatusEffect.RAIN_CLOUD_DOWNPOUR_FOR_CLOUDBURST);
-			
-			attacker.addStatusEffect(StatusEffect.RAIN_CLOUD_CLOUDBURST, 6);
-			
-			if(attacker.isPlayer()) {
-				extraAttackEffectsSB.append("<p>As you miss, the rain cloud above your head seems to grow in size, and suddenly erupts into a torrential cloudbust!</p>");
-			} else {
-				extraAttackEffectsSB.append(UtilText.parse(attacker, "<p>As [npc.name] misses, the rain cloud above [npc.her] head grows in size, and suddenly erupts into a torrential cloudbust!</p>"));
-			}
-			extraAttackEffectsSB.append(Spell.getBasicStatusEffectApplication(attacker, false, Util.newHashMapOfValues(new Value<>(StatusEffect.RAIN_CLOUD_CLOUDBURST, 6))));
-			
-		}
 		
 		return extraAttackEffectsSB.toString();
 	}
@@ -1549,12 +1316,6 @@ public enum Combat {
 					attackSpecialAttack(npc, specialAttack);
 					break;
 					
-				case SPELL:
-					List<Spell> spellsAvailable = npc.getSpellsAbleToCast();
-					Spell spell = spellsAvailable.get(Util.random.nextInt(spellsAvailable.size()));
-					attackSpell(npc, spell);
-					break;
-					
 				case USE_ITEM:
 					break;
 					
@@ -1562,18 +1323,6 @@ public enum Combat {
 					break;
 				
 			}
-			
-//			if(isEnemyPartyDefeated()) {
-//				opponentActionText = "<span style='color:"+Colour.GENERIC_GOOD.toWebHexString()+";'>Defeated!</span>";
-//				opponentTurnText = combatStringBuilder.toString()
-//						+"<p>"
-//						+opponent.getName("The")+" doesn't have the strength to continue fighting...<br/>"
-//						+ "<span style='color:"+Colour.GENERIC_GOOD.toWebHexString()+";'>You are victorious!</span>"
-//						+ "</p>";
-//				
-//			}	else{
-//				opponentTurnText = combatStringBuilder.toString();
-//			}
 		}
 		
 	}
@@ -1582,7 +1331,7 @@ public enum Combat {
 
 	public static void endCombatTurn() {
 		
-		List<NPC> combatants = new ArrayList<>(allCombatants); // To avoid concurrent modification when the 'summon elemental' spell adds combatants.
+		List<NPC> combatants = new ArrayList<>(allCombatants);
 		for(NPC character : combatants) {
 			attackNPC(character);
 		}
@@ -1751,20 +1500,6 @@ public enum Combat {
 				+ " <b style='color:"+ Attribute.DAMAGE_LUST.getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(DamageType.LUST.getName()) + "</b> <b>damage</b><br/><br/>"
 
 				+ "Seduction attacks <b style='color:" + Colour.GENERIC_EXCELLENT.toWebHexString() + ";'>always hit</b>.";
-	}
-
-	private static String getSpellDescription(Spell spell, AbstractWeapon source) {
-		return "Cast <b style='color:" + spell.getDamageType().getMultiplierAttribute().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(spell.getName()) + "</b><br/><br/>"
-
-				+ "<b>"
-					+ Attack.getMinimumSpellDamage(Main.game.getPlayer(), targetedCombatant, spell.getDamageType(), spell.getDamage(Main.game.getPlayer()), spell.damageVariance)
-					+ " - "
-					+ Attack.getMaximumSpellDamage(Main.game.getPlayer(), targetedCombatant, spell.getDamageType(), spell.getDamage(Main.game.getPlayer()), spell.damageVariance)
-				+ "</b>"
-				+ " <b style='color:"
-				+ spell.getDamageType().getMultiplierAttribute().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(spell.getDamageType().getName()) + "</b> <b>damage</b><br/><br/>"
-				
-				+ "<b>" + spell.getModifiedCost(Main.game.getPlayer()) + "</b> <b style='color:"+ Colour.ATTRIBUTE_MANA.toWebHexString() + ";'>aura</b> <b>cost</b><br/><br/>";
 	}
 
 	private static String getSpecialAttackDescription(SpecialAttack specialAttack) {

@@ -45,7 +45,7 @@ public enum PerkManager {
 		
 		TreeEntry<PerkCategory, Perk> arcane1, arcane2, arcane3, arcane4, arcane5, arcane6;
 		TreeEntry<PerkCategory, Perk> physical1, physical2, physical3, physical4, physical5, physical6;
-		TreeEntry<PerkCategory, Perk> both1, both2, both3, both4, both5, both6;
+		TreeEntry<PerkCategory, Perk> both1, both2, both3;
 		
 		physical1 = addPerkEntry(perkTree, PerkCategory.PHYSICAL, 1, Perk.PHYSICAL_BASE);
 		arcane1 = addPerkEntry(perkTree, PerkCategory.ARCANE, 1, Perk.ARCANE_BASE);
@@ -56,11 +56,6 @@ public enum PerkManager {
 		both3 = addPerkEntry(perkTree, PerkCategory.BOTH, 2, Perk.SEDUCTION_3, both1, both2);
 		both1 = addPerkEntry(perkTree, PerkCategory.BOTH, 2, Perk.MALE_ATTRACTION, both3);
 
-		both4 = addPerkEntry(perkTree, PerkCategory.BOTH, 3, Perk.SEDUCTION_5, both2);
-		both5 = addPerkEntry(perkTree, PerkCategory.BOTH, 3, Perk.NYMPHOMANIAC, both4);
-		both6 = addPerkEntry(perkTree, PerkCategory.BOTH, 3, Perk.SEDUCTION_5_B, both5, both1);
-
-		
 		//Physical:
 		physical2 = addPerkEntry(perkTree, PerkCategory.PHYSICAL, 2, Perk.PHYSIQUE_5, physical1);
 		addPerkEntry(perkTree, PerkCategory.PHYSICAL, 2, Perk.OBSERVANT, physical1);
@@ -93,19 +88,6 @@ public enum PerkManager {
 		
 		arcane1 = addPerkEntry(perkTree, PerkCategory.ARCANE, 5, Perk.ARCANE_5, arcane3, arcane2);
 		
-		// Elementalist tree:
-		
-		both1 = addPerkEntry(perkTree, PerkCategory.BOTH, 5, Perk.ELEMENTALIST_5, physical1, arcane1);
-		both2 = addPerkEntry(perkTree, PerkCategory.BOTH, 6, Perk.FIRE_ENHANCEMENT, both1);
-		both3 = addPerkEntry(perkTree, PerkCategory.BOTH, 6, Perk.COLD_ENHANCEMENT, both1);
-		both4 = addPerkEntry(perkTree, PerkCategory.BOTH, 6, Perk.POISON_ENHANCEMENT, both1);
-		both5 = addPerkEntry(perkTree, PerkCategory.BOTH, 7, Perk.FIRE_ENHANCEMENT_2, both2);
-		both6 = addPerkEntry(perkTree, PerkCategory.BOTH, 7, Perk.COLD_ENHANCEMENT_2, both3);
-		both1 = addPerkEntry(perkTree, PerkCategory.BOTH, 7, Perk.POISON_ENHANCEMENT_2, both4);
-		both2 = addPerkEntry(perkTree, PerkCategory.BOTH, 8, Perk.ELEMENTALIST_5, both5, both6, both1);
-		addPerkEntry(perkTree, PerkCategory.BOTH, 9, Perk.ELEMENTALIST_5, both2);
-		
-
 		physical2 = addPerkEntry(perkTree, PerkCategory.PHYSICAL, 6, Perk.PHYSIQUE_5, physical1);
 		physical3 = addPerkEntry(perkTree, PerkCategory.PHYSICAL, 7, Perk.PHYSIQUE_5, physical2);
 		physical2 = addPerkEntry(perkTree, PerkCategory.PHYSICAL, 8, Perk.PHYSIQUE_5, physical3);

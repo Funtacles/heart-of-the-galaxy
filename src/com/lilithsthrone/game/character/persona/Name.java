@@ -1,6 +1,5 @@
 package com.lilithsthrone.game.character.persona;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.lilithsthrone.game.character.GameCharacter;
@@ -223,11 +222,6 @@ public enum Name {
 			case SQUIRREL_MORPH:
 			case RAT_MORPH:
 			case RABBIT_MORPH:
-			case ELEMENTAL_AIR:
-			case ELEMENTAL_ARCANE:
-			case ELEMENTAL_EARTH:
-			case ELEMENTAL_FIRE:
-			case ELEMENTAL_WATER:
 				break;
 				
 			case HORSE_MORPH:
@@ -266,43 +260,12 @@ public enum Name {
 			case RABBIT_MORPH:
 			break;
 			
-			case ELEMENTAL_AIR:
-			case ELEMENTAL_ARCANE:
-			case ELEMENTAL_EARTH:
-			case ELEMENTAL_FIRE:
-			case ELEMENTAL_WATER:
-				return getDemonName();
 			case HORSE_MORPH:
 				name = Name.EQUINE;
 				break;
 		}
 		
 		return name.getNameTriplets().get(Util.random.nextInt(name.getNameTriplets().size()));
-	}
-	
-	private static NameTriplet getDemonName() {
-		String[] preixFem = new String[] {"Aella", "Bella", "Cae", "Deva", "Ella", "Fae", "Hela", "Isa", "Katha", "Loe", "Nysa", "Oella", "Rae", "Sytha", "Vixxa", "Wynna"};
-		String[] preixMas = new String[] {"Ada", "Boro", "Foro", "Helio", "Kiri", "Zara"};
-		
-		String[] postfixFem = new String[] {"jyx", "ryth", "ney", "nix", "sys", "trix"};
-		String[] postfixMas = new String[] {"jyx", "ryth", "ney", "nix", "sys", "trix"};
-		
-		String femName = preixFem[Util.random.nextInt(preixFem.length)] + postfixFem[Util.random.nextInt(postfixFem.length)];
-		char startingChar = femName.charAt(0);
-
-		String masName = preixMas[Util.random.nextInt(preixMas.length)] + postfixMas[Util.random.nextInt(postfixMas.length)];
-		
-		List<String> masculineNames = new ArrayList<>();
-		for(String s : preixMas) {
-			if(s.charAt(0) == startingChar) {
-				masculineNames.add(s);
-			}
-		}
-		if(!masculineNames.isEmpty()) {
-			masName = masculineNames.get(Util.random.nextInt(masculineNames.size())) + postfixMas[Util.random.nextInt(postfixMas.length)];
-		}
-		
-		return new NameTriplet(masName, femName, femName);
 	}
 	
 	public static NameTriplet getRandomProstituteTriplet() {

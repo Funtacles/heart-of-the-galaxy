@@ -14,7 +14,7 @@ public enum TesticleType implements BodyPartTypeInterface {
 	
 	NONE(null, FluidType.CUM_HUMAN, null, false),
 
-	DILDO(BodyCoveringType.RUBBER, FluidType.CUM_HUMAN, Race.HUMAN, false),
+	DILDO(BodyCoveringType.PENIS, FluidType.CUM_HUMAN, Race.HUMAN, false),
 	
 	HUMAN(BodyCoveringType.PENIS, FluidType.CUM_HUMAN, Race.HUMAN, false),
 

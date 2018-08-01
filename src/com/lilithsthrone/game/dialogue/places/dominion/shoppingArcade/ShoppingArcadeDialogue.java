@@ -106,14 +106,6 @@ public class ShoppingArcadeDialogue {
 					}
 				};
 
-			} else if (index == 8) {
-				return new ResponseEffectsOnly("Arcane Arts", "Fast travel to Arcane Arts."){
-					@Override
-					public void effects() {
-						Main.game.setActiveWorld(Main.game.getWorlds().get(WorldType.SHOPPING_ARCADE), PlaceType.SHOPPING_ARCADE_VICKYS_SHOP, true);
-					}
-				};
-
 			} else if (index == 9) {
 				return new ResponseEffectsOnly("Succubi's Secrets", "Fast travel to Succubi's Secrets."){
 					@Override

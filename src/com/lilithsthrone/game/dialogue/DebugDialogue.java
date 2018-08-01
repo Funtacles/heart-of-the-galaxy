@@ -22,7 +22,6 @@ import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.character.race.RacialBody;
-import com.lilithsthrone.game.combat.SpellSchool;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.utils.ParserCommand;
 import com.lilithsthrone.game.dialogue.utils.ParserTarget;
@@ -244,26 +243,6 @@ public class DebugDialogue {
 						}
 					};
 					
-			} else if (index == 21) {
-					return new Response("Reset spells", "Resets all of your spells and upgrades, and removes all of your spell upgrade points.", DEBUG_MENU){
-						@Override
-						public void effects() {
-							Main.game.getPlayer().resetSpells();
-							Main.game.getPlayer().clearSpellUpgradePoints();
-							
-						}
-					};
-					
-			} else if (index == 22) {
-				return new Response("+10 Spell Points", "Add 10 spell points to each spell school.", DEBUG_MENU){
-					@Override
-					public void effects() {
-						for(SpellSchool school : SpellSchool.values()) {
-							Main.game.getPlayer().incrementSpellUpgradePoints(school, 10);
-						}
-					}
-				};
-				
 			} else {
 				return null;
 			}

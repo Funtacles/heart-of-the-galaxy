@@ -16,7 +16,6 @@ import com.lilithsthrone.game.character.body.types.FaceType;
 import com.lilithsthrone.game.character.body.types.HairType;
 import com.lilithsthrone.game.character.body.types.PenisType;
 import com.lilithsthrone.game.character.body.types.TailType;
-import com.lilithsthrone.game.character.body.valueEnums.BodyMaterial;
 import com.lilithsthrone.game.character.body.valueEnums.BodySize;
 import com.lilithsthrone.game.character.body.valueEnums.CoveringModifier;
 import com.lilithsthrone.game.character.body.valueEnums.CoveringPattern;
@@ -668,98 +667,6 @@ public enum Subspecies {
 		}
 	},
 	
-	// ELEMENTALS:
-
-	ELEMENTAL_EARTH("combat/spell/elemental_earth",
-			"earth elemental",
-			"earth elementals",
-			"earth elemental",
-			"earth elemental",
-			"earth elementals",
-			"earth elementals",
-			Race.ELEMENTAL_EARTH,
-			Colour.SPELL_SCHOOL_EARTH,
-			SubspeciesPreference.FOUR_ABUNDANT,
-			"An arcane elemental bound to the school of Earth.",
-			Util.newArrayListOfValues()) {
-		@Override
-		public void applySpeciesChanges(Body body) {
-			body.setBodyMaterial(BodyMaterial.STONE);
-		}
-	},
-
-	ELEMENTAL_WATER("combat/spell/elemental_water",
-			"water elemental",
-			"water elementals",
-			"water elemental",
-			"water elemental",
-			"water elementals",
-			"water elementals",
-			Race.ELEMENTAL_WATER,
-			Colour.SPELL_SCHOOL_WATER,
-			SubspeciesPreference.FOUR_ABUNDANT,
-			"An arcane elemental bound to the school of Water.",
-			Util.newArrayListOfValues()) {
-		@Override
-		public void applySpeciesChanges(Body body) {
-			body.setBodyMaterial(BodyMaterial.WATER);
-		}
-	},
-
-	ELEMENTAL_AIR("combat/spell/elemental_air",
-			"air elemental",
-			"air elementals",
-			"air elemental",
-			"air elemental",
-			"air elementals",
-			"air elementals",
-			Race.ELEMENTAL_AIR,
-			Colour.SPELL_SCHOOL_AIR,
-			SubspeciesPreference.FOUR_ABUNDANT,
-			"An arcane elemental bound to the school of Air.",
-			Util.newArrayListOfValues()) {
-		@Override
-		public void applySpeciesChanges(Body body) {
-			body.setBodyMaterial(BodyMaterial.AIR);
-		}
-	},
-
-	ELEMENTAL_FIRE("combat/spell/elemental_fire",
-			"fire elemental",
-			"fire elementals",
-			"fire elemental",
-			"fire elemental",
-			"fire elementals",
-			"fire elementals",
-			Race.ELEMENTAL_FIRE,
-			Colour.SPELL_SCHOOL_FIRE,
-			SubspeciesPreference.FOUR_ABUNDANT,
-			"An arcane elemental bound to the school of Fire.",
-			Util.newArrayListOfValues()) {
-		@Override
-		public void applySpeciesChanges(Body body) {
-			body.setBodyMaterial(BodyMaterial.FIRE);
-		}
-	},
-
-	ELEMENTAL_ARCANE("combat/spell/elemental_arcane",
-			"arcane elemental",
-			"arcane elementals",
-			"arcane elemental",
-			"arcane elemental",
-			"arcane elementals",
-			"arcane elementals",
-			Race.ELEMENTAL_ARCANE,
-			Colour.SPELL_SCHOOL_ARCANE,
-			SubspeciesPreference.FOUR_ABUNDANT,
-			"An arcane elemental bound to the school of Arcane.",
-			Util.newArrayListOfValues()) {
-		@Override
-		public void applySpeciesChanges(Body body) {
-			body.setBodyMaterial(BodyMaterial.ARCANE);
-		}
-	},
-	
 	;
 	
 	private String name, namePlural, singularMaleName, singularFemaleName, pluralMaleName, pluralFemaleName;
@@ -895,38 +802,11 @@ public enum Subspecies {
 				return Subspecies.SQUIRREL_MORPH;
 			case WOLF_MORPH:
 				return Subspecies.WOLF_MORPH;
-			case ELEMENTAL_AIR:
-				return Subspecies.ELEMENTAL_AIR;
-			case ELEMENTAL_ARCANE:
-				return Subspecies.ELEMENTAL_ARCANE;
-			case ELEMENTAL_EARTH:
-				return Subspecies.ELEMENTAL_EARTH;
-			case ELEMENTAL_FIRE:
-				return Subspecies.ELEMENTAL_FIRE;
-			case ELEMENTAL_WATER:
-				return Subspecies.ELEMENTAL_WATER;
 		}
 		return Subspecies.HUMAN;
 	}
 	
 	public static Subspecies getSubspeciesFromBody(Body body, Race race) {
-		switch(body.getBodyMaterial()) {
-			case FIRE:
-				return Subspecies.ELEMENTAL_FIRE;
-			case ICE:
-			case WATER:
-				return Subspecies.ELEMENTAL_WATER;
-			case RUBBER:
-			case STONE:
-				return Subspecies.ELEMENTAL_EARTH;
-			case AIR:
-				return Subspecies.ELEMENTAL_AIR;
-			case ARCANE:
-				return Subspecies.ELEMENTAL_ARCANE;
-			case FLESH:
-				break;
-		}
-		
 		Subspecies subspecies = null;
 		switch(race) {
 			case NONE:
@@ -977,13 +857,6 @@ public enum Subspecies {
 				break;
 			case COW_MORPH:
 				subspecies = Subspecies.COW_MORPH;
-				break;
-			case ELEMENTAL_AIR:
-			case ELEMENTAL_ARCANE:
-			case ELEMENTAL_EARTH:
-			case ELEMENTAL_FIRE:
-			case ELEMENTAL_WATER:
-				subspecies = Subspecies.HUMAN;
 				break;
 			case DOG_MORPH:
 				subspecies = Subspecies.DOG_MORPH;

@@ -83,7 +83,6 @@ public enum WorldType {
 					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
 					new Value<>(new Color(0x808080), PlaceType.SHOPPING_ARCADE_PATH),
 					new Value<>(new Color(0xff0000), PlaceType.SHOPPING_ARCADE_ENTRANCE),
-					new Value<>(new Color(0x0080ff), PlaceType.SHOPPING_ARCADE_VICKYS_SHOP),
 					new Value<>(new Color(0xff8000), PlaceType.SHOPPING_ARCADE_KATES_SHOP),
 					new Value<>(new Color(0xff00ff), PlaceType.SHOPPING_ARCADE_GENERIC_SHOP),
 					new Value<>(new Color(0x008000), PlaceType.SHOPPING_ARCADE_ASHLEYS_SHOP),

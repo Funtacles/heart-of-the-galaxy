@@ -39,8 +39,6 @@ import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.combat.Attack;
 import com.lilithsthrone.game.combat.Combat;
 import com.lilithsthrone.game.combat.SpecialAttack;
-import com.lilithsthrone.game.combat.Spell;
-import com.lilithsthrone.game.combat.SpellUpgrade;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
@@ -67,8 +65,6 @@ public class TooltipInformationEventListener implements EventListener {
 	private boolean fetishExperience = false;
 	private FetishDesire desire;
 	private SpecialAttack specialAttack;
-	private Spell spell;
-	private SpellUpgrade spellUpgrade;
 	private Attribute attribute;
 	private InventorySlot concealedSlot;
 	private LoadedEnchantment loadedEnchantment;
@@ -407,95 +403,6 @@ public class TooltipInformationEventListener implements EventListener {
 										?"[style.boldGood(Off Cooldown)]"
 										:"[style.boldCooldown(On Cooldown:)] "+Combat.getCooldown(owner, specialAttack))
 								:"[style.boldGood(Off Cooldown)]")
-					+ "</div>");
-
-			Main.mainController.setTooltipContent(UtilText.parse(tooltipSB.toString()));
-
-		} else if (spell != null) { // Spells:
-
-			int yIncrease = (spell.getModifiersAsStringList().size() > 5 ? spell.getModifiersAsStringList().size() - 5 : 0);
-
-			Main.mainController.setTooltipSize(360, 332 + (yIncrease * LINE_HEIGHT));
-
-			// Title:
-			tooltipSB.setLength(0);
-			tooltipSB.append("<div class='title'>" + Util.capitaliseSentence(spell.getName()) + "</div>");
-
-			// Attribute modifiers:
-			tooltipSB.append("<div class='subTitle-picture'>");
-
-			if(spell.getDamage(Main.game.getPlayer())>0) {
-				tooltipSB.append(
-						"<b>Base "+spell.getDamage(owner)+"</b> <b style='color:"+ spell.getDamageType().getMultiplierAttribute().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(spell.getDamageType().getName()) + " Damage</b><br/>"
-						+"<b>"
-							+ Attack.getMinimumSpellDamage(owner, null, spell.getDamageType(), spell.getDamage(owner), spell.getDamageVariance())
-							+ "-"
-							+ Attack.getMaximumSpellDamage(owner, null, spell.getDamageType(), spell.getDamage(owner), spell.getDamageVariance())
-						+ "</b>"
-						+ " <b style='color:"+ spell.getDamageType().getMultiplierAttribute().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(spell.getDamageType().getName()) + " Damage</b><br/>");
-			}
-			
-			if(!spell.getModifiersAsStringList().isEmpty()) {
-				for(int i=0; i<spell.getModifiersAsStringList().size(); i++) {
-					tooltipSB.append(spell.getModifiersAsStringList().get(i)+(i<spell.getModifiersAsStringList().size()-1?"<br/>":""));
-				}
-			} else {
-				tooltipSB.append("<span style='color:" + Colour.TEXT_GREY.toWebHexString() + ";'>No effects</span><br/>");	
-			}
-			tooltipSB.append("</div>");
-
-			// Picture:
-			tooltipSB.append("<div class='picture'>" + spell.getSVGString() + "</div>");
-
-			// Description & turns remaining:
-			tooltipSB.append(
-					"<div class='description'>"
-							+ (spell.isForbiddenSpell() && !owner.hasSpell(spell)?"[style.italicsArcane(This is a forbidden spell, and can only be discovered through a special quest!)]<br/>":"")
-							+ spell.getDescription()
-					+ "</div>"
-					+ "<div class='subTitle'>"
-						+ "<b style='color:" + Colour.GENERIC_BAD.toWebHexString() + ";'>Costs</b> <b>" + (spell.getModifiedCost(owner)) + "</b> <b style='color:" + Colour.ATTRIBUTE_MANA.toWebHexString() + ";'>aura</b>"
-					+ "</div>");
-
-			Main.mainController.setTooltipContent(UtilText.parse(tooltipSB.toString()));
-
-		} else if (spellUpgrade != null) { // Spell upgrades:
-
-			int yIncrease = (spellUpgrade.getModifiersAsStringList().size() > 5 ? spellUpgrade.getModifiersAsStringList().size() - 5 : 0);
-
-			Main.mainController.setTooltipSize(360, 316 + (yIncrease * LINE_HEIGHT));
-
-			// Title:
-			tooltipSB.setLength(0);
-			tooltipSB.append("<div class='title'>" + Util.capitaliseSentence(spellUpgrade.getName()) + "</div>");
-
-			// Attribute modifiers:
-			tooltipSB.append("<div class='subTitle-picture'>");
-
-			if(!spellUpgrade.getModifiersAsStringList().isEmpty()) {
-				for(int i=0; i<spellUpgrade.getModifiersAsStringList().size(); i++) {
-					tooltipSB.append(spellUpgrade.getModifiersAsStringList().get(i)+(i<spellUpgrade.getModifiersAsStringList().size()-1?"<br/>":""));
-				}
-			} else {
-				tooltipSB.append("<span style='color:" + Colour.TEXT_GREY.toWebHexString() + ";'>No effects</span><br/>");
-			}
-			
-			tooltipSB.append("</div>");
-
-			// Picture:
-			tooltipSB.append("<div class='picture'>" + spellUpgrade.getSVGString() + "</div>");
-
-			// Description:
-			tooltipSB.append(
-					"<div class='description'>"
-							+ spellUpgrade.getDescription()+" "+spellUpgrade.getUnavailableReason(owner)
-					+ "</div>"
-					+ "<div class='subTitle'>"
-						+ (owner.hasSpellUpgrade(spellUpgrade)
-								?"[style.boldExcellent(Owned)] (Cost <b style='color:"+spellUpgrade.getSpellSchool().getColour().toWebHexString()+";'>"+spellUpgrade.getPointCost()+"</b> Point"+(spellUpgrade.getPointCost()==1?"":"s")+")"
-								:(owner.getSpellUpgradePoints(spellUpgrade.getSpellSchool()) >= spellUpgrade.getPointCost()
-										?"Costs <b style='color:"+spellUpgrade.getSpellSchool().getColour().toWebHexString()+";'>"+spellUpgrade.getPointCost()+"</b> Point"+(spellUpgrade.getPointCost()==1?"":"s")+" - [style.colourGood(Can afford!)]"
-										:"Costs <b style='color:"+spellUpgrade.getSpellSchool().getColour().toWebHexString()+";'>"+spellUpgrade.getPointCost()+"</b> Point"+(spellUpgrade.getPointCost()==1?"":"s")+" - [style.colourBad(Cannot afford!)]"))
 					+ "</div>");
 
 			Main.mainController.setTooltipContent(UtilText.parse(tooltipSB.toString()));
@@ -1041,22 +948,6 @@ public class TooltipInformationEventListener implements EventListener {
 		return this;
 	}
 
-	public TooltipInformationEventListener setSpell(Spell spell, GameCharacter owner) {
-		resetFields();
-		this.spell = spell;
-		this.owner = owner;
-
-		return this;
-	}
-
-	public TooltipInformationEventListener setSpellUpgrade(SpellUpgrade spellUpgrade, GameCharacter owner) {
-		resetFields();
-		this.spellUpgrade = spellUpgrade;
-		this.owner = owner;
-
-		return this;
-	}
-
 	public TooltipInformationEventListener setAttribute(Attribute attribute, GameCharacter owner) {
 		resetFields();
 		this.attribute = attribute;
@@ -1114,8 +1005,6 @@ public class TooltipInformationEventListener implements EventListener {
 		levelUpPerk = null;
 		perkRow = 0;
 		specialAttack = null;
-		spell = null;
-		spellUpgrade = null;
 		attribute = null;
 		protection=false;
 		tattoo=false;

@@ -1236,11 +1236,6 @@ public class OptionsDialogue {
 			int i=0;
 			for(Subspecies subspecies : Subspecies.values()) {
 				switch(subspecies) {
-					case ELEMENTAL_AIR:
-					case ELEMENTAL_ARCANE:
-					case ELEMENTAL_EARTH:
-					case ELEMENTAL_FIRE:
-					case ELEMENTAL_WATER:
 					case HUMAN:
 					case CAT_MORPH:
 					case CAT_MORPH_LYNX:

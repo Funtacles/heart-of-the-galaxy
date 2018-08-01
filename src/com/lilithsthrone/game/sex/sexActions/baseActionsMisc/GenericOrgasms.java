@@ -1415,27 +1415,7 @@ public class GenericOrgasms {
 
 		
 		if(target!=null) {
-			switch(target.getBodyMaterial()) {
-				case AIR:
-				case ARCANE:
-				case WATER:
-					if(characterOrgasming.isPlayer()) {
-						cumTargetSB.append("<br/>"
-								+ "As [npc2.namePos] body is made completely out of translucent "+target.getBodyMaterial().getName()+", you're able to see the cloud of your [npc1.cum+] shooting up and dispersing inside of [npc2.herHim].");
-					} else {
-						cumTargetSB.append("<br/>"
-								+ "As your body is made completely out of translucent "+target.getBodyMaterial().getName()+", you're able to see the cloud of [npc1.namePos] [npc1.cum+] shooting up and dispersing inside of you.");
-					}
-					break;
-				case FIRE:
-				case FLESH:
-				case ICE:
-				case RUBBER:
-				case STONE:
-					break;
-			}
 			return UtilText.parse(characterOrgasming, target, cumTargetSB.toString());
-			
 		} else {
 			return UtilText.parse(characterOrgasming, cumTargetSB.toString());
 		}

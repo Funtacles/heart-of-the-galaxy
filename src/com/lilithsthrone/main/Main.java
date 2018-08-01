@@ -320,7 +320,7 @@ public class Main extends Application {
 
 		Main.primaryStage.getIcons().add(WINDOW_IMAGE);
 
-		Main.primaryStage.setTitle("Lilith's Throne " + VERSION_NUMBER + " " + VERSION_DESCRIPTION);
+		Main.primaryStage.setTitle("Hear of the Galaxy " + VERSION_NUMBER + " " + VERSION_DESCRIPTION);
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lilithsthrone/res/fxml/main.fxml"));
 
@@ -706,7 +706,6 @@ public class Main extends Application {
 				Main.game.setPlayer(CharacterUtils.loadCharacterFromXML(file, Main.game.getPlayer(),
 						CharacterImportSetting.NO_PREGNANCY,
 						CharacterImportSetting.NO_COMPANIONS,
-						CharacterImportSetting.NO_ELEMENTAL,
 						CharacterImportSetting.CLEAR_SLAVERY));
 				
 				Main.game.getPlayer().getSlavesOwned().clear();

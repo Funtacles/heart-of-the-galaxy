@@ -314,12 +314,6 @@ public class Body implements Serializable, XMLSaving {
 				return BodyCoveringType.BODY_HAIR_RAT_FUR;
 			case RABBIT_MORPH:
 				return BodyCoveringType.BODY_HAIR_RABBIT_FUR;
-			case ELEMENTAL_AIR:
-			case ELEMENTAL_ARCANE:
-			case ELEMENTAL_EARTH:
-			case ELEMENTAL_FIRE:
-			case ELEMENTAL_WATER:
-				break; // Doesn't matter what is passed in here, as getCovering will catch whatever BodyCoveringType the body is made up of.
 			case FOX_MORPH:
 				return BodyCoveringType.BODY_HAIR_FOX_FUR;
 		}
@@ -1418,19 +1412,7 @@ public class Body implements Serializable, XMLSaving {
 	}
 
 	private String getCoveredInDescriptor(GameCharacter owner) {
-		if(owner.getRace()==Race.ELEMENTAL_EARTH
-				|| owner.getRace()==Race.ELEMENTAL_WATER
-				|| owner.getRace()==Race.ELEMENTAL_AIR
-				|| owner.getRace()==Race.ELEMENTAL_FIRE
-				|| owner.getRace()==Race.ELEMENTAL_ARCANE) {
-			return UtilText.returnStringAtRandom(
-					"made from",
-					"composed entirely of",
-					"formed out of",
-					"made entirely from");
-		} else {
-			return "covered in";
-		}
+		return "covered in";
 	}
 	
 	/**
@@ -1507,30 +1489,6 @@ public class Body implements Serializable, XMLSaving {
 			}
 		}
 		sb.append("</p>");
-		
-		switch(this.getBodyMaterial()) {
-			case FLESH:
-				break;
-			case AIR:
-			case ARCANE:
-			case STONE:
-			case RUBBER:
-			case ICE:
-			case WATER:
-			case FIRE:
-				if (owner.isPlayer()) {
-					sb.append("<p>"
-								+ "Your entire body, save for a small obsidian sphere in the place where your heart should be, is made out of"
-									+ " <b style='color:"+this.getBodyMaterial().getColour().toWebHexString()+";'>"+this.getBodyMaterial().getName()+"</b>!"
-							+ "</p>");
-				} else {
-					sb.append("<p>"
-								+ "[npc.NamePos] entire body, save for a small obsidian sphere in the place where [npc.her] heart should be, is made out of"
-									+ " <b style='color:"+this.getBodyMaterial().getColour().toWebHexString()+";'>"+this.getBodyMaterial().getName()+"</b>!"
-							+ "</p>");
-				}
-				break;
-		}
 		
 		// Describe face (ears, eyes & horns):
 		// Femininity:
@@ -3340,42 +3298,17 @@ public class Body implements Serializable, XMLSaving {
 		raceWeightMap.clear();
 
 		Race race = Race.HUMAN;
-		switch(this.getBodyMaterial()) {
-			case AIR:
-				race = Race.ELEMENTAL_AIR;
+
+		race = getRaceFromPartWeighting();
+		
+		if(raceWeightMap.size()==1) {
+			if(raceWeightMap.containsKey(Race.HUMAN)) {
+				this.raceStage = RaceStage.HUMAN;
+			} else {
 				this.raceStage = RaceStage.GREATER;
-				break;
-			case ARCANE:
-				race = Race.ELEMENTAL_ARCANE;
-				this.raceStage = RaceStage.GREATER;
-				break;
-			case FIRE:
-				race = Race.ELEMENTAL_FIRE;
-				this.raceStage = RaceStage.GREATER;
-				break;
-			case FLESH:
-				race = getRaceFromPartWeighting();
-				
-				if(raceWeightMap.size()==1) {
-					if(raceWeightMap.containsKey(Race.HUMAN)) {
-						this.raceStage = RaceStage.HUMAN;
-					} else {
-						this.raceStage = RaceStage.GREATER;
-					}
-				} else {
-					this.raceStage = RaceStage.LESSER;
-				}
-				break;
-			case ICE:
-			case WATER:
-				race = Race.ELEMENTAL_WATER;
-				this.raceStage = RaceStage.GREATER;
-				break;
-			case RUBBER:
-			case STONE:
-				race = Race.ELEMENTAL_EARTH;
-				this.raceStage = RaceStage.GREATER;
-				break;
+			}
+		} else {
+			this.raceStage = RaceStage.LESSER;
 		}
 		
 		subspecies = Subspecies.getSubspeciesFromBody(this, race);
@@ -5959,16 +5892,6 @@ public class Body implements Serializable, XMLSaving {
 				case WOLF_MORPH:
 					coverings.put(BodyCoveringType.BODY_HAIR_LYCAN_FUR, new Covering(BodyCoveringType.BODY_HAIR_LYCAN_FUR, coverings.get(BodyCoveringType.HAIR_LYCAN_FUR).getPrimaryColour()));
 					break;
-				case ELEMENTAL_AIR:
-					break;
-				case ELEMENTAL_ARCANE:
-					break;
-				case ELEMENTAL_EARTH:
-					break;
-				case ELEMENTAL_FIRE:
-					break;
-				case ELEMENTAL_WATER:
-					break;
 			}
 		}
 	}
@@ -6032,16 +5955,6 @@ public class Body implements Serializable, XMLSaving {
 						break;
 					case WOLF_MORPH:
 						coverings.put(BodyCoveringType.BODY_HAIR_LYCAN_FUR, new Covering(BodyCoveringType.BODY_HAIR_LYCAN_FUR, coverings.get(BodyCoveringType.HAIR_LYCAN_FUR).getPrimaryColour()));
-						break;
-					case ELEMENTAL_AIR:
-						break;
-					case ELEMENTAL_ARCANE:
-						break;
-					case ELEMENTAL_EARTH:
-						break;
-					case ELEMENTAL_FIRE:
-						break;
-					case ELEMENTAL_WATER:
 						break;
 				}
 			}

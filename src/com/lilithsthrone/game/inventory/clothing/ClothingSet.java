@@ -6,7 +6,6 @@ import java.util.List;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.combat.SpecialAttack;
-import com.lilithsthrone.game.combat.Spell;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.utils.Util;
 
@@ -24,7 +23,6 @@ public enum ClothingSet {
 			Util.newArrayListOfValues(
 					InventorySlot.TORSO_UNDER,
 					InventorySlot.LEG),
-			null,
 			null),
 
 	MAID("Hard-working Maid",
@@ -36,7 +34,6 @@ public enum ClothingSet {
 					InventorySlot.SOCK,
 					InventorySlot.FOOT,
 					InventorySlot.HAND),
-			null,
 			null),
 
 	BUTLER("Butler",
@@ -48,7 +45,6 @@ public enum ClothingSet {
 					InventorySlot.LEG,
 					InventorySlot.FOOT,
 					InventorySlot.HAND),
-			null,
 			null),
 
 	WITCH("Witch",
@@ -58,7 +54,6 @@ public enum ClothingSet {
 					InventorySlot.TORSO_UNDER,
 					InventorySlot.FOOT,
 					InventorySlot.HEAD),
-			null,
 			null),
 
 	SCIENTIST("Brilliant Scientist",
@@ -67,7 +62,6 @@ public enum ClothingSet {
 			Util.newArrayListOfValues(
 					InventorySlot.TORSO_OVER,
 					InventorySlot.EYES),
-			null,
 			null),
 
 	MILK_MAID("Milk Maid",
@@ -76,13 +70,11 @@ public enum ClothingSet {
 			Util.newArrayListOfValues(
 					InventorySlot.TORSO_UNDER,
 					InventorySlot.HEAD),
-			null,
 			null),
 
 	BDSM("Locked in Bondage",
 			StatusEffect.SET_BDSM,
 			4,
-			null,
 			null,
 			null),
 
@@ -93,7 +85,6 @@ public enum ClothingSet {
 					InventorySlot.PIERCING_EAR,
 					InventorySlot.PIERCING_NOSE,
 					InventorySlot.NECK),
-			null,
 			null),
 
 	GEISHA("Geisha",
@@ -103,8 +94,7 @@ public enum ClothingSet {
 					InventorySlot.HAIR,
 					InventorySlot.TORSO_UNDER,
 					InventorySlot.FOOT),
-			null,
-			null), // "We want the /jp/ audience." - Innoxia, probably.
+			null),
 
 	RONIN("Ronin",
 			StatusEffect.SET_RONIN,
@@ -113,7 +103,6 @@ public enum ClothingSet {
 					InventorySlot.TORSO_OVER,
 					InventorySlot.TORSO_UNDER,
 					InventorySlot.FOOT),
-			null,
 			null),
 
 	JOLNIR("J&oacute;lnir",
@@ -124,13 +113,11 @@ public enum ClothingSet {
 					InventorySlot.TORSO_UNDER,
 					InventorySlot.FOOT,
 					InventorySlot.HEAD),
-			null,
 			null),
 
 	SUN("Solar Power",
 			StatusEffect.SET_SUN,
 			3,
-			null,
 			null,
 			null),
 
@@ -138,13 +125,11 @@ public enum ClothingSet {
 			StatusEffect.SET_SNOWFLAKE,
 			3,
 			null,
-			null,
 			null),
 
 	RAINBOW("Rainbow",
 			StatusEffect.SET_RAINBOW,
 			2,
-			null,
 			null,
 			null);
 
@@ -152,10 +137,9 @@ public enum ClothingSet {
 	private int numberRequiredForCompleteSet;
 	private List<InventorySlot> blockedSlotsCountingTowardsFullSet;
 	private List<SpecialAttack> specialAttacks;
-	private List<Spell> spells;
 	private StatusEffect associatedStatusEffect;
 
-	private ClothingSet(String name, StatusEffect associatedStatusEffect, int numberRequiredForCompleteSet, List<InventorySlot> blockedSlotsCountingTowardsFullSet, List<SpecialAttack> specialAttacks, List<Spell> spells) {
+	private ClothingSet(String name, StatusEffect associatedStatusEffect, int numberRequiredForCompleteSet, List<InventorySlot> blockedSlotsCountingTowardsFullSet, List<SpecialAttack> specialAttacks) {
 		this.name = name;
 		this.numberRequiredForCompleteSet = numberRequiredForCompleteSet;
 		
@@ -166,7 +150,6 @@ public enum ClothingSet {
 		}
 		
 		this.specialAttacks = specialAttacks;
-		this.spells = spells;
 		this.associatedStatusEffect = associatedStatusEffect;
 	}
 	
@@ -200,10 +183,6 @@ public enum ClothingSet {
 
 	public List<SpecialAttack> getSpecialAttacks() {
 		return specialAttacks;
-	}
-
-	public List<Spell> getSpells() {
-		return spells;
 	}
 
 	public StatusEffect getAssociatedStatusEffect() {

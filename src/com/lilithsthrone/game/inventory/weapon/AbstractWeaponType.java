@@ -14,7 +14,6 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.combat.DamageType;
 import com.lilithsthrone.game.combat.DamageVariance;
-import com.lilithsthrone.game.combat.Spell;
 import com.lilithsthrone.game.dialogue.eventLog.EventLogEntryEncyclopediaUnlock;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.AbstractCoreType;
@@ -53,7 +52,6 @@ public abstract class AbstractWeaponType extends AbstractCoreType implements Ser
 	private Rarity rarity;
 	private Map<Attribute, Integer> attributeModifiers;
 	private Map<DamageType, Map<Colour, Map<Colour, String>>> SVGStringMap;
-	private List<Spell> spells;
 	
 	private List<Colour> availablePrimaryColours;
 	private List<Colour> availablePrimaryDyeColours;
@@ -82,7 +80,6 @@ public abstract class AbstractWeaponType extends AbstractCoreType implements Ser
 			int arcaneCost,
 			DamageVariance damageVariance,
 			Map<Attribute, Integer> attributeModifiers,
-			List<Spell> spells,
 			List<Colour> availablePrimaryColours,
 			List<Colour> availablePrimaryDyeColours,
 			List<Colour> availableSecondaryColours,
@@ -118,12 +115,6 @@ public abstract class AbstractWeaponType extends AbstractCoreType implements Ser
 			this.attributeModifiers = attributeModifiers;
 		}
 		
-		if(spells==null) {
-			this.spells = new ArrayList<>();
-		} else {
-			this.spells = spells;
-		}
-		
 		if(itemTags==null) {
 			this.itemTags = new ArrayList<>();
 		} else {
@@ -151,7 +142,6 @@ public abstract class AbstractWeaponType extends AbstractCoreType implements Ser
 						&& ((AbstractWeaponType)o).getRarity() == getRarity()
 						&& ((AbstractWeaponType)o).getAvailableDamageTypes().equals(getAvailableDamageTypes())
 						&& ((AbstractWeaponType)o).getAttributeModifiers().equals(getAttributeModifiers())
-						&& ((AbstractWeaponType)o).getSpells().equals(getSpells())
 						){
 					return true;
 				}
@@ -172,7 +162,6 @@ public abstract class AbstractWeaponType extends AbstractCoreType implements Ser
 		result = 31 * result + getRarity().hashCode();
 		result = 31 * result + getAvailableDamageTypes().hashCode();
 		result = 31 * result + getAttributeModifiers().hashCode();
-		result = 31 * result + getSpells().hashCode();
 		return result;
 	}
 
@@ -539,15 +528,6 @@ public abstract class AbstractWeaponType extends AbstractCoreType implements Ser
 	public List<DamageType> getAvailableDamageTypes() {
 		return availableDamageTypes;
 	}
-
-	public List<Spell> getSpells() {
-		return spells;
-	}
-	
-	public List<Spell> getGenerationSpells(DamageType dt) {
-		return null;
-	}
-	
 
 	public List<Colour> getAvailablePrimaryColours() {
 		return availablePrimaryColours;

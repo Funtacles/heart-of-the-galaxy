@@ -41,7 +41,6 @@ import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.fetishes.FetishDesire;
 import com.lilithsthrone.game.character.gender.Gender;
-import com.lilithsthrone.game.character.npc.misc.Elemental;
 import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.persona.NameTriplet;
 import com.lilithsthrone.game.character.race.FurryPreference;
@@ -52,8 +51,6 @@ import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.combat.Attack;
 import com.lilithsthrone.game.combat.Combat;
 import com.lilithsthrone.game.combat.SpecialAttack;
-import com.lilithsthrone.game.combat.Spell;
-import com.lilithsthrone.game.combat.SpellSchool;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -372,29 +369,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 
 	// Combat:
 	
-	public List<Spell> getSpellsAbleToCast() {
-		List<Spell> spellsAbleToCast = new ArrayList<>();
-		
-		for(Spell spell : this.getAllSpells()) {
-			if(this.getMana()>spell.getModifiedCost(this)) {
-				if(this instanceof Elemental) {
-					if(spell!=Spell.ELEMENTAL_AIR
-							&& spell!=Spell.ELEMENTAL_ARCANE
-							&& spell!=Spell.ELEMENTAL_EARTH
-							&& spell!=Spell.ELEMENTAL_FIRE
-							&& spell!=Spell.ELEMENTAL_WATER) {
-						spellsAbleToCast.add(spell);
-					}
-					
-				} else {
-					spellsAbleToCast.add(spell);
-				}
-			}
-		}
-		
-		return spellsAbleToCast;
-	}
-	
 	public List<SpecialAttack> getSpecialAttacksAbleToUse() {
 		List<SpecialAttack> specialAttacksAbleToUse = new ArrayList<>();
 		
@@ -412,7 +386,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 	}
 	
 	public Attack attackType() {
-		boolean canCastASpell = !getSpellsAbleToCast().isEmpty();
 		boolean canCastASpecialAttack = !getSpecialAttacksAbleToUse().isEmpty();
 		
 		Map<Attack, Integer> attackWeightingMap = new HashMap<>();
@@ -420,7 +393,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		attackWeightingMap.put(Attack.MAIN, this.getRace().getPreferredAttacks().contains(Attack.MAIN)?75:50);
 		attackWeightingMap.put(Attack.OFFHAND, this.getOffhandWeapon()==null?0:(this.getRace().getPreferredAttacks().contains(Attack.MAIN)?50:25));
 		attackWeightingMap.put(Attack.SEDUCTION, this.getRace().getPreferredAttacks().contains(Attack.SEDUCTION)?100:(int)this.getAttributeValue(Attribute.MAJOR_CORRUPTION));
-		attackWeightingMap.put(Attack.SPELL, !canCastASpell?0:(this.getRace().getPreferredAttacks().contains(Attack.MAIN)?100:50));
 		attackWeightingMap.put(Attack.SPECIAL_ATTACK, !canCastASpecialAttack?0:(this.getRace().getPreferredAttacks().contains(Attack.MAIN)?100:50));
 		
 		int total = 0;
@@ -492,16 +464,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.STR_INGREDIENT_BLACK_RATS_RUM));
 				case RABBIT_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.SEX_INGREDIENT_BUNNY_JUICE));
-				case ELEMENTAL_AIR:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.AIR)));
-				case ELEMENTAL_ARCANE:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.ARCANE)));
-				case ELEMENTAL_EARTH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.EARTH)));
-				case ELEMENTAL_FIRE:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.FIRE)));
-				case ELEMENTAL_WATER:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.WATER)));
 			}
 			
 		} else if(rnd <= 0.8 && !Main.game.getPlayer().getRacesDiscoveredFromBook().contains(getRace())) {
@@ -528,16 +490,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_RAT_MORPH));
 				case RABBIT_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_RABBIT_MORPH));
-				case ELEMENTAL_AIR:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.AIR)));
-				case ELEMENTAL_ARCANE:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.ARCANE)));
-				case ELEMENTAL_EARTH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.EARTH)));
-				case ELEMENTAL_FIRE:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.FIRE)));
-				case ELEMENTAL_WATER:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.WATER)));
 			}
 		
 		} else {
@@ -564,16 +516,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_RAT_MORPH));
 				case RABBIT_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_RABBIT_MORPH));
-				case ELEMENTAL_AIR:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.AIR)));
-				case ELEMENTAL_ARCANE:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.ARCANE)));
-				case ELEMENTAL_EARTH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.EARTH)));
-				case ELEMENTAL_FIRE:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.FIRE)));
-				case ELEMENTAL_WATER:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.idToItemMap.get("SPELL_SCROLL_"+SpellSchool.WATER)));
 			}
 		}
 		
@@ -894,11 +836,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					itemType = ItemType.RACE_INGREDIENT_RABBIT_MORPH;
 					break;
 				case HUMAN:
-				case ELEMENTAL_AIR:
-				case ELEMENTAL_ARCANE:
-				case ELEMENTAL_EARTH:
-				case ELEMENTAL_FIRE:
-				case ELEMENTAL_WATER:
 					itemType = ItemType.RACE_INGREDIENT_HUMAN;
 					break;
 			}
@@ -2919,15 +2856,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 			} else {
 				if(target.isSlave() && target.getOwner()!=null && target.getOwner().isPlayer()) {
 					return Main.game.getPlayer().useItem(item, target, false);
-					
-				} else if(target instanceof Elemental) {
-					return "<p>"
-								+ UtilText.parse(this, "As you move to get [npc.name] to "+item.getItemType().getUseName()+" the "+item.getName()+", [npc.she] calmly states,"
-										+ " [npc.speech(Being an elemental, I am unable to "+item.getItemType().getUseName()+" that.)]")
-							+ "</p>"
-							+ "<p>"
-								+ "You put the "+item.getName()+" back in your inventory."
-							+ "</p>";
 					
 				} else {
 					return "<p>"

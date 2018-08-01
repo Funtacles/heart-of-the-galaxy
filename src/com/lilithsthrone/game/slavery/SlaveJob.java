@@ -66,26 +66,6 @@ public enum SlaveJob {
 			80, 0, 0.05f,
 			null, null, null),
 	
-	PUBLIC_STOCKS(5, "public use", "public use", "Assign this slave to be locked in the public-use stocks in slaver ally.",
-			-5f, 1f,
-			0, 0, 0,
-			Util.newArrayListOfValues(
-					SlaveJobSetting.SEX_ORAL,
-					SlaveJobSetting.SEX_VAGINAL,
-					SlaveJobSetting.SEX_ANAL,
-					SlaveJobSetting.SEX_NIPPLES),
-			null,
-			null) {
-		@Override
-		public float getAffectionGain(GameCharacter slave) {
-			if(slave.hasFetish(Fetish.FETISH_NON_CON_SUB)) {
-				return 1f;
-			} else {
-				return -5f;
-			}
-		}
-	},
-	
 	MILKING(-1, "Dairy Cow", "Dairy Bull", "Assign this slave to the cow stalls, ready for milking or breeding (or perhaps both). Income is based off of the assigned slave's milk, cum, and girlcum production.",
 			-0.25f, 1f,
 			0, 0, 0,

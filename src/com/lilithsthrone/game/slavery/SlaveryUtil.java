@@ -208,7 +208,7 @@ public class SlaveryUtil implements XMLSaving {
 			}
 			// Standard events:
 			if(!eventAdded) {
-				if(Math.random()<0.05f || slave.getSlaveJob()==SlaveJob.MILKING || (Math.random()<0.5f && (slave.getSlaveJob()==SlaveJob.PUBLIC_STOCKS))) {
+				if(Math.random()<0.05f || slave.getSlaveJob()==SlaveJob.MILKING) {
 					List<SlaveryEventLogEntry> entries = generateEvents(hour, slave);
 					for(SlaveryEventLogEntry e : entries) {
 						Main.game.addSlaveryEvent(day, slave, e);
@@ -412,11 +412,6 @@ public class SlaveryUtil implements XMLSaving {
 	 * @return
 	 */
 	public static SlaveryEventLogEntry generateNPCInteractionEvent(int day, int hour, NPC slave, List<NPC> otherSlavesPresent) {
-		
-		if(slave.getSlaveJob()==SlaveJob.PUBLIC_STOCKS) {
-			return null;
-		}
-		
 		Collections.shuffle(otherSlavesPresent);
 		for(NPC npc : otherSlavesPresent) {
 			if(!npc.equals(slave)) {
@@ -503,8 +498,6 @@ public class SlaveryUtil implements XMLSaving {
 												+ (impregnationAttempt?"<br/>[style.colourSex([npc2.Name] might have gotten pregnant!)]":"")
 												+ (gettingPregnantAttempt?"<br/>[style.colourSex([npc1.Name] might have gotten pregnant!)]":""))),
 										true);
-							case PUBLIC_STOCKS:
-								//TODO 
 							case MILKING:
 								//TODO 
 								break;
