@@ -28,13 +28,6 @@ public enum WorldType {
 					new Value<>(new Color(0x808080), PlaceType.DOMINION_STREET),
 					new Value<>(new Color(0x404040), PlaceType.DOMINION_BOULEVARD),
 					
-					new Value<>(new Color(0xc10000), PlaceType.DOMINION_BACK_ALLEYS),
-					new Value<>(new Color(0x5b0000), PlaceType.DOMINION_DARK_ALLEYS),
-					new Value<>(new Color(0x40b4ff), PlaceType.DOMINION_ALLEYS_CANAL_CROSSING),
-					
-					new Value<>(new Color(0x0080ff), PlaceType.DOMINION_CANAL),
-					new Value<>(new Color(0x004080), PlaceType.DOMINION_CANAL_END),
-					
 					new Value<>(new Color(0x8000ff), PlaceType.DOMINION_CITY_HALL),
 
 					new Value<>(new Color(0x8080ff), PlaceType.DOMINION_EXIT_TO_SEA),

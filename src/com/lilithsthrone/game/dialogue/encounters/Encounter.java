@@ -2,33 +2,17 @@ package com.lilithsthrone.game.dialogue.encounters;
 
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.function.Predicate;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
 
 import com.lilithsthrone.game.Weather;
-import com.lilithsthrone.game.character.gender.GenderPreference;
-import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
-import com.lilithsthrone.game.inventory.ItemTag;
-import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
-import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
-import com.lilithsthrone.game.inventory.clothing.ClothingType;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
-import com.lilithsthrone.game.inventory.item.AbstractItemType;
-import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
-import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
-import com.lilithsthrone.game.inventory.weapon.WeaponType;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Util;
-import com.lilithsthrone.utils.Vector2i;
-import com.lilithsthrone.world.WorldType;
 import com.lilithsthrone.utils.Util.Value;
 
 /**
@@ -45,8 +29,6 @@ public enum Encounter {
 		@Override
 		protected DialogueNodeOld initialiseEncounter(EncounterType node) {
 			if(node == EncounterType.DOMINION_STORM_ATTACK && Main.game.getCurrentWeather() == Weather.MAGIC_STORM) {
-				Main.game.setActiveNPC(new DominionAlleywayAttacker(GenderPreference.getGenderFromUserPreferences(false, false)));
-	
 				try {
 					Main.game.addNPC(Main.game.getActiveNPC(), false);
 				} catch (Exception e) {
@@ -91,166 +73,11 @@ public enum Encounter {
 			
 			return null;
 		}
-	},
-
-	DOMINION_ALLEY(Util.newHashMapOfValues(
-			new Value<EncounterType, Float>(EncounterType.DOMINION_ALLEY_ATTACK, 15f),
-			new Value<EncounterType, Float>(EncounterType.DOMINION_FIND_ITEM, 3f),
-			new Value<EncounterType, Float>(EncounterType.DOMINION_FIND_CLOTHING, 2f),
-			new Value<EncounterType, Float>(EncounterType.DOMINION_FIND_WEAPON, 1f))) {
-
-		@Override
-		protected DialogueNodeOld initialiseEncounter(EncounterType node) {
-			if (node == EncounterType.DOMINION_ALLEY_ATTACK) {
-				
-				// Prioritise re-encountering the NPC on this tile:
-				for(NPC npc : Main.game.getNonCompanionCharactersPresent()) {
-					Main.game.setActiveNPC(npc);
-					return Main.game.getActiveNPC().getEncounterDialogue();
-				}
-				
-				if(Math.random()<IncestEncounterRate()) { // Incest
-					List<NPC> offspringAvailable = UnspawnedChildren(
-						npc-> (npc.getSubspecies().getWorldLocations().contains(WorldType.DOMINION)));
-					
-					if(!offspringAvailable.isEmpty()) {
-						return SpawnAndStartChildHere(offspringAvailable);
-					}
-				}
-				
-				Main.game.setActiveNPC(new DominionAlleywayAttacker(GenderPreference.getGenderFromUserPreferences(false, false)));
-				try {
-					Main.game.addNPC(Main.game.getActiveNPC(), false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				return Main.game.getActiveNPC().getEncounterDialogue();
-					
-
-			} else if (node == EncounterType.DOMINION_FIND_ITEM) {
-				
-				if(Math.random()<0.995f) {
-					randomItem = AbstractItemType.generateItem(ItemType.dominionAlleywayItems.get(Util.random.nextInt(ItemType.dominionAlleywayItems.size())));
-				} else {
-					randomItem = AbstractItemType.generateItem(ItemType.EGGPLANT);
-				}
-				
-				Main.game.getActiveWorld().getCell(Main.game.getPlayer().getLocation()).getInventory().addItem(randomItem);
-				return DominionEncounterDialogue.ALLEY_FIND_ITEM;
-				
-			} else if (node == EncounterType.DOMINION_FIND_CLOTHING) {
-				if(Math.random()<0.01f) {
-					randomClothing = AbstractClothingType.generateClothing(ClothingType.MEGA_MILK);
-					Main.game.getPlayerCell().getInventory().addClothing(randomClothing);
-					
-				} else {
-					List<AbstractClothingType> randomClothingList = ClothingType.getAllClothing();
-					randomClothingList.removeIf((clothing) ->
-							(!clothing.getItemTags().contains(ItemTag.SOLD_BY_KATE)
-							&& !clothing.getItemTags().contains(ItemTag.SOLD_BY_NYAN)
-							&& !clothing.getItemTags().contains(ItemTag.DOMINION_ALLEYWAY_SPAWN))
-							|| clothing.getRarity()==Rarity.EPIC
-							|| clothing.getRarity()==Rarity.LEGENDARY);
-					randomClothing = AbstractClothingType.generateClothing(randomClothingList.get(Util.random.nextInt(randomClothingList.size())));
-					Main.game.getPlayerCell().getInventory().addClothing(randomClothing);
-				}
-				return DominionEncounterDialogue.ALLEY_FIND_CLOTHING;
-				
-			} else if (node == EncounterType.DOMINION_FIND_WEAPON) {
-				randomWeapon = AbstractWeaponType.generateWeapon(WeaponType.rareWeapons.get(Util.random.nextInt(WeaponType.rareWeapons.size())));
-				
-				Main.game.getActiveWorld().getCell(Main.game.getPlayer().getLocation()).getInventory().addWeapon(randomWeapon);
-				return DominionEncounterDialogue.ALLEY_FIND_WEAPON;
-				
-			} else {
-				return null;
-			}
-		}
-	},
-	
-	DOMINION_DARK_ALLEY(Util.newHashMapOfValues(
-			new Value<EncounterType, Float>(EncounterType.DOMINION_ALLEY_ATTACK, 15f))) {
-
-		@Override
-		protected DialogueNodeOld initialiseEncounter(EncounterType node) {
-				
-			for (NPC npc : Main.game.getNonCompanionCharactersPresent()) {
-				Main.game.setActiveNPC(npc);
-				return Main.game.getActiveNPC().getEncounterDialogue();
-			}
-			
-			try {
-				Main.game.addNPC(Main.game.getActiveNPC(), false);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return Main.game.getActiveNPC().getEncounterDialogue();
-		}
-	},
-	
-	//TODO
-	DOMINION_CANAL(Util.newHashMapOfValues(
-			new Value<EncounterType, Float>(EncounterType.DOMINION_ALLEY_ATTACK, 8f))) {
-
-		@Override
-		protected DialogueNodeOld initialiseEncounter(EncounterType node) {
-			// Prioritise re-encountering the NPC on this tile:
-			for(NPC npc : Main.game.getNonCompanionCharactersPresent()) {
-				Main.game.setActiveNPC(npc);
-				return Main.game.getActiveNPC().getEncounterDialogue();
-			}
-			
-			if(Math.random()<IncestEncounterRate()) { // Incest
-				List<NPC> offspringAvailable = UnspawnedChildren(
-					npc -> npc.getSubspecies().getWorldLocations().contains(WorldType.DOMINION));
-				
-				if(!offspringAvailable.isEmpty()) {
-					return SpawnAndStartChildHere(offspringAvailable);
-				}
-			}
-			
-			Main.game.setActiveNPC(new DominionAlleywayAttacker(GenderPreference.getGenderFromUserPreferences(false, false)));
-			try {
-				Main.game.addNPC(Main.game.getActiveNPC(), false);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return Main.game.getActiveNPC().getEncounterDialogue();
-		}
 	};
 	
-	private static List<NPC> UnspawnedChildren(Predicate<NPC> matcher) {
-		List<NPC> offspringAvailable = Main.game.getOffspring().stream().filter(npc -> !npc.isSlave())
-										.filter(npc -> npc.getWorldLocation()==WorldType.EMPTY)
-										.filter(npc -> npc.getLastTimeEncountered()==NPC.DEFAULT_TIME_START_VALUE)
-										.filter(matcher).collect(Collectors.toList());
-		return offspringAvailable;
-	}
-
-	private static DialogueNodeOld SpawnAndStartChildHere(List<NPC> offspringAvailable) {
-		NPC offspring = offspringAvailable.get(Util.random.nextInt(offspringAvailable.size()));
-		Main.game.getOffspringSpawned().add(offspring);
-
-		offspring.setWorldLocation(Main.game.getPlayer().getWorldLocation());
-		offspring.setLocation(new Vector2i(Main.game.getPlayer().getLocation().getX(), Main.game.getPlayer().getLocation().getY()));
-
-		Main.game.setActiveNPC(offspring);
-
-		return Main.game.getActiveNPC().getEncounterDialogue();
-	}
-
 	private static AbstractItem randomItem;
 	private static AbstractClothing randomClothing;
 	private static AbstractWeapon randomWeapon;
-
-	private static final double INCEST_ENCOUNTER_RATE = 0.2f;
-
-	private static double IncestEncounterRate() {
-		if (!Main.game.isIncestEnabled()) {
-			return -1;
-		}
-		return INCEST_ENCOUNTER_RATE;
-	}
 
 	private Map<EncounterType, Float> dialogues;
 

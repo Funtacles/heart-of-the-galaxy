@@ -43,7 +43,6 @@ import com.lilithsthrone.game.character.fetishes.FetishDesire;
 import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.persona.NameTriplet;
-import com.lilithsthrone.game.character.race.FurryPreference;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
@@ -64,7 +63,6 @@ import com.lilithsthrone.game.inventory.enchanting.TFPotency;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
-import com.lilithsthrone.game.settings.ForcedTFTendency;
 import com.lilithsthrone.game.sex.Sex;
 import com.lilithsthrone.game.sex.SexAreaInterface;
 import com.lilithsthrone.game.sex.SexAreaOrifice;
@@ -788,79 +786,59 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		String reaction = "Time to transform you!";
 		String raceName = "human";
 		
-		if(Main.getProperties().forcedTFPreference != FurryPreference.HUMAN) {
-			if (getPreferredBody().getGender().isFeminine()) {
-				raceName = getPreferredBody().getGender().getName() + " " + getPreferredBody().getSubspecies().getSingularFemaleName();
-			} else {
-				raceName = getPreferredBody().getGender().getName() + " " + getPreferredBody().getSubspecies().getSingularMaleName();
-			}
-		
-			switch(getPreferredBody().getRace()) {
-				case NONE:
-					break;
-				case CAT_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_CAT_MORPH;
-					reaction = "Time to turn you into a cute little "+raceName+"!";
-					break;
-				case DOG_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_DOG_MORPH;
-					reaction = "Time to turn you into an excitable little "+raceName+"!";
-					break;
-				case FOX_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_FOX_MORPH;
-					reaction = "Time to turn you into a cute little "+raceName+"!";
-					break;
-				case HORSE_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_HORSE_MORPH;
-					if (getPreferredBody().getGender().isFeminine()) {
-						reaction = "Time to turn you into my little mare!";
-					} else {
-						reaction = "Time to turn you into my very own stallion!";
-					}
-					break;
-				case SQUIRREL_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_SQUIRREL_MORPH;
-					reaction = "Time to turn you into a cute little "+raceName+"!";
-					break;
-				case WOLF_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_WOLF_MORPH;
-					reaction = "Time to turn you into a "+raceName+"!";
-					break;
-				case COW_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_COW_MORPH;
-					break;
-				case RAT_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_RAT_MORPH;
-					break;
-				case RABBIT_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_RABBIT_MORPH;
-					break;
-				case HUMAN:
-					itemType = ItemType.RACE_INGREDIENT_HUMAN;
-					break;
-			}
+		if (getPreferredBody().getGender().isFeminine()) {
+			raceName = getPreferredBody().getGender().getName() + " " + getPreferredBody().getSubspecies().getSingularFemaleName();
+		} else {
+			raceName = getPreferredBody().getGender().getName() + " " + getPreferredBody().getSubspecies().getSingularMaleName();
+		}
+	
+		switch(getPreferredBody().getRace()) {
+			case NONE:
+				break;
+			case CAT_MORPH:
+				itemType = ItemType.RACE_INGREDIENT_CAT_MORPH;
+				reaction = "Time to turn you into a cute little "+raceName+"!";
+				break;
+			case DOG_MORPH:
+				itemType = ItemType.RACE_INGREDIENT_DOG_MORPH;
+				reaction = "Time to turn you into an excitable little "+raceName+"!";
+				break;
+			case FOX_MORPH:
+				itemType = ItemType.RACE_INGREDIENT_FOX_MORPH;
+				reaction = "Time to turn you into a cute little "+raceName+"!";
+				break;
+			case HORSE_MORPH:
+				itemType = ItemType.RACE_INGREDIENT_HORSE_MORPH;
+				if (getPreferredBody().getGender().isFeminine()) {
+					reaction = "Time to turn you into my little mare!";
+				} else {
+					reaction = "Time to turn you into my very own stallion!";
+				}
+				break;
+			case SQUIRREL_MORPH:
+				itemType = ItemType.RACE_INGREDIENT_SQUIRREL_MORPH;
+				reaction = "Time to turn you into a cute little "+raceName+"!";
+				break;
+			case WOLF_MORPH:
+				itemType = ItemType.RACE_INGREDIENT_WOLF_MORPH;
+				reaction = "Time to turn you into a "+raceName+"!";
+				break;
+			case COW_MORPH:
+				itemType = ItemType.RACE_INGREDIENT_COW_MORPH;
+				break;
+			case RAT_MORPH:
+				itemType = ItemType.RACE_INGREDIENT_RAT_MORPH;
+				break;
+			case RABBIT_MORPH:
+				itemType = ItemType.RACE_INGREDIENT_RABBIT_MORPH;
+				break;
+			case HUMAN:
+				itemType = ItemType.RACE_INGREDIENT_HUMAN;
+				break;
 		}
 		
 		AbstractItemType genitalsItemType = itemType;
 		boolean skipGenitalsTF = false;
-		
-		if(Main.getProperties().forcedTFPreference==FurryPreference.HUMAN || Main.getProperties().forcedTFPreference==FurryPreference.MINIMUM) {
-			genitalsItemType = ItemType.RACE_INGREDIENT_HUMAN;
-			
-			boolean vaginaSet = false;
-			boolean penisSet = false;
-			
-			if((Main.game.getPlayer().getVaginaType() == getPreferredBody().getVagina().getType()) || (getPreferredBody().getVagina().getType()!=VaginaType.NONE && Main.game.getPlayer().hasVagina())) {
-				vaginaSet = true;
-			}
-			
-			if((Main.game.getPlayer().getPenisType() == getPreferredBody().getPenis().getType()) || (getPreferredBody().getPenis().getType()!=PenisType.NONE && Main.game.getPlayer().hasPenisIgnoreDildo())) {
-				penisSet = true;
-			}
-			
-			skipGenitalsTF = vaginaSet && penisSet;
-		}
-		
 		
 		Map<ItemEffect, String> possibleEffects = new HashMap<>();
 		
@@ -884,7 +862,7 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 							removingVagina = true;
 						}
 						
-					} else if((Main.getProperties().forcedTFPreference != FurryPreference.HUMAN && Main.getProperties().forcedTFPreference != FurryPreference.MINIMUM) || getPreferredBody().getVagina().getType()==VaginaType.HUMAN) {
+					} else if(getPreferredBody().getVagina().getType()==VaginaType.HUMAN) {
 						possibleEffects.put(new ItemEffect(genitalsItemType.getEnchantmentEffect(), TFModifier.TF_VAGINA, TFModifier.NONE, TFPotency.MINOR_BOOST, 1),
 								"Let's give you a nice "+getPreferredBody().getVagina().getName(Main.game.getPlayer(), false)+"!");
 						addingVagina = true;
@@ -902,7 +880,7 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 						removingPenis = true;
 					}
 					
-				} else if((Main.getProperties().forcedTFPreference != FurryPreference.HUMAN && Main.getProperties().forcedTFPreference != FurryPreference.MINIMUM) || getPreferredBody().getPenis().getType()==PenisType.HUMAN) {
+				} else if(getPreferredBody().getPenis().getType()==PenisType.HUMAN) {
 					possibleEffects.put(new ItemEffect(genitalsItemType.getEnchantmentEffect(), TFModifier.TF_PENIS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1),
 							"Let's give you a nice "+getPreferredBody().getPenis().getName(Main.game.getPlayer(), false)+"!");
 					addingPenis = true;
@@ -941,60 +919,52 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		
 		
 		// All minor part transformations:
-		if(Main.getProperties().forcedTFPreference != FurryPreference.HUMAN) {
-			if(possibleEffects.isEmpty() || Math.random()>0.33f) {
-				if(Main.game.getPlayer().getAntennaType() != getPreferredBody().getAntenna().getType()) {
-					possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_ANTENNA, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
-				}
-				if(Main.getProperties().forcedTFPreference != FurryPreference.MINIMUM) {
-					if(Main.game.getPlayer().getAssType() != getPreferredBody().getAss().getType()) {
-						possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_ASS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
-					}
-					if(Main.game.getPlayer().getBreastType() != getPreferredBody().getBreast().getType()) {
-						possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_BREASTS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
-					}
-				}
-				if(Main.game.getPlayer().getEarType() != getPreferredBody().getEar().getType()) {
-					possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_EARS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
-				}
-				if(Main.game.getPlayer().getEyeType() != getPreferredBody().getEye().getType()) {
-					possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_EYES, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
-				}
-				if(Main.game.getPlayer().getHairType() != getPreferredBody().getHair().getType()) {
-					possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_HAIR, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
-				}
-				if(Main.game.getPlayer().getHornType() != getPreferredBody().getHorn().getType()) {
-					possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_HORNS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
-				}
-				if(Main.game.getPlayer().getTailType() != getPreferredBody().getTail().getType()) {
-					possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_TAIL, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
-				}
-				if(Main.game.getPlayer().getWingType() != getPreferredBody().getWing().getType()) {
-					possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_WINGS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
-				}
+		if(possibleEffects.isEmpty() || Math.random()>0.33f) {
+			if(Main.game.getPlayer().getAntennaType() != getPreferredBody().getAntenna().getType()) {
+				possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_ANTENNA, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
 			}
-			
-			// Leg & Arm transformations:
-			if(Main.getProperties().forcedTFPreference != FurryPreference.MINIMUM) {
-				if(possibleEffects.isEmpty()) {
-					if(Main.game.getPlayer().getArmType() != getPreferredBody().getArm().getType()) {
-						possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_ARMS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
-					}
-					if(Main.game.getPlayer().getLegType() != getPreferredBody().getLeg().getType()) {
-						possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_LEGS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
-					}
-				}
+			if(Main.game.getPlayer().getAssType() != getPreferredBody().getAss().getType()) {
+				possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_ASS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
 			}
-			// Face & Skin transformations:
-			if(Main.getProperties().forcedTFPreference == FurryPreference.NORMAL || Main.getProperties().forcedTFPreference == FurryPreference.MAXIMUM) {
-				if(possibleEffects.isEmpty()) {
-					if(Main.game.getPlayer().getSkinType() != getPreferredBody().getSkin().getType()) {
-						possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_SKIN, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
-					}
-					if(Main.game.getPlayer().getFaceType() != getPreferredBody().getFace().getType()) {
-						possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_FACE, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
-					}
-				}
+			if(Main.game.getPlayer().getBreastType() != getPreferredBody().getBreast().getType()) {
+				possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_BREASTS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
+			}
+			if(Main.game.getPlayer().getEarType() != getPreferredBody().getEar().getType()) {
+				possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_EARS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
+			}
+			if(Main.game.getPlayer().getEyeType() != getPreferredBody().getEye().getType()) {
+				possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_EYES, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
+			}
+			if(Main.game.getPlayer().getHairType() != getPreferredBody().getHair().getType()) {
+				possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_HAIR, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
+			}
+			if(Main.game.getPlayer().getHornType() != getPreferredBody().getHorn().getType()) {
+				possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_HORNS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
+			}
+			if(Main.game.getPlayer().getTailType() != getPreferredBody().getTail().getType()) {
+				possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_TAIL, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
+			}
+			if(Main.game.getPlayer().getWingType() != getPreferredBody().getWing().getType()) {
+				possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_WINGS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
+			}
+		}
+		
+		// Leg & Arm transformations:
+		if(possibleEffects.isEmpty()) {
+			if(Main.game.getPlayer().getArmType() != getPreferredBody().getArm().getType()) {
+				possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_ARMS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
+			}
+			if(Main.game.getPlayer().getLegType() != getPreferredBody().getLeg().getType()) {
+				possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_LEGS, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
+			}
+		}
+		// Face & Skin transformations:
+		if(possibleEffects.isEmpty()) {
+			if(Main.game.getPlayer().getSkinType() != getPreferredBody().getSkin().getType()) {
+				possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_SKIN, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
+			}
+			if(Main.game.getPlayer().getFaceType() != getPreferredBody().getFace().getType()) {
+				possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_FACE, TFModifier.NONE, TFPotency.MINOR_BOOST, 1), reaction);
 			}
 		}
 		
@@ -1151,61 +1121,24 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		
 		switch(this.getSexualOrientation()) {
 			case AMBIPHILIC:
-				if(this.isFeminine() && 
-						// ambiphilic characters respect forcedTFTendency setting by not entering this case if the
-						// player has requested a feminine tendency; admittedly, this specific logic does slightly skew 
-						// towards pushing the player feminine in neutral scenarios, but only to a small degree, so more
-						// complex but fair logic doesn't feel too required
-						Main.getProperties().forcedTFTendency != ForcedTFTendency.FEMININE &&
-						Main.getProperties().forcedTFTendency != ForcedTFTendency.FEMININE_HEAVY) {
-					desiredGenders.put(Gender.M_P_MALE, 14);
-					// maybe it would be appropriate to raise these chances for impregnators?
-					desiredGenders.put(Gender.M_P_V_HERMAPHRODITE, 2);
-					desiredGenders.put(Gender.M_V_CUNTBOY, 2);
-					desiredGenders.put(Gender.F_P_TRAP, 2);
+				desiredGenders.put(Gender.F_V_B_FEMALE, 14);
+				
+				// increase chances of growing a penis if fetishes increase desirability 
+				if(this.hasVagina() && (this.hasFetish(Fetish.FETISH_PREGNANCY))) {
+					desiredGenders.put(Gender.F_P_V_B_FUTANARI, 4);
+					desiredGenders.put(Gender.F_P_B_SHEMALE, 4);
+					desiredGenders.put(Gender.F_P_TRAP, 4);
+					
 				} else {
-					// basic chances of cis-female preference
-					desiredGenders.put(Gender.F_V_B_FEMALE, 14);
-					
-					// increase chances of growing a penis if fetishes increase desirability 
-					if(this.hasVagina() && (this.hasFetish(Fetish.FETISH_PREGNANCY))) {
-						desiredGenders.put(Gender.F_P_V_B_FUTANARI, 4);
-						desiredGenders.put(Gender.F_P_B_SHEMALE, 4);
-						desiredGenders.put(Gender.F_P_TRAP, 4);
-						
-					} else {
-						desiredGenders.put(Gender.F_P_V_B_FUTANARI, 2);
-						desiredGenders.put(Gender.F_P_B_SHEMALE, 2);
-						desiredGenders.put(Gender.F_P_TRAP, 2);
-					};
-					
-					// heavy masculine forcedTFTendency option adds a bit of a chance for masculine preferenes here
-					if (Main.getProperties().forcedTFTendency == ForcedTFTendency.MASCULINE_HEAVY) {
-						desiredGenders.put(Gender.M_P_V_HERMAPHRODITE, 4);
-						desiredGenders.put(Gender.M_V_CUNTBOY, 4);
-						desiredGenders.put(Gender.F_P_TRAP, 4);
-						desiredGenders.put(Gender.M_V_B_BUTCH, 4);
-					}
-				}
-				break;
-			case ANDROPHILIC:
-				// Heavy feminine forcedTFTendency causes androphiles to lose the majority of masculine options
-				if (Main.getProperties().forcedTFTendency != ForcedTFTendency.FEMININE_HEAVY) {
-					desiredGenders.put(Gender.M_P_MALE, 14);
-				}
-				
-				// base chance options regardless of forcedTFTendency option
-				desiredGenders.put(Gender.M_P_V_HERMAPHRODITE, 2);
-				desiredGenders.put(Gender.M_V_CUNTBOY, 2);
-				
-				// both feminine forcedTFTendency options add decent chances to get some feminine options despite tastes
-				if(Main.getProperties().forcedTFTendency == ForcedTFTendency.FEMININE || 
-				   Main.getProperties().forcedTFTendency == ForcedTFTendency.FEMININE_HEAVY) {
 					desiredGenders.put(Gender.F_P_V_B_FUTANARI, 2);
 					desiredGenders.put(Gender.F_P_B_SHEMALE, 2);
 					desiredGenders.put(Gender.F_P_TRAP, 2);
-					desiredGenders.put(Gender.M_V_B_BUTCH, 2);
-				}
+				};
+				break;
+			case ANDROPHILIC:
+				// base chance options regardless of forcedTFTendency option
+				desiredGenders.put(Gender.M_P_V_HERMAPHRODITE, 2);
+				desiredGenders.put(Gender.M_V_CUNTBOY, 2);
 				break;
 			case GYNEPHILIC:
 				// increase chances of growing a penis if fetishes increase desirability; also, this is a reasonable
@@ -1215,20 +1148,8 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					desiredGenders.put(Gender.F_P_B_SHEMALE, 2);
 					desiredGenders.put(Gender.F_P_TRAP, 2);
 				// much lower base chance of pure female preference for heavy masculine forcedTFTendency
-				} else if (Main.getProperties().forcedTFTendency == ForcedTFTendency.MASCULINE_HEAVY) {
-					desiredGenders.put(Gender.F_V_B_FEMALE, 4);
-				}
-				else {
+				} else {
 					desiredGenders.put(Gender.F_V_B_FEMALE, 14);
-				}
-				
-				// both masculine forcedTFTendency options add decent chances to get some masculine options despite tastes
-				if(Main.getProperties().forcedTFTendency == ForcedTFTendency.MASCULINE || 
-				   Main.getProperties().forcedTFTendency == ForcedTFTendency.MASCULINE_HEAVY) {
-					desiredGenders.put(Gender.M_P_V_HERMAPHRODITE, 2);
-					desiredGenders.put(Gender.M_V_CUNTBOY, 2);
-					desiredGenders.put(Gender.M_V_B_BUTCH, 2);
-					desiredGenders.put(Gender.F_P_TRAP, 2);
 				}
 				break;
 		}
@@ -1258,74 +1179,27 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		Subspecies species = getSubspecies();
 		RaceStage stage = getRaceStage();
 		
-		if(Main.getProperties().forcedTFPreference==FurryPreference.HUMAN) {
-			species = Subspecies.HUMAN;
-			stage = RaceStage.HUMAN;
-			
-		} else {
-		
-			if((getRace()==Race.WOLF_MORPH || getRace()==Race.DOG_MORPH) && Math.random()>0.8f) {
-				List<Subspecies> availableRaces = new ArrayList<>();
-				availableRaces.add(Subspecies.CAT_MORPH);
-				availableRaces.add(Subspecies.COW_MORPH);
-				availableRaces.add(Subspecies.SQUIRREL_MORPH);
-				species = availableRaces.get(Util.random.nextInt(availableRaces.size()));
-			}
-			
-			// Chance for race to be random:
-			if(Math.random()>0.85f) {
-				List<Subspecies> availableRaces = new ArrayList<>();
-				availableRaces.add(Subspecies.CAT_MORPH);
-				availableRaces.add(Subspecies.DOG_MORPH);
-				availableRaces.add(Subspecies.HORSE_MORPH);
-				availableRaces.add(Subspecies.HUMAN);
-				availableRaces.add(Subspecies.SQUIRREL_MORPH);
-				availableRaces.add(Subspecies.COW_MORPH);
-				availableRaces.add(Subspecies.WOLF_MORPH);
-				species = availableRaces.get(Util.random.nextInt(availableRaces.size()));
-			}
-			
-			// Preferred race stage:
-			
-			if(preferredGender.isFeminine()) {
-				switch(Main.getProperties().getSubspeciesFeminineFurryPreferencesMap().get(species)) {
-					case HUMAN:
-						stage = RaceStage.HUMAN;
-						break;
-					case MAXIMUM:
-						stage = RaceStage.GREATER;
-						break;
-					case MINIMUM:
-						stage = RaceStage.PARTIAL_FULL;
-						break;
-					case NORMAL:
-						stage = RaceStage.GREATER;
-						break;
-					case REDUCED:
-						stage = RaceStage.LESSER;
-						break;
-				}
-			} else {
-				switch(Main.getProperties().getSubspeciesMasculineFurryPreferencesMap().get(species)) {
-					case HUMAN:
-						stage = RaceStage.HUMAN;
-						break;
-					case MAXIMUM:
-						stage = RaceStage.GREATER;
-						break;
-					case MINIMUM:
-						stage = RaceStage.PARTIAL_FULL;
-						break;
-					case NORMAL:
-						stage = RaceStage.GREATER;
-						break;
-					case REDUCED:
-						stage = RaceStage.LESSER;
-						break;
-				}
-			}
+		if((getRace()==Race.WOLF_MORPH || getRace()==Race.DOG_MORPH) && Math.random()>0.8f) {
+			List<Subspecies> availableRaces = new ArrayList<>();
+			availableRaces.add(Subspecies.CAT_MORPH);
+			availableRaces.add(Subspecies.COW_MORPH);
+			availableRaces.add(Subspecies.SQUIRREL_MORPH);
+			species = availableRaces.get(Util.random.nextInt(availableRaces.size()));
 		}
 		
+		// Chance for race to be random:
+		if(Math.random()>0.85f) {
+			List<Subspecies> availableRaces = new ArrayList<>();
+			availableRaces.add(Subspecies.CAT_MORPH);
+			availableRaces.add(Subspecies.DOG_MORPH);
+			availableRaces.add(Subspecies.HORSE_MORPH);
+			availableRaces.add(Subspecies.HUMAN);
+			availableRaces.add(Subspecies.SQUIRREL_MORPH);
+			availableRaces.add(Subspecies.COW_MORPH);
+			availableRaces.add(Subspecies.WOLF_MORPH);
+			species = availableRaces.get(Util.random.nextInt(availableRaces.size()));
+		}
+			
 		Body body = CharacterUtils.generateBody(preferredGender, species, stage);
 		
 		// Apply fetish modifiers:

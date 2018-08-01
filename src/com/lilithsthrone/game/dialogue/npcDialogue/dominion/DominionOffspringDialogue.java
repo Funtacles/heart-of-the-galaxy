@@ -28,7 +28,6 @@ import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Util.Value;
-import com.lilithsthrone.world.places.PlaceType;
 
 /**
  * @since 0.1.8?
@@ -2858,55 +2857,6 @@ public class DominionOffspringDialogue {
 						Main.mainController.openInventory(Main.game.getActiveNPC(), InventoryInteraction.FULL_MANAGEMENT);
 					}
 				};
-				
-			} else if (index == 10 && Main.game.getPlayer().getLocationPlace().getPlaceType() == PlaceType.DOMINION_BACK_ALLEYS) {
-				return new Response(
-						"Remove character",
-						"Scare [npc.name] away. <b>This will remove [npc.herHim] from this area, allowing another character to move into this tile.</b>",
-						AFTER_COMBAT_VICTORY){
-					@Override
-					public DialogueNodeOld getNextDialogue() {
-						return Main.game.getDefaultDialogueNoEncounter();
-					}
-					@Override
-					public void effects() {
-						if(offspring().hasFlag(NPCFlagValue.fightOffspringInApartment)) {
-							Main.game.getTextStartStringBuilder().append(
-									"<p>"
-										+ "Looking down at your [npc.daughter] as [npc.she] shuffles about on the floor, you remind yourself that you're doing this for [npc.her] own good."
-										+ " With your [pc.hands] on your [pc.hips], you speak down to [npc.herHim],"
-										+ " [pc.speech([npc.Name], this is the end of your shameful lifestyle! You're going to pack everything up and move elsewhere! It's time for you to find a respectable job and lead an honest life!)]"
-									+ "</p>"
-									+ "<p>"
-										+ "[npc.She] doesn't offer much resistance, and you watch as your [npc.daughter] packs up [npc.her] things and prepares to move out."
-										+ " After a short while, [npc.sheIs] ready, and before [npc.she] leaves your life forever, [npc.she] turns around and mutters,"
-										+ " [npc.speech(I'll make you proud, [pc.mom]...)]"
-									+ "</p>"
-									+ "<p>"
-										+ "With that, [npc.sheIs] gone, and you're left with little else to do but set off into the alleyways once again..."
-									+ "</p>");
-							
-						} else {
-							Main.game.getTextStartStringBuilder().append(
-									"<p>"
-										+ "Looking down at your [npc.daughter] as [npc.she] shuffles about on the floor, you remind yourself that you're doing this for [npc.her] own good."
-										+ " With your [pc.hands] on your [pc.hips], you speak down to [npc.herHim],"
-										+ " [pc.speech([npc.Name], this is the end of your shameful lifestyle! You're going to pack everything up and move elsewhere! It's time for you to find a respectable job and lead an honest life!)]"
-									+ "</p>"
-									+ "<p>"
-										+ "[npc.She] doesn't offer much resistance, and you watch as your [npc.daughter] meekly hangs [npc.her] head and agrees to do as you say."
-										+ " Before [npc.she] walks off and leaves your life forever, [npc.she] turns around and mutters,"
-										+ " [npc.speech(I'll make you proud, [pc.mom]...)]"
-									+ "</p>"
-									+ "<p>"
-										+ "With that, [npc.sheIs] gone, and you're left with little else to do but set off into the alleyways once again..."
-									+ "</p>");
-							
-						}
-						Main.game.banishNPC(offspring());
-					}
-				};
-				
 			} else {
 				return null;
 			}

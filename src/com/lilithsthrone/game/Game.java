@@ -40,7 +40,6 @@ import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.Kate;
 import com.lilithsthrone.game.character.npc.dominion.SupplierLeader;
 import com.lilithsthrone.game.character.npc.dominion.SupplierPartner;
@@ -792,16 +791,6 @@ public class Game implements Serializable, XMLSaving {
 		isInNPCUpdateLoop = true;
 		
 		for(NPC npc : NPCMap.values()) {
-			// Remove Dominion attackers if they aren't in alleyways:
-			if(npc.getLocationPlace().getPlaceType() != PlaceType.DOMINION_BACK_ALLEYS
-					&& npc.getLocationPlace().getPlaceType() != PlaceType.DOMINION_CANAL
-					&& npc.getLocationPlace().getPlaceType() != PlaceType.DOMINION_CANAL_END
-					&& npc.getWorldLocation() == WorldType.DOMINION
-					&& npc instanceof DominionAlleywayAttacker
-					&& !Main.game.getPlayer().getLocation().equals(npc.getLocation())) {
-						banishNPC(npc);
-					}
-			
 			// Non-slave NPCs clean clothes:
 			if((!npc.isSlave() || (npc.isSlave() && !npc.getOwner().isPlayer())) && !Main.game.getPlayer().getLocation().equals(npc.getLocation())) {
 				npc.cleanAllClothing();

@@ -33,10 +33,7 @@ public enum Race {
 			1,
 			1,
 			Attribute.DAMAGE_HUMAN,
-			Attribute.RESISTANCE_HUMAN,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			false),
+			Attribute.RESISTANCE_HUMAN),
 	
 	// HUMAN:
 	HUMAN("human",
@@ -61,10 +58,7 @@ public enum Race {
 			1,
 			1,
 			Attribute.DAMAGE_HUMAN,
-			Attribute.RESISTANCE_HUMAN,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			false),
+			Attribute.RESISTANCE_HUMAN),
 
 	// BOVINES:
 	COW_MORPH("cow-morph",
@@ -89,10 +83,7 @@ public enum Race {
 			1,
 			1,
 			Attribute.DAMAGE_COW_MORPH,
-			Attribute.RESISTANCE_COW_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_COW_MORPH),
 
 	// CANINES:
 	DOG_MORPH("dog-morph",
@@ -115,10 +106,7 @@ public enum Race {
 			1,
 			2,
 			Attribute.DAMAGE_DOG_MORPH,
-			Attribute.RESISTANCE_DOG_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_DOG_MORPH),
 
 	WOLF_MORPH("wolf-morph",
 			"wolf-morphs",
@@ -142,10 +130,7 @@ public enum Race {
 			1,
 			2,
 			Attribute.DAMAGE_WOLF_MORPH,
-			Attribute.RESISTANCE_WOLF_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_WOLF_MORPH),
 	
 	FOX_MORPH("fox-morph",
 			"fox-morphs",
@@ -170,10 +155,7 @@ public enum Race {
 			1,
 			2,
 			Attribute.DAMAGE_FOX_MORPH,
-			Attribute.RESISTANCE_FOX_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_FOX_MORPH),
 
 	// FELINES:
 	CAT_MORPH("cat-morph",
@@ -198,10 +180,7 @@ public enum Race {
 			1,
 			2,
 			Attribute.DAMAGE_CAT_MORPH,
-			Attribute.RESISTANCE_CAT_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_CAT_MORPH),
 
 	// EQUINE:
 	HORSE_MORPH("horse-morph",
@@ -226,10 +205,7 @@ public enum Race {
 			1,
 			1,
 			Attribute.DAMAGE_HORSE_MORPH,
-			Attribute.RESISTANCE_HORSE_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_HORSE_MORPH),
 
 	SQUIRREL_MORPH("squirrel-morph",
 			"squirrel-morphs",
@@ -252,10 +228,7 @@ public enum Race {
 			1,
 			2,
 			Attribute.DAMAGE_SQUIRREL_MORPH,
-			Attribute.RESISTANCE_SQUIRREL_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_SQUIRREL_MORPH),
 
 	RAT_MORPH("rat-morph",
 			"rat-morphs",
@@ -279,10 +252,7 @@ public enum Race {
 			1,
 			4,
 			Attribute.DAMAGE_RAT_MORPH,
-			Attribute.RESISTANCE_RAT_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_RAT_MORPH),
 
 	RABBIT_MORPH("rabbit-morph",
 			"rabbit-morphs",
@@ -306,10 +276,7 @@ public enum Race {
 			2,
 			8,
 			Attribute.DAMAGE_RABBIT_MORPH,
-			Attribute.RESISTANCE_RABBIT_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_RABBIT_MORPH),
 	;
 
 	private String name, basicDescription, advancedDescription;
@@ -321,8 +288,6 @@ public enum Race {
 	private int numberOfOffspringLow, numberOfOffspringHigh;
 	private float chanceForMaleOffspring;
 	private Attribute damageMultiplier, resistanceMultiplier;
-	private FurryPreference defaultFemininePreference, defaultMasculinePreference;
-	private boolean affectedByFurryPreference;
 	
 	private Race(String name,
 			String namePlural,
@@ -345,12 +310,7 @@ public enum Race {
 			int numberOfOffspringHigh,
 			
 			Attribute damageMultiplier,
-			Attribute resistanceMultiplier,
-			
-			FurryPreference defaultFemininePreference,
-			FurryPreference defaultMasculinePreference,
-			
-			boolean affectedByFurryPreference) {
+			Attribute resistanceMultiplier) {
 		
 		this.name = name;
 
@@ -372,11 +332,6 @@ public enum Race {
 		
 		this.damageMultiplier = damageMultiplier;
 		this.resistanceMultiplier = resistanceMultiplier;
-		
-		this.defaultFemininePreference = defaultFemininePreference;
-		this.defaultMasculinePreference = defaultMasculinePreference;
-		
-		this.affectedByFurryPreference = affectedByFurryPreference;
 	}
 
 	public String getName() {
@@ -419,10 +374,6 @@ public enum Race {
 		return colour;
 	}
 	
-	public boolean isAffectedByFurryPreference() {
-		return affectedByFurryPreference;
-	}
-	
 	public float getChanceForMaleOffspring() {
 		return chanceForMaleOffspring;
 	}
@@ -434,13 +385,4 @@ public enum Race {
 	public Attribute getResistanceMultiplier() {
 		return resistanceMultiplier;
 	}
-
-	public FurryPreference getDefaultFemininePreference() {
-		return defaultFemininePreference;
-	}
-
-	public FurryPreference getDefaultMasculinePreference() {
-		return defaultMasculinePreference;
-	}
-
 }

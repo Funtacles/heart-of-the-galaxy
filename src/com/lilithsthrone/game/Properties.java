@@ -28,7 +28,6 @@ import com.lilithsthrone.game.character.gender.AndrogynousIdentification;
 import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.gender.GenderNames;
 import com.lilithsthrone.game.character.gender.GenderPronoun;
-import com.lilithsthrone.game.character.race.FurryPreference;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.character.race.SubspeciesPreference;
@@ -40,7 +39,6 @@ import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.game.inventory.weapon.WeaponType;
 import com.lilithsthrone.game.settings.ForcedFetishTendency;
-import com.lilithsthrone.game.settings.ForcedTFTendency;
 import com.lilithsthrone.game.settings.KeyCodeWithModifiers;
 import com.lilithsthrone.game.settings.KeyboardAction;
 import com.lilithsthrone.main.Main;
@@ -88,12 +86,9 @@ public class Properties implements Serializable {
 	public Map<GenderPronoun, String> genderPronounFemale, genderPronounMale;
 	
 	public Map<Gender, Integer> genderPreferencesMap;
-	private Map<Subspecies, FurryPreference> subspeciesFeminineFurryPreferencesMap, subspeciesMasculineFurryPreferencesMap;
 	private Map<Subspecies, SubspeciesPreference> subspeciesFemininePreferencesMap, subspeciesMasculinePreferencesMap;
 	
 	// Transformation Settings
-	public FurryPreference forcedTFPreference;
-	public ForcedTFTendency forcedTFTendency;
 	public ForcedFetishTendency forcedFetishTendency;
 	
 	// Discoveries:
@@ -134,16 +129,7 @@ public class Properties implements Serializable {
 			genderPreferencesMap.put(g, g.getGenderPreferenceDefault().getValue());
 		}
 		
-		forcedTFPreference = FurryPreference.NORMAL;
-		forcedTFTendency = ForcedTFTendency.NEUTRAL;
 		forcedFetishTendency = ForcedFetishTendency.NEUTRAL;
-		
-		subspeciesFeminineFurryPreferencesMap = new EnumMap<>(Subspecies.class);
-		subspeciesMasculineFurryPreferencesMap = new EnumMap<>(Subspecies.class);
-		for(Subspecies s : Subspecies.values()) {
-			subspeciesFeminineFurryPreferencesMap.put(s, s.getRace().getDefaultFemininePreference());
-			subspeciesMasculineFurryPreferencesMap.put(s, s.getRace().getDefaultMasculinePreference());
-		}
 		
 		subspeciesFemininePreferencesMap = new EnumMap<>(Subspecies.class);
 		subspeciesMasculinePreferencesMap = new EnumMap<>(Subspecies.class);
@@ -327,8 +313,6 @@ public class Properties implements Serializable {
 			}
 			
 			// Forced TF settings:
-			createXMLElementWithValue(doc, settings, "forcedTFPreference", String.valueOf(forcedTFPreference));
-			createXMLElementWithValue(doc, settings, "forcedTFTendency", String.valueOf(forcedTFTendency));
 			createXMLElementWithValue(doc, settings, "forcedFetishTendency", String.valueOf(forcedFetishTendency));
 			
 			// Race preferences:
@@ -346,10 +330,6 @@ public class Properties implements Serializable {
 				preference.setValue(subspeciesFemininePreferencesMap.get(s).toString());
 				element.setAttributeNode(preference);
 
-				preference = doc.createAttribute("furryPreference");
-				preference.setValue(subspeciesFeminineFurryPreferencesMap.get(s).toString());
-				element.setAttributeNode(preference);
-				
 				element = doc.createElement("preferenceMasculine");
 				racePreferences.appendChild(element);
 				
@@ -359,10 +339,6 @@ public class Properties implements Serializable {
 				
 				preference = doc.createAttribute("preference");
 				preference.setValue(subspeciesMasculinePreferencesMap.get(s).toString());
-				element.setAttributeNode(preference);
-				
-				preference = doc.createAttribute("furryPreference");
-				preference.setValue(subspeciesMasculineFurryPreferencesMap.get(s).toString());
 				element.setAttributeNode(preference);
 			}
 			
@@ -573,12 +549,6 @@ public class Properties implements Serializable {
 				}
 
 				// Forced TF preference:
-				if(element.getElementsByTagName("forcedTFPreference").item(0)!=null) {
-					forcedTFPreference = FurryPreference.valueOf(((Element)element.getElementsByTagName("forcedTFPreference").item(0)).getAttribute("value"));
-				}
-				if(element.getElementsByTagName("forcedTFTendency").item(0)!=null) {
-					forcedTFTendency = ForcedTFTendency.valueOf(((Element)element.getElementsByTagName("forcedTFTendency").item(0)).getAttribute("value"));
-				}
 				if(element.getElementsByTagName("forcedFetishTendency").item(0)!=null) {
 					forcedFetishTendency = ForcedFetishTendency.valueOf(((Element)element.getElementsByTagName("forcedFetishTendency").item(0)).getAttribute("value"));
 				}
@@ -678,37 +648,6 @@ public class Properties implements Serializable {
 					}
 				}
 				
-				
-				// Race preferences:
-				nodes = doc.getElementsByTagName("subspeciesPreferences");
-				element = (Element) nodes.item(0);
-				if(element!=null && element.getElementsByTagName("preferenceFeminine")!=null) {
-					for(int i=0; i<element.getElementsByTagName("preferenceFeminine").getLength(); i++){
-						Element e = ((Element)element.getElementsByTagName("preferenceFeminine").item(i));
-						
-						if(!e.getAttribute("subspecies").isEmpty()) {
-							try {
-								this.setFeminineSubspeciesPreference(Subspecies.valueOf(e.getAttribute("subspecies")), SubspeciesPreference.valueOf(e.getAttribute("preference")));
-								this.setFeminineFurryPreference(Subspecies.valueOf(e.getAttribute("subspecies")), FurryPreference.valueOf(e.getAttribute("furryPreference")));
-							} catch(Exception ex) {
-							}
-						}
-					}
-				}
-				if(element!=null && element.getElementsByTagName("preferenceMasculine")!=null) {
-					for(int i=0; i<element.getElementsByTagName("preferenceMasculine").getLength(); i++){
-						Element e = ((Element)element.getElementsByTagName("preferenceMasculine").item(i));
-						
-						if(!e.getAttribute("subspecies").isEmpty()) {
-							try {
-								this.setMasculineSubspeciesPreference(Subspecies.valueOf(e.getAttribute("subspecies")), SubspeciesPreference.valueOf(e.getAttribute("preference")));
-								this.setMasculineFurryPreference(Subspecies.valueOf(e.getAttribute("subspecies")), FurryPreference.valueOf(e.getAttribute("furryPreference")));
-								
-							} catch(Exception ex) {
-							}
-						}
-					}
-				}
 				
 				// Discoveries:
 				nodes = doc.getElementsByTagName("itemsDiscovered");
@@ -855,32 +794,12 @@ public class Properties implements Serializable {
 		return racesAdvancedKnowledge.contains(race);
 	}
 	
-	public void setFeminineFurryPreference(Subspecies subspecies, FurryPreference furryPreference) {
-		if(subspecies.getRace().isAffectedByFurryPreference()) {
-			subspeciesFeminineFurryPreferencesMap.put(subspecies, furryPreference);
-		}
-	}
-	
-	public void setMasculineFurryPreference(Subspecies subspecies, FurryPreference furryPreference) {
-		if(subspecies.getRace().isAffectedByFurryPreference()) {
-			subspeciesMasculineFurryPreferencesMap.put(subspecies, furryPreference);
-		}
-	}
-	
 	public void setFeminineSubspeciesPreference(Subspecies subspecies, SubspeciesPreference subspeciesPreference) {
 		subspeciesFemininePreferencesMap.put(subspecies, subspeciesPreference);
 	}
 	
 	public void setMasculineSubspeciesPreference(Subspecies subspecies, SubspeciesPreference subspeciesPreference) {
 		subspeciesMasculinePreferencesMap.put(subspecies, subspeciesPreference);
-	}
-
-	public Map<Subspecies, FurryPreference> getSubspeciesFeminineFurryPreferencesMap() {
-		return subspeciesFeminineFurryPreferencesMap;
-	}
-
-	public Map<Subspecies, FurryPreference> getSubspeciesMasculineFurryPreferencesMap() {
-		return subspeciesMasculineFurryPreferencesMap;
 	}
 
 	public Map<Subspecies, SubspeciesPreference> getSubspeciesFemininePreferencesMap() {

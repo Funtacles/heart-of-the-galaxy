@@ -118,7 +118,6 @@ import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.markings.Scar;
 import com.lilithsthrone.game.character.markings.Tattoo;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.misc.NPCOffspring;
 import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.persona.MoralityValue;
@@ -127,7 +126,6 @@ import com.lilithsthrone.game.character.persona.PersonalityTrait;
 import com.lilithsthrone.game.character.persona.PersonalityWeight;
 import com.lilithsthrone.game.character.persona.Relationship;
 import com.lilithsthrone.game.character.persona.SexualOrientation;
-import com.lilithsthrone.game.character.race.FurryPreference;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
@@ -1306,14 +1304,7 @@ public abstract class GameCharacter implements XMLSaving {
 			WorldType worldType = WorldType.valueOf(((Element)element.getElementsByTagName("worldLocation").item(0)).getAttribute("value"));
 			
 			if((worldType==WorldType.DOMINION) && Main.isVersionOlderThan(version, "0.2.1.5")) {
-				PlaceType placeType = PlaceType.DOMINION_BACK_ALLEYS;
-				
-				if(character instanceof DominionAlleywayAttacker) {
-					placeType = PlaceType.DOMINION_BACK_ALLEYS;
-					
-				} else { // Catch if no location found:
-					placeType = PlaceType.DOMINION_BACK_ALLEYS;
-				}
+				PlaceType placeType = PlaceType.GENERIC_EMPTY_TILE;
 				
 				character.setLocation(
 						worldType,
@@ -2439,20 +2430,6 @@ public abstract class GameCharacter implements XMLSaving {
 			humanChance = 0.75f;
 		}
 		
-		if(gender.isFeminine()) {
-			for(Entry<Subspecies, FurryPreference> entry : Main.getProperties().getSubspeciesFeminineFurryPreferencesMap().entrySet()) {
-				if(entry.getValue() == FurryPreference.HUMAN) {
-					subspeciesMap.remove(entry.getKey());
-				}
-			}
-		} else {
-			for(Entry<Subspecies, FurryPreference> entry : Main.getProperties().getSubspeciesMasculineFurryPreferencesMap().entrySet()) {
-				if(entry.getValue() == FurryPreference.HUMAN) {
-					subspeciesMap.remove(entry.getKey());
-				}
-			}
-		}
-		
 		int total = 0;
 		for(Integer i : subspeciesMap.values()) {
 			total += i;
@@ -2461,60 +2438,6 @@ public abstract class GameCharacter implements XMLSaving {
 		if(subspeciesMap.isEmpty() || total==0 || Math.random()<humanChance) {
 			setBody(gender, RacialBody.HUMAN, RaceStage.HUMAN);
 			
-		} else {
-			Subspecies species = Util.getRandomObjectFromWeightedMap(subspeciesMap);
-			
-			if(gender.isFeminine()) {
-				switch(Main.getProperties().getSubspeciesFeminineFurryPreferencesMap().get(species)) {
-					case HUMAN:
-						setBody(gender, RacialBody.HUMAN, RaceStage.HUMAN);
-						break;
-					case MINIMUM:
-						setBodyFromPreferences(1, gender, species);
-						break;
-					case REDUCED:
-						setBodyFromPreferences(2, gender, species);
-						break;
-					case NORMAL:
-						setBodyFromPreferences(3, gender, species);
-						break;
-					case MAXIMUM:
-						setBody(gender, species, RaceStage.GREATER);
-						break;
-				}
-			} else {
-				switch(Main.getProperties().getSubspeciesMasculineFurryPreferencesMap().get(species)) {
-					case HUMAN:
-						setBody(gender, RacialBody.HUMAN, RaceStage.HUMAN);
-						break;
-					case MINIMUM:
-						setBodyFromPreferences(1, gender, species);
-						break;
-					case REDUCED:
-						setBodyFromPreferences(2, gender, species);
-						break;
-					case NORMAL:
-						setBodyFromPreferences(3, gender, species);
-						break;
-					case MAXIMUM:
-						setBody(gender, species, RaceStage.GREATER);
-						break;
-				}
-			}
-		}
-	}
-	
-	protected void addToSubspeciesMap(int weight, Gender gender, Subspecies subspecies, Map<Subspecies, Integer> map) {
-		if(gender.isFeminine()) {
-			if(Main.getProperties().getSubspeciesFeminineFurryPreferencesMap().get(subspecies)!=FurryPreference.HUMAN
-					&& Main.getProperties().getSubspeciesFemininePreferencesMap().get(subspecies).getValue()>0) {
-				map.put(subspecies, weight*Main.getProperties().getSubspeciesFemininePreferencesMap().get(subspecies).getValue());
-			}
-		} else {
-			if(Main.getProperties().getSubspeciesMasculineFurryPreferencesMap().get(subspecies)!=FurryPreference.HUMAN
-					&& Main.getProperties().getSubspeciesMasculinePreferencesMap().get(subspecies).getValue()>0) {
-				map.put(subspecies, weight*Main.getProperties().getSubspeciesMasculinePreferencesMap().get(subspecies).getValue());
-			}
 		}
 	}
 	
@@ -3069,10 +2992,6 @@ public abstract class GameCharacter implements XMLSaving {
 	public DialogueNodeOld getEnslavementDialogue(AbstractClothing enslavementClothing) {
 		this.enslavementClothing = enslavementClothing;
 		return enslavementDialogue;
-	}
-	
-	public void setEnslavementDialogue(DialogueNodeOld enslavementDialogue) {
-		this.enslavementDialogue = enslavementDialogue;
 	}
 	
 	public AbstractClothing getEnslavementClothing() {

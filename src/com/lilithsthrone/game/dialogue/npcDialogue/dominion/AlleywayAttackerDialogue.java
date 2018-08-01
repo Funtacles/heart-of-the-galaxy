@@ -25,7 +25,6 @@ import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Util.Value;
-import com.lilithsthrone.world.places.PlaceType;
 
 /**
  * @since 0.1.?
@@ -33,13 +32,6 @@ import com.lilithsthrone.world.places.PlaceType;
  * @author Innoxia
  */
 public class AlleywayAttackerDialogue {
-
-	private static boolean isCanal() {
-		PlaceType pt = getMugger().getLocationPlace().getPlaceType();
-		return (pt == PlaceType.DOMINION_ALLEYS_CANAL_CROSSING
-				|| pt == PlaceType.DOMINION_CANAL
-				|| pt == PlaceType.DOMINION_CANAL_END);
-	}
 	
 	private static NPC getMugger() {
 		return Main.game.getActiveNPC();
@@ -53,12 +45,7 @@ public class AlleywayAttackerDialogue {
 			UtilText.nodeContentSB.setLength(0);
 			
 			if(getMugger().getLastTimeEncountered() != -1) {
-				if(isCanal()) {
-					UtilText.nodeContentSB.append(UtilText.parseFromXMLFile("encounters/dominion/alleywayAttack", "ALLEY_ATTACK_CANAL_REPEAT_INTRO", getMugger()));
-					
-				} else {
-					UtilText.nodeContentSB.append(UtilText.parseFromXMLFile("encounters/dominion/alleywayAttack", "ALLEY_ATTACK_REPEAT_INTRO", getMugger()));
-				}
+				UtilText.nodeContentSB.append(UtilText.parseFromXMLFile("encounters/dominion/alleywayAttack", "ALLEY_ATTACK_REPEAT_INTRO", getMugger()));
 				
 				if(getMugger().isVisiblyPregnant()){
 					// Pregnant encounters:
@@ -74,12 +61,7 @@ public class AlleywayAttackerDialogue {
 				}
 				
 			} else {
-				if(isCanal()) {
-					UtilText.nodeContentSB.append(UtilText.parseFromXMLFile("encounters/dominion/alleywayAttack", "ALLEY_ATTACK_CANAL_INTRO", getMugger()));
-					
-				} else {
-					UtilText.nodeContentSB.append(UtilText.parseFromXMLFile("encounters/dominion/alleywayAttack", "ALLEY_ATTACK_INTRO", getMugger()));
-				}
+				UtilText.nodeContentSB.append(UtilText.parseFromXMLFile("encounters/dominion/alleywayAttack", "ALLEY_ATTACK_INTRO", getMugger()));
 
 				UtilText.nodeContentSB.append(UtilText.parseFromXMLFile("encounters/dominion/alleywayAttack", "ALLEY_ATTACK", getMugger()));
 			}

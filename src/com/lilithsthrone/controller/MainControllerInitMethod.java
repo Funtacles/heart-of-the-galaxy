@@ -94,8 +94,6 @@ import com.lilithsthrone.game.character.persona.NameTriplet;
 import com.lilithsthrone.game.character.persona.PersonalityTrait;
 import com.lilithsthrone.game.character.persona.PersonalityWeight;
 import com.lilithsthrone.game.character.persona.SexualOrientation;
-import com.lilithsthrone.game.character.race.FurryPreference;
-import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.combat.DamageType;
 import com.lilithsthrone.game.dialogue.DebugDialogue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
@@ -133,7 +131,6 @@ import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.game.inventory.weapon.WeaponType;
 import com.lilithsthrone.game.settings.ForcedFetishTendency;
-import com.lilithsthrone.game.settings.ForcedTFTendency;
 import com.lilithsthrone.game.settings.KeyboardAction;
 import com.lilithsthrone.game.sex.SexAreaOrifice;
 import com.lilithsthrone.game.sex.SexAreaPenetration;
@@ -4206,80 +4203,6 @@ public class MainControllerInitMethod {
 				MainController.addEventListener(MainController.document, "furry_preference_human_encounter_four", "mouseenter", el, false);
 			}
 			
-			
-			// Forced TF racial limits:
-			id = "forced_tf_limit_human";
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedTFPreference = FurryPreference.HUMAN;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation("Human Only",
-						"Forced transformations from NPCs will only ever affect your body's non-racial stats, and if a new part is required (such as a vagina or penis) it will always grow to be a human one.");
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-			}
-			id = "forced_tf_limit_minimum";
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedTFPreference = FurryPreference.MINIMUM;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation("Minimum Furry",
-						"Forced transformations from NPCs will have the chance to give you non-human hair, ears, eyes, tails, horns, antenna, and wings. All other parts will always remain human.");
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-			}
-			id = "forced_tf_limit_reduced";
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedTFPreference = FurryPreference.REDUCED;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation("Lesser Furry",
-						"Forced transformations from NPCs will have the chance to give you non-human hair, ears, eyes, tails, horns, antenna, wings, breasts, ass, genitalia, arms, and legs. Your skin and face will always remain human.");
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-			}
-			id = "forced_tf_limit_normal";
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedTFPreference = FurryPreference.NORMAL;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation("Greater Furry",
-						"Forced transformations from NPCs will have the chance to give you non-human hair, ears, eyes, tails, horns, antenna, wings, breasts, ass, genitalia, arms, legs, skin, and face. (So everything can be affected.)");
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-			}
-			id = "forced_tf_limit_maximum";
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedTFPreference = FurryPreference.MAXIMUM;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation("Always Greater Furry",
-						"Forced transformations from NPCs will always give you non-human hair, ears, eyes, tails, horns, antenna, wings, breasts, genitalia, ass, arms, legs, skin, and face. (So everything will be affected.)");
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-			}
-			
-			
 			// Multi-breast options:
 			if (((EventTarget) MainController.document.getElementById("furry_preference_multi_breast_zero")) != null) {
 				((EventTarget) MainController.document.getElementById("furry_preference_multi_breast_zero")).addEventListener("click", e -> {
@@ -4317,136 +4240,8 @@ public class MainControllerInitMethod {
 				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation("On", "Randomly-generated NPCs will spawn in with multiple rows of breasts if their breast type is furry (starts at 'Minor morph' level).");
 				MainController.addEventListener(MainController.document, "furry_preference_multi_breast_two", "mouseenter", el, false);
 			}
-			
-			// Race preferences:
-			if (((EventTarget) MainController.document.getElementById("furry_preference_female_human_all")) != null) {
-				((EventTarget) MainController.document.getElementById("furry_preference_female_human_all")).addEventListener("click", e -> {
-					for (Subspecies r : Subspecies.values()) {
-						Main.getProperties().setFeminineFurryPreference(r, FurryPreference.HUMAN);
-						Main.getProperties().setMasculineFurryPreference(r, FurryPreference.HUMAN);
-					}
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-			}
-			if (((EventTarget) MainController.document.getElementById("furry_preference_female_minimum_all")) != null) {
-				((EventTarget) MainController.document.getElementById("furry_preference_female_minimum_all")).addEventListener("click", e -> {
-					for (Subspecies r : Subspecies.values()) {
-						Main.getProperties().setFeminineFurryPreference(r, FurryPreference.MINIMUM);
-						Main.getProperties().setMasculineFurryPreference(r, FurryPreference.MINIMUM);
-					}
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-			}
-			if (((EventTarget) MainController.document.getElementById("furry_preference_female_reduced_all")) != null) {
-				((EventTarget) MainController.document.getElementById("furry_preference_female_reduced_all")).addEventListener("click", e -> {
-					for (Subspecies r : Subspecies.values()) {
-						Main.getProperties().setFeminineFurryPreference(r, FurryPreference.REDUCED);
-						Main.getProperties().setMasculineFurryPreference(r, FurryPreference.REDUCED);
-					}
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-			}
-			if (((EventTarget) MainController.document.getElementById("furry_preference_female_normal_all")) != null) {
-				((EventTarget) MainController.document.getElementById("furry_preference_female_normal_all")).addEventListener("click", e -> {
-					for (Subspecies r : Subspecies.values()) {
-						Main.getProperties().setFeminineFurryPreference(r, FurryPreference.NORMAL);
-						Main.getProperties().setMasculineFurryPreference(r, FurryPreference.NORMAL);
-					}
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-			}
-			if (((EventTarget) MainController.document.getElementById("furry_preference_female_maximum_all")) != null) {
-				((EventTarget) MainController.document.getElementById("furry_preference_female_maximum_all")).addEventListener("click", e -> {
-					for (Subspecies r : Subspecies.values()) {
-						Main.getProperties().setFeminineFurryPreference(r, FurryPreference.MAXIMUM);
-						Main.getProperties().setMasculineFurryPreference(r, FurryPreference.MAXIMUM);
-					}
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-			}
-			
-			for (Subspecies s : Subspecies.values()) {
-				for(FurryPreference preference : FurryPreference.values()) {
-					id = "FEMININE_" + preference+"_"+s;
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.getProperties().setFeminineFurryPreference(s, preference);
-							Main.saveProperties();
-							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-						}, false);
-	
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(preference.getName(), preference.getDescriptionFeminine(s));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					id = "MASCULINE_" + preference+"_"+s;
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.getProperties().setMasculineFurryPreference(s, preference);
-							Main.saveProperties();
-							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-						}, false);
-	
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(preference.getName(), preference.getDescriptionMasculine(s));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-				}
-			}
-			
-//			for (Subspecies s : Subspecies.values()) {
-//				for(SubspeciesPreference preference : SubspeciesPreference.values()) {
-//					id = "FEMININE_" + preference+"_"+s;
-//					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-//						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-//							Main.getProperties().subspeciesFemininePreferencesMap.put(s, preference);
-//							Main.saveProperties();
-//							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-//						}, false);
-//
-//						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-//						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-//						TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(preference.getName(), "");
-//						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-//					}
-//					id = "MASCULINE_" + preference+"_"+s;
-//					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-//						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-//							Main.getProperties().subspeciesFemininePreferencesMap.put(s, preference);
-//							Main.saveProperties();
-//							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-//						}, false);
-//
-//						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-//						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-//						TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(preference.getName(), "");
-//						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-//					}
-//				}
-//			}
 		}
-		
-//		// Race preferences:
-//		if (Main.game.getCurrentDialogueNode() == OptionsDialogue.SPECIES_PREFERENCE) {
-//			for (Subspecies s : Subspecies.values()) {
-//				for(SubspeciesPreference preference : SubspeciesPreference.values()) {
-//					if (((EventTarget) MainController.document.getElementById(preference+"_"+s)) != null) {
-//						((EventTarget) MainController.document.getElementById(preference+"_"+s)).addEventListener("click", e -> {
-//							Main.getProperties().subspeciesPreferencesMap.put(s, preference);
-//							Main.saveProperties();
-//							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-//						}, false);
-//					}
-//				}
-//			}
-//		}
+
 		
 		// Content preferences:
 
@@ -4640,85 +4435,6 @@ public class MainControllerInitMethod {
 					Main.saveProperties();
 					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
 				}, false);
-			}
-			
-			
-			// Forced TF Tendency setting events
-			id = "FORCED_TF_TENDENCY_"+ForcedTFTendency.NEUTRAL;
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedTFTendency = ForcedTFTendency.NEUTRAL;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-				
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(ForcedTFTendency.NEUTRAL.getName(),
-						ForcedTFTendency.NEUTRAL.getDescription());
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-			}
-			
-			
-			
-			id = "FORCED_TF_TENDENCY_"+ForcedTFTendency.FEMININE;
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedTFTendency = ForcedTFTendency.FEMININE;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-				
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(ForcedTFTendency.FEMININE.getName(),
-						ForcedTFTendency.FEMININE.getDescription());
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-			}
-			
-			id = "FORCED_TF_TENDENCY_"+ForcedTFTendency.FEMININE_HEAVY;
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedTFTendency = ForcedTFTendency.FEMININE_HEAVY;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-				
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(ForcedTFTendency.FEMININE_HEAVY.getName(),
-						ForcedTFTendency.FEMININE_HEAVY.getDescription());
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-			}
-			
-			id = "FORCED_TF_TENDENCY_"+ForcedTFTendency.MASCULINE;
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedTFTendency = ForcedTFTendency.MASCULINE;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-				
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(ForcedTFTendency.MASCULINE.getName(),
-						ForcedTFTendency.MASCULINE.getDescription());
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-			}
-			
-			id = "FORCED_TF_TENDENCY_"+ForcedTFTendency.MASCULINE_HEAVY;
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedTFTendency = ForcedTFTendency.MASCULINE_HEAVY;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-				
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(ForcedTFTendency.MASCULINE_HEAVY.getName(),
-						ForcedTFTendency.MASCULINE_HEAVY.getDescription());
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
 			}
 			
 			// Forced Fetish Tendency setting events
