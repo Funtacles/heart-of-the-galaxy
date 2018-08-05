@@ -62,17 +62,15 @@ public class OptionsDialogue {
 		
 		@Override
 		public String getContent(){
-			return "<h1 class='special-text' style='font-size:48px; line-height:52px; text-align:center;'>Lilith's Throne</h1>"
-					+ "<h5 class='special-text' style='text-align:center;'>Created by Innoxia</h5>"
+			return "<h1 class='game-title'>Heart Of The Galaxy</h1>"
+					+ "<h6 class='game-subtitle'>Made with care by Funtacles</h6>"
+					+ "<h5 class='game-subtitle'>A mod for <span class='game-subtitle-lt'>Lilith's Throne</span>, created by <span class='game-subtitle-lt'>Innoxia</span></h6>"
 					+ "<br/>"
 					+ "<p>"
 						+ "This game is a text-based erotic RPG, and contains a lot of graphic sexual content. You must agree to the game's disclaimer before playing this game!"
 					+ "</p>"
 					+"<p>"
-						+ "You can visit my blog (https://lilithsthrone.blogspot.co.uk) to check on development progress (use the 'Blog' button below to open the blog in your default browser)."
-					+ "</p>"
-					+ "<p style='text-align:center'>"
-						+ "<b>Please use either my blog or github to get the latest official version of Lilith's Throne!</b>"
+						+ "Check out Lilith's Throne at (https://lilithsthrone.blogspot.co.uk)."
 					+ "</p>"
 					+ getJavaVersionInformation()
 					+ (Toolkit.getDefaultToolkit().getScreenSize().getHeight()<800

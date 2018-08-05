@@ -1028,7 +1028,7 @@ public class MainController implements Initializable {
 		if (Main.getProperties().hasValue(PropertyValue.lightTheme)) {
 			webEngineTooltip.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewTooltip_stylesheet_light.css").toExternalForm());
 		} else {
-			webEngineTooltip.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewTooltip_stylesheet.css").toExternalForm());
+			webEngineTooltip.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewTooltip_stylesheet_hotg.css").toExternalForm());
 		}
 
 		// Main WebView:
@@ -1040,7 +1040,7 @@ public class MainController implements Initializable {
 		if (Main.getProperties().hasValue(PropertyValue.lightTheme)) {
 			webEngine.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webView_stylesheet_light.css").toExternalForm());
 		} else {
-			webEngine.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webView_stylesheet.css").toExternalForm());
+			webEngine.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webView_stylesheet_hotg.css").toExternalForm());
 		}
 		
 		if(debugAllowListeners) {
@@ -1062,7 +1062,7 @@ public class MainController implements Initializable {
 		if (Main.getProperties().hasValue(PropertyValue.lightTheme)) {
 			webEngineButtons.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewButtons_stylesheet_light.css").toExternalForm());
 		} else {
-			webEngineButtons.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewButtons_stylesheet.css").toExternalForm());
+			webEngineButtons.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewButtons_stylesheet_hotg.css").toExternalForm());
 		}
 		
 		if(debugAllowListeners)
@@ -1083,7 +1083,7 @@ public class MainController implements Initializable {
 		if (Main.getProperties().hasValue(PropertyValue.lightTheme)) {
 			webEngineAttributes.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet_light.css").toExternalForm());
 		} else {
-			webEngineAttributes.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet.css").toExternalForm());
+			webEngineAttributes.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet_hotg.css").toExternalForm());
 		}
 		
 		if(debugAllowListeners){
@@ -1104,7 +1104,7 @@ public class MainController implements Initializable {
 		if (Main.getProperties().hasValue(PropertyValue.lightTheme)) {
 			webEngineRight.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet_light.css").toExternalForm());
 		} else {
-			webEngineRight.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet.css").toExternalForm());
+			webEngineRight.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet_hotg.css").toExternalForm());
 		}
 		
 		if(debugAllowListeners) {

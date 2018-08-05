@@ -71,7 +71,7 @@ public class Main extends Application {
 	
 	private final static boolean DEBUG = false;
 
-	public static final Image WINDOW_IMAGE = new Image("/com/lilithsthrone/res/images/windowIcon32.png");
+	public static final Image WINDOW_IMAGE = new Image("/com/lilithsthrone/res/images/hotgIcon64.png");
 
 	private static Properties properties;
 	
@@ -394,7 +394,7 @@ public class Main extends Application {
 
 		Main.primaryStage.getIcons().add(WINDOW_IMAGE);
 
-		Main.primaryStage.setTitle("Lilith's Throne " + VERSION_NUMBER + " " + VERSION_DESCRIPTION);
+		Main.primaryStage.setTitle("Heart of the Galaxy " + VERSION_NUMBER + " " + VERSION_DESCRIPTION);
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lilithsthrone/res/fxml/main.fxml"));
 
@@ -405,7 +405,7 @@ public class Main extends Application {
 		if (properties.hasValue(PropertyValue.lightTheme)) {
 			mainScene.getStylesheets().add("/com/lilithsthrone/res/css/stylesheet_light.css");
 		} else {
-			mainScene.getStylesheets().add("/com/lilithsthrone/res/css/stylesheet.css");
+			mainScene.getStylesheets().add("/com/lilithsthrone/res/css/stylesheet_hotg.css");
 		}
 
 		mainController = loader.getController();
@@ -424,7 +424,7 @@ public class Main extends Application {
 				if (Main.getProperties().hasValue(PropertyValue.lightTheme))
 					Main.mainScene.getStylesheets().add("/com/lilithsthrone/res/css/stylesheet_light.css");
 				else
-					Main.mainScene.getStylesheets().add("/com/lilithsthrone/res/css/stylesheet.css");
+					Main.mainScene.getStylesheets().add("/com/lilithsthrone/res/css/stylesheet_hotg.css");
 			}
 
 			Main.primaryStage.setScene(Main.mainScene);
@@ -529,7 +529,7 @@ public class Main extends Application {
 						if (Main.getProperties().hasValue(PropertyValue.lightTheme))
 							Main.mainScene.getStylesheets().add("/com/lilithsthrone/res/css/stylesheet_light.css");
 						else
-							Main.mainScene.getStylesheets().add("/com/lilithsthrone/res/css/stylesheet.css");
+							Main.mainScene.getStylesheets().add("/com/lilithsthrone/res/css/stylesheet_hotg.css");
 					}
 
 					Main.primaryStage.setScene(Main.mainScene);
