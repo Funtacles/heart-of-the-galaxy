@@ -1,5 +1,8 @@
-<h3>Readme</h3>
+### Readme
 
+Source code for **Heart of the Galaxy**, a mod for **Lilith's Throne**.
+
+### Original
 This is the source code for Lilith's Throne.
 
 You must agree to the terms of the attached disclaimer and abide by the terms of the license if you wish to view this source code.
