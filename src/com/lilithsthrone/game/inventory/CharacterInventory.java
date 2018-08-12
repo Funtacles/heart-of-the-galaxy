@@ -892,7 +892,7 @@ public class CharacterInventory implements Serializable, XMLSaving {
 		}
 		
 		// Can't equip piercings if that body part isn't pierced:
-		if(characterClothingOwner.getBody().getBodyMaterial().isRequiresPiercing()) { // Slimes and some elementals don't care about non-cock piercings:
+		if(characterClothingOwner.getBody().getBodyMaterial().isRequiresPiercing()) { // Some elementals don't care about non-cock piercings:
 			if (!characterClothingOwner.isPiercedEar() && newClothing.getClothingType().getSlot() == InventorySlot.PIERCING_EAR) {
 				equipTextSB.append(characterClothingOwner.isPlayer()
 						?"Your ears need to be pierced before you can wear the "+newClothing.getName()+"!"

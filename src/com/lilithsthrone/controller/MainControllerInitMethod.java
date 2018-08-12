@@ -2693,7 +2693,7 @@ public class MainControllerInitMethod {
 				}
 				
 
-				// ------------ Demonic/Slime transformations -------------- //
+				// ------------ Demonic transformations -------------- //
 				
 				for(ArmType armType: ArmType.values()) {
 					id = "CHANGE_ARM_"+armType;

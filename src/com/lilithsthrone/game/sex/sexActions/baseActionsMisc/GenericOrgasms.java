@@ -1506,9 +1506,6 @@ public class GenericOrgasms {
 								case PINEAPPLE:
 									cumTargetSB.append(" The unusual taste of [npc1.namePos] pineapple-flavoured");
 									break;
-								case SLIME:
-									cumTargetSB.append(" The unusual taste of [npc1.namePos] sweet");
-									break;
 								case STRAWBERRY:
 									cumTargetSB.append(" The unusual taste of [npc1.namePos] strawberry-flavoured");
 									break;
@@ -1724,15 +1721,6 @@ public class GenericOrgasms {
 				case AIR:
 				case ARCANE:
 				case WATER:
-				case SLIME:
-					if(characterOrgasming.isPlayer()) {
-						cumTargetSB.append("<br/>"
-								+ "As [npc2.namePos] body is made completely out of translucent "+target.getBodyMaterial().getName()+", you're able to see the cloud of your [npc1.cum+] shooting up and dispersing inside of [npc2.herHim].");
-					} else {
-						cumTargetSB.append("<br/>"
-								+ "As your body is made completely out of translucent "+target.getBodyMaterial().getName()+", you're able to see the cloud of [npc1.namePos] [npc1.cum+] shooting up and dispersing inside of you.");
-					}
-					break;
 				case FIRE:
 				case FLESH:
 				case ICE:

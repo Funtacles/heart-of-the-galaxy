@@ -84,8 +84,6 @@ public enum HairType implements BodyPartTypeInterface {
 				return "feather";
 			case ALLIGATOR_SCALES:
 				return "scale";
-			case SLIME:
-				return "slime";
 			default:
 				return "hair";
 		}
@@ -98,8 +96,6 @@ public enum HairType implements BodyPartTypeInterface {
 				return "feathers";
 			case ALLIGATOR_SCALES:
 				return "scales";
-			case SLIME:
-				return "slime";
 			default:
 				return "hair";
 		}

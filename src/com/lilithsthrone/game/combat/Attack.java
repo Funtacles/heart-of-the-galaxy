@@ -381,7 +381,6 @@ public enum Attack {
 					damageDoubledFromElemental = ((Elemental)attacker).hasStatusEffect(StatusEffect.ELEMENTAL_FIRE_SERVANT_OF_FIRE_ELEMENTAL_BUFF);
 					break;
 				case FLESH:
-				case SLIME:
 					break;
 				case RUBBER:
 				case STONE:

@@ -925,52 +925,6 @@ public class ItemType {
 		}
 	};
 	
-	public static AbstractItemType SEX_INGREDIENT_SLIME_QUENCHER = new AbstractItemType(250,
-			"a bottle of",
-			false,
-			"Slime Quencher",
-			"Slime Quenchers",
-			"A small glass bottle of luminescent, fizzy pop."
-					+ " The label on the front reads 'Slime Quencher', and, to one side, there's a picture of a completely naked slime-girl pressing her breasts together and smiling at you.",
-			"attributeSlimeDrink",
-			Colour.GENERIC_SEX,
-			null,
-			null,
-			Rarity.UNCOMMON,
-			TFEssence.ARCANE,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.SEX_SLIME_DRINK)),
-			Util.newArrayListOfValues(
-					ItemTag.ATTRIBUTE_TF_ITEM)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public AbstractItemEffectType getEnchantmentEffect() {
-			return ItemEffectType.ATTRIBUTE_SEXUAL;
-		}
-
-		@Override
-		public AbstractItemType getEnchantmentItemType(List<ItemEffect> effects) {
-			return POTION;
-		}
-
-		@Override
-		public String getUseName() {
-			return "drink";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"You pop off the cap and start drinking the bottle of 'Slime Quencher'."
-						+ " The recognisable taste of a sugary energy drink fills your mouth, and you greedily gulp down the all of the glowing liquid in a matter of seconds.",
-					"Popping off the cap, you bring the bottle of 'Slime Quencher' to [npc.namePos] lips, before tilting [npc.her] head back and forcing [npc.herHim] to quickly gulp down the liquid.",
-					"[npc.Name] pulls out a bottle of 'Slime Quencher', and, after quickly popping off the cap, [npc.she] promptly downs the entire bottle.",
-					"[npc.Name] pulls out a bottle of 'Slime Quencher', and, after quickly popping off the cap, [npc.she] brings it to your lips before tilting your head back and forcing you to quickly gulp down the contents."
-						+ " The recognisable taste of a sugary energy drink fills your mouth, and, with [npc.namePos] help, you greedily gulp down the all of the glowing liquid in a matter of seconds.");
-		}
-	};
-	
 	public static AbstractItemType SEX_INGREDIENT_BUNNY_JUICE = new AbstractItemType(250,
 			"a bottle of",
 			false,
@@ -1304,8 +1258,7 @@ public class ItemType {
 			true,
 			"Glowing Mushroom",
 			"Glowing Mushrooms",
-			"Bioluminescent mushrooms such as these are commonly found growing in the Bat Caverns."
-					+ " The slimes which call those caverns their home are particularly fond of consuming these mushrooms, which is what causes their bodies to glow.",
+			"Bioluminescent mushrooms such as these are commonly found growing in the Bat Caverns.",
 			"mushrooms",
 			Colour.BASE_BLUE_LIGHT,
 			null,
@@ -2061,98 +2014,9 @@ public class ItemType {
 		}
 	};
 	
-	public static AbstractItemType RACE_INGREDIENT_SLIME = new AbstractItemType(2500,
-			"a",
-			false,
-			"Biojuice Canister",
-			"Biojuice Canisters",
-			"A canister of glowing pink liquid, which has a thick, slimy consistency."
-					+ " The warning sign on the front makes it quite clear that drinking this would be a bad idea...",
-			"raceSlimeBiojuice",
-			Colour.RACE_SLIME,
-			null,
-			null,
-			Rarity.LEGENDARY,
-			TFEssence.ARCANE,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.RACE_BIOJUICE)),
-			Util.newArrayListOfValues(
-					ItemTag.RACIAL_TF_ITEM,
-					ItemTag.NOT_FOR_SALE)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public AbstractItemEffectType getEnchantmentEffect() {
-			return ItemEffectType.RACE_SLIME;
-		}
-
-		@Override
-		public AbstractItemType getEnchantmentItemType(List<ItemEffect> effects) {
-			return ELIXIR;
-		}
-
-		@Override
-		public boolean isAbleToBeUsed(GameCharacter target) {
-			return (!Main.game.isInCombat() || target.isPlayer()) && !target.isPregnant();
-		}
-		
-		@Override
-		public String getUnableToBeUsedDescription(GameCharacter target) {
-			return "This item cannot be used on pregnant people!";
-		}
-		
-		@Override
-		public String getUseName() {
-			return "drink";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"Ignoring the warning on the front, you unseal one end of the canister and bring it up to your [pc.lips]."
-							+ " The glowing pink liquid within gives off a faintly sweet smell, and you tilt your head back and gulp it all down...",
-					"You unseal one end of the canister and bring it up to [npc.namePos] [npc.lips]."
-							+ " Tilting [npc.her] head back, you force [npc.herHim] to drink down all of the glowing pink liquid...",
-					"[npc.Name] pulls out a canister of Biojuice, and, unsealing one end of the canister, [npc.she] brings it up to [npc.her] [npc.lips] and gulps it all down....",
-					"[npc.Name] pulls out a canister of Biojuice, and, unsealing one end of the canister, [npc.she] brings it up to your [pc.lips]."
-							+ " The glowing pink liquid within gives off a faintly sweet smell, and [npc.name] tilts your head back and forces you to gulp it all down....");
-		}
-	};
+	
 	
 	// Essence bottles:
-	
-//	BOTTLED_ESSENCE_ANGEL(
-//			null,
-//			false,
-//			"Bottled Angel's Essence",
-//			"A small glass bottle, with a little cork stopper wedged firmly in the top."
-//					+ " Inside, there's a swirling  ",
-//			"bottledEssenceAngel",
-//			Colour.RARITY_LEGENDARY,
-//			50,
-//			Rarity.LEGENDARY,
-//			null,
-//			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BOTTLED_ESSENCE_ANGEL))) {
-//
-//		@Override
-//		public String getUseName() {
-//			return "suck";
-//		}
-//
-//		@Override
-//		public String getUseDescription(GameCharacter user, GameCharacter target) {
-//			if (target.isPlayer()) {
-//				return "<p>"
-//							+ ""
-//						+ "</p>";
-//				
-//			} else {
-//				return "<p>"
-//						+ "(You shouldn't be seeing this. x_x)"
-//					+ "</p>";
-//			}
-//		}
-//	};
 	
 	private static String getEssenceAbsorbtionText(Colour essenceColour, GameCharacter user, GameCharacter target) {
 			if (user!=null && user.isPlayer()) {
@@ -2898,45 +2762,6 @@ public class ItemType {
 		}
 	};
 
-	public static AbstractItemType BOTTLED_ESSENCE_SLIME = new AbstractItemType(
-			50,
-			null,
-			false,
-			"Bottled Slime Essence",
-			"Bottled Slime Essences",
-			"A small glass bottle, with a little cork stopper wedged firmly in the top."
-					+ " Inside, the swirling "+Colour.RACE_SLIME.getName()+" glow of an arcane essence, imbued with the energy of a slime, flickers and swirls about in a mesmerising, cyclical pattern.",
-			"bottledEssenceSlime",
-			Colour.RACE_SLIME,
-			null,
-			null,
-			Rarity.EPIC,
-			null,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BOTTLED_ESSENCE_SLIME)),
-			Util.newArrayListOfValues(ItemTag.ESSENCE)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getUseName() {
-			return "absorb";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getEssenceAbsorbtionText(Colour.RACE_SLIME, user, target);
-		}
-		
-		public boolean isAbleToBeUsed(GameCharacter target) {
-			return target.getRace()==Race.DEMON || target.isPlayer();
-		}
-		
-		public String getUnableToBeUsedDescription(GameCharacter target) {
-			return "Only people with a demonic-strength aura are able to absorb arcane essences!";
-		}
-	};
-	
-	
 	
 	// Specials:
 	
@@ -3875,21 +3700,6 @@ public class ItemType {
 			Rarity.LEGENDARY,
 			null,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BOOK_READ_WOLF_MORPH)),
-			Util.newArrayListOfValues(ItemTag.BOOK));
-	
-	public static AbstractItemType BOOK_SLIME = createBookItem(250,
-			null,
-			false,
-			"Slimy Fun",
-			"Slimy Funs",
-			"A book all about slimes.",
-			"book_race_slime",
-			Colour.RACE_SLIME,
-			null,
-			null,
-			Rarity.LEGENDARY,
-			null,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BOOK_READ_SLIME)),
 			Util.newArrayListOfValues(ItemTag.BOOK));
 	
 	public static AbstractItemType PRESENT = new AbstractItemType(250,

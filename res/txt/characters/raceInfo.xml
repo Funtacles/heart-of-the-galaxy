@@ -464,40 +464,6 @@
 	]]>
 	</htmlContent>
 
-	<!-- SLIMES -->
-
-	<htmlContent tag="SLIME_BASIC"><![CDATA[
-	<p>
-		Slimes are one of the rarer races of this world.
-		 The vast majority of their population resides in the watery undercity of Submission, but they can also be found in small numbers all over the world.
-		 Slimes are very easy to identify, as their entire body is made out of gooey slime, with a glowing core in the place where their heart should be.
-	</p>
-	]]>
-	</htmlContent>
-
-	<htmlContent tag="SLIME_ADVANCED"><![CDATA[
-	<p>
-		Just like most races, the personality of slimes differs greatly from individual to individual, with the vast majority being pleasant, law-abiding citizens.
-		 There are a minority, however, who believe that their diet should consist solely of sexual fluids, and these troublemakers have show no hesitation in attacking innocent travellers to milk for their next meal...
-	</p>
-	<p>
-		Slimes survive entirely on a liquid diet, transforming any fluid that they ingest (or extract out of absorbed solids) into more slime.
-		 Just like any other liquid, their slimy bodies evaporate over time, requiring them to maintain a regular fluid intake.
-	</p>
-	<p>
-		Slimes, like all non-demonic races, get heavily affected by arcane storms.
-		 Being exposed to arcane thunder will make slimes desperately seek out someone to milk for fluids.
-		 Upon finding and subduing a suitable target, slimes will continuously milk their victim until their hunger is well satisfied.
-	</p>
-	<p>
-		Slime pregnancies work in a very different manner to all others.
-		 Regardless of whether a slime looks feminine or masculine, or whether they have transformed to give themselves a vagina or not, all slimes can be impregnated.
-		 If any cum reaches their core, new cores may later split off, before growing inside them for the same length of time as a regular pregnancy.
-		 When fully grown, the parent slime will split into multiple new slimes, with each of the new cores moving into a new slime body.
-	</p>
-	]]>
-	</htmlContent>
-
 	<!-- HARPIES -->
 
 	<htmlContent tag="HARPY_BASIC"><![CDATA[

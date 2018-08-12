@@ -131,16 +131,6 @@ public enum DialogueFlagValue {
 	lumiDisabled,
 	lumiPromisedDinner,
 	
-	// Slime Queen's Tower:
-	slimeGuardsIntroduced,
-	slimeGuardsBluffed,
-	slimeGuardsDefeated,
-	slimeRoyalGuardIntroduced,
-	slimeRoyalGuardDefeated,
-	slimeQueenHelped,
-	slimeQueenConvinced,
-	slimeQueenForced,
-	
 	// Gambling Den:
 	axelToldAboutVengar,
 	roxyAddicted,

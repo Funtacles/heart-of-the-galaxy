@@ -478,32 +478,6 @@ public enum Race {
 			FurryPreference.NORMAL,
 			true),
 
-	// SLIME:
-	SLIME("slime",
-			"slimes",
-			"slime",
-			"slime",
-			"slimes",
-			"slimes",
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "SLIME_BASIC"),
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "SLIME_ADVANCED"),
-
-			Colour.RACE_SLIME,
-			Disposition.NEUTRAL,
-			StatusEffect.SLIME,
-			Util.newArrayListOfValues(Attack.SEDUCTION),
-			true,
-			0.5f,
-			1,
-			1,
-			Attribute.DAMAGE_SLIME,
-			Attribute.RESISTANCE_SLIME,
-			FurryPreference.MAXIMUM,
-			FurryPreference.MAXIMUM,
-			false),
-
 	// AVIAN:
 	HARPY("harpy",
 			"harpies",

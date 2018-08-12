@@ -389,7 +389,7 @@ public class SlaveDialogue {
 					
 				} else if (index == 3) {
 					if(!slave().isAbleToSelfTransform()) {
-						return new Response("Transformations", "Only demons and slimes can transform themselves on command...", null);
+						return new Response("Transformations", "Only demons can transform themselves on command...", null);
 						
 					} else {
 						return new Response("Transformations",

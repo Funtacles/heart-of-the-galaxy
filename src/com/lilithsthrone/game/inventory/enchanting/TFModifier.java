@@ -930,13 +930,6 @@ public enum TFModifier {
 			Colour.BASE_PINK_LIGHT,
 			Rarity.COMMON),
 	
-	TF_MOD_FLAVOUR_SLIME("slime-flavour",
-			"Applies an effect related to changing a fluid's flavour.",
-			"slime-flavour",
-			"modifier_circle_flavour",
-			Colour.BASE_BLUE_LIGHT,
-			Rarity.COMMON),
-	
 	TF_MOD_FLAVOUR_BEER("beer-flavour",
 			"Applies an effect related to changing a fluid's flavour.",
 			"beer-flavour",

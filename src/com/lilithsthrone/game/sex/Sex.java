@@ -23,7 +23,6 @@ import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.types.PenisType;
 import com.lilithsthrone.game.character.body.types.TailType;
 import com.lilithsthrone.game.character.body.types.VaginaType;
-import com.lilithsthrone.game.character.body.valueEnums.BodyMaterial;
 import com.lilithsthrone.game.character.body.valueEnums.Capacity;
 import com.lilithsthrone.game.character.body.valueEnums.CumProduction;
 import com.lilithsthrone.game.character.body.valueEnums.OrificePlasticity;
@@ -2255,11 +2254,6 @@ public class Sex {
 	private static void calculateWetAreas(boolean onSexInit) {
 		
 		for(GameCharacter character : Sex.getAllParticipants()) {
-			if(character.getBodyMaterial()==BodyMaterial.SLIME && onSexInit) {
-				for(SexAreaOrifice orifice : SexAreaOrifice.values()) {
-					addLubrication(character, orifice, character, LubricationType.SLIME, !onSexInit);
-				}
-			}
 			addLubrication(character, SexAreaOrifice.MOUTH, character, LubricationType.SALIVA, !onSexInit);
 			addLubrication(character, SexAreaPenetration.TONGUE, character, LubricationType.SALIVA, !onSexInit);
 			

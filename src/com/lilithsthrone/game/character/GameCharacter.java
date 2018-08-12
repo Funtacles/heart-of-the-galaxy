@@ -73,7 +73,6 @@ import com.lilithsthrone.game.character.body.valueEnums.BodySize;
 import com.lilithsthrone.game.character.body.valueEnums.BreastShape;
 import com.lilithsthrone.game.character.body.valueEnums.Capacity;
 import com.lilithsthrone.game.character.body.valueEnums.ClitorisSize;
-import com.lilithsthrone.game.character.body.valueEnums.CoveringModifier;
 import com.lilithsthrone.game.character.body.valueEnums.CoveringPattern;
 import com.lilithsthrone.game.character.body.valueEnums.CumProduction;
 import com.lilithsthrone.game.character.body.valueEnums.CupSize;
@@ -2590,14 +2589,12 @@ public abstract class GameCharacter implements XMLSaving {
 		if(gender.isFeminine()) {
 			for(Entry<Subspecies, FurryPreference> entry : Main.getProperties().getSubspeciesFeminineFurryPreferencesMap().entrySet()) {
 				if(entry.getValue() == FurryPreference.HUMAN) {
-					removeSlimeSubspecies(entry.getKey(), subspeciesMap);
 					subspeciesMap.remove(entry.getKey());
 				}
 			}
 		} else {
 			for(Entry<Subspecies, FurryPreference> entry : Main.getProperties().getSubspeciesMasculineFurryPreferencesMap().entrySet()) {
 				if(entry.getValue() == FurryPreference.HUMAN) {
-					removeSlimeSubspecies(entry.getKey(), subspeciesMap);
 					subspeciesMap.remove(entry.getKey());
 				}
 			}
@@ -2651,145 +2648,6 @@ public abstract class GameCharacter implements XMLSaving {
 						break;
 				}
 			}
-		}
-	}
-	
-	private static void removeSlimeSubspecies(Subspecies subspecies, Map<Subspecies, Integer> subspeciesMap) {
-		switch(subspecies) {
-			case ALLIGATOR_MORPH:
-				subspeciesMap.remove(Subspecies.SLIME_ALLIGATOR);
-				break;
-			case ANGEL:
-				subspeciesMap.remove(Subspecies.SLIME_ANGEL);
-				break;
-			case BAT_MORPH:
-				subspeciesMap.remove(Subspecies.SLIME_BAT);
-				break;
-			case CAT_MORPH:
-				subspeciesMap.remove(Subspecies.SLIME_CAT);
-				break;
-			case COW_MORPH:
-				subspeciesMap.remove(Subspecies.SLIME_COW);
-				break;
-			case DEMON:
-				subspeciesMap.remove(Subspecies.SLIME_DEMON);
-				break;
-			case DOG_MORPH:
-				subspeciesMap.remove(Subspecies.SLIME_DOG);
-				break;
-			case DOG_MORPH_BORDER_COLLIE:
-				subspeciesMap.remove(Subspecies.SLIME_DOG_BORDER_COLLIE);
-				break;
-			case DOG_MORPH_DOBERMANN:
-				subspeciesMap.remove(Subspecies.SLIME_DOG_DOBERMANN);
-				break;
-			case ELEMENTAL_AIR:
-			case ELEMENTAL_ARCANE:
-			case ELEMENTAL_EARTH:
-			case ELEMENTAL_FIRE:
-			case ELEMENTAL_WATER:
-				break;
-			case HARPY:
-				subspeciesMap.remove(Subspecies.SLIME_HARPY);
-				break;
-			case HARPY_RAVEN:
-				subspeciesMap.remove(Subspecies.SLIME_HARPY_RAVEN);
-				break;
-			case HARPY_BALD_EAGLE:
-				subspeciesMap.remove(Subspecies.SLIME_HARPY_BALD_EAGLE);
-				break;
-			case HORSE_MORPH:
-				subspeciesMap.remove(Subspecies.SLIME_HORSE);
-				break;
-			case HORSE_MORPH_ZEBRA:
-				break;
-			case HUMAN:
-				break;
-			case IMP:
-				subspeciesMap.remove(Subspecies.SLIME_IMP);
-				break;
-			case IMP_ALPHA:
-				break;
-			case RABBIT_MORPH:
-				subspeciesMap.remove(Subspecies.SLIME_RABBIT);
-				break;
-			case RABBIT_MORPH_LOP:
-				break;
-			case RAT_MORPH:
-				subspeciesMap.remove(Subspecies.SLIME_RAT);
-				break;
-			case REINDEER_MORPH:
-				subspeciesMap.remove(Subspecies.SLIME_REINDEER);
-				break;
-			case SQUIRREL_MORPH:
-				subspeciesMap.remove(Subspecies.SLIME_SQUIRREL);
-				break;
-			case WOLF_MORPH:
-				subspeciesMap.remove(Subspecies.SLIME_WOLF);
-				break;
-			case FOX_MORPH:
-				subspeciesMap.remove(Subspecies.SLIME_FOX);
-				break;
-			case FOX_MORPH_FENNEC:
-				subspeciesMap.remove(Subspecies.SLIME_FOX_FENNEC);
-				break;
-			case FOX_ASCENDANT:
-				break;
-			case FOX_ASCENDANT_FENNEC:
-				break;
-			case CAT_MORPH_CARACAL:
-				subspeciesMap.remove(Subspecies.SLIME_CAT_CARACAL);
-				break;
-			case CAT_MORPH_CHEETAH:
-				subspeciesMap.remove(Subspecies.SLIME_CAT_CHEETAH);
-				break;
-			case CAT_MORPH_LEOPARD:
-				subspeciesMap.remove(Subspecies.SLIME_CAT_LEOPARD);
-				break;
-			case CAT_MORPH_LEOPARD_SNOW:
-				subspeciesMap.remove(Subspecies.SLIME_CAT_LEOPARD_SNOW);
-				break;
-			case CAT_MORPH_LION:
-				subspeciesMap.remove(Subspecies.SLIME_CAT_LION);
-				break;
-			case CAT_MORPH_LYNX:
-				subspeciesMap.remove(Subspecies.SLIME_CAT_LYNX);
-				break;
-			case CAT_MORPH_TIGER:
-				subspeciesMap.remove(Subspecies.SLIME_CAT_TIGER);
-				break;
-				
-			case SLIME:
-				break;
-			case SLIME_ALLIGATOR:
-			case SLIME_ANGEL:
-			case SLIME_BAT:
-			case SLIME_CAT:
-			case SLIME_COW:
-			case SLIME_DEMON:
-			case SLIME_DOG:
-			case SLIME_DOG_BORDER_COLLIE:
-			case SLIME_DOG_DOBERMANN:
-			case SLIME_HARPY:
-			case SLIME_HARPY_RAVEN:
-			case SLIME_HARPY_BALD_EAGLE:
-			case SLIME_HORSE:
-			case SLIME_IMP:
-			case SLIME_RABBIT:
-			case SLIME_RAT:
-			case SLIME_REINDEER:
-			case SLIME_SQUIRREL:
-			case SLIME_WOLF:
-			case SLIME_FOX:
-			case SLIME_FOX_FENNEC:
-			case SLIME_CAT_CARACAL:
-			case SLIME_CAT_CHEETAH:
-			case SLIME_CAT_LEOPARD:
-			case SLIME_CAT_LEOPARD_SNOW:
-			case SLIME_CAT_LION:
-			case SLIME_CAT_LYNX:
-			case SLIME_CAT_TIGER:
-				break;
 		}
 	}
 	
@@ -3200,9 +3058,6 @@ public abstract class GameCharacter implements XMLSaving {
 				value = 10000;
 				break;
 			case WOLF_MORPH: case FOX_MORPH:
-				value = 10000;
-				break;
-			case SLIME:
 				value = 10000;
 				break;
 			case BAT_MORPH:
@@ -3733,8 +3588,6 @@ public abstract class GameCharacter implements XMLSaving {
 					}
 					break;
 				case FLESH:
-				case SLIME:
-					break;
 				case RUBBER:
 				case STONE:
 					if(((Elemental)this).getSummoner().hasSpellUpgrade(SpellUpgrade.ELEMENTAL_EARTH_3A) && companionIsSub) {
@@ -10548,9 +10401,7 @@ public abstract class GameCharacter implements XMLSaving {
 			}
 		}
 		
-		if((this.getBodyMaterial()==BodyMaterial.SLIME
-				|| orificeIngestedThrough == SexAreaOrifice.VAGINA)
-				&& fluid.getBaseType()==FluidTypeBase.CUM) {
+		if(orificeIngestedThrough == SexAreaOrifice.VAGINA && fluid.getBaseType()==FluidTypeBase.CUM) {
 			fluidIngestionSB.append(rollForPregnancy(charactersFluid, millilitres));
 		}
 		
@@ -11350,28 +11201,22 @@ public abstract class GameCharacter implements XMLSaving {
 				int minimumNumberOfChildren = 1;
 				int maximumNumberOfChildren = 1;
 				
-				if(this.getBodyMaterial()==BodyMaterial.SLIME) {
-					minimumNumberOfChildren = Race.SLIME.getNumberOfOffspringLow();
-					maximumNumberOfChildren = Race.SLIME.getNumberOfOffspringHigh();
+				if(getVaginaType()==VaginaType.HUMAN) {
+					if(partner.getPenisType().getRace()==null) {
+						minimumNumberOfChildren = partner.getRace().getNumberOfOffspringLow();
+						maximumNumberOfChildren = partner.getRace().getNumberOfOffspringHigh();
+					} else {
+						minimumNumberOfChildren = partner.getPenisType().getRace().getNumberOfOffspringLow();
+						maximumNumberOfChildren = partner.getPenisType().getRace().getNumberOfOffspringHigh();
+					}
 					
 				} else {
-					if(getVaginaType()==VaginaType.HUMAN) {
-						if(partner.getPenisType().getRace()==null) {
-							minimumNumberOfChildren = partner.getRace().getNumberOfOffspringLow();
-							maximumNumberOfChildren = partner.getRace().getNumberOfOffspringHigh();
-						} else {
-							minimumNumberOfChildren = partner.getPenisType().getRace().getNumberOfOffspringLow();
-							maximumNumberOfChildren = partner.getPenisType().getRace().getNumberOfOffspringHigh();
-						}
-						
+					if(getVaginaType().getRace()==null) {
+						minimumNumberOfChildren = getRace().getNumberOfOffspringLow();
+						maximumNumberOfChildren = getRace().getNumberOfOffspringHigh();
 					} else {
-						if(getVaginaType().getRace()==null) {
-							minimumNumberOfChildren = getRace().getNumberOfOffspringLow();
-							maximumNumberOfChildren = getRace().getNumberOfOffspringHigh();
-						} else {
-							minimumNumberOfChildren = getVaginaType().getRace().getNumberOfOffspringLow();
-							maximumNumberOfChildren = getVaginaType().getRace().getNumberOfOffspringHigh();
-						}
+						minimumNumberOfChildren = getVaginaType().getRace().getNumberOfOffspringLow();
+						maximumNumberOfChildren = getVaginaType().getRace().getNumberOfOffspringHigh();
 					}
 				}
 				
@@ -13874,8 +13719,7 @@ public abstract class GameCharacter implements XMLSaving {
 	
 	public boolean isAbleToSelfTransform() {
 		return this instanceof Elemental
-				|| this.getRace()==Race.DEMON
-				|| this.getRace()==Race.SLIME;
+				|| this.getRace()==Race.DEMON;
 	}
 	
 	public Race getAntennaRace() {
@@ -14900,136 +14744,6 @@ public abstract class GameCharacter implements XMLSaving {
 			return "<p>"
 						+ "[style.colourDisabled(Nothing happens...)]"
 					+ "</p>";
-		}
-		
-		//TODO other material types
-		
-		if(type == BodyMaterial.SLIME) {
-			for(BodyCoveringType bct : BodyCoveringType.values()) {
-				switch(bct) {
-					case MAKEUP_BLUSHER:
-					case MAKEUP_EYE_LINER:
-					case MAKEUP_EYE_SHADOW:
-					case MAKEUP_LIPSTICK:
-					case MAKEUP_NAIL_POLISH_FEET:
-					case MAKEUP_NAIL_POLISH_HANDS:
-						 // Slimes can't wear makeup:
-						body.getCoverings().put(bct, new Covering(bct, CoveringPattern.NONE, CoveringModifier.SMOOTH, Colour.COVERING_NONE, false, Colour.COVERING_NONE, false));
-						break;
-					case SLIME:
-					case SLIME_EYE:
-					case SLIME_PUPILS:
-					case SLIME_SCLERA:
-					case SLIME_ANUS:
-					case SLIME_HAIR:
-					case SLIME_MOUTH:
-					case SLIME_NIPPLES:
-					case SLIME_VAGINA:
-					case SLIME_PENIS:
-						this.getBodyCoveringTypesDiscovered().add(bct);
-						break;
-					default:
-						break;
-				}
-			}
-			
-			this.setVaginaWetness(Wetness.SEVEN_DROOLING.getValue());			
-			this.setAssWetness(Wetness.SEVEN_DROOLING.getValue());
-			
-			String colourBasic = this.getCovering(BodyCoveringType.SLIME).getPrimaryColour().getName();
-			try {
-				colourBasic = this.getCovering(BodyCoveringType.SLIME).getPrimaryColour().getName().split(" ")[1];
-			} catch(Exception ex) {
-			}
-			
-			if(this.isPlayer()) {
-				tfDescription = "<p>"
-							+ "Despite the fact that there's no sudden change in the weather, you feel as though the air around you is rapidly getting warmer and warmer,"
-								+ " and within the space of just a few seconds, it's as though you're standing in the middle of a sauna."
-							+ " Droplets of sweat quickly begin to bead on your [pc.skin], forming little little rivulets of cool, "
-								+this.getCovering(BodyCoveringType.SLIME).getPrimaryColour().getName()+" liquid, which quickly run down over your burning body to drip onto the floor beneath you."
-						+ "</p>"
-						+ "<p>"
-							+ "Despite your body's best efforts at cooling you down, you still find yourself getting hotter and hotter, and, with a heavy sigh, you feel your [pc.legs] collapse out from under you as the heavy heat beats you down."
-							+ " Lifting [pc.a_hand] to your face to wipe the sweat from your [pc.eyes], your heat-addled mind suddenly realises that something's very wrong,"
-							+ " [pc.thought(Wait... Why is my sweat "+colourBasic+"?!"
-									+ " And why is there so much of it?!)]"
-						+ "</p>"
-						+ "<p>"
-							+ "You open your mouth to scream, only to discover that your throat is rapidly being filled with liquid, and all you can manage is a garbled cry,"
-							+ " [pc.speechNoEffects(~Bllgh!~ ~Blllgggh!~)]"
-						+ "</p>"
-						+ "<p>"
-							+ "Thrashing around in a frenzied state of panic, your efforts to escape this mysterious goo prove to be completely fruitless, and within a matter of seconds your entire body is covered in slime."
-							+ " What's more, you suddenly realise that you've gotten a lot smaller, and, looking down, you see that your [pc.legs] have completely melted away to form more of the goo that's quickly overtaking you."
-							+ " Your struggles only seem to speed this alarming process up, and after just a minute more, your [pc.arms] have suffered the same fate as your [pc.legs], having melted away into yet more of the "
-								+this.getCovering(BodyCoveringType.SLIME).getPrimaryColour().getName()+" liquid."
-						+ "</p>"
-						+ "<p>"
-							+ "As the rest of your body proceeds to turn into slime, the intense heat that started this whole process starts to fade away, quickly being replaced by the sense of a still, calm coolness all around you."
-							+ " Sinking down into the ever-increasing quantity of slime that's enveloping you, you're aware of the fact that the final solid parts of your body have now condensed down into a small sphere,"
-								+ " which is what's now housing your senses and consciousness."
-							+ " As this final stage of your transformation presents itself, you find yourself remarkably relaxed, considering that your entire being is now just a little core floating around in a sea of "
-								+colourBasic+"."
-						+ "</p>"
-						+ "<p>"
-							+ "The calm coolness that's surrounding you steadily starts to come under your control, and, having now undergone your complete transformation into a slime core,"
-								+ " you find that you can manipulate the liquid surrounding you in any way you like."
-							+ " Quickly reforming a slimy version of your old body around yourself, you discover that you can project your senses into the areas where they used to reside."
-							+ " Your vision travels up out of your core and into your slimy eyes, finally allowing you escape the world of "
-								+this.getCovering(BodyCoveringType.SLIME).getPrimaryColour().getName()+" goo and see clearly out into your surroundings once again."
-							+ " Similarly, you restore your senses of hearing, taste, touch, and smell to their original homes, leaving you as very much the person you were before this alarming transformation, albeit now being composed entirely of slime."
-						+ "</p>"
-						+ "<p>"
-							+ "Your entire being is now condensed into a [style.boldSlime(slime core)]!<br/><i>"
-							+ "- You have complete control over all of the slime which surrounds you, allowing you to morph your body parts at will!<br/>"
-							+ "- The wetness of your pussy and asshole can never be anything less than "+Wetness.SEVEN_DROOLING.getDescriptor()+"!<br/>"
-							+ "- You are unable to apply any makeup to your slimy body!<br/>"
-							+ "- You can now be impregnated through any orifice, even if you lack a vagina!</i>"
-						+ "</p>";
-				
-			} else {
-				tfDescription = UtilText.parse(this,
-						"<p>"
-							+ "[npc.NamePos] cheeks instantly flush, and [npc.she] starts panting and sighing as though [npc.sheIs] suffering from an intense heat stroke."
-							+ " Droplets of sweat quickly begin to bead on [npc.her] [npc.skin], forming little little rivulets of cool, "
-								+this.getCovering(BodyCoveringType.SLIME).getPrimaryColour().getName()+" liquid, which quickly run down over [npc.her] burning body to drip onto the floor beneath [npc.herHim]."
-						+ "</p>"
-						+ "<p>"
-							+ "Despite [npc.her] body's best efforts at cooling [npc.her] down, [npc.she] lets out a heavy sigh, and [npc.her] [npc.legs] collapse out from under [npc.herHim] as [npc.sheIs] beaten down by the intense heat [npc.sheIs] feeling."
-							+ " Lifting [npc.a_hand] to [npc.her] face to wipe the sweat from [npc.her] [npc.eyes], [npc.her] heat-addled mind suddenly realises that something's very wrong, and [npc.she] exclaims,"
-							+ " [npc.speech(Wait... Why is my sweat "+colourBasic+"?!"
-									+ " What's happening?!)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[npc.She] tries to scream, but [npc.her] throat is rapidly being filled with liquid, and all [npc.she] can manage is a garbled cry,"
-							+ " [npc.speechNoEffects(~Bllgh!~ ~Blllgggh!~)]"
-						+ "</p>"
-						+ "<p>"
-							+ "Thrashing around in a frenzied state of panic, [npc.her] efforts to escape this mysterious goo prove to be completely fruitless, and within a matter of seconds [npc.her] entire body is covered in slime."
-							+ " What's more, [npc.she] suddenly realises that [npc.sheIs] gotten a lot smaller, and, looking down,"
-								+ " [npc.she] sees that [npc.her] [npc.legs] have completely melted away to form more of the goo that's quickly overtaking [npc.herHim]."
-							+ " [npc.Her] struggles only seem to speed this alarming process up, and after just a minute more, [npc.her] [npc.arms] have suffered the same fate as [npc.her] [npc.legs], having melted away into yet more of the "
-								+this.getCovering(BodyCoveringType.SLIME).getPrimaryColour().getName()+" liquid."
-						+ "</p>"
-						+ "<p>"
-							+ "As [npc.name] proceeds to turn into a slime, the final solid parts of [npc.her] body condense down into a small sphere, which is what now houses [npc.her] senses and consciousness."
-							+ " Transformed into a little core that's now floating around in a sea of " +colourBasic+", [npc.name] soon finds that [npc.she] can manipulate the liquid surrounding [npc.herHim] in any way [npc.she] likes."
-						+"</p>"
-						+ "<p>"
-							+ "Quickly reforming a slimy version of [npc.her] old body around [npc.herself], [npc.she] discovers that [npc.she] can project [npc.her] senses into the areas where they used to reside."
-							+ " [npc.Her] slimy eyes slowly blink as [npc.she] escapes the world of "+this.getCovering(BodyCoveringType.SLIME).getPrimaryColour().getName()+" goo and sees clearly out into [npc.her] surroundings once again."
-							+ " Similarly, [npc.she] restores [npc.her] senses of hearing, taste, touch, and smell to their original homes, leaving [npc.herHim] as very much the person [npc.she] was before this alarming transformation,"
-								+ " albeit now being composed entirely of slime."
-						+ "</p>"
-						+ "<p>"
-							+ "[npc.NamePos] entire being is now condensed into a [style.boldSlime(slime core)]!<br/><i>"
-							+ "- [npc.She] has complete control over all of the slime which surrounds [npc.herHim], allowing [npc.herHim] to morph [npc.her] body parts at will!<br/>"
-							+ "- The wetness of [npc.her] pussy and asshole can never be anything less than "+Wetness.SEVEN_DROOLING.getDescriptor()+"!<br/>"
-							+ "- [npc.She] is unable to apply any makeup to [npc.her] slimy body!<br/>"
-							+ "- [npc.She] can now be impregnated through any orifice, even if [npc.she] lacks a vagina!</i>"
-						+ "</p>");
-			}
 		}
 		
 		if(type==BodyMaterial.FLESH) {
@@ -16604,8 +16318,6 @@ public abstract class GameCharacter implements XMLSaving {
 					return body.getCoverings().get(BodyCoveringType.RUBBER_HAIR);
 				}
 				return body.getCoverings().get(BodyCoveringType.RUBBER);
-			case SLIME:
-				break;
 			case STONE:
 				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
 					return body.getCoverings().get(BodyCoveringType.STONE_HAIR);
@@ -16618,73 +16330,6 @@ public abstract class GameCharacter implements XMLSaving {
 				return body.getCoverings().get(BodyCoveringType.WATER);
 		}
 		
-		if(this.getBodyMaterial()==BodyMaterial.SLIME) {
-			switch(bodyCoveringType) {
-				case MAKEUP_BLUSHER:
-				case MAKEUP_EYE_LINER:
-				case MAKEUP_EYE_SHADOW:
-				case MAKEUP_LIPSTICK:
-				case MAKEUP_NAIL_POLISH_FEET:
-				case MAKEUP_NAIL_POLISH_HANDS:
-					break;
-				case EYE_PUPILS: case SLIME_PUPILS:
-					return body.getCoverings().get(BodyCoveringType.SLIME_PUPILS);
-				case EYE_SCLERA: case SLIME_SCLERA:
-					return body.getCoverings().get(BodyCoveringType.SLIME_SCLERA);
-
-				case EYE_ALLIGATOR_MORPH:
-				case EYE_ANGEL:
-				case EYE_BAT:
-				case EYE_COW_MORPH:
-				case EYE_DEMON_COMMON:
-				case EYE_DOG_MORPH:
-				case EYE_FELINE:
-				case EYE_HARPY:
-				case EYE_HORSE_MORPH:
-				case EYE_HUMAN:
-				case EYE_IMP:
-				case EYE_LYCAN:
-				case EYE_RABBIT:
-				case EYE_RAT:
-				case EYE_REINDEER_MORPH:
-				case EYE_SQUIRREL:
-				case SLIME_EYE:
-					return body.getCoverings().get(BodyCoveringType.SLIME_EYE);
-					
-				case HAIR_ANGEL:
-				case HAIR_BOVINE_FUR:
-				case HAIR_CANINE_FUR:
-				case HAIR_DEMON:
-				case HAIR_FELINE_FUR:
-				case HAIR_HARPY:
-				case HAIR_HORSE_HAIR:
-				case HAIR_HUMAN:
-				case HAIR_IMP:
-				case HAIR_LYCAN_FUR:
-				case HAIR_REINDEER_FUR:
-				case HAIR_SCALES_ALLIGATOR:
-				case HAIR_SQUIRREL_FUR:
-				case SLIME_HAIR:
-					return body.getCoverings().get(BodyCoveringType.SLIME_HAIR);
-				case ANUS:
-				case SLIME_ANUS:
-					return body.getCoverings().get(BodyCoveringType.SLIME_ANUS);
-				case NIPPLES:
-				case SLIME_NIPPLES:
-					return body.getCoverings().get(BodyCoveringType.SLIME_NIPPLES);
-				case MOUTH:
-				case SLIME_MOUTH:
-					return body.getCoverings().get(BodyCoveringType.SLIME_MOUTH);
-				case VAGINA:
-				case SLIME_VAGINA:
-					return body.getCoverings().get(BodyCoveringType.SLIME_VAGINA);
-				case PENIS:
-				case SLIME_PENIS:
-					return body.getCoverings().get(BodyCoveringType.SLIME_PENIS);
-				default:
-					return body.getCoverings().get(BodyCoveringType.SLIME);
-			}
-		}
 		return body.getCoverings().get(bodyCoveringType);
 	}
 

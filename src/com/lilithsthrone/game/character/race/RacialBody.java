@@ -864,8 +864,6 @@ public enum RacialBody {
 				return RacialBody.WOLF_MORPH;
 			case SQUIRREL_MORPH:
 				return RacialBody.SQUIRREL_MORPH;
-			case SLIME:
-				return RacialBody.HUMAN;
 			case BAT_MORPH:
 				return RacialBody.BAT_MORPH;
 			case RAT_MORPH:
@@ -877,7 +875,7 @@ public enum RacialBody {
 	}
 	
 	/**
-	 * <b>Does not include angels or slimes</b>
+	 * <b>Does not include angels</b>
 	 * @param gender
 	 * @return
 	 */

@@ -22,8 +22,6 @@ public enum LubricationType {
 	
 	ANAL_LUBE("anal lubricant", "anal lubricant", false), // This is only present if the anus has been transformed to be 'wetter' than usual
 
-	SLIME("slime", "slime", false),
-	
 	OTHER("lubrication", "lubrication", false);
 	
 	private String name;

@@ -517,9 +517,6 @@ public class Library {
 			} else if (city == 10) {
 				return bookResponse(ItemType.BOOK_IMP, Race.IMP);
 
-			} else if (city == 11) {
-				return bookResponse(ItemType.BOOK_SLIME, Race.SLIME);
-
 			} else if (city == 12) {
 				return bookResponse(ItemType.BOOK_RAT_MORPH, Race.RAT_MORPH);
 

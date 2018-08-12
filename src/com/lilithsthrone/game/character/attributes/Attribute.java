@@ -405,12 +405,6 @@ public enum Attribute {
 			return "Increases damage vs fox-morphs.";
 		}
 	},
-	DAMAGE_SLIME(0, -100, 100, "slime damage", "Slime damage", "swordIcon", Colour.RACE_SLIME, "slime-obliteration", "slime-mercy", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases damage vs slimes.";
-		}
-	},
 	DAMAGE_ELEMENTAL_EARTH(0, -100, 100, "earth elemental damage", "Earth elemental damage", "swordIcon", Colour.SPELL_SCHOOL_EARTH, "earth elemental-obliteration", "earth elemental-mercy", null) {
 		@Override
 		public String getDescription(GameCharacter owner) {
@@ -542,12 +536,6 @@ public enum Attribute {
 		@Override
 		public String getDescription(GameCharacter owner) {
 			return "Increases resistance vs damage inflicted by fox-morphs.";
-		}
-	},
-	RESISTANCE_SLIME(0, -100, 100, "slime resistance", "Slime resistance", "shieldIcon", Colour.RACE_SLIME, "slime-immunity", "slime-vulnerability", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases resistance vs damage inflicted by slimes.";
 		}
 	},
 	RESISTANCE_ELEMENTAL_EARTH(0, -100, 100, "earth elemental resistance", "Earth elemental resistance", "swordIcon", Colour.SPELL_SCHOOL_EARTH, "earth elemental-immunity", "earth elemental-vulnerability", null) {

@@ -78,8 +78,6 @@ public enum SkinType implements BodyPartTypeInterface {
 				return "feather";
 			case ALLIGATOR_SCALES:
 				return "scale";
-			case SLIME:
-				return "slime";
 			default:
 				return coveringType.getName(gc);
 		}
@@ -92,8 +90,6 @@ public enum SkinType implements BodyPartTypeInterface {
 				return "feathers";
 			case ALLIGATOR_SCALES:
 				return "scales";
-			case SLIME:
-				return "slime";
 			default:
 				return coveringType.getNamePlural(gc);
 		}

@@ -27,7 +27,6 @@ import com.lilithsthrone.game.character.body.types.VaginaType;
 import com.lilithsthrone.game.character.body.types.WingType;
 import com.lilithsthrone.game.character.body.valueEnums.AssSize;
 import com.lilithsthrone.game.character.body.valueEnums.BodyHair;
-import com.lilithsthrone.game.character.body.valueEnums.BodyMaterial;
 import com.lilithsthrone.game.character.body.valueEnums.CoveringPattern;
 import com.lilithsthrone.game.character.body.valueEnums.CumProduction;
 import com.lilithsthrone.game.character.body.valueEnums.CupSize;
@@ -302,18 +301,6 @@ public class ItemEffectType {
 		}
 	};
 
-	public static AbstractItemEffectType BOOK_READ_SLIME = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"Adds slime encyclopedia entry.",
-			"[style.boldExcellent(+5)] [style.boldSlime("+Attribute.DAMAGE_SLIME.getName()+")]",
-			"[style.boldExcellent(+5)] [style.boldSlime("+Attribute.RESISTANCE_SLIME.getName()+")]"),
-			Colour.RACE_SLIME) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getBookEffect(Race.SLIME, ItemType.BOOK_SLIME);
-		}
-	};
-	
 	public static AbstractItemEffectType ORIENTATION_CHANGE = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"Sets orientation to gynephilic.",
 			"[style.boldExcellent(+50)] [style.boldCorruption(corruption)]"),
@@ -921,25 +908,6 @@ public class ItemEffectType {
 		}
 	};
 	
-	public static AbstractItemEffectType SEX_SLIME_DRINK = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldSex(+1)] [style.boldCorruption(Vagina Wetness)]",
-			"[style.boldSex(+1)] [style.boldCorruption(Anal Wetness)]",
-			"[style.boldGood(+5)] [style.boldLust("+Attribute.DAMAGE_LUST.getName()+")] to 'potion effects'"),
-			Colour.GENERIC_SEX) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return "<p style='text-align:center;'>"
-					+(target.isPlayer()
-						?"A warm wave of arcane energy washes over you..."
-						:UtilText.parse(target, "A warm wave of arcane energy washes over [npc.name]..."))
-					+ "</p>"
-					+ (target.hasVagina()?target.incrementVaginaWetness(1):"")
-					+ target.incrementAssWetness(1)
-					+ target.addPotionEffect(Attribute.DAMAGE_LUST, 5);
-		}
-	};
-	
 	public static AbstractItemEffectType SEX_RABBIT_MORPH_DRINK = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldSex(+5)] [style.boldCorruption(Fertility)] to 'potion effects'",
 			"[style.boldSex(+5)] [style.boldCorruption(Virility)] to 'potion effects'",
@@ -1097,7 +1065,7 @@ public class ItemEffectType {
 	};
 	
 	public static AbstractItemEffectType MUSHROOMS = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldTfGeneric(Makes slime and orifice interiors glow)]",
+			"[style.boldTfGeneric(Makes orifice interiors glow)]",
 			"Causes a [style.boldPsychoactive(psychoactive trip)]"),
 			Colour.ATTRIBUTE_ARCANE) {
 		
@@ -1106,56 +1074,17 @@ public class ItemEffectType {
 			StringBuilder sb = new StringBuilder();
 
 			sb.append("<p>");
-				if(target.getBodyMaterial()==BodyMaterial.SLIME) {
-					if(target.isPlayer()) {
-						sb.append("Your slimy body starts [style.boldTfGeneric(glowing)]!");
-					} else {
-						sb.append(UtilText.parse(target, "[npc.NamePos] slimy body starts [style.boldTfGeneric(glowing)]!"));
-					}
-					
-					target.getCovering(BodyCoveringType.SLIME).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_ANUS).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_ANUS).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_EYE).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_EYE).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_HAIR).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_HAIR).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_MOUTH).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_MOUTH).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_NIPPLES).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_NIPPLES).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_PUPILS).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_PUPILS).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_SCLERA).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_SCLERA).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_VAGINA).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_VAGINA).setSecondaryGlowing(true);
-
-					target.getCovering(BodyCoveringType.SLIME_PENIS).setPrimaryGlowing(true);
-					target.getCovering(BodyCoveringType.SLIME_PENIS).setSecondaryGlowing(true);
-					
+				if(target.isPlayer()) {
+					sb.append("The interiors of all of your orifices start to [style.boldTfGeneric(glow)]!");
 				} else {
-					if(target.isPlayer()) {
-						sb.append("The interiors of all of your orifices start to [style.boldTfGeneric(glow)]!");
-					} else {
-						sb.append(UtilText.parse(target, "The interiors of all of [npc.namePos] orifices start to [style.boldTfGeneric(glow)]!"));
-					}
-
-					target.getCovering(BodyCoveringType.MOUTH).setSecondaryGlowing(true);
-					target.getCovering(BodyCoveringType.ANUS).setSecondaryGlowing(true);
-					target.getCovering(BodyCoveringType.VAGINA).setSecondaryGlowing(true);
-					target.getCovering(BodyCoveringType.PENIS).setSecondaryGlowing(true);
-					target.getCovering(BodyCoveringType.NIPPLES).setSecondaryGlowing(true);
+					sb.append(UtilText.parse(target, "The interiors of all of [npc.namePos] orifices start to [style.boldTfGeneric(glow)]!"));
 				}
+
+				target.getCovering(BodyCoveringType.MOUTH).setSecondaryGlowing(true);
+				target.getCovering(BodyCoveringType.ANUS).setSecondaryGlowing(true);
+				target.getCovering(BodyCoveringType.VAGINA).setSecondaryGlowing(true);
+				target.getCovering(BodyCoveringType.PENIS).setSecondaryGlowing(true);
+				target.getCovering(BodyCoveringType.NIPPLES).setSecondaryGlowing(true);
 			sb.append("</p>");
 
 			target.addStatusEffect(StatusEffect.PSYCHOACTIVE, 6*60);
@@ -1593,31 +1522,6 @@ public class ItemEffectType {
 		}
 	};
 	
-	public static AbstractItemEffectType RACE_BIOJUICE = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(+50)] [style.boldCorruption(corruption)] to 'potion effects'",
-			"[style.boldSlime(Transforms body into slime!)]"),
-			Colour.RACE_SLIME) {
-
-		@Override
-		public String getPotionDescriptor() {
-			return "slime";
-		}
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			if(target.getBody().getBodyMaterial()==BodyMaterial.SLIME) {
-				if(target.isPlayer()) {
-					return "[style.colourDisabled(You are already a slime, so nothing happens...)]";
-				} else {
-					return UtilText.parse(target, "[style.colourDisabled([npc.Name] is already a slime, so nothing happens...)]");
-				}
-				
-			} else {
-				return target.setBodyMaterial(BodyMaterial.SLIME);
-			}
-		}
-	};
-	
 	public static AbstractItemEffectType BOTTLED_ESSENCE_ARCANE = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldGood(+1)] [style.boldArcane(Arcane)] essence"),
 			Colour.GENERIC_ARCANE) {
@@ -1852,21 +1756,6 @@ public class ItemEffectType {
 			return "You have absorbed [style.boldGood(+1)] [style.boldArcane(Arcane)] essence, and are now far more effective at fighting [style.boldFox(fox-morphs)]!";
 		}
 	};
-	
-	public static AbstractItemEffectType BOTTLED_ESSENCE_SLIME = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(+1)] [style.boldArcane(Arcane)] essence",
-			"[style.boldGood(+25%)] [style.bold(damage vs)] [style.boldSlime(slimes)]",
-			"[style.boldGood(+25%)] [style.bold(resistance vs)] [style.boldSlime(slimes)]"),
-			Colour.RACE_WOLF_MORPH) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			target.incrementEssenceCount(TFEssence.ARCANE, 1, false);
-			target.addStatusEffect(StatusEffect.COMBAT_BONUS_SLIME, 60*4);
-			return "You have absorbed [style.boldGood(+1)] [style.boldArcane(Arcane)] essence, and are now far more effective at fighting [style.boldSlime(slimes)]!";
-		}
-	};
-	
 	
 	// Specials:
 	
@@ -3055,35 +2944,6 @@ public class ItemEffectType {
 		}
 	};
 
-	public static AbstractItemEffectType RACE_SLIME = new AbstractItemEffectType(null,
-			Colour.RACE_SLIME) {
-
-		@Override
-		public List<TFModifier> getPrimaryModifiers() {
-			return Util.newArrayListOfValues(TFModifier.TF_MATERIAL_FLESH);
-		}
-
-		@Override
-		public List<TFModifier> getSecondaryModifiers(TFModifier primaryModifier) {
-			return Util.newArrayListOfValues(TFModifier.ARCANE_BOOST);
-		}
-		
-		@Override
-		public List<TFPotency> getPotencyModifiers(TFModifier primaryModifier, TFModifier secondaryModifier) {
-			return Util.newArrayListOfValues(TFPotency.MINOR_BOOST);
-		}
-		
-		@Override
-		public List<String> getEffectsDescription(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target) {
-			return Util.newArrayListOfValues("Changes the target's body material to flesh.");
-		}
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return target.setBodyMaterial(BodyMaterial.FLESH);
-		}
-	};
-	
 	// CLOTHING:
 	
 	public static AbstractItemEffectType CLOTHING = new AbstractItemEffectType(null,

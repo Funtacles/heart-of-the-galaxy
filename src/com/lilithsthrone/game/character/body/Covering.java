@@ -106,11 +106,6 @@ public class Covering  {
 	public String getColourDescriptor(GameCharacter gc, boolean coloured, boolean capitalised) {
 		String primaryColourName = capitalised?Util.capitaliseSentence(primaryColour.getName()):primaryColour.getName();
 		String secondaryColourName = capitalised?Util.capitaliseSentence(secondaryColour.getName()):secondaryColour.getName();
-//		if(gc.getRace()==Race.SLIME) {
-//			if(this.getType()!=BodyCoveringType.SLIME) {
-//				return gc.getCovering(BodyCoveringType.SLIME).getColourDescriptor(gc, coloured, capitalised);
-//			}
-//		}
 		// Hopefully nobody ever discovers this appalling mess... BlobSweats
 		if(coloured) {
 			switch(pattern) {
@@ -236,11 +231,6 @@ public class Covering  {
 		String descriptor = modifier.getName();
 		String name = type.getName(gc);
 		
-//		if(gc.getRace()==Race.SLIME) {
-//			if(this.getType()!=BodyCoveringType.SLIME) {
-//				return gc.getCovering(BodyCoveringType.SLIME).getFullDescription(gc, coloured);
-//			}
-//		}
 		if(coloured) {
 			switch(pattern) {
 				case HIGHLIGHTS:
