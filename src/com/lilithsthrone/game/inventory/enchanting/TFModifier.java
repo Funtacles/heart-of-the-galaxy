@@ -78,12 +78,6 @@ public enum TFModifier {
 			"modifier_circle_intelligence",
 			Rarity.EPIC),
 	
-	CORRUPTION(AttributeCategory.CORRUPTION,
-			Attribute.MAJOR_CORRUPTION,
-			"Applies an effect related to the primary attribute 'Corruption'.",
-			"modifier_circle_corruption",
-			Rarity.EPIC),
-	
 	
 	FERTILITY(AttributeCategory.CORRUPTION,
 			Attribute.FERTILITY,

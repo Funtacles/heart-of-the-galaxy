@@ -1,6 +1,6 @@
 package com.lilithsthrone.game.sex.sexActions.universal;
 
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.sex.ArousalIncrease;
 import com.lilithsthrone.game.sex.Sex;
@@ -26,7 +26,6 @@ public class HandHolding {
 			SexActionType.ONGOING,
 			ArousalIncrease.FIVE_EXTREME,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -62,7 +61,6 @@ public class HandHolding {
 			SexActionType.ONGOING,
 			ArousalIncrease.FIVE_EXTREME,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -98,7 +96,6 @@ public class HandHolding {
 			SexActionType.ONGOING,
 			ArousalIncrease.FIVE_EXTREME,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -134,7 +131,6 @@ public class HandHolding {
 			SexActionType.ONGOING,
 			ArousalIncrease.FIVE_EXTREME,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -170,7 +166,6 @@ public class HandHolding {
 			SexActionType.ONGOING,
 			ArousalIncrease.FIVE_EXTREME,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -206,7 +201,6 @@ public class HandHolding {
 			SexActionType.START_ONGOING,
 			ArousalIncrease.FIVE_EXTREME,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.MOUTH, SexAreaPenetration.FINGER)),
 			SexParticipantType.NORMAL) {
 		@Override
@@ -238,7 +232,6 @@ public class HandHolding {
 			SexActionType.ONGOING,
 			ArousalIncrease.FIVE_EXTREME,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.MOUTH, SexAreaPenetration.FINGER)),
 			SexParticipantType.NORMAL) {
 		@Override
@@ -267,7 +260,6 @@ public class HandHolding {
 			SexActionType.ONGOING,
 			ArousalIncrease.FIVE_EXTREME,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.MOUTH, SexAreaPenetration.FINGER)),
 			SexParticipantType.NORMAL) {
 		@Override
@@ -296,7 +288,6 @@ public class HandHolding {
 			SexActionType.STOP_ONGOING,
 			ArousalIncrease.FIVE_EXTREME,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.MOUTH, SexAreaPenetration.FINGER)),
 			SexParticipantType.NORMAL) {
 		@Override
@@ -325,7 +316,6 @@ public class HandHolding {
 			SexActionType.ONGOING,
 			ArousalIncrease.FIVE_EXTREME,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -366,7 +356,6 @@ public class HandHolding {
 			SexActionType.ONGOING,
 			ArousalIncrease.FIVE_EXTREME,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -395,7 +384,6 @@ public class HandHolding {
 			SexActionType.ONGOING,
 			ArousalIncrease.FIVE_EXTREME,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -424,7 +412,6 @@ public class HandHolding {
 			SexActionType.ONGOING,
 			ArousalIncrease.FIVE_EXTREME,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.FINGER, SexAreaOrifice.MOUTH)),
 			SexParticipantType.NORMAL) {
 		@Override
@@ -453,7 +440,6 @@ public class HandHolding {
 			SexActionType.ONGOING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.SELF) {
 		@Override

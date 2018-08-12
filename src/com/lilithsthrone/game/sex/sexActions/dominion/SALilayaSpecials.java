@@ -1,7 +1,7 @@
 package com.lilithsthrone.game.sex.sexActions.dominion;
 
 import com.lilithsthrone.game.character.attributes.ArousalLevel;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.sex.ArousalIncrease;
 import com.lilithsthrone.game.sex.Sex;
@@ -28,7 +28,6 @@ public class SALilayaSpecials {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.TWO_LOW,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.VAGINA, SexAreaPenetration.PENIS)),
 			SexParticipantType.NORMAL) {
 		
@@ -73,7 +72,6 @@ public class SALilayaSpecials {
 			SexActionType.PREPARE_FOR_PARTNER_ORGASM,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.TWO_LOW,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -123,7 +121,6 @@ public class SALilayaSpecials {
 			SexActionType.PREPARE_FOR_PARTNER_ORGASM,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.TWO_LOW,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -166,7 +163,6 @@ public class SALilayaSpecials {
 			SexActionType.ONGOING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		

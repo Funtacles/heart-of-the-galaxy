@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
 import com.lilithsthrone.game.character.body.valueEnums.Femininity;
 import com.lilithsthrone.game.character.effects.Perk;
 import com.lilithsthrone.game.character.fetishes.Fetish;
@@ -46,7 +45,7 @@ public class ResponseSex extends Response {
 			DialogueNodeOld postSexDialogue, String sexStartDescription) {
 		this(title, tooltipText,
 				null, null, null, null,
-				null, null, consensual,
+				null, consensual,
 				subHasEqualControl, sexManager, spectators, postSexDialogue, sexStartDescription);
 	}
 	
@@ -54,7 +53,6 @@ public class ResponseSex extends Response {
 			String tooltipText,
 			List<Fetish> fetishesForUnlock,
 			List<Fetish> fetishesBlocking,
-			CorruptionLevel corruptionBypass,
 			List<Perk> perksRequired,
 			Femininity femininityRequired,
 			Race raceRequired,
@@ -64,7 +62,7 @@ public class ResponseSex extends Response {
 			List<GameCharacter> spectators,
 			DialogueNodeOld postSexDialogue, String sexStartDescription) {
 		super(title, tooltipText, null,
-				fetishesForUnlock, corruptionBypass,
+				fetishesForUnlock,
 				perksRequired, femininityRequired, raceRequired);
 		
 		this.consensual = consensual;

@@ -1,6 +1,6 @@
 package com.lilithsthrone.game.sex.sexActions.baseActions;
 
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.sex.ArousalIncrease;
 import com.lilithsthrone.game.sex.Sex;
@@ -24,7 +24,6 @@ public class TongueNipple {
 			SexActionType.REQUIRES_NO_PENETRATION_AND_EXPOSED,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.TWO_LOW,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TONGUE, SexAreaOrifice.NIPPLE)),
 			SexParticipantType.NORMAL) {
 		
@@ -149,7 +148,6 @@ public class TongueNipple {
 			SexActionType.REQUIRES_NO_PENETRATION_AND_EXPOSED,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.TWO_LOW,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.NIPPLE, SexAreaPenetration.TONGUE)),
 			SexParticipantType.NORMAL) {
 		

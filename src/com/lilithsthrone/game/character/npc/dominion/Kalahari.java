@@ -109,7 +109,6 @@ public class Kalahari extends NPC {
 
 			this.setAttribute(Attribute.MAJOR_PHYSIQUE, 25);
 			this.setAttribute(Attribute.MAJOR_ARCANE, 0);
-			this.setAttribute(Attribute.MAJOR_CORRUPTION, 50);
 		}
 	}
 	
@@ -125,7 +124,6 @@ public class Kalahari extends NPC {
 
 		this.setAttribute(Attribute.MAJOR_PHYSIQUE, 25);
 		this.setAttribute(Attribute.MAJOR_ARCANE, 0);
-		this.setAttribute(Attribute.MAJOR_CORRUPTION, 50);
 	}
 
 	@Override

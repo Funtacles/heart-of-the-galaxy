@@ -333,10 +333,6 @@ public enum SVGImages {
 			
 			
 			
-			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/UIElements/responseCorruptionBypass.svg");
-			responseCorruptionBypass = Util.inputStreamToString(is);
-			responseCorruptionBypass = setColour(responseCorruptionBypass, Colour.GENERIC_ARCANE);
-			
 			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/UIElements/responseSubResist.svg");
 			responseSubResist = Util.inputStreamToString(is);
 			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/UIElements/responseSubNormal.svg");

@@ -552,7 +552,7 @@ public class EnforcerHQDialogue {
 				} else if (index == 2) {
 					if(!Main.game.getDialogueFlags().values.contains(DialogueFlagValue.feminisedBrax)) {
 						return new ResponseSex("Get punished by [brax.name]", "Get [brax.name] to take out [brax.his] frustration on you.", Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE),
-								null, Fetish.FETISH_SUBMISSIVE.getAssociatedCorruptionLevel(), null, null, null,
+								null, null, null, null,
 								true, false,
 								new SMBraxDoggy(
 										Util.newHashMapOfValues(new Value<>(Main.game.getBrax(), SexPositionSlot.DOGGY_BEHIND)),
@@ -627,7 +627,7 @@ public class EnforcerHQDialogue {
 						
 					} else {
 						return new Response("Greet Candi", "Get her attention by saying hello.", INTERIOR_SECRETARY,
-								null, null, null, null, null);
+								null, null, null, null);
 					}
 					
 				} else {
@@ -912,7 +912,6 @@ public class EnforcerHQDialogue {
 			if (index == 1) {
 				return new Response("Turn Brax into Bree", "You and Candi force-feed [brax.name] his own potion.", INTERIOR_SECRETARY_BRAX_FEMINISE_COMPLETED,
 						Util.newArrayListOfValues(Fetish.FETISH_TRANSFORMATION_GIVING),
-						Fetish.FETISH_TRANSFORMATION_GIVING.getAssociatedCorruptionLevel(),
 						null,
 						null,
 						null) {
@@ -1105,7 +1104,6 @@ public class EnforcerHQDialogue {
 			if (index == 1) {
 				return new Response("Turn Bree into Brandi", "Transform Bree into a brain-dead bimbo.", INTERIOR_SECRETARY_BRAX_BIMBOFY_COMPLETED,
 						Util.newArrayListOfValues(Fetish.FETISH_TRANSFORMATION_GIVING),
-						Fetish.FETISH_TRANSFORMATION_GIVING.getAssociatedCorruptionLevel(),
 						null,
 						null,
 						null) {
@@ -1348,7 +1346,7 @@ public class EnforcerHQDialogue {
 			} else if (index == 2) {
 				return new Response("Lie", "You notice that all of the models in the posters are wolf-girls. Perhaps you could pretend that Arthur is a patron of an exclusive wolf-girl themed brothel that you so happen to own...",
 						INTERIOR_BRAX_LIE,
-						null, null, Util.newArrayListOfValues(Perk.OBSERVANT), null, null) {
+						null, Util.newArrayListOfValues(Perk.OBSERVANT), null, null) {
 					@Override
 					public void effects() {
 						Main.game.getDialogueFlags().setFlag(DialogueFlagValue.braxEncountered, true);
@@ -1357,7 +1355,7 @@ public class EnforcerHQDialogue {
 					
 			} else if (index == 3) {
 				return new Response("Wolf-tease", "Use your feminine wolf-like body to tease [brax.name] into giving you information about Arthur.", INTERIOR_BRAX_GETTING_TEASED,
-						null, null, null, Femininity.FEMININE, Race.WOLF_MORPH){
+						null, null, Femininity.FEMININE, Race.WOLF_MORPH){
 					@Override
 					public void effects(){
 						Main.game.getDialogueFlags().values.add(DialogueFlagValue.braxBeaten);
@@ -1787,7 +1785,7 @@ public class EnforcerHQDialogue {
 					
 			} else if (index == 3) {
 				return new ResponseSex("Take control", "Take control of the situation and turn [brax.name] into your little bitch.", Util.newArrayListOfValues(Fetish.FETISH_DOMINANT),
-						null, null, null, null, null,
+						null, null, null, null,
 						true, false,
 						new SMStanding(
 								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.STANDING_DOMINANT)),

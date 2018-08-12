@@ -29,7 +29,6 @@ import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.attributes.AffectionLevel;
 import com.lilithsthrone.game.character.attributes.AlcoholLevel;
 import com.lilithsthrone.game.character.attributes.Attribute;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
 import com.lilithsthrone.game.character.attributes.IntelligenceLevel;
 import com.lilithsthrone.game.character.attributes.LustLevel;
 import com.lilithsthrone.game.character.attributes.ObedienceLevel;
@@ -220,7 +219,6 @@ public abstract class GameCharacter implements XMLSaving {
 	/** Calculations description as used in getAttributeValue() */
 	public static final String HEALTH_CALCULATION = "10 + 2*level + Physique*2 + Bonus Energy";
 	public static final String MANA_CALCULATION = "10 + 2*level + Arcane*2 + Bonus Aura";
-	public static final String RESTING_LUST_CALCULATION = "Corruption/2";
 
 	public static final int LEVEL_CAP = 50;
 	public static final int MAX_TRAITS = 6;
@@ -1282,10 +1280,7 @@ public abstract class GameCharacter implements XMLSaving {
 				Element e = ((Element)attributeList.item(i));
 				
 				try {
-					if(e.getAttribute("type").equals("CORRUPTION")) {
-						character.setAttribute(Attribute.MAJOR_CORRUPTION, Float.valueOf(e.getAttribute("value")), false);
-						
-					} else if(e.getAttribute("type").equals("STRENGTH") || e.getAttribute("type").equals("MAJOR_STRENGTH")) {
+					if(e.getAttribute("type").equals("STRENGTH") || e.getAttribute("type").equals("MAJOR_STRENGTH")) {
 						character.setAttribute(Attribute.MAJOR_PHYSIQUE, Float.valueOf(e.getAttribute("value")), false);
 						
 					} else {
@@ -3958,11 +3953,6 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 
 	// Attributes:
-
-	public CorruptionLevel getCorruptionLevel(){
-		return CorruptionLevel.getCorruptionLevelFromValue(getAttributeValue(Attribute.MAJOR_CORRUPTION));
-	}
-
 	public float getBaseAttributeValue(Attribute attribute) {
 		// Special case for health:
 		if (attribute == Attribute.HEALTH_MAXIMUM) {
@@ -11202,7 +11192,7 @@ public abstract class GameCharacter implements XMLSaving {
 		if(hasStatusEffect(StatusEffect.WEATHER_STORM_VULNERABLE)) {
 			return 75;
 		}
-		return (int) Math.round(getAttributeValue(Attribute.MAJOR_CORRUPTION)/2);
+		return 50;
 	}
 	
 	public String setLust(float lust) {

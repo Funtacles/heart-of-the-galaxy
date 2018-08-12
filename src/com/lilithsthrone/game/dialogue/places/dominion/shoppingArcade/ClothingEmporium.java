@@ -262,7 +262,7 @@ public class ClothingEmporium {
 						} else {
 							return new ResponseSex("Sex",
 									"Have sex with Nyan.",
-									null, null, null, null, null, null,
+									null, null, null, null, null,
 									true, true,
 									new SMMissionary(
 											Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.MISSIONARY_KNEELING_BETWEEN_LEGS)),

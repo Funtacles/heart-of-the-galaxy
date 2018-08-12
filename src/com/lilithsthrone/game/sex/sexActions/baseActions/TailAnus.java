@@ -1,6 +1,6 @@
 package com.lilithsthrone.game.sex.sexActions.baseActions;
 
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.body.valueEnums.OrificeModifier;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.sex.ArousalIncrease;
@@ -25,7 +25,6 @@ public class TailAnus {
 			SexActionType.REQUIRES_NO_PENETRATION_AND_EXPOSED,
 			ArousalIncrease.THREE_NORMAL,
 			ArousalIncrease.THREE_NORMAL,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.ANUS)),
 			SexParticipantType.NORMAL) {
 		
@@ -173,7 +172,6 @@ public class TailAnus {
 			SexActionType.REQUIRES_NO_PENETRATION_AND_EXPOSED,
 			ArousalIncrease.THREE_NORMAL,
 			ArousalIncrease.THREE_NORMAL,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.ANUS, SexAreaPenetration.TAIL)),
 			SexParticipantType.NORMAL) {
 		
@@ -309,7 +307,6 @@ public class TailAnus {
 			SexActionType.START_ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.ANUS)),
 			SexParticipantType.NORMAL) {
 		
@@ -489,7 +486,6 @@ public class TailAnus {
 			SexActionType.ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.ANUS)),
 			SexParticipantType.NORMAL,
 			SexPace.DOM_GENTLE) {
@@ -530,7 +526,6 @@ public class TailAnus {
 			SexActionType.ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.ANUS)),
 			SexParticipantType.NORMAL,
 			SexPace.DOM_NORMAL) {
@@ -571,7 +566,6 @@ public class TailAnus {
 			SexActionType.ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.TWO_HORNY,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.ANUS)),
 			SexParticipantType.NORMAL,
 			SexPace.DOM_ROUGH) {
@@ -612,7 +606,6 @@ public class TailAnus {
 			SexActionType.ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.ANUS)),
 			SexParticipantType.NORMAL,
 			SexPace.SUB_NORMAL) {
@@ -653,7 +646,6 @@ public class TailAnus {
 			SexActionType.ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.ANUS)),
 			SexParticipantType.NORMAL,
 			SexPace.SUB_EAGER) {
@@ -694,7 +686,6 @@ public class TailAnus {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.ANUS)),
 			SexParticipantType.NORMAL,
 			SexPace.SUB_RESISTING) {
@@ -759,7 +750,6 @@ public class TailAnus {
 			SexActionType.STOP_ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.TWO_LOW,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.ANUS)),
 			SexParticipantType.NORMAL) {
 		
@@ -820,7 +810,6 @@ public class TailAnus {
 			SexActionType.START_ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.ANUS, SexAreaPenetration.TAIL)),
 			SexParticipantType.NORMAL) {
 
@@ -982,7 +971,6 @@ public class TailAnus {
 			SexActionType.ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.ANUS, SexAreaPenetration.TAIL)),
 			SexParticipantType.NORMAL,
 			SexPace.DOM_GENTLE) {
@@ -1020,7 +1008,6 @@ public class TailAnus {
 			SexActionType.ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.ANUS, SexAreaPenetration.TAIL)),
 			SexParticipantType.NORMAL,
 			SexPace.DOM_NORMAL) {
@@ -1058,7 +1045,6 @@ public class TailAnus {
 			SexActionType.ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.TWO_HORNY,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.ANUS, SexAreaPenetration.TAIL)),
 			SexParticipantType.NORMAL,
 			SexPace.DOM_ROUGH) {
@@ -1096,7 +1082,6 @@ public class TailAnus {
 			SexActionType.ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.ANUS, SexAreaPenetration.TAIL)),
 			SexParticipantType.NORMAL,
 			SexPace.SUB_NORMAL) {
@@ -1134,7 +1119,6 @@ public class TailAnus {
 			SexActionType.ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.ANUS, SexAreaPenetration.TAIL)),
 			SexParticipantType.NORMAL,
 			SexPace.SUB_EAGER) {
@@ -1172,7 +1156,6 @@ public class TailAnus {
 			SexActionType.ONGOING,
 			ArousalIncrease.ZERO_NONE,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.ANUS, SexAreaPenetration.TAIL)),
 			SexParticipantType.NORMAL,
 			SexPace.SUB_RESISTING) {
@@ -1239,7 +1222,6 @@ public class TailAnus {
 			SexActionType.STOP_ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.TWO_LOW,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.ANUS, SexAreaPenetration.TAIL)),
 			SexParticipantType.NORMAL) {
 
@@ -1296,7 +1278,6 @@ public class TailAnus {
 			SexActionType.ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.ANUS, SexAreaPenetration.TAIL)),
 			SexParticipantType.NORMAL) {
 		

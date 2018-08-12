@@ -19,7 +19,7 @@ import org.w3c.dom.Element;
 
 import com.lilithsthrone.game.Weather;
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.body.BodyPartInterface;
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
@@ -340,10 +340,8 @@ public class UtilText {
 		return descriptionSB.toString();
 	}
 	
-	public static String getRequirementsDescription(CorruptionLevel corruptionNeeded, Perk... perkRequired) {
+	public static String getRequirementsDescription(Perk... perkRequired) {
 		descriptionSB.setLength(0);
-		
-		descriptionSB.append("You require a corruption level of <b style='color:"+corruptionNeeded.getColour().toWebHexString()+";'>"+corruptionNeeded.getName()+"</b>");
 		
 		if(perkRequired.length==0) {
 			descriptionSB.append(".");

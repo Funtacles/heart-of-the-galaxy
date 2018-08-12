@@ -364,7 +364,7 @@ public class SupplierDepot {
 				if (index == 1) {
 					return new ResponseSex("Fuck Them",
 							UtilText.parse(Main.game.getSupplierLeader(), Main.game.getSupplierPartner(), "Push Wolfgang and Karl down side-by-side in the doggy-style position, ready to have some fun with them..."),
-							Util.newArrayListOfValues(Fetish.FETISH_DOMINANT), null, null, null, null, null,
+							Util.newArrayListOfValues(Fetish.FETISH_DOMINANT), null, null, null, null,
 							true, false,
 							new SMDoggy(
 									Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.DOGGY_BEHIND)),
@@ -377,7 +377,7 @@ public class SupplierDepot {
 				} else if (index == 2) {
 					return new ResponseSex("Get Fucked",
 							UtilText.parse(Main.game.getSupplierLeader(), Main.game.getSupplierPartner(), "Allow Wolfgang and Karl to spitroast you..."),
-							null, null, null, null, null, null,
+							null, null, null, null, null,
 							true, false,
 							new SMDoggy(
 									Util.newHashMapOfValues(
@@ -466,7 +466,7 @@ public class SupplierDepot {
 			} else if (index == 5) {
 				return new ResponseSex("Offer Body",
 						UtilText.parse(Main.game.getSupplierLeader(), Main.game.getSupplierPartner(), "Offer your body to Wolfgang and Karl in order to avoid a fight..."),
-						null, null, null, null, null, null,
+						null, null, null, null, null,
 						true, false,
 						new SMDoggy(
 								Util.newHashMapOfValues(
@@ -542,7 +542,7 @@ public class SupplierDepot {
 			} else if (index == 2) {
 				return new ResponseSex("\"Thank\" them",
 						UtilText.parse(Main.game.getSupplierLeader(), Main.game.getSupplierPartner(), "You've always fantasised about being fucked by two strong men while wearing a uniform..."),
-						null, null, null, null, null, null,
+						null, null, null, null, null,
 						true, true,
 						new SMDoggy(
 								Util.newHashMapOfValues(
@@ -586,7 +586,7 @@ public class SupplierDepot {
 			} else if (index == 2) {
 				return new ResponseSex("Fuck Them",
 						UtilText.parse(Main.game.getSupplierLeader(), Main.game.getSupplierPartner(), "Push Wolfgang and Karl down side-by-side in the doggy-style position, ready to have some fun with them..."),
-						null, null, null, null, null, null,
+						null, null, null, null, null,
 						false, false,
 						new SMDoggy(
 								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.DOGGY_BEHIND)),
@@ -599,7 +599,7 @@ public class SupplierDepot {
 			} else if (index == 3) {
 				return new ResponseSex("Get Fucked",
 						UtilText.parse(Main.game.getSupplierLeader(), Main.game.getSupplierPartner(), "Allow Wolfgang and Karl to spitroast you..."),
-						null, null, null, null, null, null,
+						null, null, null, null, null,
 						true, true,
 						new SMDoggy(
 								Util.newHashMapOfValues(
@@ -628,7 +628,7 @@ public class SupplierDepot {
 			if (index == 1) {
 				return new ResponseSex("Fucked",
 						UtilText.parse(Main.game.getSupplierLeader(), Main.game.getSupplierPartner(), "You're in no state to continue fighting..."),
-						null, null, null, null, null, null,
+						null, null, null, null, null,
 						false, false,
 						new SMDoggy(
 								Util.newHashMapOfValues(

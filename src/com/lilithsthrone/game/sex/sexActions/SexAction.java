@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.sex.ArousalIncrease;
@@ -32,8 +32,6 @@ public abstract class SexAction implements SexActionInterface {
 	private ArousalIncrease selfArousalGain;
 	private ArousalIncrease targetArousalGain;
 	
-	private CorruptionLevel minimumCorruptionNeeded;
-	
 	/**A map of all the SexAreaInterfaces that are interacting with one another in this SexAction.
 	 *  The keys are representing ownership of the character who performs the action, while the values are owned by the character upon which this is being performed.*/
 	private Map<SexAreaInterface, SexAreaInterface> sexAreaInteractions;
@@ -47,7 +45,6 @@ public abstract class SexAction implements SexActionInterface {
 		this.sexActionType = sexActionToCopy.getActionType();
 		this.selfArousalGain = sexActionToCopy.getArousalGainSelf();
 		this.targetArousalGain = sexActionToCopy.getArousalGainTarget();
-		this.minimumCorruptionNeeded = sexActionToCopy.getCorruptionNeeded();
 		this.sexAreaInteractions = sexActionToCopy.getSexAreaInteractions();
 		this.participantType = sexActionToCopy.getParticipantType();
 		this.associatedSexPace = sexActionToCopy.getSexPace();
@@ -57,14 +54,12 @@ public abstract class SexAction implements SexActionInterface {
 			SexActionType sexActionType,
 			ArousalIncrease selfArousalGain,
 			ArousalIncrease targetArousalGain,
-			CorruptionLevel minimumCorruptionNeeded,
 			Map<SexAreaInterface, SexAreaInterface> sexAreaInteractions,
 			SexParticipantType participantType) {
 		
 		this(sexActionType,
 				selfArousalGain,
 				targetArousalGain,
-				minimumCorruptionNeeded,
 				sexAreaInteractions,
 				participantType,
 				null);
@@ -74,7 +69,6 @@ public abstract class SexAction implements SexActionInterface {
 			SexActionType sexActionType,
 			ArousalIncrease selfArousalGain,
 			ArousalIncrease targetArousalGain,
-			CorruptionLevel minimumCorruptionNeeded,
 			Map<SexAreaInterface, SexAreaInterface> sexAreaInteractions,
 			SexParticipantType participantType,
 			SexPace associatedSexPace) {
@@ -82,7 +76,6 @@ public abstract class SexAction implements SexActionInterface {
 		this.sexActionType = sexActionType;
 		this.selfArousalGain = selfArousalGain;
 		this.targetArousalGain = targetArousalGain;
-		this.minimumCorruptionNeeded = minimumCorruptionNeeded;
 		
 		if(sexAreaInteractions==null) {
 			this.sexAreaInteractions = new HashMap<>();
@@ -155,11 +148,6 @@ public abstract class SexAction implements SexActionInterface {
 		}
 		
 		return targetArousalGain;
-	}
-
-	@Override
-	public CorruptionLevel getCorruptionNeeded(){
-		return minimumCorruptionNeeded;
 	}
 
 	@Override

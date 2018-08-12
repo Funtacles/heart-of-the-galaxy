@@ -1,6 +1,6 @@
 package com.lilithsthrone.game.sex.sexActions.dominion;
 
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.npc.dominion.Cultist;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.sex.ArousalIncrease;
@@ -26,7 +26,6 @@ public class CultistSexActions {
 			SexActionType.SPECIAL,
 			ArousalIncrease.ZERO_NONE,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -61,7 +60,6 @@ public class CultistSexActions {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -113,7 +111,6 @@ public class CultistSexActions {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 

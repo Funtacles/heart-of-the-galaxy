@@ -9,7 +9,6 @@ import java.util.Map.Entry;
 
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.Attribute;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
@@ -1076,11 +1075,6 @@ public enum Perk {
 		public boolean isAlwaysAvailable() {
 			return true;
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.TWO_HORNY;
-		}
 	},
 	
 	FETISH_SEEDER(20,
@@ -1104,11 +1098,6 @@ public enum Perk {
 			} else {
 				return UtilText.parse(owner, "[npc.NamePos] seed has the potent effect of causing anyone impregnated by it to give birth to huge numbers of children.");
 			}
-		}
-
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.TWO_HORNY;
 		}
 	},;
 
@@ -1212,10 +1201,6 @@ public enum Perk {
 	public String applyPerkLost(GameCharacter character) {
 		return "";
 	};
-
-	public CorruptionLevel getAssociatedCorruptionLevel() {
-		return CorruptionLevel.ZERO_PURE;
-	}
 
 	public int getRenderingPriority() {
 		return renderingPriority;

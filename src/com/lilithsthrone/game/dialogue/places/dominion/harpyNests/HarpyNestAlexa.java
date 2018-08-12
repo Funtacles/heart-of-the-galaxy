@@ -1,7 +1,7 @@
 package com.lilithsthrone.game.dialogue.places.dominion.harpyNests;
 
 import com.lilithsthrone.game.Weather;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.quests.Quest;
 import com.lilithsthrone.game.character.quests.QuestLine;
@@ -254,7 +254,6 @@ public class HarpyNestAlexa {
 			} else if(index==2) {
 				return new Response("Take punishment", "Offer to take Scarlett's punishment for her.", ALEXAS_NEST_TAKE_PUNISHMENT,
 						Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE, Fetish.FETISH_MASOCHIST),
-						CorruptionLevel.THREE_DIRTY,
 						null,
 						null,
 						null) {
@@ -403,7 +402,6 @@ public class HarpyNestAlexa {
 			} else if(index==3) {
 				return new Response("Beg for more", "Beg to be punished.", ALEXAS_NEST_TAKE_PUNISHMENT_ENJOY,
 						Util.newArrayListOfValues(Fetish.FETISH_MASOCHIST),
-						CorruptionLevel.THREE_DIRTY,
 						null,
 						null,
 						null) {

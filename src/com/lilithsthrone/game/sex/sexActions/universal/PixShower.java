@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.ArousalLevel;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.body.types.VaginaType;
 import com.lilithsthrone.game.character.body.valueEnums.CumProduction;
 import com.lilithsthrone.game.character.fetishes.Fetish;
@@ -36,7 +36,6 @@ public class PixShower {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -77,7 +76,6 @@ public class PixShower {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -122,7 +120,6 @@ public class PixShower {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -163,7 +160,6 @@ public class PixShower {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -202,7 +198,6 @@ public class PixShower {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -250,7 +245,6 @@ public class PixShower {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -293,7 +287,6 @@ public class PixShower {
 			SexActionType.ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaOrifice.VAGINA, SexAreaPenetration.FINGER)),
 			SexParticipantType.NORMAL) {
 		@Override
@@ -330,7 +323,6 @@ public class PixShower {
 			SexActionType.REQUIRES_NO_PENETRATION_AND_EXPOSED,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.THREE_NORMAL,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TONGUE, SexAreaOrifice.MOUTH)),
 			SexParticipantType.NORMAL) {
 		@Override
@@ -364,7 +356,6 @@ public class PixShower {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.TWO_LOW,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -403,7 +394,6 @@ public class PixShower {
 			SexActionType.REQUIRES_NO_PENETRATION_AND_EXPOSED,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.THREE_NORMAL,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.FINGER, SexAreaOrifice.NIPPLE)),
 			SexParticipantType.NORMAL) {
 		@Override
@@ -489,7 +479,6 @@ public class PixShower {
 			SexActionType.REQUIRES_NO_PENETRATION_AND_EXPOSED,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.THREE_NORMAL,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(null, SexAreaPenetration.PENIS)),
 			SexParticipantType.NORMAL) {
 		@Override
@@ -531,7 +520,6 @@ public class PixShower {
 			SexActionType.START_ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.FINGER, SexAreaOrifice.VAGINA)),
 			SexParticipantType.NORMAL) {
 		@Override
@@ -565,7 +553,6 @@ public class PixShower {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.FINGER, SexAreaOrifice.VAGINA)),
 			SexParticipantType.NORMAL) {
 		@Override
@@ -605,7 +592,6 @@ public class PixShower {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.THREE_NORMAL,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.FINGER, SexAreaOrifice.VAGINA)),
 			SexParticipantType.NORMAL) {
 		@Override
@@ -650,7 +636,6 @@ public class PixShower {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.FOUR_HIGH,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.FINGER, SexAreaOrifice.VAGINA)),
 			SexParticipantType.NORMAL) {
 		@Override
@@ -692,7 +677,6 @@ public class PixShower {
 			SexActionType.ONGOING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -745,7 +729,6 @@ public class PixShower {
 			SexActionType.ONGOING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -794,7 +777,6 @@ public class PixShower {
 			SexActionType.PREPARE_FOR_PARTNER_ORGASM,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.TWO_LOW,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -822,7 +804,6 @@ public class PixShower {
 			SexActionType.ORGASM,
 			ArousalIncrease.ZERO_NONE,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -933,7 +914,6 @@ public class PixShower {
 			SexActionType.ORGASM_NO_AROUSAL_RESET,
 			ArousalIncrease.NEGATIVE_MAJOR,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -984,7 +964,6 @@ public class PixShower {
 			SexActionType.PREPARE_FOR_PARTNER_ORGASM,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.TWO_LOW,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -1013,7 +992,6 @@ public class PixShower {
 			SexActionType.ORGASM,
 			ArousalIncrease.ZERO_NONE,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override

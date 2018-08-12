@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.sex.ArousalIncrease;
 import com.lilithsthrone.game.sex.Sex;
 import com.lilithsthrone.game.sex.SexAreaOrifice;
@@ -45,7 +45,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -83,7 +82,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -129,7 +127,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -168,7 +165,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -214,7 +210,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -255,7 +250,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -301,7 +295,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -342,7 +335,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -387,7 +379,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -427,7 +418,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -472,7 +462,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -511,7 +500,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -554,7 +542,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -593,7 +580,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -639,7 +625,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -679,7 +664,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -725,7 +709,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -765,7 +748,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -810,7 +792,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -851,7 +832,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -896,7 +876,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -936,7 +915,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -992,7 +970,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -1033,7 +1010,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -1090,7 +1066,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -1144,7 +1119,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -1198,7 +1172,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -1237,7 +1210,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -1281,7 +1253,6 @@ public class GenericPositioning {
 			SexActionType.SPECIAL,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -1663,7 +1634,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -1710,7 +1680,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -1756,7 +1725,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -1814,7 +1782,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -1871,7 +1838,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -1938,7 +1904,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		
@@ -1995,7 +1960,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -2041,7 +2005,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -2087,7 +2050,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -2136,7 +2098,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -2183,7 +2144,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
@@ -2230,7 +2190,6 @@ public class GenericPositioning {
 			SexActionType.POSITIONING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 

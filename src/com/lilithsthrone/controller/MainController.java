@@ -1375,7 +1375,6 @@ public class MainController implements Initializable {
 				Attribute.EXPERIENCE,
 				Attribute.MAJOR_PHYSIQUE,
 				Attribute.MAJOR_ARCANE,
-				Attribute.MAJOR_CORRUPTION,
 				Attribute.AROUSAL,
 				Attribute.LUST };
 		
@@ -1657,7 +1656,6 @@ public class MainController implements Initializable {
 				Attribute.EXPERIENCE,
 				Attribute.MAJOR_PHYSIQUE,
 				Attribute.MAJOR_ARCANE,
-				Attribute.MAJOR_CORRUPTION,
 				Attribute.AROUSAL,
 				Attribute.LUST };
 		if(!RenderingEngine.ENGINE.isRenderingCharactersRightPanel()) {

@@ -166,10 +166,6 @@ public class TooltipResponseDescriptionEventListener implements EventListener {
 									+response.getTooltipBlockingList()+response.getTooltipRequiredList()
 							+"</div>");
 					
-					tooltipSB.append(
-							"<div class='description-small'>"
-									+response.getTooltipCorruptionBypassText()
-							+"</div>");
 					boxHeight+=54;
 					
 					boxHeight+= 28 + ((response.lineHeight()+1)*18);

@@ -102,7 +102,6 @@ public class Jules extends NPC {
 
 			this.setAttribute(Attribute.MAJOR_PHYSIQUE, 40);
 			this.setAttribute(Attribute.MAJOR_ARCANE, 0);
-			this.setAttribute(Attribute.MAJOR_CORRUPTION, 60);
 		}
 	}
 	

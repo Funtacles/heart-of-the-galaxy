@@ -340,7 +340,7 @@ public class CharactersPresentDialogue {
 					} else {
 						if(((NPC) characterViewed).isAttractedTo(Main.game.getPlayer())) {
 							return new ResponseSex("Submissive sex", "Have submissive sex with [npc.name].", 
-									Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, Fetish.FETISH_SUBMISSIVE.getAssociatedCorruptionLevel(), null, null, null,
+									Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, null, null, null,
 									true, true,
 									isSittingSex()
 										? new SMChair(

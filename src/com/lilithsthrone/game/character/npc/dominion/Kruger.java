@@ -113,7 +113,6 @@ public class Kruger extends NPC {
 
 			this.setAttribute(Attribute.MAJOR_PHYSIQUE, 60);
 			this.setAttribute(Attribute.MAJOR_ARCANE, 0);
-			this.setAttribute(Attribute.MAJOR_CORRUPTION, 80);
 		}
 	}
 	

@@ -2585,24 +2585,6 @@ public class NightlifeDistrict {
 					}
 					
 				}
-				//TODO requires several improvements to sex AI and positioning first
-//				else if(index==6) {
-//					if(!Main.game.getPlayer().isFeminine()) {
-//						return new Response("Kruger threesome", "Kruger is gynephilic, so wouldn't be interested in a threesome with you and Kalahari.", null);
-//						
-//					} else {
-//						return new ResponseSex("Kruger threesome", "Have a threesome with Kruger as the dom, and you and Kalahari as the subs.",
-//								true, true,
-//								new SMKrugerThreesome(
-//										Util.newHashMapOfValues(new Value<>(Main.game.getKruger(), SexPositionSlot.DOGGY_BEHIND)),
-//										Util.newHashMapOfValues(
-//												new Value<>(Main.game.getPlayer(), SexPositionSlot.DOGGY_ON_ALL_FOURS),
-//												new Value<>(Main.game.getKalahari(), SexPositionSlot.DOGGY_ON_ALL_FOURS_SECOND))),
-//								WATERING_HOLE_BAR_KALAHARI_BREAK_AFTER_SEX,
-//								UtilText.parseFromXMLFile("places/dominion/nightlife/theWateringHole", "WATERING_HOLE_BAR_KALAHARI_BREAK_SEX_AS_SUB"));
-//					}
-//					
-//				}
 				else if(index==0) {
 					return new Response("Finish", "Let Kalahari get back to work.", WATERING_HOLE_KALAHARI_BREAK_END) {
 						@Override

@@ -76,7 +76,6 @@ public class Cultist extends NPC {
 				false);
 		
 		if(!isImported) {
-			setAttribute(Attribute.MAJOR_CORRUPTION, 100);
 	
 			this.setWorldLocation(Main.game.getPlayer().getWorldLocation());
 			this.setLocation(new Vector2i(Main.game.getPlayer().getLocation().getX(), Main.game.getPlayer().getLocation().getY()));

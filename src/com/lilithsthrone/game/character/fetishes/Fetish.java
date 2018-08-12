@@ -9,7 +9,6 @@ import java.util.Map.Entry;
 
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.Attribute;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
 import com.lilithsthrone.game.character.body.types.VaginaType;
 import com.lilithsthrone.game.character.effects.Perk;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -53,11 +52,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "performing anal sex actions");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.TWO_HORNY;
-		}
 	},
 	
 	FETISH_ANAL_RECEIVING(60,
@@ -84,11 +78,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "receiving any anal attention");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.TWO_HORNY;
 		}
 	},
 	
@@ -117,11 +106,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "performing vaginal sex actions");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
-		}
 	},
 	
 	FETISH_VAGINAL_RECEIVING(60,
@@ -148,11 +132,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "receiving any vaginal attention");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
 		}
 	},
 	
@@ -181,11 +160,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "receiving oral sex");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
-		}
 	},
 	
 	FETISH_ORAL_GIVING(60,
@@ -212,11 +186,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "performing oral sex");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
 		}
 	},
 	
@@ -245,11 +214,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "playing with others' breasts");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
-		}
 	},
 	
 	FETISH_BREASTS_SELF(60,
@@ -276,11 +240,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "having your [npc.breasts] touched and fondled");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
 		}
 	},
 	
@@ -309,11 +268,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "being breast-fed");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
-		}
 	},
 	
 	FETISH_LACTATION_SELF(60,
@@ -340,11 +294,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "having your [npc.breasts] milked");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
 		}
 	},
 	
@@ -373,11 +322,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "others' legs");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
-		}
 	},
 	
 	FETISH_STRUTTER(60,
@@ -404,11 +348,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "using your thighs and legs in sex");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
 		}
 	},
 	
@@ -438,11 +377,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "using your feet in sex");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
-		}
 	},
 	
 	FETISH_FOOT_RECEIVING(60,
@@ -470,11 +404,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "others' feet");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
-		}
 	},
 	
 	FETISH_PENIS_RECEIVING(60,
@@ -499,11 +428,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "others' cocks");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.TWO_HORNY;
 		}
 	},
 	
@@ -530,11 +454,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "using your cock");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.TWO_HORNY;
-		}
 	},
 	
 	FETISH_CUM_STUD(60,
@@ -559,11 +478,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "any form of self-focused cum play");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.THREE_DIRTY;
 		}
 	},
 	
@@ -591,11 +505,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "others' cum");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.THREE_DIRTY;
-		}
 	},
 	
 	FETISH_DEFLOWERING(60,
@@ -621,11 +530,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "taking virginities");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.FOUR_LUSTFUL;
 		}
 	},
 	
@@ -683,11 +587,6 @@ public enum Fetish {
 			
 			return perkRequirementsList;
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ZERO_PURE;
-		}
 	},
 	
 	FETISH_MASTURBATION(60,
@@ -714,25 +613,9 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "masturbating");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
-		}
 	},
 	
 	
-	// FETISH_SPANKING("spanking", "You love the idea of spanking or being
-	// spanked during sex."),
-
-	// Body parts:
-	
-	// FETISH_LACTATION("lactation", "The idea of someone being milked drives
-	// you crazy with lust."),
-	// FETISH_FOOT("foot", "It doesn't matter if they're yours or your
-	// partner's, you're going to be trying to find a way to use feet during
-	// sex."),
-
 	// Effects:
 	FETISH_PREGNANCY(60,
 			"pregnancy",
@@ -758,11 +641,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "being pregnant");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.TWO_HORNY;
 		}
 	},
 	
@@ -791,11 +669,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "impregnating others");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.TWO_HORNY;
-		}
 	},
 	
 	FETISH_TRANSFORMATION_GIVING(60,
@@ -821,11 +694,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "transforming others");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.FOUR_LUSTFUL;
 		}
 	},
 	
@@ -853,11 +721,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "the idea of being transformed");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.TWO_HORNY;
 		}
 	},
 	
@@ -887,23 +750,16 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "giving others new fetishes");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.FOUR_LUSTFUL;
-		}
 	},
 	
 	FETISH_KINK_RECEIVING(60,
 			"kink curious",
 			"being given new fetishes",
-//			"fetish_transformation_receiving",
 			"fetish_kink_receiving",
 			Fetish.BASE_EXPERIENCE_GAIN,
 			Colour.GENERIC_ARCANE,
 			null,
 			Util.newArrayListOfValues(
-					// Unclear what extra effects this fetish should provide, other than not taking corruption from recieving forced fetishes
 					"<span style='color:"+ Colour.GENERIC_GOOD.toWebHexString()+ ";'>Removes corruption gain when a fetish is forced on you.</span>"),
 			null) {
 
@@ -919,11 +775,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "the idea of being given new fetishes");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.THREE_DIRTY;
 		}
 	},
 	
@@ -953,11 +804,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "denying orgasms");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.THREE_DIRTY;
-		}
 	},
 	
 	FETISH_DENIAL_SELF(60,
@@ -981,11 +827,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "having your orgasms denied");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.THREE_DIRTY;
 		}
 	},
 	
@@ -1011,11 +852,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "being the dominant partner");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.THREE_DIRTY;
 		}
 	},
 	
@@ -1043,11 +879,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "being the submissive partner");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.THREE_DIRTY;
-		}
 	},
 	
 	FETISH_INCEST(60,
@@ -1071,11 +902,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "having sex with your relations");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.FIVE_CORRUPT;
 		}
 	},
 	
@@ -1103,11 +929,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "pain and humiliation");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.THREE_DIRTY;
-		}
 	},
 	
 	FETISH_SADIST(60,
@@ -1133,11 +954,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "inflicting pain and humiliation on others");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.THREE_DIRTY;
 		}
 	},
 	
@@ -1166,11 +982,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "having sex with an unwilling partner");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.FIVE_CORRUPT;
-		}
 	},
 	
 	FETISH_NON_CON_SUB(60,
@@ -1198,11 +1009,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "being forced to have sex against your will");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.FOUR_LUSTFUL;
-		}
 	},
 
 	FETISH_EXHIBITIONIST(60,
@@ -1228,11 +1034,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "exposing yourself to others");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.THREE_DIRTY;
 		}
 	},
 	
@@ -1260,11 +1061,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "watching others");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.THREE_DIRTY;
-		}
 	},
 	
 	FETISH_BIMBO(60,
@@ -1291,11 +1087,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "acting like a bimbo");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
-		}
 	},
 	
 	FETISH_CROSS_DRESSER(60,
@@ -1320,11 +1111,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "wearing clothing more suited to the opposite gender");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.ONE_VANILLA;
 		}
 	},
 	
@@ -1355,11 +1141,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "switching between dom and sub");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.THREE_DIRTY;
-		}
 	},
 	
 	FETISH_BREEDER(60,
@@ -1388,11 +1169,6 @@ public enum Fetish {
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "anything to do with reproduction");
 		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.THREE_DIRTY;
-		}
 	},
 	
 	FETISH_SADOMASOCHIST(60,
@@ -1420,11 +1196,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "all forms of pain and humiliation");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.THREE_DIRTY;
 		}
 	},
 	
@@ -1458,11 +1229,6 @@ public enum Fetish {
 		@Override
 		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
 			return getGenericFetishDesireDescription(target, desire, "avoiding vaginal sex");
-		}
-		
-		@Override
-		public CorruptionLevel getAssociatedCorruptionLevel() {
-			return CorruptionLevel.TWO_HORNY;
 		}
 	};
 	
@@ -1623,10 +1389,6 @@ public enum Fetish {
 
 	public Perk getNextLevelPerk() {
 		return null;
-	}
-	
-	public CorruptionLevel getAssociatedCorruptionLevel() {
-		return CorruptionLevel.ZERO_PURE;
 	}
 
 	public int getRenderingPriority() {

@@ -1,6 +1,6 @@
 package com.lilithsthrone.game.sex.sexActions.submission.roxy;
 
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.body.types.FluidType;
 import com.lilithsthrone.game.character.effects.Addiction;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
@@ -23,7 +23,6 @@ public class SARoxySpecials {
 			SexActionType.ORGASM,
 			ArousalIncrease.FIVE_EXTREME,
 			ArousalIncrease.FIVE_EXTREME,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		

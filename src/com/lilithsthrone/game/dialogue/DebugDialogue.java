@@ -179,22 +179,12 @@ public class DebugDialogue {
 					}
 				};
 			}
-			else if(index==12){
-				return new Response("<span style='color:"+Colour.GENERIC_GOOD.toWebHexString()+";'>+5</span> <span style='color:"+Colour.ATTRIBUTE_CORRUPTION.toWebHexString()+";'>Corruption</span>", "", DEBUG_MENU){
-					@Override
-					public void effects() {
-						Main.game.getPlayer().incrementAttribute(Attribute.MAJOR_CORRUPTION, 5);
-						
-					}
-				};
-			}
 			else if(index==13){
 				return new Response("<span style='color:"+Colour.GENERIC_EXCELLENT.toWebHexString()+";'>Max all attributes</span>", "", DEBUG_MENU){
 					@Override
 					public void effects() {
 						Main.game.getPlayer().setAttribute(Attribute.MAJOR_PHYSIQUE, 100);
 						Main.game.getPlayer().setAttribute(Attribute.MAJOR_ARCANE, 100);
-						Main.game.getPlayer().setAttribute(Attribute.MAJOR_CORRUPTION, 100);
 						
 					}
 				};
@@ -216,16 +206,6 @@ public class DebugDialogue {
 						
 					}
 				};
-			}
-			else if(index==16){
-				return new Response("<span style='color:"+Colour.GENERIC_BAD.toWebHexString()+";'>-5</span> <span style='color:"+Colour.ATTRIBUTE_CORRUPTION.toWebHexString()+";'>Corruption</span>", "", DEBUG_MENU){
-					@Override
-					public void effects() {
-						Main.game.getPlayer().incrementAttribute(Attribute.MAJOR_CORRUPTION, -5);
-						
-					}
-				};
-				
 			}
 			else if(index==17){
 				return new Response("<span style='color:"+Colour.GENERIC_EXCELLENT.toWebHexString()+";'>+1</span> <span style='color:"+Colour.PERK.toWebHexString()+";'>Perk point</span>", "", DEBUG_MENU){

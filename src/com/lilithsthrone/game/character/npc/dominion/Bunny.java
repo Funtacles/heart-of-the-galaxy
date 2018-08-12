@@ -54,7 +54,6 @@ public class Bunny extends NPC {
 
 		this.setAttribute(Attribute.MAJOR_PHYSIQUE, 15f);
 		this.setAttribute(Attribute.MAJOR_ARCANE, 0f);
-		this.setAttribute(Attribute.MAJOR_CORRUPTION, 75f);
 
 		this.setPersonality(Util.newHashMapOfValues(
 				new Value<>(PersonalityTrait.AGREEABLENESS, PersonalityWeight.HIGH),

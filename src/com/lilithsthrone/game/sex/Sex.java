@@ -17,7 +17,7 @@ import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.PlayerCharacter;
 import com.lilithsthrone.game.character.attributes.ArousalLevel;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.attributes.LustLevel;
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.types.PenisType;
@@ -1459,7 +1459,6 @@ public class Sex {
 												SexActionType.ONGOING,
 												ArousalIncrease.ZERO_NONE,
 												ArousalIncrease.ZERO_NONE,
-												CorruptionLevel.ZERO_PURE,
 												null,
 												SexParticipantType.NORMAL) {
 													@Override

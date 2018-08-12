@@ -3,7 +3,7 @@ package com.lilithsthrone.game.sex.sexActions.baseActionsMisc;
 import java.util.List;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.sex.ArousalIncrease;
@@ -28,22 +28,12 @@ public class PartnerTalk {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.TWO_LOW,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 
 		@Override
 		public boolean isBaseRequirementsMet() {
 			return !Sex.getCharacterPerformingAction().isPlayer();
-		}
-		
-		@Override
-		public CorruptionLevel getCorruptionNeeded(){
-			if(Sex.getSexPace(Sex.getActivePartner())==SexPace.SUB_RESISTING) {
-				return CorruptionLevel.ZERO_PURE;
-			} else {
-				return CorruptionLevel.ONE_VANILLA;
-			}
 		}
 		
 		@Override

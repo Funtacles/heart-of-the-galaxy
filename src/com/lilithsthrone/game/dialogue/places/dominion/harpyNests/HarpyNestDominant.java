@@ -322,7 +322,7 @@ public class HarpyNestDominant {
 						
 				} else if (index == 2) {
 					return new Response("Usurp throne", "How <i>dare</i> she speak to you like that! It's time to show her who's really in control here!", HARPY_NEST_DOMINANT_QUEEN,
-							Util.newArrayListOfValues(Fetish.FETISH_DOMINANT), null, null, Femininity.FEMININE_STRONG, null) {
+							Util.newArrayListOfValues(Fetish.FETISH_DOMINANT), null, Femininity.FEMININE_STRONG, null) {
 						@Override
 						public void effects() {
 							Main.game.getDialogueFlags().values.add(DialogueFlagValue.dominantEncountered);
@@ -406,7 +406,7 @@ public class HarpyNestDominant {
 		public Response getResponse(int responseTab, int index) {
 			if (index == 1) {
 				return new Response("Usurp throne", "Your patience has run out. It's time to show this bitch who's really in control here!", HARPY_NEST_DOMINANT_QUEEN,
-						Util.newArrayListOfValues(Fetish.FETISH_DOMINANT), null, null, Femininity.FEMININE_STRONG, null) {
+						Util.newArrayListOfValues(Fetish.FETISH_DOMINANT), null, Femininity.FEMININE_STRONG, null) {
 					@Override
 					public void effects() {
 						Main.game.getDialogueFlags().values.add(DialogueFlagValue.dominantPacified);
@@ -680,7 +680,6 @@ public class HarpyNestDominant {
 						"Allow [harpyDominant.Name] to spray you with the strange perfume... [style.boldBad(Warning:)] <b>Due to the nature of harpies needing a special form, this transformation bypasses TF preferences!</b>",
 						HARPY_NEST_DOMINANT_FIGHT_LOSE_PUNISHMENT,
 						Util.newArrayListOfValues(Fetish.FETISH_TRANSFORMATION_RECEIVING),
-						Fetish.FETISH_TRANSFORMATION_RECEIVING.getAssociatedCorruptionLevel(),
 						null,
 						null,
 						null){
@@ -788,7 +787,6 @@ public class HarpyNestDominant {
 						"Allow [harpyDominant.Name] to spray you with the strange perfume... [style.boldBad(Warning:)] <b>Due to the nature of harpies needing a special form, this transformation bypasses TF preferences!</b>",
 						HARPY_NEST_DOMINANT_FIGHT_LOSE_PUNISHMENT,
 						Util.newArrayListOfValues(Fetish.FETISH_TRANSFORMATION_RECEIVING),
-						Fetish.FETISH_TRANSFORMATION_RECEIVING.getAssociatedCorruptionLevel(),
 						null,
 						null,
 						null){

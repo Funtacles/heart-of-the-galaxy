@@ -1,6 +1,6 @@
 package com.lilithsthrone.game.sex.sexActions.baseActionsSelfPlayer;
 
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.sex.ArousalIncrease;
 import com.lilithsthrone.game.sex.LubricationType;
 import com.lilithsthrone.game.sex.Sex;
@@ -25,7 +25,6 @@ public class PlayerSelfTailMouth {
 			SexActionType.REQUIRES_NO_PENETRATION_AND_EXPOSED,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.MOUTH)),
 			SexParticipantType.SELF) {
 		@Override
@@ -63,7 +62,6 @@ public class PlayerSelfTailMouth {
 			SexActionType.START_ONGOING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.MOUTH)),
 			SexParticipantType.SELF) {
 		@Override
@@ -91,7 +89,6 @@ public class PlayerSelfTailMouth {
 			SexActionType.STOP_ONGOING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.MOUTH)),
 			SexParticipantType.SELF) {
 		@Override

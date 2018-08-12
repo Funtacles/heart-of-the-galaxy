@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
@@ -81,7 +81,7 @@ public class LilayasRoom {
 
 			} else if (index == 1) {
 				return new Response("Panties", "Look through Lilaya's pile of panties.", PANTIES,
-						Util.newArrayListOfValues(Fetish.FETISH_INCEST), CorruptionLevel.TWO_HORNY,
+						Util.newArrayListOfValues(Fetish.FETISH_INCEST),
 						null, null, null) {
 					@Override
 					public void effects() {
@@ -328,7 +328,7 @@ public class LilayasRoom {
 			if(index==1) {
 				return new ResponseSex("Submit", "Let Rose push you back on to the bed and fuck you.",
 						Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE),
-						null, CorruptionLevel.THREE_DIRTY, null, null, null,
+						null, null, null, null,
 						true, false,
 						new SMMissionary(
 								Util.newHashMapOfValues(new Value<>(Main.game.getRose(), SexPositionSlot.MISSIONARY_KNEELING_BETWEEN_LEGS)),

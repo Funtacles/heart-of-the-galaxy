@@ -146,7 +146,7 @@ public class SlimeQueensLair {
 				} else if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.SIDE_SLIME_QUEEN, Quest.SLIME_QUEEN_FIVE_CONVINCE)?index==2:index==3) {
 					return new ResponseSex("Side-by-side",
 							"Push [slimeFire.name] and [slimeIce.name] down onto all fours, side-by-side, and get ready to fuck them.",
-							null, null, null, null, null, null,
+							null, null, null, null, null,
 							true, false,
 							new SMDoggy(
 									Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.DOGGY_BEHIND)),
@@ -164,7 +164,7 @@ public class SlimeQueensLair {
 				} else if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.SIDE_SLIME_QUEEN, Quest.SLIME_QUEEN_FIVE_CONVINCE)?index==3:index==4) {
 					return new ResponseSex("Get Spitroasted",
 							"Let [slimeFire.name] and [slimeIce.name] spitroast you.",
-							Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, Fetish.FETISH_SUBMISSIVE.getAssociatedCorruptionLevel(), null, null, null,
+							Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, null, null, null,
 							true, true,
 							new SMDoggy(
 									Util.newHashMapOfValues(
@@ -186,7 +186,7 @@ public class SlimeQueensLair {
 				if(index==1) {
 					return new ResponseSex("Side-by-side",
 							"Push [slimeFire.name] and [slimeIce.name] down onto all fours, side-by-side, and get ready to fuck them.",
-							null, null, null, null, null, null,
+							null, null, null, null, null,
 							true, false,
 							new SMDoggy(
 									Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.DOGGY_BEHIND)),
@@ -204,7 +204,7 @@ public class SlimeQueensLair {
 				} else if(index==2) {
 					return new ResponseSex("Get Spitroasted",
 							"Let [slimeFire.name] and [slimeIce.name] spitroast you.",
-							Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, Fetish.FETISH_SUBMISSIVE.getAssociatedCorruptionLevel(), null, null, null,
+							Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, null, null, null,
 							true, true,
 							new SMDoggy(
 									Util.newHashMapOfValues(
@@ -400,7 +400,7 @@ public class SlimeQueensLair {
 			if(index==1) {
 				return new ResponseSex("Spitroasted",
 						"[slimeFire.name] and [slimeIce.name] move to have some fun with you...",
-						Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, Fetish.FETISH_SUBMISSIVE.getAssociatedCorruptionLevel(), null, null, null,
+						Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, null, null, null,
 						false, false,
 						new SMDoggy(
 								Util.newHashMapOfValues(
@@ -602,7 +602,7 @@ public class SlimeQueensLair {
 				if(index==1) {
 					return new ResponseSex("Sex",
 							UtilText.parse(Main.game.getSlimeRoyalGuard(), "Pull [slimeRoyalGuard.name] to [slimeRoyalGuard.his] feet and get ready to fuck [slimeRoyalGuard.him]."),
-							null, null, null, null, null, null,
+							null, null, null, null, null,
 							true, false,
 							new SMStanding(
 									Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.STANDING_DOMINANT)),
@@ -614,7 +614,7 @@ public class SlimeQueensLair {
 				} else if(index==2) {
 					return new ResponseSex("Submit",
 							UtilText.parse(Main.game.getSlimeRoyalGuard(), "Let [slimeRoyalGuard.name] fuck you."),
-							Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, Fetish.FETISH_SUBMISSIVE.getAssociatedCorruptionLevel(), null, null, null,
+							Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, null, null, null,
 							false, false,
 							new SMStanding(
 									Util.newHashMapOfValues(
@@ -832,7 +832,7 @@ public class SlimeQueensLair {
 			} else if(index==2) {
 				return new ResponseSex("Submissive sex",
 						UtilText.parse(Main.game.getSlimeRoyalGuard(), "Push [slimeRoyalGuard.name] over the edge and tire him out through sex."),
-						Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, Fetish.FETISH_SUBMISSIVE.getAssociatedCorruptionLevel(), null, null, null,
+						Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, null, null, null,
 						true, true,
 						new SMStanding(
 								Util.newHashMapOfValues(
@@ -927,7 +927,7 @@ public class SlimeQueensLair {
 			if(index==1) {
 				return new ResponseSex("Sex",
 						"[slimeRoyalGuard.Name] moves to have some fun with you...",
-						Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, Fetish.FETISH_SUBMISSIVE.getAssociatedCorruptionLevel(), null, null, null,
+						Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, null, null, null,
 						false, false,
 						new SMStanding(
 								Util.newHashMapOfValues(
@@ -955,7 +955,7 @@ public class SlimeQueensLair {
 			if(index==1) {
 				return new ResponseSex("Sex",
 						UtilText.parse(Main.game.getSlimeRoyalGuard(), "Pull [slimeRoyalGuard.name] to [slimeRoyalGuard.his] feet and get ready to fuck [slimeRoyalGuard.him]."),
-						null, null, null, null, null, null,
+						null, null, null, null, null,
 						true, false,
 						new SMStanding(
 								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.STANDING_DOMINANT)),
@@ -967,7 +967,7 @@ public class SlimeQueensLair {
 			} else if(index==2) {
 				return new ResponseSex("Submit",
 						UtilText.parse(Main.game.getSlimeRoyalGuard(), "Let [slimeRoyalGuard.name] fuck you."),
-						Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, Fetish.FETISH_SUBMISSIVE.getAssociatedCorruptionLevel(), null, null, null,
+						Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, null, null, null,
 						false, false,
 						new SMStanding(
 								Util.newHashMapOfValues(
@@ -994,7 +994,7 @@ public class SlimeQueensLair {
 			if(index==1) {
 				return new ResponseSex("Sex",
 						"[slimeRoyalGuard.Name] moves to have some fun with you...",
-						Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, Fetish.FETISH_SUBMISSIVE.getAssociatedCorruptionLevel(), null, null, null,
+						Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, null, null, null,
 						true, false,
 						new SMStanding(
 								Util.newHashMapOfValues(
@@ -1096,7 +1096,7 @@ public class SlimeQueensLair {
 					
 				} else if(index==2) {
 					return new Response("Force", "If she really wants to be treated roughly, then that's what [slimeQueen.namePos] going to get. Push her down on her bed and force her to give up her plans.", SLIME_QUEEN_FORCE,
-							Util.newArrayListOfValues(Fetish.FETISH_SADIST), Fetish.FETISH_SADIST.getAssociatedCorruptionLevel(), null, null, null) {
+							Util.newArrayListOfValues(Fetish.FETISH_SADIST), null, null, null) {
 						@Override
 						public void effects() {
 							Main.game.getDialogueFlags().setFlag(DialogueFlagValue.slimeQueenForced, true);
@@ -1114,7 +1114,7 @@ public class SlimeQueensLair {
 					
 				} else if(index==3) {
 					return new Response("Help", "Instead of stopping her, offer Catherine your assistance instead. <b>This will greatly increase the number of slime encounters in Submission.</b>", SLIME_QUEEN_SUBMIT,
-							Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), Fetish.FETISH_SUBMISSIVE.getAssociatedCorruptionLevel(), null, null, null) {
+							Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, null, null) {
 						@Override
 						public void effects() {
 							Main.game.getDialogueFlags().setFlag(DialogueFlagValue.slimeQueenHelped, true);
@@ -1153,7 +1153,7 @@ public class SlimeQueensLair {
 			} else if(index==2) {
 				return new ResponseSex("'Rape'",
 						UtilText.parse(Main.game.getSlimeQueen(), "Play along with [slimeQueen.namePos] fantasies and force yourself on her."),
-						null, null, null, null, null, null,
+						null, null, null, null, null,
 						true, false,
 						new SMMissionary(
 								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.MISSIONARY_KNEELING_BETWEEN_LEGS)),
@@ -1230,7 +1230,7 @@ public class SlimeQueensLair {
 			} else if(index==2) {
 				return new ResponseSex("'Rape'",
 						UtilText.parse(Main.game.getSlimeQueen(), "Play along with [slimeQueen.namePos] fantasies and force yourself on her."),
-						null, null, null, null, null, null,
+						null, null, null, null, null,
 						true, false,
 						new SMDoggy(
 								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.DOGGY_BEHIND)),

@@ -104,7 +104,6 @@ public class SupplierLeader extends NPC {
 			
 			this.setAttribute(Attribute.MAJOR_PHYSIQUE, 35);
 			this.setAttribute(Attribute.MAJOR_ARCANE, 0);
-			this.setAttribute(Attribute.MAJOR_CORRUPTION, 70);
 		}
 	}
 	

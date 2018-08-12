@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.sex.ArousalIncrease;
 import com.lilithsthrone.game.sex.Sex;
@@ -26,7 +26,6 @@ public class SexActionUtility {
 			SexActionType.ONGOING,
 			ArousalIncrease.ZERO_NONE,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -103,7 +102,6 @@ public class SexActionUtility {
 			SexActionType.ONGOING,
 			ArousalIncrease.NEGATIVE,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -168,7 +166,6 @@ public class SexActionUtility {
 			SexActionType.ONGOING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
 		@Override
@@ -195,7 +192,6 @@ public class SexActionUtility {
 			SexActionType.ONGOING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.SELF) {
 		@Override
@@ -222,7 +218,6 @@ public class SexActionUtility {
 			SexActionType.ONGOING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.SELF) {
 		@Override
@@ -250,7 +245,6 @@ public class SexActionUtility {
 			SexActionType.ONGOING,
 			ArousalIncrease.ZERO_NONE,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.SELF) {
 		@Override
@@ -277,7 +271,6 @@ public class SexActionUtility {
 			SexActionType.ONGOING,
 			ArousalIncrease.ZERO_NONE,
 			ArousalIncrease.ZERO_NONE,
-			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.SELF) {
 		@Override

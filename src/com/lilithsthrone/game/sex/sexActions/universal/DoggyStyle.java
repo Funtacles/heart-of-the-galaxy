@@ -3,7 +3,7 @@ package com.lilithsthrone.game.sex.sexActions.universal;
 import java.util.List;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.types.VaginaType;
 import com.lilithsthrone.game.character.body.valueEnums.PenetrationModifier;
@@ -33,7 +33,6 @@ public class DoggyStyle {
 			SexActionType.ONGOING,
 			ArousalIncrease.THREE_NORMAL,
 			ArousalIncrease.THREE_NORMAL,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL,
 			SexPace.SUB_EAGER) {
@@ -75,7 +74,6 @@ public class DoggyStyle {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.THREE_NORMAL,
-			CorruptionLevel.TWO_HORNY,
 			null,
 			SexParticipantType.NORMAL,
 			SexPace.DOM_ROUGH) {
@@ -201,7 +199,6 @@ public class DoggyStyle {
 			SexActionType.ORGASM,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.THREE_NORMAL,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.PENIS, null)),
 			SexParticipantType.NORMAL) {
 		@Override
@@ -357,7 +354,6 @@ public class DoggyStyle {
 			SexActionType.ORGASM,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.THREE_NORMAL,
-			CorruptionLevel.THREE_DIRTY,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.PENIS, SexAreaOrifice.ANUS)),
 			SexParticipantType.NORMAL,
 			SexPace.DOM_ROUGH) {
@@ -469,7 +465,6 @@ public class DoggyStyle {
 			SexActionType.ORGASM,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.THREE_NORMAL,
-			CorruptionLevel.THREE_DIRTY,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.PENIS, SexAreaOrifice.VAGINA)),
 			SexParticipantType.NORMAL,
 			SexPace.DOM_ROUGH) {
@@ -581,7 +576,6 @@ public class DoggyStyle {
 			SexActionType.ONGOING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL,
 			SexPace.SUB_EAGER) {
@@ -622,7 +616,6 @@ public class DoggyStyle {
 			SexActionType.ONGOING,
 			ArousalIncrease.TWO_LOW,
 			ArousalIncrease.THREE_NORMAL,
-			CorruptionLevel.ONE_VANILLA,
 			null,
 			SexParticipantType.NORMAL,
 			SexPace.DOM_ROUGH) {

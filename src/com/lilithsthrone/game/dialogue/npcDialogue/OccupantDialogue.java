@@ -511,7 +511,7 @@ public class OccupantDialogue {
 								
 							} else {
 								return new ResponseSex("Submissive sex", "Have submissive sex with [npc.name].", 
-										Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, Fetish.FETISH_SUBMISSIVE.getAssociatedCorruptionLevel(), null, null, null,
+										Util.newArrayListOfValues(Fetish.FETISH_SUBMISSIVE), null, null, null, null,
 										true, true,
 										new SMStanding(
 												Util.newHashMapOfValues(new Value<>(Main.game.getActiveNPC(), SexPositionSlot.STANDING_DOMINANT)),
@@ -550,7 +550,7 @@ public class OccupantDialogue {
 							} else {
 								return new ResponseSex("Get Spitroasted",
 										UtilText.parse(charactersPresent.get(0), charactersPresent.get(1), "Let [npc1.name] and [npc2.name] spitroast you."),
-										null, null, null, null, null, null,
+										null, null, null, null, null,
 										true, true,
 										new SMDoggy(
 												Util.newHashMapOfValues(
@@ -577,7 +577,7 @@ public class OccupantDialogue {
 						if(charactersPresent.size()>=2) {
 							return new ResponseSex("Side-by-side",
 									UtilText.parse(charactersPresent.get(0), charactersPresent.get(1), "Push [npc1.name] and [npc2.name] down onto all fours, side-by-side, and get ready to fuck them."),
-									null, null, null, null, null, null,
+									null, null, null, null, null,
 									true, false,
 									new SMDoggy(
 											Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.DOGGY_BEHIND)),

@@ -5,8 +5,6 @@ import java.util.Collection;
 import java.util.List;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.attributes.Attribute;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
 import com.lilithsthrone.game.character.body.valueEnums.Femininity;
 import com.lilithsthrone.game.character.effects.Perk;
 import com.lilithsthrone.game.character.effects.StatusEffect;
@@ -32,7 +30,6 @@ public class Response {
 	protected DialogueNodeOld nextDialogue;
 	
 	protected List<Fetish> fetishesRequired;
-	protected CorruptionLevel corruptionBypass;
 	private List<Perk> perksRequired;
 	private Femininity femininityRequired;
 	private Race raceRequired;
@@ -49,20 +46,19 @@ public class Response {
 		
 		this(title, tooltipText, nextDialogue,
 				null, null,
-				null, null, null);
+				null, null);
 	}
 	
 	public Response(String title,
 			String tooltipText,
 			DialogueNodeOld nextDialogue,
 			List<Fetish> fetishesForUnlock,
-			CorruptionLevel corruptionBypass,
 			List<Perk> perksRequired,
 			Femininity femininityRequired,
 			Race raceRequired) {
 		
 		this(title, tooltipText, nextDialogue,
-				fetishesForUnlock, corruptionBypass,
+				fetishesForUnlock,
 				perksRequired, femininityRequired, raceRequired,
 				null, null, null, null);
 	}
@@ -71,7 +67,6 @@ public class Response {
 			String tooltipText,
 			DialogueNodeOld nextDialogue, 
 			List<Fetish> fetishesForUnlock,
-			CorruptionLevel corruptionBypass,
 			List<Perk> perksRequired,
 			Femininity femininityRequired,
 			Race raceRequired,
@@ -85,7 +80,6 @@ public class Response {
 		this.nextDialogue = nextDialogue;
 		
 		this.fetishesRequired = fetishesForUnlock;
-		this.corruptionBypass = corruptionBypass;
 		this.perksRequired = perksRequired;
 		this.femininityRequired = femininityRequired;
 		this.raceRequired = raceRequired;
@@ -140,10 +134,6 @@ public class Response {
 		return false;
 	}
 	
-	public boolean isCorruptionHighlight() {
-		return false;
-	}
-	
 	public boolean isTradeHighlight() {
 		return false;
 	}
@@ -160,9 +150,6 @@ public class Response {
 			
 		} else if(isCombatHighlight()) {
 			return Colour.GENERIC_COMBAT;
-			
-		} else if(isCorruptionHighlight()) {
-			return Colour.ATTRIBUTE_CORRUPTION;
 			
 		} else if(isTradeHighlight()) {
 			return Colour.BASE_YELLOW_LIGHT;
@@ -189,7 +176,6 @@ public class Response {
 	
 	public boolean hasRequirements() {
 		return fetishesRequired != null
-				|| corruptionBypass != null
 				|| perksRequired != null
 				|| femininityRequired != null
 				|| raceRequired != null
@@ -199,7 +185,7 @@ public class Response {
 	
 	public boolean isAvailable(){
 		if(hasRequirements()) {
-			return (isCorruptionWithinRange() || isAvailableFromFetishes() || (corruptionBypass==null && fetishesRequired==null))
+			return (isAvailableFromFetishes() || fetishesRequired==null)
 					&& !isBlockedFromPerks()
 					&& isFemininityInRange()
 					&& isRequiredRace()
@@ -217,39 +203,13 @@ public class Response {
 					|| !isRequiredRace()
 					|| !isPenetrationTypeAvailable()
 					|| !isOrificeTypeAvailable()
-					|| (corruptionBypass==null && fetishesRequired!=null));
+					|| (fetishesRequired!=null));
 		}
 		
 		return false;
 	}
 
 	private StringBuilder SB;
-	public String getTooltipCorruptionBypassText() {
-		SB = new StringBuilder();
-		
-		if(!isAvailable() && !isAbleToBypass()) {
-			SB.append("This action is being blocked, due to not meeting certain <span style='color:"+Colour.GENERIC_BAD.toWebHexString()+";'>requirements</span>.");
-		} else {
-			if(isAvailableFromFetishes()) {
-				SB.append("Your <span style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>fetish</span> bypasses this action's"
-						+ " <span style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>corruption</span> requirements!");
-				return SB.toString();
-			}
-			
-			if(corruptionBypass != null) {
-				if(isCorruptionWithinRange())
-					SB.append("Your <span style='color:"+Main.game.getPlayer().getCorruptionLevel().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(Main.game.getPlayer().getCorruptionLevel().getName())+"</span>"
-							+ " <span style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>corruption</span> has unlocked this action!");
-				else
-					SB.append("You will gain <b>+"+corruptionBypass.getCorruptionBypass()+"</b> <b style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>corruption</b>, as"
-							+ " you don't meet the <span style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>corruption</span> or <span style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>fetish</span> requirements!");
-			} else {
-				SB.append("This action cannot be unlocked with <span style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>corruption</span>.");
-			}
-		}
-		
-		return SB.toString();
-	}
 	
 	public String getTooltipBlockingList(){
 		SB = new StringBuilder();
@@ -429,20 +389,6 @@ public class Response {
 			}
 		}
 		
-		if(corruptionBypass!=null) {
-			if(isCorruptionWithinRange()) {
-				SB.append("<br/>"
-						+"<span style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>Associated Corruption</span>"
-						+ " (<span style='color:"+Colour.GENERIC_MINOR_GOOD.toWebHexString()+";'>within range</span>): "
-						+ Util.capitaliseSentence(corruptionBypass.getName()));
-			} else {
-				SB.append("<br/>"
-						+"<span style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>Associated Corruption</span>"
-						+ " (<span style='color:"+Colour.GENERIC_MINOR_BAD.toWebHexString()+";'>out of range</span>): "
-						+ Util.capitaliseSentence(corruptionBypass.getName()));
-			}
-		}
-		
 		return SB.toString();
 	}
 	
@@ -462,16 +408,10 @@ public class Response {
 		
 		if(fetishesRequired!=null)
 			heightLeft+=fetishesRequired.size();
-		if(corruptionBypass!=null)
-			heightLeft++;
 		
 		return heightLeft;
 	}
 
-	public boolean isCorruptionWithinRange() {
-		return corruptionBypass != null && corruptionBypass.getMinimumValue() <= Main.game.getPlayer().getAttributeValue(Attribute.MAJOR_CORRUPTION);
-	}
-	
 	public boolean isAvailableFromFetishes() {
 		if(fetishesRequired==null)
 			return false;
@@ -628,10 +568,6 @@ public class Response {
 
 	public List<Fetish> getFetishesForUnlock() {
 		return fetishesRequired;
-	}
-
-	public CorruptionLevel getCorruptionNeeded() {
-		return corruptionBypass;
 	}
 
 	public List<Perk> getPerksRequired() {

@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.Attribute;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.types.FluidType;
 import com.lilithsthrone.game.character.effects.Addiction;
@@ -401,7 +401,7 @@ public class GamblingDenDialogue {
 				} else if (index == 2) {
 					if(Main.game.getPlayer().isAbleToAccessCoverableArea(CoverableArea.MOUTH, true)) {
 						return new ResponseSex("Lick for item", "Agree to let Roxy sit on your face for an hour, in exchange for a random item from her shop.",
-								Util.newArrayListOfValues(Fetish.FETISH_ORAL_GIVING), null, CorruptionLevel.TWO_HORNY, null, null, null,
+								Util.newArrayListOfValues(Fetish.FETISH_ORAL_GIVING), null, null, null, null,
 								true, false,
 								new SMRoxyPussyLicker(
 										Util.newHashMapOfValues(new Value<>(Main.game.getRoxy(), SexPositionSlot.FACE_SITTING_ON_FACE)),
@@ -444,7 +444,7 @@ public class GamblingDenDialogue {
 							
 						} else {
 							return new ResponseSex("Get fix ("+UtilText.formatAsMoney(1000, "span")+")", "Desperate to get another fix of her addictive girl cum, you agree to <b>pay Roxy 1000 flames</b> to get her to sit on your face for an hour.",
-									Util.newArrayListOfValues(Fetish.FETISH_ORAL_GIVING), null, CorruptionLevel.TWO_HORNY, null, null, null,
+									Util.newArrayListOfValues(Fetish.FETISH_ORAL_GIVING), null, null, null, null,
 									true, false,
 									new SMRoxyPussyLicker(
 											Util.newHashMapOfValues(new Value<>(Main.game.getRoxy(), SexPositionSlot.FACE_SITTING_ON_FACE)),
@@ -462,7 +462,7 @@ public class GamblingDenDialogue {
 					} else {
 						if(Main.game.getPlayer().isAbleToAccessCoverableArea(CoverableArea.MOUTH, true)) {
 							return new ResponseSex("Lick for item", "Agree to let Roxy sit on your face for an hour, in exchange for a random item from her shop.",
-									Util.newArrayListOfValues(Fetish.FETISH_ORAL_GIVING), null, CorruptionLevel.TWO_HORNY, null, null, null,
+									Util.newArrayListOfValues(Fetish.FETISH_ORAL_GIVING), null, null, null, null,
 									true, false,
 									new SMRoxyPussyLicker(
 											Util.newHashMapOfValues(new Value<>(Main.game.getRoxy(), SexPositionSlot.FACE_SITTING_ON_FACE)),
@@ -1028,7 +1028,7 @@ public class GamblingDenDialogue {
 						
 					} else {
 						return new ResponseSex("Ride Epona", "Tell Epona that you want to cash in your stamps and take her for a ride. (Have sex as the dominant partner.)",
-								null, null, null, null, null, null,
+								null, null, null, null, null,
 								true, true,
 								new SMStanding(
 										Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.STANDING_DOMINANT)),
@@ -1048,7 +1048,7 @@ public class GamblingDenDialogue {
 						
 					} else {
 						return new ResponseSex("Epona Rides", "Tell Epona that you want to cash in your stamps and have her take you for a ride. (Have sex as the submissive partner.)",
-								null, null, null, null, null, null,
+								null, null, null, null, null,
 								true, true,
 								new SMStanding(
 										Util.newHashMapOfValues(new Value<>(Main.game.getEpona(), SexPositionSlot.STANDING_DOMINANT)),
@@ -1220,7 +1220,7 @@ public class GamblingDenDialogue {
 				NPC breeder = breeders.get(breederIndex);
 				
 				return new ResponseSex("Front "+breeder.getName(), "Lie on your front, where "+breeder.getName()+" will be the first to move up to fuck you.",
-						null, null, null, null, null, null,
+						null, null, null, null, null,
 						true, false,
 						new SMBreedingStallFront(true, false, false,
 								Util.newHashMapOfValues(new Value<>(breeder, SexPositionSlot.BREEDING_STALL_FUCKING)),
@@ -1257,7 +1257,7 @@ public class GamblingDenDialogue {
 				NPC breeder = breeders.get(breederIndex);
 				
 				return new ResponseSex("Back "+breeder.getName(), "Lie on your back, where "+breeder.getName()+" will be the first to move up to fuck you.",
-						null, null, null, null, null, null,
+						null, null, null, null, null,
 						true, false,
 						new SMBreedingStallBack(true, false, false,
 								Util.newHashMapOfValues(new Value<>(breeder, SexPositionSlot.BREEDING_STALL_FUCKING)),
@@ -1317,7 +1317,7 @@ public class GamblingDenDialogue {
 					NPC breeder = breeders.get(breederIndex);
 					
 					return new ResponseSex("Front "+breeder.getName(), "Position yourself so that you're lying on your front, where "+breeder.getName()+" will be the next breeder to move up to fuck you.",
-							null, null, null, null, null, null,
+							null, null, null, null, null,
 							true, false,
 							new SMBreedingStallFront(true, false, false,
 									Util.newHashMapOfValues(new Value<>(breeder, SexPositionSlot.BREEDING_STALL_FUCKING)),
@@ -1354,7 +1354,7 @@ public class GamblingDenDialogue {
 					NPC breeder = breeders.get(breederIndex);
 					
 					return new ResponseSex("Back "+breeder.getName(), "Position yourself so that you're lying on your back, where "+breeder.getName()+" will be the next breeder to move up to fuck you.",
-							null, null, null, null, null, null,
+							null, null, null, null, null,
 							true, false,
 							new SMBreedingStallBack(true, false, false,
 									Util.newHashMapOfValues(new Value<>(breeder, SexPositionSlot.BREEDING_STALL_FUCKING)),
@@ -1547,7 +1547,7 @@ public class GamblingDenDialogue {
 						roll==1
 							?"As you rolled a one, you're the first to have a go at fucking the volunteer."
 							:"As the breeder steps away from the volunteer, you step forwards to take your turn at fucking her creampied-pussy.",
-						null, null, null, null, null, null,
+						null, null, null, null, null,
 						true, false,
 						new SMBreedingStallBack(true, false, false,
 								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.BREEDING_STALL_FUCKING)),

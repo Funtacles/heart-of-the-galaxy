@@ -1,6 +1,6 @@
 package com.lilithsthrone.game.sex.sexActions.baseActionsSelfPlayer;
 
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.sex.ArousalIncrease;
 import com.lilithsthrone.game.sex.Sex;
@@ -26,7 +26,6 @@ public class PlayerSelfTailNipple {
 			SexActionType.START_ONGOING,
 			ArousalIncrease.FOUR_HIGH,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.NIPPLE)),
 			SexParticipantType.SELF) {
 		@Override
@@ -97,7 +96,6 @@ public class PlayerSelfTailNipple {
 			SexActionType.ONGOING,
 			ArousalIncrease.THREE_NORMAL,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.NIPPLE)),
 			SexParticipantType.SELF,
 			SexPace.DOM_GENTLE) {
@@ -139,7 +137,6 @@ public class PlayerSelfTailNipple {
 			SexActionType.ONGOING,
 			ArousalIncrease.THREE_NORMAL,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.NIPPLE)),
 			SexParticipantType.SELF,
 			SexPace.DOM_NORMAL) {
@@ -181,7 +178,6 @@ public class PlayerSelfTailNipple {
 			SexActionType.ONGOING,
 			ArousalIncrease.THREE_NORMAL,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.NIPPLE)),
 			SexParticipantType.SELF,
 			SexPace.DOM_ROUGH) {
@@ -223,7 +219,6 @@ public class PlayerSelfTailNipple {
 			SexActionType.ONGOING,
 			ArousalIncrease.THREE_NORMAL,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.NIPPLE)),
 			SexParticipantType.SELF,
 			SexPace.SUB_NORMAL) {
@@ -265,7 +260,6 @@ public class PlayerSelfTailNipple {
 			SexActionType.ONGOING,
 			ArousalIncrease.THREE_NORMAL,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ONE_VANILLA,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.NIPPLE)),
 			SexParticipantType.SELF,
 			SexPace.SUB_EAGER) {
@@ -307,7 +301,6 @@ public class PlayerSelfTailNipple {
 			SexActionType.STOP_ONGOING,
 			ArousalIncrease.ONE_MINIMUM,
 			ArousalIncrease.ONE_MINIMUM,
-			CorruptionLevel.ZERO_PURE,
 			Util.newHashMapOfValues(new Value<>(SexAreaPenetration.TAIL, SexAreaOrifice.NIPPLE)),
 			SexParticipantType.SELF) {
 		@Override

@@ -89,7 +89,6 @@ public class TestNPC extends NPC {
 	
 			this.setAttribute(Attribute.MAJOR_PHYSIQUE, 5);
 			this.setAttribute(Attribute.MAJOR_ARCANE, 25);
-			this.setAttribute(Attribute.MAJOR_CORRUPTION, 0);
 			
 			this.setFemininity(75);
 			
@@ -282,7 +281,7 @@ public class TestNPC extends NPC {
 				
 			} else if (index == 2 && Main.game.isNonConEnabled()) {
 				return new ResponseSex("Rape [test.herHim]", "[test.Her] back is turned, and [test.she] hasn't noticed you enter the room...",
-						Util.newArrayListOfValues(Fetish.FETISH_NON_CON_DOM), null, Fetish.FETISH_NON_CON_DOM.getAssociatedCorruptionLevel(), null, null, null,
+						Util.newArrayListOfValues(Fetish.FETISH_NON_CON_DOM), null, null, null, null,
 						false, false,
 						new SMDoggy(
 								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.DOGGY_BEHIND)),
@@ -305,7 +304,7 @@ public class TestNPC extends NPC {
 				
 			} else if (index == 3 && Main.game.isNonConEnabled()) {
 				return new ResponseSex("Rape [test.herHim] (gentle)", "[test.Her] back is turned, and [test.she] hasn't noticed you enter the room... (Start the sex scene in the 'gentle' pace.)",
-						Util.newArrayListOfValues(Fetish.FETISH_NON_CON_DOM), null, Fetish.FETISH_NON_CON_DOM.getAssociatedCorruptionLevel(), null, null, null,
+						Util.newArrayListOfValues(Fetish.FETISH_NON_CON_DOM), null, null, null, null,
 						false, false,
 						new SMDoggy(
 								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.DOGGY_BEHIND)),
@@ -336,7 +335,7 @@ public class TestNPC extends NPC {
 				
 			} else if (index == 4 && Main.game.isNonConEnabled()) {
 				return new ResponseSex("Rape [test.herHim] (rough)", "[test.Her] back is turned, and [test.she] hasn't noticed you enter the room... (Start the sex scene in the 'rough' pace.)",
-						Util.newArrayListOfValues(Fetish.FETISH_NON_CON_DOM), null, Fetish.FETISH_NON_CON_DOM.getAssociatedCorruptionLevel(), null, null, null,
+						Util.newArrayListOfValues(Fetish.FETISH_NON_CON_DOM), null, null, null, null,
 						false, false,
 						new SMDoggy(
 								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.DOGGY_BEHIND)),

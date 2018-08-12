@@ -368,8 +368,6 @@ public class ItemEffectType {
 		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
 			
 			if(primaryModifier!=null && primaryModifier!=TFModifier.NONE && primaryModifier!=TFModifier.REMOVAL) {
-				target.incrementAttribute(Attribute.MAJOR_CORRUPTION, 5);
-				
 				if(primaryModifier==TFModifier.ORIENTATION_GYNEPHILIC) {
 					boolean alreadyGynephilic = target.getSexualOrientation()==SexualOrientation.GYNEPHILIC;
 					target.setSexualOrientation(SexualOrientation.GYNEPHILIC);
@@ -995,8 +993,7 @@ public class ItemEffectType {
 					+(target.isPlayer()
 						?"A sickly wave of corruptive arcane energy washes over you..."
 						:UtilText.parse(target, "A sickly wave of corruptive arcane energy washes over [npc.name]..."))
-					+ "</p>"
-					+ target.addPotionEffect(Attribute.MAJOR_CORRUPTION, 1);
+					+ "</p>";
 		}
 	};
 
@@ -1013,8 +1010,7 @@ public class ItemEffectType {
 					+(target.isPlayer()
 						?"A sickly wave of corruptive arcane energy washes over you..."
 						:UtilText.parse(target, "A sickly wave of corruptive arcane energy washes over [npc.name]..."))
-					+ "</p>"
-					+ target.addPotionEffect(Attribute.MAJOR_CORRUPTION, 5);
+					+ "</p>";
 		}
 	};
 	
@@ -1315,8 +1311,7 @@ public class ItemEffectType {
 					+ target.addPotionEffect(Attribute.MAJOR_PHYSIQUE, 2)
 					+ "<br/>"
 					+ target.addPotionEffect(Attribute.MAJOR_ARCANE, 2)
-					+ "<br/>"
-					+ target.addPotionEffect(Attribute.MAJOR_CORRUPTION, 5);
+					+ "<br/>";
 		}
 	};
 	
@@ -1572,8 +1567,7 @@ public class ItemEffectType {
 						:UtilText.parse(target, "[npc.Name] starts to feel a lot stronger..."))
 					+ "<br/>"
 					+ target.addPotionEffect(Attribute.MAJOR_PHYSIQUE, 5)
-					+ "<br/>"
-					+ target.addPotionEffect(Attribute.MAJOR_CORRUPTION, 3);
+					+ "<br/>";
 		}
 	};
 	
@@ -1619,35 +1613,10 @@ public class ItemEffectType {
 				}
 				
 			} else {
-				return target.incrementAttribute(Attribute.MAJOR_CORRUPTION, 50)
-						+ "<br/>"
-						+ target.setBodyMaterial(BodyMaterial.SLIME);
+				return target.setBodyMaterial(BodyMaterial.SLIME);
 			}
 		}
 	};
-	
-	// Essences:
-	
-//	public static AbstractItemEffectType BOTTLED_ESSENCE_ANGEL = new AbstractItemEffectType(Util.newArrayListOfValues(
-//			"[style.boldGood(+1)] [style.boldAngel(Angel)] essence"),
-//			Colour.RACE_ANGEL) {
-//		
-//		@Override
-//		public List<TFModifier> getPrimaryModifiers() {
-//			return null;
-//		}
-//
-//		@Override
-//		public List<TFModifier> getSecondaryModifiers(TFModifier primaryModifier) {
-//			return null;
-//		}
-//		
-//		@Override
-//		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-//			target.incrementEssenceCount(TFEssence.ANGEL, 1);
-//			return "You have absorbed [style.boldGood(+1)] [style.boldAngel(Angel)] essence!";
-//		}
-//	};
 	
 	public static AbstractItemEffectType BOTTLED_ESSENCE_ARCANE = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldGood(+1)] [style.boldArcane(Arcane)] essence"),

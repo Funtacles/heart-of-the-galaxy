@@ -510,8 +510,6 @@ public class PhoneDialogue {
 					+ "<h4 style='color:"+Colour.GENERIC_EXCELLENT.toWebHexString()+"; text-align:center;'>Core Attributes</h4>"
 					+ getAttributeBox(Main.game.getPlayer(), Attribute.MAJOR_PHYSIQUE, "")
 					+ getAttributeBox(Main.game.getPlayer(), Attribute.MAJOR_ARCANE, "")
-					+ getAttributeBox(Main.game.getPlayer(), Attribute.MAJOR_CORRUPTION, "")
-					
 				+"</div>"
 				+"<div class='container-full-width'>"
 

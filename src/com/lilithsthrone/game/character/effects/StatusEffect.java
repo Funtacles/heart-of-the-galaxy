@@ -15,7 +15,6 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.AlcoholLevel;
 import com.lilithsthrone.game.character.attributes.ArousalLevel;
 import com.lilithsthrone.game.character.attributes.Attribute;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
 import com.lilithsthrone.game.character.attributes.IntelligenceLevel;
 import com.lilithsthrone.game.character.attributes.LustLevel;
 import com.lilithsthrone.game.character.attributes.PhysiqueLevel;
@@ -522,264 +521,6 @@ public enum StatusEffect {
 		@Override
 		public boolean isConditionsMet(GameCharacter target) {
 			return IntelligenceLevel.getIntelligenceLevelFromValue(target.getAttributeValue(Attribute.MAJOR_ARCANE)) == IntelligenceLevel.FIVE_POLYMATH;
-		}
-		
-		@Override
-		public boolean renderInEffectsPanel() {
-			return false;
-		}
-	},
-
-	// Corruption:
-	CORRUPTION_PERK_0(100,
-			"Pure",
-			"attCorruption0",
-			Colour.CORRUPTION_STAGE_ZERO,
-			true,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.RESISTANCE_LUST, 25f)),
-			null) {
-
-		@Override
-		public String getName(GameCharacter target) {
-			return Util.capitaliseSentence(CorruptionLevel.ZERO_PURE.getName());
-		}
-		
-		@Override
-		public String getDescription(GameCharacter owner) {
-			if (owner.isPlayer()) {
-				return "You are completely uncorrupted, and aside from performing the most conservative of sexual acts with the person you love, you're not really interested in sex at all.";
-			} else {
-				return UtilText.parse(owner, "[npc.Name] is completely uncorrupted, and aside from performing the most conservative of sexual acts with the person [npc.she] loves, [npc.sheIs] not really interested in sex at all.");
-			}
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return CorruptionLevel.getCorruptionLevelFromValue(target.getAttributeValue(Attribute.MAJOR_CORRUPTION)) == CorruptionLevel.ZERO_PURE;
-		}
-		
-		@Override
-		public boolean renderInEffectsPanel() {
-			return false;
-		}
-	},
-	
-	CORRUPTION_PERK_1(
-			100,
-			"Vanilla",
-			"attCorruption1",
-			Colour.CORRUPTION_STAGE_ONE,
-			false,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.RESISTANCE_LUST, 15f),
-					new Value<Attribute, Float>(Attribute.DAMAGE_LUST, 10f)),
-			null) {
-
-		@Override
-		public String getName(GameCharacter target) {
-			return Util.capitaliseSentence(CorruptionLevel.ONE_VANILLA.getName());
-		}
-		
-		@Override
-		public String getDescription(GameCharacter owner) {
-			if (owner.isPlayer()) {
-				return "You're open to the idea of having casual sex, but are still unwilling to perform any extreme sexual acts.";
-			} else {
-				return UtilText.parse(owner, "[npc.Name] is open to the idea of having casual sex, but is unwilling to perform any extreme sexual acts.");
-			}
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return CorruptionLevel.getCorruptionLevelFromValue(target.getAttributeValue(Attribute.MAJOR_CORRUPTION)) == CorruptionLevel.ONE_VANILLA;
-		}
-		
-		@Override
-		public boolean renderInEffectsPanel() {
-			return false;
-		}
-	},
-	
-	CORRUPTION_PERK_2(
-			100,
-			"dirty",
-			"attCorruption2",
-			Colour.CORRUPTION_STAGE_TWO,
-			false,
-			Util.newHashMapOfValues(new Value<Attribute, Float>(Attribute.RESISTANCE_LUST, 5f),
-					new Value<Attribute, Float>(Attribute.DAMAGE_LUST, 20f)),
-			null) {
-
-		@Override
-		public String getName(GameCharacter target) {
-			return Util.capitaliseSentence(CorruptionLevel.TWO_HORNY.getName());
-		}
-		
-		@Override
-		public String getDescription(GameCharacter owner) {
-			if (owner.isPlayer()) {
-				return "Sexual acts that once may have made you feel uncomfortable are now the focus of your fantasies, and you can't wait to try them out on a willing partner...";
-			} else {
-				return UtilText.parse(owner, "[npc.Name] has a dirty look in [npc.her] eyes, and you often notice [npc.her] gaze lingering hungrily over your body.");
-			}
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return CorruptionLevel.getCorruptionLevelFromValue(target.getAttributeValue(Attribute.MAJOR_CORRUPTION)) == CorruptionLevel.TWO_HORNY;
-		}
-		
-		@Override
-		public boolean renderInEffectsPanel() {
-			return false;
-		}
-	},
-	
-	CORRUPTION_PERK_3(
-			100,
-			"Lewd",
-			"attCorruption3",
-			Colour.CORRUPTION_STAGE_THREE,
-			false,
-			Util.newHashMapOfValues(new Value<Attribute, Float>(Attribute.RESISTANCE_LUST, -5f),
-					new Value<Attribute, Float>(Attribute.DAMAGE_LUST, 30f),
-					new Value<Attribute, Float>(Attribute.FERTILITY, 25f),
-					new Value<Attribute, Float>(Attribute.VIRILITY, 25f)),
-			null) {
-
-		@Override
-		public String getName(GameCharacter target) {
-			return Util.capitaliseSentence(CorruptionLevel.THREE_DIRTY.getName());
-		}
-		
-		@Override
-		public String getDescription(GameCharacter owner) {
-			if (owner.isPlayer()) {
-				if (owner.getVaginaType() != VaginaType.NONE) {
-					return "Given power by the fantasies that constantly run through your mind, the arcane is starting to have a physical effect on your body, and you feel as though it's going to be far easier to get pregnant from now on...";
-				} else if (owner.getPenisType() != PenisType.NONE) {
-					return "Given power by the fantasies that constantly run through your mind, the arcane is starting to have a physical effect on your body,"
-							+ " and you feel as though it's going to be far easier to impregnate your sexual partners from now on...";
-				} else {
-					return "Given power by the fantasies that constantly run through your mind, the arcane is starting to have a physical effect on your body, but because you don't have any sexual organs, there's not much that's happened...";
-				}
-				
-			} else {
-				if (owner.getVaginaType() != VaginaType.NONE) {
-					return UtilText.parse(owner,
-							"Given power by the fantasies that constantly run through [npc.her] mind, the arcane is starting to have a physical effect on [npc.namePos] body, making it far easier for [npc.herHim] to get pregnant.");
-				} else if (owner.getPenisType() != PenisType.NONE) {
-					return UtilText.parse(owner,
-							"Given power by the fantasies that constantly run through [npc.her] mind, the arcane is starting to have a physical effect on [npc.namePos] body, making it far easier for [npc.herHim] to impregnate others.");
-				} else {
-					return UtilText.parse(owner,
-							"Given power by the fantasies that constantly run through [npc.her] mind, the arcane is starting to have a physical effect on [npc.namePos] body,"
-							+ " but because [npc.she] doesn't have any sexual organs, there's not much that's happened.");
-				}
-			}
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return CorruptionLevel.getCorruptionLevelFromValue(target.getAttributeValue(Attribute.MAJOR_CORRUPTION)) == CorruptionLevel.THREE_DIRTY;
-		}
-		
-		@Override
-		public boolean renderInEffectsPanel() {
-			return false;
-		}
-	},
-	
-	CORRUPTION_PERK_4(
-			100,
-			"Lustful",
-			"attCorruption4",
-			Colour.CORRUPTION_STAGE_FOUR,
-			false,
-			Util.newHashMapOfValues(new Value<Attribute, Float>(Attribute.RESISTANCE_LUST, -15f),
-					new Value<Attribute, Float>(Attribute.DAMAGE_LUST, 40f),
-					new Value<Attribute, Float>(Attribute.FERTILITY, 50f),
-					new Value<Attribute, Float>(Attribute.VIRILITY, 50f)),
-			null) {
-
-		@Override
-		public String getName(GameCharacter target) {
-			return Util.capitaliseSentence(CorruptionLevel.FOUR_LUSTFUL.getName());
-		}
-
-		@Override
-		public String getDescription(GameCharacter owner) {
-			if (owner.isPlayer()) {
-				if (owner.getVaginaType() != VaginaType.NONE) {
-					return "Given a huge amount of power by the lewd fantasies that constantly run through your mind, the arcane is starting to have a physical effect on your body,"
-							+ " and you feel as though it's going to be far easier to get pregnant from now on...";
-				} else if (owner.getPenisType() != PenisType.NONE) {
-					return "Given a huge amount of power by the lewd fantasies that constantly run through your mind, the arcane is starting to have a physical effect on your body,"
-							+ " and you feel as though it's going to be far easier to impregnate your sexual partners from now on...";
-				} else {
-					return "Given a huge amount of power by the lewd fantasies that constantly run through your mind, the arcane is starting to have a physical effect on your body,"
-							+ " but because you don't have any sexual organs, there's not much that's happened...";
-				}
-				
-			} else {
-				if (owner.getVaginaType() != VaginaType.NONE) {
-					return UtilText.parse(owner,
-							"Given a huge amount of power by the lewd fantasies that constantly run through [npc.her] mind, the arcane is starting to have a physical effect on [npc.namePos] body,"
-							+ " making it far easier for [npc.herHim] to get pregnant.");
-				} else if (owner.getPenisType() != PenisType.NONE) {
-					return UtilText.parse(owner,
-							"Given a huge amount of power by the lewd fantasies that constantly run through [npc.her] mind, the arcane is starting to have a physical effect on [npc.namePos] body,"
-							+ " making it far easier for [npc.herHim] to impregnate others.");
-				} else {
-					return UtilText.parse(owner,
-							"Given a huge amount of power by the lewd fantasies that constantly run through [npc.her] mind, the arcane is starting to have a physical effect on [npc.namePos] body,"
-							+ " but because [npc.she] doesn't have any sexual organs, there's not much that's happened.");
-				}
-			}
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return CorruptionLevel.getCorruptionLevelFromValue(target.getAttributeValue(Attribute.MAJOR_CORRUPTION)) == CorruptionLevel.FOUR_LUSTFUL;
-		}
-		
-		@Override
-		public boolean renderInEffectsPanel() {
-			return false;
-		}
-	},
-	CORRUPTION_PERK_5(
-			100,
-			"Corrupt",
-			"attCorruption5",
-			Colour.CORRUPTION_STAGE_FIVE,
-			false,
-			Util.newHashMapOfValues(new Value<Attribute, Float>(Attribute.RESISTANCE_LUST, -25f),
-					new Value<Attribute, Float>(Attribute.DAMAGE_LUST, 50f),
-					new Value<Attribute, Float>(Attribute.FERTILITY, 75f),
-					new Value<Attribute, Float>(Attribute.VIRILITY, 75f)),
-			Util.newArrayListOfValues("<b style='color: "+ Colour.ATTRIBUTE_CORRUPTION.toWebHexString()+ "'>Obeys Lilin</b>")) {
-
-		@Override
-		public String getName(GameCharacter target) {
-			return Util.capitaliseSentence(CorruptionLevel.FIVE_CORRUPT.getName());
-		}
-		
-		@Override
-		public String getDescription(GameCharacter owner) {
-			if (owner.isPlayer()) {
-				return "You are completely and utterly corrupted. The lewd thoughts and fantasies that continuously run through your mind have unlocked the full power of the arcane, making your body hyper-fertile and virile.";
-			} else {
-				return UtilText.parse(owner, "[npc.Name] is completely and utterly corrupted."
-						+ " The lewd thoughts and fantasies that continuously run through [npc.her] mind have unlocked the full power of the arcane, making [npc.her] body hyper-fertile and virile.");
-			}
-
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return CorruptionLevel.getCorruptionLevelFromValue(target.getAttributeValue(Attribute.MAJOR_CORRUPTION)) == CorruptionLevel.FIVE_CORRUPT;
 		}
 		
 		@Override
@@ -1730,7 +1471,6 @@ public enum StatusEffect {
 			Colour.GENERIC_ARCANE,
 			true,
 			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.MAJOR_CORRUPTION, 25f),
 					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, 10f),
 					new Value<Attribute, Float>(Attribute.MAJOR_ARCANE, 10f),
 					new Value<Attribute, Float>(Attribute.DAMAGE_LUST, 10f),
@@ -1766,7 +1506,6 @@ public enum StatusEffect {
 			Colour.GENERIC_ARCANE,
 			true,
 			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.MAJOR_CORRUPTION, 50f),
 					new Value<Attribute, Float>(Attribute.RESISTANCE_LUST, -25f)),
 			null) {
 
@@ -2955,97 +2694,6 @@ public enum StatusEffect {
 		@Override
 		public boolean isConditionsMet(GameCharacter target) {
 			return (isCumEffectPositive(target)) && !target.getDirtySlots().isEmpty();
-		}
-	},
-	
-	CLOTHING_JINXED(
-			80,
-			"jinxed clothing",
-			"arcaneDrain",
-			Colour.ATTRIBUTE_CORRUPTION,
-			false,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, -2f),
-					new Value<Attribute, Float>(Attribute.MAJOR_ARCANE, -2f)),
-			null) {
-
-		@Override
-		public String applyEffect(GameCharacter target, int minutesPassed) {
-			if(target.isPlayer()) {
-				if(!Main.game.getDialogueFlags().values.contains(DialogueFlagValue.jinxedClothingDiscovered)) {
-					Main.game.getDialogueFlags().values.add(DialogueFlagValue.jinxedClothingDiscovered);
-					AbstractClothing clothing = null;
-					for(AbstractClothing c : target.getClothingCurrentlyEquipped()) {
-						if(c.isSealed()) {
-							clothing = c;
-							break;
-						}
-					}
-					if(!Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-						return "<p>"
-									+ "As you finish fitting the "+clothing.getName()+" in place, you start to feel a strange warmth radiating from "+(clothing.getClothingType().isPlural()?"their":"its")+" surface."
-									+ " Feeling a little uneasy about the manner of arcane enchantment that "+(clothing.getClothingType().isPlural()?"they":"it")+" must contain, you immediately try to take "
-										+(clothing.getClothingType().isPlural()?"them":"it")+" off."
-								+ "</p>"
-								+ "<p>"
-									+ "Taking hold of the "+clothing.getName()+", nothing seems to be wrong at first, but as you try to pull "+(clothing.getClothingType().isPlural()?"them":"it")+" off, you find out that you've made a big mistake."
-									+ " A jolt of arcane energy suddenly flashes up through your body, and as the invasive force shoots its way into your mind, you find yourself unwittingly releasing your grip."
-								+ "</p>"
-								+ "<p>"
-									+ "Gritting your teeth, you try once again to remove the offending article of clothing, only to find yourself instantly letting go as you try to pull "+(clothing.getClothingType().isPlural()?"them":"it")+" off."
-									+ " No matter how much you struggle, all you're able to do is move the "+clothing.getName()
-										+" around a little, and whenever it looks to be in danger of being removed, it moves back into its proper position with a mind of its own."
-								+ "</p>"
-								+ "<p>"
-									+ "Eventually giving up, you decide to go and ask Lilaya what's going on with "+(clothing.getClothingType().isPlural()?"these":"this")
-										+" <b style='color:"+Colour.RARITY_JINXED.toWebHexString()+";'>jinxed</b> "+clothing.getName()+"."
-									+ " Maybe she'll know a way to break the seal?"
-								+ "</p>"
-								+(!Main.game.getPlayer().hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)?Main.game.getPlayer().startQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY):"");
-					
-					} else {
-						return "<p>"
-									+ "As you finish fitting the "+clothing.getName()+" in place, you start to feel a strange warmth radiating from "+(clothing.getClothingType().isPlural()?"their":"its")+" surface."
-									+ " Feeling a little uneasy about the manner of arcane enchantment that "+(clothing.getClothingType().isPlural()?"they":"it")+" must contain, you immediately try to take "
-										+(clothing.getClothingType().isPlural()?"them":"it")+" off."
-								+ "</p>"
-								+ "<p>"
-									+ "Taking hold of the "+clothing.getName()+", nothing seems to be wrong at first, but as you try to pull "+(clothing.getClothingType().isPlural()?"them":"it")+" off, you find out that you've made a big mistake."
-									+ " A jolt of arcane energy suddenly flashes up through your body, and as the invasive force shoots its way into your mind, you find yourself unwittingly releasing your grip."
-								+ "</p>"
-								+ "<p>"
-									+ "Gritting your teeth, you try once again to remove the offending article of clothing, only to find yourself instantly letting go as you try to pull "+(clothing.getClothingType().isPlural()?"them":"it")+" off."
-									+ " No matter how much you struggle, all you're able to do is move the "+clothing.getName()
-										+" around a little, and whenever it looks to be in danger of being removed, it moves back into its proper position with a mind of its own."
-								+ "</p>"
-								+ "<p>"
-									+ "Lilaya's warning about jinxed clothing suddenly shoots to the forefront of your mind, and you let out a groan as you realise that "+(clothing.getClothingType().isPlural()?"these ":"this ")+clothing.getName()
-										+" are <b style='color:"+Colour.RARITY_JINXED.toWebHexString()+";'>jinxed</b>."
-									+ " Remembering what Lilaya said, you should be able to remove the jinx if you focus some of your absorbed essences into it..."
-								+ "</p>";
-					}
-					
-				} else {
-					return "";
-				}
-			} else {
-				return "";
-			}
-		}
-
-		@Override
-		public String getDescription(GameCharacter target) {
-			return "The enchantment on your jinxed clothing seems to be vampyric in nature. You can feel it draining a little of your arcane aura as it uses your strength to power itself.";
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			for(AbstractClothing c : target.getClothingCurrentlyEquipped()) {
-				if(c.isSealed()) {
-					return true;
-				}
-			}
-			return false;
 		}
 	},
 	
@@ -5954,8 +5602,7 @@ public enum StatusEffect {
 			"virginBroken",
 			Colour.GENERIC_TERRIBLE,
 			false,
-			Util.newHashMapOfValues(new Value<Attribute, Float>(Attribute.RESISTANCE_LUST, -50f),
-					new Value<Attribute, Float>(Attribute.MAJOR_CORRUPTION, 50f), new Value<Attribute, Float>(Attribute.RESISTANCE_PHYSICAL, -25f)),
+			Util.newHashMapOfValues(new Value<Attribute, Float>(Attribute.RESISTANCE_LUST, -50f), new Value<Attribute, Float>(Attribute.RESISTANCE_PHYSICAL, -25f)),
 			null) {
 
 		@Override
@@ -5989,7 +5636,6 @@ public enum StatusEffect {
 			Util.newHashMapOfValues(
 					new Value<Attribute, Float>(Attribute.DAMAGE_LUST, -50f),
 					new Value<Attribute, Float>(Attribute.RESISTANCE_LUST, -50f),
-					new Value<Attribute, Float>(Attribute.MAJOR_CORRUPTION, 50f),
 					new Value<Attribute, Float>(Attribute.RESISTANCE_PHYSICAL, -25f)),
 			null) {
 

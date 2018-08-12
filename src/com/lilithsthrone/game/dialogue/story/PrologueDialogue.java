@@ -228,7 +228,7 @@ public class PrologueDialogue {
 				if(femalePrologueNPC()) {
 					return new ResponseSex("Sex", "Give in to your lust and start having sex with [prologueFemale.name]...",
 							null, null, null,
-							null, null, null,
+							null, null,
 							true, true,
 							new SMStanding(
 									Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.STANDING_DOMINANT)),
@@ -264,7 +264,7 @@ public class PrologueDialogue {
 				} else {
 					return new ResponseSex("Sex", "Give in to your lust and start having sex with [prologueMale.name]...",
 							null, null, null,
-							null, null, null,
+							null, null,
 							true, true,
 							new SMStanding(
 									Util.newHashMapOfValues(new Value<>(Main.game.getPrologueMale(), SexPositionSlot.STANDING_DOMINANT)),

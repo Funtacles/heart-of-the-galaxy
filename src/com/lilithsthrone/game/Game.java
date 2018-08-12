@@ -36,7 +36,6 @@ import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.PlayerCharacter;
 import com.lilithsthrone.game.character.attributes.AffectionLevel;
-import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.attributes.ObedienceLevel;
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.Covering;
@@ -1564,17 +1563,10 @@ public class Game implements Serializable, XMLSaving {
 		
 		if (response != null) {
 			
-			String corruptionGains = "";
-			
 			if(!response.isAvailable()) {
 				if(!response.isAbleToBypass()) {
 					return;
-				} else {
-					Main.game.getPlayer().incrementAttribute(Attribute.MAJOR_CORRUPTION, response.getCorruptionNeeded().getCorruptionBypass());
-					corruptionGains = ("<p style='text-align:center;'>"
-							+ "<b>You have gained +"+response.getCorruptionNeeded().getCorruptionBypass()+"</b> <b style='color:"+Attribute.MAJOR_CORRUPTION.getColour().toWebHexString()+";'>corruption</b><b>!</b>"
-							+ "</p>");
-				}
+				} 
 			}
 			
 			String chosenResponse = response.getTitle();
@@ -1642,8 +1634,7 @@ public class Game implements Serializable, XMLSaving {
 
 							pastDialogueSB.append(
 									UtilText.parse(
-										corruptionGains 
-										+ textStartStringBuilder.toString()
+										textStartStringBuilder.toString()
 										+ content
 										+ textEndStringBuilder.toString()
 									));
@@ -1660,8 +1651,7 @@ public class Game implements Serializable, XMLSaving {
 						pastDialogueSB.setLength(0);
 						pastDialogueSB.append(
 								UtilText.parse(
-									corruptionGains
-									+ textStartStringBuilder.toString()
+									textStartStringBuilder.toString()
 									+ content
 									+ textEndStringBuilder.toString()
 								));

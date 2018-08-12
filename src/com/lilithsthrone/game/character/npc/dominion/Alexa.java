@@ -60,7 +60,6 @@ public class Alexa extends NPC {
 
 		this.setAttribute(Attribute.MAJOR_PHYSIQUE, 10f);
 		this.setAttribute(Attribute.MAJOR_ARCANE, 0f);
-		this.setAttribute(Attribute.MAJOR_CORRUPTION, 30f);
 		
 		this.setPersonality(Util.newHashMapOfValues(
 				new Value<>(PersonalityTrait.AGREEABLENESS, PersonalityWeight.LOW),

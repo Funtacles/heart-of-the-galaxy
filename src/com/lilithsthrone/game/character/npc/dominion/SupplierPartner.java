@@ -103,7 +103,6 @@ public class SupplierPartner extends NPC {
 
 			this.setAttribute(Attribute.MAJOR_PHYSIQUE, 30);
 			this.setAttribute(Attribute.MAJOR_ARCANE, 0);
-			this.setAttribute(Attribute.MAJOR_CORRUPTION, 75);
 		}
 	}
 	

@@ -19,7 +19,6 @@ import com.lilithsthrone.game.sex.sexActions.dominion.ToiletStall;
 import com.lilithsthrone.game.sex.sexActions.dominion.VickyDominating;
 import com.lilithsthrone.game.sex.sexActions.submission.BreedingStallBack;
 import com.lilithsthrone.game.sex.sexActions.submission.BreedingStallFront;
-import com.lilithsthrone.game.sex.sexActions.universal.BackToWall;
 import com.lilithsthrone.game.sex.sexActions.universal.ChairSex;
 import com.lilithsthrone.game.sex.sexActions.universal.Cowgirl;
 import com.lilithsthrone.game.sex.sexActions.universal.DoggyStyle;
@@ -62,7 +61,7 @@ public enum SexPositionType {
 	BACK_TO_WALL("Back-to-wall",
 			true,
 			true,
-			Util.newArrayListOfValues(BackToWall.class), Util.newHashMapOfValues(
+			Util.newArrayListOfValues(FaceToWall.class), Util.newHashMapOfValues(
 					new Value<>(
 							SexPositionSlot.BACK_TO_WALL_AGAINST_WALL,
 							Util.newHashMapOfValues(

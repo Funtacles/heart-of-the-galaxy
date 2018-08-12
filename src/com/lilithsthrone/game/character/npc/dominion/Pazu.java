@@ -87,7 +87,6 @@ public class Pazu extends NPC {
 			
 			this.setAttribute(Attribute.MAJOR_PHYSIQUE, 4);
 			this.setAttribute(Attribute.MAJOR_ARCANE, 45);
-			this.setAttribute(Attribute.MAJOR_CORRUPTION, 5);
 	
 			this.addFetish(Fetish.FETISH_ORAL_RECEIVING);
 			this.addFetish(Fetish.FETISH_ORAL_GIVING);

@@ -102,8 +102,7 @@ public enum Attribute {
 				@Override
 				public String getDescription(GameCharacter owner) {
 					if(owner.isPlayer()) {
-						return "How desperate for sexual contact you are. Your lust will move towards your resting lust value over time.<br/>"
-								+ "<b>Resting Lust = " + GameCharacter.RESTING_LUST_CALCULATION + "</b>";
+						return "How desperate for sexual contact you are. Your lust will move towards your resting lust value over time.<br/>";
 					} else {
 						return UtilText.parse(owner,
 								"How desperate for sexual contact [npc.name] is.");
@@ -149,26 +148,6 @@ public enum Attribute {
 						}
 					},
 
-	MAJOR_CORRUPTION(0,
-			0,
-			100,
-			"corruption",
-			"Corruption",
-			"corruptionIcon",
-			Colour.ATTRIBUTE_CORRUPTION,
-			"corruption", "purity", Util.newArrayListOfValues("<b>-0.5</b> <b style='color: " + Colour.ATTRIBUTE_MANA.toWebHexString() + "'>arousal resistance</b> per 1 physical corruption",
-					"<b>+0.5</b> <b style='color: " + Colour.DAMAGE_TYPE_MANA.toWebHexString() + "'>arousal damage</b> per 1 physical corruption")) {
-						@Override
-						public String getDescription(GameCharacter owner) {
-							if(owner.isPlayer()) {
-								return "Corruption is a measure of your perversion and depravity, and affects <b style='color:" + Colour.ATTRIBUTE_CORRUPTION.toWebHexString() + ";'>which sex actions you are comfortable performing</b>.";
-							} else {
-								return UtilText.parse(owner,
-										"Corruption is a measure of [npc.namePos] perversion and depravity. It does <i>not</i> reflect how good or evil [npc.she] is.");
-							}
-						}
-					},
-	
 	// Miscellaneous attributes:
 
 	FERTILITY(10, -100, 100, "fertility", "Fertility", "shieldIcon", Colour.GENERIC_SEX, "fertility", "infertility", null) {
@@ -680,7 +659,7 @@ public enum Attribute {
 	}
 
 	public static Attribute[] getCoreAttributes() {
-		return new Attribute[] { MAJOR_PHYSIQUE, MAJOR_ARCANE, MAJOR_CORRUPTION };
+		return new Attribute[] { MAJOR_PHYSIQUE, MAJOR_ARCANE };
 	}
 
 	public int getBaseValue() {

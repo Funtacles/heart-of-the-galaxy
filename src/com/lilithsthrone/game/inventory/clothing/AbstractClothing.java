@@ -663,7 +663,6 @@ public abstract class AbstractClothing extends AbstractCoreItem implements Seria
 			
 			pointlessSB.setLength(0);
 				if (this.isBadEnchantment()) {
-					clothingOwner.incrementAttribute(Attribute.MAJOR_CORRUPTION, 1);
 					pointlessSB.append(
 							getClothingType().equipText(clothingOwner, clothingEquipper, rough, this, true)
 							+ "<p style='text-align:center;'>"

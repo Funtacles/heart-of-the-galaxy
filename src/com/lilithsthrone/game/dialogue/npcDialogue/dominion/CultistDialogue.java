@@ -192,7 +192,7 @@ public class CultistDialogue {
 			} else if(index == 3) {
 				if(Main.game.getPlayer().hasVagina()) {
 					return new ResponseSex("Offer Pussy", "Offer [npc.name] your pussy instead.", Util.newArrayListOfValues(Fetish.FETISH_PREGNANCY),
-							null, Fetish.FETISH_PREGNANCY.getAssociatedCorruptionLevel(), null, null, null,
+							null, null, null, null,
 							true, false,
 							new SMAltarMissionary(
 									Util.newHashMapOfValues(new Value<>(Main.game.getActiveNPC(), SexPositionSlot.MISSIONARY_ALTAR_STANDING_BETWEEN_LEGS)),
@@ -237,7 +237,7 @@ public class CultistDialogue {
 				
 			} else if(index==4) {
 				return new ResponseSex("Offer Ass", "Offer [npc.name] your ass instead.", Util.newArrayListOfValues(Fetish.FETISH_ANAL_RECEIVING),
-						null, Fetish.FETISH_ANAL_RECEIVING.getAssociatedCorruptionLevel(), null, null, null,
+						null, null, null, null,
 						true, false,
 						new SMAltarMissionary(
 								Util.newHashMapOfValues(new Value<>(Main.game.getActiveNPC(), SexPositionSlot.MISSIONARY_ALTAR_STANDING_BETWEEN_LEGS)),

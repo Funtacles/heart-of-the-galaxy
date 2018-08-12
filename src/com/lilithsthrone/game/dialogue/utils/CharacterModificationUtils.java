@@ -10,7 +10,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import com.lilithsthrone.game.PropertyValue;
-import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.body.Breast;
 import com.lilithsthrone.game.character.body.Covering;
 import com.lilithsthrone.game.character.body.Testicle;
@@ -488,17 +487,6 @@ public class CharacterModificationUtils {
 	}
 	
 	public static void setSexExperience(SexType type, int index) {
-		int count = Main.game.getPlayer().getSexCount(type);
-		
-		for(int i =0; i<normalSexExperienceValues.length; i++) {
-			if(count == normalSexExperienceValues[i]) {
-				Main.game.getPlayer().incrementAttribute(Attribute.MAJOR_CORRUPTION, -i);
-				break;
-			}
-		}
-
-		Main.game.getPlayer().incrementAttribute(Attribute.MAJOR_CORRUPTION, index);
-		
 		Main.game.getPlayer().setSexCount(type, CharacterModificationUtils.normalSexExperienceValues[index]);
 		
 		if(index!=0) {

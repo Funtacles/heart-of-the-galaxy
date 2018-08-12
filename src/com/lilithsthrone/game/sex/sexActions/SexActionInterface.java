@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import com.lilithsthrone.controller.MainController;
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.dialogue.responses.Response;
@@ -51,8 +51,6 @@ public interface SexActionInterface {
 	
 	public abstract String getDescription();
 
-	public CorruptionLevel getCorruptionNeeded();
-	
 	/**
 	 * The keys are areas that belong to the performing character. The values are areas that belong to the targeted character.
 	 * @return
@@ -610,7 +608,6 @@ public interface SexActionInterface {
 						:UtilText.parse(Sex.getCharacterPerformingAction(), Sex.getCharacterTargetedForSexAction(this), getActionDescription()),
 					Sex.SEX_DIALOGUE,
 					getFetishes(Main.game.getPlayer()),
-					getCorruptionNeeded(),
 					null, null, null,
 					Sex.getCharacterPerformingAction(),
 					this.getSexAreaInteractions().keySet(),
@@ -692,7 +689,6 @@ public interface SexActionInterface {
 						:UtilText.parse(Sex.getCharacterPerformingAction(), Sex.getCharacterTargetedForSexAction(this), getActionDescription()),
 					null,
 					getFetishes(Main.game.getPlayer()),
-					getCorruptionNeeded(),
 					null, null, null,
 					Sex.getCharacterPerformingAction(),
 					this.getSexAreaInteractions().keySet(),
@@ -748,20 +744,6 @@ public interface SexActionInterface {
 						}
 					}
 					
-					if(corruptionBypass!=null) {
-						if(isCorruptionWithinRange()) {
-							SB.append("<br/>"
-									+"<span style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>Associated Corruption</span>"
-									+ " (<span style='color:"+Colour.GENERIC_GOOD.toWebHexString()+";'>within range</span>): "
-									+ Util.capitaliseSentence(corruptionBypass.getName()));
-						} else {
-							SB.append("<br/>"
-									+"<span style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>Associated Corruption</span>"
-									+ " (<span style='color:"+Colour.GENERIC_BAD.toWebHexString()+";'>out of range</span>): "
-									+ Util.capitaliseSentence(corruptionBypass.getName()));
-						}
-					}
-
 					SB.append("<br/>"
 							+"<span style='color:"+Colour.GENERIC_BAD.toWebHexString()+";'>Requires no penetration</span>");
 					
@@ -784,7 +766,6 @@ public interface SexActionInterface {
 					:UtilText.parse(Sex.getCharacterPerformingAction(), Sex.getCharacterTargetedForSexAction(this), getActionDescription()),
 				null,
 				getFetishes(Main.game.getPlayer()),
-				getCorruptionNeeded(),
 				null, null, null,
 				Sex.getCharacterPerformingAction(),
 				this.getSexAreaInteractions().keySet(),

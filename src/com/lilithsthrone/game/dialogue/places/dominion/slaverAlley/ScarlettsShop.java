@@ -1,7 +1,7 @@
 package com.lilithsthrone.game.dialogue.places.dominion.slaverAlley;
 
 import com.lilithsthrone.game.character.attributes.AffectionLevel;
-import com.lilithsthrone.game.character.attributes.CorruptionLevel;
+
 import com.lilithsthrone.game.character.attributes.ObedienceLevel;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.dominion.Scarlett;
@@ -518,7 +518,6 @@ public class ScarlettsShop {
 			} else if (index == 3) {
 				return new Response("Slap her", "Slap Scarlett and remind her that she's now your property.", ALEXAS_SHOP_SLAP,
 						Util.newArrayListOfValues(Fetish.FETISH_SADIST),
-						CorruptionLevel.FOUR_LUSTFUL,
 						null,
 						null,
 						null
