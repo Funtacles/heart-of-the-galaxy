@@ -247,11 +247,6 @@ public class PlayerCharacter extends GameCharacter implements XMLSaving {
 								}
 							}
 							
-//							// Add one if quest is complete: (This is due to adding a 'complete quest' at the end of each quest line.)
-//							if(questLine!=QuestLine.MAIN && !q.getChildren().isEmpty() && q.getChildren().get(0).getChildren().isEmpty()) {
-//								q = q.getChildren().get(0);
-//							}
-							
 							character.quests.put(
 									questLine,
 									q.getData());

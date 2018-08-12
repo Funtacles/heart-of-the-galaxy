@@ -87,14 +87,6 @@ import com.lilithsthrone.game.character.npc.misc.GenericMaleNPC;
 import com.lilithsthrone.game.character.npc.misc.PrologueFemale;
 import com.lilithsthrone.game.character.npc.misc.PrologueMale;
 import com.lilithsthrone.game.character.npc.misc.SlaveImport;
-import com.lilithsthrone.game.character.npc.submission.Axel;
-import com.lilithsthrone.game.character.npc.submission.Claire;
-import com.lilithsthrone.game.character.npc.submission.Epona;
-import com.lilithsthrone.game.character.npc.submission.Roxy;
-import com.lilithsthrone.game.character.npc.submission.SlimeGuardFire;
-import com.lilithsthrone.game.character.npc.submission.SlimeGuardIce;
-import com.lilithsthrone.game.character.npc.submission.SlimeQueen;
-import com.lilithsthrone.game.character.npc.submission.SlimeRoyalGuard;
 import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.quests.Quest;
 import com.lilithsthrone.game.character.quests.QuestLine;
@@ -138,7 +130,6 @@ import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Vector2i;
 import com.lilithsthrone.utils.XMLSaving;
 import com.lilithsthrone.world.Cell;
-import com.lilithsthrone.world.Generation;
 import com.lilithsthrone.world.World;
 import com.lilithsthrone.world.WorldType;
 import com.lilithsthrone.world.places.PlaceType;
@@ -604,51 +595,6 @@ public class Game implements Serializable, XMLSaving {
 					System.out.println("Core info finished");
 				}
 				
-				// Maps:
-				NodeList worlds = ((Element) gameElement.getElementsByTagName("maps").item(0)).getElementsByTagName("world");
-				for(int i = 0; i < worlds.getLength(); i++) {
-					Element e = (Element) worlds.item(i);
-					String worldType = e.getAttribute("worldType");
-					if((!worldType.equals("SEWERS") || !Main.isVersionOlderThan(loadingVersion, "0.2.0.5"))
-							&& (!worldType.equals("SUBMISSION") || !Main.isVersionOlderThan(loadingVersion, "0.2.1.5"))
-							&& (!worldType.equals("DOMINION") || !Main.isVersionOlderThan(loadingVersion, "0.2.2"))
-							&& (!worldType.equals("SLAVER_ALLEY") || !Main.isVersionOlderThan(loadingVersion, "0.2.2"))
-							&& (!worldType.equals("HARPY_NEST") || !Main.isVersionOlderThan(loadingVersion, "0.2.1.5"))
-							&& (!worldType.equals("BAT_CAVERNS") || !Main.isVersionOlderThan(loadingVersion, "0.2.3.5"))) {
-						World world = World.loadFromXML(e, doc);
-						Main.game.worlds.put(world.getWorldType(), world);
-					}
-				}
-				
-				// Add missing world types:
-				for(WorldType wt : WorldType.values()) {
-					Generation gen = new Generation();
-					if(Main.isVersionOlderThan(loadingVersion, "0.1.99.5")) {
-						gen.worldGeneration(WorldType.SHOPPING_ARCADE);
-					}
-					if(Main.isVersionOlderThan(loadingVersion, "0.2.1.5")) {
-						gen.worldGeneration(WorldType.SUBMISSION);
-						gen.worldGeneration(WorldType.DOMINION);
-						gen.worldGeneration(WorldType.HARPY_NEST);
-					}
-					if(Main.isVersionOlderThan(loadingVersion, "0.2.2")) {
-						gen.worldGeneration(WorldType.DOMINION);
-						gen.worldGeneration(WorldType.SLAVER_ALLEY);
-					}
-					if(Main.isVersionOlderThan(loadingVersion, "0.2.3.5")) {
-						gen.worldGeneration(WorldType.BAT_CAVERNS);
-					}
-					if(Main.isVersionOlderThan(loadingVersion, "0.2.8")) {
-						gen.worldGeneration(WorldType.NIGHTLIFE_CLUB);
-					}
-					if(Main.isVersionOlderThan(loadingVersion, "0.2.8.1")) {
-						gen.worldGeneration(WorldType.EMPTY);
-					}
-					if(Main.game.worlds.get(wt)==null) {
-						gen.worldGeneration(wt);
-					}
-				}
-
 				if(Main.isVersionOlderThan(loadingVersion, "0.2.4")) {
 					AbstractItem spellBook = AbstractItemType.generateItem(ItemType.getSpellBookType(Spell.ICE_SHARD));
 					Main.game.getWorlds().get(WorldType.LILAYAS_HOUSE_FIRST_FLOOR).getCell(PlaceType.LILAYA_HOME_ROOM_PLAYER).getInventory().addItem(spellBook);
@@ -799,24 +745,6 @@ public class Game implements Serializable, XMLSaving {
 				}
 				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Lumi.class))) {
 					Main.game.addNPC(new Lumi(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Claire.class))) {
-					Main.game.addNPC(new Claire(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(SlimeQueen.class))) { // Add slime queen quest NPCs:
-					Main.game.addNPC(new SlimeQueen(), false);
-					Main.game.addNPC(new SlimeGuardIce(), false);
-					Main.game.addNPC(new SlimeGuardFire(), false);
-					Main.game.addNPC(new SlimeRoyalGuard(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Roxy.class))) { // Add gambling den NPCs:
-					Main.game.addNPC(new Roxy(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Axel.class))) {
-					Main.game.addNPC(new Axel(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Epona.class))) {
-					Main.game.addNPC(new Epona(), false);
 				}
 				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Jules.class))) { // Add nightclub NPCs:
 					Main.game.addNPC(new Jules(), false);
@@ -1103,16 +1031,6 @@ public class Game implements Serializable, XMLSaving {
 			addNPC(new Loppy(), false);
 			
 			addNPC(new Lumi(), false);
-			addNPC(new Claire(), false);
-
-			addNPC(new SlimeQueen(), false);
-			addNPC(new SlimeGuardIce(), false);
-			addNPC(new SlimeGuardFire(), false);
-			addNPC(new SlimeRoyalGuard(), false);
-			
-			addNPC(new Roxy(), false);
-			addNPC(new Axel(), false);
-			addNPC(new Epona(), false);
 
 			addNPC(new Jules(), false);
 			addNPC(new Kruger(), false);
@@ -2863,38 +2781,6 @@ public class Game implements Serializable, XMLSaving {
 	
 	public NPC getLumi() {
 		return (NPC) this.getNPCById(getUniqueNPCId(Lumi.class));
-	}
-	
-	public NPC getClaire() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Claire.class));
-	}
-
-	public NPC getSlimeQueen() {
-		return (NPC) this.getNPCById(getUniqueNPCId(SlimeQueen.class));
-	}
-
-	public NPC getSlimeGuardIce() {
-		return (NPC) this.getNPCById(getUniqueNPCId(SlimeGuardIce.class));
-	}
-
-	public NPC getSlimeGuardFire() {
-		return (NPC) this.getNPCById(getUniqueNPCId(SlimeGuardFire.class));
-	}
-
-	public NPC getSlimeRoyalGuard() {
-		return (NPC) this.getNPCById(getUniqueNPCId(SlimeRoyalGuard.class));
-	}
-
-	public NPC getRoxy() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Roxy.class));
-	}
-
-	public NPC getAxel() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Axel.class));
-	}
-
-	public NPC getEpona() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Epona.class));
 	}
 
 	public NPC getJules() {

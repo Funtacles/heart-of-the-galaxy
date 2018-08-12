@@ -30,7 +30,6 @@ import com.lilithsthrone.game.sex.sexActions.SexActionPriority;
 import com.lilithsthrone.game.sex.sexActions.SexActionType;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Util;
-import com.lilithsthrone.world.places.PlaceType;
 
 /**
  * @since 0.1.69
@@ -3270,8 +3269,6 @@ public class GenericOrgasms {
 		@Override
 		public boolean isBaseRequirementsMet() {
 			return isTakingCock(Main.game.getPlayer(), Sex.getCharacterTargetedForSexAction(this))
-					&& Main.game.getPlayer().getLocationPlace().getPlaceType()!=PlaceType.GAMBLING_DEN_FUTA_PREGNANCY
-					&& Main.game.getPlayer().getLocationPlace().getPlaceType()!=PlaceType.GAMBLING_DEN_PREGNANCY
 					&& Sex.getCharacterPerformingAction().isPlayer();
 		}
 
@@ -3755,21 +3752,13 @@ public class GenericOrgasms {
 		
 		@Override
 		public SexActionPriority getPriority() {
-			if(Main.game.getPlayer().getLocationPlace().getPlaceType()==PlaceType.GAMBLING_DEN_FUTA_PREGNANCY
-					|| Main.game.getPlayer().getLocationPlace().getPlaceType()==PlaceType.GAMBLING_DEN_PREGNANCY
-					|| (Sex.getAllContactingSexAreas(Sex.getCharacterPerformingAction(), SexAreaPenetration.PENIS).get(0)==SexAreaOrifice.VAGINA && Sex.getCharacterPerformingAction().hasFetish(Fetish.FETISH_IMPREGNATION))) {
+			if((Sex.getAllContactingSexAreas(Sex.getCharacterPerformingAction(), SexAreaPenetration.PENIS).get(0)==SexAreaOrifice.VAGINA && Sex.getCharacterPerformingAction().hasFetish(Fetish.FETISH_IMPREGNATION))) {
 				return SexActionPriority.UNIQUE_MAX;
 			}
 			if(Math.random()<0.66f) {
 				return SexActionPriority.HIGH;
 			}
 			return SexActionPriority.NORMAL;
-		}
-		
-		@Override
-		public boolean endsSex() {
-			return Main.game.getPlayer().getLocationPlace().getPlaceType()==PlaceType.GAMBLING_DEN_FUTA_PREGNANCY
-					|| Main.game.getPlayer().getLocationPlace().getPlaceType()==PlaceType.GAMBLING_DEN_PREGNANCY;
 		}
 		
 		@Override

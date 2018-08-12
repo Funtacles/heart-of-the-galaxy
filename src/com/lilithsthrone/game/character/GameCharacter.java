@@ -132,7 +132,6 @@ import com.lilithsthrone.game.character.npc.dominion.ReindeerOverseer;
 import com.lilithsthrone.game.character.npc.dominion.Scarlett;
 import com.lilithsthrone.game.character.npc.misc.Elemental;
 import com.lilithsthrone.game.character.npc.misc.NPCOffspring;
-import com.lilithsthrone.game.character.npc.submission.SubmissionAttacker;
 import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.persona.MoralityValue;
 import com.lilithsthrone.game.character.persona.Name;
@@ -1363,16 +1362,13 @@ public abstract class GameCharacter implements XMLSaving {
 			
 			WorldType worldType = WorldType.valueOf(((Element)element.getElementsByTagName("worldLocation").item(0)).getAttribute("value"));
 			
-			if((worldType==WorldType.DOMINION || worldType==WorldType.SUBMISSION || worldType==WorldType.HARPY_NEST) && Main.isVersionOlderThan(version, "0.2.1.5")) {
+			if((worldType==WorldType.DOMINION || worldType==WorldType.HARPY_NEST) && Main.isVersionOlderThan(version, "0.2.1.5")) {
 				PlaceType placeType = PlaceType.DOMINION_BACK_ALLEYS;
 				
 				if(character.isPlayer()) {
 					if(worldType==WorldType.DOMINION) {
 						placeType = PlaceType.DOMINION_AUNTS_HOME;
-						
-					} else if(worldType==WorldType.SUBMISSION) {
-						placeType = PlaceType.SUBMISSION_ENTRANCE;
-						
+
 					} else {
 						placeType = PlaceType.HARPY_NESTS_ENTRANCE_ENFORCER_POST;
 					}
@@ -1387,10 +1383,7 @@ public abstract class GameCharacter implements XMLSaving {
 
 					} else if(character instanceof ReindeerOverseer) {
 						placeType = PlaceType.DOMINION_STREET;
-						
-					} else if(character instanceof SubmissionAttacker) {
-						placeType = PlaceType.SUBMISSION_TUNNELS;
-						
+
 					} else if(character instanceof HarpyNestsAttacker) {
 						placeType = PlaceType.HARPY_NESTS_WALKWAYS;
 						
@@ -1409,9 +1402,6 @@ public abstract class GameCharacter implements XMLSaving {
 					} else { // Catch if no location found:
 						if(worldType==WorldType.DOMINION) {
 							placeType = PlaceType.DOMINION_BACK_ALLEYS;
-							
-						} else if(worldType==WorldType.SUBMISSION) {
-							placeType = PlaceType.SUBMISSION_TUNNELS;
 							
 						} else {
 							placeType = PlaceType.HARPY_NESTS_WALKWAYS;
@@ -3762,11 +3752,9 @@ public abstract class GameCharacter implements XMLSaving {
 		switch(this.getWorldLocation()) {
 			case ANGELS_KISS_FIRST_FLOOR:
 			case ANGELS_KISS_GROUND_FLOOR:
-			case BAT_CAVERNS:
 			case DOMINION:
 			case EMPTY:
 			case SLAVER_ALLEY:
-			case SUBMISSION:
 			case HARPY_NEST:
 			case JUNGLE:
 			case LILAYAS_HOUSE_FIRST_FLOOR:
@@ -3782,9 +3770,6 @@ public abstract class GameCharacter implements XMLSaving {
 				}
 				break;
 			case SUPPLIER_DEN:
-			case SLIME_QUEENS_LAIR_GROUND_FLOOR:
-			case SLIME_QUEENS_LAIR_FIRST_FLOOR:
-			case GAMBLING_DEN:
 				return "This isn't a suitable place to be having sex with [npc.name]!";
 			case ZARANIX_HOUSE_FIRST_FLOOR:
 			case ZARANIX_HOUSE_GROUND_FLOOR:

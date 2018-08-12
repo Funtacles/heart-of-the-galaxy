@@ -344,9 +344,7 @@ public class GenericSexualPartner extends NPC {
 	
 	@Override
 	public String getVirginityLossOrificeDescription(GameCharacter characterPenetrating, SexAreaPenetration penetrationType, GameCharacter characterPenetrated, SexAreaOrifice orifice){
-		if(!characterPenetrated.isPlayer()
-				|| (characterPenetrating.getLocationPlace().getPlaceType()!=PlaceType.GAMBLING_DEN_FUTA_PREGNANCY
-					&& characterPenetrating.getLocationPlace().getPlaceType()!=PlaceType.GAMBLING_DEN_PREGNANCY)) {
+		if(!characterPenetrated.isPlayer()) {
 			return super.getVirginityLossOrificeDescription(characterPenetrating, penetrationType, characterPenetrated, orifice);
 		}
 		

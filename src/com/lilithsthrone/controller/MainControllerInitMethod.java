@@ -108,7 +108,6 @@ import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
 import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.LilayaHomeGeneric;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.SuccubisSecrets;
 import com.lilithsthrone.game.dialogue.places.dominion.slaverAlley.SlaverAlleyDialogue;
-import com.lilithsthrone.game.dialogue.places.submission.dicePoker.DicePoker;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
 import com.lilithsthrone.game.dialogue.story.CharacterCreation;
@@ -5339,32 +5338,6 @@ public class MainControllerInitMethod {
 		}
 		
 
-		// Save/load enchantment:
-		if(Main.game.isStarted() && Main.game.getPlayerCell().getPlace().getPlaceType()==PlaceType.GAMBLING_DEN_GAMBLING) {
-			for(int i=0; i<DicePoker.getPlayerDice().size(); i++) {
-				setDiceHandler(i);
-			}
-		}
-		
 		MainController.setResponseEventListeners();
-	
-	}
-	
-	static void setDiceHandler(int i) {
-		String id = "DICE_PLAYER_"+i;
-		if (((EventTarget) MainController.document.getElementById(id)) != null) {
-			((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-				if(DicePoker.isAbleToSelectReroll()) {
-					DicePoker.setReroll(DicePoker.getPlayerDice().get(i));
-				}
-			}, false);
-			
-			MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-			MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-			TooltipInformationEventListener el2 = new TooltipInformationEventListener().setInformation(
-					"Mark for reroll",
-					DicePoker.isAbleToSelectReroll()?"":"[style.italicsBad(You cannot mark your dice for reroll in this scene!)]");
-			MainController.addEventListener(MainController.document, id, "mouseenter", el2, false);
-		}
 	}
 }

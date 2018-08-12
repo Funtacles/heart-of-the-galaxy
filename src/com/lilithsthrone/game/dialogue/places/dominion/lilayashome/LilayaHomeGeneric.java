@@ -809,7 +809,6 @@ public class LilayaHomeGeneric {
 				return new Response("Find Lyssieth", "If you ever want to find out what's going on, it looks like you'll have to agree to help.", ROOM_ARTHUR){
 					@Override
 					public void effects() {
-						Main.game.getTextEndStringBuilder().append(Main.game.getPlayer().setQuestProgress(QuestLine.MAIN, Quest.MAIN_2_A_INTO_THE_DEPTHS));
 					}
 				};
 				

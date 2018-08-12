@@ -461,7 +461,6 @@ public class ItemType {
 			TFEssence.ARCANE,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.STR_SWAMP_WATER)), 
 			Util.newArrayListOfValues(
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
 					ItemTag.ATTRIBUTE_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -510,7 +509,6 @@ public class ItemType {
 			TFEssence.ARCANE,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.STR_BLACK_RATS_RUM)), 
 			Util.newArrayListOfValues(
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
 					ItemTag.ATTRIBUTE_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -654,8 +652,6 @@ public class ItemType {
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.INT_VANILLA_WATER)), 
 			Util.newArrayListOfValues(
 					ItemTag.DOMINION_ALLEYWAY_SPAWN,
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
-					ItemTag.BAT_CAVERNS_SPAWN,
 					ItemTag.ATTRIBUTE_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -802,7 +798,6 @@ public class ItemType {
 			TFEssence.ARCANE,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.INT_FRUIT_BAT_SQUASH)),
 			Util.newArrayListOfValues(
-					ItemTag.BAT_CAVERNS_SPAWN,
 					ItemTag.ATTRIBUTE_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -945,8 +940,6 @@ public class ItemType {
 			TFEssence.ARCANE,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.SEX_SLIME_DRINK)),
 			Util.newArrayListOfValues(
-					ItemTag.BAT_CAVERNS_SPAWN,
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
 					ItemTag.ATTRIBUTE_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -1136,7 +1129,6 @@ public class ItemType {
 			TFEssence.ARCANE,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.COR_IMPISH_BREW)),
 			Util.newArrayListOfValues(
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
 					ItemTag.ATTRIBUTE_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -1183,8 +1175,6 @@ public class ItemType {
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.MYSTERY_KINK)),
 			Util.newArrayListOfValues(
 					ItemTag.DOMINION_ALLEYWAY_SPAWN,
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
-					ItemTag.BAT_CAVERNS_SPAWN,
 					ItemTag.MISC_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -1279,8 +1269,6 @@ public class ItemType {
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.ADDICTION_REMOVAL)),
 			Util.newArrayListOfValues(
 					ItemTag.DOMINION_ALLEYWAY_SPAWN,
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
-					ItemTag.BAT_CAVERNS_SPAWN,
 					ItemTag.MISC_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -1325,8 +1313,7 @@ public class ItemType {
 			Rarity.EPIC,
 			null,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.MUSHROOMS)),
-			Util.newArrayListOfValues(
-					ItemTag.BAT_CAVERNS_SPAWN)) {
+			Util.newArrayListOfValues()) {
 
 		private static final long serialVersionUID = 1L;
 
@@ -1373,7 +1360,6 @@ public class ItemType {
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.RACE_INNOXIAS_GIFT)),
 			Util.newArrayListOfValues(
 					ItemTag.DOMINION_ALLEYWAY_SPAWN,
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
 					ItemTag.RACIAL_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -1421,7 +1407,6 @@ public class ItemType {
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.RACE_ANGELS_TEARS)),
 			Util.newArrayListOfValues(
 					ItemTag.DOMINION_ALLEYWAY_SPAWN,
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
 					ItemTag.RACIAL_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -1617,7 +1602,6 @@ public class ItemType {
 			TFEssence.ARCANE,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.RACE_FRUIT_SALAD)),
 			Util.newArrayListOfValues(
-					ItemTag.BAT_CAVERNS_SPAWN,
 					ItemTag.RACIAL_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -1664,7 +1648,6 @@ public class ItemType {
 			TFEssence.ARCANE,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.RACE_BURGER)),
 			Util.newArrayListOfValues(
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
 					ItemTag.RACIAL_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -1949,7 +1932,6 @@ public class ItemType {
 			TFEssence.ARCANE,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.RACE_ALLIGATORS_GUMBO)),
 			Util.newArrayListOfValues(
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
 					ItemTag.RACIAL_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -3220,8 +3202,7 @@ public class ItemType {
 			null,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.DYE_BRUSH)),
 			Util.newArrayListOfValues(
-					ItemTag.DOMINION_ALLEYWAY_SPAWN,
-					ItemTag.SUBMISSION_TUNNEL_SPAWN)) {
+					ItemTag.DOMINION_ALLEYWAY_SPAWN)) {
 
 		private static final long serialVersionUID = 1L;
 
@@ -3361,8 +3342,6 @@ public class ItemType {
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.VIXENS_VIRILITY)),
 			Util.newArrayListOfValues(
 					ItemTag.DOMINION_ALLEYWAY_SPAWN,
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
-					ItemTag.BAT_CAVERNS_SPAWN,
 					ItemTag.ATTRIBUTE_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -3400,8 +3379,6 @@ public class ItemType {
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.PROMISCUITY_PILL)),
 			Util.newArrayListOfValues(
 					ItemTag.DOMINION_ALLEYWAY_SPAWN,
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
-					ItemTag.BAT_CAVERNS_SPAWN,
 					ItemTag.ATTRIBUTE_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -3435,9 +3412,7 @@ public class ItemType {
 			null,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.MOO_MILKER)),
 			Util.newArrayListOfValues(
-					ItemTag.DOMINION_ALLEYWAY_SPAWN,
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
-					ItemTag.BAT_CAVERNS_SPAWN)) {
+					ItemTag.DOMINION_ALLEYWAY_SPAWN)) {
 
 		private static final long serialVersionUID = 1L;
 		
@@ -3532,8 +3507,7 @@ public class ItemType {
 			null,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.PREGNANCY_TEST)),
 			Util.newArrayListOfValues(
-					ItemTag.DOMINION_ALLEYWAY_SPAWN,
-					ItemTag.SUBMISSION_TUNNEL_SPAWN)) {
+					ItemTag.DOMINION_ALLEYWAY_SPAWN)) {
 
 		private static final long serialVersionUID = 1L;
 
@@ -3568,7 +3542,6 @@ public class ItemType {
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.MOTHERS_MILK)),
 			Util.newArrayListOfValues(
 					ItemTag.DOMINION_ALLEYWAY_SPAWN,
-					ItemTag.SUBMISSION_TUNNEL_SPAWN,
 					ItemTag.MISC_TF_ITEM)) {
 
 		private static final long serialVersionUID = 1L;
@@ -4542,7 +4515,6 @@ public class ItemType {
 	}
 	
 	public static List<AbstractItemType> dominionAlleywayItems = new ArrayList<>();
-	public static List<AbstractItemType> submissionTunnelItems = new ArrayList<>();
 	public static List<AbstractItemType> batCavernItems = new ArrayList<>();
 	public static List<AbstractItemType> essences = new ArrayList<>();
 	public static List<AbstractItemType> allItems = new ArrayList<>();
@@ -4591,14 +4563,6 @@ public class ItemType {
 					if(item.getItemTags().contains(ItemTag.DOMINION_ALLEYWAY_SPAWN)) {
 						dominionAlleywayItems.add(item);
 					}
-					
-					if(item.getItemTags().contains(ItemTag.SUBMISSION_TUNNEL_SPAWN)) {
-						submissionTunnelItems.add(item);
-					} 
-					
-					if(item.getItemTags().contains(ItemTag.BAT_CAVERNS_SPAWN)) {
-						batCavernItems.add(item);
-					} 
 					
 					if(item.getItemTags().contains(ItemTag.ESSENCE)) {
 						essences.add(item);

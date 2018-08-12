@@ -10,13 +10,11 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.ReindeerOverseer;
 import com.lilithsthrone.game.character.npc.dominion.RentalMommy;
-import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.npcDialogue.dominion.ReindeerOverseerDialogue;
 import com.lilithsthrone.game.dialogue.npcDialogue.dominion.RentalMommyDialogue;
-import com.lilithsthrone.game.dialogue.places.submission.SubmissionGenericPlaces;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -25,8 +23,6 @@ import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
-import com.lilithsthrone.world.WorldType;
-import com.lilithsthrone.world.places.PlaceType;
 
 /**
  * @since 0.1.0
@@ -820,83 +816,6 @@ public class CityPlaces {
 	};
 
 	// Entrances and exits:
-
-	public static final DialogueNodeOld CITY_EXIT_SEWERS = new DialogueNodeOld("Submission Entrance", "Enter the undercity of Submission.", false) {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public int getMinutesPassed() {
-			return 5;
-		}
-
-		@Override
-		public String getContent() {
-			return UtilText.parseFromXMLFile("places/dominion/dominionPlaces", "CITY_EXIT_SEWERS");
-		}
-
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 1) {
-				return new Response("Submission", "Enter the undercity of Submission.", CITY_EXIT_SEWERS_ENTERING_SUBMISSION){
-					@Override
-					public void effects() {
-						if(!Main.game.getPlayer().hasQuest(QuestLine.SIDE_SLIME_QUEEN)) {
-							Main.game.getTextEndStringBuilder().append(UtilText.parseFromXMLFile("places/dominion/dominionPlaces", "ENTER_SUBMISSION_FIRST_TIME"));
-							Main.game.getTextEndStringBuilder().append(Main.game.getPlayer().startQuest(QuestLine.SIDE_SLIME_QUEEN));
-							Main.game.getDialogueFlags().setFlag(DialogueFlagValue.visitedSubmission, false);
-						}
-						Main.game.getPlayer().setLocation(WorldType.SUBMISSION, PlaceType.SUBMISSION_ENTRANCE, false);
-						Main.game.getClaire().setLocation(Main.game.getPlayer().getWorldLocation(), Main.game.getPlayer().getLocation(), true);
-					}
-				};
-
-			} else {
-				return null;
-			}
-		}
-	};
-	
-	public static final DialogueNodeOld CITY_EXIT_SEWERS_ENTERING_SUBMISSION = new DialogueNodeOld("Enforcer Checkpoint", "Enter the undercity of Submission.", false) {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public int getMinutesPassed() {
-			return 5;
-		}
-		
-		@Override
-		public boolean isTravelDisabled() {
-			return !Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.visitedSubmission);
-		}
-		
-		@Override
-		public String getContent() {
-			return UtilText.parseFromXMLFile("places/dominion/dominionPlaces", "ENTER_SUBMISSION");
-		}
-
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if(!Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.visitedSubmission)) {
-				if (index == 1) {
-					return new Response("Continue", "Continue on your way through the Enforcer Post.", CITY_EXIT_SEWERS_ENTERING_SUBMISSION){
-						@Override
-						public void effects() {
-							Main.game.getDialogueFlags().setFlag(DialogueFlagValue.visitedSubmission, true);
-						}
-						@Override
-						public DialogueNodeOld getNextDialogue(){
-							return Main.game.getDefaultDialogueNoEncounter();
-						}
-					};
-	
-				} else {
-					return null;
-				}
-			} else {
-				return SubmissionGenericPlaces.SEWER_ENTRANCE.getResponse(responseTab, index);
-			}
-		}
-	};
 	
 	public static final DialogueNodeOld CITY_EXIT_JUNGLE = new DialogueNodeOld("Jungle Entrance", "Travel to the jungle.", false) {
 		private static final long serialVersionUID = 1L;
