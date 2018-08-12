@@ -119,7 +119,6 @@ import com.lilithsthrone.game.character.markings.Scar;
 import com.lilithsthrone.game.character.markings.Tattoo;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.Alexa;
-import com.lilithsthrone.game.character.npc.dominion.Cultist;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.DominionSuccubusAttacker;
 import com.lilithsthrone.game.character.npc.dominion.HarpyBimbo;
@@ -1386,10 +1385,7 @@ public abstract class GameCharacter implements XMLSaving {
 						
 					} else if(character instanceof DominionSuccubusAttacker) {
 						placeType = PlaceType.DOMINION_DARK_ALLEYS;
-						
-					} else if(character instanceof Cultist) {
-						placeType = PlaceType.DOMINION_STREET;
-						
+
 					} else if(character instanceof ReindeerOverseer) {
 						placeType = PlaceType.DOMINION_STREET;
 						

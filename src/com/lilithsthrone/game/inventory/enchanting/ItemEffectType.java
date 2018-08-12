@@ -982,7 +982,7 @@ public class ItemEffectType {
 			"[style.boldGood(Restores)] 5% [style.boldHealth(energy)]",
 			"[style.boldGood(Restores)] 5% [style.boldAura(aura)]",
 			"[style.boldGood(+1)] [style.boldCorruption(corruption)] to 'potion effects'"),
-			Colour.ATTRIBUTE_CORRUPTION) {
+			Colour.ATTRIBUTE_ARCANE) {
 		
 		@Override
 		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
@@ -1000,7 +1000,7 @@ public class ItemEffectType {
 	public static AbstractItemEffectType COR_IMPISH_BREW = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldGood(Restores)] 10% [style.boldAura(aura)]",
 			"[style.boldGood(+5)] [style.boldCorruption(corruption)] to 'potion effects'"),
-			Colour.ATTRIBUTE_CORRUPTION) {
+			Colour.ATTRIBUTE_ARCANE) {
 		
 		@Override
 		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
@@ -1099,7 +1099,7 @@ public class ItemEffectType {
 	public static AbstractItemEffectType MUSHROOMS = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldTfGeneric(Makes slime and orifice interiors glow)]",
 			"Causes a [style.boldPsychoactive(psychoactive trip)]"),
-			Colour.ATTRIBUTE_CORRUPTION) {
+			Colour.ATTRIBUTE_ARCANE) {
 		
 		@Override
 		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
@@ -1175,7 +1175,7 @@ public class ItemEffectType {
 	public static AbstractItemEffectType EGGPLANT = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldGood(Restores)] 5% [style.boldHealth(energy)]",
 			"[style.boldGood(Restores)] 5% [style.boldAura(aura)]"),
-			Colour.ATTRIBUTE_CORRUPTION) {
+			Colour.ATTRIBUTE_ARCANE) {
 		
 		@Override
 		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
@@ -2277,7 +2277,7 @@ public class ItemEffectType {
 	};
 	
 	public static AbstractItemEffectType ATTRIBUTE_CORRUPTION = new AbstractItemEffectType(null,
-			Colour.ATTRIBUTE_CORRUPTION) {
+			Colour.ATTRIBUTE_ARCANE) {
 
 		@Override
 		public String getPotionDescriptor() {

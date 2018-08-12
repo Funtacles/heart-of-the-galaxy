@@ -8,14 +8,12 @@ import com.lilithsthrone.game.Season;
 import com.lilithsthrone.game.Weather;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.Cultist;
 import com.lilithsthrone.game.character.npc.dominion.ReindeerOverseer;
 import com.lilithsthrone.game.character.npc.dominion.RentalMommy;
 import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
-import com.lilithsthrone.game.dialogue.npcDialogue.dominion.CultistDialogue;
 import com.lilithsthrone.game.dialogue.npcDialogue.dominion.ReindeerOverseerDialogue;
 import com.lilithsthrone.game.dialogue.npcDialogue.dominion.RentalMommyDialogue;
 import com.lilithsthrone.game.dialogue.places.submission.SubmissionGenericPlaces;
@@ -208,14 +206,6 @@ public class CityPlaces {
 			}
 			
 			for(NPC npc : Main.game.getNonCompanionCharactersPresent()) {
-				if(npc instanceof Cultist) {
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "<b style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>Cultist's Chapel:</b><br/>"
-								+ UtilText.parse(npc, "You remember that [npc.namePos] chapel is near here, and, if you were so inclined, you could easily find it again...")
-							+ "</p>");
-					break;
-				}
 				
 				if(npc instanceof ReindeerOverseer) {
 					UtilText.nodeContentSB.append(
@@ -239,14 +229,6 @@ public class CityPlaces {
 		public Response getResponse(int responseTab, int index) {
 			List<Response> responses = new ArrayList<>();
 			for(NPC npc : Main.game.getNonCompanionCharactersPresent()) {
-				if(npc instanceof Cultist) {
-					responses.add(new Response("Chapel", UtilText.parse(npc, "Visit [npc.namePos] chapel again."), CultistDialogue.ENCOUNTER_CHAPEL_REPEAT) {
-							@Override
-							public void effects() {
-								Main.game.setActiveNPC(npc);
-							}
-						});
-				}
 				
 				if(npc instanceof ReindeerOverseer) {
 					if(Main.game.getCurrentWeather()==Weather.MAGIC_STORM) {

@@ -51,7 +51,6 @@ import com.lilithsthrone.game.character.npc.dominion.Ashley;
 import com.lilithsthrone.game.character.npc.dominion.Brax;
 import com.lilithsthrone.game.character.npc.dominion.Bunny;
 import com.lilithsthrone.game.character.npc.dominion.CandiReceptionist;
-import com.lilithsthrone.game.character.npc.dominion.Cultist;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.Finch;
 import com.lilithsthrone.game.character.npc.dominion.HarpyBimbo;
@@ -2215,9 +2214,7 @@ public class Game implements Serializable, XMLSaving {
 		if(response.disabledOnNullDialogue() && response.getNextDialogue()==null) {
 			responseDisabled = true;
 			
-		} else if (response.isAbleToBypass()) {
-			iconRight = "<div class='response-icon'>"+SVGImages.SVG_IMAGE_PROVIDER.getResponseCorruptionBypass()+"</div>";
-		}
+		} 
 		else if(response.hasRequirements()) {
 			if(response.isAvailable()) {
 				responseDisabled = false;
@@ -3091,16 +3088,6 @@ public class Game implements Serializable, XMLSaving {
 		} else {
 			NPCMap.remove(npc.getId());
 		}
-	}
-	
-	public int getNumberOfWitches() {
-		int i = 0;
-		for(NPC npc : NPCMap.values()) {
-			if(npc instanceof Cultist && npc.getLocationPlace().getPlaceType()!=PlaceType.GENERIC_EMPTY_TILE) {
-				i++;
-			}
-		}
-		return i;
 	}
 	
 	public NPC getActiveNPC() {

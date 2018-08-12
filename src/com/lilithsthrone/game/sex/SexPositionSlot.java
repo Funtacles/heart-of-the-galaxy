@@ -336,59 +336,6 @@ public enum SexPositionSlot {
 					OrgasmCumTarget.LEGS,
 					OrgasmCumTarget.FLOOR)),
 	
-
-	KNEELING_RECEIVING_ORAL_CULTIST("Standing",
-			true, KNEELING_RECEIVING_ORAL.getAvailableCumTargets()),
-	
-	KNEELING_PERFORMING_ORAL_CULTIST("Kneeling",
-			false, KNEELING_PERFORMING_ORAL.getAvailableCumTargets()),
-	
-	MISSIONARY_ALTAR_LYING_ON_ALTAR("Lying on altar",
-			false, Util.newArrayListOfValues(
-					OrgasmCumTarget.SELF_STOMACH,
-					OrgasmCumTarget.SELF_BREASTS,
-					OrgasmCumTarget.SELF_FACE,
-					OrgasmCumTarget.GROIN,
-					OrgasmCumTarget.LEGS,
-					OrgasmCumTarget.FLOOR)),
-
-	MISSIONARY_ALTAR_STANDING_BETWEEN_LEGS("Between legs",
-			true, Util.newArrayListOfValues(
-					OrgasmCumTarget.HAIR,
-					OrgasmCumTarget.FACE,
-					OrgasmCumTarget.BREASTS,
-					OrgasmCumTarget.STOMACH,
-					OrgasmCumTarget.GROIN,
-					OrgasmCumTarget.LEGS,
-					OrgasmCumTarget.FLOOR)),
-
-	MISSIONARY_ALTAR_KNEELING_BETWEEN_LEGS("Between legs (oral)",
-			false, Util.newArrayListOfValues(
-					OrgasmCumTarget.FLOOR)),
-	
-	MISSIONARY_ALTAR_SEALED_LYING_ON_ALTAR("Lying on altar",
-			false, Util.newArrayListOfValues(
-					OrgasmCumTarget.SELF_STOMACH,
-					OrgasmCumTarget.SELF_BREASTS,
-					OrgasmCumTarget.SELF_FACE,
-					OrgasmCumTarget.GROIN,
-					OrgasmCumTarget.LEGS,
-					OrgasmCumTarget.FLOOR)),
-
-	MISSIONARY_ALTAR_SEALED_STANDING_BETWEEN_LEGS("Between legs",
-			true, Util.newArrayListOfValues(
-					OrgasmCumTarget.HAIR,
-					OrgasmCumTarget.FACE,
-					OrgasmCumTarget.BREASTS,
-					OrgasmCumTarget.STOMACH,
-					OrgasmCumTarget.GROIN,
-					OrgasmCumTarget.LEGS,
-					OrgasmCumTarget.FLOOR)),
-
-	MISSIONARY_ALTAR_SEALED_KNEELING_BETWEEN_LEGS("Between legs (oral)",
-			false, Util.newArrayListOfValues(
-					OrgasmCumTarget.FLOOR)),
-	
 	/* Breeding stalls */
 	
 	BREEDING_STALL_FRONT("Lying on stomach",

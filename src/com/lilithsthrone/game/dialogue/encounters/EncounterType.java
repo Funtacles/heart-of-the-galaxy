@@ -7,8 +7,6 @@ package com.lilithsthrone.game.dialogue.encounters;
  */
 public enum EncounterType {
 
-	SPECIAL_DOMINION_CULTIST,
-	
 	SLAVE_USES_YOU,
 	
 	DOMINION_STREET_FIND_HAPPINESS, // Kinariu

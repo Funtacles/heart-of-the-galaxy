@@ -1072,8 +1072,6 @@ public class ItemType {
 		}
 	};
 	
-	// Corruption ingredients are "mysterious liquids" (cum and milk...):
-	
 	public static AbstractItemType COR_INGREDIENT_LILITHS_GIFT = new AbstractItemType(1500,
 			"a bottle of",
 			false,
@@ -1083,7 +1081,7 @@ public class ItemType {
 					+ " On the bottle's label, there is an image of Lilith's perfectly-formed, heart-shaped ass."
 					+ " Her delicate hands are reaching down to pull apart her soft ass cheeks, fully exposing her asshole and pussy, both of which are dripping wet from excitement.",
 			"attributeDemonDrink",
-			Colour.ATTRIBUTE_CORRUPTION,
+			Colour.ATTRIBUTE_ARCANE,
 			null,
 			null,
 			Rarity.UNCOMMON,
@@ -1097,7 +1095,7 @@ public class ItemType {
 
 		@Override
 		public AbstractItemEffectType getEnchantmentEffect() {
-			return ItemEffectType.ATTRIBUTE_CORRUPTION;
+			return ItemEffectType.ATTRIBUTE_ARCANE;
 		}
 
 		@Override
@@ -1131,7 +1129,7 @@ public class ItemType {
 					+ " There's no label, but someone's helpfully, albeit crudely, written 'Impish Brew' in black marker pen on one side."
 					+ " You think you can guess what the thick, musky liquid is inside...",
 			"attributeImpDrink",
-			Colour.ATTRIBUTE_CORRUPTION,
+			Colour.ATTRIBUTE_ARCANE,
 			null,
 			null,
 			Rarity.UNCOMMON,
@@ -1145,7 +1143,7 @@ public class ItemType {
 
 		@Override
 		public AbstractItemEffectType getEnchantmentEffect() {
-			return ItemEffectType.ATTRIBUTE_CORRUPTION;
+			return ItemEffectType.ATTRIBUTE_ARCANE;
 		}
 
 		@Override
@@ -1367,7 +1365,7 @@ public class ItemType {
 			"A glass bottle, filled with bubbling golden liquid."
 					+ " Someone's stuck a crude little sticker to one side of the bottle, and as you look closer, you see that it reads: 'Temporary item! Demon TFs don't work like this!'",
 			"raceDemonInnoxiasGift",
-			Colour.ATTRIBUTE_CORRUPTION,
+			Colour.ATTRIBUTE_ARCANE,
 			null,
 			null,
 			Rarity.LEGENDARY,
@@ -3343,65 +3341,6 @@ public class ItemType {
 		
 		@Override
 		public boolean canBeSold() {
-			return false;
-		}
-
-	};
-	
-	public static AbstractItemType ORIENTATION_HYPNO_WATCH = new AbstractItemType(50000,
-			"a",
-			false,
-			"Hypno-Watch",
-			"Hypno-Watches",
-			"A unique, incredibly-powerful arcane instrument. When enchanted, this Hypno-Watch has the ability to change a person's sexual orientation, at the cost of giving them a huge increase in corruption.",
-			"hypnoClockBase",
-			Colour.ANDROGYNOUS,
-			null,
-			null,
-			Rarity.LEGENDARY,
-			TFEssence.ARCANE,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.ORIENTATION_CHANGE)), null) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getDeterminer() {
-			return UtilText.generateSingularDeterminer(this.getName(false));
-		}
-		
-		@Override
-		public int getEnchantmentLimit() {
-			return 1;
-		}
-		
-		@Override
-		public AbstractItemEffectType getEnchantmentEffect() {
-			return ItemEffectType.ORIENTATION_CHANGE;
-		}
-
-		@Override
-		public AbstractItemType getEnchantmentItemType(List<ItemEffect> effects) {
-			return ORIENTATION_HYPNO_WATCH;
-		}
-		
-		@Override
-		public String getUseName() {
-			return "hypnotise";
-		}
-		
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"Taking hold of the delicate chain, you start slowly swinging the Hypno-Watch back and forth, fixating your gaze on the swirling face as you allow the item's arcane power to seep into your mind...",
-					"Taking hold of the delicate chain, you start slowly swinging the Hypno-Watch back and forth in front of [npc.namePos] face, and,"
-							+ " just as you'd hoped, [npc.she] fixates [npc.her] gaze on the swirling face, allowing the item's arcane power to seep into [npc.her] mind...",
-					"Taking hold of the delicate chain, [npc.name] starts slowly swinging the Hypno-Watch back and forth, fixating [npc.her] gaze on the swirling face as [npc.she] allows the item's arcane power to seep into [npc.her] mind...",
-					"Taking hold of the delicate chain, [npc.name] starts slowly swinging the Hypno-Watch back and forth in front of your face,"
-							+ " and you find yourself unable to do anything but fixate your gaze on the swirling face as the item's arcane power seeps into your mind...");
-		}
-		
-		@Override
-		public boolean isConsumedOnUse() {
 			return false;
 		}
 

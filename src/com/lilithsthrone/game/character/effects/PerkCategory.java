@@ -13,7 +13,7 @@ public enum PerkCategory {
 	
 	PHYSICAL(Colour.ATTRIBUTE_PHYSIQUE),
 	
-	BOTH(Colour.ATTRIBUTE_CORRUPTION),
+	BOTH(Colour.ATTRIBUTE_ARCANE),
 	
 	ARCANE(Colour.ATTRIBUTE_ARCANE);
 

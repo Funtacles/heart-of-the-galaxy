@@ -674,7 +674,7 @@ public abstract class AbstractClothing extends AbstractCoreItem implements Seria
 					
 					pointlessSB.append("<br/>"
 							+ "<b>"+(clothingOwner.isPlayer()?"You gain":UtilText.parse(clothingOwner, "[npc.Name] gains"))
-									+" +1</b> <b style='color:" + Colour.GENERIC_TERRIBLE.toWebHexString()+ ";'>core</b> <b style='color:" + Colour.ATTRIBUTE_CORRUPTION.toWebHexString() + ";'>corruption</b> <b>from discovering their jinx...</b>"
+									+" +1</b> <b style='color:" + Colour.GENERIC_TERRIBLE.toWebHexString()+ ";'>core</b> <b style='color:" + Colour.ATTRIBUTE_ARCANE.toWebHexString() + ";'>corruption</b> <b>from discovering their jinx...</b>"
 							+ "</p>");
 					
 				} else {
@@ -800,7 +800,7 @@ public abstract class AbstractClothing extends AbstractCoreItem implements Seria
 			}
 			
 			if(this.isSealed()) {
-				extraInformationSB.append((getClothingType().isPlural() ? "They are" : "It is") + " <b style='color: " + Colour.ATTRIBUTE_CORRUPTION.toWebHexString() + ";'>jinxed</b> and can't be removed!<br/>");
+				extraInformationSB.append((getClothingType().isPlural() ? "They are" : "It is") + " <b style='color: " + Colour.ATTRIBUTE_ARCANE.toWebHexString() + ";'>jinxed</b> and can't be removed!<br/>");
 			
 			} else if(this.getClothingType().isDiscardedOnUnequip()) {
 				extraInformationSB.append("[style.boldBad(Removing your "+this.getName()+" will cause "+(getClothingType().isPlural() ? "them" : "it")+" to be discarded!)]<br/>");

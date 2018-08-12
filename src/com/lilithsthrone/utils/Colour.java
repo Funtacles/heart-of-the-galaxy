@@ -140,7 +140,6 @@ public enum Colour {
 	ATTRIBUTE_PHYSIQUE(false, BaseColour.MAGENTA, "magenta", Util.newArrayListOfValues("physique", "phys", "strength", "str")),
 	ATTRIBUTE_ARCANE(false, BaseColour.PURPLE, "purple", Util.newArrayListOfValues("intelligence", "int")),
 //	ATTRIBUTE_FITNESS(BaseColour.LILAC, "light purple", Util.newArrayListOfValues("fitness", "fit")),
-	ATTRIBUTE_CORRUPTION(false, BaseColour.PINK_DEEP, "pink", Util.newArrayListOfValues("corruption", "cor", "corr")),
 
 	ATTRIBUTE_AROUSAL(false, BaseColour.PINK_DEEP, "pink", Util.newArrayListOfValues("arousal", "ars")),
 	ATTRIBUTE_LUST(false, BaseColour.MAGENTA, "magenta", Util.newArrayListOfValues("lust", "lst", "seduction")),
@@ -168,13 +167,6 @@ public enum Colour {
 	FITNESS_STAGE_THREE(false, BaseColour.LILAC, "light purple"),
 	FITNESS_STAGE_FOUR(false, BaseColour.LILAC, "light purple"),
 	FITNESS_STAGE_FIVE(false, BaseColour.GOLD, "gold"),
-	
-	CORRUPTION_STAGE_ZERO(false, Util.newColour(0xffdf80), Util.newColour(0xffdf80), "gold"),
-	CORRUPTION_STAGE_ONE(false, Util.newColour(0xff80bf), Util.newColour(0xff80bf), "pink"),
-	CORRUPTION_STAGE_TWO(false, Util.newColour(0xff1a8c), Util.newColour(0xff1a8c), "pink"),
-	CORRUPTION_STAGE_THREE(false, Util.newColour(0xe600ac), Util.newColour(0xe600ac), "pink"),
-	CORRUPTION_STAGE_FOUR(false, Util.newColour(0xd411d4), Util.newColour(0xd411d4), "pink"),
-	CORRUPTION_STAGE_FIVE(false, Util.newColour(0xbf00ff), Util.newColour(0xbf00ff), "pink"),
 	
 	AROUSAL_STAGE_ZERO(false, Util.newColour(0xfee6ff), Util.newColour(0xfee6ff), "pink"),
 	AROUSAL_STAGE_ONE(false, Util.newColour(0xfcb3ff), Util.newColour(0xfcb3ff), "pink"),

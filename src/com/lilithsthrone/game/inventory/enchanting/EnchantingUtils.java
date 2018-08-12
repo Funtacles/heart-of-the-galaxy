@@ -18,7 +18,6 @@ import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
-import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.rendering.SVGImages;
 import com.lilithsthrone.utils.Colour;
@@ -89,19 +88,6 @@ public class EnchantingUtils {
 		
 		if(ingredient.getEnchantmentItemType(effects) instanceof AbstractTattooType) {
 			return Util.capitaliseSentence(ingredient.getName());
-		}
-		
-		if(((AbstractItem)ingredient).getItemType().getId().equals(ItemType.ORIENTATION_HYPNO_WATCH.getId())) {
-			if(effects.isEmpty() || effects.get(0).getPrimaryModifier()==TFModifier.REMOVAL) {
-				return "Hypno-Watch";
-			}
-			if(effects.get(0).getPrimaryModifier()==TFModifier.ORIENTATION_GYNEPHILIC) {
-				return "Gynephilic Hypno-Watch";
-			} else if(effects.get(0).getPrimaryModifier()==TFModifier.ORIENTATION_AMBIPHILIC) {
-				return "Ambiphilic Hypno-Watch";
-			} else {
-				return "Androphilic Hypno-Watch";
-			}
 		}
 		
 		String potionName = ((AbstractItemType) ingredient.getEnchantmentItemType(effects)).getName(false);
@@ -212,22 +198,6 @@ public class EnchantingUtils {
 			return ingredient.getSVGString();
 		}
 		
-		if(((AbstractItem)ingredient).getItemType().getId().equals(ItemType.ORIENTATION_HYPNO_WATCH.getId())) {
-			if(effects.isEmpty() || effects.get(0).getPrimaryModifier()==TFModifier.REMOVAL) {
-				return SVGImages.SVG_IMAGE_PROVIDER.getHypnoWatchBase();
-			}
-			
-			if(effects.get(0).getPrimaryModifier()==TFModifier.ORIENTATION_GYNEPHILIC) {
-				return SVGImages.SVG_IMAGE_PROVIDER.getHypnoWatchGynephilic();
-				
-			} else if(effects.get(0).getPrimaryModifier()==TFModifier.ORIENTATION_AMBIPHILIC) {
-				return SVGImages.SVG_IMAGE_PROVIDER.getHypnoWatchAmbiphilic();
-				
-			} else {
-				return SVGImages.SVG_IMAGE_PROVIDER.getHypnoWatchAndrophilic();
-			}
-		}
-		
 		StringBuilder SVGImageSB = new StringBuilder();
 		
 		SVGImageSB.append("<div style='width:100%;height:100%;position:absolute;left:0;bottom:0;'>"+SVGImages.SVG_IMAGE_PROVIDER.getRefinedBackgroundMap().get(ingredient.getEnchantmentEffect().getColour())+"</div>");
@@ -264,22 +234,6 @@ public class EnchantingUtils {
 	
 	public static String getImportedSVGString(AbstractCoreItem item, Colour importedColour, List<ItemEffect> effects) {
 
-		if(((AbstractItem)item).getItemType().getId().equals(ItemType.ORIENTATION_HYPNO_WATCH.getId())) {
-			if(effects.isEmpty() || effects.get(0).getPrimaryModifier()==TFModifier.REMOVAL) {
-				return SVGImages.SVG_IMAGE_PROVIDER.getHypnoWatchBase();
-			}
-			
-			if(effects.get(0).getPrimaryModifier()==TFModifier.ORIENTATION_GYNEPHILIC) {
-				return SVGImages.SVG_IMAGE_PROVIDER.getHypnoWatchGynephilic();
-				
-			} else if(effects.get(0).getPrimaryModifier()==TFModifier.ORIENTATION_AMBIPHILIC) {
-				return SVGImages.SVG_IMAGE_PROVIDER.getHypnoWatchAmbiphilic();
-				
-			} else {
-				return SVGImages.SVG_IMAGE_PROVIDER.getHypnoWatchAndrophilic();
-			}
-		}
-		
 		StringBuilder SVGImageSB = new StringBuilder();
 		
 		String importedColourString = SVGImages.SVG_IMAGE_PROVIDER.getRefinedBackgroundMap().get(importedColour);

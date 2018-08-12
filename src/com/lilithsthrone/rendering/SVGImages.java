@@ -49,7 +49,7 @@ public enum SVGImages {
 			
 			protectionEnabled, protectionDisabled, tattoo,
 			
-			responseCombat, responseSex, responseLocked, responseUnlocked, responseUnlockedDisabled, responseOption, responseOptionDisabled, responseCorruptionBypass,
+			responseCombat, responseSex, responseLocked, responseUnlocked, responseUnlockedDisabled, responseOption, responseOptionDisabled,
 			responseSubResist, responseSubNormal, responseSubEager,
 			responseDomGentle, responseDomNormal, responseDomRough,
 			
@@ -110,7 +110,7 @@ public enum SVGImages {
 
 			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/InventoryIcons/jinxed.svg");
 			jinxedIcon = Util.inputStreamToString(is);
-			jinxedIcon = setColour(jinxedIcon, Colour.ATTRIBUTE_CORRUPTION);
+			jinxedIcon = setColour(jinxedIcon, Colour.ATTRIBUTE_ARCANE);
 
 			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/InventoryIcons/tattooSwitchTattoo.svg");
 			tattooSwitchTattoo = Util.inputStreamToString(is);
@@ -886,10 +886,6 @@ public enum SVGImages {
 	
 	public String getResponseUnlockedDisabled() {
 		return responseUnlockedDisabled;
-	}
-
-	public String getResponseCorruptionBypass() {
-		return responseCorruptionBypass;
 	}
 
 	public String getResponseSubResist() {

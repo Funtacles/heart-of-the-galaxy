@@ -3186,7 +3186,7 @@ public enum StatusEffect {
 			80,
 			"Mild Withdrawal",
 			"withdrawal1",
-			Colour.CORRUPTION_STAGE_ONE,
+			Colour.DESIRE_STAGE_ONE,
 			false,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Float>(Attribute.MAJOR_ARCANE, -2f),
@@ -3251,7 +3251,7 @@ public enum StatusEffect {
 			80,
 			"Noticeable Withdrawal",
 			"withdrawal2",
-			Colour.CORRUPTION_STAGE_TWO,
+			Colour.DESIRE_STAGE_TWO,
 			false,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Float>(Attribute.MAJOR_ARCANE, -5f),
@@ -3316,7 +3316,7 @@ public enum StatusEffect {
 			80,
 			"Strong Withdrawal",
 			"withdrawal3",
-			Colour.CORRUPTION_STAGE_THREE,
+			Colour.DESIRE_STAGE_THREE,
 			false,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Float>(Attribute.MAJOR_ARCANE, -10f),
@@ -3381,7 +3381,7 @@ public enum StatusEffect {
 			80,
 			"Severe Withdrawal",
 			"withdrawal4",
-			Colour.CORRUPTION_STAGE_FOUR,
+			Colour.DESIRE_STAGE_FOUR,
 			false,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Float>(Attribute.MAJOR_ARCANE, -25f),
@@ -3446,7 +3446,7 @@ public enum StatusEffect {
 			80,
 			"Intense Withdrawal",
 			"withdrawal5",
-			Colour.CORRUPTION_STAGE_FIVE,
+			Colour.DESIRE_STAGE_FOUR,
 			false,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Float>(Attribute.MAJOR_ARCANE, -50f),
@@ -4453,7 +4453,7 @@ public enum StatusEffect {
 			Util.newHashMapOfValues(
 					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, -1f)),
 			Util.newArrayListOfValues(
-					"<b style='color: " + Colour.ATTRIBUTE_CORRUPTION.toWebHexString() + "'>Dirties clothing</b>")) {
+					"<b style='color: " + Colour.ATTRIBUTE_ARCANE.toWebHexString() + "'>Dirties clothing</b>")) {
 		
 		@Override
 		public Map<Attribute, Float> getAttributeModifiers(GameCharacter target) {
@@ -4560,7 +4560,7 @@ public enum StatusEffect {
 			Util.newHashMapOfValues(
 					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, -1f)),
 			Util.newArrayListOfValues(
-					"<b style='color: " + Colour.ATTRIBUTE_CORRUPTION.toWebHexString() + "'>Dirties clothing</b>")) {
+					"<b style='color: " + Colour.ATTRIBUTE_ARCANE.toWebHexString() + "'>Dirties clothing</b>")) {
 		
 		@Override
 		public Map<Attribute, Float> getAttributeModifiers(GameCharacter target) {
@@ -4653,7 +4653,7 @@ public enum StatusEffect {
 			Util.newHashMapOfValues(
 					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, -1f)),
 			Util.newArrayListOfValues(
-					"<b style='color: " + Colour.ATTRIBUTE_CORRUPTION.toWebHexString() + "'>Dirties clothing</b>")) {
+					"<b style='color: " + Colour.ATTRIBUTE_ARCANE.toWebHexString() + "'>Dirties clothing</b>")) {
 		
 		@Override
 		public Map<Attribute, Float> getAttributeModifiers(GameCharacter target) {
@@ -4746,7 +4746,7 @@ public enum StatusEffect {
 			Util.newHashMapOfValues(
 					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, -1f)),
 			Util.newArrayListOfValues(
-					"<b style='color: " + Colour.ATTRIBUTE_CORRUPTION.toWebHexString() + "'>Dirties clothing</b>")) {
+					"<b style='color: " + Colour.ATTRIBUTE_ARCANE.toWebHexString() + "'>Dirties clothing</b>")) {
 		
 		@Override
 		public Map<Attribute, Float> getAttributeModifiers(GameCharacter target) {
@@ -4853,7 +4853,7 @@ public enum StatusEffect {
 			Util.newHashMapOfValues(
 					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, -1f)),
 			Util.newArrayListOfValues(
-					"<b style='color: " + Colour.ATTRIBUTE_CORRUPTION.toWebHexString() + "'>Dirties clothing</b>")) {
+					"<b style='color: " + Colour.ATTRIBUTE_ARCANE.toWebHexString() + "'>Dirties clothing</b>")) {
 		
 		@Override
 		public Map<Attribute, Float> getAttributeModifiers(GameCharacter target) {
