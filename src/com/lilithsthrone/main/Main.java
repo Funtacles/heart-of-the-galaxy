@@ -112,7 +112,6 @@ public class Main extends Application {
 			+"<ul>Changed hair TF category from 'lesser' to 'minor', so 'minor' furry NPCs will now spawn with race-specific hair.</ul>"
 			+"<ul>Added detection for shoes blocking foot actions in sex. (I'll add shoe-related actions later on.)</ul>"
 			+"<ul>Added 'blunt' TF modifier to enchanting penis and clit.</ul>"
-			+"<ul>Harpy wings no longer block the finger slot.</ul>"
 			+"<ul>NPCs can no longer gain affection towards you from sex, but can still lose it (if they are resisting at the end without the sub non con fetish, or if they didn't orgasm). This was changed due to the intention of affection being used as a content progression mechanic.</ul>"
 
 			+"<li>Sex AI:</li>"
@@ -123,7 +122,6 @@ public class Main extends Application {
 
 			+"<li>Bugs:</li>"
 			+"<ul>Fixed NPCs wanting to use tail+breast actions, even though there are none currently in the game.</ul>"
-			+"<ul>Fixed parsing error in Zaranix post-victory dialogue, and in a few of the harpy matriarch scenes.</ul>"
 			+"<ul>Fixed Kruger, Vicky, and Cultists not progressing through positions in sex properly.</ul>"
 			+"<ul>Fixed sex scenes marked as 'public' (such as Kruger's), repeating the end sex dialogue about essence gains.</ul>"
 			+"<ul>Fixed 'Tease nipple' action being available when nipple penetration content was turned off.</ul>"

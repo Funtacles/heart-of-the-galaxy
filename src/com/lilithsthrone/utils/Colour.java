@@ -119,7 +119,6 @@ public enum Colour {
 	RACE_REINDEER_MORPH(false, BaseColour.BROWN_DARK, "dark brown", Util.newArrayListOfValues("reindeerMorph", "reindeer")),
 	RACE_WOLF_MORPH(false, BaseColour.BLACK, "black", Util.newArrayListOfValues("wolfMorph", "wolf")),
 	RACE_FOX_MORPH(false, BaseColour.GINGER, "ginger", Util.newArrayListOfValues("foxMorph", "fox")),
-	RACE_HARPY(false, BaseColour.PINK_LIGHT, "light pink", Util.newArrayListOfValues("harpy")),
 	RACE_SQUIRREL_MORPH(false, BaseColour.GINGER, "ginger", Util.newArrayListOfValues("squirrelMorph", "squirrel")),
 	RACE_RAT_MORPH(false, BaseColour.BROWN_DARK, "dark brown", Util.newArrayListOfValues("ratMorph", "rat")),
 	RACE_RABBIT_MORPH(false, BaseColour.BROWN_DARK, "dark brown", Util.newArrayListOfValues("rabbitMorph", "rabbit")),

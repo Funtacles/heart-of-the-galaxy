@@ -879,52 +879,6 @@ public class ItemType {
 		}
 	};
 	
-	public static AbstractItemType SEX_INGREDIENT_HARPY_PERFUME = new AbstractItemType(250,
-			"a bottle of",
-			false,
-			"Harpy Perfume",
-			"Harpy Perfumes",
-			"A glass bottle of what looks to be a kind of feminine perfume."
-				+ " There's a stylised image of a harpy's wings on the front of the bottle.",
-			"attributeHarpyPerfume",
-			Colour.GENERIC_SEX,
-			null,
-			null,
-			Rarity.UNCOMMON,
-			TFEssence.ARCANE,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.SEX_HARPY_PERFUME)),
-			Util.newArrayListOfValues(
-					ItemTag.ATTRIBUTE_TF_ITEM)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public AbstractItemEffectType getEnchantmentEffect() {
-			return ItemEffectType.ATTRIBUTE_SEXUAL;
-		}
-
-		@Override
-		public AbstractItemType getEnchantmentItemType(List<ItemEffect> effects) {
-			return POTION;
-		}
-
-		@Override
-		public String getUseName() {
-			return "spray";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"You take in a deep breath of an intoxicating feminine scent as you spray a little squirt of the 'Harpy Perfume' onto your neck."
-						+ " Looking down at the curiously now-empty bottle of perfume, you feel a bubbly wave of excitement running through you, and without thinking, you find yourself letting out a very girly giggle.",
-					"You spray a little squirt of the 'Harpy Perfume' onto [npc.namePos] neck.",
-					"[npc.Name] pulls out a bottle of 'Harpy Perfume', and, after quickly popping off the cap, [npc.she] promptly sprays a little squirt onto [npc.her] neck.",
-					"[npc.Name] pulls out a bottle of 'Harpy Perfume', and, after quickly popping off the cap, [npc.she] sprays a little squirt onto your neck."
-						+ " You instantly feel a bubbly wave of excitement running through you, and without thinking, you find yourself letting out a very girly giggle.");
-		}
-	};
-	
 	public static AbstractItemType SEX_INGREDIENT_BUNNY_JUICE = new AbstractItemType(250,
 			"a bottle of",
 			false,
@@ -1966,56 +1920,6 @@ public class ItemType {
 		}
 	};
 	
-	public static AbstractItemType RACE_INGREDIENT_HARPY = new AbstractItemType(250,
-			"a",
-			false,
-			"Bubblegum Lollipop",
-			"Bubblegum Lollipops",
-			"A bright pink lollipop, with a little ball of gum at its core."
-				+ " Although it doesn't look out of the ordinary, it's somewhat unusual in the fact that it has an incredibly strong smell of bubblegum.",
-			"raceHarpyLollipop",
-			Colour.RACE_HARPY,
-			null,
-			null,
-			Rarity.RARE,
-			TFEssence.ARCANE,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.RACE_LOLLIPOP)),
-			Util.newArrayListOfValues(
-					ItemTag.RACIAL_TF_ITEM)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public AbstractItemEffectType getEnchantmentEffect() {
-			return ItemEffectType.RACE_HARPY;
-		}
-
-		@Override
-		public AbstractItemType getEnchantmentItemType(List<ItemEffect> effects) {
-			return ELIXIR;
-		}
-
-		@Override
-		public String getUseName() {
-			return "suck";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"The moment you push the bright pink lollipop past your lips, your taste buds are overwhelmed by the sweet, sugary flavour of bubblegum."
-						+ " Before you know what you're doing, you're letting out soft little feminine moans,"
-							+ " which soon turn into desperate whines as you find yourself unable to think about anything other than wildly sucking on the object in your mouth.",
-					"You pull out the 'Bubblegum Lollipop', and force [npc.name] to suck on it.",
-					"[npc.Name] pulls out a 'Bubblegum Lollipop', and quickly shoves it into [npc.her] mouth.",
-					"[npc.Name] pulls out a 'Bubblegum Lollipop', and, after quickly tearing off the plastic wrapper, [npc.she] forces it past your lips."
-						+ " Before you know what you're doing, you're letting out soft little feminine moans,"
-							+ " which soon turn into desperate whines as you find yourself unable to think about anything other than wildly sucking on the object in your mouth.");
-		}
-	};
-	
-	
-	
 	// Essence bottles:
 	
 	private static String getEssenceAbsorbtionText(Colour essenceColour, GameCharacter user, GameCharacter target) {
@@ -2534,44 +2438,6 @@ public class ItemType {
 		}
 	};
 	
-	public static AbstractItemType BOTTLED_ESSENCE_HARPY = new AbstractItemType(
-			50,
-			null,
-			false,
-			"Bottled Harpy Essence",
-			"Bottled Harpy Essences",
-			"A small glass bottle, with a little cork stopper wedged firmly in the top."
-					+ " Inside, the swirling "+Colour.RACE_HARPY.getName()+" glow of an arcane essence, imbued with the energy of a harpy, flickers and swirls about in a mesmerising, cyclical pattern.",
-			"bottledEssenceHarpy",
-			Colour.RACE_HARPY,
-			null,
-			null,
-			Rarity.EPIC,
-			null,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BOTTLED_ESSENCE_HARPY)),
-			Util.newArrayListOfValues(ItemTag.ESSENCE)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getUseName() {
-			return "absorb";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getEssenceAbsorbtionText(Colour.RACE_HARPY, user, target);
-		}
-		
-		public boolean isAbleToBeUsed(GameCharacter target) {
-			return target.getRace()==Race.DEMON || target.isPlayer();
-		}
-		
-		public String getUnableToBeUsedDescription(GameCharacter target) {
-			return "Only people with a demonic-strength aura are able to absorb arcane essences!";
-		}
-	};
-	
 	public static AbstractItemType BOTTLED_ESSENCE_HORSE_MORPH = new AbstractItemType(
 			50,
 			null,
@@ -2761,153 +2627,6 @@ public class ItemType {
 			return "Only people with a demonic-strength aura are able to absorb arcane essences!";
 		}
 	};
-
-	
-	// Specials:
-	
-	public static AbstractItemType HARPY_MATRIARCH_BIMBO_LOLLIPOP = new AbstractItemType(1250,
-			null,
-			false,
-			"[bimboHarpy.namePos] lollipop",
-			"[bimboHarpy.namePos] lollipops",
-			"A swirly lollipop that you got from the harpy matriarch [bimboHarpy.name]."
-				+ " Although it doesn't look out of the ordinary, you're pretty sure that eating it would result in a potent transformation...",
-			"bimboLollipop",
-			Colour.RARITY_LEGENDARY,
-			null,
-			null,
-			Rarity.LEGENDARY,
-			null,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BIMBO_LOLLIPOP)),
-			Util.newArrayListOfValues(
-					ItemTag.RACIAL_TF_ITEM,
-					ItemTag.NOT_FOR_SALE)) {
-
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public boolean isTransformative() {
-			return true;
-		}
-
-		@Override
-		public String getUseName() {
-			return "suck";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"Bringing the lollipop up to your [pc.lips+], you dart out your [pc.tongue] and give it a long, wet lick."
-						+ " An intense, sweet flavour fills your mouth, quite unlike anything you've ever tasted before."
-						+ " Before you know what you're doing, you're pressing your [pc.lips] up against the delicious candy, letting out little whining noises as you find yourself unable to stop sucking and licking it...",
-					"Bringing the lollipop up to [npc.namePos] [npc.lips+], you smile as [npc.she] darts out [npc.her] [npc.tongue] to give it a long, wet lick."
-						+ " The intoxicating taste quickly overwhelms [npc.her] senses, and [npc.she] eagerly presses [npc.her] [npc.lips] up against the delicious candy,"
-						+ " letting out little whining noises as [npc.she] finds [npc.herself] unable to stop sucking and licking it...",
-					"[npc.Name] produces a swirly lollipop and, after quickly pulling off the wrapper, starts licking and sucking it...",
-					"[npc.Name] produces a swirly lollipop and, after quickly pulling off the wrapper, forces it against your [pc.lips] and into your mouth."
-						+ " An intense, sweet flavour fills hits your tongue, quite unlike anything you've ever tasted before."
-						+ " Before you know what you're doing, you're pressing your [pc.lips] up against the delicious candy, letting out little whining noises as you find yourself unable to stop sucking and licking it...");
-
-		}
-	};
-	
-	public static AbstractItemType HARPY_MATRIARCH_NYMPHO_LOLLIPOP = new AbstractItemType(1250,
-			null,
-			false,
-			"[nymphoHarpy.namePos] lollipop",
-			"[nymphoHarpy.namePos] lollipops",
-			"A cock-shaped lollipop that you got from the harpy matriarch [nymphoHarpy.name]."
-				+ " Although it looks to be made from regular candy, you're pretty sure that eating it would result in a potent transformation...",
-			"nymphoLollipop",
-			Colour.RARITY_LEGENDARY,
-			null,
-			null,
-			Rarity.LEGENDARY,
-			null,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.NYMPHO_LOLLIPOP)),
-			Util.newArrayListOfValues(
-					ItemTag.RACIAL_TF_ITEM,
-					ItemTag.NOT_FOR_SALE)) {
-
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public boolean isTransformative() {
-			return true;
-		}
-
-		@Override
-		public String getUseName() {
-			return "suck";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"Bringing the lollipop up to your [pc.lips+], you dart out your [pc.tongue] and give it a long, wet lick."
-						+ " An intense, sweet flavour fills your mouth, quite unlike anything you've ever tasted before."
-						+ " Before you know what you're doing, you're pushing the delicious, cock-shaped candy into your mouth, letting out lewd moans as you find yourself unable to stop sucking and licking it...",
-					"Bringing the lollipop up to [npc.namePos] [npc.lips+], you smile as [npc.she] darts out [npc.her] [npc.tongue] to give it a long, wet lick."
-						+ " The intoxicating taste quickly overwhelms [npc.her] senses, and [npc.she] eagerly wraps [npc.her] [npc.lips] around the delicious, cock-shaped candy,"
-							+ " letting out lewd moans as [npc.she] finds [npc.herself] unable to stop sucking and licking it...",
-					"[npc.Name] produces a cock-shaped lollipop and, after quickly pulling off the wrapper, starts licking and sucking it...",
-					"[npc.Name] produces a cock-shaped lollipop and, after quickly pulling off the wrapper, forces it against your [pc.lips] and into your mouth."
-							+ " An intense, sweet flavour fills your mouth, quite unlike anything you've ever tasted before."
-							+ " Before you know what you're doing, you're pushing the delicious, cock-shaped candy into your mouth, letting out lewd moans as you find yourself unable to stop sucking and licking it...");
-		}
-	};
-	
-	public static AbstractItemType HARPY_MATRIARCH_DOMINANT_PERFUME = new AbstractItemType(1250,
-			null,
-			false,
-			"[dominantHarpy.namePos] perfume",
-			"[dominantHarpy.namePos] perfumes",
-			"A bottle of perfume that you got from the harpy matriarch [dominantHarpy.name]."
-				+ " Although it looks to contain normal perfume, you're pretty sure that using it would result in a potent transformation...",
-			"dominantPerfume",
-			Colour.RARITY_LEGENDARY,
-			null,
-			null,
-			Rarity.LEGENDARY,
-			null,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.DOMINANT_PERFUME)),
-			Util.newArrayListOfValues(
-					ItemTag.RACIAL_TF_ITEM,
-					ItemTag.NOT_FOR_SALE)) {
-
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public boolean isTransformative() {
-			return true;
-		}
-		
-		@Override
-		public String getUseName() {
-			return "spray";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"Bringing the bottle of perfume up to your neck, you give it a little squirt."
-							+ " Although only a small amount of liquid shoots out, the entire bottle's contents are instantly drained, leaving you holding an empty vessel."
-							+ " As you look down at it in surprise, the strong, feminine scent rises up to overpower your senses,"
-							+ " and you find yourself letting out a desperate moan as the nature of the perfume's powerful enchantment starts to make itself known...",
-					"Bringing the bottle of perfume up to [npc.namePos] neck, you give it a little squirt."
-							+ " Although only a small amount of liquid shoots out, the entire bottle's contents are instantly drained, leaving you holding an empty vessel."
-							+ " As you look down at it in surprise, the strong, feminine scent rises up to overpower [npc.namePos] senses,"
-							+ " and [npc.she] finds [npc.herself] letting out a desperate moan as the nature of the perfume's powerful enchantment starts to make itself known...",
-					"[npc.Name] produces a bottle of perfume and, after quickly pulling off the cap, squirts some onto [npc.her] neck...",
-					"[npc.Name] produces a bottle of perfume and, after quickly pulling off the cap, squirts some onto your neck."
-						+ " Although only a small amount of liquid shoots out, the entire bottle's contents are instantly drained, leaving [npc.name] holding an empty vessel."
-						+ " As you look down at it in surprise, the strong, feminine scent rises up to overpower your senses,"
-							+ " and you find yourself letting out a desperate moan as the nature of the perfume's powerful enchantment starts to make itself known...");
-			
-		}
-	};
-	
 	
 	// Crafting outputs:
 	
@@ -3566,21 +3285,6 @@ public class ItemType {
 					"[npc.Name] produces a book, titled 'Skulking Vulpines', which [npc.she] then forces you to read...");
 		}
 	};
-	
-	public static AbstractItemType BOOK_HARPY = createBookItem(250,
-			null,
-			false,
-			"All About Harpies",
-			"All About Harpies'",
-			"A book all about harpies, detailing their society and place within Dominion.",
-			"book_race_harpy",
-			Colour.RACE_HARPY,
-			null,
-			null,
-			Rarity.LEGENDARY,
-			null,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.BOOK_READ_HARPY)),
-			Util.newArrayListOfValues(ItemTag.BOOK));
 	
 	public static AbstractItemType BOOK_HORSE_MORPH = createBookItem(250,
 			null,

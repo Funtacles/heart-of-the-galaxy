@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.body.types.ArmType;
 import com.lilithsthrone.game.character.body.types.LegType;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -267,14 +266,6 @@ public enum InventorySlot {
 			return Race.REINDEER_MORPH;
 		}
 		
-		if (character.getLegType() == LegType.HARPY && this == InventorySlot.FOOT) {
-			return Race.HARPY;
-		}
-		
-		if (character.getArmType() == ArmType.HARPY && this == InventorySlot.HAND) {
-			return Race.HARPY;
-		}
-		
 		if (character.getLegType() == LegType.COW_MORPH && this == InventorySlot.FOOT) {
 			return Race.COW_MORPH;
 		}
@@ -331,23 +322,6 @@ public enum InventorySlot {
 				return UtilText.parse(character,
 						"[npc.NamePos] cow-like hoofs prevent [npc.herHim] from wearing footwear of any kind!");
 		}
-		
-		if (character.getLegType() == LegType.HARPY && this == InventorySlot.FOOT) {
-			if(character.isPlayer())
-				return "Your bird-like talons prevent you from wearing footwear of any kind!";
-			else
-				return UtilText.parse(character,
-						"[npc.NamePos] bird-like talons prevent [npc.herHim] from wearing footwear of any kind!");
-		}
-		
-		if (character.getArmType() == ArmType.HARPY && this == InventorySlot.HAND) {
-			if(character.isPlayer())
-				return "You can't fit any hand clothing onto your harpy wings!";
-			else
-				return UtilText.parse(character,
-						"[npc.Name] can't fit any hand clothing onto [npc.her] harpy wings!");
-		}
-		
 		return null;
 	}
 }

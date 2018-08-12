@@ -47,13 +47,7 @@ public enum QuestLine {
 	
 	RELATIONSHIP_NYAN_HELP("Supplier Issues", "You helped Nyan solve the problem she was having with her suppliers.",
 			QuestType.RELATIONSHIP,
-			QuestTree.nyanTree),
-
-	SIDE_HARPY_PACIFICATION("Angry Harpies", "You managed to calm down all three of the harpy matriarchs, resulting in the Harpy Nests being safe to travel through!",
-			QuestType.SIDE,
-			QuestTree.angryHarpyTree)
-	
-	;
+			QuestTree.nyanTree);
 
 	private String name, completedDescription;
 	private QuestType type;

@@ -320,19 +320,6 @@ public enum BodyCoveringType {
 	
 	HAIR_BAT_FUR(BodyCoveringTemplateFactory.createFurHeadHair(CoveringModifier.FURRY)),
 	
-	HAIR_HARPY("a plume of",
-			true,
-			"feathers",
-			"feather",
-			Util.newArrayListOfValues(CoveringModifier.SMOOTH),
-			null,
-			CoveringPattern.allHairCoveringPatterns,
-			null,
-			Colour.naturalFeatherColours,
-			Colour.dyeFeatherColours,
-			Colour.naturalFeatherColours,
-			Colour.dyeFeatherColours),
-	
 	HAIR_SCALES_ALLIGATOR(BodyCoveringTemplateFactory.createFurHeadHair(CoveringModifier.COARSE)), //Why do alligators have hair?!
 	
 	
@@ -381,19 +368,6 @@ public enum BodyCoveringType {
 	
 	BODY_HAIR_BAT_FUR(BodyCoveringTemplateFactory.createBodyHair(CoveringModifier.FURRY)),
 	
-	BODY_HAIR_HARPY("a plume of",
-			true,
-			"feathers",
-			"feather",
-			Util.newArrayListOfValues(CoveringModifier.FLUFFY),
-			null,
-			null,
-			CoveringPattern.allHairCoveringPatterns,
-			Colour.naturalFeatherColours,
-			Colour.dyeFeatherColours,
-			Colour.naturalFeatherColours,
-			Colour.dyeFeatherColours),
-
 	BODY_HAIR_SCALES_ALLIGATOR("a crest of",
 			false,
 			"scales",
@@ -461,8 +435,6 @@ public enum BodyCoveringType {
 	EYE_REINDEER_MORPH(BodyCoveringTemplateFactory.createEyeIrises()),
 
 	EYE_COW_MORPH(BodyCoveringTemplateFactory.createEyeIrises()),
-
-	EYE_HARPY(BodyCoveringTemplateFactory.createEyeIrises()),
 
 	EYE_PUPILS("a pair of",
 			true,

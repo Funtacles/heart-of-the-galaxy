@@ -870,65 +870,6 @@ public enum Subspecies {
 			Util.newArrayListOfValues(
 					WorldType.NIGHTLIFE_CLUB)),
 	
-	// AVIAN:
-	HARPY("statusEffects/raceHarpy",
-			"harpy",
-			"harpies",
-			"harpy",
-			"harpy",
-			"harpies",
-			"harpies",
-			Race.HARPY,
-			Colour.RACE_HARPY,
-			SubspeciesPreference.FOUR_ABUNDANT,
-			"A typical harpy.",
-			Util.newArrayListOfValues(
-					WorldType.HARPY_NEST,
-					WorldType.NIGHTLIFE_CLUB)),
-	
-	HARPY_RAVEN("statusEffects/raceHarpy",
-			"raven-harpy",
-			"raven-harpies",
-			"raven-harpy",
-			"raven-harpy",
-			"raven-harpies",
-			"raven-harpies",
-			Race.HARPY,
-			Colour.BASE_BLACK,
-			SubspeciesPreference.ONE_LOW,
-			"A harpy that has dark black feathers, resembling those of a raven.",
-			Util.newArrayListOfValues(
-					WorldType.HARPY_NEST,
-					WorldType.NIGHTLIFE_CLUB)) {
-		@Override
-		public void applySpeciesChanges(Body body) {
-			body.getCoverings().put(BodyCoveringType.FEATHERS, new Covering(BodyCoveringType.FEATHERS, CoveringPattern.NONE, Colour.COVERING_BLACK, false, Colour.COVERING_BLACK, false));
-			body.getCoverings().put(BodyCoveringType.BODY_HAIR_HARPY, new Covering(BodyCoveringType.BODY_HAIR_HARPY, CoveringPattern.NONE, Colour.COVERING_BLACK, false, Colour.COVERING_BLACK, false));
-		}
-	},
-
-	HARPY_BALD_EAGLE("statusEffects/raceHarpy",
-			"bald-eagle-harpy",
-			"bald-eagle-harpies",
-			"bald-eagle-harpy",
-			"bald-eagle-harpy",
-			"bald-eagle-harpies",
-			"bald-eagle-harpies",
-			Race.HARPY,
-			Colour.BASE_WHITE,
-			SubspeciesPreference.ONE_LOW,
-			"A harpy that has dark brown feathers covering their body, with white feathers on their head, resembling the colouring of a bald eagle.",
-			Util.newArrayListOfValues(
-					WorldType.HARPY_NEST,
-					WorldType.NIGHTLIFE_CLUB)) {
-		@Override
-		public void applySpeciesChanges(Body body) {
-			body.getCoverings().put(BodyCoveringType.FEATHERS, new Covering(BodyCoveringType.FEATHERS, CoveringPattern.NONE, Colour.COVERING_BROWN_DARK, false, Colour.COVERING_BROWN_DARK, false));
-			body.getCoverings().put(BodyCoveringType.HAIR_HARPY, new Covering(BodyCoveringType.HAIR_HARPY, CoveringPattern.NONE, Colour.COVERING_WHITE, false, Colour.COVERING_WHITE, false));
-			body.getCoverings().put(BodyCoveringType.BODY_HAIR_HARPY, new Covering(BodyCoveringType.BODY_HAIR_HARPY, CoveringPattern.NONE, Colour.COVERING_BROWN_DARK, false, Colour.COVERING_BROWN_DARK, false));
-		}
-	},
-	
 	// ELEMENTALS:
 
 	ELEMENTAL_EARTH("combat/spell/elemental_earth",
@@ -1022,8 +963,6 @@ public enum Subspecies {
 	},
 	
 	;
-	//TENGU(Race.TENGU.getName(), Race.TENGU, RacialBody.TENGU, SubspeciesPreference.TWO_LOW,
-	//		"A hermetic kind of "+Race.HARPY.getName());
 
 	
 	private String name, namePlural, singularMaleName, singularFemaleName, pluralMaleName, pluralFemaleName;
@@ -1157,8 +1096,6 @@ public enum Subspecies {
 				return Subspecies.DOG_MORPH;
 			case FOX_MORPH:
 				return Subspecies.FOX_MORPH;
-			case HARPY:
-				return Subspecies.HARPY;
 			case HORSE_MORPH:
 				return Subspecies.HORSE_MORPH;
 			case HUMAN:
@@ -1295,16 +1232,6 @@ public enum Subspecies {
 						&& (body.getEar().getType()==EarType.DOG_MORPH_FOLDED || body.getEar().getType()==EarType.DOG_MORPH_POINTED)
 						) {
 						subspecies = Subspecies.DOG_MORPH_BORDER_COLLIE;
-				}
-				break;
-			case HARPY:
-				subspecies = Subspecies.HARPY;
-				if(body.getCoverings().get(BodyCoveringType.FEATHERS).getPrimaryColour()==Colour.COVERING_BLACK) {
-					subspecies = Subspecies.HARPY_RAVEN;
-				}
-				if(body.getCoverings().get(BodyCoveringType.FEATHERS).getPrimaryColour()==Colour.COVERING_BROWN_DARK
-						&& body.getCoverings().get(BodyCoveringType.HAIR_HARPY).getPrimaryColour()==Colour.COVERING_WHITE) {
-					subspecies = Subspecies.HARPY_BALD_EAGLE;
 				}
 				break;
 			case FOX_MORPH:

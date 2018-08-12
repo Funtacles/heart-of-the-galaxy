@@ -18,7 +18,6 @@ import com.lilithsthrone.game.character.body.Hair;
 import com.lilithsthrone.game.character.body.Skin;
 import com.lilithsthrone.game.character.body.Vagina;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
-import com.lilithsthrone.game.character.body.types.FaceType;
 import com.lilithsthrone.game.character.body.valueEnums.PiercingType;
 import com.lilithsthrone.game.character.markings.TattooCounterType;
 import com.lilithsthrone.game.character.markings.TattooType;
@@ -2224,11 +2223,7 @@ public class SlaveryManagementDialogue {
 					
 				} else if(bct == BodyCoveringType.MOUTH) {
 					title = "Lips & Throat";
-					if(BodyChanging.getTarget().getFaceType() == FaceType.HARPY) {
-						description = "This is the colour of [npc.namePos] beak. The secondary colour determines what the insides of [npc.her] mouth and throat look like.";
-					} else {
-						description = "This is the skin that's currently covering [npc.namePos] lips. The secondary colour determines what the insides of [npc.her] mouth and throat look like.";
-					}
+					description = "This is the skin that's currently covering [npc.namePos] lips. The secondary colour determines what the insides of [npc.her] mouth and throat look like.";
 					
 				} else if(bct == BodyCoveringType.TONGUE) {
 					title = "Tongue";

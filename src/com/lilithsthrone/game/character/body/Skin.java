@@ -332,23 +332,6 @@ public class Skin implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case HARPY:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" After just a few moments, the transformation comes to an end, and you let out a deep sigh as the itching finally stops, leaving your torso covered with a layer of beautiful, overlapping feathers."
-								+ " Your new feathers follow the lines of your figure, and are extremely smooth and soft to the touch."
-								+ "<br/>"
-								+ "You now have [style.boldHarpy(avian)], [pc.skinFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" After just a few moments, the transformation comes to an end, and [npc.she] lets out a deep sigh as the itching finally stops, leaving [npc.her] torso covered with beautiful, overlapping feathers."
-								+ " [npc.Her] new feathers follow the lines of [npc.her] figure, and are extremely smooth and soft to the touch."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldHarpy(avian)], [npc.skinFullDescription]."
-							+ "</p>");
-				}
-				break;
 			case ANGEL: //TODO
 				break;
 		}

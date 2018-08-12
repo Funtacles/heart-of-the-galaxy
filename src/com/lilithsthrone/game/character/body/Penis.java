@@ -362,19 +362,6 @@ public class Penis implements BodyPartInterface, Serializable {
 							+ "[npc.She] has [style.boldAngel([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" angelic balls)], covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldAngel(angelic cum)].");
 				}
 				break;
-			case AVIAN:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							" Letting out an involuntary moan, you feel your penis shifting into a new form, and you're hit by a wave of overwhelming arousal as it retreats down into a new sheath that's formed at the base.<br/>"
-							+ "You now have an [style.boldHarpy(avian penis)], covered in [pc.penisFullDescription(true)].<br/>"
-							+ "You have [style.boldHarpy([pc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" avian balls)], covered in [pc.ballsFullDescription(true)], which produce [pc.cumColour(true)] [style.boldHarpy(avian cum)].");
-				} else {
-					UtilText.transformationContentSB.append(
-							"Letting out an involuntary moan, [npc.name] feels [npc.her] penis shifting into a new form, and [npc.sheIs] hit by a wave of overwhelming arousal as it retreats down into a new sheath that's formed at the base.<br/>"
-							+ "[npc.She] now has an [style.boldHarpy(avian penis)], covered in [npc.penisFullDescription(true)].<br/>"
-							+ "[npc.She] has [style.boldHarpy([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" avian balls)], covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldHarpy(avian cum)].");
-				}
-				break;
 			case EQUINE:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(

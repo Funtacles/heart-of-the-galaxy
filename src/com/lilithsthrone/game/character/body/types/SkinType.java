@@ -41,9 +41,7 @@ public enum SkinType implements BodyPartTypeInterface {
 
 	HORSE_MORPH(BodyCoveringType.HORSE_HAIR, Race.HORSE_MORPH),
 
-	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH),
-
-	HARPY(BodyCoveringType.FEATHERS, Race.HARPY);
+	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH);
 
 	
 	private BodyCoveringType coveringType;
@@ -62,8 +60,6 @@ public enum SkinType implements BodyPartTypeInterface {
 	@Override
 	public boolean isDefaultPlural() {
 		switch(coveringType) {
-			case HAIR_HARPY:
-				return true;
 			case ALLIGATOR_SCALES:
 				return true;
 			default:
@@ -74,8 +70,6 @@ public enum SkinType implements BodyPartTypeInterface {
 	@Override
 	public String getNameSingular(GameCharacter gc) {
 		switch(coveringType) {
-			case HAIR_HARPY:
-				return "feather";
 			case ALLIGATOR_SCALES:
 				return "scale";
 			default:
@@ -86,8 +80,6 @@ public enum SkinType implements BodyPartTypeInterface {
 	@Override
 	public String getNamePlural(GameCharacter gc) {
 		switch(coveringType) {
-			case HAIR_HARPY:
-				return "feathers";
 			case ALLIGATOR_SCALES:
 				return "scales";
 			default:
@@ -107,8 +99,6 @@ public enum SkinType implements BodyPartTypeInterface {
 				return "impish";
 			case DOG_MORPH:
 				return "canine";
-			case HARPY:
-				return "plume";
 			case HORSE_MORPH:
 				return "equine";
 			case REINDEER_MORPH:
@@ -154,8 +144,6 @@ public enum SkinType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("squirrel-like");
 			case ALLIGATOR_MORPH:
 				return UtilText.returnStringAtRandom("alligator-like");
-			case HARPY:
-				return UtilText.returnStringAtRandom("bird-like");
 			case HORSE_MORPH:
 				return UtilText.returnStringAtRandom("horse-like");
 			case REINDEER_MORPH:

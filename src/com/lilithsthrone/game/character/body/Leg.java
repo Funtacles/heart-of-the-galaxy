@@ -371,25 +371,6 @@ public class Leg implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case HARPY:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" A layer of scaly, bird-like leather quickly grows over your legs as they shift into a new form."
-								+ " As your new leathery skin spreads down to the ends of your toes, your feet start to undergo an extreme transformation."
-								+ " Your toes combine together and re-shape themselves into three forward-facing talons, as a fourth, thumb-like talon branches out behind them."
-								+ " As the transformation ends, a layer of attractive feathers grow around your upper-thigh, smoothly transitioning into the leathery skin which now covers your lower-legs.<br/>"
-								+ "You're left with anthropomorphic, [style.boldHarpy(bird-like legs and talons in place of feet)], which are covered in [pc.legFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" A layer of scaly, bird-like leather quickly grows over [npc.her] legs as they shift into a new form."
-								+ " As [npc.her] new leathery skin spreads down to the ends of [npc.her] toes, [npc.her] feet start to undergo an extreme transformation."
-								+ " [npc.Her] toes combine together and re-shape themselves into three forward-facing talons, as a fourth, thumb-like talon branches out behind them."
-								+ " As the transformation ends, a layer of attractive feathers grow around [npc.her] upper-thigh, smoothly transitioning into the leathery skin which now covers [npc.her] lower-legs.<br/>"
-								+ "[npc.Name] now has anthropomorphic, [style.boldHarpy(bird-like legs and talons in place of feet)], which are covered in [npc.legFullDescription]."
-							+ "</p>");
-				}
-				break;
 			case ANGEL: //TODO
 				break;
 		}

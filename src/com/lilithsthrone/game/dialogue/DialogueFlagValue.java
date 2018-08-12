@@ -98,16 +98,6 @@ public enum DialogueFlagValue {
 	feminisedBrax,
 	bimbofiedBrax,
 	
-	// Harpy Nests:
-	hasHarpyNestAccess,
-	bimboEncountered,
-	bimboPacified,
-	dominantEncountered,
-	dominantPacified,
-	nymphoEncountered,
-	nymphoPacified,
-	punishedByAlexa,
-	
 	// Slaver Alley:
 	finchIntroduced,
 	

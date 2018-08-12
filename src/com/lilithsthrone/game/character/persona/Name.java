@@ -262,7 +262,6 @@ public enum Name {
 			case FOX_MORPH:
 			case DOG_MORPH:
 			case ALLIGATOR_MORPH:
-			case HARPY:
 			case HUMAN:
 			case WOLF_MORPH:
 			case SQUIRREL_MORPH:
@@ -310,7 +309,6 @@ public enum Name {
 			case DOG_MORPH:
 			case FOX_MORPH:
 			case ALLIGATOR_MORPH:
-			case HARPY:
 			case HUMAN:
 			case WOLF_MORPH:
 			case SQUIRREL_MORPH:

@@ -120,45 +120,6 @@ public class DominionEncounterDialogue {
 		}
 	};
 	
-	public static final DialogueNodeOld HARPY_NESTS_FIND_ITEM = new DialogueNodeOld("Dropped item", "", true) {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getContent() {
-			return "<p>"
-						+ "As you travel down the winding walkways, you suddenly catch sight of a flash of pink on the path ahead."
-						+ " Walking up to the splash of colour, you look down to see:"
-					+ "</p>"
-					
-					+ "<p style='text-align:center;'><b>"
-						+ Encounter.getRandomItem().getDisplayName(true)
-					+ "</b></p>"
-					+ "<p>"
-						+ "Either due to being dropped by a harpy flying overhead, or perhaps having rolled off the edge of the platform above you, the "+Encounter.getRandomItem().getName()+" seems to be completely abandoned,"
-								+ " with no clue as to who its original owner might be."
-						+ " You suppose that there'd be no harm in taking it for yourself..."
-					+ "</p>";
-		}
-		
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 1) {
-				return new Response("Take", "Add the " + Encounter.getRandomItem().getName() + " to your inventory.", Main.game.getDefaultDialogueNoEncounter()){
-					@Override
-					public void effects() {
-						Main.game.getTextStartStringBuilder().append(Main.game.getPlayer().addItem(Encounter.getRandomItem(), true, true));
-					}
-				};
-				
-			} else if (index == 2) {
-				return new Response("Leave", "Leave the " + Encounter.getRandomItem().getName() + " on the floor.", Main.game.getDefaultDialogueNoEncounter());
-				
-			} else {
-				return null;
-			}
-		}
-	};
-	
 	public static final DialogueNodeOld DOMINION_STREET_FIND_HAPPINESS = new DialogueNodeOld("Finding Happiness", "", true) {
 		private static final long serialVersionUID = 1L;
 

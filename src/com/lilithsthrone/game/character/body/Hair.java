@@ -298,19 +298,6 @@ public class Hair implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case HARPY:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" The feeling goes away almost as quickly as it came, leaving you with a plume of feathers in place of hair.<br/>"
-								+ "You now have [pc.hairColour] [style.boldHarpy(harpy feathers in place of hair)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" The transformation only lasts a matter of moments, leaving [npc.herHim] with a plume of feathers in place of hair.<br/>"
-								+ "[npc.Name] now has [npc.hairColour] [style.boldHarpy(harpy feathers in place of hair)]."
-							+ "</p>");
-				}
-				break;
 			case ANGEL://TODO
 				break;
 		}

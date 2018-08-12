@@ -500,8 +500,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.COR_INGREDIENT_LILITHS_GIFT));
 				case IMP:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.COR_INGREDIENT_IMPISH_BREW));
-				case HARPY:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.SEX_INGREDIENT_HARPY_PERFUME));
 				case ALLIGATOR_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.STR_INGREDIENT_SWAMP_WATER));
 				case SQUIRREL_MORPH:
@@ -550,8 +548,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_DEMON));
 				case IMP:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_IMP));
-				case HARPY:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_HARPY));
 				case ALLIGATOR_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_ALLIGATOR_MORPH));
 				case SQUIRREL_MORPH:
@@ -598,8 +594,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_HUMAN));
 				case DEMON: case IMP:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_DEMON));
-				case HARPY:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_HARPY));
 				case ALLIGATOR_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_ALLIGATOR_MORPH));
 				case SQUIRREL_MORPH:
@@ -891,10 +885,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 				case FOX_MORPH:
 					itemType = ItemType.RACE_INGREDIENT_FOX_MORPH;
 					reaction = "Time to turn you into a cute little "+raceName+"!";
-					break;
-				case HARPY:
-					itemType = ItemType.RACE_INGREDIENT_HARPY;
-					reaction = "Time to turn you into a hot little "+raceName+"!";
 					break;
 				case HORSE_MORPH:
 					itemType = ItemType.RACE_INGREDIENT_HORSE_MORPH;
@@ -1373,14 +1363,9 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 			
 		} else {
 		
-			// Chance for predator races to prefer prey races:
-			if(getRace()==Race.CAT_MORPH && Math.random()>0.8f) {
-				species = Subspecies.HARPY;
-			}
 			if((getRace()==Race.WOLF_MORPH || getRace()==Race.DOG_MORPH) && Math.random()>0.8f) {
 				List<Subspecies> availableRaces = new ArrayList<>();
 				availableRaces.add(Subspecies.CAT_MORPH);
-				availableRaces.add(Subspecies.HARPY);
 				availableRaces.add(Subspecies.COW_MORPH);
 				availableRaces.add(Subspecies.SQUIRREL_MORPH);
 				species = availableRaces.get(Util.random.nextInt(availableRaces.size()));
@@ -1391,7 +1376,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 				List<Subspecies> availableRaces = new ArrayList<>();
 				availableRaces.add(Subspecies.CAT_MORPH);
 				availableRaces.add(Subspecies.DOG_MORPH);
-				availableRaces.add(Subspecies.HARPY);
 				availableRaces.add(Subspecies.HORSE_MORPH);
 				availableRaces.add(Subspecies.HUMAN);
 				availableRaces.add(Subspecies.SQUIRREL_MORPH);

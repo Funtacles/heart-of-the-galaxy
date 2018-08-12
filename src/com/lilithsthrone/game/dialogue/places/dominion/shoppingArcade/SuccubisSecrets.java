@@ -14,7 +14,6 @@ import com.lilithsthrone.game.character.body.Hair;
 import com.lilithsthrone.game.character.body.Skin;
 import com.lilithsthrone.game.character.body.Vagina;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
-import com.lilithsthrone.game.character.body.types.FaceType;
 import com.lilithsthrone.game.character.body.types.TailType;
 import com.lilithsthrone.game.character.body.valueEnums.PiercingType;
 import com.lilithsthrone.game.character.markings.TattooCounterType;
@@ -780,11 +779,7 @@ public class SuccubisSecrets {
 					
 				} else if(bct == BodyCoveringType.MOUTH) {
 					title = "Lips & Throat";
-					if(Main.game.getPlayer().getFaceType() == FaceType.HARPY) {
-						description = "This is the colour of your beak. The secondary colour determines what the insides of your mouth and throat look like.";
-					} else {
-						description = "This is the skin that's currently covering your lips. The secondary colour determines what the insides of your mouth and throat look like.";
-					}
+					description = "This is the skin that's currently covering your lips. The secondary colour determines what the insides of your mouth and throat look like.";
 					
 				} else if(bct == BodyCoveringType.TONGUE) {
 					title = "Tongue";

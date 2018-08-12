@@ -74,9 +74,6 @@ public class SlaveInStocks extends NPC {
 					// No spawn chance:
 					case ANGEL:
 					case DEMON:
-					case HARPY:
-					case HARPY_RAVEN:
-					case HARPY_BALD_EAGLE:
 					case HUMAN:
 					case IMP:
 					case IMP_ALPHA:

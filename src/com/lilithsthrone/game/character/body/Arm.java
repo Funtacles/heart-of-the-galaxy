@@ -367,41 +367,6 @@ public class Arm implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case HARPY:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" Within a matter of moments, a layer of [pc.armFullDescription] quickly sprout out all over them, and, looking down, you see your feathers growing over the backs of your hands as well."
-								+ " Just as you think that the transformation has finished, you cry out in shock as you feel your bones growing and snapping into a new form."
-								+ " Thankfully, the transformation is quickly over, leaving you with a pair of huge, feathered wings in place of arms."
-								+ " Where your hands once were, your outer two fingers have shrunk down into the middle-joint of your new appendages, leaving you with two feathered forefingers and an opposable thumb,"
-									+ " each of which ends in a blunt claw."
-								+ " Where your new wings meet your body at the shoulder, your feathers smoothly cover the transition into the [pc.skin] that's covering the rest of your torso.<br/>"
-								+ "You now have huge [style.boldHarpy(harpy wings)] in place of arms, which are covered in [pc.armFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" Within a matter of moments, a layer of [npc.armFullDescription] quickly sprout out all over them, and, looking down, [npc.she] sees [npc.her] feathers growing over the backs of [npc.her] hands as well."
-								+ " Just as [npc.she] thinks that the transformation has finished, [npc.she] cries out in shock as [npc.her] bones grow and snap into a new form."
-								+ " Thankfully for [npc.herHim], the transformation is quickly over, leaving [npc.herHim] with a pair of huge, feathered wings in place of arms."
-								+ " Where [npc.her] hands once were, [npc.her] outer two fingers have shrunk down into the middle-joint of [npc.her] appendages, leaving [npc.herHim] with two feathered forefingers and an opposable thumb,"
-									+ " each of which ends in a blunt claw."
-								+ " Where [npc.her] new wings meet [npc.her] body at the shoulder, [npc.her] feathers smoothly cover the transition into the [npc.skin] that's covering the rest of [npc.her] torso.<br/>"
-								+ "[npc.Name] now has huge [style.boldHarpy(harpy wings)] in place of arms, which are covered in [npc.armFullDescription]."
-							+ "</p>");
-				}
-				break;
-//			default:
-//				if (owner.isPlayer()) {
-//					UtilText.transformationContentSB.append(
-//								" Within a matter of moments, a layer of [pc.armFullDescription] has quickly grown over them, and, looking down, you see that your arms have transformed into a new form.<br/>"
-//								+ "As the transformation comes to an end, you're left with [style.boldTfLesser([pc.arms+])], which are covered in [pc.armFullDescription]."
-//							+ "</p>");
-//				} else {
-//					UtilText.transformationContentSB.append(
-//								" Within a matter of moments, a layer of [npc.armFullDescription] has quickly grown over them, and, looking down, [npc.she] sees that [npc.her] arms have transformed into a new form.<br/>"
-//								+ "As the transformation comes to an end, [npc.name] is left with [style.boldTfLesser([npc.arms+])], which are covered in [npc.armFullDescription]."
-//							+ "</p>");
-//				}
 		}
 		return UtilText.parse(owner, UtilText.transformationContentSB.toString())
 				+ "<br/><br/>"

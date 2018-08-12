@@ -48,8 +48,6 @@ public enum PenisType implements BodyPartTypeInterface {
 
 	REINDEER_MORPH(BodyCoveringType.PENIS, TesticleType.REINDEER_MORPH, Race.REINDEER_MORPH, PenetrationModifier.FLARED, PenetrationModifier.SHEATHED),
 
-	AVIAN(BodyCoveringType.PENIS, TesticleType.AVIAN, Race.HARPY, PenetrationModifier.SHEATHED),
-	
 	SQUIRREL(BodyCoveringType.PENIS, TesticleType.SQUIRREL, Race.SQUIRREL_MORPH, PenetrationModifier.SHEATHED),
 	
 	RAT_MORPH(BodyCoveringType.PENIS, TesticleType.RAT_MORPH, Race.RAT_MORPH, PenetrationModifier.SHEATHED),
@@ -109,8 +107,6 @@ public enum PenisType implements BodyPartTypeInterface {
 				switch(this){
 					case ANGEL:
 						return UtilText.returnStringAtRandom("angelic");
-					case AVIAN:
-						return UtilText.returnStringAtRandom("avian");
 					case BOVINE:
 						return UtilText.returnStringAtRandom("bovine", "bull-", "bull-like", "bestial");
 					case CANINE:
@@ -167,8 +163,6 @@ public enum PenisType implements BodyPartTypeInterface {
 		switch(this){
 			case ANGEL:
 				return "angelic";
-			case AVIAN:
-				return "avian";
 			case BOVINE:
 				return "bovine";
 			case CANINE:
@@ -268,9 +262,6 @@ public enum PenisType implements BodyPartTypeInterface {
 				break;
 			case ANGEL:
 				prefix = UtilText.returnStringAtRandom("angel-");
-				break;
-			case AVIAN:
-				prefix = UtilText.returnStringAtRandom("harpy-", "avian-");
 				break;
 			case BAT_MORPH:
 				prefix = UtilText.returnStringAtRandom("bat-");

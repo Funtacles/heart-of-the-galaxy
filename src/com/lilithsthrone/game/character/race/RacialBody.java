@@ -612,56 +612,6 @@ public enum RacialBody {
 					new Value<>(PersonalityTrait.NEUROTICISM, PersonalityWeight.AVERAGE),
 					new Value<>(PersonalityTrait.ADVENTUROUSNESS, PersonalityWeight.AVERAGE));
 		}
-	},
-	
-	// AVIAN:
-	HARPY(Util.newHashMapOfValues(
-				new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(0f, 15f)),
-				new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f))),
-			AntennaType.NONE,
-			ArmType.HARPY, 1,
-			AssType.HARPY, AssSize.TWO_SMALL, AssSize.THREE_NORMAL, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
-			BreastType.HARPY,
-			CupSize.TRAINING_A, 1, Lactation.ZERO_NONE, Capacity.ZERO_IMPENETRABLE, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT, NippleSize.ZERO_TINY, NippleShape.NORMAL, AreolaeSize.ZERO_TINY, 1,
-			CupSize.B, 1, Lactation.ZERO_NONE, Capacity.ZERO_IMPENETRABLE, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT, NippleSize.ZERO_TINY, NippleShape.NORMAL, AreolaeSize.TWO_BIG, 1,
-			150, 75, BodySize.ZERO_SKINNY.getMedianValue(), Muscle.THREE_MUSCULAR.getMedianValue(),
-			150, 95, BodySize.ZERO_SKINNY.getMedianValue(), Muscle.ONE_LIGHTLY_MUSCLED.getMedianValue(),
-			EarType.HARPY,
-			EyeType.HARPY,
-			FaceType.HARPY, LipSize.ONE_AVERAGE, LipSize.TWO_FULL,
-			HairType.HARPY, HairLength.THREE_SHOULDER_LENGTH, HairLength.FIVE_ABOVE_ASS,
-			LegType.HARPY,
-			SkinType.HARPY, BodyMaterial.FLESH,
-			HornLength.ZERO_TINY, HornLength.ZERO_TINY, Util.newArrayListOfValues(HornType.NONE),
-			PenisType.AVIAN, PenisSize.ONE_TINY, PenisGirth.ONE_THIN,
-			PenisType.NONE, PenisSize.ONE_TINY, PenisGirth.ONE_THIN,
-			TesticleSize.ZERO_VESTIGIAL, 2, CumProduction.ONE_TRICKLE,
-			TailType.HARPY,
-			TentacleType.NONE,
-			VaginaType.HARPY, Wetness.THREE_WET, Capacity.TWO_TIGHT, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
-			WingType.NONE, WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.CLOACA) {
-
-		@Override
-		public Map<PersonalityTrait, PersonalityWeight> getPersonality() {
-			return Util.newHashMapOfValues(
-					new Value<>(PersonalityTrait.AGREEABLENESS, PersonalityWeight.LOW),
-					new Value<>(PersonalityTrait.CONSCIENTIOUSNESS, PersonalityWeight.AVERAGE),
-					new Value<>(PersonalityTrait.EXTROVERSION, PersonalityWeight.HIGH),
-					new Value<>(PersonalityTrait.NEUROTICISM, PersonalityWeight.HIGH),
-					new Value<>(PersonalityTrait.ADVENTUROUSNESS, PersonalityWeight.AVERAGE));
-		}
-		
-		@Override
-		public SexualOrientation getSexualOrientation(Gender gender) {
-			double chance = Math.random();
-			
-			if(chance<0.95f) {
-				return SexualOrientation.GYNEPHILIC;
-			} else {
-				return SexualOrientation.AMBIPHILIC;
-			}
-		}
 	};
 
 	// Attributes modified by this Trait:
@@ -852,8 +802,6 @@ public enum RacialBody {
 				return RacialBody.FOX_MORPH;
 			case ALLIGATOR_MORPH:
 				return RacialBody.ALLIGATOR_MORPH;
-			case HARPY:
-				return RacialBody.HARPY;
 			case HORSE_MORPH:
 				return RacialBody.HORSE_MORPH;
 			case REINDEER_MORPH:

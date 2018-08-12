@@ -487,10 +487,7 @@ public class Library {
 
 		@Override
 		public Response getResponse(int responseTab, int city) {
-			if (city == 1) {
-				return bookResponse(ItemType.BOOK_HARPY, Race.HARPY);
-
-			} else if (city == 2) {
+			if (city == 2) {
 				return bookResponse(ItemType.BOOK_DEMON, Race.DEMON);
 
 			} else if (city == 3) {

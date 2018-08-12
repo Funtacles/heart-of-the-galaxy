@@ -2653,12 +2653,6 @@ public class Lab {
 							: "Your vagina is already exposed, and, after looking down at it for a moment, Lilaya lets out a little humming noise, "));
 			
 			switch(Main.game.getPlayer().getVaginaType()) {
-				case HARPY:
-					UtilText.nodeContentSB.append("[lilaya.speech(Ooh, alright, you're going to be laying some eggs, how exciting!"
-							+ " I'm sure you're already feeling it, but some incredibly strong maternal instincts are going to be kicking in pretty soon, and you're only going to feel comfortable doing this in a very personal area."
-							+ " I think using your room would be the best bet, follow me!)]"
-							+ "</p>");
-					break;
 				default:
 					UtilText.nodeContentSB.append("[lilaya.speech(Alright, so you're going to be giving birth to live young."
 							+ " I've got a room set up for just that purpose, follow me!)]"
@@ -2673,14 +2667,6 @@ public class Lab {
 		public Response getResponse(int responseTab, int index) {
 			if (index == 1) {
 				switch(Main.game.getPlayer().getVaginaType()) {
-					case HARPY:
-						return new Response("Follow Lilaya", "Allow Lilaya to lead you up to your room.", LILAYA_ASSISTS_EGG_LAYING) {
-							@Override
-							public void effects() {
-								Main.game.getLilaya().setLocation(WorldType.LILAYAS_HOUSE_FIRST_FLOOR, PlaceType.LILAYA_HOME_ROOM_PLAYER, false);
-								Main.game.getPlayer().setLocation(WorldType.LILAYAS_HOUSE_FIRST_FLOOR, PlaceType.LILAYA_HOME_ROOM_PLAYER, false);
-							}
-						};
 					default:
 						return new Response("Follow Lilaya", "Allow Lilaya to lead you to the birthing room.", LILAYA_ASSISTS_BIRTHING) {
 							@Override
@@ -3231,11 +3217,6 @@ public class Lab {
 					case ALLIGATOR_MORPH:
 						litterSB.append(" tough");
 						break;
-					case HARPY:
-					case HARPY_RAVEN:
-					case HARPY_BALD_EAGLE:
-						litterSB.append(" feminine");
-						break;
 					case HORSE_MORPH:
 					case HORSE_MORPH_ZEBRA:
 						litterSB.append(" strong");
@@ -3311,11 +3292,6 @@ public class Lab {
 						break;
 					case ALLIGATOR_MORPH:
 						litterSB.append(" tough");
-						break;
-					case HARPY:
-					case HARPY_RAVEN:
-					case HARPY_BALD_EAGLE:
-						litterSB.append(" feminine");
 						break;
 					case HORSE_MORPH:
 					case HORSE_MORPH_ZEBRA:
@@ -3393,11 +3369,6 @@ public class Lab {
 					case ALLIGATOR_MORPH:
 						litterSB.append(" tough");
 						break;
-					case HARPY:
-					case HARPY_RAVEN:
-					case HARPY_BALD_EAGLE:
-						litterSB.append(" feminine");
-						break;
 					case HORSE_MORPH:
 					case HORSE_MORPH_ZEBRA:
 						litterSB.append(" confident");
@@ -3473,11 +3444,6 @@ public class Lab {
 						break;
 					case ALLIGATOR_MORPH:
 						litterSB.append(" tough");
-						break;
-					case HARPY:
-					case HARPY_RAVEN:
-					case HARPY_BALD_EAGLE:
-						litterSB.append(" feminine");
 						break;
 					case HORSE_MORPH:
 					case HORSE_MORPH_ZEBRA:

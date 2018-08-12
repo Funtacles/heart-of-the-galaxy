@@ -336,33 +336,6 @@ public class Tail implements BodyPartInterface, Serializable {
 							);
 				}
 				break;
-			case HARPY:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							(owner.getTailCount()==1
-								?" A pretty plume of tail feathers sprouts from just above your ass, with each feather quickly growing to be about one-third the length of one of your legs."
-									+ " You discover that you can quickly raise and lower your new bird-like tail, which helps you to keep your balance."
-									+ "<br/>"
-									+ "You now have a [style.boldHarpy(harpy's bird-like tail)]"
-								:" [pc.TailCount] pretty plumes of tail feathers sprout from just above your ass, with each feather quickly growing to be about one-third the length of one of your legs."
-									+ " You discover that you can quickly raise and lower your new bird-like tails, which helps you to keep your balance."
-									+ "<br/>"
-									+ "You now have [pc.tailCount] [style.boldHarpy(harpy's bird-like tails)]")
-							);
-				} else {
-					UtilText.transformationContentSB.append(
-							(owner.getTailCount()==1
-								?" A pretty plume of tail feathers sprouts from just above [npc.her] ass, with each feather quickly growing to be about one-third the length of one of [npc.her] legs."
-									+ " [npc.She] discovers that [npc.she] can quickly raise and lower [npc.her] new bird-like tail, which helps [npc.herHim] to keep [npc.her] balance."
-									+ "<br/>"
-									+ "[npc.Name] now has a [style.boldHarpy(harpy's bird-like tail)]"
-								:" [npc.TailCount] pretty plumes of tail feathers sprout from just above [npc.her] ass, with each feather quickly growing to be about one-third the length of one of [npc.her] legs."
-									+ " [npc.She] discovers that [npc.she] can quickly raise and lower [npc.her] new bird-like tails, which helps [npc.herHim] to keep [npc.her] balance."
-									+ "<br/>"
-									+ "[npc.Name] now has [npc.tailCount] [style.boldHarpy(harpy's bird-like tails)]")
-							);
-				}
-				break;
 			case HORSE_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(

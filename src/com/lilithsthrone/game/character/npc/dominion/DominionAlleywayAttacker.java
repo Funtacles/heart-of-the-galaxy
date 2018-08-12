@@ -87,9 +87,6 @@ public class DominionAlleywayAttacker extends NPC {
 					case ANGEL:
 					case BAT_MORPH:
 					case DEMON:
-					case HARPY:
-					case HARPY_RAVEN:
-					case HARPY_BALD_EAGLE:
 					case HUMAN:
 					case IMP:
 					case IMP_ALPHA:

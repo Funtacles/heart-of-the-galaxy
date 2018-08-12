@@ -57,9 +57,7 @@ public enum TailType implements BodyPartTypeInterface {
 	
 	HORSE_MORPH_ZEBRA(BodyCoveringType.HAIR_HORSE_HAIR, Race.HORSE_MORPH, false, false),
 
-	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH, false, false),
-	
-	HARPY(BodyCoveringType.FEATHERS, Race.HARPY, false, false);
+	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH, false, false);
 
 	private BodyCoveringType skinType;
 	private Race race;
@@ -81,15 +79,11 @@ public enum TailType implements BodyPartTypeInterface {
 	public String getDeterminer(GameCharacter gc) {
 		if(gc.getTailCount()==1) {
 			switch(this){
-				case HARPY:
-					return "a plume of";
 				default:
 					return "";
 			}
 		} else {
 			switch(this){
-				case HARPY:
-					return Util.intToString(gc.getTailCount())+" plumes of";
 				default:
 					return Util.intToString(gc.getTailCount());
 			}
@@ -100,8 +94,6 @@ public enum TailType implements BodyPartTypeInterface {
 	@Override
 	public String getNameSingular(GameCharacter gc) {
 		switch(this){
-			case HARPY:
-				return UtilText.returnStringAtRandom("tail feathers");
 			default:
 				return UtilText.returnStringAtRandom("tail");
 		}
@@ -110,8 +102,6 @@ public enum TailType implements BodyPartTypeInterface {
 	@Override
 	public String getNamePlural(GameCharacter gc) {
 		switch(this){
-			case HARPY:
-				return UtilText.returnStringAtRandom("tail feathers");
 			default:
 				return UtilText.returnStringAtRandom("tails");
 		}
@@ -140,8 +130,6 @@ public enum TailType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("stubby", "dog-like");
 			case ALLIGATOR_MORPH:
 				return UtilText.returnStringAtRandom("alligator-like");
-			case HARPY:
-				return UtilText.returnStringAtRandom("colourful", "bird-like");
 			case HORSE_MORPH:
 				return UtilText.returnStringAtRandom("horse-like");
 			case HORSE_MORPH_ZEBRA:
@@ -187,8 +175,6 @@ public enum TailType implements BodyPartTypeInterface {
 				return "canine";
 			case DOG_MORPH_STUBBY:
 				return "stubby canine";
-			case HARPY:
-				return "plume";
 			case HORSE_MORPH:
 				return "horse";
 			case HORSE_MORPH_ZEBRA:

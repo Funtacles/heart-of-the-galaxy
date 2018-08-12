@@ -1271,9 +1271,6 @@ public class OptionsDialogue {
 					case ELEMENTAL_WATER:
 					case IMP:
 					case IMP_ALPHA:
-					case HARPY:
-					case HARPY_RAVEN:
-					case HARPY_BALD_EAGLE:
 					case HUMAN:
 					case ALLIGATOR_MORPH:
 					case CAT_MORPH:

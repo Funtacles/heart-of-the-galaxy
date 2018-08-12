@@ -44,9 +44,6 @@ public enum WorldType {
 					new Value<>(new Color(0x008040), PlaceType.DOMINION_EXIT_TO_JUNGLE),
 					new Value<>(new Color(0xffff80), PlaceType.DOMINION_EXIT_TO_DESERT),
 					
-					new Value<>(new Color(0x008080), PlaceType.DOMINION_STREET_HARPY_NESTS),
-					new Value<>(new Color(0x00ff80), PlaceType.DOMINION_HARPY_NESTS_ENTRANCE),
-
 					new Value<>(new Color(0x004000), PlaceType.DOMINION_PLAZA),
 					new Value<>(new Color(0x00ffff), PlaceType.DOMINION_AUNTS_HOME),
 					new Value<>(new Color(0xffff00), PlaceType.DOMINION_SHOPPING_ARCADE),
@@ -143,22 +140,6 @@ public enum WorldType {
 					new Value<>(new Color(0x008000), PlaceType.ZARANIX_GF_GARDEN),
 					new Value<>(new Color(0xff8000), PlaceType.ZARANIX_GF_GARDEN_ENTRY))),
 
-	HARPY_NEST("Harpy Nests",
-			Colour.BASE_CRIMSON,
-			1,
-			"/com/lilithsthrone/res/map/dominion/harpyNests/harpyNests.png",
-			Util.newHashMapOfValues(
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-					
-					new Value<>(new Color(0x808080), PlaceType.HARPY_NESTS_WALKWAYS),
-					new Value<>(new Color(0x404040), PlaceType.HARPY_NESTS_WALKWAYS_BRIDGE),
-					
-					new Value<>(new Color(0x00ff80), PlaceType.HARPY_NESTS_ENTRANCE_ENFORCER_POST),
-					new Value<>(new Color(0xff0000), PlaceType.HARPY_NESTS_HARPY_NEST_RED),
-					new Value<>(new Color(0xff00ff), PlaceType.HARPY_NESTS_HARPY_NEST_PINK),
-					new Value<>(new Color(0xffff00), PlaceType.HARPY_NESTS_HARPY_NEST_YELLOW),
-					new Value<>(new Color(0xff9100), PlaceType.HARPY_NESTS_ALEXAS_NEST))),
-	
 	SLAVER_ALLEY("Slaver Alley",
 			Colour.BASE_RED,
 			1,
@@ -169,7 +150,6 @@ public enum WorldType {
 					new Value<>(new Color(0xff0000), PlaceType.SLAVER_ALLEY_ENTRANCE),
 					new Value<>(new Color(0xff00ff), PlaceType.SLAVER_ALLEY_MARKET_STALL),
 					new Value<>(new Color(0x0000ff), PlaceType.SLAVER_ALLEY_SLAVERY_ADMINISTRATION),
-					new Value<>(new Color(0xff0080), PlaceType.SLAVER_ALLEY_SCARLETTS_SHOP),
 					new Value<>(new Color(0xffff00), PlaceType.SLAVER_ALLEY_AUCTIONING_BLOCK),
 					new Value<>(new Color(0x00ff00), PlaceType.SLAVER_ALLEY_PUBLIC_STOCKS))),
 	

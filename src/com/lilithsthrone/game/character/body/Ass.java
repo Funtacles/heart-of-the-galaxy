@@ -306,31 +306,6 @@ public class Ass implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case HARPY:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							"You now have an [style.boldHarpy(avian ass)], covered in [pc.assFullDescription].<br/>"
-							+ "You have also been left with [style.boldHarpy(an avian)] [pc.assholeFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-							"[npc.She] now has an [style.boldHarpy(avian ass)], covered in [npc.assFullDescription].<br/>"
-							+ "[npc.She] has also been left with [style.boldHarpy(an avian)] [npc.assholeFullDescription]."
-							+ "</p>");
-				}
-				break;
-//			default:
-//				if (owner.isPlayer()) {
-//					UtilText.transformationContentSB.append("You discover that your ass has shifted shape and transformed.<br/>"
-//							+ "You now have an [style.boldSex("+type.getRace().getName()+" asshole)]."
-//							+ "</p>");
-//				} else {
-//					UtilText.transformationContentSB.append(
-//							"[npc.She] soon discovers that [npc.her] ass has shifted shape and transformed.<br/>"
-//							+ "[npc.She] now has an [style.boldHarpy("+type.getRace().getName()+" asshole)]."
-//							+ "</p>");
-//				}
-//				break;
 		}
 		
 		return UtilText.parse(owner, UtilText.transformationContentSB.toString())

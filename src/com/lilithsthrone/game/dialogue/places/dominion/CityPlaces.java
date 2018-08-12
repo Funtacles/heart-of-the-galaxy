@@ -720,7 +720,7 @@ public class CityPlaces {
 		public String getContent() {
 			return STREET.getContent()
 					+ "<p>"
-						+ "<b style='color:"+Colour.RACE_HARPY.toWebHexString()+";'>Harpy Nests:</b><br/>"
+						+ "<b>Harpy Nests:</b><br/>"
 						+ "The wooden platforms and bridges of the rooftop Harpy Nests cast a shadow over these streets."
 						+ " Looking up, you see the occasional flash of brightly-coloured feathers as harpies swoop this way and that."
 					+ "</p>";

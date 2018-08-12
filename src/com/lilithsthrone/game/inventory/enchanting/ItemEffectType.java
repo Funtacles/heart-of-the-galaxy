@@ -9,30 +9,8 @@ import java.util.Map;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.PregnancyPossibility;
 import com.lilithsthrone.game.character.attributes.Attribute;
-import com.lilithsthrone.game.character.body.Covering;
-import com.lilithsthrone.game.character.body.types.ArmType;
-import com.lilithsthrone.game.character.body.types.AssType;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
-import com.lilithsthrone.game.character.body.types.BreastType;
-import com.lilithsthrone.game.character.body.types.EarType;
-import com.lilithsthrone.game.character.body.types.EyeType;
-import com.lilithsthrone.game.character.body.types.FaceType;
-import com.lilithsthrone.game.character.body.types.HairType;
-import com.lilithsthrone.game.character.body.types.HornType;
-import com.lilithsthrone.game.character.body.types.LegType;
-import com.lilithsthrone.game.character.body.types.PenisType;
-import com.lilithsthrone.game.character.body.types.SkinType;
-import com.lilithsthrone.game.character.body.types.TailType;
-import com.lilithsthrone.game.character.body.types.VaginaType;
-import com.lilithsthrone.game.character.body.types.WingType;
-import com.lilithsthrone.game.character.body.valueEnums.AssSize;
 import com.lilithsthrone.game.character.body.valueEnums.BodyHair;
-import com.lilithsthrone.game.character.body.valueEnums.CoveringPattern;
-import com.lilithsthrone.game.character.body.valueEnums.CumProduction;
-import com.lilithsthrone.game.character.body.valueEnums.CupSize;
-import com.lilithsthrone.game.character.body.valueEnums.HipSize;
-import com.lilithsthrone.game.character.body.valueEnums.Wetness;
-import com.lilithsthrone.game.character.effects.Perk;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.fetishes.FetishDesire;
@@ -190,18 +168,6 @@ public class ItemEffectType {
 		@Override
 		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
 			return getBookEffect(Race.ALLIGATOR_MORPH, ItemType.BOOK_ALLIGATOR_MORPH);
-		}
-	};
-	
-	public static AbstractItemEffectType BOOK_READ_HARPY = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"Adds harpy encyclopedia entry.",
-			"[style.boldExcellent(+5)] [style.boldHarpy("+Attribute.DAMAGE_HARPY.getName()+")]",
-			"[style.boldExcellent(+5)] [style.boldHarpy("+Attribute.RESISTANCE_HARPY.getName()+")]"),
-			Colour.RACE_HARPY) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getBookEffect(Race.HARPY, ItemType.BOOK_HARPY);
 		}
 	};
 	
@@ -890,24 +856,6 @@ public class ItemEffectType {
 		}
 	};
 	
-	public static AbstractItemEffectType SEX_HARPY_PERFUME = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldSex(+1)] [style.boldFeminine(femininity)]",
-			"[style.boldGood(+5)] [style.boldMana("+Attribute.DAMAGE_LUST.getName()+")] to 'potion effects'"),
-			Colour.GENERIC_SEX) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return "<p style='text-align:center;'>"
-					+(target.isPlayer()
-						?"A soothing wave of arcane energy washes over you..."
-						:UtilText.parse(target, "A soothing wave of arcane energy washes over [npc.name]..."))
-					+ "<br/>"
-					+ target.incrementFemininity(1)
-					+ "</p>"
-					+ target.addPotionEffect(Attribute.DAMAGE_LUST, 5);
-		}
-	};
-	
 	public static AbstractItemEffectType SEX_RABBIT_MORPH_DRINK = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldSex(+5)] [style.boldCorruption(Fertility)] to 'potion effects'",
 			"[style.boldSex(+5)] [style.boldCorruption(Virility)] to 'potion effects'",
@@ -1500,28 +1448,6 @@ public class ItemEffectType {
 		}
 	};
 	
-	public static AbstractItemEffectType RACE_LOLLIPOP = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(+5)] [style.boldPhysique(physique)] to 'potion effects'",
-			"[style.boldSex(+3)] [style.boldFeminine(femininity)]"),
-			Colour.RACE_HARPY) {
-
-		@Override
-		public String getPotionDescriptor() {
-			return "harpy";
-		}
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return (target.isPlayer()
-						?"You start to feel more feminine..."
-						:UtilText.parse(target, "[npc.Name] starts to feel more feminine..."))
-					+ "<br/>"
-					+ target.incrementFemininity(3)
-					+ "<br/>"
-					+ target.addPotionEffect(Attribute.MAJOR_PHYSIQUE, 5);
-		}
-	};
-	
 	public static AbstractItemEffectType BOTTLED_ESSENCE_ARCANE = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldGood(+1)] [style.boldArcane(Arcane)] essence"),
 			Colour.GENERIC_ARCANE) {
@@ -1673,20 +1599,6 @@ public class ItemEffectType {
 		}
 	};
 	
-	public static AbstractItemEffectType BOTTLED_ESSENCE_HARPY = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(+1)] [style.boldArcane(Arcane)] essence",
-			"[style.boldGood(+25%)] [style.bold(damage vs)] [style.boldHarpy(harpies)]",
-			"[style.boldGood(+25%)] [style.bold(resistance vs)] [style.boldHarpy(harpies)]"),
-			Colour.RACE_HARPY) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			target.incrementEssenceCount(TFEssence.ARCANE, 1, false);
-			target.addStatusEffect(StatusEffect.COMBAT_BONUS_HARPY, 60*4);
-			return "You have absorbed [style.boldGood(+1)] [style.boldArcane(Arcane)] essence, and are now far more effective at fighting [style.boldHarpy(harpies)]!";
-		}
-	};
-	
 	public static AbstractItemEffectType BOTTLED_ESSENCE_HORSE_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldGood(+1)] [style.boldArcane(Arcane)] essence",
 			"[style.boldGood(+25%)] [style.bold(damage vs)] [style.boldHorse(horse-morphs)]",
@@ -1756,300 +1668,6 @@ public class ItemEffectType {
 			return "You have absorbed [style.boldGood(+1)] [style.boldArcane(Arcane)] essence, and are now far more effective at fighting [style.boldFox(fox-morphs)]!";
 		}
 	};
-	
-	// Specials:
-	
-	public static AbstractItemEffectType BIMBO_LOLLIPOP = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"<b style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>Bimbo</b> <b style='color:"+Colour.RACE_HARPY.toWebHexString()+";'>harpy</b> <b style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>transformation</b>"),
-			Colour.RACE_HARPY) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			StringBuilder sb = new StringBuilder();
-			
-			sb.append("<p>"
-						+ UtilText.parse(target, "As the lollipop's transformative effects start to make themselves known, [npc.name] [npc.verb(start)] to feel very light-headed...")
-					+ "</p>");
-			
-			if(!target.hasFetish(Fetish.FETISH_BIMBO)) {
-				target.addFetish(Fetish.FETISH_BIMBO);
-				if(target.isPlayer()) {
-					sb.append("<br/>"
-							+ "<p>"
-								+ "A giggle escapes from between your [pc.lips], and you suddenly find yourself unable to think of anything other than how, like, super awesome bimbos are and stuff!"
-								+ "<br/><b style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>You have gained the bimbo fetish!</b>"
-							+ "</p>");
-				} else {
-					sb.append(UtilText.parse(target, "<br/>"
-							+ "<p>"
-								+ "A giggle escapes from between [npc.namePos] [npc.lips], and [npc.she] suddenly finds [npc.herself] unable to think of anything other than how, like, super awesome bimbos are and stuff!"
-								+ "<br/><b style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>[npc.Name] has gained the bimbo fetish!</b>"
-							+ "</p>"));
-				}
-			}
-			
-			
-			// Non-racial changes
-			if(target.getFemininityValue()<95) {
-				sb.append("<br/>" + target.setFemininity(95));
-			}
-			if(target.getBreastSize().getMeasurement()<CupSize.DD.getMeasurement()) {
-				sb.append("<br/>" + target.setBreastSize(CupSize.DD.getMeasurement()));
-			}
-			if(target.getAssSize().getValue()<AssSize.FOUR_LARGE.getValue()) {
-				sb.append("<br/>" + target.setAssSize(AssSize.FOUR_LARGE.getValue()));
-			}
-			if(target.getHipSize().getValue()<HipSize.FOUR_WOMANLY.getValue()) {
-				sb.append("<br/>" + target.setHipSize(HipSize.FOUR_WOMANLY.getValue()));
-			}
-			if(target.getHairType()!=HairType.HARPY) {
-				sb.append("<br/>" + target.setHairCovering(new Covering(BodyCoveringType.HAIR_HARPY, CoveringPattern.NONE, Colour.COVERING_BLEACH_BLONDE, false, Colour.COVERING_BLEACH_BLONDE, false), true));
-			}
-			if(target.getSkinType()!=SkinType.HARPY) {
-				sb.append("<br/>" + target.setSkinCovering(new Covering(BodyCoveringType.FEATHERS, CoveringPattern.NONE, Colour.COVERING_BLEACH_BLONDE, false, Colour.COVERING_BLEACH_BLONDE, false), true));
-			}
-			
-			// Harpy TFs:
-			if(target.getFaceType()!=FaceType.HUMAN)
-				sb.append("<br/>" + target.setFaceType(FaceType.HUMAN));
-			if(target.getEarType()!=EarType.HARPY)
-				sb.append("<br/>" + target.setEarType(EarType.HARPY));
-			if(target.getEyeType()!=EyeType.HARPY)
-				sb.append("<br/>" + target.setEyeType(EyeType.HARPY));
-			if(target.getHairType()!=HairType.HARPY)
-				sb.append("<br/>" + target.setHairType(HairType.HARPY));
-			if(target.getSkinType()!=SkinType.HUMAN)
-				sb.append("<br/>" + target.setSkinType(SkinType.HUMAN));
-
-			if(target.getWingType()!=WingType.NONE)
-				sb.append("<br/>" + target.setWingType(WingType.NONE));
-			if(target.getHornType()!=HornType.NONE)
-				sb.append("<br/>" + target.setHornType(HornType.NONE));
-
-			if(target.getArmType()!=ArmType.HARPY)
-				sb.append("<br/>" + target.setArmType(ArmType.HARPY));
-			if(target.getLegType()!=LegType.HARPY)
-				sb.append("<br/>" + target.setLegType(LegType.HARPY));
-			if(target.getTailType()!=TailType.HARPY)
-				sb.append("<br/>" + target.setTailType(TailType.HARPY));
-
-			if(target.getBreastType()!=BreastType.HARPY)
-				sb.append("<br/>" + target.setBreastType(BreastType.HARPY));
-			if(target.getAssType()!=AssType.HARPY)
-				sb.append("<br/>" + target.setAssType(AssType.HARPY));
-
-			if(target.hasPenisIgnoreDildo()) {
-				sb.append("<br/>" + target.setPenisType(PenisType.AVIAN));
-
-				if(target.getPenisRawCumStorageValue()<CumProduction.TWO_SMALL_AMOUNT.getMedianValue()) {
-					sb.append("<br/>" + target.setPenisCumStorage(CumProduction.TWO_SMALL_AMOUNT.getMedianValue()));
-					target.fillCumToMaxStorage();
-				}
-			}
-			if(target.hasVagina()) {
-				sb.append("<br/>" + target.setVaginaType(VaginaType.HARPY));
-			}
-			
-			return sb.toString();
-		}
-	};
-	
-	public static AbstractItemEffectType NYMPHO_LOLLIPOP = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"<b style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>Nympho</b> <b style='color:"+Colour.RACE_HARPY.toWebHexString()+";'>harpy</b> <b style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>transformation</b>"),
-			Colour.RACE_HARPY) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			StringBuilder sb = new StringBuilder();
-			
-			sb.append("<p>"
-						+ UtilText.parse(target, "As the lollipop's transformative effects start to make themselves known, [npc.name] [npc.verb(start)] to feel very light-headed...")
-					+ "</p>");
-			
-			if(!target.hasTrait(Perk.NYMPHOMANIAC, false)) {
-				target.addPerk(Perk.NYMPHOMANIAC);
-				if(target.isPlayer()) {
-					sb.append("<br/>"
-							+ "<p>"
-								+ "A desperate moan escapes from between your [pc.lips], and you suddenly find yourself unable to think of anything other than sex, sex, and more sex!"
-								+ "<br/><b style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>You have gained the nymphomaniac perk!</b>"
-							+ "</p>");
-				} else {
-					sb.append(UtilText.parse(target, "<br/>"
-							+ "<p>"
-								+ "A desperate moan escapes from between [npc.namePos] [npc.lips], and [npc.she] suddenly finds [npc.herself] unable to think of anything other than sex, sex, and more sex!"
-								+ "<br/><b style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>[npc.Name] has gained the nymphomaniac perk!</b>"
-							+ "</p>"));
-				}
-			}
-			
-			// Non-racial changes
-			if(target.getFemininityValue()<95) {
-				sb.append("<br/>" + target.setFemininity(95));
-			}
-			if(target.getBreastSize().getMeasurement()<CupSize.C.getMeasurement()) {
-				sb.append("<br/>" + target.setBreastSize(CupSize.C.getMeasurement()));
-			}
-			if(target.getAssSize().getValue()<AssSize.THREE_NORMAL.getValue()) {
-				sb.append("<br/>" + target.setAssSize(AssSize.THREE_NORMAL.getValue()));
-			}
-			if(target.getHipSize().getValue()<HipSize.THREE_GIRLY.getValue()) {
-				sb.append("<br/>" + target.setHipSize(HipSize.THREE_GIRLY.getValue()));
-			}
-			if(target.getHairType()!=HairType.HARPY) {
-				sb.append("<br/>" + target.setHairCovering(new Covering(BodyCoveringType.HAIR_HARPY, CoveringPattern.NONE, Colour.COVERING_PINK, false, Colour.COVERING_PINK, false), true));
-			}
-			if(target.getSkinType()!=SkinType.HARPY) {
-				sb.append("<br/>" + target.setHairCovering(new Covering(BodyCoveringType.FEATHERS, CoveringPattern.NONE, Colour.COVERING_PINK, false, Colour.COVERING_PINK, false), true));
-			}
-			
-			// Harpy TFs:
-			if(target.getFaceType()!=FaceType.HUMAN)
-				sb.append("<br/>" + target.setFaceType(FaceType.HUMAN));
-			if(target.getEarType()!=EarType.HARPY)
-				sb.append("<br/>" + target.setEarType(EarType.HARPY));
-			if(target.getEyeType()!=EyeType.HARPY)
-				sb.append("<br/>" + target.setEyeType(EyeType.HARPY));
-			if(target.getHairType()!=HairType.HARPY)
-				sb.append("<br/>" + target.setHairType(HairType.HARPY));
-			if(target.getSkinType()!=SkinType.HUMAN)
-				sb.append("<br/>" + target.setSkinType(SkinType.HUMAN));
-
-			if(target.getWingType()!=WingType.NONE)
-				sb.append("<br/>" + target.setWingType(WingType.NONE));
-			if(target.getHornType()!=HornType.NONE)
-				sb.append("<br/>" + target.setHornType(HornType.NONE));
-
-			if(target.getArmType()!=ArmType.HARPY)
-				sb.append("<br/>" + target.setArmType(ArmType.HARPY));
-			if(target.getLegType()!=LegType.HARPY)
-				sb.append("<br/>" + target.setLegType(LegType.HARPY));
-			if(target.getTailType()!=TailType.HARPY)
-				sb.append("<br/>" + target.setTailType(TailType.HARPY));
-
-			if(target.getBreastType()!=BreastType.HARPY)
-				sb.append("<br/>" + target.setBreastType(BreastType.HARPY));
-			if(target.getAssType()!=AssType.HARPY)
-				sb.append("<br/>" + target.setAssType(AssType.HARPY));
-			if(target.getAssWetness().getValue()<Wetness.TWO_MOIST.getValue())
-				sb.append("<br/>" + target.setAssWetness(Wetness.TWO_MOIST.getValue()));
-				
-
-			if(target.hasPenisIgnoreDildo()) {
-				sb.append("<br/>" + target.setPenisType(PenisType.AVIAN));
-
-				if(target.getPenisRawCumStorageValue()<CumProduction.THREE_AVERAGE.getMedianValue()) {
-					sb.append("<br/>" + target.setPenisCumStorage(CumProduction.THREE_AVERAGE.getMedianValue()));
-					target.fillCumToMaxStorage();
-				}
-			}
-			if(target.hasVagina()) {
-				sb.append("<br/>" + target.setVaginaType(VaginaType.HARPY));
-
-				if(target.getVaginaWetness().getValue()<Wetness.FOUR_SLIMY.getValue())
-					sb.append("<br/>" + target.setVaginaWetness(Wetness.FOUR_SLIMY.getValue()));
-			}
-			
-			return sb.toString();
-		}
-	};
-	
-	public static AbstractItemEffectType DOMINANT_PERFUME = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"<b style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>Dominant</b> <b style='color:"+Colour.RACE_HARPY.toWebHexString()+";'>harpy</b> <b style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>transformation</b>"),
-			Colour.RACE_HARPY) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			StringBuilder sb = new StringBuilder();
-
-			sb.append("<p>"
-						+ UtilText.parse(target, "As the perfume's transformative effects start to make themselves known, [npc.name] [npc.verb(start)] to feel very light-headed...")
-					+ "</p>");
-			
-			if(!target.hasFetish(Fetish.FETISH_DOMINANT)) {
-				target.addFetish(Fetish.FETISH_DOMINANT);
-				if(target.isPlayer()) {
-					sb.append("<br/>"
-							+ "<p>"
-								+ "A deep groan escapes from between your [pc.lips], and you suddenly find yourself thinking of how much you want to dominate the next person you come across!"
-								+ "<br/><b style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>You have gained the dominant fetish!</b>"
-							+ "</p>");
-				} else {
-					sb.append(UtilText.parse(target, "<br/>"
-							+ "<p>"
-								+ "A deep groan escapes from between [npc.namePos] [npc.lips], and [npc.she] suddenly finds [npc.herself] thinking of how much [npc.she] wants to dominate the next person [npc.she] meets!"
-								+ "<br/><b style='color:"+Colour.GENERIC_SEX.toWebHexString()+";'>[npc.Name] has gained the dominant fetish!</b>"
-							+ "</p>"));
-				}
-			}
-			
-			// Non-racial changes
-			if(target.getFemininityValue()<95) {
-				sb.append("<br/>" + target.setFemininity(95));
-			}
-			if(target.getBreastSize().getMeasurement()<CupSize.C.getMeasurement()) {
-				sb.append("<br/>" + target.setBreastSize(CupSize.C.getMeasurement()));
-			}
-			if(target.getAssSize().getValue()<AssSize.THREE_NORMAL.getValue()) {
-				sb.append("<br/>" + target.setAssSize(AssSize.THREE_NORMAL.getValue()));
-			}
-			if(target.getHipSize().getValue()<HipSize.THREE_GIRLY.getValue()) {
-				sb.append("<br/>" + target.setHipSize(HipSize.THREE_GIRLY.getValue()));
-			}
-			if(target.getHairType()!=HairType.HARPY) {
-				sb.append("<br/>" + target.setHairCovering(new Covering(BodyCoveringType.HAIR_HARPY, CoveringPattern.NONE, Colour.COVERING_BLACK, false, Colour.COVERING_BLACK, false), true));
-			}
-			if(target.getSkinType()!=SkinType.HARPY) {
-				sb.append("<br/>" + target.setSkinCovering(new Covering(BodyCoveringType.FEATHERS, CoveringPattern.NONE, Colour.COVERING_RED, false, Colour.COVERING_RED, false), true));
-			}
-			
-			// Harpy TFs:
-			if(target.getFaceType()!=FaceType.HUMAN)
-				sb.append("<br/>" + target.setFaceType(FaceType.HUMAN));
-			if(target.getEarType()!=EarType.HARPY)
-				sb.append("<br/>" + target.setEarType(EarType.HARPY));
-			if(target.getEyeType()!=EyeType.HARPY)
-				sb.append("<br/>" + target.setEyeType(EyeType.HARPY));
-			if(target.getHairType()!=HairType.HARPY)
-				sb.append("<br/>" + target.setHairType(HairType.HARPY));
-			if(target.getSkinType()!=SkinType.HUMAN)
-				sb.append("<br/>" + target.setSkinType(SkinType.HUMAN));
-
-			if(target.getWingType()!=WingType.NONE)
-				sb.append("<br/>" + target.setWingType(WingType.NONE));
-			if(target.getHornType()!=HornType.NONE)
-				sb.append("<br/>" + target.setHornType(HornType.NONE));
-
-			if(target.getArmType()!=ArmType.HARPY)
-				sb.append("<br/>" + target.setArmType(ArmType.HARPY));
-			if(target.getLegType()!=LegType.HARPY)
-				sb.append("<br/>" + target.setLegType(LegType.HARPY));
-			if(target.getTailType()!=TailType.HARPY)
-				sb.append("<br/>" + target.setTailType(TailType.HARPY));
-
-			if(target.getBreastType()!=BreastType.HARPY)
-				sb.append("<br/>" + target.setBreastType(BreastType.HARPY));
-			if(target.getAssType()!=AssType.HARPY)
-				sb.append("<br/>" + target.setAssType(AssType.HARPY));
-				
-
-			if(target.hasPenisIgnoreDildo()) {
-				sb.append("<br/>" + target.setPenisType(PenisType.AVIAN));
-
-				if(target.getPenisRawCumStorageValue()<CumProduction.TWO_SMALL_AMOUNT.getMedianValue()) {
-					sb.append("<br/>" + target.setPenisCumStorage(CumProduction.TWO_SMALL_AMOUNT.getMedianValue()));
-					target.fillCumToMaxStorage();
-				}
-			}
-			if(target.hasVagina()) {
-				sb.append("<br/>" + target.setVaginaType(VaginaType.HARPY));
-			}
-			
-			return sb.toString();
-		}
-	};
-	
-	// Enchantment effects: TODO
 	
 	public static AbstractItemEffectType ATTRIBUTE_PHYSIQUE = new AbstractItemEffectType(null,
 			Colour.ATTRIBUTE_PHYSIQUE) {
@@ -2912,35 +2530,6 @@ public class ItemEffectType {
 		@Override
 		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
 			return getRacialEffect(Race.WOLF_MORPH, primaryModifier, secondaryModifier, potency, user, target).applyEffect();
-		}
-	};
-	
-	public static AbstractItemEffectType RACE_HARPY = new AbstractItemEffectType(null,
-			Colour.RACE_HARPY) {
-
-		@Override
-		public List<TFModifier> getPrimaryModifiers() {
-			return TFModifier.getTFRacialBodyPartsList();
-		}
-
-		@Override
-		public List<TFModifier> getSecondaryModifiers(TFModifier primaryModifier) {
-			return getRacialSecondaryModifiers(Race.HARPY, primaryModifier);
-		}
-		
-		@Override
-		public List<TFPotency> getPotencyModifiers(TFModifier primaryModifier, TFModifier secondaryModifier) {
-			return getRacialPotencyModifiers(Race.HARPY, primaryModifier, secondaryModifier);
-		}
-		
-		@Override
-		public List<String> getEffectsDescription(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target) {
-			return Util.newArrayListOfValues(getRacialEffect(Race.HARPY, primaryModifier, secondaryModifier, potency, user, target).getDescriptionPlusChangeDescription());
-		}
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getRacialEffect(Race.HARPY, primaryModifier, secondaryModifier, potency, user, target).applyEffect();
 		}
 	};
 

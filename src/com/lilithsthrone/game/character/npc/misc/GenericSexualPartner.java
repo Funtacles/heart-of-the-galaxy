@@ -96,15 +96,6 @@ public class GenericSexualPartner extends NPC {
 					case BAT_MORPH:
 						addToSubspeciesMap(1, gender, s, availableRaces);
 						break;
-					case HARPY:
-						addToSubspeciesMap(4, gender, s, availableRaces);
-						break;
-					case HARPY_RAVEN:
-						addToSubspeciesMap(1, gender, s, availableRaces);
-						break;
-					case HARPY_BALD_EAGLE:
-						addToSubspeciesMap(1, gender, s, availableRaces);
-						break;
 					case HUMAN:
 						addToSubspeciesMap(5, gender, s, availableRaces);
 						break;

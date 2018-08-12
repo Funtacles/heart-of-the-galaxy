@@ -310,8 +310,6 @@ public class Body implements Serializable, XMLSaving {
 				return BodyCoveringType.BODY_HAIR_CANINE_FUR;
 			case ALLIGATOR_MORPH:
 				return BodyCoveringType.BODY_HAIR_SCALES_ALLIGATOR;
-			case HARPY:
-				return BodyCoveringType.BODY_HAIR_HARPY;
 			case HORSE_MORPH:
 				return BodyCoveringType.BODY_HAIR_HORSE_HAIR;
 			case REINDEER_MORPH:
@@ -897,7 +895,6 @@ public class Body implements Serializable, XMLSaving {
 		eyeTypeConverterMap.put("EYE_FELINE", "CAT_MORPH");
 		eyeTypeConverterMap.put("EYE_SQUIRREL", "SQUIRREL_MORPH");
 		eyeTypeConverterMap.put("EYE_HORSE_MORPH", "HORSE_MORPH");
-		eyeTypeConverterMap.put("EYE_HARPY", "HARPY");
 		if(eyeTypeConverterMap.containsKey(eyeTypeFromSave)) {
 			eyeTypeFromSave = eyeTypeConverterMap.get(eyeTypeFromSave);
 		}
@@ -995,7 +992,6 @@ public class Body implements Serializable, XMLSaving {
 		hairTypeConverterMap.put("HAIR_FELINE_FUR", "CAT_MORPH");
 		hairTypeConverterMap.put("HAIR_HORSE_HAIR", "HORSE_MORPH");
 		hairTypeConverterMap.put("HAIR_SQUIRREL_FUR", "SQUIRREL_MORPH");
-		hairTypeConverterMap.put("HAIR_HARPY", "HARPY");
 		if(hairTypeConverterMap.containsKey(hairTypeFromSave)) {
 			hairTypeFromSave = hairTypeConverterMap.get(hairTypeFromSave);
 		}
@@ -1187,7 +1183,6 @@ public class Body implements Serializable, XMLSaving {
 		skinTypeConverterMap.put("FELINE_FUR", "CAT_MORPH");
 		skinTypeConverterMap.put("SQUIRREL_FUR", "SQUIRREL_MORPH");
 		skinTypeConverterMap.put("HORSE_HAIR", "HORSE_MORPH");
-		skinTypeConverterMap.put("FEATHERS", "HARPY");
 		if(skinTypeConverterMap.containsKey(skinTypeFromSave)) {
 			skinTypeFromSave = skinTypeConverterMap.get(skinTypeFromSave);
 		}
@@ -1656,9 +1651,6 @@ public class Body implements Serializable, XMLSaving {
 			case REINDEER_MORPH:
 				sb.append(", anthropomorphic reindeer-like face, with a long, reindeer-like muzzle.");
 				break;
-			case HARPY:
-				sb.append(", anthropomorphic bird-like face, complete with beak.");
-				break;
 		}
 		
 		// Lynx side fluff
@@ -1744,9 +1736,6 @@ public class Body implements Serializable, XMLSaving {
 					break;
 				case REINDEER_MORPH:
 					sb.append(", reindeer-like hair");
-					break;
-				case HARPY:
-					sb.append(" feathers in place of hair");
 					break;
 			
 			}
@@ -1936,9 +1925,6 @@ public class Body implements Serializable, XMLSaving {
 				break;
 			case ALLIGATOR_MORPH:
 				sb.append(" reptilian eyes");
-				break;
-			case HARPY:
-				sb.append(" bird-like eyes");
 				break;
 			case HORSE_MORPH:
 				sb.append(" horse-like eyes");
@@ -2153,14 +2139,6 @@ public class Body implements Serializable, XMLSaving {
 					sb.append(" You have a pair of oval-shaped, reindeer-like ears, which are "+getCoveredInDescriptor(owner)+" [pc.earFullDescription(true)]" + (ear.isPierced() ? ", and which have been pierced" : "") + ".");
 				else
 					sb.append(" [npc.She] has a pair of oval-shaped, reindeer-like ears, which are "+getCoveredInDescriptor(owner)+" [npc.earFullDescription(true)]" + (ear.isPierced() ? ", and which have been pierced" : "") + ".");
-				break;
-			case HARPY:
-				if (owner.isPlayer())
-					sb.append(" Your ears are an internal part of your head, and are covered by a fan of [pc.earFullDescription(true)]."
-							+ (ear.isPierced()?" They have been cleverly pierced so as to allow you to wear ear-specific jewellery.":""));
-				else
-					sb.append(" [npc.Her] ears are an internal part of [npc.her] head, and are covered by a fan of [npc.earFullDescription(true)]."
-							+ (ear.isPierced()?" They have been cleverly pierced so as to allow [npc.herHim] to wear ear-specific jewellery.":""));
 				break;
 		}
 		
@@ -2915,16 +2893,6 @@ public class Body implements Serializable, XMLSaving {
 					sb.append("[npc.She] has "+armDeterminer+" arms, which are "+getCoveredInDescriptor(owner)+" [npc.armFullDescription(true)]."
 							+ " [npc.Her] hands, while human in shape, have tough little hoof-like nails.");
 				break;
-			case HARPY:
-				if (owner.isPlayer())
-					sb.append("Your arms have transformed into "+armDeterminer+" huge wings, and are "+getCoveredInDescriptor(owner)+" beautiful [pc.armFullDescription(true)]."
-							+ " Where your hands should be, you have two feathered forefingers and a thumb, each of which ends in a little blunt claw."
-							+ " Although slightly less dexterous than a human hand, you're still able to use your remaining digits to form a hand-like grip.");
-				else
-					sb.append("In place of arms and hands, [npc.she] has "+armDeterminer+" huge wings, which are "+getCoveredInDescriptor(owner)+" beautiful [npc.armFullDescription(true)]."
-							+ " Where [npc.her] hands should be, [npc.she] has two feathered forefingers and a thumb, each of which ends in a little blunt claw."
-							+ " Although slightly less dexterous than a human hand, [npc.sheIs] still able to use [npc.her] digits to form a hand-like grip.");
-				break;
 			case BAT_MORPH:
 				if (owner.isPlayer())
 					sb.append("Your arms have transformed into "+armDeterminer+" huge bat-like wings, "+getCoveredInDescriptor(owner)+" [pc.armFullDescription(true)]."
@@ -2961,19 +2929,11 @@ public class Body implements Serializable, XMLSaving {
 		
 		if(owner.isPlayer()) {
 			if(owner.getHandNailPolish().getPrimaryColour() != Colour.COVERING_NONE) {
-				if(owner.getArmType()==ArmType.HARPY) {
-					sb.append(" The little claw on your thumb has been painted in "+owner.getCovering(BodyCoveringType.MAKEUP_NAIL_POLISH_HANDS).getFullDescription(owner, true)+".");
-				} else {
-					sb.append(" Your fingernails have been painted in "+owner.getCovering(BodyCoveringType.MAKEUP_NAIL_POLISH_HANDS).getFullDescription(owner, true)+".");
-				}
+				sb.append(" Your fingernails have been painted in "+owner.getCovering(BodyCoveringType.MAKEUP_NAIL_POLISH_HANDS).getFullDescription(owner, true)+".");
 			}
 		} else {
 			if(owner.getHandNailPolish().getPrimaryColour() != Colour.COVERING_NONE) {
-				if(owner.getArmType()==ArmType.HARPY) {
-					sb.append(" The little claw on [npc.her] thumb has been painted in "+owner.getCovering(BodyCoveringType.MAKEUP_NAIL_POLISH_HANDS).getFullDescription(owner, true)+".");
-				} else {
-					sb.append(" [npc.Her] fingernails have been painted in "+owner.getCovering(BodyCoveringType.MAKEUP_NAIL_POLISH_HANDS).getFullDescription(owner, true)+".");
-				}
+				sb.append(" [npc.Her] fingernails have been painted in "+owner.getCovering(BodyCoveringType.MAKEUP_NAIL_POLISH_HANDS).getFullDescription(owner, true)+".");
 			}
 		}
 		
@@ -3200,14 +3160,6 @@ public class Body implements Serializable, XMLSaving {
 					sb.append("[npc.Her] legs are "+getCoveredInDescriptor(owner)+" [npc.legFullDescription(true)],"
 							+ " and [npc.her] feet are formed into anthropomorphic cow-like hoofs.");
 				break;
-			case HARPY:
-				if (owner.isPlayer())
-					sb.append("Your upper thighs are "+getCoveredInDescriptor(owner)+" [pc.legFullDescription(true)], which transition into leathery bird-like skin just above your knee."
-							+ " While your legs still retain a human-like shape, your feet have transformed into bird-like talons.");
-				else
-					sb.append("[npc.Her] upper thighs are "+getCoveredInDescriptor(owner)+" [npc.legFullDescription(true)], which transition into leathery bird-like skin just above [npc.her] knee."
-							+ " While [npc.her] legs still retain a human-like shape, [npc.her] feet have transformed into bird-like talons.");
-				break;
 			case BAT_MORPH:
 				if (owner.isPlayer())
 					sb.append("Your legs are "+getCoveredInDescriptor(owner)+" [pc.legFullDescription(true)], and your feet are formed into anthropomorphic bat-like paws, complete with claws and leathery pads.");
@@ -3243,9 +3195,7 @@ public class Body implements Serializable, XMLSaving {
 		
 		if(owner.isPlayer()) {
 			if(owner.getFootNailPolish().getPrimaryColour() != Colour.COVERING_NONE) {
-				if(owner.getLegType()==LegType.HARPY) {
-					sb.append(" The claws on your talons have been painted in "+owner.getCovering(BodyCoveringType.MAKEUP_NAIL_POLISH_FEET).getFullDescription(owner, true)+".");
-				} else if(owner.getLegType()==LegType.HORSE_MORPH) {
+				if(owner.getLegType()==LegType.HORSE_MORPH) {
 					sb.append(" Your hoofs have been painted in "+owner.getCovering(BodyCoveringType.MAKEUP_NAIL_POLISH_FEET).getFullDescription(owner, true)+".");
 
 				} else if(owner.getLegType()==LegType.COW_MORPH) {
@@ -3258,9 +3208,7 @@ public class Body implements Serializable, XMLSaving {
 			}
 		} else {
 			if(owner.getFootNailPolish().getPrimaryColour() != Colour.COVERING_NONE) {
-				if(owner.getLegType()==LegType.HARPY) {
-					sb.append(" The claws on [npc.her] talons have been painted in "+owner.getCovering(BodyCoveringType.MAKEUP_NAIL_POLISH_FEET).getFullDescription(owner, true)+".");
-				} else if(owner.getLegType()==LegType.HORSE_MORPH) {
+				if(owner.getLegType()==LegType.HORSE_MORPH) {
 					sb.append(" [npc.Her] hoofs have been painted in "+owner.getCovering(BodyCoveringType.MAKEUP_NAIL_POLISH_FEET).getFullDescription(owner, true)+".");
 
 				} else if(owner.getLegType()==LegType.COW_MORPH) {
@@ -3445,13 +3393,6 @@ public class Body implements Serializable, XMLSaving {
 								sb.append("a long, [npc.tailColour(true)] alligator-like tail, which [npc.she] can swipe from side to side with considerable force.");
 							}
 							break;
-						case HARPY:
-							if (owner.isPlayer()) {
-								sb.append("a plume of beautiful, [pc.tailColour(true)] tail-feathers, which you can rapidly move up and down to help you keep your balance and to control your path when in flight.");
-							} else {
-								sb.append("a plume of beautiful, [npc.tailColour(true)] tail-feathers, which [npc.she] can rapidly move up and down to help [npc.herHim] keep [npc.her] balance and to control [npc.her] path when in flight.");
-							}
-							break;
 						case HORSE_MORPH:
 							if (owner.isPlayer()) {
 								sb.append("a long, [pc.tailColour(true)] horse-like tail, which you can swipe from side to side, but other than that, you don't have much control over it.");
@@ -3587,13 +3528,6 @@ public class Body implements Serializable, XMLSaving {
 								sb.append("long, [pc.tailColour(true)] alligator-like tails, which you can swipe from side to side with considerable force.");
 							} else {
 								sb.append("long, [npc.tailColour(true)] alligator-like tails, which [npc.she] can swipe from side to side with considerable force.");
-							}
-							break;
-						case HARPY:
-							if (owner.isPlayer()) {
-								sb.append("plumes of beautiful, [pc.tailColour(true)] tail-feathers, which you can rapidly move up and down to help you keep your balance and to control your path when in flight.");
-							} else {
-								sb.append("plumes of beautiful, [npc.tailColour(true)] tail-feathers, which [npc.she] can rapidly move up and down to help [npc.herHim] keep [npc.her] balance and to control [npc.her] path when in flight.");
 							}
 							break;
 						case HORSE_MORPH:
@@ -4087,14 +4021,6 @@ public class Body implements Serializable, XMLSaving {
 					descriptionSB.append("You have a bovine, [pc.anusFullDescription(true)]");
 				} else {
 					descriptionSB.append("[npc.She] has a bovine, [npc.anusFullDescription(true)]");
-				}
-				break;
-				
-			case HARPY:
-				if (isPlayer) {
-					descriptionSB.append("You have an avian, [pc.anusFullDescription(true)]");
-				} else {
-					descriptionSB.append("[npc.She] has an avian, [npc.anusFullDescription(true)]");
 				}
 				break;
 		}
@@ -4833,9 +4759,6 @@ public class Body implements Serializable, XMLSaving {
 			case REINDEER_MORPH:
 				descriptionSB.append(" rangiferine cock");
 				break;
-			case AVIAN:
-				descriptionSB.append(" avian cock");
-				break;
 			case ANGEL:
 				descriptionSB.append(" angelic cock");
 				break;
@@ -5496,13 +5419,6 @@ public class Body implements Serializable, XMLSaving {
 					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" an")+" rangiferine pussy, with [pc.labiaSize], [pc.pussyPrimaryColour(true)] labia and [pc.pussySecondaryColour(true)] inner-walls.");
 				} else {
 					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" an")+" rangiferine pussy, with [npc.labiaSize], [npc.pussyPrimaryColour(true)] labia and [npc.pussySecondaryColour(true)] inner-walls.");
-				}
-				break;
-			case HARPY:
-				if (isPlayer) {
-					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" an")+" avian pussy, with [pc.labiaSize], [pc.pussyPrimaryColour(true)] labia and [pc.pussySecondaryColour(true)] inner-walls.");
-				} else {
-					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" an")+" avian pussy, with [npc.labiaSize], [npc.pussyPrimaryColour(true)] labia and [npc.pussySecondaryColour(true)] inner-walls.");
 				}
 				break;
 			case BAT_MORPH:
@@ -6261,17 +6177,6 @@ public class Body implements Serializable, XMLSaving {
 		// Weight = 0.4 * height
 		int weight = (int) (height * 0.4f);
 
-		// If harpy wings, your bones & muscles are really light, so *0.75
-		if (arm.getType() == ArmType.HARPY)
-			weight *= 0.75;
-
-//		// If centaur, you have a horse body, so weight*0.6 + 250 (horses are
-//		// 400kg at lightest and centaur bodies are smaller than horse's)
-//		if (leg.getType() == LegType.CENTAUR) {
-//			weight *= 0.6;
-//			weight += 250;
-//		}
-
 		return weight;
 	}
 
@@ -6474,9 +6379,6 @@ public class Body implements Serializable, XMLSaving {
 				case ALLIGATOR_MORPH:
 					coverings.put(BodyCoveringType.ALLIGATOR_SCALES, new Covering(BodyCoveringType.ALLIGATOR_SCALES, coverings.get(BodyCoveringType.ALLIGATOR_SCALES).getPrimaryColour()));
 					break;
-				case HARPY:
-					coverings.put(BodyCoveringType.BODY_HAIR_HARPY, new Covering(BodyCoveringType.BODY_HAIR_HARPY, coverings.get(BodyCoveringType.HAIR_HARPY).getPrimaryColour()));
-					break;
 				case HORSE_MORPH:
 					coverings.put(BodyCoveringType.BODY_HAIR_HORSE_HAIR, new Covering(BodyCoveringType.BODY_HAIR_HORSE_HAIR, coverings.get(BodyCoveringType.HAIR_HORSE_HAIR).getPrimaryColour()));
 					break;
@@ -6569,9 +6471,6 @@ public class Body implements Serializable, XMLSaving {
 						break;
 					case ALLIGATOR_MORPH:
 						coverings.put(BodyCoveringType.ALLIGATOR_SCALES, new Covering(BodyCoveringType.ALLIGATOR_SCALES, coverings.get(BodyCoveringType.ALLIGATOR_SCALES).getPrimaryColour()));
-						break;
-					case HARPY:
-						coverings.put(BodyCoveringType.BODY_HAIR_HARPY, new Covering(BodyCoveringType.BODY_HAIR_HARPY, coverings.get(BodyCoveringType.HAIR_HARPY).getPrimaryColour()));
 						break;
 					case HORSE_MORPH:
 						coverings.put(BodyCoveringType.BODY_HAIR_HORSE_HAIR, new Covering(BodyCoveringType.BODY_HAIR_HORSE_HAIR, coverings.get(BodyCoveringType.HAIR_HORSE_HAIR).getPrimaryColour()));

@@ -333,12 +333,6 @@ public enum Attribute {
 			return "Increases damage vs dog-morphs.";
 		}
 	},
-	DAMAGE_HARPY(0, -100, 100, "harpy damage", "Harpy damage", "swordIcon", Colour.RACE_HARPY, "harpy-obliteration", "harpy-mercy", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases damage vs harpies.";
-		}
-	},
 	DAMAGE_HORSE_MORPH(0, -100, 100, "horse-morph damage", "Horse-morph damage", "swordIcon", Colour.RACE_HORSE_MORPH, "horse-morph-obliteration", "horse-morph-mercy", null) {
 		@Override
 		public String getDescription(GameCharacter owner) {
@@ -464,12 +458,6 @@ public enum Attribute {
 		@Override
 		public String getDescription(GameCharacter owner) {
 			return "Increases resistance vs damage inflicted by dog-morphs.";
-		}
-	},
-	RESISTANCE_HARPY(0, -100, 100, "harpy resistance", "Harpy resistance", "shieldIcon", Colour.RACE_HARPY, "harpy-immunity", "harpy-vulnerability", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases resistance vs damage inflicted by harpies.";
 		}
 	},
 	RESISTANCE_HORSE_MORPH(0, -100, 100, "horse-morph resistance", "Horse-morph resistance", "shieldIcon", Colour.RACE_HORSE_MORPH, "horse-morph-immunity", "horse-morph-vulnerability", null) {
