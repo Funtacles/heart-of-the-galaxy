@@ -176,7 +176,6 @@ import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
-import com.lilithsthrone.game.settings.DifficultyLevel;
 import com.lilithsthrone.game.sex.LubricationType;
 import com.lilithsthrone.game.sex.PregnancyDescriptor;
 import com.lilithsthrone.game.sex.Sex;
@@ -11777,18 +11776,11 @@ public abstract class GameCharacter implements XMLSaving {
 	
 	public int getLevel() {
 		if(this.isPlayer()
-				|| !Main.getProperties().difficultyLevel.isNPCLevelScaling()
 				|| (this.getPartyLeader()!=null && this.getPartyLeader().isPlayer())) {
 			return level;
 			
 		} else {
-			if(Main.getProperties().difficultyLevel == DifficultyLevel.HELL) {
-				if(level < Main.game.getPlayer().getLevel() * 2) {
-					return Main.game.getPlayer().getLevel() * 2;
-				} else {
-					return level;
-				}
-			} else if(level < Main.game.getPlayer().getLevel()) {
+			if(level < Main.game.getPlayer().getLevel()) {
 				return Main.game.getPlayer().getLevel();
 			} else {
 				return level;
