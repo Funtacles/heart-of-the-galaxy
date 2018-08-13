@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.attributes.AttributeRange;
@@ -52,7 +51,6 @@ import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.persona.PersonalityTrait;
 import com.lilithsthrone.game.character.persona.PersonalityWeight;
 import com.lilithsthrone.game.character.persona.SexualOrientation;
-import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Util.Value;
 
@@ -722,20 +720,6 @@ public enum RacialBody {
 		for(Race r : Race.values()) {
 			if(r != Race.ANGEL) {
 				availableRaces.add(r);
-			}
-		}
-		
-		if(gender.isFeminine()) {
-			for(Entry<Subspecies, FurryPreference> entry : Main.getProperties().getSubspeciesFeminineFurryPreferencesMap().entrySet()) {
-				if(entry.getValue() == FurryPreference.HUMAN) {
-					availableRaces.remove(entry.getKey().getRace());
-				}
-			}
-		} else {
-			for(Entry<Subspecies, FurryPreference> entry : Main.getProperties().getSubspeciesMasculineFurryPreferencesMap().entrySet()) {
-				if(entry.getValue() == FurryPreference.HUMAN) {
-					availableRaces.remove(entry.getKey().getRace());
-				}
 			}
 		}
 		

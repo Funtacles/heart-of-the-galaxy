@@ -1057,7 +1057,6 @@ public class ItemEffectType {
 		@Override
 		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
 			List<AbstractItemType> items = new ArrayList<>();
-			items.add(ItemType.FIT_INGREDIENT_EGG_NOG);
 			items.add(ItemType.SEX_INGREDIENT_MINCE_PIE);
 			
 			Map<AbstractClothingType, Integer> clothingMap = new HashMap<>();

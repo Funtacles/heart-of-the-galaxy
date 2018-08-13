@@ -290,10 +290,6 @@ public class DominionAlleywayAttacker extends NPC {
 	}
 	
 	@Override
-	public void changeFurryLevel(){
-	}
-	
-	@Override
 	public DialogueNodeOld getEncounterDialogue() {
 		PlaceType pt = Main.game.getActiveWorld().getCell(location).getPlace().getPlaceType();
 		

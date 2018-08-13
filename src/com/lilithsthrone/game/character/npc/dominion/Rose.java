@@ -119,9 +119,6 @@ public class Rose extends NPC {
 		return true;
 	}
 	
-	@Override
-	public void changeFurryLevel(){
-	}
 	
 	@Override
 	public DialogueNodeOld getEncounterDialogue() {

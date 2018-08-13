@@ -147,10 +147,6 @@ public class TestNPC extends NPC {
 	}
 	
 	@Override
-	public void changeFurryLevel(){
-	}
-	
-	@Override
 	public boolean isClothingStealable() {
 		return true;
 	}

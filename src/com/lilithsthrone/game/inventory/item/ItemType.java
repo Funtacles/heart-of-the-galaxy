@@ -737,53 +737,6 @@ public class ItemType {
 		}
 	};
 	
-	public static AbstractItemType FIT_INGREDIENT_EGG_NOG = new AbstractItemType(30,
-			"a bottle of",
-			false,
-			"Rudolph's Egg nog",
-			"Rudolph's Egg nogs",
-			"A carton of 'Rudolph's Egg Nog'."
-				+ " A label on the front shows the drink's namesake, a buff, stark-naked reindeer-boy, drinking a glass of this carton's contents while receiving oral sex from three enraptured reindeer-girls.",
-			"attributeReindeerMorphDrink",
-			Colour.ATTRIBUTE_PHYSIQUE,
-			null,
-			null,
-			Rarity.UNCOMMON,
-			TFEssence.ARCANE,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.FIT_EGG_NOG)),
-			Util.newArrayListOfValues(ItemTag.ATTRIBUTE_TF_ITEM)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public AbstractItemEffectType getEnchantmentEffect() {
-			return ItemEffectType.ATTRIBUTE_PHYSIQUE;
-		}
-
-		@Override
-		public AbstractItemType getEnchantmentItemType(List<ItemEffect> effects) {
-			return POTION;
-		}
-
-		@Override
-		public String getUseName() {
-			return "drink";
-		}
-
-		@Override
-		public String getUseDescription(GameCharacter user, GameCharacter target) {
-			return getGenericUseDescription(user, target,
-					"You open the carton and start drinking the bottle of 'Rudolph's Egg Nog'."
-						+ " Although the creamy, sweet taste is similar to that of the egg nog you remember drinking in your old world,"
-						+ " as you finish gulping down the last of the carton's contents, you find that a strange, slightly salty aftertaste lingers on your tongue.",
-					"Opening the carton, you bring the bottle of 'Rudolph's Egg Nog' to [npc.namePos] lips, before tilting [npc.her] head back and forcing [npc.herHim] to quickly gulp down the liquid.",
-					"[npc.Name] pulls out a carton of 'Rudolph's Egg Nog', and, after quickly opening it, [npc.she] promptly downs the entire bottle.",
-					"[npc.Name] pulls out a carton of 'Rudolph's Egg Nog', and, after quickly opening it, [npc.she] brings it to your lips before tilting your head back and forcing you to quickly gulp down the contents."
-						+ " Although the creamy, sweet taste is similar to that of the egg nog you remember drinking in your old world,"
-						+ " as you finish gulping down the last of the carton's contents, you find that a strange, slightly salty aftertaste lingers on your tongue.");
-		}
-	};
-	
 	public static AbstractItemType SEX_INGREDIENT_BUNNY_JUICE = new AbstractItemType(250,
 			"a bottle of",
 			false,

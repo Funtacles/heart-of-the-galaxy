@@ -260,10 +260,6 @@ public class Vicky extends NPC {
 	}
 	
 	@Override
-	public void changeFurryLevel(){
-	}
-	
-	@Override
 	public DialogueNodeOld getEncounterDialogue() {
 		return null;
 	}

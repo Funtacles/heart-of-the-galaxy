@@ -174,10 +174,6 @@ public class Lilaya extends NPC {
 	}
 	
 	@Override
-	public void changeFurryLevel(){
-	}
-	
-	@Override
 	public boolean isRelatedTo(GameCharacter character) {
 		if(character.isPlayer()) {
 			return true;

@@ -9,9 +9,6 @@ import com.lilithsthrone.game.character.body.types.VaginaType;
 import com.lilithsthrone.game.character.body.valueEnums.Femininity;
 import com.lilithsthrone.game.character.quests.Quest;
 import com.lilithsthrone.game.character.quests.QuestLine;
-import com.lilithsthrone.game.character.race.FurryPreference;
-import com.lilithsthrone.game.character.race.RaceStage;
-import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.combat.DamageType;
 import com.lilithsthrone.game.combat.Spell;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
@@ -832,38 +829,6 @@ public class PrologueDialogue {
 		public Response getResponse(int responseTab, int index) {
 			if (index == 1) {
 				return new Response("Struggle", "Try to struggle out of their grip.", INTRO_NEW_WORLD_1_STRUGGLE);
-				
-			} else if (index == 2) {
-				return new Response("Furries?! Yes!",
-						"Furries are real?! You <b>love</b> furries!<br/>"
-						+ "<b>This will set all of your starting furry preferences to </b><b style='color:"+ RaceStage.GREATER.getColour().toWebHexString()+ ";'>"+FurryPreference.MAXIMUM.getName()+"</b><b>."
-						+ " This can be changed at any time from the options menu.</b>", 
-						INTRO_NEW_WORLD_1_BY_THE_POWER_OF_LOVING_FURRIES){
-					@Override
-					public void effects(){
-						for(Subspecies r : Subspecies.values()) {
-							Main.getProperties().setFeminineFurryPreference(r, FurryPreference.MAXIMUM);
-							Main.getProperties().setMasculineFurryPreference(r, FurryPreference.MAXIMUM);
-						}
-						Main.saveProperties();
-					}
-				};
-				
-			} else if (index == 3) {
-				return new Response("Furries?! No!",
-						"Why are furries real?! You <b>hate</b> furries! Channel your rage and try to break free.<br/>"
-						+ "<b>This will set all of your starting furry preferences to </b><b style='color:"+ RaceStage.HUMAN.getColour().toWebHexString()+ ";'>"+FurryPreference.HUMAN.getName()+"</b><b>."
-						+ " This can be changed at any time from the options menu.</b>", 
-						INTRO_NEW_WORLD_1_BY_THE_POWER_OF_HATING_FURRIES){
-					@Override
-					public void effects(){
-						for(Subspecies r : Subspecies.values()) {
-							Main.getProperties().setFeminineFurryPreference(r, FurryPreference.HUMAN);
-							Main.getProperties().setMasculineFurryPreference(r, FurryPreference.HUMAN);
-						}
-						Main.saveProperties();
-					}
-				};
 				
 			} else {
 				return null;

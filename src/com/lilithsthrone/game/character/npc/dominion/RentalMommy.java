@@ -74,24 +74,8 @@ public class RentalMommy extends NPC {
 			this.setSexualOrientation(SexualOrientation.AMBIPHILIC);
 			
 			Subspecies species = Subspecies.COW_MORPH;
-				
-			switch(Main.getProperties().getSubspeciesFeminineFurryPreferencesMap().get(species)) {
-				case HUMAN:
-					setBody(Gender.F_V_B_FEMALE, Subspecies.HUMAN, RaceStage.HUMAN);
-					break;
-				case MINIMUM:
-					setBodyFromPreferences(1, Gender.F_V_B_FEMALE, species);
-					break;
-				case REDUCED:
-					setBodyFromPreferences(2, Gender.F_V_B_FEMALE, species);
-					break;
-				case NORMAL:
-					setBodyFromPreferences(3, Gender.F_V_B_FEMALE, species);
-					break;
-				case MAXIMUM:
-					setBody(Gender.F_V_B_FEMALE, species, RaceStage.GREATER);
-					break;
-			}
+
+			setBody(Gender.F_V_B_FEMALE, species, RaceStage.GREATER);
 
 			this.setPlayerKnowsName(true);
 			
@@ -205,10 +189,6 @@ public class RentalMommy extends NPC {
 	@Override
 	public boolean isAbleToBeImpregnated() {
 		return true;
-	}
-	
-	@Override
-	public void changeFurryLevel(){
 	}
 	
 	@Override

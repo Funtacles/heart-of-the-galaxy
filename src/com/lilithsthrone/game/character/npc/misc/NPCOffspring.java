@@ -163,10 +163,6 @@ public class NPCOffspring extends NPC {
 	}
 	
 	@Override
-	public void changeFurryLevel(){
-	}
-	
-	@Override
 	public DialogueNodeOld getEncounterDialogue() {
 		return DominionOffspringDialogue.OFFSPRING_ENCOUNTER;
 	}

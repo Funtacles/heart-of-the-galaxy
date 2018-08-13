@@ -257,32 +257,6 @@ public class CharacterUtils {
 			raceFromMother = false;
 		}
 		
-		switch(startingGender.isFeminine()
-				?Main.getProperties().getSubspeciesFeminineFurryPreferencesMap().get(raceTakesAfter)
-				:Main.getProperties().getSubspeciesMasculineFurryPreferencesMap().get(raceTakesAfter)) {
-			case HUMAN:
-				stage = RaceStage.HUMAN;
-				break;
-			case MINIMUM:
-				if(stage!=RaceStage.HUMAN
-				|| stage!=RaceStage.PARTIAL) {
-					stage = RaceStage.PARTIAL;
-				}
-				break;
-			case REDUCED:
-				if(stage!=RaceStage.HUMAN
-					|| stage!=RaceStage.PARTIAL
-					|| stage!=RaceStage.LESSER) {
-					stage = RaceStage.LESSER;
-				}
-				break;
-			case NORMAL:
-				break;
-			case MAXIMUM:
-				stage = RaceStage.GREATER;
-				break;
-		}
-		
 		Body body = generateBody(startingGender, startingBodyType, stage);
 
 		body.setBodyMaterial(mother.getBodyMaterial());

@@ -169,11 +169,7 @@ public class Lumi extends NPC {
 	public boolean isUnique() {
 		return true;
 	}
-	
-	@Override
-	public void changeFurryLevel(){
-	}
-	
+
 	@Override
 	public DialogueNodeOld getEncounterDialogue() {
 		return null;

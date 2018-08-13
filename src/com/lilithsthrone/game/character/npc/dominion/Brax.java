@@ -287,10 +287,6 @@ public class Brax extends NPC {
 	}
 
 	@Override
-	public void changeFurryLevel() {
-	}
-	
-	@Override
 	public DialogueNodeOld getEncounterDialogue() {
 		return null;
 	}
@@ -700,74 +696,27 @@ public class Brax extends NPC {
 							Main.game.getPlayer().addFetish(Fetish.FETISH_SUBMISSIVE);
 						}
 						
-						switch(Main.getProperties().forcedTFPreference) {
-							case HUMAN:
-								Main.game.getPlayer().setPenisType(PenisType.NONE);
-								if(!Main.game.getPlayer().hasVagina()) {
-									Main.game.getPlayer().setVaginaType(VaginaType.HUMAN);
-								}
-								break;
-								
-							case MINIMUM: // ears, eyes, tails, horns, antenna, and wings
-								Main.game.getPlayer().setPenisType(PenisType.NONE);
-								if(!Main.game.getPlayer().hasVagina()) {
-									Main.game.getPlayer().setVaginaType(VaginaType.HUMAN);
-								}
-								Main.game.getPlayer().setEarType(EarType.LYCAN);
-								Main.game.getPlayer().setEyeType(EyeType.LYCAN);
-								Main.game.getPlayer().setTailType(TailType.LYCAN);
-								Main.game.getPlayer().setHornType(HornType.NONE);
-								Main.game.getPlayer().setAntennaType(AntennaType.NONE);
-								Main.game.getPlayer().setWingType(WingType.NONE);
-								Main.game.getPlayer().setHairType(HairType.LYCAN);
-								break;
-								
-							case REDUCED:
-								Main.game.getPlayer().setPenisType(PenisType.NONE);
-								Main.game.getPlayer().setVaginaType(VaginaType.WOLF_MORPH);
-								
-								Main.game.getPlayer().setEarType(EarType.LYCAN);
-								Main.game.getPlayer().setEyeType(EyeType.LYCAN);
-								Main.game.getPlayer().setTailType(TailType.LYCAN);
-								Main.game.getPlayer().setHornType(HornType.NONE);
-								Main.game.getPlayer().setAntennaType(AntennaType.NONE);
-								Main.game.getPlayer().setWingType(WingType.NONE);
-								Main.game.getPlayer().setHairType(HairType.LYCAN);
-								
-								Main.game.getPlayer().setBreastType(BreastType.WOLF_MORPH);
-								Main.game.getPlayer().setAssType(AssType.WOLF_MORPH);
-								Main.game.getPlayer().setArmType(ArmType.LYCAN);
-								Main.game.getPlayer().setLegType(LegType.LYCAN);
-								
-								if(Main.getProperties().multiBreasts!=0) {
-									Main.game.getPlayer().setBreastRows(3);
-								}
-								break;
-								
-							case NORMAL: case MAXIMUM:
-								Main.game.getPlayer().setPenisType(PenisType.NONE);
-								Main.game.getPlayer().setVaginaType(VaginaType.WOLF_MORPH);
-								
-								Main.game.getPlayer().setEarType(EarType.LYCAN);
-								Main.game.getPlayer().setEyeType(EyeType.LYCAN);
-								Main.game.getPlayer().setTailType(TailType.LYCAN);
-								Main.game.getPlayer().setHornType(HornType.NONE);
-								Main.game.getPlayer().setAntennaType(AntennaType.NONE);
-								Main.game.getPlayer().setWingType(WingType.NONE);
-								Main.game.getPlayer().setHairType(HairType.LYCAN);
-								
-								Main.game.getPlayer().setBreastType(BreastType.WOLF_MORPH);
-								Main.game.getPlayer().setAssType(AssType.WOLF_MORPH);
-								Main.game.getPlayer().setArmType(ArmType.LYCAN);
-								Main.game.getPlayer().setLegType(LegType.LYCAN);
-								
-								Main.game.getPlayer().setSkinType(SkinType.LYCAN);
-								Main.game.getPlayer().setFaceType(FaceType.LYCAN);
-								
-								if(Main.getProperties().multiBreasts!=0) {
-									Main.game.getPlayer().setBreastRows(3);
-								}
-								break;
+						Main.game.getPlayer().setPenisType(PenisType.NONE);
+						Main.game.getPlayer().setVaginaType(VaginaType.WOLF_MORPH);
+						
+						Main.game.getPlayer().setEarType(EarType.LYCAN);
+						Main.game.getPlayer().setEyeType(EyeType.LYCAN);
+						Main.game.getPlayer().setTailType(TailType.LYCAN);
+						Main.game.getPlayer().setHornType(HornType.NONE);
+						Main.game.getPlayer().setAntennaType(AntennaType.NONE);
+						Main.game.getPlayer().setWingType(WingType.NONE);
+						Main.game.getPlayer().setHairType(HairType.LYCAN);
+						
+						Main.game.getPlayer().setBreastType(BreastType.WOLF_MORPH);
+						Main.game.getPlayer().setAssType(AssType.WOLF_MORPH);
+						Main.game.getPlayer().setArmType(ArmType.LYCAN);
+						Main.game.getPlayer().setLegType(LegType.LYCAN);
+						
+						Main.game.getPlayer().setSkinType(SkinType.LYCAN);
+						Main.game.getPlayer().setFaceType(FaceType.LYCAN);
+						
+						if(Main.getProperties().multiBreasts!=0) {
+							Main.game.getPlayer().setBreastRows(3);
 						}
 						
 						Main.game.getPlayer().setFemininity(Femininity.FEMININE_STRONG.getMinimumFemininity());
@@ -871,45 +820,14 @@ public class Brax extends NPC {
 						+ " You hear Brax let out a laugh as he notices that you're trying to find out what he's done to you, and, with a powerful grip, he grabs your shoulders and spins you around to face a mirror hanging on one wall."
 					+ "</p>");
 
-			switch(Main.getProperties().forcedTFPreference) {
-				case HUMAN:
-					descriptionSB.append(
-							"<p>"
-								+ "As you see your new reflection, you let out a little gasp."
-								+ " Brax has transformed you into his perfect vision of a woman, and your [pc.eyes+] open wide in shock as you feel the weight of your huge, E-cup tits that are now sitting on your chest."
-								+ " As Brax steps up behind you, you feel his shaggy fur brushing up against your vulnerable, feminine body."
-							+ "</p>");
-					break;
-				case MINIMUM:
-					descriptionSB.append(
-							"<p>"
-								+ "As you see your new reflection, you let out a little gasp."
-								+ " Brax has transformed you into his perfect vision of a partial wolf-girl, and your yellow, predatory eyes open wide in shock as you feel the weight of your huge, E-cup tits that are now sitting on your chest."
-								+ " Wolf-like fur covers your pair of fluffy ears and long, shaggy tail, and as Brax steps up behind you, you see that it's the exact same bright white colour as his is."
-							+ "</p>");
-					break;
-				case REDUCED:
-					descriptionSB.append(
-							"<p>"
-								+ "As you see your new reflection, you let out a little gasp."
-								+ " Brax has transformed you into his perfect vision of a lesser wolf-girl, and your yellow, predatory eyes open wide in shock as you feel the weight of "
-									+(Main.getProperties().multiBreasts!=0?"three pairs of":"your")+" huge, E-cup tits that are now sitting on your chest."
-								+ " Fur covers your wolf-like arms and legs, and as Brax steps up behind you, you see that it's the exact same bright white colour as his is."
-								+ " Your face and the skin covering your torso are the only parts of your that haven't transformed into anthropomorphic wolf-like counterparts,"
-									+ " and you experimentally twitch your pair of fluffy wolf-like ears, while swishing your long, shaggy tail back and forth against Brax's leg."
-							+ "</p>");
-					break;
-				case NORMAL: case MAXIMUM:
-					descriptionSB.append(
-							"<p>"
-							+ "As you see your new reflection, you let out a little gasp."
-							+ " Brax has transformed you into his perfect vision of a greater wolf-girl, and your yellow, predatory eyes open wide in shock as you feel the weight of "
-								+(Main.getProperties().multiBreasts!=0?"three pairs of":"your")+" huge, E-cup tits that are now sitting on your chest."
-							+ " Fur covers your entire body, and as Brax steps up behind you, you see that it's the exact same bright white colour as his is."
-							+ " Your hands, feet and face have all transformed into anthropomorphic wolf-like counterparts, and a pair of fluffy wolf-like ears and a long, shaggy tail finish off your new look."
-						+ "</p>");
-					break;
-			}
+			descriptionSB.append(
+					"<p>"
+					+ "As you see your new reflection, you let out a little gasp."
+					+ " Brax has transformed you into his perfect vision of a greater wolf-girl, and your yellow, predatory eyes open wide in shock as you feel the weight of "
+						+(Main.getProperties().multiBreasts!=0?"three pairs of":"your")+" huge, E-cup tits that are now sitting on your chest."
+					+ " Fur covers your entire body, and as Brax steps up behind you, you see that it's the exact same bright white colour as his is."
+					+ " Your hands, feet and face have all transformed into anthropomorphic wolf-like counterparts, and a pair of fluffy wolf-like ears and a long, shaggy tail finish off your new look."
+				+ "</p>");
 				
 					
 			descriptionSB.append("<p>"

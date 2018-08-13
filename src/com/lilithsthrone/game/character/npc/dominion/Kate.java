@@ -302,11 +302,7 @@ public class Kate extends NPC {
 			c.setEnchantmentKnown(true);
 		}
 	}
-	
-	@Override
-	public void changeFurryLevel(){
-	}
-	
+
 	@Override
 	public DialogueNodeOld getEncounterDialogue() {
 		return null;

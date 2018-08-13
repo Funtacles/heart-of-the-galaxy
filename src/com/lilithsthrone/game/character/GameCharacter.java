@@ -129,7 +129,6 @@ import com.lilithsthrone.game.character.persona.PersonalityTrait;
 import com.lilithsthrone.game.character.persona.PersonalityWeight;
 import com.lilithsthrone.game.character.persona.Relationship;
 import com.lilithsthrone.game.character.persona.SexualOrientation;
-import com.lilithsthrone.game.character.race.FurryPreference;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
@@ -2547,20 +2546,6 @@ public abstract class GameCharacter implements XMLSaving {
 			humanChance = 0.75f;
 		}
 		
-		if(gender.isFeminine()) {
-			for(Entry<Subspecies, FurryPreference> entry : Main.getProperties().getSubspeciesFeminineFurryPreferencesMap().entrySet()) {
-				if(entry.getValue() == FurryPreference.HUMAN) {
-					subspeciesMap.remove(entry.getKey());
-				}
-			}
-		} else {
-			for(Entry<Subspecies, FurryPreference> entry : Main.getProperties().getSubspeciesMasculineFurryPreferencesMap().entrySet()) {
-				if(entry.getValue() == FurryPreference.HUMAN) {
-					subspeciesMap.remove(entry.getKey());
-				}
-			}
-		}
-		
 		int total = 0;
 		for(Integer i : subspeciesMap.values()) {
 			total += i;
@@ -2571,58 +2556,15 @@ public abstract class GameCharacter implements XMLSaving {
 			
 		} else {
 			Subspecies species = Util.getRandomObjectFromWeightedMap(subspeciesMap);
-			
-			if(gender.isFeminine()) {
-				switch(Main.getProperties().getSubspeciesFeminineFurryPreferencesMap().get(species)) {
-					case HUMAN:
-						setBody(gender, RacialBody.HUMAN, RaceStage.HUMAN);
-						break;
-					case MINIMUM:
-						setBodyFromPreferences(1, gender, species);
-						break;
-					case REDUCED:
-						setBodyFromPreferences(2, gender, species);
-						break;
-					case NORMAL:
-						setBodyFromPreferences(3, gender, species);
-						break;
-					case MAXIMUM:
-						setBody(gender, species, RaceStage.GREATER);
-						break;
-				}
-			} else {
-				switch(Main.getProperties().getSubspeciesMasculineFurryPreferencesMap().get(species)) {
-					case HUMAN:
-						setBody(gender, RacialBody.HUMAN, RaceStage.HUMAN);
-						break;
-					case MINIMUM:
-						setBodyFromPreferences(1, gender, species);
-						break;
-					case REDUCED:
-						setBodyFromPreferences(2, gender, species);
-						break;
-					case NORMAL:
-						setBodyFromPreferences(3, gender, species);
-						break;
-					case MAXIMUM:
-						setBody(gender, species, RaceStage.GREATER);
-						break;
-				}
-			}
+			setBody(gender, species, RaceStage.GREATER);
 		}
 	}
 	
 	protected void addToSubspeciesMap(int weight, Gender gender, Subspecies subspecies, Map<Subspecies, Integer> map) {
 		if(gender.isFeminine()) {
-			if(Main.getProperties().getSubspeciesFeminineFurryPreferencesMap().get(subspecies)!=FurryPreference.HUMAN
-					&& Main.getProperties().getSubspeciesFemininePreferencesMap().get(subspecies).getValue()>0) {
-				map.put(subspecies, weight*Main.getProperties().getSubspeciesFemininePreferencesMap().get(subspecies).getValue());
-			}
+			map.put(subspecies, weight*Main.getProperties().getSubspeciesFemininePreferencesMap().get(subspecies).getValue());
 		} else {
-			if(Main.getProperties().getSubspeciesMasculineFurryPreferencesMap().get(subspecies)!=FurryPreference.HUMAN
-					&& Main.getProperties().getSubspeciesMasculinePreferencesMap().get(subspecies).getValue()>0) {
-				map.put(subspecies, weight*Main.getProperties().getSubspeciesMasculinePreferencesMap().get(subspecies).getValue());
-			}
+			map.put(subspecies, weight*Main.getProperties().getSubspeciesMasculinePreferencesMap().get(subspecies).getValue());
 		}
 	}
 	

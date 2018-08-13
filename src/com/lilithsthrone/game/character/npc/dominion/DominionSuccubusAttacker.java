@@ -161,10 +161,6 @@ public class DominionSuccubusAttacker extends NPC {
 	}
 	
 	@Override
-	public void changeFurryLevel(){
-	}
-	
-	@Override
 	public DialogueNodeOld getEncounterDialogue() {
 		return DominionSuccubusDialogue.ALLEY_DEMON_ATTACK;
 	}

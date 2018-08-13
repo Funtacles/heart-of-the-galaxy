@@ -92,10 +92,6 @@ public class SlaveImport extends NPC {
 	}
 	
 	@Override
-	public void changeFurryLevel(){
-	}
-	
-	@Override
 	public DialogueNodeOld getEncounterDialogue() {
 		return null;
 	}

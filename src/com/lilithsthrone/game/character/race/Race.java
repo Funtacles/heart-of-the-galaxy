@@ -33,10 +33,7 @@ public enum Race {
 			1,
 			1,
 			Attribute.DAMAGE_HUMAN,
-			Attribute.RESISTANCE_HUMAN,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			false),
+			Attribute.RESISTANCE_HUMAN),
 	
 	// HUMAN:
 	HUMAN("human",
@@ -61,10 +58,7 @@ public enum Race {
 			1,
 			1,
 			Attribute.DAMAGE_HUMAN,
-			Attribute.RESISTANCE_HUMAN,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			false),
+			Attribute.RESISTANCE_HUMAN),
 
 	// ANGEL:
 	ANGEL("angel",
@@ -89,10 +83,7 @@ public enum Race {
 			1,
 			1,
 			Attribute.DAMAGE_ANGEL,
-			Attribute.RESISTANCE_ANGEL,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			false),
+			Attribute.RESISTANCE_ANGEL),
 
 	// DEMON:
 	DEMON("demon",
@@ -118,10 +109,7 @@ public enum Race {
 			2,
 			3,
 			Attribute.DAMAGE_DEMON,
-			Attribute.RESISTANCE_DEMON,
-			FurryPreference.MAXIMUM,
-			FurryPreference.MAXIMUM,
-			false),
+			Attribute.RESISTANCE_DEMON),
 
 	IMP("imp",
 			"imps",
@@ -145,10 +133,7 @@ public enum Race {
 			2,
 			3,
 			Attribute.DAMAGE_IMP,
-			Attribute.RESISTANCE_IMP,
-			FurryPreference.MAXIMUM,
-			FurryPreference.MAXIMUM,
-			false),
+			Attribute.RESISTANCE_IMP),
 
 	// BOVINES:
 	COW_MORPH("cow-morph",
@@ -173,10 +158,7 @@ public enum Race {
 			1,
 			1,
 			Attribute.DAMAGE_COW_MORPH,
-			Attribute.RESISTANCE_COW_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_COW_MORPH),
 
 	// CANINES:
 	DOG_MORPH("dog-morph",
@@ -199,10 +181,7 @@ public enum Race {
 			1,
 			2,
 			Attribute.DAMAGE_DOG_MORPH,
-			Attribute.RESISTANCE_DOG_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_DOG_MORPH),
 
 	WOLF_MORPH("wolf-morph",
 			"wolf-morphs",
@@ -226,10 +205,7 @@ public enum Race {
 			1,
 			2,
 			Attribute.DAMAGE_WOLF_MORPH,
-			Attribute.RESISTANCE_WOLF_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_WOLF_MORPH),
 	
 	FOX_MORPH("fox-morph",
 			"fox-morphs",
@@ -254,10 +230,7 @@ public enum Race {
 			1,
 			2,
 			Attribute.DAMAGE_FOX_MORPH,
-			Attribute.RESISTANCE_FOX_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_FOX_MORPH),
 
 	// FELINES:
 	CAT_MORPH("cat-morph",
@@ -282,10 +255,7 @@ public enum Race {
 			1,
 			2,
 			Attribute.DAMAGE_CAT_MORPH,
-			Attribute.RESISTANCE_CAT_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_CAT_MORPH),
 
 	// EQUINE:
 	HORSE_MORPH("horse-morph",
@@ -310,10 +280,7 @@ public enum Race {
 			1,
 			1,
 			Attribute.DAMAGE_HORSE_MORPH,
-			Attribute.RESISTANCE_HORSE_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_HORSE_MORPH),
 
 
 	SQUIRREL_MORPH("squirrel-morph",
@@ -337,10 +304,7 @@ public enum Race {
 			1,
 			2,
 			Attribute.DAMAGE_SQUIRREL_MORPH,
-			Attribute.RESISTANCE_SQUIRREL_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_SQUIRREL_MORPH),
 
 	RABBIT_MORPH("rabbit-morph",
 			"rabbit-morphs",
@@ -364,10 +328,7 @@ public enum Race {
 			2,
 			8,
 			Attribute.DAMAGE_RABBIT_MORPH,
-			Attribute.RESISTANCE_RABBIT_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_RABBIT_MORPH),
 	
 	ALLIGATOR_MORPH("alligator-morph",
 			"alligator-morphs",
@@ -391,10 +352,7 @@ public enum Race {
 			1,
 			4,
 			Attribute.DAMAGE_ALLIGATOR_MORPH,
-			Attribute.RESISTANCE_ALLIGATOR_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
+			Attribute.RESISTANCE_ALLIGATOR_MORPH),
 
 	// ELEMENTALS:
 	ELEMENTAL_EARTH("earth elemental",
@@ -419,10 +377,7 @@ public enum Race {
 			1,
 			1,
 			Attribute.DAMAGE_ELEMENTAL_EARTH,
-			Attribute.RESISTANCE_ELEMENTAL_EARTH,
-			FurryPreference.MAXIMUM,
-			FurryPreference.MAXIMUM,
-			false),
+			Attribute.RESISTANCE_ELEMENTAL_EARTH),
 	
 	ELEMENTAL_WATER("water elemental",
 			"water elementals",
@@ -446,10 +401,7 @@ public enum Race {
 			1,
 			1,
 			Attribute.DAMAGE_ELEMENTAL_WATER,
-			Attribute.RESISTANCE_ELEMENTAL_WATER,
-			FurryPreference.MAXIMUM,
-			FurryPreference.MAXIMUM,
-			false),
+			Attribute.RESISTANCE_ELEMENTAL_WATER),
 	
 	ELEMENTAL_AIR("air elemental",
 			"air elementals",
@@ -473,10 +425,7 @@ public enum Race {
 			1,
 			1,
 			Attribute.DAMAGE_ELEMENTAL_AIR,
-			Attribute.RESISTANCE_ELEMENTAL_AIR,
-			FurryPreference.MAXIMUM,
-			FurryPreference.MAXIMUM,
-			false),
+			Attribute.RESISTANCE_ELEMENTAL_AIR),
 	
 	ELEMENTAL_FIRE("fire elemental",
 			"fire elementals",
@@ -501,10 +450,7 @@ public enum Race {
 			1,
 			1,
 			Attribute.DAMAGE_ELEMENTAL_FIRE,
-			Attribute.RESISTANCE_ELEMENTAL_FIRE,
-			FurryPreference.MAXIMUM,
-			FurryPreference.MAXIMUM,
-			false),
+			Attribute.RESISTANCE_ELEMENTAL_FIRE),
 	
 	ELEMENTAL_ARCANE("arcane elemental",
 			"arcane elementals",
@@ -528,10 +474,7 @@ public enum Race {
 			1,
 			1,
 			Attribute.DAMAGE_ELEMENTAL_ARCANE,
-			Attribute.RESISTANCE_ELEMENTAL_ARCANE,
-			FurryPreference.MAXIMUM,
-			FurryPreference.MAXIMUM,
-			false),
+			Attribute.RESISTANCE_ELEMENTAL_ARCANE)
 	
 	;
 
@@ -544,8 +487,6 @@ public enum Race {
 	private int numberOfOffspringLow, numberOfOffspringHigh;
 	private float chanceForMaleOffspring;
 	private Attribute damageMultiplier, resistanceMultiplier;
-	private FurryPreference defaultFemininePreference, defaultMasculinePreference;
-	private boolean affectedByFurryPreference;
 	
 	private Race(String name,
 			String namePlural,
@@ -568,12 +509,7 @@ public enum Race {
 			int numberOfOffspringHigh,
 			
 			Attribute damageMultiplier,
-			Attribute resistanceMultiplier,
-			
-			FurryPreference defaultFemininePreference,
-			FurryPreference defaultMasculinePreference,
-			
-			boolean affectedByFurryPreference) {
+			Attribute resistanceMultiplier) {
 		
 		this.name = name;
 
@@ -595,11 +531,6 @@ public enum Race {
 		
 		this.damageMultiplier = damageMultiplier;
 		this.resistanceMultiplier = resistanceMultiplier;
-		
-		this.defaultFemininePreference = defaultFemininePreference;
-		this.defaultMasculinePreference = defaultMasculinePreference;
-		
-		this.affectedByFurryPreference = affectedByFurryPreference;
 	}
 
 	public String getName() {
@@ -642,10 +573,6 @@ public enum Race {
 		return colour;
 	}
 	
-	public boolean isAffectedByFurryPreference() {
-		return affectedByFurryPreference;
-	}
-	
 	public float getChanceForMaleOffspring() {
 		return chanceForMaleOffspring;
 	}
@@ -657,13 +584,4 @@ public enum Race {
 	public Attribute getResistanceMultiplier() {
 		return resistanceMultiplier;
 	}
-
-	public FurryPreference getDefaultFemininePreference() {
-		return defaultFemininePreference;
-	}
-
-	public FurryPreference getDefaultMasculinePreference() {
-		return defaultMasculinePreference;
-	}
-
 }
