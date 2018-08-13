@@ -302,40 +302,6 @@ public class Ear implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case RAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" They quickly grow into small, upright ovals, and shift to sit higher up on your head than a normal pair of human ears would."
-								+ " A layer of [pc.earFullDescriptionColour] grows to cover them, and as the transformation finishes, you discover that you can easily twitch your new rat-like ears back and forth."
-								+ "<br/>"
-								+ "You now have [style.boldRatMorph(anthropomorphic, rat-like ears)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" They quickly grow into small, upright ovals, and shift to sit higher up on [npc.her] head than a normal pair of human ears would."
-								+ " A layer of [npc.earFullDescriptionColour] grows to cover them, and as the transformation finishes, [npc.she] experimentally twitches [npc.her] new rat-like ears back and forth."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldRatMorph(anthropomorphic, rat-like ears)]."
-							+ "</p>");
-				}
-				break;
-			case BAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" They quickly grow into large, upright points, and shift to sit higher up on your head than a normal pair of human ears would."
-								+ " A layer of [pc.earFullDescriptionColour] grows to cover them, and as the transformation finishes, you discover that you can easily twitch your new bat-like ears back and forth."
-								+ "<br/>"
-								+ "You now have [style.boldBatMorph(anthropomorphic, bat-like ears)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" They quickly grow into large, upright points, and shift to sit higher up on [npc.her] head than a normal pair of human ears would."
-								+ " A layer of [npc.earFullDescriptionColour] grows to cover them, and as the transformation finishes, [npc.she] experimentally twitches [npc.her] new bat-like ears back and forth."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldBatMorph(anthropomorphic, bat-like ears)]."
-							+ "</p>");
-				}
-				break;
 			case ALLIGATOR_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -367,23 +333,6 @@ public class Ear implements BodyPartInterface, Serializable {
 								+ " A layer of [npc.earFullDescriptionColour] grows to cover them, and as the transformation finishes, [npc.she] experimentally twitches [npc.her] new horse-like ears back and forth."
 								+ "<br/>"
 								+ "[npc.Name] now has [style.boldHorseMorph(anthropomorphic, horse-like ears)]."
-							+ "</p>");
-				}
-				break;
-			case REINDEER_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" They quickly take on a distinctly reindeer-like shape by growing out and narrowing down into long, slightly-folded ovals."
-								+ " A layer of [pc.earFullDescriptionColour] grows to cover them, and as the transformation finishes, you discover that you're able to twitch your new rangiferine ears back and forth."
-								+ "<br/>"
-								+ "You now have [style.boldReindeerMorph(anthropomorphic, reindeer-like ears)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" They quickly take on a distinctly reindeer-like shape by growing out and narrowing down into long, slightly-folded ovals."
-								+ " A layer of [npc.earFullDescriptionColour] grows to cover them, and as the transformation finishes, [npc.she] experimentally twitches [npc.her] new rangiferine ears back and forth."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldReindeerMorph(anthropomorphic, reindeer-like ears)]."
 							+ "</p>");
 				}
 				break;

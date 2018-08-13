@@ -286,28 +286,6 @@ public enum ParserTarget {
 		}
 	},
 	
-	ZARANIX(Util.newArrayListOfValues("zaranix"), "") {
-		public String getDescription() {
-			return Main.game.getZaranix().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getZaranix();
-		}
-	},
-	
-	AMBER(Util.newArrayListOfValues("amber"), "") {
-		public String getDescription() {
-			return Main.game.getAmber().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getAmber();
-		}
-	},
-	
 	ARTHUR(Util.newArrayListOfValues("arthur"), "") {
 		public String getDescription() {
 			return Main.game.getArthur().getDescription();
@@ -316,39 +294,6 @@ public enum ParserTarget {
 		@Override
 		public GameCharacter getCharacter(String tag) {
 			return Main.game.getArthur();
-		}
-	},
-	
-	KELLY(Util.newArrayListOfValues("kelly"), "") {
-		public String getDescription() {
-			return Main.game.getKelly().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getKelly();
-		}
-	},
-	
-	KATHERINE(Util.newArrayListOfValues("katherine"), "") {
-		public String getDescription() {
-			return Main.game.getKatherine().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getKatherine();
-		}
-	},
-	
-	ASHLEY(Util.newArrayListOfValues("ashley"), "") {
-		public String getDescription() {
-			return Main.game.getAshley().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getAshley();
 		}
 	},
 	
@@ -420,41 +365,7 @@ public enum ParserTarget {
 		public GameCharacter getCharacter(String tag) {
 			return Main.game.getLumi();
 		}
-	},
-	
-	JULES(Util.newArrayListOfValues("jules"), "") {
-		public String getDescription() {
-			return Main.game.getJules().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getJules();
-		}
-	},
-	
-	KRUGER(Util.newArrayListOfValues("kruger"), "") {
-		public String getDescription() {
-			return Main.game.getKruger().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getKruger();
-		}
-	},
-	
-	KALAHARI(Util.newArrayListOfValues("kalahari"), "") {
-		public String getDescription() {
-			return Main.game.getKalahari().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getKalahari();
-		}
-	},
-	;
+	};
 	
 	
 	

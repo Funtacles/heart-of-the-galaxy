@@ -36,19 +36,13 @@ public enum LegType implements BodyPartTypeInterface {
 
 	SQUIRREL_MORPH(FootStructure.DIGITIGRADE, FootType.PAWS, BodyCoveringType.SQUIRREL_FUR, Race.SQUIRREL_MORPH),
 
-	RAT_MORPH(FootStructure.DIGITIGRADE, FootType.PAWS, BodyCoveringType.RAT_FUR, Race.RAT_MORPH),
-	
 	RABBIT_MORPH(FootStructure.DIGITIGRADE, FootType.PAWS, BodyCoveringType.RABBIT_FUR, Race.RABBIT_MORPH),
 
-	BAT_MORPH(FootStructure.DIGITIGRADE, FootType.PAWS, BodyCoveringType.BAT_FUR, Race.BAT_MORPH),
-	
 	CAT_MORPH(FootStructure.DIGITIGRADE, FootType.PAWS, BodyCoveringType.FELINE_FUR, Race.CAT_MORPH),
 
 	ALLIGATOR_MORPH(FootStructure.PLANTIGRADE, FootType.HUMANOID, BodyCoveringType.ALLIGATOR_SCALES, Race.ALLIGATOR_MORPH),
 	
-	HORSE_MORPH(FootStructure.UNGULIGRADE, FootType.HOOFS, BodyCoveringType.HORSE_HAIR, Race.HORSE_MORPH),
-
-	REINDEER_MORPH(FootStructure.UNGULIGRADE, FootType.HOOFS, BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH);
+	HORSE_MORPH(FootStructure.UNGULIGRADE, FootType.HOOFS, BodyCoveringType.HORSE_HAIR, Race.HORSE_MORPH);
 	
 	
 	private FootStructure defaultFootStructure;
@@ -112,8 +106,6 @@ public enum LegType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("scaly", "reptile-like");
 			case HORSE_MORPH:
 				return UtilText.returnStringAtRandom("hoofed", "hair-coated", "anthropomorphic horse-like");
-			case REINDEER_MORPH:
-				return UtilText.returnStringAtRandom("hoofed", "hair-coated", "anthropomorphic reindeer-like");
 			case HUMAN:
 				return UtilText.returnStringAtRandom("");
 			case SQUIRREL_MORPH:
@@ -122,12 +114,8 @@ public enum LegType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("furry", "fur-coated", "anthropomorphic wolf-like");
 			case FOX_MORPH:
 				return UtilText.returnStringAtRandom("furry", "fur-coated", "anthropomorphic fox-like");
-			case RAT_MORPH:
-				return UtilText.returnStringAtRandom("furry", "fur-coated", "anthropomorphic rat-like");
 			case RABBIT_MORPH:
 				return UtilText.returnStringAtRandom("furry", "fur-coated", "anthropomorphic rabbit-like");
-			case BAT_MORPH:
-				return UtilText.returnStringAtRandom("furry", "fur-coated", "anthropomorphic bat-like");
 		}
 		return "";
 	}
@@ -154,18 +142,12 @@ public enum LegType implements BodyPartTypeInterface {
 				return "alligator";
 			case HORSE_MORPH:
 				return "equine";
-			case REINDEER_MORPH:
-				return "rangiferine";
 			case HUMAN:
 				return "human";
 			case LYCAN:
 				return "lupine";
 			case FOX_MORPH:
 				return "vulpine";
-			case BAT_MORPH:
-				return "bat";
-			case RAT_MORPH:
-				return "rat";
 			case RABBIT_MORPH:
 				return "rabbit";
 		}
@@ -211,8 +193,6 @@ public enum LegType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("scaly", "reptile-like");
 				case HORSE_MORPH:
 					return UtilText.returnStringAtRandom("feminine", "horse-like", "equine");
-				case REINDEER_MORPH:
-					return UtilText.returnStringAtRandom("feminine", "reindeer-like", "rangiferine");
 				case HUMAN:
 					return UtilText.returnStringAtRandom("soft", "feminine");
 				case LYCAN:
@@ -221,10 +201,6 @@ public enum LegType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("soft", "feminine", "fox-like", "furry");
 				case SQUIRREL_MORPH:
 					return UtilText.returnStringAtRandom("soft", "feminine", "squirrel-like", "furry");
-				case BAT_MORPH:
-					return UtilText.returnStringAtRandom("soft", "feminine", "bat-like", "furry");
-				case RAT_MORPH:
-					return UtilText.returnStringAtRandom("soft", "feminine", "rat-like", "furry");
 				case RABBIT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "feminine", "rabbit-like", "furry");
 			}
@@ -248,8 +224,6 @@ public enum LegType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("scaly", "reptile-like");
 				case HORSE_MORPH:
 					return UtilText.returnStringAtRandom("horse-like", "equine");
-				case REINDEER_MORPH:
-					return UtilText.returnStringAtRandom("feminine", "reindeer-like", "rangiferine");
 				case HUMAN:
 					return UtilText.returnStringAtRandom("");
 				case LYCAN:
@@ -258,10 +232,6 @@ public enum LegType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("fox-like", "furry");
 				case SQUIRREL_MORPH:
 					return UtilText.returnStringAtRandom("soft", "squirrel-like", "furry");
-				case BAT_MORPH:
-					return UtilText.returnStringAtRandom("bat-like", "furry");
-				case RAT_MORPH:
-					return UtilText.returnStringAtRandom("rat-like", "furry");
 				case RABBIT_MORPH:
 					return UtilText.returnStringAtRandom("rabbit-like", "furry");
 			}
@@ -298,8 +268,6 @@ public enum LegType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("scaly", "reptile-like");
 				case HORSE_MORPH:
 					return UtilText.returnStringAtRandom("feminine", "horse-like", "equine");
-				case REINDEER_MORPH:
-					return UtilText.returnStringAtRandom("feminine", "reindeer-like", "rangiferine");
 				case HUMAN:
 					return UtilText.returnStringAtRandom("soft", "feminine");
 				case LYCAN:
@@ -308,10 +276,6 @@ public enum LegType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("soft", "feminine", "fox-like", "furry");
 				case SQUIRREL_MORPH:
 					return UtilText.returnStringAtRandom("soft", "feminine", "squirrel-like", "furry");
-				case BAT_MORPH:
-					return UtilText.returnStringAtRandom("soft", "feminine", "bat-like", "furry");
-				case RAT_MORPH:
-					return UtilText.returnStringAtRandom("soft", "feminine", "rat-like", "furry");
 				case RABBIT_MORPH:
 					return UtilText.returnStringAtRandom("soft", "feminine", "rabbit-like", "furry");
 			}
@@ -335,8 +299,6 @@ public enum LegType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("scaly", "reptile-like");
 				case HORSE_MORPH:
 					return UtilText.returnStringAtRandom("horse-like", "equine");
-				case REINDEER_MORPH:
-					return UtilText.returnStringAtRandom("feminine", "reindeer-like", "rangiferine");
 				case HUMAN:
 					return UtilText.returnStringAtRandom("");
 				case LYCAN:
@@ -345,10 +307,6 @@ public enum LegType implements BodyPartTypeInterface {
 					return UtilText.returnStringAtRandom("fox-like", "furry");
 				case SQUIRREL_MORPH:
 					return UtilText.returnStringAtRandom("soft", "squirrel-like", "furry");
-				case BAT_MORPH:
-					return UtilText.returnStringAtRandom("bat-like", "furry");
-				case RAT_MORPH:
-					return UtilText.returnStringAtRandom("rat-like", "furry");
 				case RABBIT_MORPH:
 					return UtilText.returnStringAtRandom("rabbit-like", "furry");
 			}

@@ -31,12 +31,8 @@ public enum AssType implements BodyPartTypeInterface {
 
 	SQUIRREL_MORPH(BodyCoveringType.SQUIRREL_FUR, AnusType.SQUIRREL_MORPH, Race.SQUIRREL_MORPH),
 
-	RAT_MORPH(BodyCoveringType.RAT_FUR, AnusType.RAT_MORPH, Race.RAT_MORPH),
-	
 	RABBIT_MORPH(BodyCoveringType.RABBIT_FUR, AnusType.RABBIT_MORPH, Race.RABBIT_MORPH),
 
-	BAT_MORPH(BodyCoveringType.BAT_FUR, AnusType.BAT_MORPH, Race.BAT_MORPH),
-	
 	ALLIGATOR_MORPH(BodyCoveringType.ALLIGATOR_SCALES, AnusType.ALLIGATOR_MORPH, Race.ALLIGATOR_MORPH),
 	
 	WOLF_MORPH(BodyCoveringType.LYCAN_FUR, AnusType.WOLF_MORPH, Race.WOLF_MORPH),
@@ -45,9 +41,7 @@ public enum AssType implements BodyPartTypeInterface {
 	
 	CAT_MORPH(BodyCoveringType.FELINE_FUR, AnusType.CAT_MORPH, Race.CAT_MORPH),
 	
-	HORSE_MORPH(BodyCoveringType.HORSE_HAIR, AnusType.HORSE_MORPH, Race.HORSE_MORPH),
-	
-	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, AnusType.REINDEER_MORPH, Race.REINDEER_MORPH);
+	HORSE_MORPH(BodyCoveringType.HORSE_HAIR, AnusType.HORSE_MORPH, Race.HORSE_MORPH);
 
 	private BodyCoveringType skinType;
 	private AnusType anusType;
@@ -144,18 +138,12 @@ public enum AssType implements BodyPartTypeInterface {
 				return "alligator";
 			case HORSE_MORPH:
 				return "equine";
-			case REINDEER_MORPH:
-				return "rangiferine";
 			case HUMAN:
 				return "human";
 			case WOLF_MORPH:
 				return "lupine";
 			case FOX_MORPH:
 				return "vulpine";
-			case BAT_MORPH:
-				return "bat";
-			case RAT_MORPH:
-				return "rat";
 			case RABBIT_MORPH:
 				return "rabbit";
 		}

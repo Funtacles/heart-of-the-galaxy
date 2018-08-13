@@ -508,14 +508,8 @@ public class Library {
 			} else if (city == 8) {
 				return bookResponse(ItemType.BOOK_ALLIGATOR_MORPH, Race.ALLIGATOR_MORPH);
 
-			} else if (city == 9) {
-				return bookResponse(ItemType.BOOK_BAT_MORPH, Race.BAT_MORPH);
-
 			} else if (city == 10) {
 				return bookResponse(ItemType.BOOK_IMP, Race.IMP);
-
-			} else if (city == 12) {
-				return bookResponse(ItemType.BOOK_RAT_MORPH, Race.RAT_MORPH);
 
 			} else if (city == 0) {
 				return new Response("Back", "Return to browsing the shelves.", BROWSE_BOOKS);
@@ -558,9 +552,6 @@ public class Library {
 
 			} else if (field == 3) {
 				return bookResponse(ItemType.BOOK_RABBIT_MORPH, Race.RABBIT_MORPH);
-
-			} else if (field == 4) {
-				return bookResponse(ItemType.BOOK_REINDEER_MORPH, Race.REINDEER_MORPH);
 
 			} else if (field == 0) {
 				return new Response("Back to the shelves", "Return to strolling the shelves.", BROWSE_BOOKS);

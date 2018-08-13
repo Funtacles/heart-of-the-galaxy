@@ -39,21 +39,15 @@ public enum VaginaType implements BodyPartTypeInterface {
 
 	SQUIRREL_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_SQUIRREL_MORPH, Race.SQUIRREL_MORPH),
 
-	RAT_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_RAT_MORPH, Race.RAT_MORPH),
-
 	RABBIT_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_RABBIT_MORPH, Race.RABBIT_MORPH),
 
-	BAT_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_BAT_MORPH, Race.BAT_MORPH),
-	
 	ALLIGATOR_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_ALLIGATOR_MORPH, Race.ALLIGATOR_MORPH),
 	
 	CAT_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_CAT_MORPH, Race.CAT_MORPH),
 
 	COW_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_COW_MORPH, Race.COW_MORPH),
 
-	HORSE_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_HORSE_MORPH, Race.HORSE_MORPH, OrificeModifier.PUFFY),
-
-	REINDEER_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_REINDEER_MORPH, Race.REINDEER_MORPH, OrificeModifier.PUFFY);
+	HORSE_MORPH(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_HORSE_MORPH, Race.HORSE_MORPH, OrificeModifier.PUFFY);
 
 	private BodyCoveringType skinType;
 	private FluidType fluidType;
@@ -183,18 +177,12 @@ public enum VaginaType implements BodyPartTypeInterface {
 						return UtilText.returnStringAtRandom("hot", "alligator-like", "reptilian");
 					case HORSE_MORPH:
 						return UtilText.returnStringAtRandom("hot", "animalistic", "equine");
-					case REINDEER_MORPH:
-						return UtilText.returnStringAtRandom("hot", "animalistic", "reindeer-like", "rangiferine");
 					case HUMAN:
 						return UtilText.returnStringAtRandom("hot");
 					case NONE:
 						return UtilText.returnStringAtRandom("");
 					case SQUIRREL_MORPH:
 						return UtilText.returnStringAtRandom("hot", "squirrel-like", "rodent");
-					case BAT_MORPH:
-						return UtilText.returnStringAtRandom("hot", "bat-like");
-					case RAT_MORPH:
-						return UtilText.returnStringAtRandom("hot", "rat-like", "rodent");
 					case RABBIT_MORPH:
 						return UtilText.returnStringAtRandom("hot", "rabbit-like", "bunny");
 				}
@@ -229,8 +217,6 @@ public enum VaginaType implements BodyPartTypeInterface {
 				return "impish";
 			case HORSE_MORPH:
 				return "equine";
-			case REINDEER_MORPH:
-				return "rangiferine";
 			case CAT_MORPH:
 				return "feline";
 			case HUMAN:
@@ -245,10 +231,6 @@ public enum VaginaType implements BodyPartTypeInterface {
 				return "lupine";
 			case FOX_MORPH:
 				return "vulpine";
-			case BAT_MORPH:
-				return "bat";
-			case RAT_MORPH:
-				return "rat";
 			case RABBIT_MORPH:
 				return "rabbit";
 		}

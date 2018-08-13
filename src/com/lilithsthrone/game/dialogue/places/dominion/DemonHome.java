@@ -9,8 +9,6 @@ import com.lilithsthrone.game.character.quests.Quest;
 import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
-import com.lilithsthrone.game.dialogue.places.dominion.zaranixHome.ZaranixHomeGroundFloor;
-import com.lilithsthrone.game.dialogue.places.dominion.zaranixHome.ZaranixHomeGroundFloorRepeat;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.main.Main;
@@ -166,15 +164,6 @@ public class DemonHome {
 				} else {
 					return null;
 				}
-
-			} else if (index == 2) {
-				if (Main.game.getPlayer().getQuest(QuestLine.MAIN) == Quest.MAIN_1_H_THE_GREAT_ESCAPE) {
-					return new Response("Zaranix's Home", "A little way down the road from Arthur's apartment building stands the home of Zaranix; the demon that Scarlett told you about.", ZaranixHomeGroundFloor.OUTSIDE);
-					
-				} else if (Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-					return new Response("Zaranix's Home", "Pay Zaranix another visit.", ZaranixHomeGroundFloorRepeat.OUTSIDE);
-				}
-				return null;
 
 			} else {
 				return null;

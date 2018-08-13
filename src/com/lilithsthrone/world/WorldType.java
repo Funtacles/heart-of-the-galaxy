@@ -48,7 +48,6 @@ public enum WorldType {
 					new Value<>(new Color(0x00ffff), PlaceType.DOMINION_AUNTS_HOME),
 					new Value<>(new Color(0xffff00), PlaceType.DOMINION_SHOPPING_ARCADE),
 					new Value<>(new Color(0x0000ff), PlaceType.DOMINION_ENFORCER_HQ),
-					new Value<>(new Color(0x000080), PlaceType.DOMINION_NIGHTLIFE_DISTRICT),
 					new Value<>(new Color(0xff0000), PlaceType.DOMINION_SLAVER_ALLEY),
 					new Value<>(new Color(0x4bff00), PlaceType.DOMINION_PARK),
 					new Value<>(new Color(0xff4000), PlaceType.DOMINION_RED_LIGHT_DISTRICT)
@@ -112,34 +111,6 @@ public enum WorldType {
 		}
 	},
 	
-	ZARANIX_HOUSE_FIRST_FLOOR("Zaranix's Home",
-			Colour.BASE_CRIMSON,
-			1,
-			"/com/lilithsthrone/res/map/dominion/zaranixHome/first_floor.png",
-			Util.newHashMapOfValues(
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-					new Value<>(new Color(0x808080), PlaceType.ZARANIX_FF_CORRIDOR),
-					new Value<>(new Color(0x00ff00), PlaceType.ZARANIX_FF_STAIRS),
-					new Value<>(new Color(0xff80ff), PlaceType.ZARANIX_FF_OFFICE),
-					new Value<>(new Color(0xff00ff), PlaceType.ZARANIX_FF_ROOM),
-					new Value<>(new Color(0x8000ff), PlaceType.ZARANIX_FF_MAID))),
-	
-	ZARANIX_HOUSE_GROUND_FLOOR("Zaranix's Home",
-			Colour.BASE_CRIMSON,
-			1,
-			"/com/lilithsthrone/res/map/dominion/zaranixHome/ground_floor.png",
-			Util.newHashMapOfValues(
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-					new Value<>(new Color(0x808080), PlaceType.ZARANIX_GF_CORRIDOR),
-					new Value<>(new Color(0x00ff00), PlaceType.ZARANIX_GF_STAIRS),
-					new Value<>(new Color(0xff0000), PlaceType.ZARANIX_GF_ENTRANCE),
-					new Value<>(new Color(0xffff00), PlaceType.ZARANIX_GF_LOUNGE),
-					new Value<>(new Color(0xff00ff), PlaceType.ZARANIX_GF_ROOM),
-					new Value<>(new Color(0x8000ff), PlaceType.ZARANIX_GF_MAID),
-					new Value<>(new Color(0x00ffff), PlaceType.ZARANIX_GF_GARDEN_ROOM),
-					new Value<>(new Color(0x008000), PlaceType.ZARANIX_GF_GARDEN),
-					new Value<>(new Color(0xff8000), PlaceType.ZARANIX_GF_GARDEN_ENTRY))),
-
 	SLAVER_ALLEY("Slaver Alley",
 			Colour.BASE_RED,
 			1,
@@ -223,30 +194,6 @@ public enum WorldType {
 					new Value<>(new Color(0xff00ff), PlaceType.ANGELS_KISS_BEDROOM),
 					new Value<>(new Color(0xffff00), PlaceType.ANGELS_KISS_BEDROOM_BUNNY),
 					new Value<>(new Color(0xff8000), PlaceType.ANGELS_KISS_BEDROOM_LOPPY))),
-	
-
-	NIGHTLIFE_CLUB("The Watering Hole",
-			Colour.BASE_BLUE,
-			1,
-			"/com/lilithsthrone/res/map/dominion/nightLife/wateringHole.png",
-			Util.newHashMapOfValues(
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-					
-					new Value<>(new Color(0x00ff00), PlaceType.WATERING_HOLE_ENTRANCE),
-					
-					new Value<>(new Color(0x808080), PlaceType.WATERING_HOLE_MAIN_AREA),
-					
-					new Value<>(new Color(0x0080ff), PlaceType.WATERING_HOLE_SEATING_AREA),
-					new Value<>(new Color(0xff00ff), PlaceType.WATERING_HOLE_VIP_AREA),
-					new Value<>(new Color(0xff8000), PlaceType.WATERING_HOLE_BAR),
-					new Value<>(new Color(0xffff00), PlaceType.WATERING_HOLE_DANCE_FLOOR),
-					new Value<>(new Color(0xff0000), PlaceType.WATERING_HOLE_TOILETS)
-					)){
-		@Override
-		public boolean isRevealedOnStart() {
-			return true;
-		}
-	},
 	
 	// Other:
 

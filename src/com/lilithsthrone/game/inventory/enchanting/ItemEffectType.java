@@ -183,18 +183,6 @@ public class ItemEffectType {
 		}
 	};
 	
-	public static AbstractItemEffectType BOOK_READ_REINDEER_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"Adds reindeer-morph encyclopedia entry.",
-			"[style.boldExcellent(+5)] [style.boldReindeerMorph("+Attribute.DAMAGE_REINDEER_MORPH.getName()+")]",
-			"[style.boldExcellent(+5)] [style.boldReindeerMorph("+Attribute.RESISTANCE_REINDEER_MORPH.getName()+")]"),
-			Colour.RACE_REINDEER_MORPH) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getBookEffect(Race.REINDEER_MORPH, ItemType.BOOK_REINDEER_MORPH);
-		}
-	};
-	
 	public static AbstractItemEffectType BOOK_READ_HUMAN = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"Adds human encyclopedia entry.",
 			"[style.boldExcellent(+5)] [style.boldHuman("+Attribute.DAMAGE_HUMAN.getName()+")]",
@@ -219,18 +207,6 @@ public class ItemEffectType {
 		}
 	};
 	
-	public static AbstractItemEffectType BOOK_READ_RAT_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"Adds rat-morph encyclopedia entry.",
-			"[style.boldExcellent(+5)] [style.boldRatMorph("+Attribute.DAMAGE_RAT_MORPH.getName()+")]",
-			"[style.boldExcellent(+5)] [style.boldRatMorph("+Attribute.RESISTANCE_RAT_MORPH.getName()+")]"),
-			Colour.RACE_RAT_MORPH) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getBookEffect(Race.RAT_MORPH, ItemType.BOOK_RAT_MORPH);
-		}
-	};
-	
 	public static AbstractItemEffectType BOOK_READ_RABBIT_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"Adds rabbit-morph encyclopedia entry.",
 			"[style.boldExcellent(+5)] [style.boldRabbitMorph("+Attribute.DAMAGE_RABBIT_MORPH.getName()+")]",
@@ -240,18 +216,6 @@ public class ItemEffectType {
 		@Override
 		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
 			return getBookEffect(Race.RABBIT_MORPH, ItemType.BOOK_RABBIT_MORPH);
-		}
-	};
-	
-	public static AbstractItemEffectType BOOK_READ_BAT_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"Adds bat-morph encyclopedia entry.",
-			"[style.boldExcellent(+5)] [style.boldBatMorph("+Attribute.DAMAGE_BAT_MORPH.getName()+")]",
-			"[style.boldExcellent(+5)] [style.boldBatMorph("+Attribute.RESISTANCE_BAT_MORPH.getName()+")]"),
-			Colour.RACE_BAT_MORPH) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getBookEffect(Race.BAT_MORPH, ItemType.BOOK_BAT_MORPH);
 		}
 	};
 	
@@ -702,24 +666,6 @@ public class ItemEffectType {
 		}
 	};
 	
-	public static AbstractItemEffectType STR_BLACK_RATS_RUM = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(Restores)] 5% [style.boldHealth(energy)]",
-			"[style.boldGood(+1)] [style.boldPhysique(physique)] to 'potion effects'",
-			"[style.boldMinorBad(Adds)] 50% to [style.boldAlcohol(intoxication level)]"),
-			Colour.ATTRIBUTE_PHYSIQUE) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			target.incrementHealth(target.getAttributeValue(Attribute.HEALTH_MAXIMUM)/20);
-
-			return "<p style='text-align:center;'>"
-						+"A powerful wave of arcane energy washes over you..."
-					+ "</p>"
-					+ target.addPotionEffect(Attribute.MAJOR_PHYSIQUE, 1)
-					+ target.incrementAlcoholLevel(0.5f);
-		}
-	};
-	
 	// Intelligence:
 	
 	public static AbstractItemEffectType INT_FELINE_FANCY = new AbstractItemEffectType(Util.newArrayListOfValues(
@@ -1113,15 +1059,12 @@ public class ItemEffectType {
 			List<AbstractItemType> items = new ArrayList<>();
 			items.add(ItemType.FIT_INGREDIENT_EGG_NOG);
 			items.add(ItemType.SEX_INGREDIENT_MINCE_PIE);
-			items.add(ItemType.RACE_INGREDIENT_REINDEER_MORPH);
 			
 			Map<AbstractClothingType, Integer> clothingMap = new HashMap<>();
 			// Common clothing (55%):
-			clothingMap.put(ClothingType.HEAD_ANTLER_HEADBAND, 11);
 			clothingMap.put(ClothingType.NECK_SNOWFLAKE_NECKLACE, 11);
 			clothingMap.put(ClothingType.PIERCING_EAR_SNOW_FLAKES, 11);
 			clothingMap.put(ClothingType.PIERCING_NOSE_SNOWFLAKE_STUD, 11);
-			clothingMap.put(ClothingType.TORSO_OVER_CHRISTMAS_SWEATER, 11);
 			
 			// Uncommon clothing (44%):
 			clothingMap.put(ClothingType.JOLNIR_BOOTS, 4);
@@ -1252,25 +1195,6 @@ public class ItemEffectType {
 		}
 	};
 	
-	public static AbstractItemEffectType RACE_BURGER = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(+2)] [style.boldPhysique(physique)] to 'potion effects'"),
-			Colour.RACE_RAT_MORPH) {
-
-		@Override
-		public String getPotionDescriptor() {
-			return "rat";
-		}
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return (target.isPlayer()
-						?"You start to feel a lot more energetic..."
-						:UtilText.parse(target, "[npc.Name] starts to feel a lot more energetic..."))
-					+ "<br/>"
-					+ target.addPotionEffect(Attribute.MAJOR_PHYSIQUE, 2);
-		}
-	};
-	
 	public static AbstractItemEffectType RACE_CARROT_CAKE = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldSex(+15)] [style.boldCorruption(Fertility)] to 'potion effects'",
 			"[style.boldSex(+15)] [style.boldCorruption(Virility)] to 'potion effects'",
@@ -1358,25 +1282,6 @@ public class ItemEffectType {
 		@Override
 		public String getPotionDescriptor() {
 			return "equine";
-		}
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return (target.isPlayer()
-						?"You start to feel a lot stronger..."
-						:UtilText.parse(target, "[npc.Name] starts to feel a lot stronger..."))
-					+ "<br/>"
-					+ target.addPotionEffect(Attribute.MAJOR_PHYSIQUE, 3);
-		}
-	};
-	
-	public static AbstractItemEffectType RACE_SUGAR_COOKIE = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(+3)] [style.boldPhysique(physique)] to 'potion effects'"),
-			Colour.RACE_REINDEER_MORPH) {
-
-		@Override
-		public String getPotionDescriptor() {
-			return "rangiferine";
 		}
 		
 		@Override
@@ -1501,20 +1406,6 @@ public class ItemEffectType {
 		}
 	};
 
- 	public static AbstractItemEffectType BOTTLED_ESSENCE_RAT_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(+1)] [style.boldArcane(Arcane)] essence",
-			"[style.boldGood(+25%)] [style.bold(damage vs)] [style.boldRat(rat-morphs)]",
-			"[style.boldGood(+25%)] [style.bold(resistance vs)] [style.boldRat(rat-morphs)]"),
-			Colour.RACE_RAT_MORPH) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			target.incrementEssenceCount(TFEssence.ARCANE, 1, false);
-			target.addStatusEffect(StatusEffect.COMBAT_BONUS_RAT_MORPH, 60*4);
-			return "You have absorbed [style.boldGood(+1)] [style.boldArcane(Arcane)] essence, and are now far more effective at fighting [style.boldRat(rat-morphs)]!";
-		}
-	};
-
  	public static AbstractItemEffectType BOTTLED_ESSENCE_RABBIT_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldGood(+1)] [style.boldArcane(Arcane)] essence",
 			"[style.boldGood(+25%)] [style.bold(damage vs)] [style.boldRabbit(rabbit-morphs)]",
@@ -1529,20 +1420,6 @@ public class ItemEffectType {
 		}
 	};
 
- 	public static AbstractItemEffectType BOTTLED_ESSENCE_BAT_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(+1)] [style.boldArcane(Arcane)] essence",
-			"[style.boldGood(+25%)] [style.bold(damage vs)] [style.boldBat(bat-morphs)]",
-			"[style.boldGood(+25%)] [style.bold(resistance vs)] [style.boldBat(bat-morphs)]"),
-			Colour.RACE_BAT_MORPH) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			target.incrementEssenceCount(TFEssence.ARCANE, 1, false);
-			target.addStatusEffect(StatusEffect.COMBAT_BONUS_BAT_MORPH, 60*4);
-			return "You have absorbed [style.boldGood(+1)] [style.boldArcane(Arcane)] essence, and are now far more effective at fighting [style.boldBat(bat-morphs)]!";
-		}
-	};
-	
  	public static AbstractItemEffectType BOTTLED_ESSENCE_ALLIGATOR_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldGood(+1)] [style.boldArcane(Arcane)] essence",
 			"[style.boldGood(+25%)] [style.bold(damage vs)] [style.boldAlligator(alligator-morphs)]",
@@ -1610,20 +1487,6 @@ public class ItemEffectType {
 			target.incrementEssenceCount(TFEssence.ARCANE, 1, false);
 			target.addStatusEffect(StatusEffect.COMBAT_BONUS_HORSE_MORPH, 60*4);
 			return "You have absorbed [style.boldGood(+1)] [style.boldArcane(Arcane)] essence, and are now far more effective at fighting [style.boldHorse(horse-morphs)]!";
-		}
-	};
-	
-	public static AbstractItemEffectType BOTTLED_ESSENCE_REINDEER_MORPH = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(+1)] [style.boldArcane(Arcane)] essence",
-			"[style.boldGood(+25%)] [style.bold(damage vs)] [style.boldReindeer(reindeer-morphs)]",
-			"[style.boldGood(+25%)] [style.bold(resistance vs)] [style.boldReindeer(reindeer-morphs)]"),
-			Colour.RACE_REINDEER_MORPH) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			target.incrementEssenceCount(TFEssence.ARCANE, 1, false);
-			target.addStatusEffect(StatusEffect.COMBAT_BONUS_REINDEER_MORPH, 60*4);
-			return "You have absorbed [style.boldGood(+1)] [style.boldArcane(Arcane)] essence, and are now far more effective at fighting [style.boldReindeer(reindeer-morphs)]!";
 		}
 	};
 	
@@ -2272,35 +2135,6 @@ public class ItemEffectType {
 		}
 	};
 
-	public static AbstractItemEffectType RACE_RAT_MORPH = new AbstractItemEffectType(null,
-			Colour.RACE_RAT_MORPH) {
-
-		@Override
-		public List<TFModifier> getPrimaryModifiers() {
-			return TFModifier.getTFRacialBodyPartsList();
-		}
-
-		@Override
-		public List<TFModifier> getSecondaryModifiers(TFModifier primaryModifier) {
-			return getRacialSecondaryModifiers(Race.RAT_MORPH, primaryModifier);
-		}
-		
-		@Override
-		public List<TFPotency> getPotencyModifiers(TFModifier primaryModifier, TFModifier secondaryModifier) {
-			return getRacialPotencyModifiers(Race.RAT_MORPH, primaryModifier, secondaryModifier);
-		}
-		
-		@Override
-		public List<String> getEffectsDescription(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target) {
-			return Util.newArrayListOfValues(getRacialEffect(Race.RAT_MORPH, primaryModifier, secondaryModifier, potency, user, target).getDescriptionPlusChangeDescription());
-		}
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getRacialEffect(Race.RAT_MORPH, primaryModifier, secondaryModifier, potency, user, target).applyEffect();
-		}
-	};
-
 	public static AbstractItemEffectType RACE_RABBIT_MORPH = new AbstractItemEffectType(null,
 			Colour.RACE_RABBIT_MORPH) {
 
@@ -2330,35 +2164,6 @@ public class ItemEffectType {
 		}
 	};
 
-	public static AbstractItemEffectType RACE_BAT_MORPH = new AbstractItemEffectType(null,
-			Colour.RACE_BAT_MORPH) {
-
-		@Override
-		public List<TFModifier> getPrimaryModifiers() {
-			return TFModifier.getTFRacialBodyPartsList();
-		}
-
-		@Override
-		public List<TFModifier> getSecondaryModifiers(TFModifier primaryModifier) {
-			return getRacialSecondaryModifiers(Race.BAT_MORPH, primaryModifier);
-		}
-		
-		@Override
-		public List<TFPotency> getPotencyModifiers(TFModifier primaryModifier, TFModifier secondaryModifier) {
-			return getRacialPotencyModifiers(Race.BAT_MORPH, primaryModifier, secondaryModifier);
-		}
-		
-		@Override
-		public List<String> getEffectsDescription(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target) {
-			return Util.newArrayListOfValues(getRacialEffect(Race.BAT_MORPH, primaryModifier, secondaryModifier, potency, user, target).getDescriptionPlusChangeDescription());
-		}
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getRacialEffect(Race.BAT_MORPH, primaryModifier, secondaryModifier, potency, user, target).applyEffect();
-		}
-	};
-	
 	public static AbstractItemEffectType RACE_DOG_MORPH = new AbstractItemEffectType(null,
 			Colour.RACE_DOG_MORPH) {
 
@@ -2472,35 +2277,6 @@ public class ItemEffectType {
 		@Override
 		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
 			return getRacialEffect(Race.HORSE_MORPH, primaryModifier, secondaryModifier, potency, user, target).applyEffect();
-		}
-	};
-	
-	public static AbstractItemEffectType RACE_REINDEER_MORPH = new AbstractItemEffectType(null,
-			Colour.RACE_REINDEER_MORPH) {
-
-		@Override
-		public List<TFModifier> getPrimaryModifiers() {
-			return TFModifier.getTFRacialBodyPartsList();
-		}
-
-		@Override
-		public List<TFModifier> getSecondaryModifiers(TFModifier primaryModifier) {
-			return getRacialSecondaryModifiers(Race.REINDEER_MORPH, primaryModifier);
-		}
-		
-		@Override
-		public List<TFPotency> getPotencyModifiers(TFModifier primaryModifier, TFModifier secondaryModifier) {
-			return getRacialPotencyModifiers(Race.REINDEER_MORPH, primaryModifier, secondaryModifier);
-		}
-		
-		@Override
-		public List<String> getEffectsDescription(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target) {
-			return Util.newArrayListOfValues(getRacialEffect(Race.REINDEER_MORPH, primaryModifier, secondaryModifier, potency, user, target).getDescriptionPlusChangeDescription());
-		}
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return getRacialEffect(Race.REINDEER_MORPH, primaryModifier, secondaryModifier, potency, user, target).applyEffect();
 		}
 	};
 	

@@ -290,32 +290,6 @@ public class PlayerCharacter extends GameCharacter implements XMLSaving {
 		} catch(Exception ex) {	
 		}
 		
-//		// Slaves:
-//		
-//		Element slavesOwned = (Element) parentElement.getElementsByTagName("slavesExported").item(0);
-//		if(slavesOwned!=null) {
-//			for(int i=0; i< slavesOwned.getElementsByTagName("character").getLength(); i++){
-//				Element e = ((Element)slavesOwned.getElementsByTagName("character").item(i));
-//				
-//				SlaveImport slave = SlaveImport.loadFromXML2(log, e, doc);
-//				
-//				//TODO move into slave's import:
-//				slave.setMana(slave.getAttributeValue(Attribute.MANA_MAXIMUM));
-//				slave.setHealth(slave.getAttributeValue(Attribute.HEALTH_MAXIMUM));
-//				slave.setStamina(slave.getAttributeValue(Attribute.STAMINA_MAXIMUM));
-//				
-//				try {
-//					Main.game.getSlaveImports().add(slave);
-////					character.addSlave(slave);
-//					slave.setLocation(WorldType.SLAVER_ALLEY, PlaceType.SLAVER_ALLEY_SLAVERY_ADMINISTRATION, true);
-//					
-//				} catch (Exception e1) {
-//					e1.printStackTrace();
-//				}
-//			}
-//		}
-		
-		
 		return character;
 	}
 

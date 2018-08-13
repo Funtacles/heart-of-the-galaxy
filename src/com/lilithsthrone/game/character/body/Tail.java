@@ -376,33 +376,6 @@ public class Tail implements BodyPartInterface, Serializable {
 								+ "[npc.Name] now has [npc.tailCount] [style.boldHorseMorph(horse-like tails)]")
 						);
 				break;
-			case REINDEER_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							(owner.getTailCount()==1
-								?" A reindeer-like tail sprouts from just above your ass, rapidly growing in width until it takes up about a third of your rear."
-									+ " You quickly discover that your control over it is limited to simply twitching it up and down."
-									+ "<br/>"
-									+ "You now have a [style.boldReindeerMorph(reindeer-like tail)]"
-								:" [pc.TailCount] reindeer-like tails sprout from just above your ass, rapidly growing in width until they take up about a third of your rear."
-									+ " You quickly discover that your control over them is limited to simply twitching them up and down."
-									+ "<br/>"
-									+ "You now have [pc.tailCount] [style.boldReindeerMorph(reindeer-like tails)]")
-							);
-				} else {
-					UtilText.transformationContentSB.append(
-							(owner.getTailCount()==1
-								?" A reindeer-like tail sprouts from just above [npc.her] ass, rapidly growing in width until it takes up about a third of [npc.her] rear."
-									+ " [npc.She] quickly discovers that [npc.her] control over it is limited to simply twitching it up and down."
-									+ "<br/>"
-									+ "[npc.Name] now has a [style.boldReindeerMorph(reindeer-like tail)]"
-								:" [npc.TailCount] reindeer-like tails sprout from just above [npc.her] ass, rapidly growing in width until they take up about a third of [npc.her] rear."
-									+ " [npc.She] quickly discovers that [npc.her] control over them is limited to simply twitching them up and down."
-									+ "<br/>"
-									+ "[npc.Name] now has [npc.tailCount] [style.boldReindeerMorph(reindeer-like tails)]")
-							);
-				}
-				break;
 			case COW_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -508,33 +481,6 @@ public class Tail implements BodyPartInterface, Serializable {
 									+ " [npc.She] quickly realises that [npc.she] has a reasonable amount of control over them, and can use them to help balance [npc.herHim] out while moving quickly."
 									+ "<br/>"
 									+ "[npc.Name] now has [npc.tailCount] [style.boldSquirrelMorph(squirrel-like tails)]")
-							);
-				}
-				break;
-			case RAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							(owner.getTailCount()==1
-								?" A thick, rat-like tail sprouts from just above your ass, rapidly growing in size until it's almost as long as one of your legs."
-									+ " You quickly realise that you have a decent amount of control over it, and you can twist it almost anywhere you please."
-									+ "<br/>"
-									+ "You now have a [style.boldRatMorph(rat-like tail)]"
-								:" [pc.TailCount] thick, rat-like tails sprout from just above your ass, rapidly growing in size until they're each almost as long as one of your legs."
-									+ " You quickly realise that you have a decent amount of control over them, and you can twist them almost anywhere you please."
-									+ "<br/>"
-									+ "You now have [pc.tailCount] [style.boldRatMorph(rat-like tails)]")
-							);
-				} else {
-					UtilText.transformationContentSB.append(
-							(owner.getTailCount()==1
-								?" A thick, rat-like tail sprouts from just above [npc.her] ass, rapidly growing in size until it's almost as long as one of [npc.her] legs."
-									+ " [npc.She] quickly realises that [npc.she] has a decent amount of control over it, and can twist it almost anywhere [npc.she] pleases."
-									+ "<br/>"
-									+ "[npc.Name] now has a [style.boldRatMorph(rat-like tail)]"
-								:" [npc.TailCount] thick, rat-like tails sprout from just above [npc.her] ass, rapidly growing in size until they're each almost as long as one of [npc.her] legs."
-									+ " [npc.She] quickly realises that [npc.she] has a decent amount of control over them, and can twist them almost anywhere [npc.she] pleases."
-									+ "<br/>"
-									+ "[npc.Name] now has [npc.tailCount] [style.boldRatMorph(rat-like tails)]")
 							);
 				}
 				break;

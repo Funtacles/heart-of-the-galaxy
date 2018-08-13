@@ -375,21 +375,6 @@ public class Penis implements BodyPartInterface, Serializable {
 							+ "[npc.She] has [style.boldHorseMorph([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" equine balls)], covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldHorseMorph(equine cum)].");
 				}
 				break;
-			case REINDEER_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							"Letting out an involuntary moan, you feel your penis shifting into a new form, and you're hit by a wave of overwhelming arousal as your shaft grows wider and the head flattens down.<br/>"
-							+ "You now have a [style.boldReindeerMorph(reindeer-like penis)], covered in [pc.penisFullDescription(true)].<br/>"
-							+ "You have [style.boldReindeerMorph([pc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" rangiferine balls)],"
-									+ " covered in [pc.ballsFullDescription(true)], which produce [pc.cumColour(true)] [style.boldReindeerMorph(rangiferine cum)].");
-				} else {
-					UtilText.transformationContentSB.append(
-							"Letting out an involuntary moan, [npc.name] feels [npc.her] penis shifting into a new form, and [npc.sheIs] hit by a wave of overwhelming arousal as [npc.her] shaft grows wider and the head flattens down.<br/>"
-							+ "[npc.She] now has an [style.boldReindeerMorph(reindeer-like penis)], covered in [npc.penisFullDescription(true)].<br/>"
-							+ "[npc.She] has [style.boldReindeerMorph([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" rangiferine balls)],"
-									+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldReindeerMorph(rangiferine cum)].");
-				}
-				break;
 			case BOVINE:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -444,19 +429,6 @@ public class Penis implements BodyPartInterface, Serializable {
 									+ " which produce [npc.cumColour(true)] [style.boldSquirrelMorph(squirrel-morph cum)].");
 				}
 				break;
-			case RAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							"You now have a [style.boldRatMorph(rat-morph's penis)], covered in [pc.penisFullDescription(true)].<br/>"
-							+ "You have [style.boldRatMorph([pc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" rat-morph's balls)],"
-									+ " covered in [pc.ballsFullDescription(true)], which produce [pc.cumColour(true)] [style.boldRatMorph(rat-morph cum)].");
-				} else {
-					UtilText.transformationContentSB.append(
-							"[npc.She] now has a [style.boldRatMorph(rat-morph's penis)], covered in [npc.penisFullDescription(true)].<br/>"
-							+ "[npc.She] has [style.boldRatMorph([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" rat-morph's balls)], covered in [npc.ballsFullDescription(true)],"
-									+ " which produce [npc.cumColour(true)] [style.boldRatMorph(rat-morph cum)].");
-				}
-				break;
 			case RABBIT_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -468,19 +440,6 @@ public class Penis implements BodyPartInterface, Serializable {
 							"[npc.She] now has a [style.boldRabbitMorph(rabbit-morph's penis)], covered in [npc.penisFullDescription(true)].<br/>"
 							+ "[npc.She] has [style.boldRabbitMorph([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" rabbit-morph's balls)], covered in [npc.ballsFullDescription(true)],"
 									+ " which produce [npc.cumColour(true)] [style.boldRabbitMorph(rabbit-morph cum)].");
-				}
-				break;
-			case BAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							"You now have a [style.boldBatMorph(bat-morph's penis)], covered in [pc.penisFullDescription(true)].<br/>"
-							+ "You have [style.boldBatMorph([pc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" bat-morph's balls)],"
-									+ " covered in [pc.ballsFullDescription(true)], which produce [pc.cumColour(true)] [style.boldBatMorph(bat-morph cum)].");
-				} else {
-					UtilText.transformationContentSB.append(
-							"[npc.She] now has a [style.boldBatMorph(bat-morph's penis)], covered in [npc.penisFullDescription(true)].<br/>"
-							+ "[npc.She] has [style.boldBatMorph([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" bat-morph's balls)], covered in [npc.ballsFullDescription(true)],"
-									+ " which produce [npc.cumColour(true)] [style.boldBatMorph(bat-morph cum)].");
 				}
 				break;
 		}

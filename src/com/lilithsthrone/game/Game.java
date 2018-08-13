@@ -38,12 +38,10 @@ import com.lilithsthrone.game.character.PlayerCharacter;
 import com.lilithsthrone.game.character.attributes.AffectionLevel;
 import com.lilithsthrone.game.character.attributes.ObedienceLevel;
 import com.lilithsthrone.game.character.body.CoverableArea;
-import com.lilithsthrone.game.character.body.Covering;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.gender.GenderPreference;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.Amber;
 import com.lilithsthrone.game.character.npc.dominion.Angel;
 import com.lilithsthrone.game.character.npc.dominion.Arthur;
 import com.lilithsthrone.game.character.npc.dominion.Ashley;
@@ -52,26 +50,19 @@ import com.lilithsthrone.game.character.npc.dominion.Bunny;
 import com.lilithsthrone.game.character.npc.dominion.CandiReceptionist;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.Finch;
-import com.lilithsthrone.game.character.npc.dominion.Jules;
-import com.lilithsthrone.game.character.npc.dominion.Kalahari;
 import com.lilithsthrone.game.character.npc.dominion.Kate;
-import com.lilithsthrone.game.character.npc.dominion.Kruger;
 import com.lilithsthrone.game.character.npc.dominion.Lilaya;
 import com.lilithsthrone.game.character.npc.dominion.Loppy;
 import com.lilithsthrone.game.character.npc.dominion.Lumi;
 import com.lilithsthrone.game.character.npc.dominion.Nyan;
 import com.lilithsthrone.game.character.npc.dominion.Pix;
 import com.lilithsthrone.game.character.npc.dominion.Ralph;
-import com.lilithsthrone.game.character.npc.dominion.ReindeerOverseer;
 import com.lilithsthrone.game.character.npc.dominion.Rose;
 import com.lilithsthrone.game.character.npc.dominion.SlaveInStocks;
 import com.lilithsthrone.game.character.npc.dominion.SupplierLeader;
 import com.lilithsthrone.game.character.npc.dominion.SupplierPartner;
 import com.lilithsthrone.game.character.npc.dominion.TestNPC;
 import com.lilithsthrone.game.character.npc.dominion.Vicky;
-import com.lilithsthrone.game.character.npc.dominion.Zaranix;
-import com.lilithsthrone.game.character.npc.dominion.ZaranixMaidKatherine;
-import com.lilithsthrone.game.character.npc.dominion.ZaranixMaidKelly;
 import com.lilithsthrone.game.character.npc.misc.GenericAndrogynousNPC;
 import com.lilithsthrone.game.character.npc.misc.GenericFemaleNPC;
 import com.lilithsthrone.game.character.npc.misc.GenericMaleNPC;
@@ -79,7 +70,6 @@ import com.lilithsthrone.game.character.npc.misc.PrologueFemale;
 import com.lilithsthrone.game.character.npc.misc.PrologueMale;
 import com.lilithsthrone.game.character.npc.misc.SlaveImport;
 import com.lilithsthrone.game.character.persona.History;
-import com.lilithsthrone.game.character.quests.Quest;
 import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.combat.Spell;
@@ -91,7 +81,6 @@ import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
 import com.lilithsthrone.game.dialogue.encounters.Encounter;
 import com.lilithsthrone.game.dialogue.eventLog.EventLogEntry;
 import com.lilithsthrone.game.dialogue.eventLog.SlaveryEventLogEntry;
-import com.lilithsthrone.game.dialogue.places.dominion.zaranixHome.ZaranixHomeGroundFloor;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseCombat;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
@@ -109,7 +98,6 @@ import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.settings.KeyCodeWithModifiers;
 import com.lilithsthrone.game.settings.KeyboardAction;
 import com.lilithsthrone.game.sex.Sex;
-import com.lilithsthrone.game.slavery.MilkingRoom;
 import com.lilithsthrone.game.slavery.SlavePermission;
 import com.lilithsthrone.game.slavery.SlavePermissionSetting;
 import com.lilithsthrone.game.slavery.SlaveryUtil;
@@ -124,7 +112,6 @@ import com.lilithsthrone.world.Cell;
 import com.lilithsthrone.world.World;
 import com.lilithsthrone.world.WorldType;
 import com.lilithsthrone.world.places.PlaceType;
-import com.lilithsthrone.world.places.PlaceUpgrade;
 
 /**
  * @since 0.1.0
@@ -676,40 +663,6 @@ public class Game implements Serializable, XMLSaving {
 				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Arthur.class))) {
 					Main.game.addNPC(new Arthur(), false);
 				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Amber.class))) {
-					Main.game.addNPC(new Amber(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(ZaranixMaidKatherine.class))) {
-					Main.game.addNPC(new ZaranixMaidKatherine(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(ZaranixMaidKelly.class))) {
-					Main.game.addNPC(new ZaranixMaidKelly(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Zaranix.class))) {
-					Main.game.addNPC(new Zaranix(), false);
-					
-					NPC zaranix = Main.game.getZaranix();
-					NPC amber = Main.game.getAmber();
-					NPC kelly = Main.game.getKelly();
-					NPC katherine = Main.game.getKatherine();
-					
-					zaranix.setAffection(katherine, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-					zaranix.setAffection(kelly, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-					zaranix.setAffection(amber, AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
-
-					amber.setAffection(zaranix, AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
-					amber.setAffection(kelly, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-					amber.setAffection(katherine, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-
-					kelly.setAffection(zaranix, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-					kelly.setAffection(katherine, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-					kelly.setAffection(amber, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-
-					katherine.setAffection(zaranix, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-					katherine.setAffection(kelly, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-					katherine.setAffection(amber, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-				}
-				
 				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Ashley.class))) {
 					Main.game.addNPC(new Ashley(), false);
 				}
@@ -730,84 +683,6 @@ public class Game implements Serializable, XMLSaving {
 				}
 				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Lumi.class))) {
 					Main.game.addNPC(new Lumi(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Jules.class))) { // Add nightclub NPCs:
-					Main.game.addNPC(new Jules(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Kruger.class))) {
-					Main.game.addNPC(new Kruger(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Kalahari.class))) {
-					Main.game.addNPC(new Kalahari(), false);
-					Main.game.getKalahari().setFather(Main.game.getKruger());
-					Main.game.getKalahari().setAffection(Main.game.getKruger(), AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
-					Main.game.getKruger().setAffection(Main.game.getKalahari(), AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
-				}
-				if(Main.isVersionOlderThan(loadingVersion, "0.2.8")) {
-					Main.game.getJules().setLocation(WorldType.NIGHTLIFE_CLUB, PlaceType.WATERING_HOLE_ENTRANCE);
-					Main.game.getKruger().setLocation(WorldType.NIGHTLIFE_CLUB, PlaceType.WATERING_HOLE_VIP_AREA);
-					Main.game.getKalahari().setLocation(WorldType.NIGHTLIFE_CLUB, PlaceType.WATERING_HOLE_BAR);
-				}
-				
-				// To prevent errors from previous versions, reset Zaranix progress if prior to 0.1.95:
-				if(Main.isVersionOlderThan(loadingVersion, "0.1.90.5")) {
-					if(Main.game.getPlayer().getWorldLocation() == WorldType.ZARANIX_HOUSE_GROUND_FLOOR
-							|| Main.game.getPlayer().getWorldLocation() == WorldType.ZARANIX_HOUSE_FIRST_FLOOR) {
-						Main.game.getPlayer().setLocation(WorldType.DOMINION, PlaceType.DOMINION_DEMON_HOME, false);
-						
-						ZaranixHomeGroundFloor.resetHouseAfterLeaving();
-						Main.game.getDialogueFlags().setFlag(DialogueFlagValue.zaranixDiscoveredHome, false);
-						Main.game.getDialogueFlags().setFlag(DialogueFlagValue.zaranixKickedDownDoor, false);
-						Main.game.getDialogueFlags().setFlag(DialogueFlagValue.zaranixKnockedOnDoor, false);
-						Main.game.getDialogueFlags().setFlag(DialogueFlagValue.zaranixMaidsHostile, false);
-						
-						Main.game.getArthur().setLocation(WorldType.ZARANIX_HOUSE_FIRST_FLOOR, PlaceType.ZARANIX_FF_OFFICE, true);
-						
-						if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-							Main.game.getPlayer().setQuestProgress(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE);
-						}
-					}
-				}
-				
-				if(Main.isVersionOlderThan(loadingVersion, "0.1.95")) {
-					if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-						Main.game.getArthur().setLocation(WorldType.LILAYAS_HOUSE_GROUND_FLOOR, PlaceType.LILAYA_HOME_LAB, true);
-					}
-				}
-
-				if(Main.isVersionOlderThan(loadingVersion, "0.2.4.5")) { //Try to remove unused NPCs TODO better method to delete all banished NPCs
-					for(NPC npc : Main.game.getAllNPCs()) {
-						if(!npc.isUnique() && npc.getWorldLocation()==WorldType.EMPTY) {
-							Main.game.banishNPC(npc);
-						}
-					}
-				}
-				
-				if(Main.isVersionOlderThan(loadingVersion, "0.2.5.1")) { //Reset ass/nipple/lip colours
-					for(NPC npc : Main.game.getAllNPCs()) {
-						if(!npc.isSlave() || (npc.getOwner()!=null && !npc.getOwner().isPlayer()))
-						npc.setSkinCovering(new Covering(npc.getSkinType().getBodyCoveringType(npc), npc.getCovering(npc.getSkinType().getBodyCoveringType(npc)).getPrimaryColour()), true);
-					}
-				}
-				
-				if(Main.isVersionOlderThan(loadingVersion, "0.2.5")) { //Add milking rooms
-					
-					Cell[][] grid = Main.game.getWorlds().get(WorldType.LILAYAS_HOUSE_GROUND_FLOOR).getCellGrid();
-					for(int i=0 ; i<grid.length ; i++) {
-						for(int j=0 ; j<grid[0].length ; j++) {
-							if(grid[i][j].getPlace().getPlaceUpgrades().contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-								Main.game.getSlaveryUtil().addMilkingRoom(new MilkingRoom(WorldType.LILAYAS_HOUSE_GROUND_FLOOR, new Vector2i(i, j)));
-							}
-						}
-					}
-					grid = Main.game.getWorlds().get(WorldType.LILAYAS_HOUSE_FIRST_FLOOR).getCellGrid();
-					for(int i=0 ; i<grid.length ; i++) {
-						for(int j=0 ; j<grid[0].length ; j++) {
-							if(grid[i][j].getPlace().getPlaceUpgrades().contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-								Main.game.getSlaveryUtil().addMilkingRoom(new MilkingRoom(WorldType.LILAYAS_HOUSE_FIRST_FLOOR, new Vector2i(i, j)));
-							}
-						}
-					}
 				}
 				
 				Main.game.pendingSlaveInStocksReset = false;
@@ -936,36 +811,6 @@ public class Game implements Serializable, XMLSaving {
 			
 			addNPC(new Finch(), false);
 			
-			// Zaranix:
-			Zaranix zaranix = new Zaranix();
-			addNPC(zaranix, false);
-			
-			ZaranixMaidKatherine katherine = new ZaranixMaidKatherine();
-			addNPC(katherine, false);
-			
-			ZaranixMaidKelly kelly = new ZaranixMaidKelly();
-			addNPC(kelly, false);
-			
-			Amber amber = new Amber();
-			addNPC(amber, false);
-			
-			
-			zaranix.setAffection(katherine, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-			zaranix.setAffection(kelly, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-			zaranix.setAffection(amber, AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
-
-			amber.setAffection(zaranix, AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
-			amber.setAffection(kelly, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-			amber.setAffection(katherine, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-
-			kelly.setAffection(zaranix, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-			kelly.setAffection(katherine, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-			kelly.setAffection(amber, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-
-			katherine.setAffection(zaranix, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-			katherine.setAffection(kelly, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-			katherine.setAffection(amber, AffectionLevel.POSITIVE_THREE_CARING.getMedianValue());
-			
 			addNPC(new Arthur(), false);
 
 			addNPC(new Ashley(), false);
@@ -977,14 +822,6 @@ public class Game implements Serializable, XMLSaving {
 			addNPC(new Loppy(), false);
 			
 			addNPC(new Lumi(), false);
-
-			addNPC(new Jules(), false);
-			addNPC(new Kruger(), false);
-			addNPC(new Kalahari(), false);
-			Main.game.getKalahari().setFather(Main.game.getKruger());
-			Main.game.getKalahari().setAffection(Main.game.getKruger(), AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
-			Main.game.getKruger().setAffection(Main.game.getKalahari(), AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1022,11 +859,6 @@ public class Game implements Serializable, XMLSaving {
 		
 		if(Main.game.getCurrentWeather()!=Weather.SNOW && Main.game.getSeason()!=Season.WINTER) {
 			Main.game.getDialogueFlags().values.remove(DialogueFlagValue.hasSnowedThisWinter);
-			for(NPC npc : Main.game.getReindeerOverseers()) {
-				if(npc.getLocation()!=Main.game.getPlayer().getLocation()) {
-					npc.setLocation(WorldType.EMPTY, PlaceType.GENERIC_EMPTY_TILE, true);
-				}
-			}
 		}
 		
 		// Slavery: TODO
@@ -1042,14 +874,6 @@ public class Game implements Serializable, XMLSaving {
 		if(newDay) {
 			pendingSlaveInStocksReset = true;
 			Main.game.getPlayer().resetDaysOrgasmCount();
-			
-			// Reindeer:
-			for(NPC npc : Main.game.getReindeerOverseers()) {
-				if(npc.getLocationPlace().getPlaceType()==PlaceType.DOMINION_STREET && !npc.getLocation().equals(Main.game.getPlayer().getLocation())) {
-					npc.moveToAdjacentMatchingCellType();
-					Main.game.getDialogueFlags().dailyReindeerReset(npc.getId());
-				}
-			}
 		}
 		
 		if(pendingSlaveInStocksReset && Main.game.getPlayer().getLocationPlace().getPlaceType()!=PlaceType.SLAVER_ALLEY_PUBLIC_STOCKS) {
@@ -2645,24 +2469,8 @@ public class Game implements Serializable, XMLSaving {
 		return (NPC) this.getNPCById(getUniqueNPCId(Finch.class));
 	}
 	
-	public NPC getZaranix() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Zaranix.class));
-	}
-	
-	public NPC getAmber() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Amber.class));
-	}
-	
 	public NPC getArthur() {
 		return (NPC) this.getNPCById(getUniqueNPCId(Arthur.class));
-	}
-	
-	public NPC getKelly() {
-		return (NPC) this.getNPCById(getUniqueNPCId(ZaranixMaidKelly.class));
-	}
-	
-	public NPC getKatherine() {
-		return (NPC) this.getNPCById(getUniqueNPCId(ZaranixMaidKatherine.class));
 	}
 
 	public NPC getAshley() {
@@ -2693,18 +2501,6 @@ public class Game implements Serializable, XMLSaving {
 		return (NPC) this.getNPCById(getUniqueNPCId(Lumi.class));
 	}
 
-	public NPC getJules() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Jules.class));
-	}
-
-	public NPC getKruger() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Kruger.class));
-	}
-
-	public NPC getKalahari() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Kalahari.class));
-	}
-	
 	public NPC getGenericMaleNPC() {
 		return (NPC) this.getNPCById(getUniqueNPCId(GenericMaleNPC.class));
 	}
@@ -2741,14 +2537,6 @@ public class Game implements Serializable, XMLSaving {
 		offspringSpawned.removeIf(npc -> npc.getWorldLocation()==WorldType.EMPTY);
 		
 		return offspringSpawned;
-	}
-	
-	public List<NPC> getReindeerOverseers() {
-		List<NPC> reindeerOverseers = new ArrayList<>(getAllNPCs());
-		
-		reindeerOverseers.removeIf(npc -> !npc.getClass().equals(ReindeerOverseer.class));
-		
-		return reindeerOverseers;
 	}
 	
 	public List<NPC> getAllNPCs() {

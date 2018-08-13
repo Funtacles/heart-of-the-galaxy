@@ -3221,9 +3221,6 @@ public class Lab {
 					case HORSE_MORPH_ZEBRA:
 						litterSB.append(" strong");
 						break;
-					case REINDEER_MORPH:
-						litterSB.append(" strong");
-						break;
 					case HUMAN:
 						litterSB.append(" smiling");
 						break;
@@ -3236,12 +3233,6 @@ public class Lab {
 						break;
 					case WOLF_MORPH:
 						litterSB.append(" powerful");
-						break;
-					case BAT_MORPH:
-						litterSB.append(" smiling");
-						break;
-					case RAT_MORPH:
-						litterSB.append(" grinning");
 						break;
 				}
 				litterSB.append(" <b style='color:"+ Colour.MASCULINE.toWebHexString()+ ";'>"+ (Main.game.getPlayer().getLastLitterBirthed().getSonsFromFather() > 1
@@ -3297,9 +3288,6 @@ public class Lab {
 					case HORSE_MORPH_ZEBRA:
 						litterSB.append(" strong");
 						break;
-					case REINDEER_MORPH:
-						litterSB.append(" strong");
-						break;
 					case HUMAN:
 						litterSB.append(" smiling");
 						break;
@@ -3312,12 +3300,6 @@ public class Lab {
 						break;
 					case WOLF_MORPH:
 						litterSB.append(" powerful");
-						break;
-					case BAT_MORPH:
-						litterSB.append(" smiling");
-						break;
-					case RAT_MORPH:
-						litterSB.append(" grinning");
 						break;
 				}
 				litterSB.append(" <b style='color:"+ Colour.MASCULINE.toWebHexString()+ ";'>"+ (Main.game.getPlayer().getLastLitterBirthed().getSonsFromMother() > 1
@@ -3373,9 +3355,6 @@ public class Lab {
 					case HORSE_MORPH_ZEBRA:
 						litterSB.append(" confident");
 						break;
-					case REINDEER_MORPH:
-						litterSB.append(" strong");
-						break;
 					case HUMAN:
 						litterSB.append(" smiling");
 						break;
@@ -3387,12 +3366,6 @@ public class Lab {
 						litterSB.append(" happy");
 						break;
 					case WOLF_MORPH:
-						litterSB.append(" grinning");
-						break;
-					case BAT_MORPH:
-						litterSB.append(" smiling");
-						break;
-					case RAT_MORPH:
 						litterSB.append(" grinning");
 						break;
 				}
@@ -3449,9 +3422,6 @@ public class Lab {
 					case HORSE_MORPH_ZEBRA:
 						litterSB.append(" confident");
 						break;
-					case REINDEER_MORPH:
-						litterSB.append(" strong");
-						break;
 					case HUMAN:
 						litterSB.append(" smiling");
 						break;
@@ -3463,12 +3433,6 @@ public class Lab {
 						litterSB.append(" happy");
 						break;
 					case WOLF_MORPH:
-						litterSB.append(" grinning");
-						break;
-					case BAT_MORPH:
-						litterSB.append(" smiling");
-						break;
-					case RAT_MORPH:
 						litterSB.append(" grinning");
 						break;
 				}

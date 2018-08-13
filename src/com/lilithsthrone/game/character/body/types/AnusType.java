@@ -32,19 +32,13 @@ public enum AnusType implements BodyPartTypeInterface {
 	
 	SQUIRREL_MORPH(BodyCoveringType.ANUS, Race.SQUIRREL_MORPH),
 	
-	RAT_MORPH(BodyCoveringType.ANUS, Race.RAT_MORPH),
-	
 	RABBIT_MORPH(BodyCoveringType.ANUS, Race.RABBIT_MORPH),
-	
-	BAT_MORPH(BodyCoveringType.ANUS, Race.BAT_MORPH),
 	
 	WOLF_MORPH(BodyCoveringType.ANUS, Race.WOLF_MORPH),
 	
 	CAT_MORPH(BodyCoveringType.ANUS, Race.CAT_MORPH),
 	
 	HORSE_MORPH(BodyCoveringType.ANUS, Race.HORSE_MORPH, OrificeModifier.PUFFY),
-	
-	REINDEER_MORPH(BodyCoveringType.ANUS, Race.REINDEER_MORPH, OrificeModifier.PUFFY),
 	
 	ALLIGATOR_MORPH(BodyCoveringType.ANUS, Race.ALLIGATOR_MORPH);
 

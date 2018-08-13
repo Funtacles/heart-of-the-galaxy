@@ -416,35 +416,6 @@ public enum RacialBody {
 
 	},
 
-	REINDEER_MORPH(Util.newHashMapOfValues(
-				new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(20f, 50f)),
-				new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f))),
-			AntennaType.NONE,
-			ArmType.REINDEER_MORPH, 1,
-			AssType.REINDEER_MORPH, AssSize.TWO_SMALL, AssSize.THREE_NORMAL, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
-			BreastType.REINDEER_MORPH,
-			CupSize.FLAT, 1, Lactation.ZERO_NONE, Capacity.ZERO_IMPENETRABLE, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT, NippleSize.ZERO_TINY, NippleShape.NORMAL, AreolaeSize.ZERO_TINY, 1,
-			CupSize.D, 3, Lactation.ZERO_NONE, Capacity.ZERO_IMPENETRABLE, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT, NippleSize.ONE_SMALL, NippleShape.NORMAL, AreolaeSize.TWO_BIG, 1,
-			190, 10, BodySize.THREE_LARGE.getMedianValue(), Muscle.FOUR_RIPPED.getMedianValue(),
-			180, 70, BodySize.THREE_LARGE.getMedianValue(), Muscle.THREE_MUSCULAR.getMedianValue(),
-			EarType.REINDEER_MORPH,
-			EyeType.REINDEER_MORPH,
-			FaceType.REINDEER_MORPH, LipSize.ONE_AVERAGE, LipSize.TWO_FULL,
-			HairType.REINDEER_MORPH, HairLength.TWO_SHORT, HairLength.THREE_SHOULDER_LENGTH,
-			LegType.REINDEER_MORPH,
-			SkinType.REINDEER_MORPH, BodyMaterial.FLESH,
-			HornLength.THREE_HUGE, HornLength.TWO_LONG, Util.newArrayListOfValues(HornType.REINDEER_RACK),
-			PenisType.REINDEER_MORPH, PenisSize.THREE_LARGE, PenisGirth.THREE_THICK,
-			PenisType.NONE, PenisSize.TWO_AVERAGE, PenisGirth.THREE_THICK,
-			TesticleSize.THREE_LARGE, 2, CumProduction.THREE_AVERAGE,
-			TailType.REINDEER_MORPH,
-			TentacleType.NONE,
-			VaginaType.REINDEER_MORPH, Wetness.TWO_MOIST, Capacity.FOUR_LOOSE, ClitorisSize.ONE_BIG, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
-			WingType.NONE, WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
-	
-	},
-
 	// REPTILE:
 	ALLIGATOR_MORPH(Util.newHashMapOfValues(
 	            new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(20f, 40f)),
@@ -509,44 +480,6 @@ public enum RacialBody {
 
 	},
 
-	RAT_MORPH(Util.newHashMapOfValues(
-				new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(10f, 20f)),
-				new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f))),
-			AntennaType.NONE,
-			ArmType.RAT_MORPH, 1,
-			AssType.RAT_MORPH, AssSize.TWO_SMALL, AssSize.THREE_NORMAL, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
-			BreastType.RAT_MORPH,
-			CupSize.FLAT, 1, Lactation.ZERO_NONE, Capacity.ZERO_IMPENETRABLE, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT, NippleSize.ZERO_TINY, NippleShape.NORMAL, AreolaeSize.ZERO_TINY, 1,
-			CupSize.C, 1, Lactation.ZERO_NONE, Capacity.ZERO_IMPENETRABLE, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT, NippleSize.ZERO_TINY, NippleShape.NORMAL, AreolaeSize.TWO_BIG, 1,
-			170, 35, BodySize.TWO_AVERAGE.getMedianValue(), Muscle.THREE_MUSCULAR.getMedianValue(),
-			160, 85, BodySize.TWO_AVERAGE.getMedianValue(), Muscle.TWO_TONED.getMedianValue(),
-			EarType.RAT_MORPH,
-			EyeType.RAT_MORPH,
-			FaceType.RAT_MORPH, LipSize.ONE_AVERAGE, LipSize.TWO_FULL,
-			HairType.RAT_MORPH, HairLength.ONE_VERY_SHORT, HairLength.THREE_SHOULDER_LENGTH,
-			LegType.RAT_MORPH,
-			SkinType.RAT_MORPH, BodyMaterial.FLESH,
-			HornLength.ZERO_TINY, HornLength.ZERO_TINY, Util.newArrayListOfValues(HornType.NONE),
-			PenisType.RAT_MORPH, PenisSize.THREE_LARGE, PenisGirth.TWO_AVERAGE,
-			PenisType.NONE, PenisSize.TWO_AVERAGE, PenisGirth.TWO_AVERAGE,
-			TesticleSize.TWO_AVERAGE, 2, CumProduction.THREE_AVERAGE,
-			TailType.RAT_MORPH,
-			TentacleType.NONE,
-			VaginaType.RAT_MORPH, Wetness.TWO_MOIST, Capacity.THREE_SLIGHTLY_LOOSE, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
-			WingType.NONE, WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
-
-		@Override
-		public Map<PersonalityTrait, PersonalityWeight> getPersonality() {
-			return Util.newHashMapOfValues(
-					new Value<>(PersonalityTrait.AGREEABLENESS, PersonalityWeight.LOW),
-					new Value<>(PersonalityTrait.CONSCIENTIOUSNESS, PersonalityWeight.AVERAGE),
-					new Value<>(PersonalityTrait.EXTROVERSION, PersonalityWeight.AVERAGE),
-					new Value<>(PersonalityTrait.NEUROTICISM, PersonalityWeight.AVERAGE),
-					new Value<>(PersonalityTrait.ADVENTUROUSNESS, PersonalityWeight.AVERAGE));
-		}
-	},
-
 	RABBIT_MORPH(Util.newHashMapOfValues(
 				new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(5f, 15f)),
 				new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f))),
@@ -574,44 +507,6 @@ public enum RacialBody {
 			WingType.NONE, WingSize.ZERO_TINY, WingSize.ZERO_TINY,
 			GenitalArrangement.NORMAL) {
 
-	},
-
-	BAT_MORPH(Util.newHashMapOfValues(
-				new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(5f, 10f)),
-				new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f))),
-			AntennaType.NONE,
-			ArmType.BAT_MORPH, 1,
-			AssType.BAT_MORPH, AssSize.TWO_SMALL, AssSize.THREE_NORMAL, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
-			BreastType.BAT_MORPH,
-			CupSize.FLAT, 1, Lactation.ZERO_NONE, Capacity.ZERO_IMPENETRABLE, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT, NippleSize.ZERO_TINY, NippleShape.NORMAL, AreolaeSize.ZERO_TINY, 1,
-			CupSize.C, 1, Lactation.ZERO_NONE, Capacity.ZERO_IMPENETRABLE, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT, NippleSize.ZERO_TINY, NippleShape.NORMAL, AreolaeSize.TWO_BIG, 1,
-			170, 35, BodySize.TWO_AVERAGE.getMedianValue(), Muscle.THREE_MUSCULAR.getMedianValue(),
-			160, 85, BodySize.TWO_AVERAGE.getMedianValue(), Muscle.TWO_TONED.getMedianValue(),
-			EarType.BAT_MORPH,
-			EyeType.BAT_MORPH,
-			FaceType.BAT_MORPH, LipSize.ONE_AVERAGE, LipSize.TWO_FULL,
-			HairType.BAT_MORPH, HairLength.ONE_VERY_SHORT, HairLength.THREE_SHOULDER_LENGTH,
-			LegType.BAT_MORPH,
-			SkinType.BAT_MORPH, BodyMaterial.FLESH,
-			HornLength.ZERO_TINY, HornLength.ZERO_TINY, Util.newArrayListOfValues(HornType.NONE),
-			PenisType.BAT_MORPH, PenisSize.THREE_LARGE, PenisGirth.TWO_AVERAGE,
-			PenisType.NONE, PenisSize.TWO_AVERAGE, PenisGirth.TWO_AVERAGE,
-			TesticleSize.TWO_AVERAGE, 2, CumProduction.THREE_AVERAGE,
-			TailType.NONE,
-			TentacleType.NONE,
-			VaginaType.BAT_MORPH, Wetness.TWO_MOIST, Capacity.THREE_SLIGHTLY_LOOSE, ClitorisSize.ZERO_AVERAGE, OrificeElasticity.FOUR_LIMBER, OrificePlasticity.THREE_RESILIENT,
-			WingType.NONE, WingSize.ZERO_TINY, WingSize.ZERO_TINY,
-			GenitalArrangement.NORMAL) {
-
-		@Override
-		public Map<PersonalityTrait, PersonalityWeight> getPersonality() {
-			return Util.newHashMapOfValues(
-					new Value<>(PersonalityTrait.AGREEABLENESS, PersonalityWeight.AVERAGE),
-					new Value<>(PersonalityTrait.CONSCIENTIOUSNESS, PersonalityWeight.AVERAGE),
-					new Value<>(PersonalityTrait.EXTROVERSION, PersonalityWeight.HIGH),
-					new Value<>(PersonalityTrait.NEUROTICISM, PersonalityWeight.AVERAGE),
-					new Value<>(PersonalityTrait.ADVENTUROUSNESS, PersonalityWeight.AVERAGE));
-		}
 	};
 
 	// Attributes modified by this Trait:
@@ -804,18 +699,12 @@ public enum RacialBody {
 				return RacialBody.ALLIGATOR_MORPH;
 			case HORSE_MORPH:
 				return RacialBody.HORSE_MORPH;
-			case REINDEER_MORPH:
-				return RacialBody.REINDEER_MORPH;
 			case HUMAN:
 				return RacialBody.HUMAN;
 			case WOLF_MORPH:
 				return RacialBody.WOLF_MORPH;
 			case SQUIRREL_MORPH:
 				return RacialBody.SQUIRREL_MORPH;
-			case BAT_MORPH:
-				return RacialBody.BAT_MORPH;
-			case RAT_MORPH:
-				return RacialBody.RAT_MORPH;
 			case RABBIT_MORPH:
 				return RacialBody.RABBIT_MORPH;
 		}

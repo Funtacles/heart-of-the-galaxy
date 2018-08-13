@@ -37,17 +37,11 @@ public enum EyeType implements BodyPartTypeInterface {
 
 	SQUIRREL_MORPH(BodyCoveringType.EYE_SQUIRREL, Race.SQUIRREL_MORPH, 1, EyeShape.ROUND, EyeShape.ROUND),
 
-	RAT_MORPH(BodyCoveringType.EYE_RAT, Race.RAT_MORPH, 1, EyeShape.ROUND, EyeShape.ROUND),
-
 	RABBIT_MORPH(BodyCoveringType.EYE_RABBIT, Race.RABBIT_MORPH, 1, EyeShape.ROUND, EyeShape.ROUND),
 	
-	BAT_MORPH(BodyCoveringType.EYE_BAT, Race.BAT_MORPH, 1, EyeShape.ROUND, EyeShape.ROUND),
-
 	ALLIGATOR_MORPH(BodyCoveringType.EYE_ALLIGATOR_MORPH, Race.ALLIGATOR_MORPH, 1, EyeShape.ROUND, EyeShape.VERTICAL),
 
-	HORSE_MORPH(BodyCoveringType.EYE_HORSE_MORPH, Race.HORSE_MORPH, 1, EyeShape.ROUND, EyeShape.HORIZONTAL),
-
-	REINDEER_MORPH(BodyCoveringType.EYE_REINDEER_MORPH, Race.REINDEER_MORPH, 1, EyeShape.ROUND, EyeShape.HORIZONTAL);
+	HORSE_MORPH(BodyCoveringType.EYE_HORSE_MORPH, Race.HORSE_MORPH, 1, EyeShape.ROUND, EyeShape.HORIZONTAL);
 
 	
 	private BodyCoveringType coveringType;
@@ -104,20 +98,14 @@ public enum EyeType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("reptile-like");
 			case HORSE_MORPH:
 				return UtilText.returnStringAtRandom("horse-like");
-			case REINDEER_MORPH:
-				return UtilText.returnStringAtRandom("reindeer-like");
 			case HUMAN:
 				return UtilText.returnStringAtRandom("");
 			case LYCAN:
 				return UtilText.returnStringAtRandom("wolf-like");
 			case FOX_MORPH:
 				return UtilText.returnStringAtRandom("fox-like");
-			case RAT_MORPH:
-				return UtilText.returnStringAtRandom("rat-like");
 			case RABBIT_MORPH:
 				return UtilText.returnStringAtRandom("rabbit-like");
-			case BAT_MORPH:
-				return UtilText.returnStringAtRandom("bat-like");
 		}
 		return "";
 	}
@@ -142,20 +130,14 @@ public enum EyeType implements BodyPartTypeInterface {
 				return "alligator";
 			case HORSE_MORPH:
 				return "equine";
-			case REINDEER_MORPH:
-				return "rangiferine";
 			case HUMAN:
 				return "human";
 			case LYCAN:
 				return "lupine";
 			case FOX_MORPH:
 				return "vulpine";
-			case RAT_MORPH:
-				return "rat";
 			case RABBIT_MORPH:
 				return "rabbit";
-			case BAT_MORPH:
-				return "bat";
 		}
 		return "";
 	}

@@ -40,15 +40,9 @@ public enum HairType implements BodyPartTypeInterface {
 
 	SQUIRREL_MORPH(BodyCoveringType.HAIR_SQUIRREL_FUR, Race.SQUIRREL_MORPH),
 
-	RAT_MORPH(BodyCoveringType.HAIR_RAT_FUR, Race.RAT_MORPH),
-
 	RABBIT_MORPH(BodyCoveringType.HAIR_RABBIT_FUR, Race.RABBIT_MORPH),
 
-	BAT_MORPH(BodyCoveringType.HAIR_BAT_FUR, Race.BAT_MORPH),
-
-	HORSE_MORPH(BodyCoveringType.HAIR_HORSE_HAIR, Race.HORSE_MORPH),
-
-	REINDEER_MORPH(BodyCoveringType.HAIR_REINDEER_FUR, Race.REINDEER_MORPH);
+	HORSE_MORPH(BodyCoveringType.HAIR_HORSE_HAIR, Race.HORSE_MORPH);
 
 	
 	private BodyCoveringType coveringType;
@@ -117,18 +111,12 @@ public enum HairType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("alligator-like");
 			case HORSE_MORPH:
 				return UtilText.returnStringAtRandom("horse-like");
-			case REINDEER_MORPH:
-				return UtilText.returnStringAtRandom("reindeer-like");
 			case HUMAN:
 				return UtilText.returnStringAtRandom("");
 			case LYCAN:
 				return UtilText.returnStringAtRandom("wolf-like");
 			case FOX_MORPH:
 				return UtilText.returnStringAtRandom("fox-like");
-			case BAT_MORPH:
-				return UtilText.returnStringAtRandom("bat-like");
-			case RAT_MORPH:
-				return UtilText.returnStringAtRandom("rat-like");
 			case RABBIT_MORPH:
 				return UtilText.returnStringAtRandom("rabbit-like");
 		}
@@ -167,18 +155,12 @@ public enum HairType implements BodyPartTypeInterface {
 				return "alligator";
 			case HORSE_MORPH:
 				return "equine";
-			case REINDEER_MORPH:
-				return "rangiferine";
 			case HUMAN:
 				return "human";
 			case LYCAN:
 				return "lupine";
 			case FOX_MORPH:
 				return "vulpine";
-			case BAT_MORPH:
-				return "bat";
-			case RAT_MORPH:
-				return "rat";
 			case RABBIT_MORPH:
 				return "rabbit";
 		}

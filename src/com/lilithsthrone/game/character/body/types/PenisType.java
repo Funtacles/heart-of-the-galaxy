@@ -46,15 +46,9 @@ public enum PenisType implements BodyPartTypeInterface {
 
 	EQUINE(BodyCoveringType.PENIS, TesticleType.EQUINE, Race.HORSE_MORPH, PenetrationModifier.FLARED, PenetrationModifier.VEINY, PenetrationModifier.SHEATHED),
 
-	REINDEER_MORPH(BodyCoveringType.PENIS, TesticleType.REINDEER_MORPH, Race.REINDEER_MORPH, PenetrationModifier.FLARED, PenetrationModifier.SHEATHED),
-
 	SQUIRREL(BodyCoveringType.PENIS, TesticleType.SQUIRREL, Race.SQUIRREL_MORPH, PenetrationModifier.SHEATHED),
 	
-	RAT_MORPH(BodyCoveringType.PENIS, TesticleType.RAT_MORPH, Race.RAT_MORPH, PenetrationModifier.SHEATHED),
-	
-	RABBIT_MORPH(BodyCoveringType.PENIS, TesticleType.RABBIT_MORPH, Race.RABBIT_MORPH, PenetrationModifier.SHEATHED),
-	
-	BAT_MORPH(BodyCoveringType.PENIS, TesticleType.BAT_MORPH, Race.BAT_MORPH, PenetrationModifier.SHEATHED);
+	RABBIT_MORPH(BodyCoveringType.PENIS, TesticleType.RABBIT_MORPH, Race.RABBIT_MORPH, PenetrationModifier.SHEATHED);
 
 	
 	private BodyCoveringType skinType;
@@ -117,8 +111,6 @@ public enum PenisType implements BodyPartTypeInterface {
 						return UtilText.returnStringAtRandom("impish", "imp-");
 					case EQUINE:
 						return UtilText.returnStringAtRandom("equine", "horse-", "horse-like", "bestial");
-					case REINDEER_MORPH:
-						return UtilText.returnStringAtRandom("rangiferine", "reindeer-", "reindeer-like", "bestial");
 					case FELINE:
 						return UtilText.returnStringAtRandom("feline", "cat-", "cat-like", "bestial");
 					case ALLIGATOR_MORPH:
@@ -133,10 +125,6 @@ public enum PenisType implements BodyPartTypeInterface {
 						return UtilText.returnStringAtRandom("lupine", "wolf-", "wolf-like", "bestial");
 					case VULPINE:
 						return UtilText.returnStringAtRandom("vulpine", "fox-", "fox-like", "bestial");
-					case BAT_MORPH:
-						return UtilText.returnStringAtRandom("bat-", "bat-like");
-					case RAT_MORPH:
-						return UtilText.returnStringAtRandom("rodent", "rat-", "rat-like");
 					case RABBIT_MORPH:
 						return UtilText.returnStringAtRandom("rabbit-", "rabbit-like");
 					case DILDO:
@@ -173,8 +161,6 @@ public enum PenisType implements BodyPartTypeInterface {
 				return "impish";
 			case EQUINE:
 				return "equine";
-			case REINDEER_MORPH:
-				return "rangiferine";
 			case FELINE:
 				return "feline";
 			case HUMAN:
@@ -189,10 +175,6 @@ public enum PenisType implements BodyPartTypeInterface {
 				return "lupine";
 			case VULPINE:
 				return "vulpine";
-			case BAT_MORPH:
-				return "bat";
-			case RAT_MORPH:
-				return "rat";
 			case RABBIT_MORPH:
 				return "rabbit";
 			case DILDO:
@@ -263,9 +245,6 @@ public enum PenisType implements BodyPartTypeInterface {
 			case ANGEL:
 				prefix = UtilText.returnStringAtRandom("angel-");
 				break;
-			case BAT_MORPH:
-				prefix = UtilText.returnStringAtRandom("bat-");
-				break;
 			case DEMON_COMMON:
 				prefix = UtilText.returnStringAtRandom("demon-");
 				break;
@@ -280,14 +259,8 @@ public enum PenisType implements BodyPartTypeInterface {
 			case VULPINE:
 				prefix = UtilText.returnStringAtRandom("fox-", "vulpine-");
 				break;
-			case RAT_MORPH:
-				prefix = UtilText.returnStringAtRandom("rat-", "rodent-");
-				break;
 			case RABBIT_MORPH:
 				prefix = UtilText.returnStringAtRandom("rabbit-");
-				break;
-			case REINDEER_MORPH:
-				prefix = UtilText.returnStringAtRandom("reindeer-");
 				break;
 			case SQUIRREL:
 				prefix = UtilText.returnStringAtRandom("squirrel-", "rodent-");

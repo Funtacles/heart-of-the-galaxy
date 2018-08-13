@@ -363,25 +363,6 @@ public class Breast implements BodyPartInterface, Serializable {
 								+ "</p>");
 				}
 				break;
-			case RAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							" Your nipples and areolae start tingling, and you find yourself panting and sweating as the intense transformation runs its course."
-							+ " After a few moments, the feeling starts to fade away, leaving you with a rat-morph's breasts, covered in [pc.breastFullDescriptionColour]."
-							+ " The transformation has also left you with [pc.nipplesFullDescriptionColour]."
-							+ "<br/>"
-							+ "You now have [style.boldRatMorph(rat-morph breasts and [pc.nipples])], and when lactating, you will produce [style.boldRatMorph(rat-morph milk)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" [npc.Her] nipples and areolae start tingling, causing [npc.herHim] to pant and sweat as the intense transformation runs its course."
-								+ " After a few moments, the feeling starts to fade away, leaving [npc.herHim] with a rat-morph's breasts, covered in [npc.breastFullDescriptionColour]."
-								+ " The transformation has also left [npc.herHim] with [npc.nipplesFullDescriptionColour]."
-								+ "<br/>"
-								+ "[npc.She] now has [style.boldRatMorph(rat-morph breasts and [npc.nipples])], and when lactating, [npc.she] will produce [style.boldRatMorph(rat-morph milk)]."
-								+ "</p>");
-				}
-				break;
 			case RABBIT_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -398,25 +379,6 @@ public class Breast implements BodyPartInterface, Serializable {
 								+ " The transformation has also left [npc.herHim] with [npc.nipplesFullDescriptionColour]."
 								+ "<br/>"
 								+ "[npc.She] now has [style.boldRabbitMorph(rabbit-morph breasts and [npc.nipples])], and when lactating, [npc.she] will produce [style.boldRabbitMorph(rabbit-morph milk)]."
-								+ "</p>");
-				}
-				break;
-			case BAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							" Your nipples and areolae start tingling, and you find yourself panting and sweating as the intense transformation runs its course."
-							+ " After a few moments, the feeling starts to fade away, leaving you with a bat-morph's breasts, covered in [pc.breastFullDescriptionColour]."
-							+ " The transformation has also left you with [pc.nipplesFullDescriptionColour]."
-							+ "<br/>"
-							+ "You now have [style.boldBatMorph(bat-morph breasts and [pc.nipples])], and when lactating, you will produce [style.boldBatMorph(bat-morph milk)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" [npc.Her] nipples and areolae start tingling, causing [npc.herHim] to pant and sweat as the intense transformation runs its course."
-								+ " After a few moments, the feeling starts to fade away, leaving [npc.herHim] with a bat-morph's breasts, covered in [npc.breastFullDescriptionColour]."
-								+ " The transformation has also left [npc.herHim] with [npc.nipplesFullDescriptionColour]."
-								+ "<br/>"
-								+ "[npc.She] now has [style.boldBatMorph(bat-morph breasts and [npc.nipples])], and when lactating, [npc.she] will produce [style.boldBatMorph(bat-morph milk)]."
 								+ "</p>");
 				}
 				break;
@@ -455,25 +417,6 @@ public class Breast implements BodyPartInterface, Serializable {
 								+ " The transformation has also left [npc.herHim] with [npc.nipplesFullDescriptionColour]."
 								+ "<br/>"
 								+ "[npc.She] now has [style.boldHorseMorph(equine breasts and [npc.nipples])], and when lactating, [npc.she] will produce [style.boldHorseMorph(equine milk)]."
-								+ "</p>");
-				}
-				break;
-			case REINDEER_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							" Your nipples and areolae start tingling, and you find yourself panting and sweating as the intense transformation runs its course."
-							+ " After a few moments, the feeling starts to fade away, leaving you with rangiferine breasts, covered in [pc.breastFullDescriptionColour]."
-							+ " The transformation has also left you with [pc.nipplesFullDescriptionColour]."
-							+ "<br/>"
-							+ "You now have [style.boldReindeerMorph(rangiferine breasts and [pc.nipples])], and when lactating, you will produce [style.boldReindeerMorph(rangiferine milk)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" [npc.Her] nipples and areolae start tingling, causing [npc.herHim] to pant and sweat as the intense transformation runs its course."
-								+ " After a few moments, the feeling starts to fade away, leaving [npc.herHim] with rangiferine breasts, covered in [npc.breastFullDescriptionColour]."
-								+ " The transformation has also left [npc.herHim] with [npc.nipplesFullDescriptionColour]."
-								+ "<br/>"
-								+ "[npc.She] now has [style.boldReindeerMorph(rangiferine breasts and [npc.nipples])], and when lactating, [npc.she] will produce [style.boldReindeerMorph(rangiferine milk)]."
 								+ "</p>");
 				}
 				break;

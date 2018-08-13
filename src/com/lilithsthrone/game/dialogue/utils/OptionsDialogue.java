@@ -1284,7 +1284,6 @@ public class OptionsDialogue {
 					case COW_MORPH:
 					case HORSE_MORPH:
 					case HORSE_MORPH_ZEBRA:
-					case REINDEER_MORPH:
 					case SQUIRREL_MORPH:
 					case WOLF_MORPH:
 					case FOX_MORPH:
@@ -1294,8 +1293,6 @@ public class OptionsDialogue {
 					case DOG_MORPH:
 					case DOG_MORPH_DOBERMANN:
 					case DOG_MORPH_BORDER_COLLIE:
-					case BAT_MORPH:
-					case RAT_MORPH:
 					case RABBIT_MORPH:
 					case RABBIT_MORPH_LOP:
 						UtilText.nodeContentSB.append(getSubspeciesPreferencesPanel(subspecies, i%2==0));

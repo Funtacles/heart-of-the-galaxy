@@ -99,10 +99,6 @@ public enum BodyCoveringType {
 
 	SQUIRREL_FUR(BodyCoveringTemplateFactory.createFurSkin(Util.newArrayListOfValues(CoveringModifier.SMOOTH), null)),
 	
-	RAT_SKIN(BodyCoveringTemplateFactory.createBottomSkin(Colour.ratSkinColours)),
-	
-	RAT_FUR(BodyCoveringTemplateFactory.createFurSkin(Util.newArrayListOfValues(CoveringModifier.SMOOTH), null)),
-
 	RABBIT_FUR(BodyCoveringTemplateFactory.createFurSkin(Util.newArrayListOfValues(CoveringModifier.SMOOTH), null)),
 	
 	HORSE_HAIR("a layer of",
@@ -122,10 +118,6 @@ public enum BodyCoveringType {
 			Colour.allCoveringColours,
 			Colour.naturalFurColours,
 			Colour.allCoveringColours),
-	
-	REINDEER_FUR(BodyCoveringTemplateFactory.createFurSkin(
-			Util.newArrayListOfValues(CoveringModifier.SMOOTH),
-			Util.newArrayListOfValues(CoveringPattern.NONE))),
 	
 	BOVINE_FUR(BodyCoveringTemplateFactory.createFurSkin(
 			Util.newArrayListOfValues(
@@ -243,19 +235,6 @@ public enum BodyCoveringType {
 			Colour.hornColours,
 			Colour.dyeHornColours),
 
-	ANTLER_REINDEER("a layer of",
-			false,
-			"velvet",
-			"velvet",
-			Util.newArrayListOfValues(CoveringModifier.SMOOTH),
-			null,
-			null,
-			CoveringPattern.allScalesCoveringPatterns,
-			Colour.antlerColours,
-			Colour.dyeAntlerColours,
-			Colour.antlerColours,
-			Colour.dyeAntlerColours),
-
 	TONGUE("a layer of",
 			false,
 			"skin",
@@ -308,13 +287,9 @@ public enum BodyCoveringType {
 
 	HAIR_HORSE_HAIR(BodyCoveringTemplateFactory.createFurHeadHair(CoveringModifier.COARSE)),
 
-	HAIR_REINDEER_FUR(BodyCoveringTemplateFactory.createFurHeadHair(CoveringModifier.COARSE)),
-
 	HAIR_BOVINE_FUR(BodyCoveringTemplateFactory.createFurHeadHair(CoveringModifier.COARSE)),
 
 	HAIR_SQUIRREL_FUR(BodyCoveringTemplateFactory.createFurHeadHair(CoveringModifier.FURRY)),
-
-	HAIR_RAT_FUR(BodyCoveringTemplateFactory.createFurHeadHair(CoveringModifier.FURRY)),
 
 	HAIR_RABBIT_FUR(BodyCoveringTemplateFactory.createFurHeadHair(CoveringModifier.FURRY)),
 	
@@ -356,13 +331,9 @@ public enum BodyCoveringType {
 
 	BODY_HAIR_HORSE_HAIR(BodyCoveringTemplateFactory.createBodyHair(CoveringModifier.COARSE)),
 
-	BODY_HAIR_REINDEER_HAIR(BodyCoveringTemplateFactory.createBodyHair(CoveringModifier.COARSE)),
-
 	BODY_HAIR_BOVINE_FUR(BodyCoveringTemplateFactory.createBodyHair(CoveringModifier.COARSE)),
 
 	BODY_HAIR_SQUIRREL_FUR(BodyCoveringTemplateFactory.createBodyHair(CoveringModifier.FURRY)),
-
-	BODY_HAIR_RAT_FUR(BodyCoveringTemplateFactory.createBodyHair(CoveringModifier.FURRY)),
 
 	BODY_HAIR_RABBIT_FUR(BodyCoveringTemplateFactory.createBodyHair(CoveringModifier.FURRY)),
 	
@@ -422,8 +393,6 @@ public enum BodyCoveringType {
 
 	EYE_SQUIRREL(BodyCoveringTemplateFactory.createEyeIrises()),
 
-	EYE_RAT(BodyCoveringTemplateFactory.createEyeIrises()),
-
 	EYE_RABBIT(BodyCoveringTemplateFactory.createEyeIrises()),
 	
 	EYE_BAT(BodyCoveringTemplateFactory.createEyeIrises()),
@@ -431,8 +400,6 @@ public enum BodyCoveringType {
 	EYE_ALLIGATOR_MORPH(BodyCoveringTemplateFactory.createEyeIrises()),
 
 	EYE_HORSE_MORPH(BodyCoveringTemplateFactory.createEyeIrises()),
-
-	EYE_REINDEER_MORPH(BodyCoveringTemplateFactory.createEyeIrises()),
 
 	EYE_COW_MORPH(BodyCoveringTemplateFactory.createEyeIrises()),
 

@@ -14,19 +14,13 @@ import com.lilithsthrone.game.character.persona.SexualOrientation;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
-import com.lilithsthrone.game.dialogue.places.dominion.nightlife.NightlifeDistrict;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
-import com.lilithsthrone.game.dialogue.responses.ResponseSex;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
-import com.lilithsthrone.game.sex.Sex;
 import com.lilithsthrone.game.sex.SexAreaOrifice;
-import com.lilithsthrone.game.sex.SexPositionSlot;
-import com.lilithsthrone.game.sex.managers.universal.SMStanding;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
-import com.lilithsthrone.utils.Util.Value;
 import com.lilithsthrone.world.WorldType;
 import com.lilithsthrone.world.places.PlaceType;
 
@@ -547,129 +541,6 @@ public class RoomPlayer {
 		}
 	};
 	
-
-	
-	public static final DialogueNodeOld AUNT_HOME_PLAYERS_ROOM_CLUBBER_TAKEN_HOME = new DialogueNodeOld("Your Room", "", true) {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public int getMinutesPassed() {
-			return 30;
-		}
-
-		@Override
-		public String getContent() {
-			return UtilText.parseFromXMLFile("places/dominion/nightlife/theWateringHole", "AUNT_HOME_PLAYERS_ROOM_CLUBBER_TAKEN_HOME", NightlifeDistrict.getClubbersPresent());
-		}
-
-
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if(index==1) {
-				return new ResponseSex("Sex (dom)", UtilText.parse(NightlifeDistrict.getClubbersPresent(), "Have dominant sex with [npc.name]."),
-						true, true,
-						new SMStanding(
-								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.STANDING_DOMINANT)),
-								Util.newHashMapOfValues(new Value<>(NightlifeDistrict.getClubbersPresent().get(0), SexPositionSlot.STANDING_SUBMISSIVE))),
-						null,
-						BACK_HOME_AFTER_CLUBBER_SEX, UtilText.parseFromXMLFile("places/dominion/nightlife/theWateringHole", "AUNT_HOME_PLAYERS_ROOM_CLUBBER_TAKEN_HOME_SEX_AS_DOM", NightlifeDistrict.getClubbersPresent()));
-				
-			} else if(index==2) {
-				return new ResponseSex("Sex (sub)", UtilText.parse(NightlifeDistrict.getClubbersPresent(), "Have submissive sex with [npc.name]."),
-						true, true,
-						new SMStanding(
-								Util.newHashMapOfValues(new Value<>(NightlifeDistrict.getClubbersPresent().get(0), SexPositionSlot.STANDING_DOMINANT)),
-								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.STANDING_SUBMISSIVE))),
-						null,
-						BACK_HOME_AFTER_CLUBBER_SEX, UtilText.parseFromXMLFile("places/dominion/nightlife/theWateringHole", "AUNT_HOME_PLAYERS_ROOM_CLUBBER_TAKEN_HOME_SEX_AS_SUB", NightlifeDistrict.getClubbersPresent()));
-				
-			} else if(index==4) {
-				return new Response("Say goodbye",
-						UtilText.parse(NightlifeDistrict.getClubbersPresent(), "Tell [npc.name] that you've changed your mind, sending [npc.herHim] home with the promise of seeing [npc.herHim] at the club another time."
-								+ "</br>[style.italicsGood(Saves this character, who can then be encountered in the club again.)]"),
-						AUNT_HOME_PLAYERS_ROOM_CLUBBER_TAKEN_HOME_SEND_HOME) {
-					@Override
-					public void effects() {
-						Main.game.getTextEndStringBuilder().append(UtilText.parseFromXMLFile("places/dominion/nightlife/theWateringHole", "AUNT_HOME_PLAYERS_ROOM_CLUBBER_TAKEN_HOME_CHANGE_MIND", NightlifeDistrict.getClubbersPresent()));
-						NightlifeDistrict.removeClubbers();
-					}
-				};
-				
-			} else if(index==5) {
-				return new Response("Send home",
-						UtilText.parse(NightlifeDistrict.getClubbersPresent(), "Tell [npc.name] that you've changed your mind and abruptly send [npc.herHim] home."
-								+ "</br>[style.italicsBad(Removes this character from the game.)]"),
-						AUNT_HOME_PLAYERS_ROOM_CLUBBER_TAKEN_HOME_SEND_HOME) {
-					@Override
-					public void effects() {
-						Main.game.getTextEndStringBuilder().append(UtilText.parseFromXMLFile("places/dominion/nightlife/theWateringHole", "AUNT_HOME_PLAYERS_ROOM_CLUBBER_TAKEN_HOME_CHANGE_MIND_RUDE", NightlifeDistrict.getClubbersPresent()));
-						NightlifeDistrict.removeClubbers();
-					}
-				};
-				
-			} else {
-				return null;
-			}
-		}
-	};
-	
-	public static final DialogueNodeOld BACK_HOME_AFTER_CLUBBER_SEX = new DialogueNodeOld("Your Room", "", true) {
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public int getMinutesPassed(){
-			return 15;
-		}
-		
-		@Override
-		public String getContent() {
-			if(Sex.getNumberOfOrgasms(NightlifeDistrict.getPartner())>0) {
-				return UtilText.parseFromXMLFile("places/dominion/nightlife/theWateringHole", "BACK_HOME_AFTER_CLUBBER_SEX", NightlifeDistrict.getClubbersPresent());
-			} else {
-				return UtilText.parseFromXMLFile("places/dominion/nightlife/theWateringHole", "BACK_HOME_AFTER_CLUBBER_SEX_NO_ORGASM", NightlifeDistrict.getClubbersPresent());
-			}
-		}
-
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if(index==1) {
-				return new Response("See again",
-						UtilText.parse(NightlifeDistrict.getClubbersPresent(), "Tell [npc.name] that you hope to see [npc.herHim] again.</br>"
-								+ "[style.italicsGood(Saves this character, who can then be encountered in the club again.)]"),
-						BACK_HOME_AFTER_SEX) {
-					@Override
-					public void effects() {
-						Main.game.getTextStartStringBuilder().append(UtilText.parseFromXMLFile("places/dominion/nightlife/theWateringHole", "BACK_HOME_AFTER_SEX_SEE_AGAIN", NightlifeDistrict.getClubbersPresent()));
-						NightlifeDistrict.saveClubbers();
-					}
-				};
-				
-			} else if(index==2) {
-				return new Response("Hope not (gentle)",
-						UtilText.parse(NightlifeDistrict.getClubbersPresent(), "Make a non-committal response, secretly hoping that you won't see [npc.name] again.</br>[style.italicsBad(Removes this character from the game.)]"),
-						BACK_HOME_AFTER_SEX) {
-					@Override
-					public void effects() {
-						Main.game.getTextStartStringBuilder().append(UtilText.parseFromXMLFile("places/dominion/nightlife/theWateringHole", "BACK_HOME_AFTER_SEX_DO_NOT_SEE_AGAIN", NightlifeDistrict.getClubbersPresent()));
-						NightlifeDistrict.removeClubbers();
-					}
-				};
-				
-			} else if(index==3) {
-				return new Response("Hope not (harsh)",
-						UtilText.parse(NightlifeDistrict.getClubbersPresent(), "Crudely tell [npc.name] that you were only interested in fucking [npc.herHim].</br>[style.italicsBad(Removes this character from the game.)]"),
-						BACK_HOME_AFTER_SEX) {
-					@Override
-					public void effects() {
-						Main.game.getTextStartStringBuilder().append(UtilText.parseFromXMLFile("places/dominion/nightlife/theWateringHole", "BACK_HOME_AFTER_SEX_DO_NOT_SEE_AGAIN_RUDE", NightlifeDistrict.getClubbersPresent()));
-						NightlifeDistrict.removeClubbers();
-					}
-				};
-			}
-			return null;
-		}
-	};
-
 	public static final DialogueNodeOld BACK_HOME_AFTER_SEX = new DialogueNodeOld("Your Room", "", false) {
 		private static final long serialVersionUID = 1L;
 		

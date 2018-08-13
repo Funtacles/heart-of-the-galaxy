@@ -119,7 +119,6 @@ import com.lilithsthrone.game.character.markings.Tattoo;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.DominionSuccubusAttacker;
-import com.lilithsthrone.game.character.npc.dominion.ReindeerOverseer;
 import com.lilithsthrone.game.character.npc.misc.Elemental;
 import com.lilithsthrone.game.character.npc.misc.NPCOffspring;
 import com.lilithsthrone.game.character.persona.History;
@@ -1364,9 +1363,6 @@ public abstract class GameCharacter implements XMLSaving {
 						
 					} else if(character instanceof DominionSuccubusAttacker) {
 						placeType = PlaceType.DOMINION_DARK_ALLEYS;
-
-					} else if(character instanceof ReindeerOverseer) {
-						placeType = PlaceType.DOMINION_STREET;
 
 					} else { // Catch if no location found:
 						placeType = PlaceType.DOMINION_BACK_ALLEYS;
@@ -2996,9 +2992,6 @@ public abstract class GameCharacter implements XMLSaving {
 			case COW_MORPH: case HORSE_MORPH:
 				value = 15000;
 				break;
-			case REINDEER_MORPH:
-				value = 18000;
-				break;
 			case DEMON:
 			case ELEMENTAL_AIR:
 			case ELEMENTAL_ARCANE:
@@ -3021,12 +3014,6 @@ public abstract class GameCharacter implements XMLSaving {
 				break;
 			case WOLF_MORPH: case FOX_MORPH:
 				value = 10000;
-				break;
-			case BAT_MORPH:
-				value = 10000;
-				break;
-			case RAT_MORPH:
-				value = 6000;
 				break;
 			case RABBIT_MORPH:
 				value = 12000;
@@ -3573,7 +3560,6 @@ public abstract class GameCharacter implements XMLSaving {
 			case JUNGLE:
 			case LILAYAS_HOUSE_FIRST_FLOOR:
 			case LILAYAS_HOUSE_GROUND_FLOOR:
-			case NIGHTLIFE_CLUB:
 				break;
 				
 			case ENFORCER_HQ:
@@ -3585,9 +3571,6 @@ public abstract class GameCharacter implements XMLSaving {
 				break;
 			case SUPPLIER_DEN:
 				return "This isn't a suitable place to be having sex with [npc.name]!";
-			case ZARANIX_HOUSE_FIRST_FLOOR:
-			case ZARANIX_HOUSE_GROUND_FLOOR:
-				return "You can't have sex with [npc.name] in Zaranix's house!";
 		}
 		for(GameCharacter character : Main.game.getCharactersPresent()) {
 			if(!character.isSlave() && !this.getPartyLeader().getCompanions().contains(character)) {
@@ -13762,9 +13745,6 @@ public abstract class GameCharacter implements XMLSaving {
 					String bctName = bct.getName(this);
 					if(bct == BodyCoveringType.HORN) {
 						bctName = "horn";
-					}
-					if(bct == BodyCoveringType.ANTLER_REINDEER) {
-						bctName = "antler";
 					}
 					
 					if(displayColourDiscovered) {

@@ -262,10 +262,6 @@ public enum InventorySlot {
 			return Race.DEMON;
 		}
 		
-		if (character.getLegType() == LegType.REINDEER_MORPH && this == InventorySlot.FOOT) {
-			return Race.REINDEER_MORPH;
-		}
-		
 		if (character.getLegType() == LegType.COW_MORPH && this == InventorySlot.FOOT) {
 			return Race.COW_MORPH;
 		}
@@ -305,14 +301,6 @@ public enum InventorySlot {
 			else
 				return UtilText.parse(character,
 						"[npc.NamePos] demonic hoofs prevent [npc.herHim] from wearing footwear of any kind!");
-		}
-		
-		if (character.getLegType() == LegType.REINDEER_MORPH && this == InventorySlot.FOOT) {
-			if(character.isPlayer())
-				return "Your reindeer-like hoofs prevent you from wearing footwear of any kind!";
-			else
-				return UtilText.parse(character,
-						"[npc.NamePos] reindeer-like hoofs prevent [npc.herHim] from wearing footwear of any kind!");
 		}
 		
 		if (character.getLegType() == LegType.COW_MORPH && this == InventorySlot.FOOT) {

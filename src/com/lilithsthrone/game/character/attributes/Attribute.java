@@ -345,12 +345,6 @@ public enum Attribute {
 			return "Increases damage vs imps.";
 		}
 	},
-	DAMAGE_REINDEER_MORPH(0, -100, 100, "reindeer-morph damage", "Reindeer-morph damage", "swordIcon", Colour.RACE_REINDEER_MORPH, "reindeer-morph-obliteration", "reindeer-morph-mercy", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases damage vs reindeer-morphs.";
-		}
-	},
 	DAMAGE_HUMAN(0, -100, 100, "human damage", "Human damage", "swordIcon", Colour.RACE_HUMAN, "human-obliteration", "human-mercy", null) {
 		@Override
 		public String getDescription(GameCharacter owner) {
@@ -363,22 +357,10 @@ public enum Attribute {
 			return "Increases damage vs squirrel-morphs.";
 		}
 	},
-	DAMAGE_RAT_MORPH(0, -100, 100, "rat-morph damage", "Rat-morph damage", "swordIcon", Colour.RACE_RAT_MORPH, "rat-morph-obliteration", "rat-morph-mercy", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases damage vs rat-morphs.";
-		}
-	},
 	DAMAGE_RABBIT_MORPH(0, -100, 100, "rabbit-morph damage", "Rabbit-morph damage", "swordIcon", Colour.RACE_RABBIT_MORPH, "rabbit-morph-obliteration", "rabbit-morph-mercy", null) {
 		@Override
 		public String getDescription(GameCharacter owner) {
 			return "Increases damage vs rabbit-morphs.";
-		}
-	},
-	DAMAGE_BAT_MORPH(0, -100, 100, "bat-morph damage", "Bat-morph damage", "swordIcon", Colour.RACE_BAT_MORPH, "bat-morph-obliteration", "bat-morph-mercy", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases damage vs bat-morphs.";
 		}
 	},
 	DAMAGE_ALLIGATOR_MORPH(0, -100, 100, "alligator-morph damage", "Alligator-morph damage", "swordIcon", Colour.RACE_ALLIGATOR_MORPH, "alligator-morph-obliteration", "alligator-morph-mercy", null) {
@@ -472,12 +454,6 @@ public enum Attribute {
 			return "Increases resistance vs damage inflicted by imps.";
 		}
 	},
-	RESISTANCE_REINDEER_MORPH(0, -100, 100, "reindeer-morph resistance", "Reindeer-morph resistance", "shieldIcon", Colour.RACE_REINDEER_MORPH, "reindeer-morph-immunity", "reindeer-morph-vulnerability", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases resistance vs damage inflicted by reindeer-morphs.";
-		}
-	},
 	RESISTANCE_HUMAN(0, -100, 100, "human resistance", "Human resistance", "shieldIcon", Colour.RACE_HUMAN, "human-immunity", "human-vulnerability", null) {
 		@Override
 		public String getDescription(GameCharacter owner) {
@@ -490,22 +466,10 @@ public enum Attribute {
 			return "Increases resistance vs damage inflicted by squirrel-morphs.";
 		}
 	},
-	RESISTANCE_RAT_MORPH(0, -100, 100, "rat-morph resistance", "Rat-morph resistance", "shieldIcon", Colour.RACE_RAT_MORPH, "rat-morph-immunity", "rat-morph-vulnerability", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases resistance vs damage inflicted by rat-morphs.";
-		}
-	},
 	RESISTANCE_RABBIT_MORPH(0, -100, 100, "rabbit-morph resistance", "Rabbit-morph resistance", "shieldIcon", Colour.RACE_RABBIT_MORPH, "rabbit-morph-immunity", "rabbit-morph-vulnerability", null) {
 		@Override
 		public String getDescription(GameCharacter owner) {
 			return "Increases resistance vs damage inflicted by rabbit-morphs.";
-		}
-	},
-	RESISTANCE_BAT_MORPH(0, -100, 100, "bat-morph resistance", "Bat-morph resistance", "shieldIcon", Colour.RACE_BAT_MORPH, "bat-morph-immunity", "bat-morph-vulnerability", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases resistance vs damage inflicted by bat-morphs.";
 		}
 	},
 	RESISTANCE_ALLIGATOR_MORPH(0, -100, 100, "alligator-morph resistance", "Alligator-morph resistance", "shieldIcon", Colour.RACE_ALLIGATOR_MORPH, "alligator-morph-immunity", "alligator-morph-vulnerability", null) {

@@ -488,8 +488,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.INT_INGREDIENT_GRAPE_JUICE));
 				case HORSE_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.STR_INGREDIENT_EQUINE_CIDER));
-				case REINDEER_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.FIT_INGREDIENT_EGG_NOG));
 				case WOLF_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.STR_INGREDIENT_WOLF_WHISKEY));
 				case HUMAN:
@@ -504,10 +502,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.STR_INGREDIENT_SWAMP_WATER));
 				case SQUIRREL_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.FIT_INGREDIENT_SQUIRREL_JAVA));
-				case BAT_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.INT_INGREDIENT_FRUIT_BAT_SQUASH));
-				case RAT_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.STR_INGREDIENT_BLACK_RATS_RUM));
 				case RABBIT_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.SEX_INGREDIENT_BUNNY_JUICE));
 				case ELEMENTAL_AIR:
@@ -536,8 +530,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_FOX_MORPH));
 				case HORSE_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_HORSE_MORPH));
-				case REINDEER_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_REINDEER_MORPH));
 				case WOLF_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_WOLF_MORPH));
 				case HUMAN:
@@ -552,10 +544,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_ALLIGATOR_MORPH));
 				case SQUIRREL_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_SQUIRREL_MORPH));
-				case BAT_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_BAT_MORPH));
-				case RAT_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_RAT_MORPH));
 				case RABBIT_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_RABBIT_MORPH));
 				case ELEMENTAL_AIR: //TODO books
@@ -584,8 +572,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_FOX_MORPH));
 				case HORSE_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_HORSE_MORPH));
-				case REINDEER_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_REINDEER_MORPH));
 				case WOLF_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_WOLF_MORPH));
 				case HUMAN:
@@ -598,10 +584,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_ALLIGATOR_MORPH));
 				case SQUIRREL_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_SQUIRREL_MORPH));
-				case BAT_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_BAT_MORPH));
-				case RAT_MORPH:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_RAT_MORPH));
 				case RABBIT_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_RABBIT_MORPH));
 				case ELEMENTAL_AIR:
@@ -894,14 +876,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 						reaction = "Time to turn you into my very own stallion!";
 					}
 					break;
-				case REINDEER_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_REINDEER_MORPH;
-					if (getPreferredBody().getGender().isFeminine()) {
-						reaction = "Time to turn you into my little doe!";
-					} else {
-						reaction = "Time to turn you into my very own buck!";
-					}
-					break;
 				case SQUIRREL_MORPH:
 					itemType = ItemType.RACE_INGREDIENT_SQUIRREL_MORPH;
 					reaction = "Time to turn you into a cute little "+raceName+"!";
@@ -916,12 +890,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					break;
 				case COW_MORPH:
 					itemType = ItemType.RACE_INGREDIENT_COW_MORPH;
-					break;
-				case RAT_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_RAT_MORPH;
-					break;
-				case BAT_MORPH:
-					itemType = ItemType.RACE_INGREDIENT_BAT_MORPH;
 					break;
 				case RABBIT_MORPH:
 					itemType = ItemType.RACE_INGREDIENT_RABBIT_MORPH;

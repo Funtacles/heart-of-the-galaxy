@@ -213,23 +213,6 @@ public class Skin implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case REINDEER_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" After just a few moments, the transformation comes to an end, and you let out a deep sigh as the itching finally stops, leaving your torso covered with short, reindeer-like hair."
-								+ " Your new fur looks very sleek, and helps to show off your figure, although it's a little coarse to the touch."
-								+ "<br/>"
-								+ "You now have [style.boldReindeerMorph(rangiferine)], [pc.skinFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" After just a few moments, the transformation comes to an end, and [npc.she] lets out a deep sigh as the itching finally stops, leaving [npc.her] torso covered with short, reindeer-like hair."
-								+ " [npc.Her] new fur looks very sleek, and helps to show off [npc.her] figure, although it's a little coarse to the touch."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldReindeerMorph(rangiferine)], [npc.skinFullDescription]."
-							+ "</p>");
-				}
-				break;
 			case COW_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -264,23 +247,6 @@ public class Skin implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case RAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" After just a few moments, the transformation comes to an end, and you let out a deep sigh as the itching finally stops, leaving your torso covered with rat-like fur."
-								+ " Looking at your new fur, you see that it follows the lines of your figure and is a little coarse to the touch."
-								+ "<br/>"
-								+ "You now have [style.boldRatMorph(rat-like)], [pc.skinFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" After just a few moments, the transformation comes to an end, and [npc.she] lets out a deep sigh as the itching finally stops, leaving [npc.her] torso covered with rat-like fur."
-								+ " [npc.Her] new fur follows the lines of [npc.her] figure and is a little coarse to the touch."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldRatMorph(rat-like)], [npc.skinFullDescription]."
-							+ "</p>");
-				}
-				break;
 			case RABBIT_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -295,23 +261,6 @@ public class Skin implements BodyPartInterface, Serializable {
 								+ " [npc.Her] new fur follows the lines of [npc.her] figure and is extremely smooth and soft."
 								+ "<br/>"
 								+ "[npc.Name] now has [style.boldRabbitMorph(rabbit-like)], [npc.skinFullDescription]."
-							+ "</p>");
-				}
-				break;
-			case BAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" After just a few moments, the transformation comes to an end, and you let out a deep sigh as the itching finally stops, leaving your torso covered with bat-like fur."
-								+ " Looking at your new fur, you see that it follows the lines of your figure and is quite smooth and pleasant to touch."
-								+ "<br/>"
-								+ "You now have [style.boldBatMorph(bat-like)], [pc.skinFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" After just a few moments, the transformation comes to an end, and [npc.she] lets out a deep sigh as the itching finally stops, leaving [npc.her] torso covered with bat-like fur."
-								+ " [npc.Her] new fur follows the lines of [npc.her] figure and is quite smooth and pleasant to touch."
-								+ "<br/>"
-								+ "[npc.Name] now has [style.boldBatMorph(bat-like)], [npc.skinFullDescription]."
 							+ "</p>");
 				}
 				break;

@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 import com.lilithsthrone.game.Weather;
-import com.lilithsthrone.game.character.quests.Quest;
 import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
@@ -27,7 +26,6 @@ import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.Library;
 import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.LilayaHomeGeneric;
 import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.LilayasRoom;
 import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.RoomPlayer;
-import com.lilithsthrone.game.dialogue.places.dominion.nightlife.NightlifeDistrict;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.ArcaneArts;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.ClothingEmporium;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.DreamLover;
@@ -37,10 +35,6 @@ import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.ShoppingAr
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.SuccubisSecrets;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.SupplierDepot;
 import com.lilithsthrone.game.dialogue.places.dominion.slaverAlley.SlaverAlleyDialogue;
-import com.lilithsthrone.game.dialogue.places.dominion.zaranixHome.ZaranixHomeFirstFloor;
-import com.lilithsthrone.game.dialogue.places.dominion.zaranixHome.ZaranixHomeFirstFloorRepeat;
-import com.lilithsthrone.game.dialogue.places.dominion.zaranixHome.ZaranixHomeGroundFloor;
-import com.lilithsthrone.game.dialogue.places.dominion.zaranixHome.ZaranixHomeGroundFloorRepeat;
 import com.lilithsthrone.game.inventory.CharacterInventory;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
@@ -139,17 +133,6 @@ public enum PlaceType {
 	},
 	
 	DOMINION_SHOPPING_ARCADE("Shopping Arcade", "dominion/shoppingArcadeIcon", BaseColour.GOLD, Colour.MAP_BACKGROUND, ShoppingArcadeDialogue.OUTSIDE, Encounter.DOMINION_STREET, false, false, true, "in the streets of Dominion") {
-		@Override
-		public boolean isDangerous() {
-			return Main.game.getCurrentWeather() == Weather.MAGIC_STORM;
-		}
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return DOMINION_PLAZA.getSpeciesPopulatingArea();
-		}
-	},
-	
-	DOMINION_NIGHTLIFE_DISTRICT("Nightlife District", "dominion/nightlifeIcon", BaseColour.PINK_LIGHT, Colour.MAP_BACKGROUND, NightlifeDistrict.OUTSIDE, Encounter.DOMINION_STREET, false, false, true, "in the streets of Dominion") {
 		@Override
 		public boolean isDangerous() {
 			return Main.game.getCurrentWeather() == Weather.MAGIC_STORM;
@@ -461,194 +444,7 @@ public enum PlaceType {
 	
 	LILAYA_HOME_STAIR_DOWN("Staircase", "dominion/lilayasHome/stairsDown", BaseColour.RED, Colour.MAP_BACKGROUND, LilayaHomeGeneric.STAIRCASE_DOWN, null, false, true, false, "in Lilaya's Home"),
 	
-	
 
-	// Zaranix:
-	// Ground floor:
-	
-	ZARANIX_GF_CORRIDOR("Corridor", null, BaseColour.GREY, Colour.MAP_BACKGROUND, ZaranixHomeGroundFloor.CORRIDOR, null, false, true, false, "in Zaranix's home"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-				return ZaranixHomeGroundFloorRepeat.CORRIDOR;
-				
-			} else {
-				return ZaranixHomeGroundFloor.CORRIDOR;
-			}
-		}
-	},
-	
-	ZARANIX_GF_STAIRS("Staircase", "dominion/zaranixHome/stairsDown", BaseColour.GREEN_LIGHT, Colour.MAP_BACKGROUND, ZaranixHomeGroundFloor.STAIRS, null, false, true, false, "in Zaranix's home"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-				return ZaranixHomeGroundFloorRepeat.STAIRS;
-				
-			} else {
-				return ZaranixHomeGroundFloor.STAIRS;
-			}
-		}
-	},
-	
-	ZARANIX_GF_ENTRANCE("Entrance", "dominion/zaranixHome/entranceHall", BaseColour.RED, Colour.MAP_BACKGROUND, ZaranixHomeGroundFloor.ENTRANCE, null, false, true, false, "in Zaranix's home"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-				return ZaranixHomeGroundFloorRepeat.ENTRANCE;
-				
-			} else {
-				return ZaranixHomeGroundFloor.ENTRANCE;
-			}
-		}
-	},
-	
-	ZARANIX_GF_LOUNGE("Lounge", "dominion/zaranixHome/lounge", BaseColour.ORANGE, Colour.MAP_BACKGROUND, ZaranixHomeGroundFloor.LOUNGE, null, false, true, false, "in Zaranix's home"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-				return ZaranixHomeGroundFloorRepeat.LOUNGE;
-				
-			} else {
-				return ZaranixHomeGroundFloor.LOUNGE;
-			}
-		}
-	},
-	
-	ZARANIX_GF_ROOM("Room", "dominion/zaranixHome/room", BaseColour.GREY, Colour.MAP_BACKGROUND, ZaranixHomeGroundFloor.ROOM, null, false, true, false, "in a room in Zaranix's home"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-				return ZaranixHomeGroundFloorRepeat.ROOM;
-				
-			} else {
-				return ZaranixHomeGroundFloor.ROOM;
-			}
-		}
-	},
-	
-	ZARANIX_GF_MAID("Corridor", null, BaseColour.GREY, Colour.MAP_BACKGROUND, ZaranixHomeGroundFloor.CORRIDOR_MAID, null, true, true, false, "in Zaranix's Home"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-				return ZaranixHomeGroundFloorRepeat.CORRIDOR;
-				
-			} else {
-				return ZaranixHomeGroundFloor.CORRIDOR_MAID;
-			}
-		}
-		@Override
-		public boolean isDangerous() {
-			return !Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE);
-		}
-	},
-	
-	ZARANIX_GF_GARDEN_ROOM("Room", "dominion/zaranixHome/room", BaseColour.GREY, Colour.MAP_BACKGROUND, ZaranixHomeGroundFloor.GARDEN_ROOM, null, false, true, false, "in a room in Zaranix's home"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-				return ZaranixHomeGroundFloorRepeat.GARDEN_ROOM;
-				
-			} else {
-				return ZaranixHomeGroundFloor.GARDEN_ROOM;
-			}
-		}
-	},
-	
-	ZARANIX_GF_GARDEN("Garden", "dominion/zaranixHome/garden", BaseColour.GREEN, Colour.MAP_BACKGROUND, ZaranixHomeGroundFloor.GARDEN, null, false, true, false, "in Zaranix's garden"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-				return ZaranixHomeGroundFloorRepeat.GARDEN;
-				
-			} else {
-				return ZaranixHomeGroundFloor.GARDEN;
-			}
-		}
-	},
-	
-	ZARANIX_GF_GARDEN_ENTRY("Garden", "dominion/zaranixHome/entranceHall", BaseColour.GREEN, Colour.MAP_BACKGROUND, ZaranixHomeGroundFloor.GARDEN_ENTRY, null, false, true, false, "in Zaranix's garden"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-				return ZaranixHomeGroundFloorRepeat.GARDEN_ENTRY;
-				
-			} else {
-				return ZaranixHomeGroundFloor.GARDEN_ENTRY;
-			}
-		}
-	},
-	
-	// First floor:
-	
-	ZARANIX_FF_CORRIDOR("Corridor", null, BaseColour.GREY, Colour.MAP_BACKGROUND, ZaranixHomeFirstFloor.CORRIDOR, null, false, true, false, "in Zaranix's home"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-				return ZaranixHomeFirstFloorRepeat.CORRIDOR;
-				
-			} else {
-				return ZaranixHomeFirstFloor.CORRIDOR;
-			}
-		}
-	},
-	
-	ZARANIX_FF_STAIRS("Staircase", "dominion/zaranixHome/stairsDown", BaseColour.RED, Colour.MAP_BACKGROUND, ZaranixHomeFirstFloor.STAIRS, null, false, true, false, "in Zaranix's home"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-				return ZaranixHomeFirstFloorRepeat.STAIRS;
-				
-			} else {
-				return ZaranixHomeFirstFloor.STAIRS;
-			}
-		}
-	},
-	
-	ZARANIX_FF_OFFICE("Zaranix's Room", "dominion/zaranixHome/roomZaranix", BaseColour.PINK_DEEP, Colour.MAP_BACKGROUND, ZaranixHomeFirstFloor.ZARANIX_ROOM, null, true, true, false, "in Zaranix's home"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-				return ZaranixHomeFirstFloorRepeat.ZARANIX_ROOM;
-				
-			} else {
-				return ZaranixHomeFirstFloor.ZARANIX_ROOM;
-			}
-		}
-		@Override
-		public boolean isDangerous() {
-			return !Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE);
-		}
-	},
-	
-	ZARANIX_FF_ROOM("Room", "dominion/zaranixHome/room", BaseColour.GREY, Colour.MAP_BACKGROUND, ZaranixHomeFirstFloor.ROOM, null, false, true, false, "in a room in Zaranix's home"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-				return ZaranixHomeFirstFloorRepeat.ROOM;
-				
-			} else {
-				return ZaranixHomeFirstFloor.ROOM;
-			}
-		}
-	},
-	
-	ZARANIX_FF_MAID("Corridor", null, BaseColour.RED, Colour.MAP_BACKGROUND, ZaranixHomeFirstFloor.CORRIDOR_MAID, null, true, true, false, "in Zaranix's Home"){
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE)) {
-				return ZaranixHomeFirstFloorRepeat.CORRIDOR;
-				
-			} else {
-				return ZaranixHomeFirstFloor.CORRIDOR_MAID;
-			}
-		}
-		@Override
-		public boolean isDangerous() {
-			return !Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_H_THE_GREAT_ESCAPE);
-		}
-	},
-	
-	
 	// Angel's Kiss:
 
 	ANGELS_KISS_CORRIDOR("Corridor", null, BaseColour.GREY, Colour.MAP_BACKGROUND, RedLightDistrict.ANGELS_KISS_CORRIDOR, null, false, true, false, "in Angel's Kiss"),
@@ -792,62 +588,8 @@ public enum PlaceType {
 		public List<Subspecies> getSpeciesPopulatingArea() {
 			return Subspecies.getWorldSpecies().get(WorldType.DOMINION);
 		}
-	},
-	
-	// Nightlife:
-
-	
-	WATERING_HOLE_ENTRANCE("Entrance", "dominion/nightLife/exit", BaseColour.RED, Colour.MAP_BACKGROUND, NightlifeDistrict.WATERING_HOLE_ENTRANCE, null, false, true, true, "in 'The Watering Hole'") {
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return Subspecies.getWorldSpecies().get(WorldType.NIGHTLIFE_CLUB);
-		}
-	},
-
-	WATERING_HOLE_MAIN_AREA("The Watering Hole", null, BaseColour.BLUE_LIGHT, Colour.MAP_BACKGROUND, NightlifeDistrict.WATERING_HOLE_MAIN, null, false, true, true, "in 'The Watering Hole'") {
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return Subspecies.getWorldSpecies().get(WorldType.NIGHTLIFE_CLUB);
-		}
-	},
-
-	WATERING_HOLE_SEATING_AREA("Seating Area", "dominion/nightLife/seatingArea", BaseColour.BLUE, Colour.MAP_BACKGROUND, NightlifeDistrict.WATERING_HOLE_SEATING, null, false, true, true, "in 'The Watering Hole'") {
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return Subspecies.getWorldSpecies().get(WorldType.NIGHTLIFE_CLUB);
-		}
-	},
-
-	WATERING_HOLE_VIP_AREA("VIP Area", "dominion/nightLife/vipArea", BaseColour.PURPLE, Colour.MAP_BACKGROUND, NightlifeDistrict.WATERING_HOLE_VIP, null, false, true, true, "in 'The Watering Hole'") {
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return Util.newArrayListOfValues(
-					Subspecies.CAT_MORPH_LION,
-					Subspecies.HORSE_MORPH_ZEBRA);
-		}
-	},
-
-	WATERING_HOLE_BAR("Bar", "dominion/nightLife/bar", BaseColour.ORANGE, Colour.MAP_BACKGROUND, NightlifeDistrict.WATERING_HOLE_BAR, null, false, true, true, "in 'The Watering Hole'") {
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return Subspecies.getWorldSpecies().get(WorldType.NIGHTLIFE_CLUB);
-		}
-	},
-
-	WATERING_HOLE_DANCE_FLOOR("Dance Floor", "dominion/nightLife/danceFloor", BaseColour.PINK_DEEP, Colour.MAP_BACKGROUND, NightlifeDistrict.WATERING_HOLE_DANCE_FLOOR, null, false, true, true, "in 'The Watering Hole'") {
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return Subspecies.getWorldSpecies().get(WorldType.NIGHTLIFE_CLUB);
-		}
-	},
-
-	WATERING_HOLE_TOILETS("Toilets", "dominion/nightLife/toilets", BaseColour.GREEN_DARK, Colour.MAP_BACKGROUND, NightlifeDistrict.WATERING_HOLE_TOILETS, null, false, true, true, "in the toilets of 'The Watering Hole'") {
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return Subspecies.getWorldSpecies().get(WorldType.NIGHTLIFE_CLUB);
-		}
 	}
-
+	
 	;
 
 	

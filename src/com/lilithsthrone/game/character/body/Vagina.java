@@ -631,42 +631,6 @@ public class Vagina implements BodyPartInterface, Serializable {
 						+ "</p>"));
 				}
 				break;
-			case RAT_MORPH:
-				if(owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							" You let out a squeal of excitement as a wave of pleasure runs up from your groin, and you feel your slit shifting and contracting with a mind of its own."
-							+ " Within moments, the feeling fades away, and you discover that your pussy has shaped itself into a that of a rat-morph."
-							+ " Although it looks like a normal human pussy, a short layer of soft "+owner.getCovering(type.getBodyCoveringType(owner)).getColourDescriptor(owner, false, false)
-								+" fur has grown around it, giving your feminine sex a rather animalistic appearance."
-						+ "</p>"
-						+ "<p>"
-							+ "Just as you think that the transformation has come to an end, your pussy involuntarily clenches down,"
-								+ " and a desperate squeal escapes from between your [pc.lips+] as a warm, tingling feeling spreads up through your lower abdomen."
-							+ " Images of rat-like cocks slamming deep into your new pussy flash before your eyes, and your squeal turns into a satisfied moan as you imagine them pumping their potent seed deep into your rodent womb."
-							+ " Just as quickly as they came, the images fade from your mind, and as one last wave of tingling pleasure washes through your body, you feel your female reproductive organs finishing their transformation."
-							+ "<br/>"
-							+ "You now have a [style.boldRatMorph(rat-morph's vagina)], with [pc.pussyColourPrimary(true)] labia and [pc.pussyColourSecondary(true)] internal walls."
-						+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(UtilText.parse(owner, 
-							" [npc.She] lets out a squeal of excitement as a wave of pleasure runs up through [npc.her] groin, and as [npc.she] feels [npc.her] slit shifting and contracting with a mind of its own,"
-									+ " [npc.she] desperately clamps [npc.her] [npc.legs] shut."
-							+ " Within moments, the feeling fades away, and [npc.she] discovers that [npc.her] pussy has shaped itself into a that of a rat-morph."
-							+ " Although it looks like a normal human pussy, a short layer of soft "+owner.getCovering(type.getBodyCoveringType(owner)).getColourDescriptor(owner, false, false)
-								+" fur has grown around it, giving [npc.her] feminine sex a rather animalistic appearance."
-						+ "</p>"
-						+ "<p>"
-							+ "Just as [npc.she] starts think that the transformation has come to an end, [npc.her] pussy involuntarily clenches down,"
-								+ " and a desperate squeal escapes from between [npc.her] [npc.lips+] as a warm, tingling feeling spreads up through [npc.her] lower abdomen."
-							+ " Images of rat-like cocks slamming deep into [npc.her] new pussy flash before [npc.her] eyes,"
-								+ " and [npc.her] squeal turns into a satisfied moan as [npc.she] imagines them pumping their potent seed deep into [npc.her] rodent womb."
-							+ " Just as quickly as they came, the images fade from [npc.her] mind, and as one last wave of tingling pleasure washes through [npc.her] body,"
-								+ " [npc.she] feels [npc.her] female reproductive organs finishing their transformation."
-							+ "<br/>"
-							+ "[npc.Name] now has a [style.boldRatMorph(rat-morph's vagina)], with [npc.pussyColourPrimary(true)] labia and [npc.pussyColourSecondary(true)] internal walls."
-						+ "</p>"));
-				}
-				break;
 			case RABBIT_MORPH:
 				if(owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -703,42 +667,6 @@ public class Vagina implements BodyPartInterface, Serializable {
 						+ "</p>"));
 				}
 				break;
-			case BAT_MORPH:
-				if(owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							" You let out a squeal of excitement as a wave of pleasure runs up from your groin, and you feel your slit shifting and contracting with a mind of its own."
-							+ " Within moments, the feeling fades away, and you discover that your pussy has shaped itself into a that of a bat-morph."
-							+ " Although it looks like a normal human pussy, a short layer of soft "+owner.getCovering(type.getBodyCoveringType(owner)).getColourDescriptor(owner, false, false)
-								+" fur has grown around it, giving your feminine sex a rather animalistic appearance."
-						+ "</p>"
-						+ "<p>"
-							+ "Just as you think that the transformation has come to an end, your pussy involuntarily clenches down,"
-								+ " and a desperate squeal escapes from between your [pc.lips+] as a warm, tingling feeling spreads up through your lower abdomen."
-							+ " Images of bat-like cocks slamming deep into your new pussy flash before your eyes, and your squeal turns into a satisfied moan as you imagine them pumping their potent seed deep into your womb."
-							+ " Just as quickly as they came, the images fade from your mind, and as one last wave of tingling pleasure washes through your body, you feel your female reproductive organs finishing their transformation."
-							+ "<br/>"
-							+ "You now have a [style.boldBatMorph(bat-morph's vagina)], with [pc.pussyColourPrimary(true)] labia and [pc.pussyColourSecondary(true)] internal walls."
-						+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(UtilText.parse(owner, 
-							" [npc.She] lets out a squeal of excitement as a wave of pleasure runs up through [npc.her] groin, and as [npc.she] feels [npc.her] slit shifting and contracting with a mind of its own,"
-									+ " [npc.she] desperately clamps [npc.her] [npc.legs] shut."
-							+ " Within moments, the feeling fades away, and [npc.she] discovers that [npc.her] pussy has shaped itself into a that of a bat-morph."
-							+ " Although it looks like a normal human pussy, a short layer of soft "+owner.getCovering(type.getBodyCoveringType(owner)).getColourDescriptor(owner, false, false)
-								+" fur has grown around it, giving [npc.her] feminine sex a rather animalistic appearance."
-						+ "</p>"
-						+ "<p>"
-							+ "Just as [npc.she] starts think that the transformation has come to an end, [npc.her] pussy involuntarily clenches down,"
-								+ " and a desperate squeal escapes from between [npc.her] [npc.lips+] as a warm, tingling feeling spreads up through [npc.her] lower abdomen."
-							+ " Images of bat-like cocks slamming deep into [npc.her] new pussy flash before [npc.her] eyes,"
-								+ " and [npc.her] squeal turns into a satisfied moan as [npc.she] imagines them pumping their potent seed deep into [npc.her] womb."
-							+ " Just as quickly as they came, the images fade from [npc.her] mind, and as one last wave of tingling pleasure washes through [npc.her] body,"
-								+ " [npc.she] feels [npc.her] female reproductive organs finishing their transformation."
-							+ "<br/>"
-							+ "[npc.Name] now has a [style.boldBatMorph(bat-morph's vagina)], with [npc.pussyColourPrimary(true)] labia and [npc.pussyColourSecondary(true)] internal walls."
-						+ "</p>"));
-				}
-				break;
 			case HORSE_MORPH:
 				if(owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -768,38 +696,6 @@ public class Vagina implements BodyPartInterface, Serializable {
 								+ " [npc.she] feels [npc.her] female reproductive organs finishing their transformation."
 							+ "<br/>"
 							+ "[npc.Name] now has an [style.boldHorseMorph(equine vagina)], with [npc.pussyColourPrimary(true)] labia and [npc.pussyColourSecondary(true)] internal walls."
-						+ "</p>"));
-				}
-				break;
-			case REINDEER_MORPH:
-				if(owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							" You let out a squeal of excitement as a wave of pleasure runs up from your groin, and you feel your pussy shifting and contracting with a mind of its own."
-							+ " Your [pc.labia] puff up as your cunt reshapes itself into an animalistic, reindeer-like vagina."
-						+ "</p>"
-						+ "<p>"
-							+ "Just as you think that the transformation has come to an end, your pussy involuntarily clenches down,"
-								+ " and a desperate squeal escapes from between your [pc.lips+] as a warm, tingling feeling spreads up through your lower abdomen."
-							+ " Images of huge, flared reindeer-cocks slamming deep into your new pussy flash before your eyes, and your squeal turns into a satisfied moan as you imagine them pumping their hot seed deep into your rangiferine womb."
-							+ " Just as quickly as they came, the images fade from your mind, and as one last wave of tingling pleasure washes through your body, you feel your female reproductive organs finishing their transformation."
-							+ "<br/>"
-							+ "You now have a [style.boldReindeerMorph(rangiferine vagina)], with [pc.pussyColourPrimary(true)] labia and [pc.pussyColourSecondary(true)] internal walls."
-						+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(UtilText.parse(owner, 
-							" [npc.She] lets out a squeal of excitement as a wave of pleasure runs up through [npc.her] groin, and as [npc.she] feels [npc.her] pussy shifting and contracting with a mind of its own,"
-									+ " [npc.she] desperately clamps [npc.her] [npc.legs] shut."
-							+ " [npc.Her] [npc.labia] puff up, and [npc.she] starts moaning and squirming as [npc.her] cunt reshapes itself into a reindeer-like vagina, giving [npc.her] feminine sex a very animalistic appearance."
-						+ "</p>"
-						+ "<p>"
-							+ "Just as [npc.she] starts think that the transformation has come to an end, [npc.her] pussy involuntarily clenches down,"
-								+ " and a desperate squeal escapes from between [npc.her] [npc.lips+] as a warm, tingling feeling spreads up through [npc.her] lower abdomen."
-							+ " Images of huge, flared reindeer-cocks slamming deep into [npc.her] new pussy flash before [npc.her] eyes,"
-								+ " and [npc.her] squeal turns into a satisfied moan as [npc.she] imagines them pumping their potent seed deep into [npc.her] rangiferine womb."
-							+ " Just as quickly as they came, the images fade from [npc.her] mind, and as one last wave of tingling pleasure washes through [npc.her] body,"
-								+ " [npc.she] feels [npc.her] female reproductive organs finishing their transformation."
-							+ "<br/>"
-							+ "[npc.Name] now has a [style.boldReindeerMorph(rangiferine vagina)], with [npc.pussyColourPrimary(true)] labia and [npc.pussyColourSecondary(true)] internal walls."
 						+ "</p>"));
 				}
 				break;

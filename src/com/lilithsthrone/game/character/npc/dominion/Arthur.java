@@ -51,7 +51,7 @@ public class Arthur extends NPC {
 				10,
 				Gender.M_P_MALE,
 				RacialBody.HUMAN, RaceStage.HUMAN, new CharacterInventory(10),
-				WorldType.ZARANIX_HOUSE_FIRST_FLOOR, PlaceType.ZARANIX_FF_OFFICE, true);
+				WorldType.LILAYAS_HOUSE_GROUND_FLOOR, PlaceType.LILAYA_HOME_ARTHUR_ROOM, true);
 
 		this.setPersonality(Util.newHashMapOfValues(
 				new Value<>(PersonalityTrait.AGREEABLENESS, PersonalityWeight.AVERAGE),
@@ -118,7 +118,7 @@ public class Arthur extends NPC {
 
 	@Override
 	public boolean isTrader() {
-		return true; // TODO Wait, what?
+		return true;
 	}
 
 	@Override

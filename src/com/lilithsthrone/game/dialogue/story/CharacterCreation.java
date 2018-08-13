@@ -1629,9 +1629,6 @@ public class CharacterCreation {
 							+ " you explain,"
 							+ " [pc.speech(mostly doing admin and paper work.)]");
 					break;
-				case REINDEER_OVERSEER:
-					// "Well, if you hadn't already noticed, I'm actually an anthropomorphic reindeer, and I come down from the snowy mountains to shovel snow in the city every winter. :D"
-					break;
 				case SOLDIER:
 					UtilText.nodeContentSB.append(
 							"[pc.speech(I'm in the army,)]"

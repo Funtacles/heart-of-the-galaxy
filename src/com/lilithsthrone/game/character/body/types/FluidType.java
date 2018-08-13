@@ -101,15 +101,6 @@ public enum FluidType implements BodyPartTypeInterface {
 					FluidModifier.SLIMY),
 			Race.SQUIRREL_MORPH),
 	
-	CUM_RAT_MORPH(FluidTypeBase.CUM,
-			BodyCoveringType.CUM,
-			FluidFlavour.CUM,
-			Util.newArrayListOfValues("rat"),
-			Util.newArrayListOfValues(
-					FluidModifier.STICKY,
-					FluidModifier.SLIMY),
-			Race.RAT_MORPH),
-	
 	CUM_RABBIT_MORPH(FluidTypeBase.CUM,
 			BodyCoveringType.CUM,
 			FluidFlavour.CUM,
@@ -118,15 +109,6 @@ public enum FluidType implements BodyPartTypeInterface {
 					FluidModifier.STICKY,
 					FluidModifier.SLIMY),
 			Race.RABBIT_MORPH),
-	
-	CUM_BAT_MORPH(FluidTypeBase.CUM,
-			BodyCoveringType.CUM,
-			FluidFlavour.CUM,
-			Util.newArrayListOfValues("bat"),
-			Util.newArrayListOfValues(
-					FluidModifier.STICKY,
-					FluidModifier.SLIMY),
-			Race.BAT_MORPH),
 	
 	CUM_ALLIGATOR_MORPH(FluidTypeBase.CUM,
 			BodyCoveringType.CUM,
@@ -146,16 +128,6 @@ public enum FluidType implements BodyPartTypeInterface {
 					FluidModifier.STICKY,
 					FluidModifier.SLIMY),
 			Race.HORSE_MORPH),
-	
-	CUM_REINDEER_MORPH(FluidTypeBase.CUM,
-			BodyCoveringType.CUM,
-			FluidFlavour.CUM,
-			Util.newArrayListOfValues("rangiferine"),
-			Util.newArrayListOfValues(
-					FluidModifier.MUSKY,
-					FluidModifier.STICKY,
-					FluidModifier.SLIMY),
-			Race.REINDEER_MORPH),
 	
 	CUM_COW_MORPH(FluidTypeBase.CUM,
 			BodyCoveringType.CUM,
@@ -241,13 +213,6 @@ public enum FluidType implements BodyPartTypeInterface {
 					FluidModifier.SLIMY),
 			Race.SQUIRREL_MORPH),
 	
-	GIRL_CUM_RAT_MORPH(FluidTypeBase.GIRLCUM,
-			BodyCoveringType.GIRL_CUM,
-			FluidFlavour.GIRL_CUM,
-			Util.newArrayListOfValues("rat"),
-			Util.newArrayListOfValues(
-					FluidModifier.SLIMY),
-			Race.RAT_MORPH),
 
 	GIRL_CUM_RABBIT_MORPH(FluidTypeBase.GIRLCUM,
 			BodyCoveringType.GIRL_CUM,
@@ -256,14 +221,6 @@ public enum FluidType implements BodyPartTypeInterface {
 			Util.newArrayListOfValues(
 					FluidModifier.SLIMY),
 			Race.RABBIT_MORPH),
-	
-	GIRL_CUM_BAT_MORPH(FluidTypeBase.GIRLCUM,
-			BodyCoveringType.GIRL_CUM,
-			FluidFlavour.GIRL_CUM,
-			Util.newArrayListOfValues("bat"),
-			Util.newArrayListOfValues(
-					FluidModifier.SLIMY),
-			Race.BAT_MORPH),
 	
 	GIRL_CUM_ALLIGATOR_MORPH(FluidTypeBase.GIRLCUM,
 			BodyCoveringType.GIRL_CUM,
@@ -280,14 +237,6 @@ public enum FluidType implements BodyPartTypeInterface {
 			Util.newArrayListOfValues(
 					FluidModifier.SLIMY),
 			Race.HORSE_MORPH),
-	
-	GIRL_CUM_REINDEER_MORPH(FluidTypeBase.GIRLCUM,
-			BodyCoveringType.GIRL_CUM,
-			FluidFlavour.GIRL_CUM,
-			Util.newArrayListOfValues("rangiferine"),
-			Util.newArrayListOfValues(
-					FluidModifier.SLIMY),
-			Race.REINDEER_MORPH),
 	
 	GIRL_CUM_COW_MORPH(FluidTypeBase.GIRLCUM,
 			BodyCoveringType.GIRL_CUM,
@@ -369,26 +318,12 @@ public enum FluidType implements BodyPartTypeInterface {
 			Util.newArrayListOfValues(),
 			Race.SQUIRREL_MORPH),
 	
-	MILK_RAT_MORPH(FluidTypeBase.MILK, // I don't get it. Everyone loves rats, but they don't wanna drink the rats' milk?
-			BodyCoveringType.MILK,
-			FluidFlavour.MILK,
-			Util.newArrayListOfValues("rat"),
-			Util.newArrayListOfValues(),
-			Race.RAT_MORPH),
-	
 	MILK_RABBIT_MORPH(FluidTypeBase.MILK,
 			BodyCoveringType.MILK,
 			FluidFlavour.MILK,
 			Util.newArrayListOfValues("rabbit"),
 			Util.newArrayListOfValues(),
 			Race.RABBIT_MORPH),
-	
-	MILK_BAT_MORPH(FluidTypeBase.MILK,
-			BodyCoveringType.MILK,
-			FluidFlavour.MILK,
-			Util.newArrayListOfValues("bat"),
-			Util.newArrayListOfValues(),
-			Race.BAT_MORPH),
 	
 	MILK_ALLIGATOR_MORPH(FluidTypeBase.MILK,
 			BodyCoveringType.MILK,
@@ -402,14 +337,7 @@ public enum FluidType implements BodyPartTypeInterface {
 			FluidFlavour.MILK,
 			Util.newArrayListOfValues("equine"),
 			Util.newArrayListOfValues(),
-			Race.HORSE_MORPH),
-	
-	MILK_REINDEER_MORPH(FluidTypeBase.MILK,
-			BodyCoveringType.MILK,
-			FluidFlavour.MILK,
-			Util.newArrayListOfValues("rangiferine"),
-			Util.newArrayListOfValues(),
-			Race.REINDEER_MORPH);
+			Race.HORSE_MORPH);
 
 	
 	private FluidTypeBase baseType;

@@ -28,9 +28,7 @@ import com.lilithsthrone.game.character.body.valueEnums.CumProduction;
 import com.lilithsthrone.game.character.body.valueEnums.CupSize;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.fetishes.FetishDesire;
-import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.ReindeerOverseer;
 import com.lilithsthrone.game.character.npc.misc.Elemental;
 import com.lilithsthrone.game.character.persona.SexualOrientation;
 import com.lilithsthrone.game.character.quests.QuestLine;
@@ -60,8 +58,6 @@ import com.lilithsthrone.rendering.SVGImages;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Util.Value;
-import com.lilithsthrone.world.WorldType;
-import com.lilithsthrone.world.places.PlaceType;
 
 /**
  * @since 0.1.0
@@ -1116,22 +1112,6 @@ public enum StatusEffect {
 			if(target.isPlayer() && !Main.game.getDialogueFlags().values.contains(DialogueFlagValue.hasSnowedThisWinter)) {
 				Main.game.getDialogueFlags().values.add(DialogueFlagValue.hasSnowedThisWinter);
 				
-				if(Main.game.getReindeerOverseers().isEmpty()) {
-					try {
-						for(int i=0; i<2; i++) {
-							Main.game.addNPC(new ReindeerOverseer(Gender.M_P_MALE), false);
-						}
-						for(int i=0; i<2; i++) {
-							Main.game.addNPC(new ReindeerOverseer(Gender.F_V_B_FEMALE), false);
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				} else {
-					for(NPC npc : Main.game.getReindeerOverseers()) {
-						npc.setRandomLocation(WorldType.DOMINION, PlaceType.DOMINION_STREET, true);
-					}
-				}
 				return "<p>"
 							+ "The oppressive, dark-grey clouds which have been hanging over Dominion for the past few hours finally burst."
 							+ " Large, fluffy snowflakes slowly drift down from above, and although the first few crystals quickly melt away upon coming into contact with the ground below,"
@@ -1956,38 +1936,6 @@ public enum StatusEffect {
 		}
 	},
 	
-	RAT_MORPH(1000,
-			"Rat-morph",
-			null,
-			Colour.RACE_RAT_MORPH,
-			true,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.DAMAGE_POISON, 15f),
-					new Value<Attribute, Float>(Attribute.RESISTANCE_POISON, 15f)),
-			null) {
-
-		@Override
-		public String getDescription(GameCharacter target) {
-			if (target.isPlayer()) {
-				return "Your body is adapted for both resisting and dealing poison damage.";
-			} else {
-				return UtilText.parse(target, "[npc.NamePos] body is adapted for both resisting and dealing poison damage.");
-			}
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return target.getRace() == Race.RAT_MORPH
-					&& !target.isRaceConcealed()
-					&& target.getRaceStage() == RaceStage.GREATER;
-		}
-
-		@Override
-		public String getSVGString(GameCharacter owner) {
-			return owner.getSubspecies().getSVGString(owner);
-		}
-	},
-	
 	RABBIT_MORPH(1000,
 			"Rabbit-morph",
 			null,
@@ -2020,37 +1968,6 @@ public enum StatusEffect {
 		}
 	},
 	
-	BAT_MORPH(1000, //TODO
-			"Bat-morph",
-			null,
-			Colour.RACE_BAT_MORPH,
-			true,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, 5f)),
-			null) {
-
-		@Override
-		public String getDescription(GameCharacter target) {
-			if (target.isPlayer()) {
-				return "You are a bat-morph! (Placeholder until I add unique 'echolocation' ability.)";
-			} else {
-				return UtilText.parse(target, "[npc.Name] is a bat-morph! (Placeholder until I add unique 'echolocation' ability.)");
-			}
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return target.getRace() == Race.BAT_MORPH
-					&& !target.isRaceConcealed()
-					&& target.getRaceStage() == RaceStage.GREATER;
-		}
-
-		@Override
-		public String getSVGString(GameCharacter owner) {
-			return owner.getSubspecies().getSVGString(owner);
-		}
-	},
-
 	// EQUINE:
 	HORSE_MORPH(1000,
 			"horse-morph",
@@ -2082,38 +1999,6 @@ public enum StatusEffect {
 		}
 	},
 	
-	REINDEER_MORPH(1000,
-			"reindeer-morph",
-			null,
-			Colour.RACE_REINDEER_MORPH,
-			true,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, 5f),
-					new Value<Attribute, Float>(Attribute.RESISTANCE_ICE, 10f)),
-			null) {
-
-		@Override
-		public String getDescription(GameCharacter target) {
-			if (target.isPlayer()) {
-				return "Your reindeer-like body grants you significant resistance to the cold, as well as an increase in strength and fitness.";
-			} else {
-				return UtilText.parse(target, "[npc.NamePos] reindeer-like body grants [npc.herHim] significant resistance to the cold, as well as an increase in strength and fitness.");
-			}
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return target.getRace() == Race.REINDEER_MORPH
-					&& !target.isRaceConcealed()
-					&& target.getRaceStage() == RaceStage.GREATER;
-		}
-
-		@Override
-		public String getSVGString(GameCharacter owner) {
-			return owner.getSubspecies().getSVGString(owner);
-		}
-	},
-
 	// BOVINE:
 	COW_MORPH(1000,
 			"cow-morph",
@@ -6297,30 +6182,6 @@ public enum StatusEffect {
 		
 	},
 	
-	COMBAT_BONUS_REINDEER_MORPH(
-			80,
-			"reindeer-morph intuition",
-			"combatBonusReindeerMorph",
-			Colour.RACE_REINDEER_MORPH,
-			true,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, 2f),
-					new Value<Attribute, Float>(Attribute.DAMAGE_REINDEER_MORPH, 25f),
-					new Value<Attribute, Float>(Attribute.RESISTANCE_REINDEER_MORPH, 25f)),
-			null) {		@Override
-		public String getDescription(GameCharacter target) {
-			if(target == null) {
-				return "";
-			}
-			if (target.isPlayer()) {
-				return "After absorbing a specially-enchanted arcane essence, you find that you're able to accurately predict how reindeer-morphs will behave.";
-			} else {
-				return UtilText.parse(target, "After absorbing a specially-enchanted arcane essence, [npc.name] is able to accurately predict how reindeer-morphs will behave.");
-			}
-		}
-		
-	},
-	
 	COMBAT_BONUS_HUMAN(
 			80,
 			"human intuition",
@@ -6369,35 +6230,11 @@ public enum StatusEffect {
 		
 	},
 	
-	COMBAT_BONUS_RAT_MORPH(
-			80,
-			"rat-morph intuition",
-			"combatBonusRatMorph",
-			Colour.RACE_RAT_MORPH,
-			true,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, 2f),
-					new Value<Attribute, Float>(Attribute.DAMAGE_RAT_MORPH, 25f),
-					new Value<Attribute, Float>(Attribute.RESISTANCE_RAT_MORPH, 25f)),
-			null) {		@Override
-		public String getDescription(GameCharacter target) {
-			if(target == null) {
-				return "";
-			}
-			if (target.isPlayer()) {
-				return "After absorbing a specially-enchanted arcane essence, you find that you're able to accurately predict how rat-morphs will behave.";
-			} else {
-				return UtilText.parse(target, "After absorbing a specially-enchanted arcane essence, [npc.name] is able to accurately predict how rat-morphs will behave.");
-			}
-		}
-		
-	},
-	
 	COMBAT_BONUS_RABBIT_MORPH(
 			80,
 			"rabbit-morph intuition",
 			"combatBonusRabbitMorph",
-			Colour.RACE_RAT_MORPH,
+			Colour.RACE_SQUIRREL_MORPH,
 			true,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Float>(Attribute.DAMAGE_LUST, 5f),
@@ -6416,31 +6253,6 @@ public enum StatusEffect {
 		}
 		
 	},
-	
-	COMBAT_BONUS_BAT_MORPH(
-			80,
-			"bat-morph intuition",
-			"combatBonusBatMorph",
-			Colour.RACE_BAT_MORPH,
-			true,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.MAJOR_ARCANE, 2f),
-					new Value<Attribute, Float>(Attribute.DAMAGE_BAT_MORPH, 25f),
-					new Value<Attribute, Float>(Attribute.RESISTANCE_BAT_MORPH, 25f)),
-			null) {		@Override
-		public String getDescription(GameCharacter target) {
-			if(target == null) {
-				return "";
-			}
-			if (target.isPlayer()) {
-				return "After absorbing a specially-enchanted arcane essence, you find that you're able to accurately predict how bat-morphs will behave.";
-			} else {
-				return UtilText.parse(target, "After absorbing a specially-enchanted arcane essence, [npc.name] is able to accurately predict how bat-morphs will behave.");
-			}
-		}
-		
-	},
-	
 	COMBAT_BONUS_ALLIGATOR_MORPH(
 			80,
 			"alligator-morph intuition",

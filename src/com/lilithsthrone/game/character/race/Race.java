@@ -315,34 +315,6 @@ public enum Race {
 			FurryPreference.NORMAL,
 			true),
 
-	
-	 REINDEER_MORPH("reindeer-morph",
-			"reindeer-morphs",
-			"reindeer-boy",
-			"reindeer-girl",
-			"reindeer-boys",
-			"reindeer-girls",
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "REINDEER_MORPH_BASIC"),
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "REINDEER_MORPH_ADVANCED"),
-		 
-	  Colour.RACE_REINDEER_MORPH,
-			Disposition.CIVILIZED,
-			StatusEffect.REINDEER_MORPH,
-			Util.newArrayListOfValues(
-					Attack.MAIN,
-					Attack.SPECIAL_ATTACK),
-			true,
-			0.5f,
-			1,
-			2,
-			Attribute.DAMAGE_REINDEER_MORPH,
-			Attribute.RESISTANCE_REINDEER_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
-			
 
 	SQUIRREL_MORPH("squirrel-morph",
 			"squirrel-morphs",
@@ -370,33 +342,6 @@ public enum Race {
 			FurryPreference.NORMAL,
 			true),
 
-	RAT_MORPH("rat-morph",
-			"rat-morphs",
-			"rat-boy",
-			"rat-girl",
-			"rat-boys",
-			"rat-girls",
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "RAT_MORPH_BASIC"),
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "RAT_MORPH_ADVANCED"),
-
-			Colour.RACE_RAT_MORPH,
-			Disposition.NEUTRAL,
-			StatusEffect.RAT_MORPH,
-			Util.newArrayListOfValues(
-					Attack.MAIN,
-					Attack.SPECIAL_ATTACK),
-			true,
-			0.5f,
-			1,
-			4,
-			Attribute.DAMAGE_RAT_MORPH,
-			Attribute.RESISTANCE_RAT_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
-
 	RABBIT_MORPH("rabbit-morph",
 			"rabbit-morphs",
 			"rabbit-boy",
@@ -420,33 +365,6 @@ public enum Race {
 			8,
 			Attribute.DAMAGE_RABBIT_MORPH,
 			Attribute.RESISTANCE_RABBIT_MORPH,
-			FurryPreference.NORMAL,
-			FurryPreference.NORMAL,
-			true),
-	
-	BAT_MORPH("bat-morph",
-			"bat-morphs",
-			"bat-boy",
-			"bat-girl",
-			"bat-boys",
-			"bat-girls",
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "BAT_MORPH_BASIC"),
-
-			UtilText.parseFromXMLFile("characters/raceInfo", "BAT_MORPH_ADVANCED"),
-
-			Colour.RACE_BAT_MORPH,
-			Disposition.NEUTRAL,
-			StatusEffect.BAT_MORPH,
-			Util.newArrayListOfValues(
-					Attack.MAIN,
-					Attack.SPECIAL_ATTACK),
-			true,
-			0.5f,
-			1,
-			2,
-			Attribute.DAMAGE_BAT_MORPH,
-			Attribute.RESISTANCE_BAT_MORPH,
 			FurryPreference.NORMAL,
 			FurryPreference.NORMAL,
 			true),

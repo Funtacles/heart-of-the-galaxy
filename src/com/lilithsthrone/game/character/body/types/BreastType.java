@@ -41,17 +41,11 @@ public enum BreastType implements BodyPartTypeInterface {
 	
 	SQUIRREL_MORPH(NippleType.SQUIRREL_MORPH, FluidType.MILK_SQUIRREL_MORPH, BodyCoveringType.SQUIRREL_FUR, Race.SQUIRREL_MORPH),
 	
-	RAT_MORPH(NippleType.RAT_MORPH, FluidType.MILK_RAT_MORPH, BodyCoveringType.RAT_FUR, Race.RAT_MORPH),
-	
 	RABBIT_MORPH(NippleType.RABBIT_MORPH, FluidType.MILK_RABBIT_MORPH, BodyCoveringType.RABBIT_FUR, Race.RABBIT_MORPH),
-	
-	BAT_MORPH(NippleType.BAT_MORPH, FluidType.MILK_BAT_MORPH, BodyCoveringType.BAT_FUR, Race.BAT_MORPH),
 	
 	ALLIGATOR_MORPH(NippleType.ALLIGATOR_MORPH, FluidType.MILK_ALLIGATOR_MORPH, BodyCoveringType.ALLIGATOR_SCALES, Race.ALLIGATOR_MORPH),
 	
-	HORSE_MORPH(NippleType.HORSE_MORPH, FluidType.MILK_HORSE_MORPH, BodyCoveringType.HORSE_HAIR, Race.HORSE_MORPH),
-	
-	REINDEER_MORPH(NippleType.REINDEER_MORPH, FluidType.MILK_REINDEER_MORPH, BodyCoveringType.REINDEER_FUR, Race.REINDEER_MORPH);
+	HORSE_MORPH(NippleType.HORSE_MORPH, FluidType.MILK_HORSE_MORPH, BodyCoveringType.HORSE_HAIR, Race.HORSE_MORPH);
 
 	private NippleType nippleType;
 	private FluidType fluidType;
@@ -156,18 +150,12 @@ public enum BreastType implements BodyPartTypeInterface {
 				return "alligator";
 			case HORSE_MORPH:
 				return "equine";
-			case REINDEER_MORPH:
-				return "rangiferine";
 			case HUMAN:
 				return "human";
 			case WOLF_MORPH:
 				return "lupine";
 			case FOX_MORPH:
 				return "vulpine";
-			case BAT_MORPH:
-				return "bat";
-			case RAT_MORPH:
-				return "rat";
 			case RABBIT_MORPH:
 				return "rabbit";
 		}

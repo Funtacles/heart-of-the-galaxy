@@ -891,52 +891,6 @@ public class ClothingType {
 		}
 	};
 	
-	public static AbstractClothingType HEAD_ANTLER_HEADBAND = new AbstractClothingType(60,
-			"an",
-			false,
-			"antler headband",
-			"antler headbands",
-			"A thin band of metal that sits atop your head.",
-			1,
-			null,
-			InventorySlot.HEAD,
-			Rarity.COMMON,
-			null,
-			"head_antler_headband",
-			null,
-			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, Util.newArrayListOfValues(ClothingAccess.HEAD), null, null, null)),
-			null,
-			ColourListPresets.JUST_BROWN.getPresetColourList(),
-			null,
-			null,
-			null,
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull on the antler headband.",
-					"You push the antler headband onto [npc.namePos] head.",
-					null,
-					"[npc.Name] pulls the antler headband onto [npc.her] head.",
-					"[npc.Name] pushes the antler headband onto your head.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You take off your antler headband.",
-					"You take off [npc.namePos] antler headband.",
-					null,
-					"[npc.Name] takes [npc.her] antler headband off.",
-					"[npc.Name] takes your antler headband off.",
-					null, null, null);
-		}
-	};
-
 	// EYES
 	public static AbstractClothingType EYES_GLASSES = new AbstractClothingType(800,
 			"a pair of",
@@ -2223,49 +2177,6 @@ public class ClothingType {
 			null,
 			null,
 			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
-	};
-
-	public static AbstractClothingType TORSO_OVER_CHRISTMAS_SWEATER = new AbstractClothingType(100,
-			"a",
-			false,
-			"festive sweater",
-			"festive sweaters",
-			"A festive sweater, made from some sort of woolly fabric and decorated with a series of incredibly tasteful and refined patterns.",
-			1,
-			null,
-			InventorySlot.TORSO_OVER,
-			Rarity.COMMON,
-			null,
-			"torso_over_christmas_sweater",
-			null,
-			Util.newArrayListOfValues(
-					new BlockedParts(DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(
-									ClothingAccess.ARMS_UP_TO_SHOULDER,
-									ClothingAccess.HEAD),
-							null,
-							Util.newArrayListOfValues(ClothingAccess.ARMS_UP_TO_SHOULDER), 
-							null),
-					new BlockedParts(DisplacementType.PULLS_UP,
-							null,
-							Util.newArrayListOfValues(
-									CoverableArea.BREASTS,
-									CoverableArea.NIPPLES,
-									CoverableArea.STOMACH,
-									CoverableArea.BACK),
-							Util.newArrayListOfValues(
-									ClothingAccess.CHEST,
-									ClothingAccess.WAIST),
-							PresetConcealmentLists.CONCEALED_FULL_TORSO.getPresetInventorySlotList())),
-
-			null,
-			ColourListPresets.NOT_WHITE.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_WHITE.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
 	};
 	
 	public static AbstractClothingType TORSO_KEYHOLE_SWEATER = new AbstractClothingType(350,
@@ -10356,7 +10267,7 @@ public class ClothingType {
 			ColourListPresets.ALL.getPresetColourList(),
 			ColourListPresets.KIMONO.getPresetColourList(),
 			ColourListPresets.ALL.getPresetColourList(),
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
+			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
 
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -10441,7 +10352,7 @@ public class ClothingType {
 			ColourListPresets.ALL.getPresetColourList(),
 			ColourListPresets.KIMONO.getPresetColourList(),
 			ColourListPresets.ALL.getPresetColourList(),
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT, ItemTag.DRESS)){
+			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN, ItemTag.DRESS)){
 
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -10494,7 +10405,7 @@ public class ClothingType {
 			ColourListPresets.ALL.getPresetColourList(),
 			null,
 			null,
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
+			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
 
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -10583,7 +10494,7 @@ public class ClothingType {
 			ColourListPresets.ALL.getPresetColourList(),
 			ColourListPresets.JUST_GREY.getPresetColourList(),
 			ColourListPresets.ALL.getPresetColourList(),
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT, ItemTag.DRESS)){
+			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN, ItemTag.DRESS)){
 
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -10639,7 +10550,7 @@ public class ClothingType {
 			null,
 			null,
 			null,
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
+			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
 		
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -10694,7 +10605,7 @@ public class ClothingType {
 			ColourListPresets.ALL.getPresetColourList(),
 			null,
 			null,
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
+			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
 
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -10746,7 +10657,7 @@ public class ClothingType {
 			ColourListPresets.ALL.getPresetColourList(),
 			null,
 			null,
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
+			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
 
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -10801,7 +10712,7 @@ public class ClothingType {
 			ColourListPresets.ALL.getPresetColourList(),
 			ColourListPresets.JUST_BLACK.getPresetColourList(),
 			ColourListPresets.ALL.getPresetColourList(),
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
+			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
 		
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -10872,7 +10783,7 @@ public class ClothingType {
 			ColourListPresets.ALL.getPresetColourList(),
 			ColourListPresets.JUST_BLACK.getPresetColourList(),
 			ColourListPresets.ALL.getPresetColourList(),
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT, ItemTag.DRESS)){
+			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN, ItemTag.DRESS)){
 
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -10947,7 +10858,7 @@ public class ClothingType {
 			ColourListPresets.ALL.getPresetColourList(),
 			ColourListPresets.JUST_WHITE.getPresetColourList(),
 			ColourListPresets.ALL.getPresetColourList(),
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
+			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
 
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -11000,7 +10911,7 @@ public class ClothingType {
 			ColourListPresets.ALL.getPresetColourList(),
 			ColourListPresets.JUST_WHITE.getPresetColourList(),
 			ColourListPresets.ALL.getPresetColourList(),
-			Util.newArrayListOfValues(ItemTag.REINDEER_GIFT)){
+			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
 
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -11237,9 +11148,7 @@ public class ClothingType {
 			null,
 			null,
 			null, 
-			Util.newArrayListOfValues(
-					ItemTag.REINDEER_GIFT,
-					ItemTag.SOLD_BY_NYAN)){
+			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
 		
 
 		@Override
@@ -11288,9 +11197,7 @@ public class ClothingType {
 			null,
 			null,
 			null,
-			Util.newArrayListOfValues(
-					ItemTag.REINDEER_GIFT,
-					ItemTag.SOLD_BY_NYAN)){
+			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
 
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -11492,9 +11399,7 @@ public class ClothingType {
 			ColourListPresets.ALL.getPresetColourList(),
 			null,
 			null,
-			Util.newArrayListOfValues(
-					ItemTag.REINDEER_GIFT,
-					ItemTag.SOLD_BY_NYAN)){
+			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
 
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
@@ -11721,8 +11626,6 @@ public class ClothingType {
 					allClothing.add(ct);
 					
 					if(ct==ClothingType.PENIS_CONDOM
-							|| ct==ClothingType.TORSO_OVER_CHRISTMAS_SWEATER
-							|| ct==ClothingType.HEAD_ANTLER_HEADBAND
 							|| ct==ClothingType.PIERCING_EAR_SNOW_FLAKES
 							|| ct==ClothingType.PIERCING_NOSE_SNOWFLAKE_STUD
 							|| ct==ClothingType.NECK_SNOWFLAKE_NECKLACE) {

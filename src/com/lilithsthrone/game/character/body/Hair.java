@@ -233,19 +233,6 @@ public class Hair implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case REINDEER_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" The feeling goes away almost as quickly as it came, leaving you with coarse, reindeer-like hair.<br/>"
-								+ "You now have [pc.hairColour] [style.boldReindeerMorph(rangiferine hair)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" The transformation only lasts a matter of moments, leaving [npc.herHim] with coarse, reindeer-like hair.<br/>"
-								+ "[npc.Name] now has [npc.hairColour] [style.boldReindeerMorph(rangiferine hair)]."
-							+ "</p>");
-				}
-				break;
 			case SQUIRREL_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -259,19 +246,6 @@ public class Hair implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case RAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" The feeling goes away almost as quickly as it came, leaving you with fur-like hair.<br/>"
-								+ "You now have [pc.hairColour] [style.boldRatMorph(rat-like hair)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" The transformation only lasts a matter of moments, leaving [npc.herHim] with fur-like hair.<br/>"
-								+ "[npc.Name] now has [npc.hairColour] [style.boldRatMorph(rat-like hair)]."
-							+ "</p>");
-				}
-				break;
 			case RABBIT_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -282,19 +256,6 @@ public class Hair implements BodyPartInterface, Serializable {
 					UtilText.transformationContentSB.append(
 								" The transformation only lasts a matter of moments, leaving [npc.herHim] with fur-like hair.<br/>"
 								+ "[npc.Name] now has [npc.hairColour] [style.boldRabbitMorph(rabbit-like hair)]."
-							+ "</p>");
-				}
-				break;
-			case BAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" The feeling goes away almost as quickly as it came, leaving you with fur-like hair.<br/>"
-								+ "You now have [pc.hairColour] [style.boldBatMorph(bat-like hair)]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" The transformation only lasts a matter of moments, leaving [npc.herHim] with fur-like hair.<br/>"
-								+ "[npc.Name] now has [npc.hairColour] [style.boldBatMorph(bat-like hair)]."
 							+ "</p>");
 				}
 				break;

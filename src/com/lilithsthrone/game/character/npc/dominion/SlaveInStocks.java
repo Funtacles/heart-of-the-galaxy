@@ -7,7 +7,6 @@ import java.util.Map;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.lilithsthrone.game.Season;
 import com.lilithsthrone.game.character.CharacterImportSetting;
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
@@ -20,7 +19,6 @@ import com.lilithsthrone.game.character.persona.SexualOrientation;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.character.race.Subspecies;
-import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -31,7 +29,6 @@ import com.lilithsthrone.game.inventory.item.AbstractItem;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.slavery.SlaveJobSetting;
-import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.world.WorldType;
 import com.lilithsthrone.world.places.PlaceType;
@@ -85,22 +82,8 @@ public class SlaveInStocks extends NPC {
 					case ELEMENTAL_FIRE:
 					case ELEMENTAL_WATER:
 						break;
-					
-					// Special spawns:
-					case REINDEER_MORPH:
-						if(Main.game.getSeason()==Season.WINTER && Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.hasSnowedThisWinter)) {
-							addToSubspeciesMap(10, gender, s, availableRaces);
-						}
-						break;
-						
 					// Rare spawns:
 					case ALLIGATOR_MORPH:
-						addToSubspeciesMap(5, gender, s, availableRaces);
-						break;
-					case BAT_MORPH:
-						addToSubspeciesMap(5, gender, s, availableRaces);
-						break;
-					case RAT_MORPH:
 						addToSubspeciesMap(5, gender, s, availableRaces);
 						break;
 						

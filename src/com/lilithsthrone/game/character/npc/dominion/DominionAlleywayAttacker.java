@@ -7,7 +7,6 @@ import java.util.Map;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.lilithsthrone.game.Season;
 import com.lilithsthrone.game.Weather;
 import com.lilithsthrone.game.character.CharacterImportSetting;
 import com.lilithsthrone.game.character.CharacterUtils;
@@ -21,7 +20,6 @@ import com.lilithsthrone.game.character.persona.Name;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.character.race.Subspecies;
-import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.npcDialogue.SlaveDialogue;
 import com.lilithsthrone.game.dialogue.npcDialogue.dominion.AlleywayAttackerDialogue;
@@ -85,7 +83,6 @@ public class DominionAlleywayAttacker extends NPC {
 				switch(s) {
 					// No spawn chance:
 					case ANGEL:
-					case BAT_MORPH:
 					case DEMON:
 					case HUMAN:
 					case IMP:
@@ -102,16 +99,6 @@ public class DominionAlleywayAttacker extends NPC {
 					// Canals spawn only:
 					case ALLIGATOR_MORPH:
 						addToSubspeciesMap(canalSpecies?20:0, gender, s, availableRaces);
-						break;
-					case RAT_MORPH:
-						addToSubspeciesMap(canalSpecies?10:0, gender, s, availableRaces);
-						break;
-						
-					// Special spawns:
-					case REINDEER_MORPH:
-						if(Main.game.getSeason()==Season.WINTER && Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.hasSnowedThisWinter)) {
-							addToSubspeciesMap(canalSpecies?1:10, gender, s, availableRaces);
-						}
 						break;
 						
 					// Regular spawns:

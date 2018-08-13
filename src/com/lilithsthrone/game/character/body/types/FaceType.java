@@ -38,17 +38,11 @@ public enum FaceType implements BodyPartTypeInterface {
 
 	SQUIRREL_MORPH(BodyCoveringType.SQUIRREL_FUR, MouthType.SQUIRREL_MORPH, TongueType.SQUIRREL_MORPH, Race.SQUIRREL_MORPH),
 
-	RAT_MORPH(BodyCoveringType.RAT_FUR, MouthType.RAT_MORPH, TongueType.RAT_MORPH, Race.RAT_MORPH),
-
 	RABBIT_MORPH(BodyCoveringType.RABBIT_FUR, MouthType.RABBIT_MORPH, TongueType.RABBIT_MORPH, Race.RABBIT_MORPH),
-
-	BAT_MORPH(BodyCoveringType.BAT_FUR, MouthType.BAT_MORPH, TongueType.BAT_MORPH, Race.BAT_MORPH),
 
 	ALLIGATOR_MORPH(BodyCoveringType.ALLIGATOR_SCALES, MouthType.ALLIGATOR_MORPH, TongueType.ALLIGATOR_MORPH, Race.ALLIGATOR_MORPH),
 
-	HORSE_MORPH(BodyCoveringType.HORSE_HAIR, MouthType.HORSE_MORPH, TongueType.HORSE_MORPH, Race.HORSE_MORPH),
-
-	REINDEER_MORPH(BodyCoveringType.REINDEER_FUR, MouthType.REINDEER_MORPH, TongueType.REINDEER_MORPH, Race.REINDEER_MORPH);
+	HORSE_MORPH(BodyCoveringType.HORSE_HAIR, MouthType.HORSE_MORPH, TongueType.HORSE_MORPH, Race.HORSE_MORPH);
 
 	private BodyCoveringType skinType;
 	private MouthType mouthType;
@@ -83,11 +77,8 @@ public enum FaceType implements BodyPartTypeInterface {
 			case HUMAN:
 			case IMP:
 				return UtilText.returnStringAtRandom("face");
-			case RAT_MORPH:
 			case RABBIT_MORPH:
-			case REINDEER_MORPH:
 			case SQUIRREL_MORPH:
-			case BAT_MORPH:
 			case CAT_MORPH:
 			case CAT_MORPH_PANTHER:
 			case COW_MORPH:
@@ -111,11 +102,8 @@ public enum FaceType implements BodyPartTypeInterface {
 			case HUMAN:
 			case IMP:
 				return UtilText.returnStringAtRandom("faces");
-			case RAT_MORPH:
 			case RABBIT_MORPH:
-			case REINDEER_MORPH:
 			case SQUIRREL_MORPH:
-			case BAT_MORPH:
 			case CAT_MORPH:
 			case CAT_MORPH_PANTHER:
 				return UtilText.returnStringAtRandom("muzzles", "faces");
@@ -152,18 +140,12 @@ public enum FaceType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("anthropomorphic alligator-like", "alligator-like", "reptile");
 			case HORSE_MORPH:
 				return UtilText.returnStringAtRandom("anthropomorphic horse-like", "horse-like", "equine");
-			case REINDEER_MORPH:
-				return UtilText.returnStringAtRandom("anthropomorphic reindeer-like", "reindeer-like", "rangiferine");
 			case HUMAN:
 				return UtilText.returnStringAtRandom("");
 			case LYCAN:
 				return UtilText.returnStringAtRandom("anthropomorphic wolf-like", "wolf-like");
 			case FOX_MORPH:
 				return UtilText.returnStringAtRandom("anthropomorphic fox-like", "fox-like");
-			case RAT_MORPH:
-				return UtilText.returnStringAtRandom("anthropomorphic rat-like", "rat-like", "rodent");
-			case BAT_MORPH:
-				return UtilText.returnStringAtRandom("anthropomorphic bat-like", "bat-like");
 			case RABBIT_MORPH:
 				return UtilText.returnStringAtRandom("anthropomorphic rabbit-like", "rabbit-like");
 		}
@@ -192,18 +174,12 @@ public enum FaceType implements BodyPartTypeInterface {
 				return "alligator";
 			case HORSE_MORPH:
 				return "equine";
-			case REINDEER_MORPH:
-				return "rangiferine";
 			case HUMAN:
 				return "human";
 			case LYCAN:
 				return "lupine";
 			case FOX_MORPH:
 				return "vulpine";
-			case BAT_MORPH:
-				return "bat";
-			case RAT_MORPH:
-				return "rat";
 			case RABBIT_MORPH:
 				return "rabbit";
 		}

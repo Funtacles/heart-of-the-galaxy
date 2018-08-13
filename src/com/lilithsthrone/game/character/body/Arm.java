@@ -255,25 +255,6 @@ public class Arm implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case REINDEER_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" Within a matter of moments, a layer of [pc.armFullDescription] has quickly grown over them, and, looking down,"
-										+ " you see your fur growing over the backs of your new hands as tough, hoof-like nails push out in place of regular, human-like ones."
-								+ " Despite their appearance, you're relieved to discover that your hands have lost none of their dexterity."
-								+ " As the transformation comes to an end, you see that at your upper-biceps, your new fur smoothly transitions into the [pc.skin] that's covering the rest of your body.<br/>"
-								+ "You're left with anthropomorphic, [style.boldReindeerMorph(reindeer-like arms and hands)], which are covered in [pc.armFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" Within a matter of moments, a layer of [npc.armFullDescription] has quickly grown over them, and, looking down,"
-										+ " [npc.she] sees [npc.her] fur growing over the backs of [npc.her] new hands as tough, hoof-like nails push out in place of regular, human-like ones."
-								+ " Despite their appearance, [npc.sheIs] relieved to discover that [npc.her] hands have lost none of their dexterity."
-								+ " As the transformation comes to an end, [npc.she] sees that at [npc.her] upper-biceps, [npc.her] new fur smoothly transitions into the [npc.skin] that's covering the rest of [npc.her] body.<br/>"
-								+ "[npc.Name] is left with anthropomorphic, [style.boldReindeerMorph(reindeer-like arms and hands)], which are covered in [npc.armFullDescription]."
-							+ "</p>");
-				}
-				break;
 			case COW_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -310,23 +291,6 @@ public class Arm implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case RAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" Within a matter of moments, a layer of [pc.armFullDescription] has quickly grown over them, and, looking down,"
-										+ " you see your fur growing over the backs of your new hands as sharp little claws push out to replace your fingernails."
-								+ " Your palms rapidly transform to be covered in little pink pads, and at your upper-biceps, your new fur smoothly transitions into the [pc.skin] that's covering the rest of your body.<br/>"
-								+ "As the transformation comes to an end, you're left with anthropomorphic, [style.boldRatMorph(rat-like arms and hands)], which are covered in [pc.armFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" Within a matter of moments, a layer of [npc.armFullDescription] has quickly grown over them, and, looking down,"
-										+ " [npc.she] sees [npc.her] fur growing over the backs of [npc.her] hands as sharp little claws push out to replace [npc.her] fingernails."
-								+ " [npc.Her] palms rapidly transform to be covered in little pink pads, and at [npc.her] upper-biceps, [npc.her] new fur smoothly transitions into the [npc.skin] that's covering the rest of [npc.her] body.<br/>"
-								+ "As the transformation comes to an end, [npc.name] is left with anthropomorphic, [style.boldRatMorph(rat-like arms and hands)], which are covered in [npc.armFullDescription]."
-							+ "</p>");
-				}
-				break;
 			case RABBIT_MORPH:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(
@@ -341,29 +305,6 @@ public class Arm implements BodyPartInterface, Serializable {
 										+ " [npc.she] sees [npc.her] fur growing over the backs of [npc.her] new paw-like hands as little blunt claws push out to replace [npc.her] fingernails."
 								+ " [npc.Her] palms rapidly transform to be covered in soft little pads, and at [npc.her] upper-biceps, [npc.her] new fur smoothly transitions into the [npc.skin] that's covering the rest of [npc.her] body.<br/>"
 								+ "As the transformation comes to an end, [npc.name] is left with anthropomorphic, [style.boldRabbitMorph(rabbit-like arms and hands)], which are covered in [npc.armFullDescription]."
-							+ "</p>");
-				}
-				break;
-			case BAT_MORPH:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-								" Within a matter of moments, a layer of [pc.armFullDescription] has quickly grown over them, and, staring at your hands in shock,"
-										+ " you see your fingers narrowing down and growing longer as a tough membrane of skin starts to grow between them."
-								+ " You cry out in alarm as you feel your bones growing and snapping into a new form, and within moments, your hands and arms have completely transformed into a pair of huge, bat-like wings."
-								+ " Where your hands once were, your outer two fingers have shrunk down into the middle-joint of your new appendages, leaving you with two small forefingers and an opposable thumb,"
-									+ " each of which ends in a little claw."
-								+ " Where your new wings meet your body at the shoulder, your [pc.armFullDescription] smoothly covers the transition into the [pc.skin] that's covering the rest of your torso.<br/>"
-								+ "You now have huge [style.boldBatMorph(bat-like wings)] in place of arms, which are covered in [pc.armFullDescription]."
-							+ "</p>");
-				} else {
-					UtilText.transformationContentSB.append(
-								" Within a matter of moments, a layer of [npc.armFullDescription] has quickly grown over them, and, staring at [npc.her] hands in shock,"
-										+ " [npc.name] watches [npc.her] fingers narrowing down and growing longer as a tough membrane of skin starts to grow between them."
-								+ " [npc.She] cries out in alarm as [npc.she] feels [npc.her] bones growing and snapping into a new form, and within moments, [npc.her] hands and arms have completely transformed into a pair of huge, bat-like wings."
-								+ " Where [npc.her] hands once were, [npc.her] outer two fingers have shrunk down into the middle-joint of [npc.her] new appendages, leaving [npc.herHim] with two small forefingers and an opposable thumb,"
-									+ " each of which ends in a little claw."
-								+ " Where [npc.her] new wings meet [npc.her] body at the shoulder, [npc.her] [npc.armFullDescription] smoothly covers the transition into the [npc.skin] that's covering the rest of [npc.her] torso.<br/>"
-								+ "[npc.Name] now has huge [style.boldBatMorph(bat-like wings)] in place of arms, which are covered in [npc.armFullDescription]."
 							+ "</p>");
 				}
 				break;
