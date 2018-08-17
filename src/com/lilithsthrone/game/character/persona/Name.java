@@ -226,11 +226,6 @@ public enum Name {
 			case WOLF_MORPH:
 			case SQUIRREL_MORPH:
 			case RABBIT_MORPH:
-			case ELEMENTAL_AIR:
-			case ELEMENTAL_ARCANE:
-			case ELEMENTAL_EARTH:
-			case ELEMENTAL_FIRE:
-			case ELEMENTAL_WATER:
 				break;
 				
 			case HORSE_MORPH:
@@ -272,11 +267,6 @@ public enum Name {
 			
 			case DEMON:
 			case IMP:
-			case ELEMENTAL_AIR:
-			case ELEMENTAL_ARCANE:
-			case ELEMENTAL_EARTH:
-			case ELEMENTAL_FIRE:
-			case ELEMENTAL_WATER:
 				return getDemonName();
 			case HORSE_MORPH:
 				name = Name.EQUINE;

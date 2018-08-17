@@ -1,6 +1,5 @@
 package com.lilithsthrone.game.character.body.types;
 
-import java.util.Arrays;
 import java.util.List;
 
 import com.lilithsthrone.game.character.body.valueEnums.CoveringModifier;
@@ -86,21 +85,6 @@ public class BodyCoveringTemplateFactory {
 	
 	public static BodyCoveringTemplate createBodyHair(CoveringModifier modifier) {
 		return createHairWithoutPatterns("a layer of", "hair", modifier);
-	}
-	
-	public static BodyCoveringTemplate createElemental(String name, CoveringModifier modifier, Colour... naturalHairColours) {
-		return new BodyCoveringTemplate("",
-				false,
-				name,
-				name,
-				Util.newArrayListOfValues(modifier),
-				null,
-				Util.newArrayListOfValues(CoveringPattern.NONE),
-				null,
-				Arrays.asList(naturalHairColours),
-				null,
-				null,
-				null);
 	}
 	
 	public static BodyCoveringTemplate createOrificeSkin(CoveringPattern pattern) {

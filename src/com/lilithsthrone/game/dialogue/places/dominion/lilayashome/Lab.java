@@ -3198,11 +3198,6 @@ public class Lab {
 						litterSB.append(" strong");
 						break;
 					case DEMON:
-					case ELEMENTAL_AIR:
-					case ELEMENTAL_ARCANE:
-					case ELEMENTAL_EARTH:
-					case ELEMENTAL_FIRE:
-					case ELEMENTAL_WATER:
 					case IMP:
 					case IMP_ALPHA:
 					case FOX_MORPH:
@@ -3265,11 +3260,6 @@ public class Lab {
 						litterSB.append(" strong");
 						break;
 					case DEMON:
-					case ELEMENTAL_AIR:
-					case ELEMENTAL_ARCANE:
-					case ELEMENTAL_EARTH:
-					case ELEMENTAL_FIRE:
-					case ELEMENTAL_WATER:
 					case IMP:
 					case IMP_ALPHA:
 					case FOX_MORPH:
@@ -3332,11 +3322,6 @@ public class Lab {
 						litterSB.append(" docile");
 						break;
 					case DEMON:
-					case ELEMENTAL_AIR:
-					case ELEMENTAL_ARCANE:
-					case ELEMENTAL_EARTH:
-					case ELEMENTAL_FIRE:
-					case ELEMENTAL_WATER:
 					case IMP:
 					case IMP_ALPHA:
 					case FOX_MORPH:
@@ -3399,11 +3384,6 @@ public class Lab {
 						litterSB.append(" docile");
 						break;
 					case DEMON:
-					case ELEMENTAL_AIR:
-					case ELEMENTAL_ARCANE:
-					case ELEMENTAL_EARTH:
-					case ELEMENTAL_FIRE:
-					case ELEMENTAL_WATER:
 					case IMP:
 					case IMP_ALPHA:
 					case FOX_MORPH:

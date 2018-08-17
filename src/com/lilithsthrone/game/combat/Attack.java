@@ -4,7 +4,6 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.effects.Perk;
 import com.lilithsthrone.game.character.effects.StatusEffect;
-import com.lilithsthrone.game.character.npc.misc.Elemental;
 import com.lilithsthrone.game.character.persona.SexualOrientation;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
 import com.lilithsthrone.main.Main;
@@ -363,42 +362,12 @@ public enum Attack {
 	 */
 	private static float getModifiedDamage(GameCharacter attacker, GameCharacter defender, Attack attackType, DamageType damageType, float attackersDamage) {
 		float damage = attackersDamage;
-		boolean damageDoubledFromElemental = false;
 		
 		if(defender!=null && defender.isImmuneToDamageType(damageType)) {
 			return 0;
 		}
 			
-		if(attacker instanceof Elemental) {
-			switch(attacker.getBodyMaterial()) {
-				case AIR:
-					damageDoubledFromElemental = ((Elemental)attacker).hasStatusEffect(StatusEffect.ELEMENTAL_AIR_SERVANT_OF_AIR_ELEMENTAL_BUFF);
-					break;
-				case ARCANE:
-					damageDoubledFromElemental = ((Elemental)attacker).hasStatusEffect(StatusEffect.ELEMENTAL_ARCANE_SERVANT_OF_ARCANE_ELEMENTAL_BUFF);
-					break;
-				case FIRE:
-					damageDoubledFromElemental = ((Elemental)attacker).hasStatusEffect(StatusEffect.ELEMENTAL_FIRE_SERVANT_OF_FIRE_ELEMENTAL_BUFF);
-					break;
-				case FLESH:
-					break;
-				case RUBBER:
-				case STONE:
-					damageDoubledFromElemental = ((Elemental)attacker).hasStatusEffect(StatusEffect.ELEMENTAL_EARTH_SERVANT_OF_EARTH_ELEMENTAL_BUFF);
-					break;
-				case ICE:
-				case WATER:
-					damageDoubledFromElemental = ((Elemental)attacker).hasStatusEffect(StatusEffect.ELEMENTAL_WATER_SERVANT_OF_WATER_ELEMENTAL_BUFF);
-					break;
-			}
-		}
-		
 		if (attackType == MAIN || attackType == OFFHAND || attackType == SPECIAL_ATTACK) {
-			
-			if(damageDoubledFromElemental) {
-				damage*=2;
-			}
-			
 			if (attacker != null) {
 				// Attacker modifiers:
 				// Damage Type modifier:
@@ -420,11 +389,6 @@ public enum Attack {
 			}
 			
 		} else if(attackType == SPELL) {
-			
-			if(damageDoubledFromElemental) {
-				damage*=2;
-			}
-			
 			if (attacker != null) {
 				// Attacker modifiers:
 				damage *= 1 + Util.getModifiedDropoffValue(attacker.getAttributeValue(Attribute.DAMAGE_SPELLS), 100)/100f;

@@ -5,7 +5,6 @@ import java.util.List;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.misc.Elemental;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.DialogueNodeType;
 import com.lilithsthrone.game.dialogue.responses.Response;
@@ -172,33 +171,22 @@ public class CharactersPresentDialogue {
 					
 				} else if(index==5) {
 					if(!Main.game.isSavedDialogueNeutral()) {
-						return new Response(characterViewed instanceof Elemental?"Dispell":"Go Home", "You're in the middle of something right now! (Can only be used when in a tile's default dialogue.)", null);
+						return new Response("Go Home", "You're in the middle of something right now! (Can only be used when in a tile's default dialogue.)", null);
 						
 					} else {
-						if(charactersPresent.size()==1 || (charactersPresent.size()==2 && characterViewed.isElementalSummoned())) {
-							return new ResponseEffectsOnly(characterViewed instanceof Elemental?"Dispell":"Go Home",
-									characterViewed instanceof Elemental?"Dispell [npc.namePos] physical form, and return [npc.herHim] to your arcane aura.":"Tell [npc.name] to go home."){
+						if(charactersPresent.size()==1) {
+							return new ResponseEffectsOnly("Go Home", "Tell [npc.name] to go home."){
 								@Override
 								public void effects() {
-									if(characterViewed.isElementalSummoned()) {
-										characterViewed.removeCompanion(characterViewed.getElemental());
-										characterViewed.getElemental().returnToHome();
-									}
 									Main.game.getPlayer().removeCompanion(characterViewed);
 									characterViewed.returnToHome();
 									Main.mainController.openCharactersPresent();
 								}
 							};
 						} else {
-							return new Response(characterViewed instanceof Elemental?"Dispell":"Go Home",
-									characterViewed instanceof Elemental?"Dispell [npc.namePos] physical form, and return [npc.herHim] to your arcane aura.":"Tell [npc.name] to go home.",
-									MENU){
+							return new Response("Go Home","Tell [npc.name] to go home.", MENU){
 								@Override
 								public void effects() {
-									if(characterViewed.isElementalSummoned()) {
-										characterViewed.removeCompanion(characterViewed.getElemental());
-										characterViewed.getElemental().returnToHome();
-									}
 									Main.game.getPlayer().removeCompanion(characterViewed);
 									characterViewed.returnToHome();
 									
@@ -212,24 +200,6 @@ public class CharactersPresentDialogue {
 						}
 					}
 					
-				} else if(index==10) {
-					if(!characterViewed.isElementalSummoned()) {
-						return new Response("Dispell Elemental", "[npc.Name] doesn't have an elemental summoned...", null);
-						
-					} else {
-						if(!Main.game.isSavedDialogueNeutral()) {
-							return new Response("Dispell Elemental", "You're in the middle of something right now! (Can only be used when in a tile's default dialogue.)", null);
-							
-						} else {
-							return new Response("Dispell Elemental", "Tell [npc.name] to dispell [npc.her] elemental.", MENU){
-								@Override
-								public void effects() {
-									characterViewed.removeCompanion(characterViewed.getElemental());
-									characterViewed.getElemental().returnToHome();
-								}
-							};
-						}
-					}
 				}
 				
 			} else if (responseTab==2 && Main.game.getPlayer().hasCompanion(characterViewed)){

@@ -377,7 +377,7 @@ public class SlaveryUtil implements XMLSaving {
 							}
 						}
 					}
-					if(slave.hasPenisIgnoreDildo() && slave.getPenisRawStoredCumValue()>0 && !slave.getSlaveJobSettings().contains(SlaveJobSetting.MILKING_CUM_DISABLE)) {
+					if(slave.hasPenis() && slave.getPenisRawStoredCumValue()>0 && !slave.getSlaveJobSettings().contains(SlaveJobSetting.MILKING_CUM_DISABLE)) {
 						int milked = MilkingRoom.getActualCumPerHour(slave);
 
 						if(milked>0) {

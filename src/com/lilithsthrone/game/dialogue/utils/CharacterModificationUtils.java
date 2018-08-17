@@ -2213,8 +2213,7 @@ public class CharacterModificationUtils {
 		
 		for(PenisType penis : PenisType.values()) {
 			if(((penis.getRace() !=null && availableRaces.contains(penis.getRace()))
-					|| penis==PenisType.NONE)
-					&& penis!=PenisType.DILDO) {
+					|| penis==PenisType.NONE)) {
 				
 				Colour c = Colour.TEXT_GREY;
 				
@@ -3860,7 +3859,7 @@ public class CharacterModificationUtils {
 				}
 				break;
 			case PENIS:
-				if(!BodyChanging.getTarget().hasPenisIgnoreDildo()) {
+				if(!BodyChanging.getTarget().hasPenis()) {
 					disabled = true;
 				}
 				break;

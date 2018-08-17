@@ -9,8 +9,6 @@ public enum CharacterImportSetting {
 
 	CLEAR_SLAVERY,
 	
-	NO_ELEMENTAL,
-	
 	NO_COMPANIONS,
 	
 	NO_PREGNANCY;

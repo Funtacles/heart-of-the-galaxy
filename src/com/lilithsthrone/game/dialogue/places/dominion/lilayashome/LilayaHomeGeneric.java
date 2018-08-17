@@ -322,7 +322,7 @@ public class LilayaHomeGeneric {
 				}
 				
 			} else if(index==4) {
-				if(!Main.game.getPlayer().hasPenisIgnoreDildo()) {
+				if(!Main.game.getPlayer().hasPenis()) {
 					return new Response("Milk Self Cum", "You don't have a penis, so you can't produce any cum...",  null);
 					
 				} else if(Main.game.getPlayer().getPenisRawStoredCumValue()==0) {

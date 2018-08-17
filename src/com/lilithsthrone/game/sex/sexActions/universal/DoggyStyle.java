@@ -218,7 +218,7 @@ public class DoggyStyle {
 
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo();
+			return Main.game.getPlayer().hasPenis();
 		}
 		
 		@Override
@@ -366,7 +366,7 @@ public class DoggyStyle {
 		public boolean isBaseRequirementsMet() {
 			return Sex.getActivePartner().isCoverableAreaExposed(CoverableArea.MOUTH)
 					&& Sex.isDom(Main.game.getPlayer())
-					&& Main.game.getPlayer().hasPenisIgnoreDildo();
+					&& Main.game.getPlayer().hasPenis();
 		}
 		
 		@Override
@@ -477,7 +477,7 @@ public class DoggyStyle {
 		public boolean isBaseRequirementsMet() {
 			return Sex.getActivePartner().isCoverableAreaExposed(CoverableArea.MOUTH)
 					&& Sex.isDom(Main.game.getPlayer())
-					&& Main.game.getPlayer().hasPenisIgnoreDildo();
+					&& Main.game.getPlayer().hasPenis();
 		}
 		
 		@Override

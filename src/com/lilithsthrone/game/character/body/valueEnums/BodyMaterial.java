@@ -33,30 +33,6 @@ public enum BodyMaterial {
 			true,
 			false,
 			true),
-	
-	// Fire elementals:
-	
-	FIRE("fire", "burning", Colour.BASE_ORANGE, DamageType.FIRE, false, false, false),
-
-	// Water elementals:
-
-	WATER("water", "cool", Colour.BASE_AQUA, DamageType.ICE, false, true, false),
-	
-	ICE("ice", "freezing", Colour.BASE_BLUE_LIGHT, DamageType.ICE, true, true, true),
-
-	// Air elementals:
-
-	AIR("storm-clouds", "swirling", Colour.BASE_BLUE_STEEL, DamageType.POISON, false, false, false),
-
-	// Earth elementals:
-	
-	STONE("stone", "hard", Colour.BASE_GREY, DamageType.PHYSICAL, true, false, true),
-	
-	RUBBER("rubber", Colour.BASE_BLACK, DamageType.PHYSICAL, true, false, true),
-	
-	// Arcane elementals:
-	
-	ARCANE("energy", Colour.GENERIC_ARCANE, DamageType.PHYSICAL, false, false, false),
 	;
 
 	private String name;

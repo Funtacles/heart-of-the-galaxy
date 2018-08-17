@@ -1250,10 +1250,10 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 	
 	public boolean isCanBeEquipped(GameCharacter clothingOwner) {
 		// This might not be the most efficient way of making this method, but I found it to be easily-readable:
-		if(clothingOwner.hasPenisIgnoreDildo() && this.getItemTags().contains(ItemTag.REQUIRES_NO_PENIS)) {
+		if(clothingOwner.hasPenis() && this.getItemTags().contains(ItemTag.REQUIRES_NO_PENIS)) {
 			return false;
 		}
-		if(!clothingOwner.hasPenisIgnoreDildo() && this.getItemTags().contains(ItemTag.REQUIRES_PENIS)) {
+		if(!clothingOwner.hasPenis() && this.getItemTags().contains(ItemTag.REQUIRES_PENIS)) {
 			return false;
 		}
 		if(clothingOwner.hasVagina() && this.getItemTags().contains(ItemTag.REQUIRES_NO_VAGINA)) {
@@ -1266,7 +1266,7 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 	}	
 
 	public String getCannotBeEquippedText(GameCharacter clothingOwner) {
-		if(clothingOwner.hasPenisIgnoreDildo() && this.getItemTags().contains(ItemTag.REQUIRES_NO_PENIS)) {
+		if(clothingOwner.hasPenis() && this.getItemTags().contains(ItemTag.REQUIRES_NO_PENIS)) {
 			if(clothingOwner.isPlayer()) {
 				return "You have a penis, which is blocking you from wearing the "+this.getName()+"!";
 			} else {
@@ -1275,7 +1275,7 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 			}
 		}
 		
-		if(!clothingOwner.hasPenisIgnoreDildo() && this.getItemTags().contains(ItemTag.REQUIRES_PENIS)) {
+		if(!clothingOwner.hasPenis() && this.getItemTags().contains(ItemTag.REQUIRES_PENIS)) {
 			if(clothingOwner.isPlayer()) {
 				return "You don't have a penis, so you can't wear the "+this.getName()+"!";
 			} else {

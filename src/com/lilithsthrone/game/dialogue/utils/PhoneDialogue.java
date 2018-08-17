@@ -2044,33 +2044,6 @@ public class PhoneDialogue {
 			} else if(index==5) {
 				return new Response("Arcane", "You are already viewing your Arcane spells!", null);
 				
-			} else if(index==6) {
-				if(Main.game.getPlayer().hasSpell(Spell.ELEMENTAL_ARCANE)) {
-					if(!Main.game.getSavedDialogueNode().equals(Main.game.getPlayer().getLocationPlace().getDialogue(false))) {
-						return new Response("Arcane Elemental", "You can only summon your elemental in combat, or in a neutral scene!", null);
-						
-					} else if(Main.game.getPlayer().getMana()<Spell.ELEMENTAL_ARCANE.getModifiedCost(Main.game.getPlayer())) {
-						return new Response("Arcane Elemental", "You need at least <b>"+Spell.ELEMENTAL_ARCANE.getModifiedCost(Main.game.getPlayer())+"</b> [style.boldMana(aura)] in order to cast this spell!", null);
-						
-					} else {
-						return new Response("Arcane Elemental",
-								"Summon your elemental by binding it to the school of Arcane! This will cost <b>"+Spell.ELEMENTAL_ARCANE.getModifiedCost(Main.game.getPlayer())+"</b> [style.boldMana(aura)]!",
-								CHARACTER_SPELLS_ARCANE) {
-							@Override
-							public DialogueNodeOld getNextDialogue() {
-								return Main.game.getDefaultDialogueNoEncounter();
-							}
-							@Override
-							public void effects() {
-								Main.game.getTextStartStringBuilder().append(Spell.ELEMENTAL_ARCANE.applyEffect(Main.game.getPlayer(), Main.game.getPlayer(), true, false));
-							}
-						};
-					}
-					
-				} else {
-					return new Response("Arcane Elemental", "You don't know how to bind your elemental to the school of Arcane! (Requires spell: '"+Spell.ELEMENTAL_ARCANE.getName()+"')", null);
-				}
-				
 			} else if(index==11) {
 				return new Response("Reset Arcane", "Reset your Arcane upgrades, refunding all points spent. Your spells will not be reset.", CHARACTER_SPELLS_ARCANE) {
 					@Override
@@ -2142,38 +2115,7 @@ public class PhoneDialogue {
 			} else if(index==5) {
 				return new Response("Arcane", "View your spells and upgrades in the school of Arcane.", CHARACTER_SPELLS_ARCANE);
 				
-			} else if(index==6) {
-				if(Main.game.getPlayer().hasSpell(Spell.ELEMENTAL_EARTH)) {
-					if(!Main.game.isSavedDialogueNeutral()) {
-						if(Main.game.isInCombat()) {
-							return new Response("Earth Elemental", "While in combat, use the combat spells menu to summon your elemental!", null);
-						} else {
-							return new Response("Earth Elemental", "You can only summon your elemental in a neutral scene!", null);
-						}
-						
-					} else if(Main.game.getPlayer().getMana()<Spell.ELEMENTAL_EARTH.getModifiedCost(Main.game.getPlayer())) {
-						return new Response("Earth Elemental", "You need at least <b>"+Spell.ELEMENTAL_EARTH.getModifiedCost(Main.game.getPlayer())+"</b> [style.boldMana(aura)] in order to cast this spell!", null);
-						
-					} else {
-						return new Response("Earth Elemental",
-								"Summon your elemental by binding it to the school of Earth! This will cost <b>"+Spell.ELEMENTAL_EARTH.getModifiedCost(Main.game.getPlayer())+"</b> [style.boldMana(aura)]!",
-								CHARACTER_SPELLS_EARTH) {
-							@Override
-							public DialogueNodeOld getNextDialogue() {
-								return Main.game.getDefaultDialogueNoEncounter();
-							}
-							@Override
-							public void effects() {
-								Main.game.getTextStartStringBuilder().append(Spell.ELEMENTAL_EARTH.applyEffect(Main.game.getPlayer(), Main.game.getPlayer(), true, false));
-							}
-						};
-					}
-					
-				} else {
-					return new Response("Earth Elemental", "You don't know how to bind your elemental to the school of Earth! (Requires spell: '"+Spell.ELEMENTAL_EARTH.getName()+"')", null);
-				}
-				
-			}  else  if(index==11) {
+			} else if(index==11) {
 				return new Response("Reset Earth", "Reset your Earth upgrades, refunding all points spent. Your spells will not be reset.", CHARACTER_SPELLS_EARTH) {
 					@Override
 					public void effects() {
@@ -2243,37 +2185,6 @@ public class PhoneDialogue {
 				
 			} else if(index==5) {
 				return new Response("Arcane", "View your spells and upgrades in the school of Arcane.", CHARACTER_SPELLS_ARCANE);
-				
-			} else if(index==6) {
-				if(Main.game.getPlayer().hasSpell(Spell.ELEMENTAL_WATER)) {
-					if(!Main.game.isSavedDialogueNeutral()) {
-						if(Main.game.isInCombat()) {
-							return new Response("Water Elemental", "While in combat, use the combat spells menu to summon your elemental!", null);
-						} else {
-							return new Response("Water Elemental", "You can only summon your elemental in a neutral scene!", null);
-						}
-						
-					} else if(Main.game.getPlayer().getMana()<Spell.ELEMENTAL_WATER.getModifiedCost(Main.game.getPlayer())) {
-						return new Response("Water Elemental", "You need at least <b>"+Spell.ELEMENTAL_WATER.getModifiedCost(Main.game.getPlayer())+"</b> [style.boldMana(aura)] in order to cast this spell!", null);
-						
-					} else {
-						return new Response("Water Elemental",
-								"Summon your elemental by binding it to the school of Water! This will cost <b>"+Spell.ELEMENTAL_WATER.getModifiedCost(Main.game.getPlayer())+"</b> [style.boldMana(aura)]!",
-								CHARACTER_SPELLS_WATER) {
-							@Override
-							public DialogueNodeOld getNextDialogue() {
-								return Main.game.getDefaultDialogueNoEncounter();
-							}
-							@Override
-							public void effects() {
-								Main.game.getTextStartStringBuilder().append(Spell.ELEMENTAL_WATER.applyEffect(Main.game.getPlayer(), Main.game.getPlayer(), true, false));
-							}
-						};
-					}
-					
-				} else {
-					return new Response("Water Elemental", "You don't know how to bind your elemental to the school of Water! (Requires spell: '"+Spell.ELEMENTAL_WATER.getName()+"')", null);
-				}
 				
 			} else if(index==11) {
 				return new Response("Reset Water", "Reset your Water upgrades, refunding all points spent. Your spells will not be reset.", CHARACTER_SPELLS_WATER) {
@@ -2346,38 +2257,7 @@ public class PhoneDialogue {
 			} else if(index==5) {
 				return new Response("Arcane", "View your spells and upgrades in the school of Arcane.", CHARACTER_SPELLS_ARCANE);
 				
-			} else if(index==6) {
-				if(Main.game.getPlayer().hasSpell(Spell.ELEMENTAL_AIR)) {
-					if(!Main.game.isSavedDialogueNeutral()) {
-						if(Main.game.isInCombat()) {
-							return new Response("Air Elemental", "While in combat, use the combat spells menu to summon your elemental!", null);
-						} else {
-							return new Response("Air Elemental", "You can only summon your elemental in a neutral scene!", null);
-						}
-						
-					} else if(Main.game.getPlayer().getMana()<Spell.ELEMENTAL_AIR.getModifiedCost(Main.game.getPlayer())) {
-						return new Response("Air Elemental", "You need at least <b>"+Spell.ELEMENTAL_AIR.getModifiedCost(Main.game.getPlayer())+"</b> [style.boldMana(aura)] in order to cast this spell!", null);
-						
-					} else {
-						return new Response("Air Elemental",
-								"Summon your elemental by binding it to the school of Air! This will cost <b>"+Spell.ELEMENTAL_AIR.getModifiedCost(Main.game.getPlayer())+"</b> [style.boldMana(aura)]!",
-								CHARACTER_SPELLS_AIR) {
-							@Override
-							public DialogueNodeOld getNextDialogue() {
-								return Main.game.getDefaultDialogueNoEncounter();
-							}
-							@Override
-							public void effects() {
-								Main.game.getTextStartStringBuilder().append(Spell.ELEMENTAL_AIR.applyEffect(Main.game.getPlayer(), Main.game.getPlayer(), true, false));
-							}
-						};
-					}
-					
-				} else {
-					return new Response("Air Elemental", "You don't know how to bind your elemental to the school of Air! (Requires spell: '"+Spell.ELEMENTAL_AIR.getName()+"')", null);
-				}
-				
-			}  else if(index==11) {
+			} else if(index==11) {
 				return new Response("Reset Air", "Reset your Air upgrades, refunding all points spent. Your spells will not be reset.", CHARACTER_SPELLS_AIR) {
 					@Override
 					public void effects() {
@@ -2447,37 +2327,6 @@ public class PhoneDialogue {
 				
 			} else if(index==5) {
 				return new Response("Arcane", "View your spells and upgrades in the school of Arcane.", CHARACTER_SPELLS_ARCANE);
-				
-			} else if(index==6) {
-				if(Main.game.getPlayer().hasSpell(Spell.ELEMENTAL_FIRE)) {
-					if(!Main.game.isSavedDialogueNeutral()) {
-						if(Main.game.isInCombat()) {
-							return new Response("Fire Elemental", "While in combat, use the combat spells menu to summon your elemental!", null);
-						} else {
-							return new Response("Fire Elemental", "You can only summon your elemental in a neutral scene!", null);
-						}
-						
-					} else if(Main.game.getPlayer().getMana()<Spell.ELEMENTAL_FIRE.getModifiedCost(Main.game.getPlayer())) {
-						return new Response("Fire Elemental", "You need at least <b>"+Spell.ELEMENTAL_FIRE.getModifiedCost(Main.game.getPlayer())+"</b> [style.boldMana(aura)] in order to cast this spell!", null);
-						
-					} else {
-						return new Response("Fire Elemental",
-								"Summon your elemental by binding it to the school of Fire! This will cost <b>"+Spell.ELEMENTAL_FIRE.getModifiedCost(Main.game.getPlayer())+"</b> [style.boldMana(aura)]!",
-								CHARACTER_SPELLS_FIRE) {
-							@Override
-							public DialogueNodeOld getNextDialogue() {
-								return Main.game.getDefaultDialogueNoEncounter();
-							}
-							@Override
-							public void effects() {
-								Main.game.getTextStartStringBuilder().append(Spell.ELEMENTAL_FIRE.applyEffect(Main.game.getPlayer(), Main.game.getPlayer(), true, false));
-							}
-						};
-					}
-					
-				} else {
-					return new Response("Fire Elemental", "You don't know how to bind your elemental to the school of Fire! (Requires spell: '"+Spell.ELEMENTAL_FIRE.getName()+"')", null);
-				}
 				
 			} else if(index==11) {
 				return new Response("Reset Fire", "Reset your Fire upgrades, refunding all points spent. Your spells will not be reset.", CHARACTER_SPELLS_FIRE) {

@@ -92,66 +92,6 @@ public enum SpellUpgrade {
 					"<b>Melee</b> or <b>unarmed</b> attackers take <b>5</b> [style.colourFire(Fire Damage)]")),
 
 	
-	ELEMENTAL_FIRE_1(true,
-			5,
-			SpellSchool.FIRE,
-			"elemental_fire_wildfire",
-			"Wildfire",
-			"The summoned elemental imbues all allies with the knowledge of how best to harness arcane fire.",
-			null, Util.newArrayListOfValues(
-					"[style.colourExcellent(All allies gain)] +20 [style.boldFire(Fire Damage)]")),
-	ELEMENTAL_FIRE_2(5,
-			SpellSchool.FIRE,
-			"elemental_fire_burning_desire",
-			"Burning Desire",
-			"The Fire elemental is able to harness the lustful properties of the arcane in order to ignite a burning desire for sex in the hearts and minds of their enemies.",
-			null, Util.newArrayListOfValues(
-					"[style.colourTerrible(All enemies suffer)] -25 [style.boldLust("+Attribute.RESISTANCE_LUST.getName()+")]")),
-	ELEMENTAL_FIRE_3A(5,
-			SpellSchool.FIRE,
-			"elemental_fire_servant_of_fire",
-			"Servant of Fire",
-			"The summoner swears to be subservient to the school of Fire, and while their elemental is bound to this form, the elemental is able to draw as much energy from the summoner as they wish.",
-			null, Util.newArrayListOfValues(
-					"While summoned:",
-					"[style.colourFire(Elemental)]: +100% [style.colourExcellent(Non-Seduction Damage)]",
-					"[style.colourArcane(Caster)]: -50% [style.colourHealth(maximum energy)]")) {
-
-		public boolean isAvailable(GameCharacter caster) {
-			return !caster.hasSpellUpgrade(ELEMENTAL_FIRE_3B);
-		}
-		
-		public String getUnavailableReason(GameCharacter caster) {
-			if(this.isAvailable(caster) && !caster.hasSpellUpgrade(this)) {
-				return "[style.boldMinorBad(Mutually exclusive with 'Binding of Fire'!)]";
-			} else {
-				return "[style.boldBad(Mutually exclusive with 'Binding of Fire'!)]";
-			}
-		}
-	},
-	ELEMENTAL_FIRE_3B(10,
-			SpellSchool.FIRE,
-			"elemental_fire_binding_of_fire",
-			"Binding of Fire",
-			"The summoner assumes complete dominance over the school of Fire, and while their elemental is bound to this form, they are forced to share all of their secrets.",
-			null, Util.newArrayListOfValues(
-					"While summoned:",
-					"[style.colourArcane(Caster)]: +25 [style.boldFire(Fire Damage)]",
-					"[style.colourArcane(Caster)]: +25 [style.boldFire(Fire Resistance)]")) {
-
-		public boolean isAvailable(GameCharacter caster) {
-			return !caster.hasSpellUpgrade(ELEMENTAL_FIRE_3A);
-		}
-		
-		public String getUnavailableReason(GameCharacter caster) {
-			if(this.isAvailable(caster) && !caster.hasSpellUpgrade(this)) {
-				return "[style.boldMinorBad(Mutually exclusive with 'Servant of Fire'!)]";
-			} else {
-				return "[style.boldBad(Mutually exclusive with 'Servant of Fire'!)]";
-			}
-		}
-	},
-	
 	// Water:
 
 	ICE_SHARD_1(true,
@@ -222,66 +162,6 @@ public enum SpellUpgrade {
 			"Once cast, Soothing Waters now splits into several orbs, each one seeking out an ally to heal.",
 			null, Util.newArrayListOfValues(
 					"Soothing Waters heals [style.boldExcellent(all allies)] for <b>10%</b> "+Attribute.HEALTH_MAXIMUM.getColouredName("b")+" and <b>10%</b> "+Attribute.MANA_MAXIMUM.getColouredName("b"))),
-
-	ELEMENTAL_WATER_1(true,
-			5,
-			SpellSchool.WATER,
-			"elemental_water_crashing_waves",
-			"Crashing Waves",
-			"The Water elemental continuously sends forth waves of freezing water to crash upon their enemies, making them far more susceptible to ice attacks.",
-			null, Util.newArrayListOfValues(
-					"[style.colourExcellent(All allies gain)] +20 [style.boldIce(Ice Damage)]")),
-	ELEMENTAL_WATER_2(5,
-			SpellSchool.WATER,
-			"elemental_water_calm_waters",
-			"Calm Waters",
-			"The Water elemental projects the image of calm, steady waters into the mind of any ally who starts to get turned on, helping them to control ther lust.",
-			null, Util.newArrayListOfValues(
-					"[style.colourExcellent(All allies gain)] +20 "+Attribute.RESISTANCE_LUST.getColouredName("b"))),
-	ELEMENTAL_WATER_3A(5,
-			SpellSchool.WATER,
-			"elemental_water_servant_of_water",
-			"Servant of Water",
-			"The summoner swears to be subservient to the school of Water, and while their elemental is bound to this form, the elemental is able to draw as much energy from the summoner as they wish.",
-			null, Util.newArrayListOfValues(
-					"While summoned:",
-					"[style.colourIce(Elemental)]: +100% [style.colourExcellent(Non-Seduction Damage)]",
-					"[style.colourArcane(Caster)]: -50% [style.colourHealth(maximum energy)]")) {
-
-		public boolean isAvailable(GameCharacter caster) {
-			return !caster.hasSpellUpgrade(ELEMENTAL_WATER_3B);
-		}
-		
-		public String getUnavailableReason(GameCharacter caster) {
-			if(this.isAvailable(caster) && !caster.hasSpellUpgrade(this)) {
-				return "[style.boldMinorBad(Mutually exclusive with 'Binding of Water'!)]";
-			} else {
-				return "[style.boldBad(Mutually exclusive with 'Binding of Water'!)]";
-			}
-		}
-	},
-	ELEMENTAL_WATER_3B(10,
-			SpellSchool.WATER,
-			"elemental_water_binding_of_water",
-			"Binding of Water",
-			"The summoner assumes complete dominance over the school of Water, and while their elemental is bound to this form, they are forced to share all of their secrets.",
-			null, Util.newArrayListOfValues(
-					"While summoned:",
-					"[style.colourArcane(Caster)]: +25 [style.boldIce(Ice Damage)]",
-					"[style.colourArcane(Caster)]: +25 [style.boldIce(Ice Resistance)]")) {
-
-		public boolean isAvailable(GameCharacter caster) {
-			return !caster.hasSpellUpgrade(ELEMENTAL_WATER_3A);
-		}
-		
-		public String getUnavailableReason(GameCharacter caster) {
-			if(this.isAvailable(caster) && !caster.hasSpellUpgrade(this)) {
-				return "[style.boldMinorBad(Mutually exclusive with 'Servant of Water'!)]";
-			} else {
-				return "[style.boldBad(Mutually exclusive with 'Servant of Water'!)]";
-			}
-		}
-	},
 	
 	// Air:
 
@@ -358,67 +238,6 @@ public enum SpellUpgrade {
 			null, Util.newArrayListOfValues(
 					"Protective Gusts now lasts for [style.boldGood(5 turns)]")),
 
-	ELEMENTAL_AIR_1(true,
-			5,
-			SpellSchool.AIR,
-			"elemental_air_whirlwind",
-			"Whirlwind",
-			"The Air elemental summons forth a swirling whirlwind, which disrupts and staggers all enemies.",
-			null, Util.newArrayListOfValues(
-					"[style.colourTerrible(All enemies suffer)] +5 "+Attribute.MISS_CHANCE.getColouredName("b"))),
-	ELEMENTAL_AIR_2(5,
-			SpellSchool.AIR,
-			"elemental_air_vitalising_scents",
-			"Vitalising Scents",
-			"The Air elemental surrounds their allies with vitalising scents, imbuing them with the energy needed to dodge incoming attacks, as well as to land powerful strikes of their own.",
-			null, Util.newArrayListOfValues(
-					"[style.colourExcellent(All allies gain)] +10 "+Attribute.CRITICAL_CHANCE.getColouredName("b"),
-					"[style.colourExcellent(All allies gain)] +5 "+Attribute.DODGE_CHANCE.getColouredName("b"))),
-	ELEMENTAL_AIR_3A(5,
-			SpellSchool.AIR,
-			"elemental_air_servant_of_air",
-			"Servant of Air",
-			"The summoner swears to be subservient to the school of Air, and while their elemental is bound to this form, the elemental is able to draw as much energy from the summoner as they wish.",
-			null, Util.newArrayListOfValues(
-					"While summoned:",
-					"[style.colourAir(Elemental)]: +100% [style.colourExcellent(Non-Seduction Damage)]",
-					"[style.colourArcane(Caster)]: -50% [style.colourHealth(maximum energy)]")) {
-
-		public boolean isAvailable(GameCharacter caster) {
-			return !caster.hasSpellUpgrade(ELEMENTAL_AIR_3B);
-		}
-		
-		public String getUnavailableReason(GameCharacter caster) {
-			if(this.isAvailable(caster) && !caster.hasSpellUpgrade(this)) {
-				return "[style.boldMinorBad(Mutually exclusive with 'Binding of Air'!)]";
-			} else {
-				return "[style.boldBad(Mutually exclusive with 'Binding of Air'!)]";
-			}
-		}
-	},
-	ELEMENTAL_AIR_3B(10,
-			SpellSchool.AIR,
-			"elemental_air_binding_of_air",
-			"Binding of Air",
-			"The summoner assumes complete dominance over the school of Air, and while their elemental is bound to this form, they are forced to share all of their secrets.",
-			null, Util.newArrayListOfValues(
-					"While summoned:",
-					"[style.colourArcane(Caster)]: +25 "+Attribute.DAMAGE_POISON.getColouredName("b"),
-					"[style.colourArcane(Caster)]: +25 "+Attribute.RESISTANCE_POISON.getColouredName("b"))) {
-
-		public boolean isAvailable(GameCharacter caster) {
-			return !caster.hasSpellUpgrade(ELEMENTAL_AIR_3A);
-		}
-		
-		public String getUnavailableReason(GameCharacter caster) {
-			if(this.isAvailable(caster) && !caster.hasSpellUpgrade(this)) {
-				return "[style.boldMinorBad(Mutually exclusive with 'Servant of Air'!)]";
-			} else {
-				return "[style.boldBad(Mutually exclusive with 'Servant of Air'!)]";
-			}
-		}
-	},
-
 	// Earth:
 
 	SLAM_1(true,
@@ -489,67 +308,6 @@ public enum SpellUpgrade {
 			"A reserve of telekinetic energy is stored within the Stone Shell, and when the effect finally comes to an end, this energy is released in an explosive burst.",
 			null, Util.newArrayListOfValues(
 					"[style.colourExcellent(All enemies)] take <b>10</b> "+Attribute.DAMAGE_PHYSICAL.getColouredName("b")+" when Stone Shell ends")),
-
-	ELEMENTAL_EARTH_1(true,
-			5,
-			SpellSchool.EARTH,
-			"elemental_earth_rolling_stone",
-			"Rolling Stone",
-			"The Earth elemental sends out waves of force to amplify the damage done by their allies.",
-			null, Util.newArrayListOfValues(
-					"[style.colourExcellent(All allies gain)] +15 "+Attribute.DAMAGE_PHYSICAL.getColouredName("b"),
-					"[style.colourExcellent(All allies gain)] +25 "+Attribute.CRITICAL_DAMAGE.getColouredName("b"))),
-	ELEMENTAL_EARTH_2(5,
-			SpellSchool.EARTH,
-			"elemental_earth_hardening",
-			"Hardening",
-			"The Earth elemental's telekinetic powers are used to surround all allies with protective fragments of rock.",
-			null, Util.newArrayListOfValues(
-					"[style.colourExcellent(All allies gain)] +10 "+Attribute.RESISTANCE_PHYSICAL.getColouredName("b"))),
-	ELEMENTAL_EARTH_3A(5,
-			SpellSchool.EARTH,
-			"elemental_earth_servant_of_earth",
-			"Servant of Earth",
-			"The summoner swears to be subservient to the school of Earth, and while their elemental is bound to this form, the elemental is able to draw as much energy from the summoner as they wish.",
-			null, Util.newArrayListOfValues(
-					"While summoned:",
-					"[style.colourEarth(Elemental)]: +100% [style.colourExcellent(Non-Seduction Damage)]",
-					"[style.colourArcane(Caster)]: -50% [style.colourHealth(maximum energy)]")) {
-
-		public boolean isAvailable(GameCharacter caster) {
-			return !caster.hasSpellUpgrade(ELEMENTAL_EARTH_3B);
-		}
-		
-		public String getUnavailableReason(GameCharacter caster) {
-			if(this.isAvailable(caster) && !caster.hasSpellUpgrade(this)) {
-				return "[style.boldMinorBad(Mutually exclusive with 'Binding of Earth'!)]";
-			} else {
-				return "[style.boldBad(Mutually exclusive with 'Binding of Earth'!)]";
-			}
-		}
-	},
-	ELEMENTAL_EARTH_3B(10,
-			SpellSchool.EARTH,
-			"elemental_earth_binding_of_earth",
-			"Binding of Earth",
-			"The summoner assumes complete dominance over the school of Earth, and while their elemental is bound to this form, they are forced to share all of their secrets.",
-			null, Util.newArrayListOfValues(
-					"While summoned:",
-					"[style.colourArcane(Caster)]: +25 "+Attribute.DAMAGE_PHYSICAL.getColouredName("b"),
-					"[style.colourArcane(Caster)]: +25 "+Attribute.RESISTANCE_PHYSICAL.getColouredName("b"))) {
-
-		public boolean isAvailable(GameCharacter caster) {
-			return !caster.hasSpellUpgrade(ELEMENTAL_EARTH_3A);
-		}
-		
-		public String getUnavailableReason(GameCharacter caster) {
-			if(this.isAvailable(caster) && !caster.hasSpellUpgrade(this)) {
-				return "[style.boldMinorBad(Mutually exclusive with 'Servant of Earth'!)]";
-			} else {
-				return "[style.boldBad(Mutually exclusive with 'Servant of Earth'!)]";
-			}
-		}
-	},
 
 	// Arcane:
 
@@ -730,67 +488,7 @@ public enum SpellUpgrade {
 			"Ultimate Power",
 			"The vision of Lilith that is projected into the target's mind is so realistic and so powerful, that they have no hope of resisting its effects.",
 			null, Util.newArrayListOfValues(
-					"Success chance [style.colourExcellent(increased)] to 100%")),
-
-	ELEMENTAL_ARCANE_1(true,
-			5,
-			SpellSchool.ARCANE,
-			"elemental_arcane_lewd_encouragements",
-			"Lewd Encouragements",
-			"The Arcane elemental projects lewd encouragements into the minds of all their allies, inspiring them to perform deviant and seductive actions.",
-			null, Util.newArrayListOfValues(
-					"[style.colourExcellent(All allies gain)] +15 "+Attribute.DAMAGE_LUST.getColouredName("b"))),
-	ELEMENTAL_ARCANE_2(5,
-			SpellSchool.ARCANE,
-			"elemental_arcane_caressing_touch",
-			"Caressing Touch",
-			"The Arcane elemental sends out phantasmal tentacles to grope and molest all nearby enemies.",
-			null, Util.newArrayListOfValues(
-					"[style.boldTerrible(All enemies suffer)] -15 "+Attribute.RESISTANCE_LUST.getColouredName("b"))),
-	ELEMENTAL_ARCANE_3A(5,
-			SpellSchool.ARCANE,
-			"elemental_arcane_servant_of_arcane",
-			"Servant of Arcane",
-			"The summoner swears to be subservient to the school of Arcane, and while their elemental is bound to this form, the elemental is able to draw as much energy from the summoner as they wish.",
-			null, Util.newArrayListOfValues(
-					"While summoned:",
-					"[style.colourArcane(Elemental)]: +100% [style.colourExcellent(Non-Seduction Damage)]",
-					"[style.colourArcane(Caster)]: -50% [style.colourHealth(maximum energy)]")) {
-
-		public boolean isAvailable(GameCharacter caster) {
-			return !caster.hasSpellUpgrade(ELEMENTAL_ARCANE_3B);
-		}
-		
-		public String getUnavailableReason(GameCharacter caster) {
-			if(this.isAvailable(caster) && !caster.hasSpellUpgrade(this)) {
-				return "[style.boldMinorBad(Mutually exclusive with 'Binding of Arcane'!)]";
-			} else {
-				return "[style.boldBad(Mutually exclusive with 'Binding of Arcane'!)]";
-			}
-		}
-	},
-	ELEMENTAL_ARCANE_3B(10,
-			SpellSchool.ARCANE,
-			"elemental_arcane_binding_of_arcane",
-			"Binding of Arcane",
-			"The summoner assumes complete dominance over the school of Arcane, and while their elemental is bound to this form, they are forced to share all of their secrets.",
-			null, Util.newArrayListOfValues(
-					"While summoned:",
-					"[style.colourArcane(Caster)]: +25 "+Attribute.DAMAGE_LUST.getColouredName("b"),
-					"[style.colourArcane(Caster)]: +25 "+Attribute.RESISTANCE_LUST.getColouredName("b"))) {
-
-		public boolean isAvailable(GameCharacter caster) {
-			return !caster.hasSpellUpgrade(ELEMENTAL_ARCANE_3A);
-		}
-		
-		public String getUnavailableReason(GameCharacter caster) {
-			if(this.isAvailable(caster) && !caster.hasSpellUpgrade(this)) {
-				return "[style.boldMinorBad(Mutually exclusive with 'Servant of Arcane'!)]";
-			} else {
-				return "[style.boldBad(Mutually exclusive with 'Servant of Arcane'!)]";
-			}
-		}
-	};
+					"Success chance [style.colourExcellent(increased)] to 100%"));
 
 	
 	private boolean isAlwaysAvailable;

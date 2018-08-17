@@ -113,15 +113,6 @@ public class Vicky extends NPC {
 				case SOOTHING_WATERS: // Special quest spells
 					break;
 					
-				// Tier 4:
-				case ELEMENTAL_AIR:
-				case ELEMENTAL_ARCANE:
-				case ELEMENTAL_EARTH:
-				case ELEMENTAL_FIRE:
-				case ELEMENTAL_WATER:
-					availableSpellBooks.add(ItemType.getSpellBookType(s));
-					break;
-					
 				// Tier 5: // Special quest spells
 				case LILITHS_COMMAND:
 				case TELEPORT:

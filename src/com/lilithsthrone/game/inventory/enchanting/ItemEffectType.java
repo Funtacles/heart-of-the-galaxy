@@ -358,14 +358,14 @@ public class ItemEffectType {
 								? "a strange, warm glow spreading from what you guess must be your ovaries."
 									+ " Your mind fogs over with an overwhelming desire to feel potent sperm spurting deep into your "+(target.isVisiblyPregnant()?"pussy":"womb")
 									+", and before you can stop it, a little whimper escapes from between your [pc.lips]."
-									+ (target.hasPenisIgnoreDildo()
+									+ (target.hasPenis()
 											?" At the same time, your manhood begins to throb with need, and you feel "
 											:"") 
 							:"")
-						+ (target.hasPenisIgnoreDildo() 
+						+ (target.hasPenis() 
 								? "an overpowering desire to sink deep into a fertile female's cunt and fill her with your [pc.cum+]."
 								: "")
-						+ (!target.hasPenisIgnoreDildo() && !target.hasVagina()
+						+ (!target.hasPenis() && !target.hasVagina()
 								?"a desperate heat in [npc.her] genderless mound."
 								:"")
 					+ "</p>";
@@ -378,14 +378,14 @@ public class ItemEffectType {
 									? "a strange, warm glow spreading from [npc.her] ovaries."
 										+ " [npc.Her] mind fogs over with an overwhelming desire to feel potent sperm spurting deep into [npc.her] "+(target.isVisiblyPregnant()?"pussy":"womb")
 										+", and before [npc.she] can stop it, a little whimper escapes from between [npc.her] [npc.lips]."
-										+ (target.hasPenisIgnoreDildo()
+										+ (target.hasPenis()
 												?" At the same time, [npc.her] manhood begins to throb with need, and [npc.she] feels "
 												:"") 
 									:"")
-							+ (target.hasPenisIgnoreDildo()
+							+ (target.hasPenis()
 									? "an overpowering desire to sink deep into a fertile female's cunt and fill her with [npc.cum+]."
 									: "")
-							+ (!target.hasPenisIgnoreDildo() && !target.hasVagina()
+							+ (!target.hasPenis() && !target.hasVagina()
 									?"a desperate heat in [npc.her] genderless mound."
 									:"")
 						+ "</p>");

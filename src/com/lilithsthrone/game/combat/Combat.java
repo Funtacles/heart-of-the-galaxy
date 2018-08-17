@@ -253,11 +253,6 @@ public enum Combat {
 						}
 					}
 				}
-				if(enemy.isElementalSummoned()) {
-					enemy.removeCompanion(enemy.getElemental());
-					enemy.getElemental().returnToHome();
-					postCombatStringBuilder.append(UtilText.parse(enemy, enemy.getElemental(), "<div class='container-full-width' style='text-align:center;'>[npc1.NamePos] elemental, [npc2.name], is [style.boldTerrible(dispelled)]!</div>"));
-				}
 			}
 
 			// Apply essence drops:
@@ -342,20 +337,6 @@ public enum Combat {
 			int moneyLoss = (-enemies.get(0).getLootMoney()/2)*enemies.size();
 			Main.game.getPlayer().incrementMoney(moneyLoss);
 			postCombatStringBuilder.append("<div class='container-full-width' style='text-align:center;'>You [style.boldBad(lost)] " + UtilText.formatAsMoney(Math.abs(Main.game.getPlayer().getMoney()==0?money:moneyLoss)) + "!</div>");
-			
-			// Remove elementals:
-			if(Main.game.getPlayer().isElementalSummoned()) {
-				Main.game.getPlayer().removeCompanion(Main.game.getPlayer().getElemental());
-				Main.game.getPlayer().getElemental().returnToHome();
-				postCombatStringBuilder.append(UtilText.parse(Main.game.getPlayer().getElemental(), "<div class='container-full-width' style='text-align:center;'>Your elemental, [npc.name], is [style.boldTerrible(dispelled)]!</div>"));
-			}
-			for(NPC ally : allies) {
-				if(ally.isElementalSummoned()) {
-					ally.removeCompanion(ally.getElemental());
-					ally.getElemental().returnToHome();
-					postCombatStringBuilder.append(UtilText.parse(ally, ally.getElemental(), "<div class='container-full-width' style='text-align:center;'>[npc1.NamePos] elemental, [npc2.name], is [style.boldTerrible(dispelled)]!</div>"));
-				}
-			}
 			
 			for(NPC enemy : enemies) {
 				enemy.setWonCombatCount(enemy.getWonCombatCount()+1);
@@ -1563,17 +1544,6 @@ public enum Combat {
 				
 			}
 			
-//			if(isEnemyPartyDefeated()) {
-//				opponentActionText = "<span style='color:"+Colour.GENERIC_GOOD.toWebHexString()+";'>Defeated!</span>";
-//				opponentTurnText = combatStringBuilder.toString()
-//						+"<p>"
-//						+opponent.getName("The")+" doesn't have the strength to continue fighting...<br/>"
-//						+ "<span style='color:"+Colour.GENERIC_GOOD.toWebHexString()+";'>You are victorious!</span>"
-//						+ "</p>";
-//				
-//			}	else{
-//				opponentTurnText = combatStringBuilder.toString();
-//			}
 		}
 		
 	}

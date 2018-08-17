@@ -22,8 +22,6 @@ import com.lilithsthrone.utils.Util;
 public enum PenisType implements BodyPartTypeInterface {
 	NONE(null, TesticleType.NONE, null),
 
-	DILDO(BodyCoveringType.DILDO, TesticleType.DILDO, Race.NONE),
-	
 	HUMAN(BodyCoveringType.PENIS, TesticleType.HUMAN, Race.HUMAN),
 
 	ANGEL(BodyCoveringType.PENIS, TesticleType.ANGEL, Race.ANGEL),
@@ -77,20 +75,12 @@ public enum PenisType implements BodyPartTypeInterface {
 	
 	@Override
 	public String getNameSingular(GameCharacter gc) {
-		if(this==PenisType.DILDO) {
-			return UtilText.returnStringAtRandom("dildo", "cock");
-		} else {
-			return UtilText.returnStringAtRandom("cock", "cock", "cock", "dick", "dick", "shaft");
-		}
+		return UtilText.returnStringAtRandom("cock", "cock", "cock", "dick", "dick", "shaft");
 	}
 	
 	@Override
 	public String getNamePlural(GameCharacter gc) {
-		if(this==PenisType.DILDO) {
-			return UtilText.returnStringAtRandom("dildoes", "cocks");
-		} else {
-			return UtilText.returnStringAtRandom("cocks", "cocks", "cocks", "dicks", "dicks", "shafts");
-		}
+		return UtilText.returnStringAtRandom("cocks", "cocks", "cocks", "dicks", "dicks", "shafts");
 	}
 
 	@Override
@@ -127,8 +117,6 @@ public enum PenisType implements BodyPartTypeInterface {
 						return UtilText.returnStringAtRandom("vulpine", "fox-", "fox-like", "bestial");
 					case RABBIT_MORPH:
 						return UtilText.returnStringAtRandom("rabbit-", "rabbit-like");
-					case DILDO:
-						return UtilText.returnStringAtRandom("rubber", "rubbery", "silicone", "artificial");
 				}
 				break;
 			case 1:
@@ -136,7 +124,7 @@ public enum PenisType implements BodyPartTypeInterface {
 						gc.getPenisSize()==PenisSize.TWO_AVERAGE?"":gc.getPenisSize().getDescriptor(),
 						gc.getPenisGirth()==PenisGirth.TWO_AVERAGE?"":gc.getPenisGirth().getName());
 			default:
-				if(Main.game.isInSex() && this!=PenisType.DILDO) {
+				if(Main.game.isInSex()) {
 					return UtilText.returnStringAtRandom("hard", "throbbing");
 				} else {
 					return UtilText.returnStringAtRandom(
@@ -177,8 +165,6 @@ public enum PenisType implements BodyPartTypeInterface {
 				return "vulpine";
 			case RABBIT_MORPH:
 				return "rabbit";
-			case DILDO:
-				return "artificial";
 		}
 		return "";
 	}
@@ -264,9 +250,6 @@ public enum PenisType implements BodyPartTypeInterface {
 				break;
 			case SQUIRREL:
 				prefix = UtilText.returnStringAtRandom("squirrel-", "rodent-");
-				break;
-			case DILDO:
-				prefix = UtilText.returnStringAtRandom("stored", "preserved");
 				break;
 		}
 		if(Math.random()>0.5f && !prefix.isEmpty()) {

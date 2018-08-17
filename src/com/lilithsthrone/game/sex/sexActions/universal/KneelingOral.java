@@ -128,7 +128,7 @@ public class KneelingOral {
 		@Override
 		public boolean isBaseRequirementsMet() {
 			return Sex.getCharacterPerformingAction().getPenisRawSizeValue() >= PenisSize.TWO_AVERAGE.getMedianValue()
-					&& Sex.getCharacterPerformingAction().hasPenisIgnoreDildo();
+					&& Sex.getCharacterPerformingAction().hasPenis();
 		}
 
 		@Override

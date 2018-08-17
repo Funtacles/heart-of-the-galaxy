@@ -1530,7 +1530,7 @@ public class RalphOral {
 			
 			// PENIS ORGASM:
 			
-			if(Main.game.getPlayer().hasPenisIgnoreDildo()){
+			if(Main.game.getPlayer().hasPenis()){
 
 				UtilText.nodeContentSB.append("<br/><br/>");
 				

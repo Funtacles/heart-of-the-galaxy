@@ -962,7 +962,7 @@ public interface SexActionInterface {
 					associatedFetishes.add(Fetish.FETISH_VAGINAL_RECEIVING);
 					break;
 				case VAGINA:
-					if(characterTarget.hasPenisIgnoreDildo()
+					if(characterTarget.hasPenis()
 							&& characterTarget.getPenisRawStoredCumValue()>0
 							&& targetedArea==SexAreaPenetration.PENIS
 							&& this.getActionType()==SexActionType.ORGASM) {
@@ -1027,7 +1027,7 @@ public interface SexActionInterface {
 					associatedFetishes.add(Fetish.FETISH_VAGINAL_GIVING);
 					break;
 				case VAGINA:
-					if(characterPerformingAction.hasPenisIgnoreDildo() 
+					if(characterPerformingAction.hasPenis() 
 							&& characterPerformingAction.getPenisRawStoredCumValue()>0
 							&& performingArea==SexAreaPenetration.PENIS
 							&& this.getActionType()==SexActionType.ORGASM) {

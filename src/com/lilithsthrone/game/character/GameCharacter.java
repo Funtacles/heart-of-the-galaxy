@@ -36,7 +36,6 @@ import com.lilithsthrone.game.character.body.Body;
 import com.lilithsthrone.game.character.body.BodyPartInterface;
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.Covering;
-import com.lilithsthrone.game.character.body.Dildo;
 import com.lilithsthrone.game.character.body.FluidCum;
 import com.lilithsthrone.game.character.body.FluidGirlCum;
 import com.lilithsthrone.game.character.body.FluidMilk;
@@ -119,7 +118,6 @@ import com.lilithsthrone.game.character.markings.Tattoo;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.DominionSuccubusAttacker;
-import com.lilithsthrone.game.character.npc.misc.Elemental;
 import com.lilithsthrone.game.character.npc.misc.NPCOffspring;
 import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.persona.MoralityValue;
@@ -299,7 +297,6 @@ public abstract class GameCharacter implements XMLSaving {
 	protected boolean[] workHours;
 	
 	//Companion
-	private String elementalID;
 	private List<String> companions;
 	String partyLeader;
 	
@@ -535,7 +532,6 @@ public abstract class GameCharacter implements XMLSaving {
 		setLust(getRestingLust());
 		
 		//Companion initialization
-		elementalID = "";
 		companions = new ArrayList<>();
 		setMaxCompanions(1);
 		
@@ -577,7 +573,6 @@ public abstract class GameCharacter implements XMLSaving {
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "dayOfBirth", String.valueOf(this.getDayOfBirth()));
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "version", Main.VERSION_NUMBER);
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "history", this.getHistory().toString());
-		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "elemental", this.getElementalID());
 		
 		
 //		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "personality", this.getPersonality().toString());
@@ -1117,7 +1112,6 @@ public abstract class GameCharacter implements XMLSaving {
 
 		boolean noPregnancy = Arrays.asList(settings).contains(CharacterImportSetting.NO_PREGNANCY);
 		boolean noCompanions = Arrays.asList(settings).contains(CharacterImportSetting.NO_COMPANIONS);
-		boolean noElemental = Arrays.asList(settings).contains(CharacterImportSetting.NO_ELEMENTAL);
 		boolean noSlavery = Arrays.asList(settings).contains(CharacterImportSetting.CLEAR_SLAVERY);
 		
 		// ************** Core information **************//
@@ -1201,9 +1195,6 @@ public abstract class GameCharacter implements XMLSaving {
 				character.setHistory(History.STUDENT);
 				CharacterUtils.appendToImportLog(log, "<br/>History import failed. Set history to: "+character.getHistory());
 			}
-		}
-		if(!noElemental && element.getElementsByTagName("elemental").getLength()!=0) {
-			character.setElementalID(((Element)element.getElementsByTagName("elemental").item(0)).getAttribute("value"));
 		}
 		
 		if(element.getElementsByTagName("personality").getLength()!=0 && !Main.isVersionOlderThan(Main.VERSION_NUMBER, "0.2.3.5")) {
@@ -2935,11 +2926,6 @@ public abstract class GameCharacter implements XMLSaving {
 				value = 15000;
 				break;
 			case DEMON:
-			case ELEMENTAL_AIR:
-			case ELEMENTAL_ARCANE:
-			case ELEMENTAL_EARTH:
-			case ELEMENTAL_FIRE:
-			case ELEMENTAL_WATER:
 				value = 60000;
 				break;
 			case IMP:
@@ -3267,41 +3253,6 @@ public abstract class GameCharacter implements XMLSaving {
 	protected void clearAllCompanionVariables() {
 		this.partyLeader="";
 		this.getCompanionsId().clear();
-		this.elementalID = "";
-	}
-	
-	protected void setElementalID(String elementalID) {
-		this.elementalID = elementalID;
-	}
-	
-	private String getElementalID() {
-		return elementalID;
-	}
-	
-	public Elemental createElemental() {
-		if(elementalID==null || elementalID.isEmpty() || Main.game.getNPCById(elementalID)==null) {
-			Elemental elemental = new Elemental(Gender.F_V_B_FEMALE, this, false);
-			try {
-				Main.game.addNPC(elemental, false);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			this.elementalID = elemental.getId();
-		}
-		
-		return (Elemental) Main.game.getNPCById(elementalID);
-	}
-	
-	public Elemental getElemental() {
-		if(elementalID==null || elementalID.isEmpty() || Main.game.getNPCById(elementalID)==null) {
-			return null;
-		}
-		
-		return (Elemental) Main.game.getNPCById(elementalID);
-	}
-	
-	public boolean isElementalSummoned() {
-		return this.getCompanions().contains(this.getElemental());
 	}
 	
 	/**
@@ -3311,7 +3262,7 @@ public abstract class GameCharacter implements XMLSaving {
 	 * @return
 	 */
 	public boolean addCompanion(GameCharacter character) {
-		if(!character.isPlayer() && (getPartyLeader() == null || character instanceof Elemental)) {
+		if(!character.isPlayer() && getPartyLeader() == null) {
 			if(character.getPartyLeader() != null) {
 				character.getPartyLeader().removeCompanion(character);
 			}
@@ -3329,9 +3280,6 @@ public abstract class GameCharacter implements XMLSaving {
 	 */
 	public void removeCompanion(GameCharacter character) {
 		if(this.companions != null) {
-			if(character.isElementalSummoned()) {
-				character.removeCompanion(character.getElemental());
-			}
 			character.setPartyLeader("");
 			this.companions.remove(character.getId());
 		}
@@ -3396,27 +3344,11 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 	
 	/**
-	 * Gets the character's non-elemental companion NPCs, if any.
-	 */
-	public List<GameCharacter> getNonElementalCompanions() {
-		List<GameCharacter> listToReturn = getCompanions();
-		listToReturn.removeIf((com) -> com instanceof Elemental);
-		return listToReturn;
-	}
-	
-	/**
-	 * @return true if there is space for more party members. Elemental companions do not take up a companion slot.
+	 * @return true if there is space for more party members.
 	 */
 	public boolean canHaveMoreCompanions() {
-		int elementals = 0;
-		for(GameCharacter companion : getCompanions()) {
-			if(companion instanceof Elemental) {
-				elementals++;
-			}
-		}
-		
 		return this.maxCompanions != -1
-				&& (companions.size()-elementals) < maxCompanions;
+				&& companions.size() < maxCompanions;
 	}
 	
 	/**
@@ -3439,7 +3371,7 @@ public abstract class GameCharacter implements XMLSaving {
 	 * Override if needed. Returns true if this companion is available to that character. Is called during turn updates to make sure NPCs keep their companionship state updated. 
 	 */
 	public boolean isCompanionAvailable(GameCharacter partyLeader) {
-		return (this.isSlave() && this.getOwner().equals(partyLeader)) || (this instanceof Elemental && ((Elemental)this).getSummoner().equals(partyLeader));
+		return this.isSlave() && this.getOwner().equals(partyLeader);
 	}
 	
 	/**
@@ -3460,38 +3392,6 @@ public abstract class GameCharacter implements XMLSaving {
 	public String getCompanionSexRejectionReason(boolean companionIsSub) {
 		if(!Main.game.getSavedDialogueNode().equals(Main.game.getPlayer().getLocationPlace().getDialogue(false))) {
 			return "You're in the middle of something right now!";
-		}
-		if(this instanceof Elemental) {
-			switch(this.getBodyMaterial()) {
-				case AIR:
-					if(((Elemental)this).getSummoner().hasSpellUpgrade(SpellUpgrade.ELEMENTAL_AIR_3A) && companionIsSub) {
-						return UtilText.parse(this, "As you have sworn subservience to the school of Air, while [npc.name] is bound in this form, [npc.she] refuses to let you act as the dominant partner in sex!");
-					}
-					break;
-				case ARCANE:
-					if(((Elemental)this).getSummoner().hasSpellUpgrade(SpellUpgrade.ELEMENTAL_ARCANE_3A) && companionIsSub) {
-						return UtilText.parse(this, "As you have sworn subservience to the school of Arcane, while [npc.name] is bound in this form, [npc.she] refuses to let you act as the dominant partner in sex!");
-					}
-					break;
-				case FIRE:
-					if(((Elemental)this).getSummoner().hasSpellUpgrade(SpellUpgrade.ELEMENTAL_FIRE_3A) && companionIsSub) {
-						return UtilText.parse(this, "As you have sworn subservience to the school of Fire, while [npc.name] is bound in this form, [npc.she] refuses to let you act as the dominant partner in sex!");
-					}
-					break;
-				case FLESH:
-				case RUBBER:
-				case STONE:
-					if(((Elemental)this).getSummoner().hasSpellUpgrade(SpellUpgrade.ELEMENTAL_EARTH_3A) && companionIsSub) {
-						return UtilText.parse(this, "As you have sworn subservience to the school of Earth, while [npc.name] is bound in this form, [npc.she] refuses to let you act as the dominant partner in sex!");
-					}
-					break;
-				case ICE:
-				case WATER:
-					if(((Elemental)this).getSummoner().hasSpellUpgrade(SpellUpgrade.ELEMENTAL_WATER_3A) && companionIsSub) {
-						return UtilText.parse(this, "As you have sworn subservience to the school of Water, while [npc.name] is bound in this form, [npc.she] refuses to let you act as the dominant partner in sex!");
-					}
-					break;
-			}
 		}
 		switch(this.getWorldLocation()) {
 			case ANGELS_KISS_FIRST_FLOOR:
@@ -3696,15 +3596,6 @@ public abstract class GameCharacter implements XMLSaving {
 		}
 		
 		float value = getBaseAttributeValue(att) + getBonusAttributeValue(att);
-		
-		if(att == Attribute.HEALTH_MAXIMUM
-				&& (this.hasStatusEffect(StatusEffect.ELEMENTAL_EARTH_SERVANT_OF_EARTH)
-						|| this.hasStatusEffect(StatusEffect.ELEMENTAL_WATER_SERVANT_OF_WATER)
-						|| this.hasStatusEffect(StatusEffect.ELEMENTAL_AIR_SERVANT_OF_AIR)
-						|| this.hasStatusEffect(StatusEffect.ELEMENTAL_FIRE_SERVANT_OF_FIRE)
-						|| this.hasStatusEffect(StatusEffect.ELEMENTAL_ARCANE_SERVANT_OF_ARCANE))) {
-			value /= 2;
-		}
 		
 		if(value < att.getLowerLimit()) {
 			return att.getLowerLimit();
@@ -8165,11 +8056,6 @@ public abstract class GameCharacter implements XMLSaving {
 		
 		if(characterBeingRevealed.isPlayer()) {
 			if(pace!=SexPace.SUB_RESISTING) {
-				if(characterBeingRevealed.getPenisType()==PenisType.DILDO) {
-					sb.append("[npc2.Name] grins as [npc2.she] sees that you're wearing a strap-on. "
-							+ "[npc2.speech(Looking to have a little extra fun, huh?)]"
-						+ "</p>");
-				}
 				// Feminine NPC:
 				if(this.isFeminine()) {
 					if(!Sex.isDom(this)) {
@@ -8412,10 +8298,6 @@ public abstract class GameCharacter implements XMLSaving {
 			}
 			
 		} else {
-			if(characterBeingRevealed.getPenisType()==PenisType.DILDO) {
-				sb.append("[npc.Name] grins as [npc.she] reveals the fact that [npc.sheIs] wearing a strap-on. "
-						+ "[npc.speech(Time for a little extra fun!)]");
-			}
 			if(this.getPlayerKnowsAreas().contains(CoverableArea.PENIS) || !isFeminine()) {
 				switch(pace) {
 					case DOM_GENTLE:
@@ -11022,11 +10904,6 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 	
 	protected String rollForPregnancy(GameCharacter partner, int cumQuantity) {
-		if(partner instanceof Elemental) {
-			return PregnancyDescriptor.NO_CHANCE.getDescriptor(this, partner)
-					+"<p style='text-align:center;'>[style.italicsMinorBad(Elementals cannot impregnate anyone!)]<br/>[style.italicsDisabled(I will add support for impregnating/being impregnated by elementals soon!)]</p>";
-		}
-		
 		float pregnancyChance = 0;
 		
 		if((partner.hasPerkAnywhereInTree(Perk.FIRING_BLANKS) && partner.getAttributeValue(Attribute.VIRILITY)<=0)
@@ -13604,8 +13481,7 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 	
 	public boolean isAbleToSelfTransform() {
-		return this instanceof Elemental
-				|| this.getRace()==Race.DEMON;
+		return this.getRace()==Race.DEMON;
 	}
 	
 	public Race getAntennaRace() {
@@ -15639,40 +15515,6 @@ public abstract class GameCharacter implements XMLSaving {
 	// ------------------------------ Penis: ------------------------------ //
 	
 	public Penis getCurrentPenis() {
-		if(body.getPenis().getType()==PenisType.NONE) {
-			for(AbstractClothing c : this.getClothingCurrentlyEquipped()) {
-				if(c.getItemTags().contains(ItemTag.DILDO_TINY)) {
-					this.body.getCoverings().put(BodyCoveringType.DILDO, new Covering(BodyCoveringType.DILDO, CoveringPattern.NONE, c.getColour(), false, c.getColour(), false));
-					return Dildo.dildoTiny;
-					
-				} else if(c.getItemTags().contains(ItemTag.DILDO_AVERAGE)) {
-					this.body.getCoverings().put(BodyCoveringType.DILDO, new Covering(BodyCoveringType.DILDO, CoveringPattern.NONE, c.getColour(), false, c.getColour(), false));
-					return Dildo.dildoAverage;
-					
-				} else if(c.getItemTags().contains(ItemTag.DILDO_LARGE)) {
-					this.body.getCoverings().put(BodyCoveringType.DILDO, new Covering(BodyCoveringType.DILDO, CoveringPattern.NONE, c.getColour(), false, c.getColour(), false));
-					return Dildo.dildoLarge;
-					
-				} else if(c.getItemTags().contains(ItemTag.DILDO_HUGE)) {
-					this.body.getCoverings().put(BodyCoveringType.DILDO, new Covering(BodyCoveringType.DILDO, CoveringPattern.NONE, c.getColour(), false, c.getColour(), false));
-					return Dildo.dildoHuge;
-					
-				} else if(c.getItemTags().contains(ItemTag.DILDO_ENORMOUS)) {
-					this.body.getCoverings().put(BodyCoveringType.DILDO, new Covering(BodyCoveringType.DILDO, CoveringPattern.NONE, c.getColour(), false, c.getColour(), false));
-					return Dildo.dildoEnormous;
-					
-				} else if(c.getItemTags().contains(ItemTag.DILDO_GIGANTIC)) {
-					this.body.getCoverings().put(BodyCoveringType.DILDO, new Covering(BodyCoveringType.DILDO, CoveringPattern.NONE, c.getColour(), false, c.getColour(), false));
-					return Dildo.dildoGigantic;
-					
-				} else if(c.getItemTags().contains(ItemTag.DILDO_STALLION)) {
-					this.body.getCoverings().put(BodyCoveringType.DILDO, new Covering(BodyCoveringType.DILDO, CoveringPattern.NONE, c.getColour(), false, c.getColour(), false));
-					return Dildo.dildoStallion;
-					
-				}
-			}
-		}
-		
 		return body.getPenis();
 	}
 	
@@ -15699,11 +15541,6 @@ public abstract class GameCharacter implements XMLSaving {
 		}
 		
 		return s + clothingRemovalSB.toString();
-	}
-	// Misc.:
-	public boolean hasPenisIgnoreDildo() {
-		return this.getBody().getPenis().getType() != PenisType.NONE
-				&& this.getBody().getPenis().getType() != PenisType.DILDO;
 	}
 	public boolean hasPenis() {
 		return getCurrentPenis().getType() != PenisType.NONE;
@@ -16171,46 +16008,6 @@ public abstract class GameCharacter implements XMLSaving {
 				return body.getCoverings().get(bodyCoveringType);
 			default:
 				break;
-		}
-		
-		switch(this.getBodyMaterial()) {
-			case AIR:
-				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
-					return body.getCoverings().get(BodyCoveringType.AIR_HAIR);
-				}
-				return body.getCoverings().get(BodyCoveringType.AIR);
-			case ARCANE:
-				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
-					return body.getCoverings().get(BodyCoveringType.ARCANE_HAIR);
-				}
-				return body.getCoverings().get(BodyCoveringType.ARCANE);
-			case FIRE:
-				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
-					return body.getCoverings().get(BodyCoveringType.FIRE_HAIR);
-				}
-				return body.getCoverings().get(BodyCoveringType.FIRE);
-			case FLESH:
-				break;
-			case ICE:
-				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
-					return body.getCoverings().get(BodyCoveringType.ICE_HAIR);
-				}
-				return body.getCoverings().get(BodyCoveringType.ICE);
-			case RUBBER:
-				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
-					return body.getCoverings().get(BodyCoveringType.RUBBER_HAIR);
-				}
-				return body.getCoverings().get(BodyCoveringType.RUBBER);
-			case STONE:
-				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
-					return body.getCoverings().get(BodyCoveringType.STONE_HAIR);
-				}
-				return body.getCoverings().get(BodyCoveringType.STONE);
-			case WATER:
-				if(bodyCoveringType==BodyCoveringType.HAIR_DEMON) {
-					return body.getCoverings().get(BodyCoveringType.WATER_HAIR);
-				}
-				return body.getCoverings().get(BodyCoveringType.WATER);
 		}
 		
 		return body.getCoverings().get(bodyCoveringType);

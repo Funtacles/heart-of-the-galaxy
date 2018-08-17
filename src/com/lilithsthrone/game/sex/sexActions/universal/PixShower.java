@@ -838,7 +838,7 @@ public class PixShower {
 			UtilText.nodeContentSB.append("<br/><br/>");
 			// PENIS ORGASM:
 			
-			if(Main.game.getPlayer().hasPenisIgnoreDildo()){
+			if(Main.game.getPlayer().hasPenis()){
 				
 				UtilText.nodeContentSB.append("You feel one of Pix's [pix.hands+] wrap around your [pc.cock+], and as she starts furiously jerking you off, she carries on telling you what a good [pc.girl] you've been.");
 				
@@ -891,7 +891,7 @@ public class PixShower {
 			}
 			
 			// MOUND ORGASM:
-			if (!Main.game.getPlayer().hasPenisIgnoreDildo() && Main.game.getPlayer().getVaginaType()==VaginaType.NONE) {
+			if (!Main.game.getPlayer().hasPenis() && Main.game.getPlayer().getVaginaType()==VaginaType.NONE) {
 				UtilText.nodeContentSB.append("With an ear-splitting scream and trembling legs, a crashing wave of pure ecstasy suddenly washes through you."
 						+ " The muscles within your genderless mound start to spasm and contract, and you let out a desperate scream as Pix reaches down and starts rubbing and flicking at your extremely sensitive crotch."
 						+ " With a final, ear-splitting scream, your climax crashes over you, and you find yourself collapsing back into Pix as you feel your legs giving out from under you.");

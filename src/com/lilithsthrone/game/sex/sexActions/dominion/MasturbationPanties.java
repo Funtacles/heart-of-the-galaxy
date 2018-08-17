@@ -247,7 +247,7 @@ public class MasturbationPanties {
 
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return (Main.game.getPlayer().hasPenisIgnoreDildo()
+			return (Main.game.getPlayer().hasPenis()
 						&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 						&& !Main.game.getPlayer().isWearingCondom())
 					|| (Main.game.getPlayer().hasVagina()

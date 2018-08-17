@@ -461,7 +461,7 @@ public class InventoryTooltipEventListener implements EventListener {
 									break;
 									
 								case PENIS:
-									if(!equippedToCharacter.hasPenisIgnoreDildo()) {
+									if(!equippedToCharacter.hasPenis()) {
 										setBlockedTooltipContent(getTooltipText(equippedToCharacter,
 												"You don't have a penis.",
 												"[npc.Name] doesn't have a penis."));

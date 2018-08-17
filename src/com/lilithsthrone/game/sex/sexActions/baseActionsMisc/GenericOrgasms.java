@@ -9,7 +9,6 @@ import com.lilithsthrone.game.character.GameCharacter;
 
 import com.lilithsthrone.game.character.attributes.ObedienceLevel;
 import com.lilithsthrone.game.character.body.CoverableArea;
-import com.lilithsthrone.game.character.body.types.PenisType;
 import com.lilithsthrone.game.character.body.valueEnums.CumProduction;
 import com.lilithsthrone.game.character.body.valueEnums.PenetrationModifier;
 import com.lilithsthrone.game.character.fetishes.Fetish;
@@ -46,7 +45,7 @@ public class GenericOrgasms {
 	}
 	
 	private static boolean isRealPenisFuckingCharacter(GameCharacter character, GameCharacter penetrator) {
-		return (Sex.getCharactersUsingSexAreaOnCharacter(character, SexAreaPenetration.PENIS).contains(penetrator) && penetrator.hasPenisIgnoreDildo());
+		return (Sex.getCharactersUsingSexAreaOnCharacter(character, SexAreaPenetration.PENIS).contains(penetrator) && penetrator.hasPenis());
 	}
 	
 	private static boolean isActiveNPCObeyingPlayer() {
@@ -69,7 +68,7 @@ public class GenericOrgasms {
 			return false;
 		}
 		
-		if(!Sex.getActivePartner().hasPenisIgnoreDildo())
+		if(!Sex.getActivePartner().hasPenis())
 			return false;
 		if(!Sex.getActivePartner().isCoverableAreaExposed(CoverableArea.PENIS))
 			return false;
@@ -1221,7 +1220,7 @@ public class GenericOrgasms {
 						
 					} else {
 						String groinText = "groin.";
-						if(target.hasPenisIgnoreDildo()) {
+						if(target.hasPenis()) {
 							if(target.hasVagina()) {
 								groinText = " [npc2.cock] and [npc2.pussy].";
 							} else {
@@ -1312,7 +1311,7 @@ public class GenericOrgasms {
 							
 					} else {
 						String groinText = "groin.";
-						if(characterOrgasming.hasPenisIgnoreDildo()) {
+						if(characterOrgasming.hasPenis()) {
 							if(characterOrgasming.hasVagina()) {
 								groinText = " [npc.cock] and [npc.pussy].";
 							} else {
@@ -1717,19 +1716,7 @@ public class GenericOrgasms {
 		}
 		
 		if(target!=null) {
-			switch(target.getBodyMaterial()) {
-				case AIR:
-				case ARCANE:
-				case WATER:
-				case FIRE:
-				case FLESH:
-				case ICE:
-				case RUBBER:
-				case STONE:
-					break;
-			}
 			return UtilText.parse(characterOrgasming, target, cumTargetSB.toString());
-			
 		} else {
 			return UtilText.parse(characterOrgasming, cumTargetSB.toString());
 		}
@@ -1967,7 +1954,7 @@ public class GenericOrgasms {
 			}
 		}
 		
-		if(targetArea == OrgasmCumTarget.LILAYA_PANTIES && !Main.game.getPlayer().hasPenisIgnoreDildo()) {
+		if(targetArea == OrgasmCumTarget.LILAYA_PANTIES && !Main.game.getPlayer().hasPenis()) {
 			genericOrgasmSB.append(" As you squeal and pant, you bring Lilaya's panties up to your face, and breathe in your demonic aunt's musky, perfume-laced scent as you imagine her masturbating into the soft fabric.");
 		}
 		
@@ -2012,7 +1999,7 @@ public class GenericOrgasms {
 	public static String getGenericOrgasmDescription(GameCharacter characterOrgasming, OrgasmCumTarget target) {
 		StringBuilder descriptionSB = new StringBuilder();
 
-		if(characterOrgasming.hasPenisIgnoreDildo()) {
+		if(characterOrgasming.hasPenis()) {
 			descriptionSB.append("<p>"
 									+getGenericPenisOrgasmDescription(characterOrgasming, target)
 								+"</p>");
@@ -2024,7 +2011,7 @@ public class GenericOrgasms {
 								+"</p>");
 		}
 		
-		if(!characterOrgasming.hasPenisIgnoreDildo() && !characterOrgasming.hasVagina()) {
+		if(!characterOrgasming.hasPenis() && !characterOrgasming.hasVagina()) {
 			descriptionSB.append("<p>"
 									+getGenericMoundOrgasm(characterOrgasming)
 								+"</p>");
@@ -2053,7 +2040,7 @@ public class GenericOrgasms {
 
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return (!Main.game.getPlayer().hasPenisIgnoreDildo() || !Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS) || Main.game.getPlayer().isWearingCondom())
+			return (!Main.game.getPlayer().hasPenis() || !Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS) || Main.game.getPlayer().isWearingCondom())
 					&& Sex.getCharacterPerformingAction().isPlayer();
 		}
 
@@ -2209,8 +2196,7 @@ public class GenericOrgasms {
 
 		@Override
 		public boolean isBaseRequirementsMet() {
-			if(Main.game.getPlayer().getPenisType()==PenisType.DILDO
-					|| !Sex.getCharacterPerformingAction().isPlayer()
+			if(!Sex.getCharacterPerformingAction().isPlayer()
 					|| Sex.getCharactersHavingOngoingActionWith(Main.game.getPlayer(), SexAreaPenetration.PENIS).isEmpty()) {
 				return false;
 			}
@@ -2309,7 +2295,7 @@ public class GenericOrgasms {
 
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.FLOOR)
@@ -2353,7 +2339,7 @@ public class GenericOrgasms {
 	public static final SexAction PLAYER_GENERIC_ORGASM_WALL = new SexAction(PLAYER_GENERIC_ORGASM_FLOOR) {
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.WALL)
@@ -2395,7 +2381,7 @@ public class GenericOrgasms {
 		
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.ASS)
@@ -2448,7 +2434,7 @@ public class GenericOrgasms {
 		
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.GROIN)
@@ -2497,7 +2483,7 @@ public class GenericOrgasms {
 		
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.SELF_GROIN)
@@ -2550,7 +2536,7 @@ public class GenericOrgasms {
 		
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.BREASTS)
@@ -2598,7 +2584,7 @@ public class GenericOrgasms {
 		
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.SELF_BREASTS)
@@ -2650,7 +2636,7 @@ public class GenericOrgasms {
 		
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.FACE)
@@ -2698,7 +2684,7 @@ public class GenericOrgasms {
 		
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.SELF_FACE)
@@ -2750,7 +2736,7 @@ public class GenericOrgasms {
 		
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.HAIR)
@@ -2802,7 +2788,7 @@ public class GenericOrgasms {
 		
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.STOMACH)
@@ -2850,7 +2836,7 @@ public class GenericOrgasms {
 		
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.SELF_STOMACH)
@@ -2902,7 +2888,7 @@ public class GenericOrgasms {
 		
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.LEGS)
@@ -2950,7 +2936,7 @@ public class GenericOrgasms {
 		
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.SELF_LEGS)
@@ -3003,7 +2989,7 @@ public class GenericOrgasms {
 		
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Main.game.getPlayer().hasPenisIgnoreDildo()
+			return Main.game.getPlayer().hasPenis()
 					&& Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
 					&& !Main.game.getPlayer().isWearingCondom()
 					&& Sex.getSexPositionSlot(Main.game.getPlayer()).getAvailableCumTargets().contains(OrgasmCumTarget.BACK)
@@ -3811,7 +3797,6 @@ public class GenericOrgasms {
 		@Override
 		public boolean isBaseRequirementsMet() {
 			if(Sex.getCharacterPerformingAction().isPlayer()
-					|| Sex.getCharacterPerformingAction().getPenisType()==PenisType.DILDO
 					|| Sex.getAllContactingSexAreas(Sex.getCharacterPerformingAction(), SexAreaPenetration.PENIS).isEmpty()) {
 				return false;
 			}

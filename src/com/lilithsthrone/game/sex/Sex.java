@@ -2276,7 +2276,7 @@ public class Sex {
 			if(character.getArousal() >= character.getAssWetness().getArousalNeededToGetVaginaWet()) {
 				addLubrication(character, SexAreaOrifice.ANUS, character, LubricationType.ANAL_LUBE, !onSexInit);
 			}
-			if(character.hasPenisIgnoreDildo() && character.getArousal() >= character.getPenisCumStorage().getArousalNeededToStartPreCumming()) {
+			if(character.hasPenis() && character.getArousal() >= character.getPenisCumStorage().getArousalNeededToStartPreCumming()) {
 				addLubrication(character, SexAreaPenetration.PENIS, character, LubricationType.PRECUM);
 				addLubrication(character, SexAreaOrifice.URETHRA_PENIS, character, LubricationType.PRECUM, !onSexInit);
 			}
@@ -2485,7 +2485,7 @@ public class Sex {
 			
 			if (penetrationType == SexAreaPenetration.PENIS) {
 				if(characterPenetrating.isPenisVirgin()
-						&& characterPenetrating.hasPenisIgnoreDildo()
+						&& characterPenetrating.hasPenis()
 						&& actualOrifice.isTakesPenisVirginity()) {
 					penileVirginityLoss = characterPenetrating.getVirginityLossPenetrationDescription(characterPenetrating, SexAreaPenetration.PENIS, characterPenetrated, actualOrifice);
 					if(characterPenetrated.hasFetish(Fetish.FETISH_DEFLOWERING)) {

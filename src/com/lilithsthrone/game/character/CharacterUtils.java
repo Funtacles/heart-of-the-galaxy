@@ -914,7 +914,6 @@ public class CharacterUtils {
 				.build();
 		
 		if(body.getPenis().getType()!=PenisType.NONE
-				&& body.getPenis().getType()!=PenisType.DILDO
 				&& body.getVagina().getType()!=VaginaType.NONE
 				&& !Main.getProperties().hasValue(PropertyValue.futanariTesticles)) {
 			body.getPenis().getTesticle().setInternal(null, true);
@@ -1032,7 +1031,6 @@ public class CharacterUtils {
 		body.setWing(new Wing((stage.isWingFurry()?startingBodyType.getWingType():WingType.NONE), (startingGender.isFeminine() ? startingBodyType.getFemaleWingSize() : startingBodyType.getMaleWingSize())));
 		
 		if(body.getPenis().getType()!=PenisType.NONE
-				&& body.getPenis().getType()!=PenisType.DILDO
 				&& body.getVagina().getType()!=VaginaType.NONE
 				&& !Main.getProperties().hasValue(PropertyValue.futanariTesticles)) {
 			body.getPenis().getTesticle().setInternal(null, true);
