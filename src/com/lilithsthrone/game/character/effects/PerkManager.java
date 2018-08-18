@@ -43,7 +43,7 @@ public enum PerkManager {
 		addPerkEntry(perkTree, PerkCategory.BOTH, 0, Perk.FETISH_BROODMOTHER);
 		addPerkEntry(perkTree, PerkCategory.ARCANE, 0, Perk.CLOTHING_ENCHANTER);
 		
-		TreeEntry<PerkCategory, Perk> arcane1, arcane2, arcane3, arcane4, arcane5, arcane6;
+		TreeEntry<PerkCategory, Perk> arcane1, arcane2, arcane3, arcane4;
 		TreeEntry<PerkCategory, Perk> physical1, physical2, physical3, physical4, physical5, physical6;
 		TreeEntry<PerkCategory, Perk> both1, both2, both3, both4, both5, both6;
 		
@@ -78,18 +78,13 @@ public enum PerkManager {
 		physical1 = addPerkEntry(perkTree, PerkCategory.PHYSICAL, 5, Perk.PHYSIQUE_5, physical2, physical5);
 
 		// Arcane:
-		addPerkEntry(perkTree, PerkCategory.ARCANE, 2, Perk.ARCANE_CRITICALS, arcane1);
 		arcane2 = addPerkEntry(perkTree, PerkCategory.ARCANE, 2, Perk.ARCANE_5, arcane1);
 
 		arcane3 = addPerkEntry(perkTree, PerkCategory.ARCANE, 3, Perk.AURA_RESILIENCE_2);
 		arcane4 = addPerkEntry(perkTree, PerkCategory.ARCANE, 3, Perk.ARCANE_1, arcane3);
-		arcane5 = addPerkEntry(perkTree, PerkCategory.ARCANE, 3, Perk.AURA_RESILIENCE, arcane2, arcane4);
-		arcane6 = addPerkEntry(perkTree, PerkCategory.ARCANE, 3, Perk.ARCANE_COMBATANT, arcane2);
 
 		arcane1 = addPerkEntry(perkTree, PerkCategory.ARCANE, 4, Perk.ARCANE_5);
 		arcane2 = addPerkEntry(perkTree, PerkCategory.ARCANE, 4, Perk.ARCANE_3, arcane1, arcane4);
-		arcane3 = addPerkEntry(perkTree, PerkCategory.ARCANE, 4, Perk.SPELL_EFFICIENCY_5, arcane5);
-		arcane2 = addPerkEntry(perkTree, PerkCategory.ARCANE, 4, Perk.SPELL_DAMAGE_5, arcane6);
 		
 		arcane1 = addPerkEntry(perkTree, PerkCategory.ARCANE, 5, Perk.ARCANE_5, arcane3, arcane2);
 		

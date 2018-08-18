@@ -91,13 +91,6 @@ public enum TFModifier {
 			"modifier_circle_virility",
 			Rarity.RARE),
 	
-	SPELL_COST_MODIFIER(AttributeCategory.INTELLIGENCE,
-			Attribute.SPELL_COST_MODIFIER,
-			"Applies an effect related to the secondary attribute 'Spell cost reduction'.",
-			"modifier_circle",
-			Rarity.RARE),
-	
-	
 	CRITICAL_CHANCE(AttributeCategory.STRENGTH,
 			Attribute.CRITICAL_CHANCE,
 			"Applies an effect related to the secondary attribute 'Critical chance'.",
@@ -114,12 +107,6 @@ public enum TFModifier {
 	DAMAGE_LUST(AttributeCategory.CORRUPTION,
 			Attribute.DAMAGE_LUST,
 			"Applies an effect related to the secondary attribute 'Seduction damage'.",
-			"modifier_circle_damage",
-			Rarity.RARE),
-	
-	DAMAGE_SPELLS(AttributeCategory.INTELLIGENCE,
-			Attribute.DAMAGE_SPELLS,
-			"Applies an effect related to the secondary attribute 'Spell damage'.",
 			"modifier_circle_damage",
 			Rarity.RARE),
 	
@@ -1183,8 +1170,6 @@ public enum TFModifier {
 		clothingAttributeList.add(TFModifier.DAMAGE_RANGED_WEAPON);
 		clothingAttributeList.add(TFModifier.DAMAGE_PHYSICAL);
 		clothingAttributeList.add(TFModifier.DAMAGE_POISON);
-		clothingAttributeList.add(TFModifier.DAMAGE_SPELLS);
-		clothingAttributeList.add(TFModifier.SPELL_COST_MODIFIER);
 		clothingAttributeList.add(TFModifier.CRITICAL_CHANCE);
 		clothingAttributeList.add(TFModifier.CRITICAL_DAMAGE);
 		

@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -78,7 +77,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 	private List<BlockedParts> blockedPartsList;
 	private List<InventorySlot> incompatibleSlots;
 
-	private ClothingSet clothingSet;
 	private Rarity rarity;
 	private List<Colour> availablePrimaryColours;
 	private List<Colour> availablePrimaryDyeColours;
@@ -110,7 +108,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 			Femininity femininityRestriction,
 			InventorySlot slot,
 			Rarity rarity,
-			ClothingSet clothingSet,
 			String pathName,
 			List<ItemEffect> effects,
 			List<BlockedParts> blockedPartsList,
@@ -132,7 +129,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 				femininityRestriction,
 				slot,
 				rarity,
-				clothingSet,
 				pathName,
 				null,
 				effects,
@@ -158,7 +154,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 			Femininity femininityRestriction,
 			InventorySlot slot,
 			Rarity rarity,
-			ClothingSet clothingSet,
 			String pathName,
 			String pathNameEquipped,
 			List<ItemEffect> effects,
@@ -190,7 +185,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 
 		this.slot = slot;
 		this.rarity = rarity;
-		this.clothingSet = clothingSet;
 
 		this.pathName = pathName;
 		this.pathNameEquipped = pathNameEquipped;
@@ -428,10 +422,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 					enchantmentLimit = Integer.valueOf(coreAttributes.getElementsByTagName("enchantmentLimit").item(0).getTextContent());
 				} catch(Exception ex) {
 				}
-				
-				this.clothingSet = !coreAttributes.getElementsByTagName("clothingSet").item(0).hasChildNodes()
-									? null
-									: ClothingSet.valueOf(coreAttributes.getElementsByTagName("clothingSet").item(0).getTextContent());
 				
 				this.pathName = clothingXMLFile.getParentFile().getAbsolutePath() + "/" + coreAttributes.getElementsByTagName("imageName").item(0).getTextContent();
 				
@@ -684,7 +674,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 						&& ((AbstractClothingType)o).getFemininityRestriction() == getFemininityRestriction()
 						&& ((AbstractClothingType)o).getSlot() == getSlot()
 						&& ((AbstractClothingType)o).getEffects().equals(getEffects())
-						&& ((AbstractClothingType)o).getClothingSet() == getClothingSet()
 						&& ((AbstractClothingType)o).getRarity() == getRarity()
 						){
 					return true;
@@ -705,8 +694,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 		if(getFemininityRestriction()!=null)
 			result = 31 * result + getFemininityRestriction().hashCode();
 		result = 31 * result + getEffects().hashCode();
-		if(getClothingSet()!=null)
-			result = 31 * result + getClothingSet().hashCode();
 		result = 31 * result + getRarity().hashCode();
 		return result;
 	}
@@ -882,23 +869,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 		return baseValue;
 	}
 
-	static Map<ClothingSet, List<AbstractClothingType>> clothingSetMap = new EnumMap<>(ClothingSet.class);
-
-	public static List<AbstractClothingType> getClothingInSet(ClothingSet set) {
-		if (clothingSetMap.get(set) != null)
-			return clothingSetMap.get(set);
-
-		List<AbstractClothingType> setOfClothing = new ArrayList<>();
-
-		for (AbstractClothingType c : ClothingType.getAllClothing())
-			if (c.getClothingSet() == set)
-				setOfClothing.add(c);
-
-		clothingSetMap.put(set, setOfClothing);
-
-		return setOfClothing;
-	}
-	
 	public static String getEquipDescriptions(GameCharacter clothingOwner, GameCharacter clothingEquipper, boolean rough,
 			String playerEquipping,
 			String playerEquippingNpc,
@@ -1395,10 +1365,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 		return slot.getZLayer();
 	}
 
-	public ClothingSet getClothingSet() {
-		return clothingSet;
-	}
-
 	public List<Colour> getAvailablePrimaryColours() {
 		return availablePrimaryColours;
 	}
@@ -1819,7 +1785,7 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 	
 	public int getEnchantmentLimit() {
 		if(enchantmentLimit==-1) {
-			int base = (getClothingSet()==null?5:10);
+			int base = 5;
 			return base + getIncompatibleSlots().size()*base;
 		} else {
 			return enchantmentLimit;

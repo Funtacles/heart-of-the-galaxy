@@ -17,7 +17,6 @@ import com.lilithsthrone.game.character.body.valueEnums.PiercingType;
 import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.markings.TattooCounterType;
 import com.lilithsthrone.game.character.markings.TattooType;
-import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.persona.Name;
 import com.lilithsthrone.game.character.persona.NameTriplet;
 import com.lilithsthrone.game.character.persona.SexualOrientation;
@@ -28,7 +27,6 @@ import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.combat.DamageType;
-import com.lilithsthrone.game.combat.Spell;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
@@ -41,9 +39,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
-import com.lilithsthrone.game.inventory.item.AbstractItem;
-import com.lilithsthrone.game.inventory.item.AbstractItemType;
-import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.game.inventory.weapon.WeaponType;
 import com.lilithsthrone.game.sex.SexAreaOrifice;
@@ -1453,109 +1448,13 @@ public class CharacterCreation {
 				};
 				
 			} else if (index == 1) {
-				return new Response("Select Job", "Proceed to the job selection screen.", BACKGROUND_SELECTION_MENU);
+				return new Response("Continue", "What is your sexual experience?", CHOOSE_SEX_EXPERIENCE);
 				
 			} else {
 				return null;
 			}
 		}
 	};
-	
-	public static final DialogueNodeOld BACKGROUND_SELECTION_MENU = new DialogueNodeOld("In the Museum", "-", true) {
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public String getContent() {
-			UtilText.nodeContentSB.setLength(0);
-
-			UtilText.nodeContentSB.append("<div class='container-full-width'>"
-									+ "<h6 style='text-align:center'>Job Selection</h6>"
-									+ "<p style='text-align:center'>Click on the icon next to the job that you'd like, and then choose 'Continue'.</p>"
-								+ "</div>");
-
-			UtilText.nodeContentSB.append("<div class='container-full-width'>");
-			for(History history : History.getAvailableHistories(Main.game.getPlayer())) {
-				UtilText.nodeContentSB.append(
-						"<div class='container-full-width'>"
-							+"<div class='container-full-width' style='margin:0;padding:0;'>"
-								+ "<h6 style='color:"+history.getAssociatedPerk().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(history.getName())+"</h6>"
-							+ "</div>"
-							+"<div class='container-full-width' style='margin:0 8px; width: calc(10% - 16px);'>"
-								+ "<div id='HISTORY_" + history + "' class='fetish-icon full" + (Main.game.getPlayer().getHistory()==history
-									? " owned' style='border:2px solid " + Colour.GENERIC_GOOD.toWebHexString() + ";'>"
-									: " unlocked' style='border:2px solid " + Colour.TEXT_GREY.toWebHexString() + ";" + "'>")
-									+ "<div class='fetish-icon-content'>"+history.getAssociatedPerk().getSVGString()+"</div>"
-								+ "</div>"
-							+ "</div>"
-							+"<div class='container-full-width' style='margin:0 8px; width: calc(90% - 16px);'>"
-								+ "<p>"
-									+ history.getDescription(Main.game.getPlayer())
-								+ "</p>"
-							+ "</div>"
-						+ "</div>");
-			}
-			
-//				int i=0;
-//				for(History history : History.getAvailableHistories(Main.game.getPlayer())) {
-//					if(i%2==0) {
-//						UtilText.nodeContentSB.append("<div class='container-full-width'>");
-//					}
-//					UtilText.nodeContentSB.append(
-//							"<div class='container-half-width'>"
-//								+"<div class='container-full-width' style='margin:0 8px; width: calc(25% - 16px);'>"
-//									+ "<div id='HISTORY_" + history + "' class='fetish-icon full" + (Main.game.getPlayer().getHistory()==history
-//										? " owned' style='border:2px solid " + Colour.GENERIC_GOOD.toWebHexString() + ";'>"
-//										: " unlocked' style='border:2px solid " + Colour.TEXT_GREY.toWebHexString() + ";" + "'>")
-//										+ "<div class='fetish-icon-content'>"+history.getAssociatedPerk().getSVGString()+"</div>"
-//									+ "</div>"
-//								+ "</div>"
-//								+"<div class='container-full-width' style='margin:0 8px; width: calc(75% - 16px);'>"
-//									+ "<h6 style='color:"+history.getAssociatedPerk().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(history.getName())+"</h6>"
-//									+ "<p>"
-//										+ history.getDescription()
-//									+ "</p>"
-//								+ "</div>"
-//							+ "</div>");
-//					if(i%2!=0) {
-//						UtilText.nodeContentSB.append("</div>");
-//					}
-//					i++;
-//				}
-//				if(i%2!=0) {
-//					UtilText.nodeContentSB.append("</div>");
-//				}
-			UtilText.nodeContentSB.append("</div>");
-			
-			return UtilText.nodeContentSB.toString();
-		}
-		
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 0) {
-				return new Response("Back", "Return to the previous screen.", CHOOSE_BACKGROUND);
-				
-			} else if (index == 1) {
-				if(Main.game.getPlayer().getHistory().getAssociatedPerk()==null) {
-					return new Response("Continue", "You need to select a job before continuing!", null);
-				} else {
-					return new Response("Continue", femalePrologueNPC()?"Tell [prologueFemale.name] what it is you do for a living.":"Tell [prologueMale.name] what it is you do for a living.", CHOOSE_SEX_EXPERIENCE) {
-						@Override
-						public void effects() {
-							Main.game.getPlayer().getVirginityLossMap().replaceAll((k, v) ->
-								(Main.game.getPlayer().getSexualOrientation()==SexualOrientation.GYNEPHILIC
-									|| (Main.game.getPlayer().getSexualOrientation()==SexualOrientation.AMBIPHILIC && !Main.game.getPlayer().isFeminine()))
-									?"your girlfriend"
-									:"your boyfriend");
-						}
-					};
-				}
-				
-			} else {
-				return null;
-			}
-		}
-	};
-	
 	
 	public static final DialogueNodeOld CHOOSE_SEX_EXPERIENCE = new DialogueNodeOld("Start", "", true) {
 		private static final long serialVersionUID = 1L;
@@ -1563,80 +1462,6 @@ public class CharacterCreation {
 		@Override
 		public String getContent() {
 			UtilText.nodeContentSB.setLength(0);
-			
-			UtilText.nodeContentSB.append("<p>");
-			switch(Main.game.getPlayer().getHistory()) {
-				case ATHLETE:
-					UtilText.nodeContentSB.append(
-							"[pc.speech(I'm a professional athlete,)]"
-							+ " you explain,"
-							+ " [pc.speech(and I spend most of my time training for and attending competitions.)]");
-					break;
-				case BUTLER:
-					UtilText.nodeContentSB.append(
-							"[pc.speech(I work as the butler for a highly influential family here in the city,)]"
-							+ " you explain,"
-							+ " [pc.speech(but I took tonight off so I could attend Lily's presentation.)]");
-					break;
-				case CHEF:
-					UtilText.nodeContentSB.append(
-							"[pc.speech(I'm the head chef at a restaurant just around the corner from here,)]"
-							+ " you explain,"
-							+ " [pc.speech(but I took tonight off so I could attend Lily's presentation.)]");
-					break;
-				case MAID:
-					UtilText.nodeContentSB.append(
-							"[pc.speech(I work as the head maid for a highly influential family here in the city,)]"
-							+ " you explain,"
-							+ " [pc.speech(but I took tonight off so I could attend Lily's presentation.)]");
-					break;
-				case MUSICIAN:
-					UtilText.nodeContentSB.append(
-							"[pc.speech(I'm a member of the city orchestra,)]"
-							+ " you explain,"
-							+ " [pc.speech(and I also do private music tutoring.)]");
-					break;
-				case OFFICE_WORKER:
-					UtilText.nodeContentSB.append(
-							"[pc.speech(I work in one of the corporate offices in the centre of the city,)]"
-							+ " you explain,"
-							+ " [pc.speech(mostly doing admin and paper work.)]");
-					break;
-				case SOLDIER:
-					UtilText.nodeContentSB.append(
-							"[pc.speech(I'm in the army,)]"
-							+ " you explain,"
-							+ " [pc.speech(I'm on leave for the rest of the week, and then it's back to the barracks for me.)]");
-					break;
-				case STUDENT:
-					UtilText.nodeContentSB.append(
-							"[pc.speech(I'm a student at the city uni,)]"
-							+ " you explain,"
-							+ " [pc.speech(although I haven't quite decided what to take as my major yet.)]");
-					break;
-				case TEACHER:
-					UtilText.nodeContentSB.append(
-							"[pc.speech(I'm a teacher at a local secondary school,)]"
-							+ " you explain,"
-							+ " [pc.speech(but seeing as it's half-term, I get to take it easy this week.)]");
-					break;
-				case UNEMPLOYED:
-					UtilText.nodeContentSB.append(
-							"[pc.speech(I'm in-between jobs at the moment,)]"
-							+ " you explain,"
-							+ " [pc.speech(I've actually been thinking about applying to work here at the museum.)]");
-					break;
-				case WRITER:
-					UtilText.nodeContentSB.append(
-							"[pc.speech(I'm a professional author,)]" // I write erotic novels... :3
-							+ " you explain,"
-							+ " [pc.speech(and I'm currently waiting to hear back from my publisher about my latest novel.)]");
-					break;
-				default:
-					break;
-			}
-			UtilText.nodeContentSB.append("</p>");
-			
 			if(femalePrologueNPC()) {
 				UtilText.nodeContentSB.append(
 						"<p>"
@@ -1704,7 +1529,7 @@ public class CharacterCreation {
 				};
 				
 			} else if (index == 0) {
-				return new Response("Back", "Return to background selection.", BACKGROUND_SELECTION_MENU);
+				return new Response("Back", "Return to background selection.", CHOOSE_BACKGROUND);
 				
 			} else {
 				return null;
@@ -1780,9 +1605,6 @@ public class CharacterCreation {
 						
 						Main.game.getPlayer().setMoney(500);
 						Main.game.getPlayer().equipMainWeaponFromNowhere(AbstractWeaponType.generateWeapon(WeaponType.MELEE_CHAOS_RARE, DamageType.FIRE));
-						
-						AbstractItem spellBook = AbstractItemType.generateItem(ItemType.getSpellBookType(Spell.ICE_SHARD));
-						Main.game.getWorlds().get(WorldType.LILAYAS_HOUSE_FIRST_FLOOR).getCell(PlaceType.LILAYA_HOME_ROOM_PLAYER).getInventory().addItem(spellBook);
 						
 						applyGameStart();
 						applySkipPrologueStart();
@@ -1932,9 +1754,6 @@ public class CharacterCreation {
 						
 						Main.game.getPlayer().setMoney(500);
 						Main.game.getPlayer().equipMainWeaponFromNowhere(AbstractWeaponType.generateWeapon(WeaponType.MELEE_CHAOS_RARE, DamageType.FIRE));
-						
-						AbstractItem spellBook = AbstractItemType.generateItem(ItemType.getSpellBookType(Spell.ICE_SHARD));
-						Main.game.getWorlds().get(WorldType.LILAYAS_HOUSE_FIRST_FLOOR).getCell(PlaceType.LILAYA_HOME_ROOM_PLAYER).getInventory().addItem(spellBook);
 						
 						applyGameStart();
 						applySkipPrologueStart();

@@ -32,12 +32,10 @@ import com.lilithsthrone.game.character.body.valueEnums.PenisSize;
 import com.lilithsthrone.game.character.body.valueEnums.TesticleSize;
 import com.lilithsthrone.game.character.body.valueEnums.Wetness;
 import com.lilithsthrone.game.character.effects.Addiction;
-import com.lilithsthrone.game.character.effects.Perk;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.fetishes.FetishDesire;
 import com.lilithsthrone.game.character.gender.Gender;
-import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.persona.NameTriplet;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.character.race.RaceStage;
@@ -46,7 +44,6 @@ import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.combat.Attack;
 import com.lilithsthrone.game.combat.Combat;
 import com.lilithsthrone.game.combat.SpecialAttack;
-import com.lilithsthrone.game.combat.Spell;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -357,7 +354,7 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 	}
 
 	public float getSellModifier() {
-		return Math.max(getBuyModifier(), (sellModifier * (Main.game.getPlayer().hasTrait(Perk.JOB_STUDENT, true)?0.75f:1)));
+		return Math.max(getBuyModifier(), sellModifier);
 	}
 
 	public void setSellModifier(float sellModifier) {
@@ -365,18 +362,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 	}
 
 	// Combat:
-	
-	public List<Spell> getSpellsAbleToCast() {
-		List<Spell> spellsAbleToCast = new ArrayList<>();
-		
-		for(Spell spell : this.getAllSpells()) {
-			if(this.getMana()>spell.getModifiedCost(this)) {
-				spellsAbleToCast.add(spell);
-			}
-		}
-		
-		return spellsAbleToCast;
-	}
 	
 	public List<SpecialAttack> getSpecialAttacksAbleToUse() {
 		List<SpecialAttack> specialAttacksAbleToUse = new ArrayList<>();
@@ -395,7 +380,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 	}
 	
 	public Attack attackType() {
-		boolean canCastASpell = !getSpellsAbleToCast().isEmpty();
 		boolean canCastASpecialAttack = !getSpecialAttacksAbleToUse().isEmpty();
 		
 		Map<Attack, Integer> attackWeightingMap = new HashMap<>();
@@ -403,7 +387,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		attackWeightingMap.put(Attack.MAIN, this.getRace().getPreferredAttacks().contains(Attack.MAIN)?75:50);
 		attackWeightingMap.put(Attack.OFFHAND, this.getOffhandWeapon()==null?0:(this.getRace().getPreferredAttacks().contains(Attack.MAIN)?50:25));
 		attackWeightingMap.put(Attack.SEDUCTION, 100);
-		attackWeightingMap.put(Attack.SPELL, !canCastASpell?0:(this.getRace().getPreferredAttacks().contains(Attack.MAIN)?100:50));
 		attackWeightingMap.put(Attack.SPECIAL_ATTACK, !canCastASpecialAttack?0:(this.getRace().getPreferredAttacks().contains(Attack.MAIN)?100:50));
 		
 		int total = 0;
@@ -2756,12 +2739,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 						return SexPace.SUB_EAGER;
 						
 					} else if(this.getObedienceValue()>=ObedienceLevel.POSITIVE_TWO_OBEDIENT.getMinimumValue()) {
-						return SexPace.SUB_NORMAL;
-					}
-				}
-				
-				if (getHistory() == History.NPC_PROSTITUTE) {
-					if(Sex.isConsensual()) {
 						return SexPace.SUB_NORMAL;
 					}
 				}

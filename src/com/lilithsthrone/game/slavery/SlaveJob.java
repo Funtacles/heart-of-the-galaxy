@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.effects.Perk;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
@@ -374,14 +373,6 @@ public enum SlaveJob {
 			}
 		}
 
-		if(character.isSlave()) {
-			if(character.getOwner().hasTrait(Perk.JOB_OFFICE_WORKER, true)) {
-				return (int) (1.25f * value);
-			} else if((character.getOwner().hasTrait(Perk.JOB_MAID, true) || character.getOwner().hasTrait(Perk.JOB_BUTLER, true)) && this==SlaveJob.CLEANING) {
-				return 2 * value;
-			}
-		}
-		
 		return value;
 	}
 	
@@ -403,14 +394,6 @@ public enum SlaveJob {
 				value += (milked * character.getGirlcum().getValuePerMl());
 			}
 			value *= character.getTotalHoursWorked();
-		}
-		
-		if(character.isSlave()) {
-			if(character.getOwner().hasTrait(Perk.JOB_OFFICE_WORKER, true)) {
-				return (int) (1.25f * value);
-			} else if((character.getOwner().hasTrait(Perk.JOB_MAID, true) || character.getOwner().hasTrait(Perk.JOB_BUTLER, true)) && this==SlaveJob.CLEANING) {
-				return 2 * value;
-			}
 		}
 		
 		return value;

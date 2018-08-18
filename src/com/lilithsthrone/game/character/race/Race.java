@@ -76,8 +76,7 @@ public enum Race {
 			Disposition.CIVILIZED,
 			StatusEffect.PURE_HUMAN,
 			Util.newArrayListOfValues(
-					Attack.MAIN,
-					Attack.SPELL),
+					Attack.MAIN),
 			false,
 			0.25f,
 			1,
@@ -102,8 +101,7 @@ public enum Race {
 			StatusEffect.DEMON,
 			Util.newArrayListOfValues(
 					Attack.SPECIAL_ATTACK,
-					Attack.SEDUCTION,
-					Attack.SPELL),
+					Attack.SEDUCTION),
 			false,
 			0.75f,
 			2,
@@ -223,8 +221,7 @@ public enum Race {
 			StatusEffect.FOX_MORPH,
 			Util.newArrayListOfValues(
 					Attack.MAIN,
-					Attack.SEDUCTION,
-					Attack.SPELL),
+					Attack.SEDUCTION),
 			true,
 			0.5f,
 			1,

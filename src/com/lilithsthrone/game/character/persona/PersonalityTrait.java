@@ -47,7 +47,6 @@ public enum PersonalityTrait {
 			"Average", "You will plan ahead when you feel that it's the right thing to do, but will also sometimes make impulsive decisions.",
 			"Vigilant", "You always plan ahead, and never rush into anything without first weighing the pros and cons."),
 
-	// I wasn't sure whether to spell this as 'Extroversion' or 'Extraversion'.
 	/**How sociable and confident a person feels when in the company of others.<br/>
 	 * Introverted -> Average -> Extroverted*/
 	EXTROVERSION("Extroversion",

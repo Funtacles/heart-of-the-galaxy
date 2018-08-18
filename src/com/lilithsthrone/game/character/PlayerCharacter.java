@@ -15,7 +15,6 @@ import org.w3c.dom.NodeList;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.effects.Perk;
-import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.misc.NPCOffspring;
@@ -599,67 +598,8 @@ public class PlayerCharacter extends GameCharacter implements XMLSaving {
 	}
 
 	@Override
-	public String getSpellDescription() {
-		return "<p>"
-				+ UtilText.parse(this,
-						UtilText.returnStringAtRandom(
-						"Concentrating on harnessing the power of your arcane aura, you thrust your [pc.arm] into mid air and cast a spell!"))
-			+ "</p>";
-	}
-
-	@Override
 	public String getSeductionDescription() {
 		String description = "";
-		if(this.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION)
-				|| this.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_POWER_OF_SUGGESTION)
-				|| this.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_PROJECTED_TOUCH)) {
-			if(this.isFeminine()) {
-				return UtilText.parse(Combat.getTargetedCombatant(this),
-						UtilText.returnStringAtRandom(
-								"You put on a smouldering look, and as your [pc.eyes] meet [npc.namePos], you project an extremely lewd moan into [npc.her] head,"
-										+ " [pc.thought(~Aaah!~ "
-											+(this.hasVagina()
-													?"You're making me so wet!"
-													:this.hasPenis()
-														?"You're getting me so hard!"
-														:"You're turning me on so much!")+")]",
-								"You lock your [pc.eyes] with [npc.namePos], and, putting on your most innocent look as you pout at [npc.herHim], you project an echoing moan deep into [npc.her] mind,"
-									+ " [pc.thought("+
-											(this.hasVagina()
-													?"~Mmm!~ Fuck me! ~Aaa!~ My pussy's wet and ready for you!"
-													:this.hasPenis()
-														?"~Mmm!~ I can't wait to fuck you! ~Aaa!~ You're going to love my cock!"
-														:"~Mmm!~ Fuck me! ~Aaa!~ I need you so badly!")+")]",
-								(this.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_POWER_OF_SUGGESTION)
-										|| this.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_PROJECTED_TOUCH)
-										?"You pout innocently at [npc.name], before blowing [npc.herHim] a wet kiss."
-												+ " As you straighten back up, you project the feeling of a ghostly pair of wet lips pressing against [npc.her] cheek."
-										:"")));
-			} else {
-				return UtilText.parse(Combat.getTargetedCombatant(this),
-						UtilText.returnStringAtRandom(
-								"You put on a confident look, and as your [pc.eyes] meet [npc.namePos], you project an extremely lewd groan into [npc.her] head,"
-									+ " [pc.thought(~Mmm!~ "
-											+(this.hasVagina()
-													?"You're making me so wet!"
-													:this.hasPenis()
-														?"You're getting me so hard!"
-														:"You're turning me on so much!")+")]",
-								"You lock your [pc.eyes] with [npc.namePos], and, throwing [npc.herHim] a charming smile, you project an echoing groan deep into [npc.her] mind,"
-									+ " [pc.thought("+
-											(this.hasVagina()
-													?"~Mmm!~ Fuck me! ~Aaa!~ My pussy's wet and ready for you!"
-													:this.hasPenis()
-														?"~Mmm!~ I can't wait to fuck you! You're going to love my cock!"
-														:"~Mmm!~ I can't wait to have some fun with you!")+")]",
-								(this.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_POWER_OF_SUGGESTION)
-										|| this.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_PROJECTED_TOUCH)
-										?"You throw [npc.name] a charming smile, before winking at [npc.herHim] and striking a heroic pose."
-												+ " As you straighten back up, you project the feeling of a ghostly pair of arms pulling [npc.herHim] into a strong, confident embrace."
-										:"")));
-			}
-		}
-		
 		if(this.isFeminine()) {
 			description = UtilText.parse(Combat.getTargetedCombatant(this),
 					UtilText.returnStringAtRandom(

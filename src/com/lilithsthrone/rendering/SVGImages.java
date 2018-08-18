@@ -40,7 +40,7 @@ public enum SVGImages {
 
 			raceUnknown, raceDobermann, raceDobermannDesaturated,
 			
-			perkTreeArrow, spellOverlay,
+			perkTreeArrow,
 
 			weatherDayClear, weatherDayCloud, weatherDayRain, weatherDaySnow, weatherDayStormIncoming, weatherDayStorm, weatherDayStormProtected,
 			weatherNightClear, weatherNightCloud, weatherNightRain, weatherNightSnow, weatherNightStormIncoming, weatherNightStorm, weatherNightStormProtected,
@@ -253,9 +253,6 @@ public enum SVGImages {
 			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/UIElements/perkTreeArrow.svg");
 			perkTreeArrow = Util.inputStreamToString(is);
 			
-			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/combat/spell/spell_overlay.svg");
-			spellOverlay = Util.inputStreamToString(is);
-
 			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/clothing/wrist_womens_watch_hourhand.svg");
 			womensWatchHourHand = Util.inputStreamToString(is);
 			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/clothing/wrist_womens_watch_minutehand.svg");
@@ -780,10 +777,6 @@ public enum SVGImages {
 		return perkTreeArrow;
 	}
 	
-	public String getSpellOverlay() {
-		return spellOverlay;
-	}
-
 	public String getWomensWatchHourHand() {
 		return womensWatchHourHand;
 	}

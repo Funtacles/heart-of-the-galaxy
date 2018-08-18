@@ -8257,7 +8257,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PENIS,
 			Rarity.COMMON,
-			null,
 			"penis_condom_unequipped",
 			"penis_condom_equipped",
 			null,
@@ -8330,7 +8329,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.HEAD,
 			Rarity.EPIC,
-			ClothingSet.MAID,
 			"maidHeadband",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.BOOST, 0)),
@@ -8385,7 +8383,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.EPIC,
-			ClothingSet.MAID,
 			"maidDress",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.MAJOR_BOOST, 0)),
@@ -8497,7 +8494,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.SOCK,
 			Rarity.EPIC,
-			ClothingSet.MAID,
 			"maidStockings",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.BOOST, 0)),
@@ -8550,7 +8546,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.FOOT,
 			Rarity.EPIC,
-			ClothingSet.MAID,
 			"maidHeels",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.BOOST, 0)),
@@ -8603,7 +8598,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.HAND,
 			Rarity.EPIC,
-			ClothingSet.MAID,
 			"maidGloves",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.BOOST, 0)),
@@ -8656,26 +8650,15 @@ public class ClothingType {
 			null,
 			InventorySlot.NECK,
 			Rarity.EPIC,
-			ClothingSet.BDSM,
 			"bdsm_neck_metal_collar",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ENSLAVEMENT, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_SPELLS, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_SPELLS, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_SPELLS, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_SPELLS, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_SPELLS, TFPotency.MAJOR_DRAIN, 0),
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_LUST, TFPotency.MAJOR_DRAIN, 0),
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_LUST, TFPotency.MAJOR_DRAIN, 0),
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_LUST, TFPotency.MAJOR_DRAIN, 0),
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_LUST, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_LUST, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.SPELL_COST_MODIFIER, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.SPELL_COST_MODIFIER, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.SPELL_COST_MODIFIER, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.SPELL_COST_MODIFIER, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.SPELL_COST_MODIFIER, TFPotency.MAJOR_DRAIN, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_LUST, TFPotency.MAJOR_DRAIN, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -8727,7 +8710,6 @@ public class ClothingType {
 			null,
 			InventorySlot.MOUTH,
 			Rarity.EPIC,
-			ClothingSet.BDSM,
 			"bdsm_mouth_ballgag",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
@@ -8789,7 +8771,6 @@ public class ClothingType {
 			null,
 			InventorySlot.MOUTH,
 			Rarity.EPIC,
-			ClothingSet.BDSM,
 			"bdsm_mouth_ringgag",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
@@ -8844,7 +8825,6 @@ public class ClothingType {
 			null,
 			InventorySlot.NECK,
 			Rarity.EPIC,
-			ClothingSet.BDSM,
 			"bdsm_neck_choker",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
@@ -8898,7 +8878,6 @@ public class ClothingType {
 			null,
 			InventorySlot.WRIST,
 			Rarity.EPIC,
-			ClothingSet.BDSM,
 			"bdsm_wrist_restraints",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
@@ -8957,7 +8936,6 @@ public class ClothingType {
 			null,
 			InventorySlot.ANKLE,
 			Rarity.EPIC,
-			ClothingSet.BDSM,
 			"bdsm_ankle_spreaderbar",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
@@ -9022,7 +9000,6 @@ public class ClothingType {
 			null,
 			InventorySlot.GROIN,
 			Rarity.EPIC,
-			ClothingSet.BDSM,
 			"bdsm_groin_chastity_belt",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
@@ -9081,7 +9058,6 @@ public class ClothingType {
 			null,
 			InventorySlot.GROIN,
 			Rarity.EPIC,
-			ClothingSet.BDSM,
 			"bdsm_groin_chastity_belt_full",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
@@ -9141,7 +9117,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PENIS,
 			Rarity.EPIC,
-			ClothingSet.BDSM,
 			"bdsm_groin_chastityCage",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
@@ -9199,7 +9174,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PENIS,
 			Rarity.EPIC,
-			ClothingSet.BDSM,
 			"bdsm_penis_strapon",
 			null,
 			Util.newArrayListOfValues(
@@ -9258,7 +9232,6 @@ public class ClothingType {
 			null,
 			InventorySlot.STOMACH,
 			Rarity.EPIC,
-			ClothingSet.BDSM,
 			"bdsm_stomach_karada",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
@@ -9316,7 +9289,6 @@ public class ClothingType {
 			null,
 			InventorySlot.TORSO_UNDER,
 			Rarity.EPIC,
-			ClothingSet.ENFORCER,
 			"enforcerShirt",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0),
@@ -9385,7 +9357,6 @@ public class ClothingType {
 			null,
 			InventorySlot.LEG,
 			Rarity.EPIC,
-			ClothingSet.ENFORCER,
 			"enforcerShorts",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0),
@@ -9457,7 +9428,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.LEG,
 			Rarity.EPIC,
-			ClothingSet.ENFORCER,
 			"enforcer_miniskirt",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0),
@@ -9516,7 +9486,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PIERCING_EAR,
 			Rarity.EPIC,
-			ClothingSet.CATTLE,
 			"piercing_livestock_tags",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.BOOST, 0)),
@@ -9566,7 +9535,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PIERCING_NOSE,
 			Rarity.EPIC,
-			ClothingSet.CATTLE,
 			"piercing_nose_cow_ring",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0)),
@@ -9616,7 +9584,6 @@ public class ClothingType {
 			null,
 			InventorySlot.NECK,
 			Rarity.EPIC,
-			ClothingSet.CATTLE,
 			"neck_cowbell_collar",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0)),
@@ -9668,7 +9635,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.EPIC,
-			ClothingSet.MILK_MAID,
 			"milk_maid_dress",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0)),
@@ -9723,7 +9689,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.HEAD,
 			Rarity.EPIC,
-			ClothingSet.MILK_MAID,
 			"milk_maid_headband",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.BOOST, 0)),
@@ -9774,7 +9739,6 @@ public class ClothingType {
 			null,
 			InventorySlot.HEAD,
 			Rarity.EPIC,
-			ClothingSet.MILK_MAID,
 			"milk_maid_kerchief",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.BOOST, 0)),
@@ -9825,7 +9789,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.SOCK,
 			Rarity.EPIC,
-			ClothingSet.RAINBOW,
 			"sock_rainbow_stockings",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.BOOST, 0)),
@@ -9879,7 +9842,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.HAND,
 			Rarity.EPIC,
-			ClothingSet.RAINBOW,
 			"hand_rainbow_fingerless_gloves",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.BOOST, 0)),
@@ -9992,259 +9954,6 @@ public class ClothingType {
 		}
 	};
 	
-	
-	public static AbstractClothingType WITCH_HAT = new AbstractClothingType(
-			1000,
-			"a",
-			false,
-			"Witch's hat",
-			"Witch's hats",
-			"A witch's hat, with a pointy top and a wide brim.",
-			1,
-			Femininity.FEMININE,
-			InventorySlot.HEAD,
-			Rarity.EPIC,
-			ClothingSet.WITCH,
-			"witch_hat",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_SPELLS, TFPotency.MAJOR_BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(ClothingAccess.HEAD),
-							null, null, null)),
-			null,
-			ColourListPresets.BLACK_OR_WHITE.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_GOLD.getPresetColourList(),
-			ColourListPresets.ALL_METAL.getPresetColourList(),
-			null,
-			null, null){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You put on the witch's hat.",
-					"You place the witch's hat onto [npc.namePos] head.",
-					null,
-					"[npc.Name] puts on the witch's hat.",
-					"[npc.Name] places the witch's hat onto your head.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You take off your witch's hat.",
-					"You take off [npc.namePos] witch's hat.",
-					null,
-					"[npc.Name] takes [npc.her] witch's hat off.",
-					"[npc.Name] takes your witch's hat off.",
-					null, null, null);
-		}
-
-	};
-	
-	public static AbstractClothingType WITCH_DRESS = new AbstractClothingType(3000,
-			"a",
-			false,
-			"Witch's dress",
-			"Witch's dresses",
-			"A witch's dress, made of a thin, soft fabric. It has a flared sleeves and a short skirt. A series of ribbons connect the collar to front of the dress, and when worn, they create a pentagram pattern.",
-			1,
-			Femininity.FEMININE,
-			InventorySlot.TORSO_UNDER,
-			Rarity.EPIC,
-			ClothingSet.WITCH,
-			"witch_dress",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_SPELLS, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.SPELL_COST_MODIFIER, TFPotency.MAJOR_BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(
-									ClothingAccess.ARMS_UP_TO_SHOULDER,
-									ClothingAccess.HEAD),
-							Util.newArrayListOfValues(
-									CoverableArea.BREASTS,
-									CoverableArea.NIPPLES,
-									CoverableArea.STOMACH,
-									CoverableArea.BACK),
-							Util.newArrayListOfValues(
-									ClothingAccess.CHEST,
-									ClothingAccess.WAIST),
-							PresetConcealmentLists.CONCEALED_PARTIAL_TORSO.getPresetInventorySlotList()),
-					new BlockedParts(
-							DisplacementType.PULLS_UP,
-							null,
-							Util.newArrayListOfValues(
-									CoverableArea.ANUS,
-									CoverableArea.PENIS,
-									CoverableArea.VAGINA),
-							Util.newArrayListOfValues(ClothingAccess.GROIN),
-							PresetConcealmentLists.CONCEALED_GROIN.getPresetInventorySlotList())),
-			null,
-			ColourListPresets.BLACK_OR_WHITE.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_GOLD.getPresetColourList(),
-			ColourListPresets.ALL_METAL.getPresetColourList(),
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.DRESS)){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull on the witch's dress, tidying the skirt down before moving the straps into a comfortable position on your shoulders.",
-					"You pull the witch's dress over [npc.namePos] head and down around [npc.her] torso, tidying the skirt before moving the straps to sit comfortably on [npc.her] shoulders.",
-					null,
-					"[npc.Name] pulls on the witch's dress, tidying the skirt down before moving the straps into a comfortable position on [npc.her] shoulders.",
-					"[npc.Name] pulls the witch's dress over your head and down around your torso, tidying the skirt before moving the straps to sit comfortably on your shoulders.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull your witch's dress up over your head and take it off.",
-					"You pull [npc.namePos] witch's dress up over [npc.her] head and take it off.",
-					null,
-					"[npc.Name] pulls [npc.her] witch's dress up over [npc.her] head and takes it off.",
-					"[npc.Name] pulls your witch's dress up over your head and takes it off.",
-					null, null, null);
-		}
-
-		@Override
-		public String displaceText(GameCharacter clothingOwner, GameCharacter clothingRemover, DisplacementType dt, boolean rough) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull up the skirt of your witch's dress.",
-					"You pull up the skirt of [npc.namePos] witch's dress.",
-					null,
-					"[npc.Name] pulls up the skirt of [npc.her] witch's dress.",
-					"[npc.Name] pulls up the skirt of your witch's dress.",
-					null, null, null);
-		}
-
-		@Override
-		public String replaceText(GameCharacter clothingOwner, GameCharacter clothingRemover, DisplacementType dt, boolean rough) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull your witch's dress back down into its proper position.",
-					"You pull [npc.namePos] witch's dress back down into its proper position.",
-					null,
-					"[npc.Name] pulls [npc.her] witch's dress back down into its proper position.",
-					"[npc.Name] your witch's dress back down into its proper position.",
-					null, null, null);
-		}
-	};
-	
-	public static AbstractClothingType WITCH_BOOTS = new AbstractClothingType(1500,
-			"a pair of",
-			true,
-			"Witch's boots",
-			"Witch's boots",
-			"A pair of stylish boots, of the sort worn by a witch.",
-			1,
-			Femininity.FEMININE,
-			InventorySlot.FOOT,
-			Rarity.EPIC,
-			ClothingSet.WITCH,
-			"witch_boots",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.SPELL_COST_MODIFIER, TFPotency.MAJOR_BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(ClothingAccess.FEET),
-							Util.newArrayListOfValues(CoverableArea.FEET),
-							Util.newArrayListOfValues(ClothingAccess.FEET),
-							null)),
-			null,
-			ColourListPresets.BLACK_OR_WHITE.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_GOLD.getPresetColourList(),
-			ColourListPresets.ALL_METAL.getPresetColourList(),
-			ColourListPresets.JUST_BLACK.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			null){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You push your [pc.feet] into the boots.",
-					"You push [npc.namePos] [npc.feet] into the boots.",
-					"You force the boots onto [npc.namePos] [npc.feet].",
-					"[npc.Name] pushes [npc.her] [npc.feet] into the boots.",
-					"[npc.Name] pushes your [pc.feet] into the boots.",
-					"[npc.Name] forces the boots onto your [pc.feet].", null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull off your boots.",
-					"You pull [npc.namePos] boots off.",
-					"You grab [npc.namePos] [npc.feet] and pull [npc.her] boots off.",
-					"[npc.Name] pulls off [npc.her] boots.",
-					"[npc.Name] pulls off your boots.",
-					"[npc.Name] grabs your [pc.feet] and pulls your boots off.", null, null);
-		}
-	};
-	
-	public static AbstractClothingType WITCH_BOOTS_THIGH_HIGH = new AbstractClothingType(1750,
-			"a pair of",
-			true,
-			"Witch's thigh-high boots",
-			"Witch's thigh-high boots",
-			"A pair of stylish thigh-high boots, of the sort worn by a witch.",
-			1,
-			Femininity.FEMININE,
-			InventorySlot.FOOT,
-			Rarity.EPIC,
-			ClothingSet.WITCH,
-			"witch_boots_thigh_high",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.SPELL_COST_MODIFIER, TFPotency.MAJOR_BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(ClothingAccess.FEET),
-							Util.newArrayListOfValues(CoverableArea.FEET),
-							Util.newArrayListOfValues(ClothingAccess.FEET),
-							Util.newArrayListOfValues(InventorySlot.ANKLE))),
-			null,
-			ColourListPresets.BLACK_OR_WHITE.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_GOLD.getPresetColourList(),
-			ColourListPresets.ALL_METAL.getPresetColourList(),
-			ColourListPresets.JUST_BLACK.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			null){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You push your [pc.feet] into the boots.",
-					"You push [npc.namePos] [npc.feet] into the boots.",
-					"You force the boots onto [npc.namePos] [npc.feet].",
-					"[npc.Name] pushes [npc.her] [npc.feet] into the boots.",
-					"[npc.Name] pushes your [pc.feet] into the boots.",
-					"[npc.Name] forces the boots onto your [pc.feet].", null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull off your boots.",
-					"You pull [npc.namePos] boots off.",
-					"You grab [npc.namePos] [npc.feet] and pull [npc.her] boots off.",
-					"[npc.Name] pulls off [npc.her] boots.",
-					"[npc.Name] pulls off your boots.",
-					"[npc.Name] grabs your [pc.feet] and pulls your boots off.", null, null);
-		}
-	};
-	
-	
 	public static AbstractClothingType KIMONO_HAIR_KANZASHI = new AbstractClothingType(500,
 			"a",
 			false,
@@ -10255,7 +9964,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.HAIR,
 			Rarity.EPIC,
-			ClothingSet.GEISHA,
 			"kimono_hair_kanzashi",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.MAJOR_BOOST, 0)),
@@ -10303,7 +10011,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.EPIC,
-			ClothingSet.GEISHA,
 			"kimono_torso_kimono",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0),
@@ -10387,7 +10094,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.FOOT,
 			Rarity.EPIC,
-			ClothingSet.GEISHA,
 			"kimono_foot_geta",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.BOOST, 0)),
@@ -10440,7 +10146,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.EPIC,
-			ClothingSet.RONIN,
 			"kimono_torso_mens_kimono",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0),
@@ -10529,7 +10234,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.TORSO_OVER,
 			Rarity.EPIC,
-			ClothingSet.RONIN,
 			"kimono_torso_over_haori",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_PHYSICAL, TFPotency.MAJOR_BOOST, 0)),
@@ -10585,7 +10289,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.FOOT,
 			Rarity.EPIC,
-			ClothingSet.RONIN,
 			"kimono_foot_mens_geta",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_PHYSICAL, TFPotency.BOOST, 0)),
@@ -10641,7 +10344,6 @@ public class ClothingType {
 			null,
 			InventorySlot.HEAD,
 			Rarity.EPIC,
-			ClothingSet.JOLNIR,
 			"jolnir_head_hat",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.CRITICAL_DAMAGE, TFPotency.MAJOR_BOOST, 0)),
@@ -10693,11 +10395,10 @@ public class ClothingType {
 			null,
 			InventorySlot.TORSO_OVER,
 			Rarity.EPIC,
-			ClothingSet.JOLNIR,
 			"jolnir_torso_over_coat",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.SPELL_COST_MODIFIER, TFPotency.MAJOR_BOOST, 0), 
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_SPELLS, TFPotency.MAJOR_BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, null, TFPotency.MAJOR_BOOST, 0), 
+					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, null, TFPotency.MAJOR_BOOST, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -10747,11 +10448,10 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.EPIC,
-			ClothingSet.JOLNIR,
 			"jolnir_torso_dress",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.SPELL_COST_MODIFIER, TFPotency.MAJOR_BOOST, 0), 
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_SPELLS, TFPotency.MAJOR_BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, null, TFPotency.MAJOR_BOOST, 0), 
+					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, null, TFPotency.MAJOR_BOOST, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -10840,7 +10540,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.FOOT,
 			Rarity.EPIC,
-			ClothingSet.JOLNIR,
 			"jolnir_foot_boots",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.CRITICAL_CHANCE, TFPotency.MAJOR_BOOST, 0)),
@@ -10893,7 +10592,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.FOOT,
 			Rarity.EPIC,
-			ClothingSet.JOLNIR,
 			"jolnir_foot_boots_feminine",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.CRITICAL_CHANCE, TFPotency.MAJOR_BOOST, 0)),
@@ -10947,7 +10645,6 @@ public class ClothingType {
 			null,
 			InventorySlot.TORSO_OVER,
 			Rarity.EPIC,
-			ClothingSet.SCIENTIST,
 			"torso_over_lab_coat",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_FIRE, TFPotency.BOOST, 0), 
@@ -11026,7 +10723,6 @@ public class ClothingType {
 			null,
 			InventorySlot.EYES,
 			Rarity.EPIC,
-			ClothingSet.SCIENTIST,
 			"eye_safety_goggles",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_FIRE, TFPotency.BOOST, 0), 
@@ -11135,7 +10831,6 @@ public class ClothingType {
 			null,
 			InventorySlot.NECK,
 			Rarity.EPIC,
-			ClothingSet.SNOWFLAKE,
 			"neck_snowflake_necklace",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_ICE, TFPotency.MAJOR_BOOST, 0), 
@@ -11184,7 +10879,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PIERCING_EAR,
 			Rarity.EPIC,
-			ClothingSet.SNOWFLAKE,
 			"piercing_ear_snowflakes",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_ICE, TFPotency.BOOST, 0), 
@@ -11232,7 +10926,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PIERCING_NOSE,
 			Rarity.EPIC,
-			ClothingSet.SNOWFLAKE,
 			"piercing_nose_snowflake",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_ICE, TFPotency.MINOR_BOOST, 0), 
@@ -11285,7 +10978,6 @@ public class ClothingType {
 			null,
 			InventorySlot.NECK,
 			Rarity.EPIC,
-			ClothingSet.SUN,
 			"neck_sun_necklace",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_FIRE, TFPotency.MAJOR_BOOST, 0),
@@ -11335,7 +11027,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PIERCING_EAR,
 			Rarity.EPIC,
-			ClothingSet.SUN,
 			"piercing_ear_sun",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_FIRE, TFPotency.BOOST, 0),
@@ -11384,7 +11075,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PIERCING_NOSE,
 			Rarity.EPIC,
-			ClothingSet.SUN,
 			"piercing_nose_sun",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_FIRE, TFPotency.MINOR_BOOST, 0), 

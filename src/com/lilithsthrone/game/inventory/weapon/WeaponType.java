@@ -10,7 +10,6 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.combat.DamageType;
 import com.lilithsthrone.game.combat.DamageVariance;
-import com.lilithsthrone.game.combat.Spell;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.ItemTag;
@@ -49,7 +48,6 @@ public class WeaponType {
 			8,
 			0,
 			DamageVariance.MEDIUM,
-			null,
 			null,
 			null,
 			null,
@@ -100,25 +98,6 @@ public class WeaponType {
 			}
 			return null;
 		}
-		
-		@Override
-		public List<Spell> getGenerationSpells(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newArrayListOfValues(Spell.FIREBALL);
-				case ICE:
-					return Util.newArrayListOfValues(Spell.ICE_SHARD);
-				case LUST:
-					return Util.newArrayListOfValues(Spell.ARCANE_AROUSAL);
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newArrayListOfValues(Spell.SLAM);
-				case POISON:
-					return Util.newArrayListOfValues(Spell.POISON_VAPOURS);
-			}
-			return null;
-		}
 	};
 	
 	public static AbstractWeaponType MELEE_CHAOS_EPIC = new AbstractWeaponType(1500,
@@ -142,7 +121,6 @@ public class WeaponType {
 			12,
 			0,
 			DamageVariance.MEDIUM,
-			null,
 			null,
 			null,
 			null,
@@ -193,25 +171,6 @@ public class WeaponType {
 			}
 			return null;
 		}
-		
-		@Override
-		public List<Spell> getGenerationSpells(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newArrayListOfValues(Spell.FIREBALL);
-				case ICE:
-					return Util.newArrayListOfValues(Spell.ICE_SHARD);
-				case LUST:
-					return Util.newArrayListOfValues(Spell.ARCANE_AROUSAL);
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newArrayListOfValues(Spell.SLAM);
-				case POISON:
-					return Util.newArrayListOfValues(Spell.POISON_VAPOURS);
-			}
-			return null;
-		}
 	};
 	
 	public static AbstractWeaponType MELEE_CHAOS_LEGENDARY = new AbstractWeaponType(2500,
@@ -235,7 +194,6 @@ public class WeaponType {
 			16,
 			0,
 			DamageVariance.LOW,
-			null,
 			null,
 			null,
 			null,
@@ -296,25 +254,6 @@ public class WeaponType {
 			}
 			return null;
 		}
-
-		@Override
-		public List<Spell> getGenerationSpells(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newArrayListOfValues(Spell.FIREBALL);
-				case ICE:
-					return Util.newArrayListOfValues(Spell.ICE_SHARD);
-				case LUST:
-					return Util.newArrayListOfValues(Spell.ARCANE_AROUSAL);
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newArrayListOfValues(Spell.SLAM);
-				case POISON:
-					return Util.newArrayListOfValues(Spell.POISON_VAPOURS);
-			}
-			return null;
-		}
 	};
 	
 	public static AbstractWeaponType MELEE_ZWEIHANDER = new AbstractWeaponType(5000,
@@ -338,7 +277,6 @@ public class WeaponType {
 			20,
 			0,
 			DamageVariance.MEDIUM,
-			null,
 			null,
 			ColourListPresets.JUST_BLACK.getPresetColourList(),
 			ColourListPresets.ALL.getPresetColourList(),
@@ -445,7 +383,6 @@ public class WeaponType {
 			0,
 			DamageVariance.LOW,
 			null,
-			null,
 			ColourListPresets.JUST_BLACK.getPresetColourList(),
 			ColourListPresets.ALL.getPresetColourList(),
 			ColourListPresets.JUST_STEEL.getPresetColourList(),
@@ -549,7 +486,6 @@ public class WeaponType {
 			6,
 			0,
 			DamageVariance.HIGH,
-			null,
 			null,
 			ColourListPresets.JUST_STEEL.getPresetColourList(),
 			ColourListPresets.ALL_METAL.getPresetColourList(),
@@ -656,7 +592,6 @@ public class WeaponType {
 			null,
 			null,
 			null,
-			null,
 			Util.newArrayListOfValues(ItemTag.SOLD_BY_VICKY)) {
 
 		private static final long serialVersionUID = 1L;
@@ -702,25 +637,6 @@ public class WeaponType {
 			}
 			return null;
 		}
-		
-		@Override
-		public List<Spell> getGenerationSpells(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newArrayListOfValues(Spell.FIREBALL);
-				case ICE:
-					return Util.newArrayListOfValues(Spell.ICE_SHARD);
-				case LUST:
-					return Util.newArrayListOfValues(Spell.ARCANE_AROUSAL);
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newArrayListOfValues(Spell.SLAM);
-				case POISON:
-					return Util.newArrayListOfValues(Spell.POISON_VAPOURS);
-			}
-			return null;
-		}
 	};
 	
 	public static AbstractWeaponType OFFHAND_CHAOS_EPIC = new AbstractWeaponType(1500,
@@ -740,7 +656,6 @@ public class WeaponType {
 			14,
 			0,
 			DamageVariance.HIGH,
-			null,
 			null,
 			null,
 			null,
@@ -791,25 +706,6 @@ public class WeaponType {
 			}
 			return null;
 		}
-		
-		@Override
-		public List<Spell> getGenerationSpells(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newArrayListOfValues(Spell.FIREBALL);
-				case ICE:
-					return Util.newArrayListOfValues(Spell.ICE_SHARD);
-				case LUST:
-					return Util.newArrayListOfValues(Spell.ARCANE_AROUSAL);
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newArrayListOfValues(Spell.SLAM);
-				case POISON:
-					return Util.newArrayListOfValues(Spell.POISON_VAPOURS);
-			}
-			return null;
-		}
 	};
 	
 	// I made this in one of my lunch breaks x_x
@@ -829,7 +725,6 @@ public class WeaponType {
 			100000,
 			0,
 			DamageVariance.LOW,
-			null,
 			null,
 			null,
 			null,
@@ -879,7 +774,6 @@ public class WeaponType {
 			25,
 			1,
 			DamageVariance.LOW,
-			null,
 			null,
 			null,
 			null,
@@ -942,92 +836,6 @@ public class WeaponType {
 		}
 	};
 	
-	public static AbstractWeaponType MAIN_WITCH_BROOM = new AbstractWeaponType(5000,
-			true,
-			"a",
-			"it",
-			false,
-			"Witch's Broom",
-			"Witch's Brooms",
-			"Broom Swipe",
-			"An old-fashioned wooden broom, consisting of a long pole with a bundle of flexible twigs attached to one end."
-					+ " The opposite end of the pole widens out a little, where there's a curious engraving of a pentagram etched into the wood.",
-			InventorySlot.WEAPON_MAIN,
-			"primary_witch_broom",
-			Rarity.EPIC,
-			Util.newArrayListOfValues(
-					DamageType.PHYSICAL,
-					DamageType.FIRE,
-					DamageType.ICE,
-					DamageType.POISON),
-			5,
-			0,
-			DamageVariance.LOW,
-			Util.newHashMapOfValues(new Value<Attribute, Integer>(Attribute.MAJOR_ARCANE, 5)),
-			Util.newArrayListOfValues(
-					Spell.WITCH_SEAL,
-					Spell.WITCH_CHARM),
-			null,
-			null,
-			null,
-			null,
-			null) {
-		
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public String equipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(ready)] [npc.her] broom.");
-		}
-
-		@Override
-		public String unequipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(put)] [npc.her] broom away.");
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter character, GameCharacter target, boolean isHit) {
-			if(isHit) {
-				if(character.isPlayer()) {
-					return UtilText.parse(target,
-							UtilText.returnStringAtRandom(
-								"You whack [npc.namePos] [npc.arm] with your broom.",
-								"You swipe your broom at [npc.namePos] [npc.legs], and manage to hit [npc.herHim] in the shins.",
-								"You swing your broom at [npc.name], grinning as the end makes contact with [npc.her] torso."));
-					
-				} else {
-					return UtilText.parse(character,
-							UtilText.returnStringAtRandom(
-								"[npc.Name] whacks your [pc.arm] with [npc.her] broom.",
-								"[npc.Name] swipes [npc.her] broom at your [pc.legs], and manages to hit you in the shins.",
-								"[npc.Name] swings [npc.her] broom at you, grinning as the end makes contact with your torso."));
-				}
-				
-			} else {
-				if(character.isPlayer()) {
-					return UtilText.parse(target,
-							UtilText.returnStringAtRandom(
-								"You try to whack [npc.name] with your broom, but [npc.she] manages to grab the shaft and push you away.",
-								"You attempt to swipe your broom at [npc.namePos] [npc.legs], but [npc.she] jumps back and manages to avoid the blow.",
-								"You swing your broom at [npc.name], but [npc.she] manages to duck at the last moment and avoid the blow."));
-					
-				} else {
-					return UtilText.parse(character,
-							UtilText.returnStringAtRandom(
-								"[npc.Name] tries to whack you with [npc.her] broom, but you manage to grab the shaft and push [npc.herHim] away.",
-								"[npc.Name] attempts to swipe [npc.her] broom at your [pc.legs], but you jump back and manage to avoid the blow.",
-								"[npc.Name] swings [npc.her] broom at you, but you manage to duck at the last moment and avoid the blow."));
-				}
-			}
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter user, GameCharacter target) {
-			return UtilText.parse(target,
-					"Swipe the broom at [npc.name]!");
-		}
-	};
-	
 	public static AbstractWeaponType MAIN_FEATHER_DUSTER = new AbstractWeaponType(250,
 			true,
 			"a",
@@ -1045,7 +853,6 @@ public class WeaponType {
 			0,
 			DamageVariance.LOW,
 			Util.newHashMapOfValues(new Value<Attribute, Integer>(Attribute.MAJOR_PHYSIQUE, 5)),
-			null,
 			null,
 			null,
 			null,

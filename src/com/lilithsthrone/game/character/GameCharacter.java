@@ -105,7 +105,6 @@ import com.lilithsthrone.game.character.body.valueEnums.Wetness;
 import com.lilithsthrone.game.character.body.valueEnums.WingSize;
 import com.lilithsthrone.game.character.effects.Addiction;
 import com.lilithsthrone.game.character.effects.Perk;
-import com.lilithsthrone.game.character.effects.PerkCategory;
 import com.lilithsthrone.game.character.effects.PerkManager;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
@@ -118,7 +117,6 @@ import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.DominionSuccubusAttacker;
 import com.lilithsthrone.game.character.npc.misc.NPCOffspring;
-import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.persona.MoralityValue;
 import com.lilithsthrone.game.character.persona.Name;
 import com.lilithsthrone.game.character.persona.NameTriplet;
@@ -133,9 +131,6 @@ import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.combat.Combat;
 import com.lilithsthrone.game.combat.DamageType;
 import com.lilithsthrone.game.combat.SpecialAttack;
-import com.lilithsthrone.game.combat.Spell;
-import com.lilithsthrone.game.combat.SpellSchool;
-import com.lilithsthrone.game.combat.SpellUpgrade;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
 import com.lilithsthrone.game.dialogue.eventLog.EventLogEntry;
@@ -150,7 +145,6 @@ import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
-import com.lilithsthrone.game.inventory.clothing.ClothingSet;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
 import com.lilithsthrone.game.inventory.clothing.DisplacementType;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
@@ -216,7 +210,6 @@ public abstract class GameCharacter implements XMLSaving {
 	protected String description;
 	protected int level;
 	
-	protected History history;
 	protected Map<PersonalityTrait, PersonalityWeight> personality;
 	protected SexualOrientation sexualOrientation;
 	private float obedience;
@@ -303,9 +296,6 @@ public abstract class GameCharacter implements XMLSaving {
 	
 	// Combat:
 	protected Set<SpecialAttack> specialAttacks;
-	protected List<Spell> spells;
-	protected Set<SpellUpgrade> spellUpgrades;
-	protected Map<SpellSchool, Integer> spellUpgradePoints;
 	protected float health;
 	protected float mana;
 
@@ -451,9 +441,6 @@ public abstract class GameCharacter implements XMLSaving {
 		potionAttributes = new EnumMap<>(Attribute.class);
 
 		specialAttacks = EnumSet.noneOf(SpecialAttack.class);
-		spells = new ArrayList<>();
-		spellUpgrades = EnumSet.noneOf(SpellUpgrade.class);
-		spellUpgradePoints = new HashMap<>();
 
 		totalOrgasmCount = 0;
 		daysOrgasmCount = 0;
@@ -497,7 +484,6 @@ public abstract class GameCharacter implements XMLSaving {
 			bonusAttributes.put(a, 0f);
 		}
 		
-		setHistory(History.UNEMPLOYED);
 		// Set starting attributes based on the character's race
 		for (Attribute a : startingRace.getAttributeModifiers().keySet()) {
 			attributes.put(a, startingRace.getAttributeModifiers().get(a).getMinimum() + startingRace.getAttributeModifiers().get(a).getRandomVariance());
@@ -555,7 +541,6 @@ public abstract class GameCharacter implements XMLSaving {
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "raceConcealed", String.valueOf(this.isRaceConcealed()));
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "level", String.valueOf(this.getTrueLevel()));
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "version", Main.VERSION_NUMBER);
-		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "history", this.getHistory().toString());
 		
 		
 //		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "personality", this.getPersonality().toString());
@@ -695,32 +680,6 @@ public abstract class GameCharacter implements XMLSaving {
 				CharacterUtils.addAttribute(doc, element, "row", p.getKey().toString());
 				CharacterUtils.addAttribute(doc, element, "type", perk.toString());
 			}
-		}
-		
-		// Spells:
-		Element characterSpells = doc.createElement("knownSpells");
-		properties.appendChild(characterSpells);
-		for(Spell spell : this.getSpells()) {
-			Element element = doc.createElement("spell");
-			characterSpells.appendChild(element);
-			CharacterUtils.addAttribute(doc, element, "type", spell.toString());
-		}
-		
-		Element characterSpellUpgrades = doc.createElement("spellUpgrades");
-		properties.appendChild(characterSpellUpgrades);
-		for(SpellUpgrade upgrade : this.getSpellUpgrades()) {
-			Element element = doc.createElement("upgrade");
-			characterSpellUpgrades.appendChild(element);
-			CharacterUtils.addAttribute(doc, element, "type", upgrade.toString());
-		}
-
-		Element characterSpellUpgradePoints = doc.createElement("spellUpgradePoints");
-		properties.appendChild(characterSpellUpgradePoints);
-		for(SpellSchool school : SpellSchool.values()) {
-			Element element = doc.createElement("upgradeEntry");
-			characterSpellUpgradePoints.appendChild(element);
-			CharacterUtils.addAttribute(doc, element, "school", school.toString());
-			CharacterUtils.addAttribute(doc, element, "points", String.valueOf(this.getSpellUpgradePoints(school)));
 		}
 		
 		// Fetishes:
@@ -1160,15 +1119,6 @@ public abstract class GameCharacter implements XMLSaving {
 			character.setRaceConcealed(Boolean.valueOf(((Element)element.getElementsByTagName("raceConcealed").item(0)).getAttribute("value")));
 			CharacterUtils.appendToImportLog(log, "<br/>Set raceConcealed: "+character.isRaceConcealed());
 		}
-		if(element.getElementsByTagName("history").getLength()!=0) {
-			try {
-				character.setHistory(History.valueOf(((Element)element.getElementsByTagName("history").item(0)).getAttribute("value")));
-				CharacterUtils.appendToImportLog(log, "<br/>Set history: "+character.getHistory());
-			} catch(Exception ex) {
-				character.setHistory(History.STUDENT);
-				CharacterUtils.appendToImportLog(log, "<br/>History import failed. Set history to: "+character.getHistory());
-			}
-		}
 		
 		if(element.getElementsByTagName("personality").getLength()!=0 && !Main.isVersionOlderThan(Main.VERSION_NUMBER, "0.2.3.5")) {
 			nodes = parentElement.getElementsByTagName("personality");
@@ -1236,7 +1186,7 @@ public abstract class GameCharacter implements XMLSaving {
 						if(!version.isEmpty() && Main.isVersionOlderThan(version, "0.2.0")) {
 							Attribute att = Attribute.valueOf(e.getAttribute("type"));
 							switch(att) {
-								case DAMAGE_FIRE: case DAMAGE_ICE: case DAMAGE_LUST: case DAMAGE_PHYSICAL: case DAMAGE_POISON: case DAMAGE_SPELLS:
+								case DAMAGE_FIRE: case DAMAGE_ICE: case DAMAGE_LUST: case DAMAGE_PHYSICAL: case DAMAGE_POISON:
 									character.setAttribute(att, Float.valueOf(e.getAttribute("value"))-100, false);
 									break;
 								default:
@@ -1502,40 +1452,6 @@ public abstract class GameCharacter implements XMLSaving {
 					}
 				}
 			}
-		}
-		
-		// Spells:
-		nodes = parentElement.getElementsByTagName("knownSpells");
-		element = (Element) nodes.item(0);
-		try {
-			NodeList spellElements = element.getElementsByTagName("spell");
-			for(int i=0; i<spellElements.getLength(); i++){
-				Element e = ((Element)spellElements.item(i));
-				character.addSpell(Spell.valueOf(e.getAttribute("type")));
-			}
-		} catch(Exception ex) {
-		}
-		
-		nodes = parentElement.getElementsByTagName("spellUpgrades");
-		element = (Element) nodes.item(0);
-		try {
-			NodeList upgradeElements = element.getElementsByTagName("upgrade");
-			for(int i=0; i<upgradeElements.getLength(); i++){
-				Element e = ((Element)upgradeElements.item(i));
-				character.addSpellUpgrade(SpellUpgrade.valueOf(e.getAttribute("type")));
-			}
-		} catch(Exception ex) {
-		}
-		
-		nodes = parentElement.getElementsByTagName("spellUpgradePoints");
-		element = (Element) nodes.item(0);
-		try {
-			NodeList upgradeEntryElements = element.getElementsByTagName("upgradeEntry");
-			for(int i=0; i<upgradeEntryElements.getLength(); i++){
-				Element e = ((Element)upgradeEntryElements.item(i));
-				character.setSpellUpgradePoints(SpellSchool.valueOf(e.getAttribute("school")), Integer.valueOf(e.getAttribute("points")));
-			}
-		} catch(Exception ex) {
 		}
 		
 		// Fetishes:
@@ -2639,38 +2555,6 @@ public abstract class GameCharacter implements XMLSaving {
 		this.description = description;
 	}
 
-	public History getHistory() {
-		return history;
-	}
-
-	/**
-	 * Only player character gets job attribute bonuses.
-	 */
-	public void setHistory(History history) {
-		// Revert attributes from old History:
-		if (this.history != null) {
-			if(this.history.getAssociatedPerk()!=null && this.isPlayer()) {
-				for (Attribute att : this.history.getAssociatedPerk().getAttributeModifiers().keySet()) {
-					incrementBonusAttribute(att, -this.history.getAssociatedPerk().getAttributeModifiers().get(att));
-				}
-			}
-			this.history.revertExtraEffects(this);
-		}
-		
-
-		// Implement attributes from new History:
-		if(history.getAssociatedPerk()!=null && this.isPlayer()) {
-			for (Attribute att : history.getAssociatedPerk().getAttributeModifiers().keySet()) {
-				incrementBonusAttribute(att, history.getAssociatedPerk().getAttributeModifiers().get(att));
-			}
-		}
-		history.applyExtraEffects(this);
-		
-		this.history = history;
-
-		updateAttributeListeners();
-	}
-	
 	public Map<PersonalityTrait, PersonalityWeight> getPersonality() {
 		return personality;
 	}
@@ -2788,12 +2672,6 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 	
 	public String incrementObedience(float increment, boolean applyJobPerkGains) {
-		boolean teacherPerkGain = false;
-		if(applyJobPerkGains && increment>0 && this.isSlave() && this.getOwner().hasTrait(Perk.JOB_TEACHER, true)) {
-			increment *= 3;
-			teacherPerkGain = true;
-		}
-		
 		this.obedience = Math.max(-100, Math.min(100, obedience+increment));
 		
 		return UtilText.parse(this,
@@ -2801,25 +2679,20 @@ public abstract class GameCharacter implements XMLSaving {
 						+ "[npc.Name] "+(increment>0?"[style.boldGrow(gains)]":"[style.boldShrink(loses)]")+" <b>"+Math.abs(increment)+"</b> [style.boldObedience(obedience)]!<br/>"
 						+ "[npc.She] now has <b>"+(obedience>0?"+":"")+obedience+"</b> [style.boldObedience(obedience)].<br/>"
 						+ ObedienceLevel.getDescription(this, ObedienceLevel.getObedienceLevelFromValue(obedience), true, false)
-					+ "</p>"
-					+ (teacherPerkGain
-						?"<p style='text-align:center'>"
-							+ "<i>Obedience gain was [style.colourExcellent(tripled)], as "+(this.getOwner().isPlayer()?"you have":this.getOwner().getName()+" has ")+" the '"+Perk.JOB_TEACHER.getName(this.getOwner())+"' trait.</i>"
-						+ "</p>"
-						:""));
+					+ "</p>");
 	}
 	
 	public float getHourlyObedienceChange(int hour) {
 		if(this.workHours[hour]) {
 			if(this.getSlaveJob()==SlaveJob.IDLE) {
-				return this.getHomeLocationPlace().getHourlyObedienceChange() * (this.isSlave() && this.getOwner().hasTrait(Perk.JOB_TEACHER, true)?3:1);
+				return this.getHomeLocationPlace().getHourlyObedienceChange() * 1;
 			}
 			// To get rid of e.g. 2.3999999999999999999999:
-			return (Math.round(this.getSlaveJob().getObedienceGain(this)*100)/100f) * (this.isSlave() && this.getOwner().hasTrait(Perk.JOB_TEACHER, true)?3:1);
+			return (Math.round(this.getSlaveJob().getObedienceGain(this)*100)/100f) * 1;
 		}
 		
 		// To get rid of e.g. 2.3999999999999999999999:
-		return (Math.round(this.getHomeLocationPlace().getHourlyObedienceChange()*100)/100f) * (this.isSlave() && this.getOwner().hasTrait(Perk.JOB_TEACHER, true)?3:1);
+		return (Math.round(this.getHomeLocationPlace().getHourlyObedienceChange()*100)/100f) * 1;
 	}
 	
 	public float getDailyObedienceChange() {
@@ -2837,7 +2710,7 @@ public abstract class GameCharacter implements XMLSaving {
 			totalObedienceChange+=this.getHomeLocationPlace().getHourlyObedienceChange();
 		}
 		// To get rid of e.g. 2.3999999999999999999999:
-		return (Math.round(totalObedienceChange*100)/100f) * (this.isSlave() && this.getOwner().hasTrait(Perk.JOB_TEACHER, true)?3:1);
+		return (Math.round(totalObedienceChange*100)/100f);
 	}
 	
 	public int getSlavesWorkingJob(SlaveJob job) {
@@ -3447,7 +3320,7 @@ public abstract class GameCharacter implements XMLSaving {
 			return "";
 		}
 		
-		int xpIncrement = (int) Math.max(0, increment * (withExtaModifiers&&this.hasTrait(Perk.JOB_WRITER, true)?1.25f:1));
+		int xpIncrement = (int) Math.max(0, increment);
 		
 		experience += xpIncrement;
 		
@@ -3635,8 +3508,6 @@ public abstract class GameCharacter implements XMLSaving {
 		
 		setPotionAttributes(savedPotionEffects);
 		
-		value *= this.isPlayer()&&this.hasTrait(Perk.JOB_CHEF, true)?2:1;
-		
 		if(potionAttributes.containsKey(att)) {
 			setPotionAttribute(att, potionAttributes.get(att)+value);
 		} else {
@@ -3647,7 +3518,7 @@ public abstract class GameCharacter implements XMLSaving {
 			potionAttributes.remove(att);
 		}
 		
-		potionTimeRemaining += 30 * (this.isPlayer()&&this.hasTrait(Perk.JOB_CHEF, true)?2:1);
+		potionTimeRemaining += 30;
 		
 		if(potionTimeRemaining>=12*60) {
 			addStatusEffect(StatusEffect.POTION_EFFECTS, 12*60);
@@ -3664,13 +3535,11 @@ public abstract class GameCharacter implements XMLSaving {
 			if(potionAttributes.get(att)<0) {
 				return "<p style='text-align:center;'>"
 							+ "You now have [style.boldBad("+potionAttributes.get(att)+")] <b style='color:"+att.getColour().toWebHexString()+";'>"+att.getName()+"</b>"
-							+(this.hasTrait(Perk.JOB_CHEF, true)?" ([style.boldExcellent(doubled)] from <b style='color:"+Perk.JOB_CHEF.getColour().toWebHexString()+";'>"+Perk.JOB_CHEF.getName(this)+"</b>)":"")
 							+" for as long as you can maintain your potion effects!"
 						+ "</p>";
 			} else {
 				return "<p style='text-align:center;'>"
 							+ "You now have [style.boldGood(+"+potionAttributes.get(att)+")] <b style='color:"+att.getColour().toWebHexString()+";'>"+att.getName()+"</b>"
-							+(this.hasTrait(Perk.JOB_CHEF, true)?" ([style.boldExcellent(doubled)] from <b style='color:"+Perk.JOB_CHEF.getColour().toWebHexString()+";'>"+Perk.JOB_CHEF.getName(this)+"</b>)":"")
 							+" for as long as you can maintain your potion effects!"
 						+ "</p>";
 			}
@@ -3679,14 +3548,12 @@ public abstract class GameCharacter implements XMLSaving {
 				return "<p style='text-align:center;'>"
 							+ UtilText.parse(this,
 							"[npc.Name] now has [style.boldBad("+potionAttributes.get(att)+")] <b style='color:"+att.getColour().toWebHexString()+";'>"+att.getName()+"</b>"
-							+(this.hasTrait(Perk.JOB_CHEF, true)?" ([style.boldExcellent(doubled)] from <b style='color:"+Perk.JOB_CHEF.getColour().toWebHexString()+";'>"+Perk.JOB_CHEF.getName(this)+"</b>)":"")
 							+" for as long as [npc.she] can maintain [npc.her] potion effects!")
 						+ "</p>";
 			} else {
 				return "<p style='text-align:center;'>"
 							+ UtilText.parse(this,
 							"[npc.Name] now has [style.boldGood(+"+potionAttributes.get(att)+")] <b style='color:"+att.getColour().toWebHexString()+";'>"+att.getName()+"</b>"
-							+(this.hasTrait(Perk.JOB_CHEF, true)?" ([style.boldExcellent(doubled)] from <b style='color:"+Perk.JOB_CHEF.getColour().toWebHexString()+";'>"+Perk.JOB_CHEF.getName(this)+"</b>)":"")
 							+" for as long as [npc.she] can maintain [npc.her] potion effects!")
 						+ "</p>";
 			}
@@ -3769,9 +3636,7 @@ public abstract class GameCharacter implements XMLSaving {
 	
 	public boolean hasTrait(Perk p, boolean equipped) {
 		if(p.isEquippableTrait()) {
-			if((p.getPerkCategory()==PerkCategory.JOB)) {
-				return getHistory().getAssociatedPerk()==p;
-			} else if(equipped) {
+			if(equipped) {
 				return traits.contains(p);
 			} else {
 				return hasPerkInTree(PerkManager.MANAGER.getPerkRow(p), p);
@@ -4271,62 +4136,8 @@ public abstract class GameCharacter implements XMLSaving {
 		}
 	}
 	
-	public String getSpellDescription() {
-		return "<p>"
-				+ UtilText.parse(this,
-						UtilText.returnStringAtRandom(
-						"Letting out a wild scream, [npc.name] thrusts [npc.her] arm into mid air as [npc.she] casts a spell!",
-						"Spitting curses, [npc.name] locks [npc.her] eyes onto yours, before casting a spell!",
-						"With an angry curse, [npc.name] steps forwards and casts a spell!"))
-			+ "</p>";
-	}
-	
 	public String getSeductionDescription() {
 		String description = "";
-		if(this.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION)
-				|| this.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_POWER_OF_SUGGESTION)
-				|| this.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_PROJECTED_TOUCH)) {
-			if(this.isFeminine()) {
-				return UtilText.parse(this,
-						UtilText.returnStringAtRandom(
-								"[npc.Name] puts on a smouldering look, and as her eyes meet yours, you hear an extremely lewd moan echoing around in your head, [npc.thought(~Aaah!~ "
-										+(this.hasVagina()
-												?"You're making me so wet!"
-												:this.hasPenis()
-													?"You're getting me so hard!"
-													:"You're turning me on so much!")+")]",
-								"[npc.Name] locks her big, innocent-looking eyes with yours, and as she pouts, you hear an echoing moan deep within your mind, [npc.thought("+
-										(this.hasVagina()
-												?"~Mmm!~ Fuck me! ~Aaa!~ My pussy's wet and ready for you!"
-												:this.hasPenis()
-													?"~Mmm!~ I can't wait to fuck you! ~Aaa!~ You're going to love my cock!"
-													:"~Mmm!~ Fuck me! ~Aaa!~ I need you so badly!")+")]",
-								(this.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_POWER_OF_SUGGESTION)
-										|| this.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_PROJECTED_TOUCH)
-										?"[npc.Name] pouts innocently at you, before blowing you a wet kiss. As she straightens back up, you feel a ghostly pair of wet lips press against your cheek."
-										:"")));
-			} else {
-				return UtilText.parse(this,
-						UtilText.returnStringAtRandom(
-								"[npc.Name] puts on a confident look, and as his eyes meet yours, you hear an extremely lewd groan echoing around in your head, [npc.thought(~Mmm!~ "
-										+(this.hasVagina()
-												?"You're making me so wet!"
-												:this.hasPenis()
-													?"You're getting me so hard!"
-													:"You're turning me on so much!")+")]",
-								"[npc.Name] locks his eyes with yours, and as he throws you a charming smile, you hear an echoing groan deep within your mind, [npc.thought("+
-										(this.hasVagina()
-												?"~Mmm!~ Fuck me! ~Aaa!~ My pussy's wet and ready for you!"
-												:this.hasPenis()
-													?"~Mmm!~ I can't wait to fuck you! You're going to love my cock!"
-													:"~Mmm!~ I can't wait to have some fun with you!")+")]",
-								(this.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_POWER_OF_SUGGESTION)
-										|| this.hasStatusEffect(StatusEffect.TELEPATHIC_COMMUNICATION_PROJECTED_TOUCH)
-										?"[npc.Name] throws you a charming smile, before winking at you and striking a heroic pose. As he straightens back up, you feel a ghostly pair of arms pulling you into a strong, confident embrace."
-										:"")));
-			}
-		}
-		
 		if(this.isFeminine()) {
 			if(Combat.getTargetedCombatant(this).isPlayer()) {
 				description = UtilText.parse(this,
@@ -10431,133 +10242,8 @@ public abstract class GameCharacter implements XMLSaving {
 		}
 	}
 	
-	public List<Spell> getSpells() {
-		return spells;
-	}
-	
-	public boolean addSpell(Spell spell) {
-		if(spells.contains(spell)) {
-			return false;
-		}
-		return spells.add(spell);
-	}
-	
-	public boolean hasSpell(Spell spell) {
-		return spells.contains(spell);
-	}
-	
-
-	public boolean hasAnySpellInSchool(SpellSchool school) {
-		for(Spell s : getSpells()) {
-			if(s.getSpellSchool()==school) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/**
-	 * Hard reset of spells and spell upgrades, without refunding any points.
-	 */
-	public void resetSpells() {
-		getSpells().clear();
-		getSpellUpgrades().clear();
-	}
-	
-	public void clearSpellUpgradePoints() {
-		for(SpellSchool school : SpellSchool.values()) {
-			this.spellUpgradePoints.put(school, 0);
-		}
-	}
-	
-	/** Spells from weapons. */
-	public List<Spell> getExtraSpells() {
-		List<Spell> tempListSpells = new ArrayList<>();
-		
-		if(getMainWeapon()!=null) {
-			if(getMainWeapon().getSpells()!=null) {
-				tempListSpells.addAll(getMainWeapon().getSpells());
-			}
-		}
-		
-		if(getOffhandWeapon()!=null) {
-			if(getOffhandWeapon().getSpells()!=null) {
-				tempListSpells.addAll(getOffhandWeapon().getSpells());
-			}
-		}
-		
-		return tempListSpells;
-	}
-
-	public List<Spell> getAllSpells() {
-		List<Spell> tempListSpells = new ArrayList<>();
-
-		tempListSpells.addAll(getSpells());
-		tempListSpells.addAll(getExtraSpells());
-		
-		Set<Spell> spellSet = new HashSet<>(tempListSpells); // Remove duplicates
-		
-		tempListSpells.clear();
-		tempListSpells.addAll(spellSet);
-		tempListSpells.sort((s1, s2) -> s1.getSpellSchool().compareTo(s2.getSpellSchool()));
-		
-		return tempListSpells;
-	}
-	
-	public boolean isSpellSchoolSpecialAbilityUnlocked(SpellSchool school) {
-		int spellCount = 0;
-		for(Spell s : this.getSpells()) {
-			if(s.getSpellSchool()==school) {
-				spellCount++;
-			}
-		}
-		return spellCount>=3;
-	}
-	
-	public Set<SpellUpgrade> getSpellUpgrades() {
-		return spellUpgrades;
-	}
-	
-	public boolean addSpellUpgrade(SpellUpgrade spellUpgrade) {
-		return spellUpgrades.add(spellUpgrade);
-	}
-	
-	public boolean hasSpellUpgrade(SpellUpgrade spellUpgrade) {
-		return spellUpgrades.contains(spellUpgrade);
-	}
-	
-	public void resetSpellUpgrades(SpellSchool school) {
-		for(SpellUpgrade upgrade : getSpellUpgrades()) {
-			if(upgrade.getSpellSchool()==school) {
-				this.setSpellUpgradePoints(upgrade.getSpellSchool(), getSpellUpgradePoints(upgrade.getSpellSchool())+upgrade.getPointCost());
-			}
-		}
-		getSpellUpgrades().removeIf((su) -> su.getSpellSchool()==school);
-	}
-	
-	public int getSpellUpgradePoints(SpellSchool spellSchool) {
-		spellUpgradePoints.putIfAbsent(spellSchool, 0);
-		return spellUpgradePoints.get(spellSchool);
-	}
-	
-	public void setSpellUpgradePoints(SpellSchool spellSchool, int points) {
-		spellUpgradePoints.put(spellSchool, points);
-	}
-
-	public void incrementSpellUpgradePoints(SpellSchool spellSchool, int increment) {
-		setSpellUpgradePoints(spellSchool, getSpellUpgradePoints(spellSchool) + increment);
-	}
-	
-	public boolean isAbleToTeleport() {
-		return this.hasSpell(Spell.TELEPORT) && (this.getCompanions().isEmpty() || this.hasSpellUpgrade(SpellUpgrade.TELEPORT_2));
-	}
-	
 	public float getRegenerationRate() {
-		if(this.isSpellSchoolSpecialAbilityUnlocked(SpellSchool.AIR)) {
-			return 0.2f;
-		} else {
-			return 0.1f;
-		}
+		return 0.1f;
 	}
 	
 	public float getHealth() {
@@ -11933,11 +11619,6 @@ public abstract class GameCharacter implements XMLSaving {
 		return inventory.getClothingInSlot(invSlot);
 	}
 
-
-	public int getClothingSetCount(ClothingSet clothingSet) {
-		return inventory.getClothingSetCount(clothingSet);
-	}
-	
 	public boolean isSlotIncompatible(InventorySlot slot) {
 		return inventory.isSlotIncompatible(slot);
 	}

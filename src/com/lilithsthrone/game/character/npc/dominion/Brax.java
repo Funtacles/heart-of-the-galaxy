@@ -309,15 +309,6 @@ public class Brax extends NPC {
 	}
 			
 	@Override
-	public String getSpellDescription() {
-		return "<p>"
-				+ UtilText.returnStringAtRandom(
-						"With a grin, Brax focuses on the arcane fire swirling around his arm, and with a sudden thrust forwards, he casts a spell!",
-						"Brax focuses on the arcane fire swirling around his arm, and with a sudden thrust forwards, he casts a spell!") 
-			+ "</p>";
-	}
-	
-	@Override
 	public Response endCombat(boolean applyEffects, boolean victory) {
 		if (victory) {
 			return new Response("", "", AFTER_COMBAT_VICTORY){

@@ -46,7 +46,6 @@ import com.lilithsthrone.game.character.npc.dominion.TestNPC;
 import com.lilithsthrone.game.character.persona.NameTriplet;
 import com.lilithsthrone.game.combat.Combat;
 import com.lilithsthrone.game.combat.SpecialAttack;
-import com.lilithsthrone.game.combat.Spell;
 import com.lilithsthrone.game.dialogue.DebugDialogue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.DialogueNodeType;
@@ -972,20 +971,6 @@ public class MainController implements Initializable {
 		
 		TooltipInformationEventListener el2 =  new TooltipInformationEventListener().setInformation(Util.capitaliseSentence(c.getPlaceName()), "");
 		addEventListener(document, id, "mouseenter", el2, false);
-		
-		((EventTarget) document.getElementById(id)).addEventListener("click", e -> {
-			if(Main.game.getPlayer().isAbleToTeleport()
-					&& Main.game.getSavedDialogueNode().equals(Main.game.getPlayer().getLocationPlace().getDialogue(false))
-					&& Main.game.getPlayer().getMana()>=Spell.TELEPORT.getModifiedCost(Main.game.getPlayer())
-					&& c.getPlace().getPlaceType()!=PlaceType.GENERIC_IMPASSABLE) {
-				Main.mainController.openPhone();
-				Main.game.getPlayer().incrementMana(-Spell.TELEPORT.getModifiedCost(Main.game.getPlayer()));
-				Main.game.getPlayer().setLocation(new Vector2i(j, i));
-				DialogueNodeOld dn = Main.game.getActiveWorld().getCell(Main.game.getPlayer().getLocation()).getPlace().getDialogue(true);
-				Main.game.getTextStartStringBuilder().append("<p>You teleport! :3</p>");
-				Main.game.setContent(new Response("", "", dn));
-			}
-		}, false);
 	}
 	
 	private static void setResponseTabListeners(int responsePageCounter) {
@@ -1329,15 +1314,6 @@ public class MainController implements Initializable {
 					addEventListener(documentAttributes, "SA_"+idModifier + sa, "mouseenter", el, false);
 				}
 			}
-			for (Spell s : character.getAllSpells()) {
-				if (((EventTarget) documentAttributes.getElementById("SPELL_"+idModifier + s)) != null) {
-					addEventListener(documentAttributes, "SPELL_"+idModifier + s, "mousemove", moveTooltipListener, false);
-					addEventListener(documentAttributes, "SPELL_"+idModifier + s, "mouseleave", hideTooltipListener, false);
-
-					TooltipInformationEventListener el = new TooltipInformationEventListener().setSpell(s, character);
-					addEventListener(documentAttributes, "SPELL_"+idModifier + s, "mouseenter", el, false);
-				}
-			}
 		}
 		
 	}
@@ -1573,15 +1549,6 @@ public class MainController implements Initializable {
 		
 						TooltipInformationEventListener el = new TooltipInformationEventListener().setSpecialAttack(sa, character);
 						addEventListener(documentRight, "SA_NPC_"+idModifier + sa, "mouseenter", el, false);
-					}
-				}
-				for (Spell s : character.getAllSpells()) {
-					if (((EventTarget) documentAttributes.getElementById("SPELL_"+idModifier + s)) != null) {
-						addEventListener(documentAttributes, "SPELL_"+idModifier + s, "mousemove", moveTooltipListener, false);
-						addEventListener(documentAttributes, "SPELL_"+idModifier + s, "mouseleave", hideTooltipListener, false);
-	
-						TooltipInformationEventListener el = new TooltipInformationEventListener().setSpell(s, character);
-						addEventListener(documentAttributes, "SPELL_"+idModifier + s, "mouseenter", el, false);
 					}
 				}
 			}

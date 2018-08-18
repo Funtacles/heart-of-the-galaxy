@@ -7,7 +7,6 @@ import com.lilithsthrone.game.character.body.valueEnums.Femininity;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.NPCFlagValue;
 import com.lilithsthrone.game.character.npc.misc.NPCOffspring;
-import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.persona.PersonalityTrait;
 import com.lilithsthrone.game.character.persona.PersonalityWeight;
 import com.lilithsthrone.game.character.persona.SexualOrientation;
@@ -77,55 +76,6 @@ public class DominionOffspringDialogue {
 								+ " <b style='color:"+offspring().getRace().getColour().toWebHexString()+";'>[npc.race]</b> leaning back against one of the alley's walls."
 						+ "</p>");
 				
-				if(offspring().getHistory()==History.NPC_PROSTITUTE) { // Prostitute introduction:
-					
-					if(offspring().getPersonality().get(PersonalityTrait.EXTROVERSION) == PersonalityWeight.HIGH) {
-						UtilText.nodeContentSB.append(
-								"<p>"
-									+ "From [npc.her] slutty attire, the amount of makeup plastered on [npc.her] face, and [npc.her] general posturing, there's almost no doubt in your mind that [npc.sheIs] a prostitute."
-									+ " As [npc.she] notices your approach, [npc.she] steps out to block your path, and in a sultry tone, confirms your suspicions,"
-									+ " [npc.speech(Hey babe! You lookin' for a good time? Fifty flames for an hour's ride with [npc.name]!)]"
-								+ "</p>");
-					} else {
-						UtilText.nodeContentSB.append(
-								"<p>"
-									+ "From [npc.her] slutty attire, the amount of makeup plastered on [npc.her] face, and [npc.her] general posturing, there's almost no doubt in your mind that [npc.sheIs] a prostitute."
-									+ " As [npc.she] notices your approach, [npc.she] looks over at you, and in a sultry tone, confirms your suspicions,"
-									+ " [npc.speech(You lookin' for a good time? Only fifty flames and [npc.namePos] all yours for an hour!)]"
-								+ "</p>");
-					}
-					
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "Your gaze is drawn to [npc.her] [npc.hands] as [npc.she] sensually runs [npc.her] [npc.fingers+] up the length of [npc.her] body, before stopping at [npc.her] chest to push [npc.her] [npc.breasts+] together."
-								+ " Looking up to [npc.her] face as you prepare to give [npc.herHim] your answer, your planned response leaves your mouth as a surprised gasp, as you find yourself instantly recognising the person before you."
-							+ "</p>");
-					
-					if(offspring().getPersonality().get(PersonalityTrait.EXTROVERSION) == PersonalityWeight.HIGH) {
-						UtilText.nodeContentSB.append(
-								"<p>"
-									+ "[npc.speech(Yeah, I know, right?! It's such a bargain that you don't know what to say! So, just hand those fifty flames over and we can get right to the fuckin-)]"
-									+ " [npc.Her] words are abruptly cut off as [npc.her] [npc.eyeColour] [npc.eyes] finally come to rest on your [pc.face]."
-									+ " [npc.speech(No way... [npc.PcName]?!)]"
-								+ "</p>");
-					} else {
-						UtilText.nodeContentSB.append(
-								"<p>"
-									+ "[npc.speech(Don't act so surprised! Just hand over the fifty flames and we can start alre-)]"
-									+ " [npc.Her] words are abruptly cut off as [npc.her] [npc.eyeColour] [npc.eyes] finally come to rest on your [pc.face]."
-									+ " [npc.speech(N-No way... [npc.PcName]?!)]"
-								+ "</p>");
-					}
-					
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "Whether by some natural instinct, or perhaps some curious quirk of the arcane, you're instantly left with no doubt in your mind that the [npc.woman] in front of you is your [npc.daughter]."
-								+ " From [npc.her] reaction, it's quite apparent that [npc.sheIs] recognised you as well, and as [npc.her] [npc.hands] reach up to cover [npc.her] [npc.mouth] in shock, you're left to decide how best to respond..."
-							+ "</p>");
-					
-					
-				} else { // Mugger introduction:
-					
 					if(offspring().getPersonality().get(PersonalityTrait.EXTROVERSION) == PersonalityWeight.HIGH) {
 						UtilText.nodeContentSB.append(
 								"<p>"
@@ -171,28 +121,16 @@ public class DominionOffspringDialogue {
 								+ "Whether by some natural instinct, or perhaps some curious quirk of the arcane, you're instantly left with no doubt in your mind that the [npc.race] in front of you is your [npc.daughter]."
 								+ " From [npc.her] reaction, it's quite apparent that [npc.sheIs] recognised you as well, and as [npc.her] [npc.hands] reach up to cover [npc.her] [npc.mouth] in shock, you're left to decide how best to respond..."
 							+ "</p>");
-				}
 				
 			} else { // Repeat encounter:
 				
-				if(offspring().getHistory()==History.NPC_PROSTITUTE) {
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "Knowing that [npc.name] lives in this area, you keep an eye out for your [npc.daughter] as you travel through the eerie quiet of Dominion's back alleys."
-								+ " Sure enough, as you cast your glance down a particularly seedy-looking passageway that you pass on your right,"
-									+ " you see the familiar figure of your [npc.race] [npc.daughter] applying yet more makeup in an attempt to attract future customers."
-								+ " Deciding to take a quick detour to check in on [npc.herHim], you enter the alleyway and start to walk towards [npc.herHim]."
-							+ "</p>"
-							+"<p>");
-				} else {
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "Knowing that [npc.name] lives in this area, you keep an eye out for your [npc.daughter] as you travel through the eerie quiet of Dominion's back alleys."
-								+ " Sure enough, as you cast your glance down a particularly gloomy passageway that you pass on your right, you see the familiar figure of your [npc.race] [npc.daughter] lurking in the shadows."
-								+ " Deciding to take a quick detour to check in on [npc.herHim], you enter the alleyway and start to walk towards [npc.herHim]."
-							+ "</p>"
-							+"<p>");
-				}
+				UtilText.nodeContentSB.append(
+						"<p>"
+							+ "Knowing that [npc.name] lives in this area, you keep an eye out for your [npc.daughter] as you travel through the eerie quiet of Dominion's back alleys."
+							+ " Sure enough, as you cast your glance down a particularly gloomy passageway that you pass on your right, you see the familiar figure of your [npc.race] [npc.daughter] lurking in the shadows."
+							+ " Deciding to take a quick detour to check in on [npc.herHim], you enter the alleyway and start to walk towards [npc.herHim]."
+						+ "</p>"
+						+"<p>");
 				
 				// Reaction:
 				switch(offspring().getAffectionLevel(Main.game.getPlayer())) {
@@ -753,56 +691,31 @@ public class DominionOffspringDialogue {
 				} if (index == 5) {
 					return new Response("Scold [npc.herHim]",
 							"Ask [npc.name] just what [npc.she] thinks [npc.sheIs] doing!"
-									+(offspring().getHistory()==History.NPC_PROSTITUTE
-											?" (This will voice disapproval about [npc.herHim] being a prostitute.)"
-											:" (This will voice disapproval about [npc.herHim] being a mugger.)"),
+									+" (This will voice disapproval about [npc.herHim] being a mugger.)",
 							OFFSPRING_ENCOUNTER_TALKING) {
 						@Override
 						public void effects() {
 							if(!offspring().hasFlag(NPCFlagValue.flagOffspringIntroduced)) {
-								if(offspring().getHistory()==History.NPC_PROSTITUTE) {
-									Main.game.getTextStartStringBuilder().append(
-											"<p>"
-												+ "You're the first to recover from the shock of your surprise meeting, and as your initial surprise fades away, you find that you're shaking your head in utter disbelief."
-												+ " Looking into your [npc.daughter]'s [npc.eyes], you frown in disapproval as you start to voice your concerns,"
-												+ " [pc.speech([npc.Name]! Please don't tell me that you're working as a... a prostitute!)]"
+								
+								Main.game.getTextStartStringBuilder().append(
+										"<p>"
+											+ "You're the first to recover from the shock of your surprise meeting, and as your initial surprise fades away, you find that you're shaking your head in utter disbelief."
+											+ " Looking into your [npc.daughter]'s [npc.eyes], you frown in disapproval as you start to voice your concerns,"
+											+ " [pc.speech([npc.Name]! Please don't tell me that you're just another low-life mugger!)]"
+										+ "</p>");
+								
+								if(offspring().getPersonality().get(PersonalityTrait.EXTROVERSION) == PersonalityWeight.HIGH || offspring().getPersonality().get(PersonalityTrait.NEUROTICISM) == PersonalityWeight.HIGH) {
+									Main.game.getTextStartStringBuilder().append("<p>"
+												+ "[npc.speech(So what if I am?!)]"
+												+ " [npc.name] shouts back, clearly upset by your judgmental remark."
+												+ " [npc.speech(Do you know how hard it is to make a living around here?!)]"
 											+ "</p>");
-									
-									if(offspring().getPersonality().get(PersonalityTrait.EXTROVERSION) == PersonalityWeight.HIGH || offspring().getPersonality().get(PersonalityTrait.NEUROTICISM) == PersonalityWeight.HIGH) {
-										Main.game.getTextStartStringBuilder().append("<p>"
-													+ "[npc.speech(So what if I am?!)]"
-													+ " [npc.name] shouts back, clearly upset by your judgmental remark."
-													+ " [npc.speech(It's my body, I can do what I want with it!)]"
-												+ "</p>");
-									} else {
-										Main.game.getTextStartStringBuilder().append("<p>"
-													+ "[npc.speech(Yeah, so?)]"
-													+ " [npc.name] replies, shuffling [npc.her] [npc.feet]."
-													+ " [npc.speech(I can do what I want. It's <i>my</i> body...)]"
-												+ "</p>");
-										
-									}
-								} else { // Mugger:
-									Main.game.getTextStartStringBuilder().append(
-											"<p>"
-												+ "You're the first to recover from the shock of your surprise meeting, and as your initial surprise fades away, you find that you're shaking your head in utter disbelief."
-												+ " Looking into your [npc.daughter]'s [npc.eyes], you frown in disapproval as you start to voice your concerns,"
-												+ " [pc.speech([npc.Name]! Please don't tell me that you're just another low-life mugger!)]"
+								} else {
+									Main.game.getTextStartStringBuilder().append("<p>"
+												+ "[npc.speech(Yeah, so?)]"
+												+ " [npc.name] replies, shuffling [npc.her] [npc.feet]."
+												+ " [npc.speech(I need a way to pay the rent...)]"
 											+ "</p>");
-									
-									if(offspring().getPersonality().get(PersonalityTrait.EXTROVERSION) == PersonalityWeight.HIGH || offspring().getPersonality().get(PersonalityTrait.NEUROTICISM) == PersonalityWeight.HIGH) {
-										Main.game.getTextStartStringBuilder().append("<p>"
-													+ "[npc.speech(So what if I am?!)]"
-													+ " [npc.name] shouts back, clearly upset by your judgmental remark."
-													+ " [npc.speech(Do you know how hard it is to make a living around here?!)]"
-												+ "</p>");
-									} else {
-										Main.game.getTextStartStringBuilder().append("<p>"
-													+ "[npc.speech(Yeah, so?)]"
-													+ " [npc.name] replies, shuffling [npc.her] [npc.feet]."
-													+ " [npc.speech(I need a way to pay the rent...)]"
-												+ "</p>");
-									}
 								}
 								
 								Main.game.getTextStartStringBuilder().append(
@@ -823,49 +736,25 @@ public class DominionOffspringDialogue {
 										+ "</p>");
 								
 							} else {
-								if(offspring().getHistory()==History.NPC_PROSTITUTE) {
-									Main.game.getTextStartStringBuilder().append(
-											"<p>"
-												+ "As you look [npc.name] up and down, you find yourself shaking your head in utter disbelief."
-												+ " Looking into your [npc.daughter]'s [npc.eyes], you frown in disapproval as you start to voice your concerns,"
-												+ " [pc.speech([npc.Name]! Please don't tell me that you're still out here mugging people!)]"
+								Main.game.getTextStartStringBuilder().append(
+										"<p>"
+											+ "As you look [npc.name] up and down, you find yourself shaking your head in utter disbelief."
+											+ " Looking into your [npc.daughter]'s [npc.eyes], you frown in disapproval as you start to voice your concerns,"
+											+ " [pc.speech([npc.Name]! Please don't tell me that you're still working as a prostitute!)]"
+										+ "</p>");
+								
+								if(offspring().getPersonality().get(PersonalityTrait.EXTROVERSION) == PersonalityWeight.HIGH || offspring().getPersonality().get(PersonalityTrait.NEUROTICISM) == PersonalityWeight.HIGH) {
+									Main.game.getTextStartStringBuilder().append("<p>"
+												+ "[npc.speech(So what if I am?!)]"
+												+ " [npc.name] shouts back, clearly upset by your judgmental remark."
+												+ " [npc.speech(It's my body, I can do what I want with it!)]"
 											+ "</p>");
-									
-									if(offspring().getPersonality().get(PersonalityTrait.EXTROVERSION) == PersonalityWeight.HIGH || offspring().getPersonality().get(PersonalityTrait.NEUROTICISM) == PersonalityWeight.HIGH) {
-										Main.game.getTextStartStringBuilder().append("<p>"
-													+ "[npc.speech(So what if I am?!)]"
-													+ " [npc.name] shouts back, clearly upset by your judgmental remark."
-													+ " [npc.speech(Do you know how hard it is to make a living around here?!)]"
-												+ "</p>");
-									} else {
-										Main.game.getTextStartStringBuilder().append("<p>"
-													+ "[npc.speech(Yeah, so?)]"
-													+ " [npc.name] replies, shuffling [npc.her] [npc.feet]."
-													+ " [npc.speech(I need a way to pay the rent...)]"
-												+ "</p>");
-									}
-									
 								} else {
-									Main.game.getTextStartStringBuilder().append(
-											"<p>"
-												+ "As you look [npc.name] up and down, you find yourself shaking your head in utter disbelief."
-												+ " Looking into your [npc.daughter]'s [npc.eyes], you frown in disapproval as you start to voice your concerns,"
-												+ " [pc.speech([npc.Name]! Please don't tell me that you're still working as a prostitute!)]"
+									Main.game.getTextStartStringBuilder().append("<p>"
+												+ "[npc.speech(Yeah, so?)]"
+												+ " [npc.name] replies, shuffling [npc.her] [npc.feet]."
+												+ " [npc.speech(I can do what I want. It's <i>my</i> body...)]"
 											+ "</p>");
-									
-									if(offspring().getPersonality().get(PersonalityTrait.EXTROVERSION) == PersonalityWeight.HIGH || offspring().getPersonality().get(PersonalityTrait.NEUROTICISM) == PersonalityWeight.HIGH) {
-										Main.game.getTextStartStringBuilder().append("<p>"
-													+ "[npc.speech(So what if I am?!)]"
-													+ " [npc.name] shouts back, clearly upset by your judgmental remark."
-													+ " [npc.speech(It's my body, I can do what I want with it!)]"
-												+ "</p>");
-									} else {
-										Main.game.getTextStartStringBuilder().append("<p>"
-													+ "[npc.speech(Yeah, so?)]"
-													+ " [npc.name] replies, shuffling [npc.her] [npc.feet]."
-													+ " [npc.speech(I can do what I want. It's <i>my</i> body...)]"
-												+ "</p>");
-									}
 								}
 								
 								Main.game.getTextStartStringBuilder().append(
@@ -1448,9 +1337,7 @@ public class DominionOffspringDialogue {
 						public void effects() {
 							if(offspring().isAttractedTo(Main.game.getPlayer())) {
 								Main.game.getTextEndStringBuilder().append(offspring().incrementAffection(Main.game.getPlayer(), 20));
-							} else if(offspring().getHistory()!=History.NPC_PROSTITUTE){
-								Main.game.getTextEndStringBuilder().append(offspring().incrementAffection(Main.game.getPlayer(), -10));
-							}
+							} 
 							offspring().setFlag(NPCFlagValue.flagOffspringApartmentIntroduced, true);
 							Main.game.getDialogueFlags().offspringDialogueTokens--;
 						}	
@@ -1516,121 +1403,61 @@ public class DominionOffspringDialogue {
 		public String getContent() {
 			UtilText.nodeContentSB.setLength(0);
 			
-			// TODO use offspring().flagBackgroundProgress
-			
 			UtilText.nodeContentSB.append(
 					"<p>"
 						+ "Deciding that you'd like to get to know [npc.name] a little better, you ask [npc.herHim] about how [npc.sheIs] doing,"
 						+ " [pc.speech(Tell me about your life! How's everything going for you right now?)]"
 					+ "</p>");
 			
-			if(offspring().getHistory()==History.NPC_PROSTITUTE) {
-				if(offspring().getPersonality().get(PersonalityTrait.EXTROVERSION) == PersonalityWeight.HIGH) {
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "[npc.She] leans back on the sofa and smiles."
-								+ " [npc.speech(Well, you know, there's always <i>someone</i> looking for a quick fuck, so I never have any problems with money."
-									+ " I mean, Dominion's a pretty great place for being a prostitute!)]"
-							+ "</p>"
-							+ "<p>"
-								+ "From [npc.her] positive attitude, you can tell that [npc.she] has absolutely no qualms about selling [npc.her] body."
-								+ " Before you can offer a response, [npc.she] continues,"
-								+ " [npc.speech(So yeah, everything's pretty good for me at the moment. Sure, the location of this place could be better, but it's nice enough!)]"
-							+ "</p>"
-							+ "<p>"
-								+ "You're relieved to hear that your [npc.daughter] is doing well for [npc.herself], and after talking about [npc.her] situation a little more,"
-									+ " [npc.she] starts to get carried away and tells you about one of the recent customers [npc.she] had, ");
-					
-					UtilText.nodeContentSB.append(UtilText.returnStringAtRandom(
-							"[npc.speech(... So then he doesn't pull out, and he's all like 'Get pregnant slut!', and I'm like 'Ah, no! I can't get pregnant, please!', and then I get him to pay me extra for finishing inside!"
-									+ " And the funny thing is, I was on slut pills the whole time!)]",
-							"[npc.speech(... So then she's like 'Oh yeah, my boyfriend is joining in too', and I'm like 'Uhh, that's going to cost double', and so she pays me double, and then her boyfriend doesn't even use me at all!)]",
-							"[npc.speech(... And his knot was like, <i>huge</i>, and it locks us together for about 30 minutes. And I'm just like 'Uhh, I charge by the minute by the way!')]",
-							"[npc.speech(... So this cute little human wanted me to just sit on her face for half an hour, and it was, like, the easiest money I've ever made!)]",
-							"[npc.speech(... And so he's pushing me up against the wall, getting really into fucking me, and then he suddenly pulls out and cums all over my shoes! And I'm like, 'You're paying the cleaning bill for those!')]"));
-					
-					UtilText.nodeContentSB.append("</p>");
-					
-				} else {
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "[npc.She] leans back on the sofa and smiles."
-								+ " [npc.speech(Well, you know, there's always <i>someone</i> who has need of my... erm... services, so I never have any problems with money."
-									+ " I mean, Dominion's a pretty great place for my line of work... erm... being a prostitute, that is...)]"
-							+ "</p>"
-							+ "<p>"
-								+ "From [npc.her] attitude, you can tell that [npc.she] has no qualms about selling [npc.her] body, although [npc.sheIs] a little nervous talking to you about it."
-								+ " Before you can offer a response, [npc.she] continues,"
-								+ " [npc.speech(So yeah, everything's pretty good for me at the moment. Sure, the location of this place could be better, but it's nice enough!)]"
-							+ "</p>"
-							+ "<p>"
-								+ "You're relieved to hear that your [npc.daughter] is doing well for [npc.herself], and after talking about [npc.her] situation a little more,"
-									+ " [npc.she] starts to open up, and gets a little carried away in telling you about one of the recent customers [npc.she] had, ");
-					
-					UtilText.nodeContentSB.append(UtilText.returnStringAtRandom(
-							"[npc.speech(... So then he doesn't pull out, and he's all like 'Get pregnant slut!', and I'm like 'That's going to cost you more you know!', and so he pays me extra for finishing inside!"
-									+ " And I didn't tell him, but I was on slut pills the whole time!)]",
-							"[npc.speech(... So then she's like 'Oh yeah, my boyfriend is joining in too', and I'm like 'Uhh, that's going to cost you more', and so she pays me a <i>lot</i> more,"
-									+ " and then her boyfriend just fucked [npc.herHim] in front of me, and didn't use me at all!)]",
-							"[npc.speech(... And his knot was <i>huge</i>, and it locked us together for about 30 minutes! And it was like, the most awkward thing ever!)]",
-							"[npc.speech(... So this cute human wanted to just sit on my face for half an hour, and it was pretty much the easiest money I've ever made!)]",
-							"[npc.speech(... And so he's pushing me up against the wall, getting really into fucking me, and then he suddenly pulls out and cums all over my shoes!"
-									+ " And I'm like, 'Erm... You're going to have to pay the cleaning bill for those...')]"));
-					
-					UtilText.nodeContentSB.append("</p>");
-				}
+			if(offspring().getPersonality().get(PersonalityTrait.EXTROVERSION) == PersonalityWeight.HIGH) {
+				UtilText.nodeContentSB.append(
+						"<p>"
+							+ "[npc.She] leans back on the sofa and smiles."
+							+ " [npc.speech(Well, you know, there's always <i>someone</i> dumb enough to wander around in my territory, so I never have any problems with money."
+								+ " I mean, if they didn't want to get mugged, they wouldn't come wandering through the alleyways! Everyone knows that they're dangerous!)]"
+						+ "</p>"
+						+ "<p>"
+							+ "From [npc.her] blase attitude, you can tell that [npc.she] has absolutely no qualms about beating people up and stealing their money."
+							+ " Before you can offer a response, [npc.she] continues,"
+							+ " [npc.speech(So yeah, everything's pretty good for me at the moment. Sure, the location of this place could be better, but it's nice enough!)]"
+						+ "</p>"
+						+ "<p>"
+							+ "Wanting to learn more about the manner in which [npc.she] earns a living, you encourage your [npc.daughter] to talk about [npc.her] situation a little more,"
+								+ " and as you ask a few more questions, [npc.she] starts to get carried away while giving you the details of one of the recent encounters [npc.she] had, ");
+				
+				UtilText.nodeContentSB.append(UtilText.returnStringAtRandom(
+						"[npc.speech(... And <i>he</i> was the one who attacked me first! So it was only fair that I took everything he had!)]",
+						"[npc.speech(... So then as she runs off, she's like 'You're gonna be sorry when I tell my boyfriend!', and then later this horse-boy shows up claiming to be her boyfriend, so I beat him up too!)]",
+						"[npc.speech(... And then the enforcers turned up, and I only just managed to get away! That was a close one...)]",
+						"[npc.speech(... So after I'd robbed her, that slutty cat-girl starts begging for me to 'show her no mercy', and drops down on all fours right there in the alley!)]",
+						"[npc.speech(... And I'm pushing him back against the wall, demanding he hands over his wallet, and I feel something pressing out against my leg. That horny dog-boy was getting turned on by being robbed!)]"));
+				
+				UtilText.nodeContentSB.append("</p>");
 				
 			} else {
-				if(offspring().getPersonality().get(PersonalityTrait.EXTROVERSION) == PersonalityWeight.HIGH) {
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "[npc.She] leans back on the sofa and smiles."
-								+ " [npc.speech(Well, you know, there's always <i>someone</i> dumb enough to wander around in my territory, so I never have any problems with money."
-									+ " I mean, if they didn't want to get mugged, they wouldn't come wandering through the alleyways! Everyone knows that they're dangerous!)]"
-							+ "</p>"
-							+ "<p>"
-								+ "From [npc.her] blase attitude, you can tell that [npc.she] has absolutely no qualms about beating people up and stealing their money."
-								+ " Before you can offer a response, [npc.she] continues,"
-								+ " [npc.speech(So yeah, everything's pretty good for me at the moment. Sure, the location of this place could be better, but it's nice enough!)]"
-							+ "</p>"
-							+ "<p>"
-								+ "Wanting to learn more about the manner in which [npc.she] earns a living, you encourage your [npc.daughter] to talk about [npc.her] situation a little more,"
-									+ " and as you ask a few more questions, [npc.she] starts to get carried away while giving you the details of one of the recent encounters [npc.she] had, ");
-					
-					UtilText.nodeContentSB.append(UtilText.returnStringAtRandom(
-							"[npc.speech(... And <i>he</i> was the one who attacked me first! So it was only fair that I took everything he had!)]",
-							"[npc.speech(... So then as she runs off, she's like 'You're gonna be sorry when I tell my boyfriend!', and then later this horse-boy shows up claiming to be her boyfriend, so I beat him up too!)]",
-							"[npc.speech(... And then the enforcers turned up, and I only just managed to get away! That was a close one...)]",
-							"[npc.speech(... So after I'd robbed her, that slutty cat-girl starts begging for me to 'show her no mercy', and drops down on all fours right there in the alley!)]",
-							"[npc.speech(... And I'm pushing him back against the wall, demanding he hands over his wallet, and I feel something pressing out against my leg. That horny dog-boy was getting turned on by being robbed!)]"));
-					
-					UtilText.nodeContentSB.append("</p>");
-					
-				} else {
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "[npc.She] leans back on the sofa and smiles."
-								+ " [npc.speech(Well, you know, there's always <i>someone</i> who's... erm... intruding on my territory, so I never have any problems with money."
-									+ " I mean, Dominion's alleys are known to be dangerous, so why would they be here if they didn't want to get robbed?)]"
-							+ "</p>"
-							+ "<p>"
-								+ "From [npc.her] blase attitude, you can tell that [npc.she] has absolutely no qualms about beating people up and stealing their money, although [npc.sheIs] a little nervous talking to you about it."
-								+ " Before you can offer a response, [npc.she] continues,"
-								+ " [npc.speech(So yeah, everything's pretty good for me at the moment. Sure, the location of this place could be better, but it's nice enough!)]"
-							+ "</p>"
-							+ "<p>"
-								+ "Wanting to learn more about the manner in which [npc.she] earns a living, you encourage your [npc.daughter] to talk about [npc.her] situation a little more,"
-									+ " and as you ask a few more questions, [npc.she] starts to get carried away while giving you the details of one of the recent encounters [npc.she] had, ");
+				UtilText.nodeContentSB.append(
+						"<p>"
+							+ "[npc.She] leans back on the sofa and smiles."
+							+ " [npc.speech(Well, you know, there's always <i>someone</i> who's... erm... intruding on my territory, so I never have any problems with money."
+								+ " I mean, Dominion's alleys are known to be dangerous, so why would they be here if they didn't want to get robbed?)]"
+						+ "</p>"
+						+ "<p>"
+							+ "From [npc.her] blase attitude, you can tell that [npc.she] has absolutely no qualms about beating people up and stealing their money, although [npc.sheIs] a little nervous talking to you about it."
+							+ " Before you can offer a response, [npc.she] continues,"
+							+ " [npc.speech(So yeah, everything's pretty good for me at the moment. Sure, the location of this place could be better, but it's nice enough!)]"
+						+ "</p>"
+						+ "<p>"
+							+ "Wanting to learn more about the manner in which [npc.she] earns a living, you encourage your [npc.daughter] to talk about [npc.her] situation a little more,"
+								+ " and as you ask a few more questions, [npc.she] starts to get carried away while giving you the details of one of the recent encounters [npc.she] had, ");
 
-					UtilText.nodeContentSB.append(UtilText.returnStringAtRandom(
-							"[npc.speech(... And <i>he</i> was the one who attacked me first! So it was only fair that I robbed him to teach him a lesson!)]",
-							"[npc.speech(... So then as she runs off, she shouts 'You're gonna be sorry when I tell my boyfriend!', and then later this huge horse-boy shows up claiming to be her boyfriend, and I barely managed to get away!)]",
-							"[npc.speech(... And then the enforcers turned up, and I only managed to get away by climbing up a fire escape! That was a close one...)]",
-							"[npc.speech(... So after I'd robbed her, that slutty cat-girl starts begging for me to 'show her no mercy', and drops down on all fours right there in the alley!)]",
-							"[npc.speech(... So as I'm demanding he hands over his wallet, I see something pressing out in his trousers. That horny dog-boy was getting turned on by being robbed!)]"));
-					
-					UtilText.nodeContentSB.append("</p>");
-				}
+				UtilText.nodeContentSB.append(UtilText.returnStringAtRandom(
+						"[npc.speech(... And <i>he</i> was the one who attacked me first! So it was only fair that I robbed him to teach him a lesson!)]",
+						"[npc.speech(... So then as she runs off, she shouts 'You're gonna be sorry when I tell my boyfriend!', and then later this huge horse-boy shows up claiming to be her boyfriend, and I barely managed to get away!)]",
+						"[npc.speech(... And then the enforcers turned up, and I only managed to get away by climbing up a fire escape! That was a close one...)]",
+						"[npc.speech(... So after I'd robbed her, that slutty cat-girl starts begging for me to 'show her no mercy', and drops down on all fours right there in the alley!)]",
+						"[npc.speech(... So as I'm demanding he hands over his wallet, I see something pressing out in his trousers. That horny dog-boy was getting turned on by being robbed!)]"));
+				
+				UtilText.nodeContentSB.append("</p>");
 			}
 			
 			UtilText.nodeContentSB.append(getFooterInformationText());
@@ -1766,15 +1593,9 @@ public class DominionOffspringDialogue {
 					"<p>"
 						+ "Thinking that it must be hard for [npc.name] to make a living out here in Dominion's alleyways, you decide to offer [npc.her] some words of encouragement,");
 			
-			if(offspring().getHistory()==History.NPC_PROSTITUTE) {
-				UtilText.nodeContentSB.append(
-						" [pc.speech(I know that it must be hard to try and make a living out here, so I just wanted you to know that I'm very proud of you, [npc.name].)]"
-						+ "</p>");
-			} else {
-				UtilText.nodeContentSB.append(
-						" [pc.speech(I know that it must be hard to try and make a living out here, so I just wanted you to know that I'm happy to see that you're taking good care of yourself, [npc.name].)]"
-						+ "</p>");
-			}
+			UtilText.nodeContentSB.append(
+					" [pc.speech(I know that it must be hard to try and make a living out here, so I just wanted you to know that I'm happy to see that you're taking good care of yourself, [npc.name].)]"
+					+ "</p>");
 			
 			if(offspring().getPersonality().get(PersonalityTrait.EXTROVERSION) == PersonalityWeight.HIGH || offspring().getPersonality().get(PersonalityTrait.NEUROTICISM) == PersonalityWeight.HIGH) {
 				UtilText.nodeContentSB.append(
@@ -1832,15 +1653,9 @@ public class DominionOffspringDialogue {
 					"<p>"
 						+ "Unimpressed by [npc.namePos] method of making a living, you decide to scold [npc.her] in the hopes that [npc.she]'ll change [npc.her] ways,");
 			
-			if(offspring().getHistory()==History.NPC_PROSTITUTE) {
-				UtilText.nodeContentSB.append(
-						" [pc.speech(I really don't want my [npc.daughter] working as a prostitute. You need to start thinking about getting a real job, [npc.name]!)]"
-						+ "</p>");
-			} else {
-				UtilText.nodeContentSB.append(
-						" [pc.speech(I really don't want my [npc.daughter] out there in Dominion's alleys mugging people. You need to start thinking about getting a real job, [npc.name]!)]"
-						+ "</p>");
-			}
+			UtilText.nodeContentSB.append(
+					" [pc.speech(I really don't want my [npc.daughter] out there in Dominion's alleys mugging people. You need to start thinking about getting a real job, [npc.name]!)]"
+					+ "</p>");
 			
 			if(offspring().getPersonality().get(PersonalityTrait.EXTROVERSION) == PersonalityWeight.HIGH || offspring().getPersonality().get(PersonalityTrait.NEUROTICISM) == PersonalityWeight.HIGH) {
 				UtilText.nodeContentSB.append(
@@ -1999,19 +1814,11 @@ public class DominionOffspringDialogue {
 						+ " The fact that [npc.sheIs] your [npc.daughter] is only serving to make you even more aroused, and as [npc.she] smiles "+(offspring().isFeminine()?"sweetly":"charmigly")+" at you once more, you can't help but act."
 					+ "</p>");
 			
-			if(offspring().getHistory()==History.NPC_PROSTITUTE){
-				UtilText.nodeContentSB.append(
-						"<p>"
-							+ "[pc.speech(So, [npc.name],)] you say, putting on your most seductive voice as you shuffle closer to [npc.herHim] on the sofa,"
-							+ " [pc.speech(you must be pretty experienced in bed, what with your line of work and all... Perhaps you'd like to teach me a few of your tricks?)]"
-						+ "</p>");
-			} else {
-				UtilText.nodeContentSB.append(
-						"<p>"
-							+ "[pc.speech(So, [npc.name],)] you say, putting on your most seductive voice as you shuffle closer to [npc.herHim] on the sofa,"
-							+ " [pc.speech(you must have taken a little more than just cash from some of the people wandering through 'your territory'... Perhaps you'd like to show me some of the things you do to them?)]"
-						+ "</p>");
-			}
+			UtilText.nodeContentSB.append(
+					"<p>"
+						+ "[pc.speech(So, [npc.name],)] you say, putting on your most seductive voice as you shuffle closer to [npc.herHim] on the sofa,"
+						+ " [pc.speech(you must have taken a little more than just cash from some of the people wandering through 'your territory'... Perhaps you'd like to show me some of the things you do to them?)]"
+					+ "</p>");
 			
 			if(offspring().isAttractedTo(Main.game.getPlayer())) {
 				UtilText.nodeContentSB.append(
@@ -2022,22 +1829,7 @@ public class DominionOffspringDialogue {
 						+ "<p>"
 							+ "Reaching up to pull [npc.herHim] close, you eagerly return [npc.namePos] passionate kiss, and, right there in the middle of [npc.her] apartment, you show your [npc.daughter] just how much you love [npc.herHim]..."
 						+ "</p>");
-				
-			} else if(offspring().getHistory()==History.NPC_PROSTITUTE){
-				UtilText.nodeContentSB.append(
-						"<p>"
-							+ "A flicker of worry crosses [npc.namePos] face for a moment, but [npc.she] quickly regains [npc.her] composure."
-							+ " [npc.speech(Well, I <i>could</i> take you as a client, but this is strictly professional, ok? I do love you, but not quite in the same way that I think you love me...)]"
-						+ "</p>"
-						+ "<p>"
-							+ "Although you're disappointed to hear that [npc.sheIs] not interested in having sex with you, you're nonetheless relieved to hear that there's still an opportunity to get what you want."
-							+ " Before you can respond, your [npc.daughter] continues,"
-							+ " [npc.speech(Usually I charge fifty flames for an hour, but it's kind of weird the way you're my [pc.mom] and all, so I'm going to have to charge double.)]"
-						+ "</p>"
-						+ "<p>"
-							+ "You wonder if you should pay [npc.name] the 100 flames that [npc.sheIs] asking for, or just forget it and do something else..."
-						+ "</p>");
-				
+
 			} else {
 				UtilText.nodeContentSB.append(
 						"<p>"
@@ -2081,38 +1873,6 @@ public class DominionOffspringDialogue {
 				} else {
 					return null;
 				}
-				
-			} else if(offspring().getHistory()==History.NPC_PROSTITUTE){
-				if (index == 8) {
-					if(Main.game.getPlayer().getMoney()>=100) {
-						return new ResponseSex("Incestuous sex ("+UtilText.formatAsMoney(100, "span")+")",
-								"Pay your [npc.daughter] 100 flames to get what you want!",
-								true, false,
-								new SMStanding(
-										Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.STANDING_DOMINANT)),
-										Util.newHashMapOfValues(new Value<>(offspring(), SexPositionSlot.STANDING_SUBMISSIVE))),
-								null, AFTER_SEX_CONSENSUAL);
-					} else {
-						return new Response("Pay "+UtilText.formatAsMoneyUncoloured(100, "span"), "You don't have enough money...", null);
-					}
-					
-				} else if (index == 9) {
-					if(Main.game.getPlayer().getMoney()>=100) {
-						return new ResponseSex("Submissive sex ("+UtilText.formatAsMoney(100, "span")+")",
-								"Pay your [npc.daughter] 100 flames to get what you want!",
-								true, false,
-								new SMStanding(
-										Util.newHashMapOfValues(new Value<>(offspring(), SexPositionSlot.STANDING_DOMINANT)),
-										Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.STANDING_SUBMISSIVE))),
-								null, AFTER_SEX_CONSENSUAL);
-					} else {
-						return new Response("Pay "+UtilText.formatAsMoneyUncoloured(100, "span"), "You don't have enough money...", null);
-					}
-				} else {
-					return OFFSPRING_ENCOUNTER_TALKING.getResponse(0, index);
-				}
-				
-				
 			} else {
 				if (index == 8 && Main.game.getDialogueFlags().offspringDialogueTokens>0) {
 					return new Response("Sex", "You've just asked [npc.name] to have sex with you...", null);

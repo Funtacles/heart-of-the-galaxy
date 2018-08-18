@@ -290,58 +290,40 @@ public abstract class AbstractClothing extends AbstractCoreItem implements Seria
 		// Try to load attributes:
 		
 		if(parentElement.getElementsByTagName("attributeModifiers")!=null && parentElement.getElementsByTagName("attributeModifiers").getLength()>0) {
-			if(clothing.getClothingType().getClothingSet()==null) {
-				clothing.getEffects().clear();
-				
-				Element element = (Element)parentElement.getElementsByTagName("attributeModifiers").item(0);
-				NodeList modifierElements = element.getElementsByTagName("modifier");
-				for(int i = 0; i < modifierElements.getLength(); i++){
-					Element e = ((Element)modifierElements.item(i));
-					try {
-						Attribute att = Attribute.valueOf(e.getAttribute("attribute"));
-						int value = Integer.valueOf(e.getAttribute("value"));
-						
-						TFPotency pot = TFPotency.BOOST;
-						if(value <= -5) {
-							pot = TFPotency.MAJOR_DRAIN;
-						} else if(value <= -3) {
-							pot = TFPotency.DRAIN;
-						} else if(value <= -1) {
-							pot = TFPotency.MINOR_DRAIN;
-						} else if(value <= 1) {
-							pot = TFPotency.MINOR_BOOST;
-						} else if(value <= 3) {
-							pot = TFPotency.BOOST;
-						} else {
-							pot = TFPotency.MAJOR_BOOST;
-						}
-						
-						for(TFModifier mod : TFModifier.getClothingAttributeList()) {
-							if(mod.getAssociatedAttribute()==att) {
-								clothing.addEffect(new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, mod, pot, 0));
-								break;
-							}
-						}
-						
-					} catch(Exception ex) {
-					}
-				}
-			}
+			clothing.getEffects().clear();
 			
-		} else {
-			try {
-				clothing.getEffects().clear();
-				
-				Element element = (Element)parentElement.getElementsByTagName("effects").item(0);
-				NodeList effectElements = element.getElementsByTagName("effect");
-				for(int i=0; i<effectElements.getLength(); i++){
-					Element e = ((Element)effectElements.item(i));
-					ItemEffect ie = ItemEffect.loadFromXML(e, doc);
-					if(ie!=null) {
-						clothing.addEffect(ie);
+			Element element = (Element)parentElement.getElementsByTagName("attributeModifiers").item(0);
+			NodeList modifierElements = element.getElementsByTagName("modifier");
+			for(int i = 0; i < modifierElements.getLength(); i++){
+				Element e = ((Element)modifierElements.item(i));
+				try {
+					Attribute att = Attribute.valueOf(e.getAttribute("attribute"));
+					int value = Integer.valueOf(e.getAttribute("value"));
+					
+					TFPotency pot = TFPotency.BOOST;
+					if(value <= -5) {
+						pot = TFPotency.MAJOR_DRAIN;
+					} else if(value <= -3) {
+						pot = TFPotency.DRAIN;
+					} else if(value <= -1) {
+						pot = TFPotency.MINOR_DRAIN;
+					} else if(value <= 1) {
+						pot = TFPotency.MINOR_BOOST;
+					} else if(value <= 3) {
+						pot = TFPotency.BOOST;
+					} else {
+						pot = TFPotency.MAJOR_BOOST;
 					}
+					
+					for(TFModifier mod : TFModifier.getClothingAttributeList()) {
+						if(mod.getAssociatedAttribute()==att) {
+							clothing.addEffect(new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, mod, pot, 0));
+							break;
+						}
+					}
+					
+				} catch(Exception ex) {
 				}
-			} catch(Exception ex) {
 			}
 		}
 
@@ -486,10 +468,6 @@ public abstract class AbstractClothing extends AbstractCoreItem implements Seria
 		
 		descriptionSB.append("</p>");
 
-		if (getClothingType().getClothingSet() != null)
-			descriptionSB.append("<p>" + (getClothingType().isPlural() ? "They are" : "It is") + " part of the <b style='color:" + Colour.RARITY_EPIC.toWebHexString() + ";'>"
-					+ getClothingType().getClothingSet().getName() + "</b> set." + "</p>");
-
 		return descriptionSB.toString();
 	}
 
@@ -510,7 +488,7 @@ public abstract class AbstractClothing extends AbstractCoreItem implements Seria
 		if(rarity==Rarity.LEGENDARY) {
 			return rarity;
 		}
-		if(this.getClothingType().getClothingSet()!=null || rarity==Rarity.RARE) {
+		if(rarity==Rarity.RARE) {
 			return Rarity.EPIC;
 		}
 		
@@ -555,14 +533,6 @@ public abstract class AbstractClothing extends AbstractCoreItem implements Seria
 			}
 		}
 		
-		if (getClothingType().getClothingSet() != null) {
-			if (getClothingType().getClothingSet().getAssociatedStatusEffect().getAttributeModifiers(Main.game.getPlayer()) != null) {
-				for (Float f : getClothingType().getClothingSet().getAssociatedStatusEffect().getAttributeModifiers(Main.game.getPlayer()).values()) {
-					attributeBonuses += f * 15;
-				}
-			}
-		}
-
 		attributeBonuses = Util.getModifiedDropoffValue(attributeBonuses, 500);
 		
 		runningTotal += Math.max(0, attributeBonuses);

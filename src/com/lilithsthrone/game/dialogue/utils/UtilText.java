@@ -35,7 +35,6 @@ import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.gender.GenderPronoun;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DebugDialogue;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
@@ -1039,10 +1038,7 @@ public class UtilText {
 				"Returns the name of this character's job."){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
-				if(character.isSlave()) {
-					return character.getSlaveJob().getName(character);
-				}
-				return character.getHistory().getName();
+				return character.getSlaveJob().getName(character);
 			}
 		});
 		
@@ -5141,16 +5137,7 @@ public class UtilText {
 		for(DialogueFlagValue flag : DialogueFlagValue.values()) {
 			engine.put("FLAG_"+flag.toString(), flag);
 		}
-		for(History history : History.values()) {
-			engine.put("HISTORY_"+history.toString(), history);
-		}
 		engine.put("sex", Main.sexEngine); //TODO static methods don't work...
-		
-//		StringBuilder sb = new StringBuilder();
-//		for(Entry<String, Object> entry : engine.getBindings(ScriptContext.ENGINE_SCOPE).entrySet()) {
-//			sb.append(entry.getKey()+", "+entry.getValue().toString()+"\n");
-//		}
-//		System.out.println(sb.toString());
 	}
 	
 	private static String parseConditionalSyntaxNew(List<GameCharacter> specialNPC, String conditionalStatement, String conditionalTrue, String conditionalFalse) {

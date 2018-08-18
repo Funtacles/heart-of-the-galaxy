@@ -23,7 +23,6 @@ import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.character.race.RacialBody;
-import com.lilithsthrone.game.combat.SpellSchool;
 import com.lilithsthrone.game.dialogue.npcDialogue.unique.LumiDialogue;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
@@ -237,26 +236,6 @@ public class DebugDialogue {
 						}
 					};
 					
-			} else if (index == 21) {
-					return new Response("Reset spells", "Resets all of your spells and upgrades, and removes all of your spell upgrade points.", DEBUG_MENU){
-						@Override
-						public void effects() {
-							Main.game.getPlayer().resetSpells();
-							Main.game.getPlayer().clearSpellUpgradePoints();
-							
-						}
-					};
-					
-			} else if (index == 22) {
-				return new Response("+10 Spell Points", "Add 10 spell points to each spell school.", DEBUG_MENU){
-					@Override
-					public void effects() {
-						for(SpellSchool school : SpellSchool.values()) {
-							Main.game.getPlayer().incrementSpellUpgradePoints(school, 10);
-						}
-					}
-				};
-				
 			} else if (index == 23) {
 				if(Main.game.getPlayer().getLocationPlace().getPlaceType()!=PlaceType.DOMINION_BACK_ALLEYS) {
 					return new Response("Lumi test", "Lumi can only be spawned in alleyway tiles.", null);
@@ -393,12 +372,9 @@ public class DebugDialogue {
 				for(AbstractItemType itemType : itemsTotal) {
 					if((itemTag==null
 							&& (!itemType.getItemTags().contains(ItemTag.BOOK)
-							&& !itemType.getItemTags().contains(ItemTag.ESSENCE)
-							&& !itemType.getItemTags().contains(ItemTag.SPELL_BOOK)
-							&& !itemType.getItemTags().contains(ItemTag.SPELL_SCROLL)))
+							&& !itemType.getItemTags().contains(ItemTag.ESSENCE)))
 							|| (itemTag!=null
-								&& (itemType.getItemTags().contains(itemTag)
-										|| (itemTag==ItemTag.SPELL_BOOK && itemType.getItemTags().contains(ItemTag.SPELL_SCROLL))))) {
+								&& (itemType.getItemTags().contains(itemTag)))) {
 						inventorySB.append("<div class='inventory-item-slot unequipped "+ itemType.getRarity().getName() + "'>"
 												+ "<div class='inventory-icon-content'>"+itemType.getSVGString()+"</div>"
 												+ "<div class='overlay' id='" + itemType.getId() + "_SPAWN'></div>"
@@ -455,7 +431,6 @@ public class DebugDialogue {
 			inventorySB.append("<div class='normal-button' id='ITEM_SPAWN_SELECT' style='width:18%; margin:1%; padding:2px; font-size:0.9em; color:"+Colour.BASE_BLUE_LIGHT.toWebHexString()+";'>Items</div>");
 			inventorySB.append("<div class='normal-button' id='ESSENCE_SPAWN_SELECT' style='width:18%; margin:1%; padding:2px; font-size:0.9em; color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>Essences</div>");
 			inventorySB.append("<div class='normal-button' id='BOOK_SPAWN_SELECT' style='width:18%; margin:1%; padding:2px; font-size:0.9em; color:"+Colour.BASE_ORANGE.toWebHexString()+";'>Books</div>");
-			inventorySB.append("<div class='normal-button' id='SPELL_SPAWN_SELECT' style='width:18%; margin:1%; padding:2px; font-size:0.9em; color:"+Colour.DAMAGE_TYPE_SPELL.toWebHexString()+";'>Spells</div>");
 			inventorySB.append("</div>");
 			
 			return inventorySB.toString();

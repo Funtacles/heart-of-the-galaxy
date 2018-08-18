@@ -164,13 +164,6 @@ public enum Attribute {
 		}
 	},
 	
-	SPELL_COST_MODIFIER(0, 0, 100, "spell efficiency", "Spell efficiency", "shieldIcon", Colour.ATTRIBUTE_MANA, "proficiency", "incompetence", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Reduces the cost of casting spells.";
-		}
-	},
-
 	// Combat attributes:
 
 	CRITICAL_CHANCE(5, 0, 100, "critical hit chance", "Critical chance", "shieldIcon", Colour.ATTRIBUTE_HEALTH, "luck", "misfortune", null) {
@@ -189,13 +182,13 @@ public enum Attribute {
 	DODGE_CHANCE(0, 0, 100, "dodge chance", "Dodge chance", "shieldIcon", Colour.GENERIC_EXCELLENT, "evasion", "sluggishness", null) {
 		@Override
 		public String getDescription(GameCharacter owner) {
-			return "Increases the chance of dodging attacks and spells.";
+			return "Increases the chance of dodging attacks.";
 		}
 	},
 	MISS_CHANCE(0, 0, 100, "miss chance", "Miss chance", "shieldIcon", Colour.GENERIC_TERRIBLE, "poor aim", "true striking", null) {
 		@Override
 		public String getDescription(GameCharacter owner) {
-			return "Increases the chance of missing with attacks and spells in combat.";
+			return "Increases the chance of missing with attacks in combat.";
 		}
 	},
 
@@ -259,13 +252,6 @@ public enum Attribute {
 		}
 	},
 	
-	DAMAGE_SPELLS(0, -100, 100, "spell damage", "Spell damage", "swordIcon", Colour.ATTRIBUTE_MANA, "arcane power", "arcane dulling", null) {
-		@Override
-		public String getDescription(GameCharacter owner) {
-			return "Increases spell damage.";
-		}
-	},
-
 	DAMAGE_PHYSICAL(0, -100, 100, "physical damage", "Physical damage", "swordIcon", Colour.DAMAGE_TYPE_PHYSICAL, "force", "softness", null) {
 		@Override
 		public String getDescription(GameCharacter owner) {
@@ -479,7 +465,6 @@ public enum Attribute {
 		attributeBonusesForEnchanting.add(Attribute.CRITICAL_CHANCE);
 		attributeBonusesForEnchanting.add(Attribute.CRITICAL_DAMAGE);
 
-		attributeBonusesForEnchanting.add(Attribute.SPELL_COST_MODIFIER);
 
 		attributeBonusesForEnchanting.add(Attribute.RESISTANCE_PHYSICAL);
 		attributeBonusesForEnchanting.add(Attribute.RESISTANCE_FIRE);
@@ -487,7 +472,6 @@ public enum Attribute {
 		attributeBonusesForEnchanting.add(Attribute.RESISTANCE_POISON);
 
 		attributeBonusesForEnchanting.add(Attribute.DAMAGE_PHYSICAL);
-		attributeBonusesForEnchanting.add(Attribute.DAMAGE_SPELLS);
 		attributeBonusesForEnchanting.add(Attribute.DAMAGE_FIRE);
 		attributeBonusesForEnchanting.add(Attribute.DAMAGE_ICE);
 		attributeBonusesForEnchanting.add(Attribute.DAMAGE_POISON);

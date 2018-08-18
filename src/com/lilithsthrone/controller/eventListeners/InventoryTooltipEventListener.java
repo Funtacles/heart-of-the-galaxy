@@ -22,7 +22,6 @@ import com.lilithsthrone.game.character.markings.TattooCounterType;
 import com.lilithsthrone.game.character.markings.TattooWritingStyle;
 import com.lilithsthrone.game.combat.Attack;
 import com.lilithsthrone.game.combat.DamageType;
-import com.lilithsthrone.game.combat.Spell;
 import com.lilithsthrone.game.dialogue.utils.EnchantmentDialogue;
 import com.lilithsthrone.game.dialogue.utils.InventoryDialogue;
 import com.lilithsthrone.game.dialogue.utils.InventoryInteraction;
@@ -721,7 +720,6 @@ public class InventoryTooltipEventListener implements EventListener {
 		
 		int yIncrease = 0;
 		int listIncrease = absWep.getAttributeModifiers().size();
-		listIncrease += absWep.getSpells().size();
 		yIncrease += Math.max(0, listIncrease-3);
 		
 		
@@ -757,25 +755,12 @@ public class InventoryTooltipEventListener implements EventListener {
 							+ " <b style='color:" + absWep.getDamageType().getMultiplierAttribute().getColour().toWebHexString() + ";'>Damage</b>");
 		}
 
-//		if (absWep.getEffects().size() != 0) { TODO enchanting effects
-//			for (ItemEffect e : absWep.getEffects()) {
-//				for(String s : e.getEffectsDescription(owner, owner)) {
-//					tooltipSB.append("<br/>"+ s);
-//				}
-//			}
 			for(Entry<Attribute, Integer> entry : absWep.getAttributeModifiers().entrySet()) {
 				tooltipSB.append("<br/>"+ 
 						(entry.getValue()<0
 								?"[style.boldBad("+entry.getValue()+")] "
 								:"[style.boldGood(+"+entry.getValue()+")] ")
 						+ "<b style='color:"+entry.getKey().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(entry.getKey().getName())+"</b>");
-			}
-//		} else {
-//			tooltipSB.append("<br/>[style.colourDisabled(No bonuses)]");
-//		}
-		
-			for(Spell s : absWep.getSpells()) {
-				tooltipSB.append("<br/><b style='color:"+Colour.DAMAGE_TYPE_SPELL.toWebHexString()+";'>Grants Spell</b><b>:</b> <b style='color:"+s.getSpellSchool().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(s.getName())+"</b>");
 			}
 			
 		tooltipSB.append("</div>");
@@ -860,9 +845,6 @@ public class InventoryTooltipEventListener implements EventListener {
 
 		// Core info:
 		tooltipSB.append("<div class='container-half-width titular'>" + Util.capitaliseSentence(absClothing.getClothingType().getSlot().getName()) + "</div>");
-		tooltipSB.append("<div class='container-half-width titular'>"
-							+ (absClothing.getClothingType().getClothingSet() == null ? "<span style='color:" + Colour.TEXT_GREY.toWebHexString() + ";'>Not part of a set</span>" : absClothing.getClothingType().getClothingSet().getName() + " set")
-						+ "</div>");
 		
 		// Attribute modifiers:
 		tooltipSB.append("<div class='container-full-width'>"

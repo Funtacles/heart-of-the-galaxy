@@ -41,8 +41,6 @@ public enum ItemTag {
 	DILDO_GIGANTIC, // 22 inches
 	DILDO_STALLION, // 32 inches
 	
-	SPELL_BOOK,
-	SPELL_SCROLL,
 	ESSENCE,
 	ATTRIBUTE_TF_ITEM,
 	RACIAL_TF_ITEM,

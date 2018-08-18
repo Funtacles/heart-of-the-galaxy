@@ -3,7 +3,6 @@ package com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.quests.Quest;
 import com.lilithsthrone.game.character.quests.QuestLine;
@@ -285,40 +284,21 @@ public class SupplierDepot {
 		
 		@Override
 		public String getContent() {
-			if(Main.game.getPlayer().hasStatusEffect(StatusEffect.SET_ENFORCER)) {
-				return UtilText.parseFromXMLFile("places/dominion/shoppingArcade/suppliersDepot", "OFFICE_ENFORCER_REACTION");
-			} else {
-				return UtilText.parseFromXMLFile("places/dominion/shoppingArcade/suppliersDepot", "OFFICE");
-			}
+			return UtilText.parseFromXMLFile("places/dominion/shoppingArcade/suppliersDepot", "OFFICE");
 		}
 		
 		@Override
 		public Response getResponse(int responseTab, int index) {
 			if (index == 1) {
-				if(Main.game.getPlayer().hasStatusEffect(StatusEffect.SET_ENFORCER)) {
-					return new Response("Convince", "It'd be better to try and play on the fact that Wolfgang has mistaken you for an enforcer...", null);
-				} else {
-					return new Response("Convince", "Try and convince Wolfgang and Karl to let the other suppliers return.", SUPPLIER_DEPOT_OFFICE_CONVINCE) {
-						@Override
-						public void effects() {
-							Main.game.getDialogueFlags().setFlag(DialogueFlagValue.suppliersTriedConvincing, true);
-						}
-					};
-				}
+				return new Response("Convince", "Try and convince Wolfgang and Karl to let the other suppliers return.", SUPPLIER_DEPOT_OFFICE_CONVINCE) {
+					@Override
+					public void effects() {
+						Main.game.getDialogueFlags().setFlag(DialogueFlagValue.suppliersTriedConvincing, true);
+					}
+				};
 				
 			} else if (index == 2) {
-				if(Main.game.getPlayer().hasStatusEffect(StatusEffect.SET_ENFORCER)) {
-					return new Response("Enforcer Bluff", "Use this opportunity to convince Wolfgang and Karl to let the other suppliers return.", SUPPLIER_DEPOT_OFFICE_ENFORCER_BLUFF) {
-						@Override
-						public void effects() {
-							applySuppliersBeatenEffects();
-						}
-					};
-					
-				} else {
-					return new Response("Enforcer Bluff", "You'd need to be wearing an Enforcer's uniform in order to attempt this!", null);
-				}
-				
+				return new Response("Enforcer Bluff", "You'd need to be wearing an Enforcer's uniform in order to attempt this!", null);
 			} else if (index == 3) {
 				return new ResponseCombat("Fight", "Immediately launch into combat!",
 						Util.newArrayListOfValues(
@@ -351,11 +331,7 @@ public class SupplierDepot {
 				return UtilText.parseFromXMLFile("places/dominion/shoppingArcade/suppliersDepot", "OFFICE_PACIFIED");
 			}
 			
-			if(Main.game.getPlayer().hasStatusEffect(StatusEffect.SET_ENFORCER)) {
-				return UtilText.parseFromXMLFile("places/dominion/shoppingArcade/suppliersDepot", "OFFICE_REPEAT_ENFORCER_REACTION");
-			} else {
-				return UtilText.parseFromXMLFile("places/dominion/shoppingArcade/suppliersDepot", "OFFICE_REPEAT");
-			}
+			return UtilText.parseFromXMLFile("places/dominion/shoppingArcade/suppliersDepot", "OFFICE_REPEAT");
 		}
 		
 		@Override
@@ -427,18 +403,7 @@ public class SupplierDepot {
 				return new Response("Convince", "You are already trying to convince them!", null);
 				
 			} else if (index == 2) {
-				if(Main.game.getPlayer().hasStatusEffect(StatusEffect.SET_ENFORCER)) {
-					return new Response("Enforcer Bluff", "Convince the suppliers that you're an enforcer, and that they should do as you say.", SUPPLIER_DEPOT_OFFICE_ENFORCER_BLUFF) {
-						@Override
-						public void effects() {
-							applySuppliersBeatenEffects();
-						}
-					};
-					
-				} else {
-					return new Response("Enforcer Bluff", "You'd need to be wearing an Enforcer's uniform in order to attempt this!", null);
-				}
-				
+				return new Response("Enforcer Bluff", "You'd need to be wearing an Enforcer's uniform in order to attempt this!", null);
 			} else if (index == 3) {
 				return new ResponseCombat("Fight", "It looks as though you're left with no choice but to fight!",
 						Util.newArrayListOfValues(

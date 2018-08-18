@@ -28,7 +28,6 @@ import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.gender.GenderPronoun;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.dialogue.DebugDialogue;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -410,9 +409,6 @@ public class Parser {
 		}
 		for(DialogueFlagValue flag : DialogueFlagValue.values()) {
 			engine.put("FLAG_"+flag.toString(), flag);
-		}
-		for(History history : History.values()) {
-			engine.put("HISTORY_"+history.toString(), history);
 		}
 		engine.put("sex", Main.sexEngine); //TODO static methods don't work...
 	}
@@ -818,7 +814,7 @@ public class Parser {
 			@Override
 			public String parse(String command, String arguments, GameCharacter target) {
 				boolean article = StringUtils.startsWithAny(command, "a_", "A_");
-				String result = target.isSlave() ? target.getSlaveJob().getName(target) : target.getHistory().getName();
+				String result = target.getSlaveJob().getName(target);
 
 				if(article){
 					result = UtilText.generateSingularDeterminer(result);

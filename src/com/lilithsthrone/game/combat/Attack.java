@@ -6,7 +6,6 @@ import com.lilithsthrone.game.character.effects.Perk;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.persona.SexualOrientation;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
-import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Util;
 
 /**
@@ -21,7 +20,6 @@ public enum Attack {
 	OFFHAND("offhand"),
 	DUAL("dual strike"),
 	SEDUCTION("seduction"),
-	SPELL("spell"),
 	SPECIAL_ATTACK("special attack"),
 	USE_ITEM("use item"),
 	ESCAPE("escape"),
@@ -61,16 +59,7 @@ public enum Attack {
 	}
 
 	public static boolean rollForCritical(GameCharacter attacker, GameCharacter defender) {
-		return rollForCritical(attacker, defender, null);
-	}
-	
-	
-	public static boolean rollForCritical(GameCharacter attacker, GameCharacter defender, Spell spell) {
 		float criticalChance = attacker.getAttributeValue(Attribute.CRITICAL_CHANCE);
-		
-		if(spell == Spell.ICE_SHARD && attacker.hasSpellUpgrade(SpellUpgrade.ICE_SHARD_2) && defender.hasStatusEffect(StatusEffect.FREEZING_FOG)) {
-			criticalChance += 25;
-		}
 		
 		return Math.random() < (Util.getModifiedDropoffValue(criticalChance, 100)/100f);
 	}
@@ -120,39 +109,7 @@ public enum Attack {
 		// Round float value to nearest 1 decimal place:
 		damage = (Math.round(damage*10))/10f;
 
-		if(attacker.hasTrait(Perk.JOB_SOLDIER, true) && Main.game.isInCombat() && Combat.getTurn()==0) {
-			return 2 * damage;
-		} else {
-			return damage;
-		}
-	}
-	
-	public static float calculateSpellDamage(GameCharacter attacker, GameCharacter defender, DamageType damageType, float damage, DamageVariance damageVariance, boolean critical) {
-
-		float minimumDamage = getMinimumSpellDamage(attacker, defender, damageType, damage, damageVariance);
-		float maximumDamage = getMaximumSpellDamage(attacker, defender, damageType, damage, damageVariance);
-
-		float difference = maximumDamage - minimumDamage;
-		float finalDamage = minimumDamage;
-		
-		// Add variation:
-		if (difference > 0) {
-			finalDamage += Math.random()*difference;
-		}
-
-		// Is critical:
-		if (critical) {
-			finalDamage *= (attacker.getAttributeValue(Attribute.CRITICAL_DAMAGE) / 100f);
-		}
-		
-		// Round float value to nearest 1 decimal place:
-		finalDamage = (Math.round(finalDamage*10))/10f;
-		
-		if(attacker.hasTrait(Perk.JOB_SOLDIER, true) && Main.game.isInCombat() && Combat.getTurn()==0) {
-			return 2 * finalDamage;
-		} else {
-			return finalDamage;
-		}
+		return damage;
 	}
 	
 	public static float calculateSpecialAttackDamage(GameCharacter attacker, GameCharacter defender, DamageType damageType, float damage, DamageVariance damageVariance, boolean critical) {
@@ -176,11 +133,7 @@ public enum Attack {
 		// Round float value to nearest 1 decimal place:
 		finalDamage = (Math.round(finalDamage*10))/10f;
 
-		if(attacker.hasTrait(Perk.JOB_SOLDIER, true) && Main.game.isInCombat() && Combat.getTurn()==0) {
-			return 2 * finalDamage;
-		} else {
-			return finalDamage;
-		}
+		return finalDamage;
 	}
 
 	/**
@@ -309,23 +262,6 @@ public enum Attack {
 		
 		return damage;
 	}
-
-	public static float getMinimumSpellDamage(GameCharacter attacker, GameCharacter defender, DamageType damageType, float damage, DamageVariance damageVariance) {
-		float minDamage = getModifiedDamage(attacker, defender, Attack.SPELL, damageType, damage * (1 - damageVariance.getPercentage()));
-
-		// Round float value to nearest 1 decimal place:
-		minDamage = (Math.round(minDamage*10))/10f;
-		
-		return minDamage;
-	}
-	public static float getMaximumSpellDamage(GameCharacter caster, GameCharacter target, DamageType damageType, float damage, DamageVariance damageVariance) {
-		float maxDamage = getModifiedDamage(caster, target, Attack.SPELL, damageType, damage * (1 + damageVariance.getPercentage()));
-
-		// Round float value to nearest 1 decimal place:
-		maxDamage = (Math.round(maxDamage*10))/10f;
-		
-		return maxDamage;
-	}
 	
 	public static float getMinimumSpecialAttackDamage(GameCharacter attacker, GameCharacter defender, DamageType damageType, float damage, DamageVariance damageVariance) {
 		float minDamage = getModifiedDamage(attacker, defender, Attack.SPECIAL_ATTACK, damageType, damage * (1 - damageVariance.getPercentage()));
@@ -387,21 +323,6 @@ public enum Attack {
 					damage = 1;
 				}
 			}
-			
-		} else if(attackType == SPELL) {
-			if (attacker != null) {
-				// Attacker modifiers:
-				damage *= 1 + Util.getModifiedDropoffValue(attacker.getAttributeValue(Attribute.DAMAGE_SPELLS), 100)/100f;
-
-				damage *= 1 + Util.getModifiedDropoffValue(attacker.getAttributeValue(damageType.getMultiplierAttribute()), 100)/100f;
-			}
-
-			if (defender != null && !defender.hasStatusEffect(StatusEffect.DESPERATE_FOR_SEX)) {
-				// Defender modifiers:
-				damage *= 1 - Util.getModifiedDropoffValue(defender.getAttributeValue(damageType.getResistAttribute()), 100)/100f;
-				
-			}
-			
 		} else {
 
 			if (attacker != null) {

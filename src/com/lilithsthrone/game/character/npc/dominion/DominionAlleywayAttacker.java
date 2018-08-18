@@ -1,20 +1,16 @@
 package com.lilithsthrone.game.character.npc.dominion;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.lilithsthrone.game.Weather;
 import com.lilithsthrone.game.character.CharacterImportSetting;
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.misc.GenericSexualPartner;
-import com.lilithsthrone.game.character.persona.History;
 import com.lilithsthrone.game.character.persona.Name;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
@@ -23,7 +19,6 @@ import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.npcDialogue.SlaveDialogue;
 import com.lilithsthrone.game.dialogue.npcDialogue.dominion.AlleywayAttackerDialogue;
 import com.lilithsthrone.game.dialogue.npcDialogue.dominion.AlleywayAttackerDialogueCompanions;
-import com.lilithsthrone.game.dialogue.npcDialogue.dominion.AlleywayProstituteDialogue;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.CharacterInventory;
@@ -170,9 +165,6 @@ public class DominionAlleywayAttacker extends NPC {
 			// PERSONALITY & BACKGROUND:
 			
 			CharacterUtils.setHistoryAndPersonality(this, true);
-			if(Main.game.getCurrentWeather()==Weather.MAGIC_STORM) {
-				this.setHistory(History.NPC_MUGGER);
-			}
 			
 			// ADDING FETISHES:
 			
@@ -214,54 +206,13 @@ public class DominionAlleywayAttacker extends NPC {
 	}
 	
 	@Override
-	public void hourlyUpdate() {
-		if(this.getHistory()==History.NPC_PROSTITUTE && this.getLocationPlace().getPlaceType()==PlaceType.ANGELS_KISS_BEDROOM) {
-			// Remove client:
-			List<NPC> charactersPresent = Main.game.getCharactersPresent(this.getWorldLocation(), this.getLocation());
-			if(charactersPresent.size()>1) {
-				for(NPC npc : charactersPresent) {
-					if(npc instanceof GenericSexualPartner) {
-	//					System.out.println("partner removed for "+slave.getName());
-						Main.game.banishNPC(npc);
-					}
-				}
-				
-			} else if(Math.random()<0.33f) { // Add client:
-				GenericSexualPartner partner;
-				
-				if(Math.random()<0.25f) {
-					partner = new GenericSexualPartner(Gender.F_P_V_B_FUTANARI, this.getWorldLocation(), this.getLocation(), false);
-				} else {
-					partner = new GenericSexualPartner(Gender.M_P_MALE, this.getWorldLocation(), this.getLocation(), false);
-				}
-				try {
-					Main.game.addNPC(partner, false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-	
-	@Override
 	public String getDescription() {
-		if(this.getHistory()==History.NPC_PROSTITUTE) {
-			if(this.isSlave()) {
-				return (UtilText.parse(this,
-						"[npc.NamePos] days of whoring [npc.herself] out in the back alleys of Dominion are now over. Having run afoul of the law, [npc.sheIs] now a slave, and is no more than [npc.her] owner's property."));
-			} else {
-				return (UtilText.parse(this,
-						"[npc.Name] is a prostitute who whores [npc.herself] out in the backalleys of Dominion."));
-			}
-			
+		if(this.isSlave()) {
+			return (UtilText.parse(this,
+					"[npc.NamePos] days of prowling the back alleys of Dominion and mugging innocent travellers are now over. Having run afoul of the law, [npc.sheIs] now a slave, and is no more than [npc.her] owner's property."));
 		} else {
-			if(this.isSlave()) {
-				return (UtilText.parse(this,
-						"[npc.NamePos] days of prowling the back alleys of Dominion and mugging innocent travellers are now over. Having run afoul of the law, [npc.sheIs] now a slave, and is no more than [npc.her] owner's property."));
-			} else {
-				return (UtilText.parse(this,
-						"[npc.Name] is a resident of Dominion, who prowls the back alleys in search of innocent travellers to mug and rape."));
-			}
+			return (UtilText.parse(this,
+					"[npc.Name] is a resident of Dominion, who prowls the back alleys in search of innocent travellers to mug and rape."));
 		}
 	}
 	
@@ -291,16 +242,10 @@ public class DominionAlleywayAttacker extends NPC {
 				|| pt == PlaceType.DOMINION_ALLEYS_CANAL_CROSSING
 				|| pt == PlaceType.DOMINION_CANAL_END) {
 			
-			if(this.getHistory()==History.NPC_PROSTITUTE) {
-				this.setPlayerKnowsName(true);
-				return AlleywayProstituteDialogue.ALLEY_PROSTITUTE;
-				
+			if(Main.game.getPlayer().getCompanions().isEmpty()) {
+				return AlleywayAttackerDialogue.ALLEY_ATTACK;
 			} else {
-				if(Main.game.getPlayer().getCompanions().isEmpty()) {
-					return AlleywayAttackerDialogue.ALLEY_ATTACK;
-				} else {
-					return AlleywayAttackerDialogueCompanions.ALLEY_ATTACK;
-				}
+				return AlleywayAttackerDialogueCompanions.ALLEY_ATTACK;
 			}
 			
 		} else {
@@ -312,25 +257,17 @@ public class DominionAlleywayAttacker extends NPC {
 
 	@Override
 	public Response endCombat(boolean applyEffects, boolean victory) {
-		if(this.getHistory()==History.NPC_PROSTITUTE) {
+		if(Main.game.getPlayer().getCompanions().isEmpty()) {
 			if (victory) {
-				return new Response("", "", AlleywayProstituteDialogue.AFTER_COMBAT_VICTORY);
+				return new Response("", "", AlleywayAttackerDialogue.AFTER_COMBAT_VICTORY);
 			} else {
-				return new Response ("", "", AlleywayProstituteDialogue.AFTER_COMBAT_DEFEAT);
+				return new Response ("", "", AlleywayAttackerDialogue.AFTER_COMBAT_DEFEAT);
 			}
 		} else {
-			if(Main.game.getPlayer().getCompanions().isEmpty()) {
-				if (victory) {
-					return new Response("", "", AlleywayAttackerDialogue.AFTER_COMBAT_VICTORY);
-				} else {
-					return new Response ("", "", AlleywayAttackerDialogue.AFTER_COMBAT_DEFEAT);
-				}
+			if (victory) {
+				return new Response("", "", AlleywayAttackerDialogueCompanions.AFTER_COMBAT_VICTORY);
 			} else {
-				if (victory) {
-					return new Response("", "", AlleywayAttackerDialogueCompanions.AFTER_COMBAT_VICTORY);
-				} else {
-					return new Response ("", "", AlleywayAttackerDialogueCompanions.AFTER_COMBAT_DEFEAT);
-				}
+				return new Response ("", "", AlleywayAttackerDialogueCompanions.AFTER_COMBAT_DEFEAT);
 			}
 		}
 	}

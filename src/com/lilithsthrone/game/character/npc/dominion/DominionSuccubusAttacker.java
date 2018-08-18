@@ -20,8 +20,6 @@ import com.lilithsthrone.game.character.persona.Name;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
-import com.lilithsthrone.game.combat.Spell;
-import com.lilithsthrone.game.combat.SpellUpgrade;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.npcDialogue.dominion.DominionSuccubusDialogue;
 import com.lilithsthrone.game.dialogue.responses.Response;
@@ -96,10 +94,6 @@ public class DominionSuccubusAttacker extends NPC {
 			this.equipClothing(true, false);
 			
 			CharacterUtils.applyMakeup(this, true);
-			
-			this.addSpell(Spell.ARCANE_AROUSAL);
-			this.addSpell(Spell.TELEPATHIC_COMMUNICATION);
-			this.addSpellUpgrade(SpellUpgrade.TELEPATHIC_COMMUNICATION_1);
 			
 			setMana(getAttributeValue(Attribute.MANA_MAXIMUM));
 			setHealth(getAttributeValue(Attribute.HEALTH_MAXIMUM));

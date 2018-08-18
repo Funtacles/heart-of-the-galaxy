@@ -5,13 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import com.lilithsthrone.game.character.effects.Perk;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.markings.AbstractTattooType;
 import com.lilithsthrone.game.character.markings.Tattoo;
-import com.lilithsthrone.game.combat.SpellSchool;
 import com.lilithsthrone.game.dialogue.utils.EnchantmentDialogue;
 import com.lilithsthrone.game.inventory.AbstractCoreItem;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
@@ -133,16 +131,6 @@ public class EnchantingUtils {
 		return Util.capitaliseSentence(finalPotionName);
 	}
 	
-	
-	
-	private static Set<TFModifier> freePrimaryModifiers = Util.newHashSetOfValues(TFModifier.TF_MOD_WETNESS, TFModifier.TF_MILK, TFModifier.TF_CUM, TFModifier.TF_GIRLCUM);
-	private static Set<TFModifier> freeSecondaryModifiers = Util.newHashSetOfValues(TFModifier.TF_MOD_WETNESS, TFModifier.TF_MOD_REGENERATION, TFModifier.TF_MOD_CUM_EXPULSION);
-	
-	private static boolean isEffectFreeForWaterSchool(ItemEffect effect) {
-		return freePrimaryModifiers.contains(effect.getPrimaryModifier())
-				|| freeSecondaryModifiers.contains(effect.getSecondaryModifier());
-	}
-	
 	private static int applyDiscountsForPerksAndFetishes(AbstractCoreItem ingredient, int cost) {
 		if(Main.game.getPlayer().hasFetish(Fetish.FETISH_TRANSFORMATION_GIVING) && ingredient instanceof AbstractItem) {
 			cost/=2;
@@ -154,12 +142,6 @@ public class EnchantingUtils {
 	}
 	
 	public static int getModifierEffectCost(AbstractCoreItem ingredient, ItemEffect effect) {
-		if(!(ingredient instanceof Tattoo)
-				&& Main.game.getPlayer().isSpellSchoolSpecialAbilityUnlocked(SpellSchool.WATER)
-				&& isEffectFreeForWaterSchool(effect)) {
-			return 0;
-		}
-		
 		return applyDiscountsForPerksAndFetishes(ingredient, effect.getCost());
 	}
 	
@@ -174,10 +156,6 @@ public class EnchantingUtils {
 			} else {
 				effectCount.merge(ie, 1, Integer::sum);
 			}
-		}
-		
-		if (!(ingredient instanceof Tattoo) && Main.game.getPlayer().isSpellSchoolSpecialAbilityUnlocked(SpellSchool.WATER)) {
-			effectCount.keySet().removeIf(EnchantingUtils::isEffectFreeForWaterSchool);
 		}
 		
 		int cost = 0;

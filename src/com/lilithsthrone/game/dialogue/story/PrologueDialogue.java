@@ -11,7 +11,6 @@ import com.lilithsthrone.game.character.body.valueEnums.Femininity;
 import com.lilithsthrone.game.character.quests.Quest;
 import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.combat.DamageType;
-import com.lilithsthrone.game.combat.Spell;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.RoomPlayer;
 import com.lilithsthrone.game.dialogue.responses.Response;
@@ -20,9 +19,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
-import com.lilithsthrone.game.inventory.item.AbstractItem;
-import com.lilithsthrone.game.inventory.item.AbstractItemType;
-import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.game.inventory.weapon.WeaponType;
 import com.lilithsthrone.game.sex.Sex;
@@ -42,86 +38,6 @@ import com.lilithsthrone.world.places.PlaceType;
  */
 public class PrologueDialogue {
 
-//	public static final DialogueNodeOld INTRO = new DialogueNodeOld("", "", true) {
-//		private static final long serialVersionUID = 1L;
-//
-//		@Override
-//		public String getContent() {
-//			return "<h1 class='specialText'>Lilith's Throne</h1>"
-//					+ "<h5 class='specialText'>An erotic fantasy game by Innoxia</h5>"
-//					+ "<br/>"
-//
-//					+ "<p>"
-//					+ "So, it is as you feared. The opening party for the museum's new exhibition is <i>really</i> boring."
-//					+ " As you stifle a yawn, you remind yourself that you're wasting your Friday evening because you promised your aunt Lily that you'd be here to support her."
-//					+ "</p>"
-//
-//					+ "<p>"
-//					+ "You're in the lobby of the city museum, surrounded by the dullest collection of historians and professors you've ever encountered."
-//					+ " Everyone's waiting here for Lily's colleague, Arthur, to show up so that he can give a speech about the new exhibit that's opening tonight."
-//					+ " He's five minutes late already, and you see Lily shuffling about nervously off-stage as the crowd grows more and more impatient."
-//					+ "</p>"
-//
-//					+ "<p>"
-//					+ "You last saw Arthur offering to show some guests around the exhibit, and, knowing him, he must have got carried away and lost track of time."
-//					+ " You know that if he doesn't turn up soon, Lily will really start to worry and get upset."
-//					+ " Perhaps you should go and find him. After all, the sooner he gives his speech, the sooner you can leave and salvage what remains of your Friday night."
-//					+ "</p>";
-//		}
-//
-//		@Override
-//		public Response getResponse(int responseTab, int index) {
-//			if (index == 1) {
-//				return new Response("Search", "Go and search the museum for Arthur.", INTRO_2);
-//			} else if (index == 2) {
-//				return new Response("Wait", "Wait patiently for Arthur to turn up. Surely he won't be too much longer...", INTRO_1A);
-//			} else {
-//				return null;
-//			}
-//		}
-//	};
-//
-//	public static final DialogueNodeOld INTRO_1A = new DialogueNodeOld("", "", true, true) {
-//		private static final long serialVersionUID = 1L;
-//
-//		@Override
-//		public String getContent() {
-//			return UtilText.parseNPCSpeech("Oh I say, you look like the sort who's read Morrison's latest theory about trilingualism in the Akkadian Empire."
-//					+ " What are your thoughts on his new research?", Femininity.MASCULINE)
-//
-//					+ "<p>You turn your head to see an elderly-looking man staring right at you, waiting for a response to his question."
-//					+ " Several of the other guests are looking at you closely, curious to hear your thoughts on the matter.</p>"
-//
-//					+ "<p>"
-//					+ "[pc.speech(Oh, sorry, I'm here by invite of my aunt Lily. I don't actually know anything about history or this exhibit.)]"
-//					+ "</p>"
-//
-//					+ "<p>A smile spreads across the man's face as he realises he's found someone to lecture. You only just manage to stop yourself from letting out a"
-//					+ " despairing groan as he begins his lesson, "
-//					+ UtilText.parseNPCSpeech("Well, allow me to educate you then! As Morrison has so brilliantly observ-", Femininity.MASCULINE)
-//					+ "</p>"
-//
-//					+ "<p>A lady standing close by suddenly interrupts the start of his speech, "
-//					+ UtilText.parseNPCSpeech("Brilliant?! Hardly! There's no way his research is accurate, I think you'll find tha-", Femininity.FEMININE)
-//					+ "</p>"
-//
-//					+ "<p>The man turns to her and swiftly cuts off her objections, "
-//					+ UtilText.parseNPCSpeech("Bah! I bet you're the sort who actually considers Smith's twenty-volume work to be...", Femininity.MASCULINE)
-//					+ "</p>"
-//
-//					+ "<p>Sensing your moment to flee, you step back from the bickering pair and swiftly escape from the crowd.</p>";
-//		}
-//		
-//		@Override
-//		public Response getResponse(int responseTab, int index) {
-//			if (index == 1) {
-//				return new Response("Search", "Go and search the museum for Arthur.", INTRO_2);
-//			} else {
-//				return null;
-//			}
-//		}
-//	};
-	
 	private static boolean femalePrologueNPC() {
 		return CharacterCreation.femalePrologueNPC();
 	}
@@ -1803,9 +1719,6 @@ public class PrologueDialogue {
 					public void effects() {
 						Main.game.getPlayer().incrementMoney(500);
 						Main.game.getTextStartStringBuilder().append(Main.game.getPlayer().setQuestProgress(QuestLine.MAIN, Quest.MAIN_1_A_LILAYAS_TESTS));
-						AbstractItem spellBook = AbstractItemType.generateItem(ItemType.getSpellBookType(Spell.ICE_SHARD));
-						Main.game.getPlayerCell().getInventory().addItem(spellBook);
-						Main.game.getTextEndStringBuilder().append("<p style='text-align:center;'>[style.boldExcellent("+spellBook.getName()+")] added to your room's storage!</p>");
 					}
 				};
 				

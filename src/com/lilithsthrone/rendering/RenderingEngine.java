@@ -30,8 +30,6 @@ import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.combat.Combat;
 import com.lilithsthrone.game.combat.SpecialAttack;
-import com.lilithsthrone.game.combat.Spell;
-import com.lilithsthrone.game.combat.SpellUpgrade;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.DialogueNodeType;
 import com.lilithsthrone.game.dialogue.eventLog.EventLogEntry;
@@ -1312,30 +1310,6 @@ public enum RenderingEngine {
 	public String getFullMap(WorldType world, boolean withFastTravel) {
 		mapSB.setLength(0);
 		
-		if(withFastTravel) {
-			boolean isAbleToTeleport = Main.game.getPlayer().isAbleToTeleport()
-					&& Main.game.getSavedDialogueNode().equals(Main.game.getPlayer().getLocationPlace().getDialogue(false))
-					&& Main.game.getPlayer().getMana()>=Spell.TELEPORT.getModifiedCost(Main.game.getPlayer());
-			
-			if(Main.game.getPlayer().hasSpell(Spell.TELEPORT)) {
-				mapSB.append("<div class='container-full-width'>"
-						+ (isAbleToTeleport
-								?"[style.boldArcane(Teleport:)] You are currently able to teleport! This will cost <b>"+Spell.TELEPORT.getModifiedCost(Main.game.getPlayer())+"</b> "+Attribute.MANA_MAXIMUM.getColouredName("b")+"."
-								:"[style.boldBad(Teleport:)] Teleport is unavailable! You need to:"
-									+(!Main.game.getPlayer().getCompanions().isEmpty() && !Main.game.getPlayer().hasSpellUpgrade(SpellUpgrade.TELEPORT_2)
-										?"<br/><b>-</b> Either learn the upgrade '"+SpellUpgrade.TELEPORT_2.getName()+"', or dismiss your party members."
-										:"")
-									+(!Main.game.getSavedDialogueNode().equals(Main.game.getPlayer().getLocationPlace().getDialogue(false))
-										?"<br/><b>-</b> Not be in the middle of a special scene."
-										:"")
-									+(Main.game.getPlayer().getMana()<Spell.TELEPORT.getModifiedCost(Main.game.getPlayer())
-											?"<br/><b>-</b> Have at least <b>"+Spell.TELEPORT.getModifiedCost(Main.game.getPlayer())+"</b> "+Attribute.MANA_MAXIMUM.getColouredName("b")+"."
-											:""))
-						
-						+ "</div>");
-			}
-		}
-
 		Cell[][] grid = Main.game.getWorlds().get(world).getGrid();
 		int divWidth = (Math.min(75, grid.length*10));
 		mapSB.append("<div class='container-full-width' style='width:"+divWidth+"%; margin:2% "+((100-divWidth)/2)+"%; float:left;'>");
@@ -1368,7 +1342,7 @@ public enum RenderingEngine {
 					
 					mapSB.append(
 							"<div class='map-icon"+(dangerousTile?" dangerous":"")+"'"
-									+ " style='width:"+(width-0.5)+"%; margin:0.25%; "+border+" "+background+" "+(Main.game.getPlayer().isAbleToTeleport() && c.getPlace().getPlaceType()!=PlaceType.GENERIC_IMPASSABLE?"cursor:pointer;":"")+"'" 
+									+ " style='width:"+(width-0.5)+"%; margin:0.25%; "+border+" "+background+" '" 
 									+ " id='MAP_NODE_" + i + "_" + j + "'>"
 								+(playerOnTile && (c.getPlace() == null || c.getPlace().getSVGString()==null)
 									?getPlayerIcon(dangerousTile)

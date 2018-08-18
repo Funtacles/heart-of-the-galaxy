@@ -19,7 +19,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.BlockedParts;
 import com.lilithsthrone.game.inventory.clothing.ClothingAccess;
-import com.lilithsthrone.game.inventory.clothing.ClothingSet;
 import com.lilithsthrone.game.inventory.clothing.DisplacementType;
 import com.lilithsthrone.game.inventory.enchanting.TFEssence;
 import com.lilithsthrone.game.inventory.item.AbstractFilledBreastPump;
@@ -84,9 +83,6 @@ public class CharacterInventory implements Serializable, XMLSaving {
 
 	private List<AbstractClothing> clothingCurrentlyEquipped;
 
-	// ClothingSets being worn:
-	private Map<ClothingSet, Integer> clothingSetCount = new EnumMap<>(ClothingSet.class);
-
 	@SuppressWarnings("unused")
 	private int maxInventorySpace;
 
@@ -116,10 +112,6 @@ public class CharacterInventory implements Serializable, XMLSaving {
 		offhandWeapon = null;
 		
 		clothingCurrentlyEquipped = new ArrayList<>();
-		clothingSetCount = new EnumMap<>(ClothingSet.class);
-		for(ClothingSet clothingSet : ClothingSet.values()) {
-			clothingSetCount.put(clothingSet, 0);
-		}
 		
 		this.maxInventorySpace = maxInventorySpace;
 	}
@@ -750,20 +742,6 @@ public class CharacterInventory implements Serializable, XMLSaving {
 		return clothingInSlot;
 	}
 
-	/**
-	 * @return The number of clothes being worn that belong to the specified
-	 *         ClothingSet.
-	 */
-	public int getClothingSetCount(ClothingSet clothingSet) {
-		return clothingSetCount.get(clothingSet);
-	}
-
-	public int getClothingSetCount(ClothingSet clothingSet, int increment) {
-		return clothingSetCount.get(clothingSet);
-	}
-	
-	// Lasciate ogne speranza, voi ch'entrate //
-
 	private StringBuilder tempSB;
 
 	public String calculateClothingPostTransformation(GameCharacter character) {
@@ -1214,16 +1192,6 @@ public class CharacterInventory implements Serializable, XMLSaving {
 							:UtilText.parse(characterClothingOwner,
 									"<br/>[npc.Name] replaces [npc.her] " + Util.clothesToStringList(clothingToBeReplaced, false) + "."));
 				}
-				
-				// Check for clothing sets:
-				if (newClothing.getClothingType().getClothingSet() != null) {
-					if (clothingSetCount.get(newClothing.getClothingType().getClothingSet()) == null) {
-						clothingSetCount.put(newClothing.getClothingType().getClothingSet(), 1);
-					} else {
-						clothingSetCount.put(newClothing.getClothingType().getClothingSet(), clothingSetCount.get(newClothing.getClothingType().getClothingSet()) + 1);
-					}
-				}
-
 			}
 
 			clothingCurrentlyEquipped.sort(new AbstractClothingRarityComparator());
@@ -1397,11 +1365,6 @@ public class CharacterInventory implements Serializable, XMLSaving {
 						?"<br/>You replace your " + Util.clothesToStringList(clothingToBeReplaced, false) + "."
 						:UtilText.parse(characterClothingOwner,
 								"<br/>You replace [npc.namePos] " + Util.clothesToStringList(clothingToBeReplaced, false) + "."));
-			}
-			
-			// Check for clothing sets:
-			if (clothing.getClothingType().getClothingSet() != null) {
-				clothingSetCount.put(clothing.getClothingType().getClothingSet(), clothingSetCount.get(clothing.getClothingType().getClothingSet()) - 1);
 			}
 			
 			clothingCurrentlyEquipped.sort(new AbstractClothingRarityComparator());
