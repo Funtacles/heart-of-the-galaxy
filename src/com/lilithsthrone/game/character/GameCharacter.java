@@ -24,6 +24,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import com.lilithsthrone.data.SaveManager;
 import com.lilithsthrone.game.Game;
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.attributes.AffectionLevel;
@@ -11295,7 +11296,7 @@ public abstract class GameCharacter implements XMLSaving {
 			setHomeLocation(worldType, location);
 		}
 		if(this.isPlayer() && Main.game.isStarted() && Main.game.getCurrentDialogueNode().equals(Main.game.getDefaultDialogueNoEncounter())) {
-			Main.saveGame("AutoSave_"+Main.game.getPlayer().getName(), true);
+			SaveManager.autoSave();
 		}
 	}
 

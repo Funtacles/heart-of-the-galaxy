@@ -1,7 +1,5 @@
 package com.lilithsthrone.game.dialogue.encounters;
 
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.function.Predicate;
@@ -17,7 +15,6 @@ import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.DominionSuccubusAttacker;
 import com.lilithsthrone.game.character.npc.dominion.Lumi;
-import com.lilithsthrone.game.character.npc.dominion.RentalMommy;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
@@ -123,34 +120,6 @@ public enum Encounter {
 		}
 	},
 	
-	DOMINION_BOULEVARD(Util.newHashMapOfValues(
-			new Value<EncounterType, Float>(EncounterType.DOMINION_STREET_RENTAL_MOMMY, 10f))) {
-		@Override
-		protected DialogueNodeOld initialiseEncounter(EncounterType node) {
-			if(node == EncounterType.DOMINION_STREET_RENTAL_MOMMY) {
-				LocalDateTime time = Main.game.getDateNow();
-				
-				if(time.getMonth().equals(Month.MAY) /*&& time.getDayOfWeek().equals(DayOfWeek.SUNDAY)*/ && time.getDayOfMonth()>7 && time.getDayOfMonth()<=14
-						&& !Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.mommyFound)
-						&& Main.game.getCurrentWeather()!=Weather.MAGIC_STORM) {
-					
-					Main.game.setActiveNPC(new RentalMommy());
-					
-					try {
-						Main.game.addNPC(Main.game.getActiveNPC(), false);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-		
-					return Main.game.getActiveNPC().getEncounterDialogue();
-					
-				}
-			}
-			
-			return null;
-		}
-	},
-
 	DOMINION_ALLEY(Util.newHashMapOfValues(
 			new Value<EncounterType, Float>(EncounterType.DOMINION_ALLEY_ATTACK, 15f),
 			new Value<EncounterType, Float>(EncounterType.DOMINION_FIND_ITEM, 3f),

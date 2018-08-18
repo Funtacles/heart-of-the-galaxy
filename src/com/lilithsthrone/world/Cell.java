@@ -100,7 +100,7 @@ public class Cell implements Serializable, XMLSaving {
 		cell.setWestAccess(Boolean.valueOf(parentElement.getAttribute("westAccess")));
 		cell.setBlocked(Boolean.valueOf(parentElement.getAttribute("blocked")));
 		
-		cell.setPlace(GenericPlace.loadFromXML(((Element)parentElement.getElementsByTagName("place").item(0)), doc, cell), false);
+		cell.setPlace(GenericPlace.loadFromXML(((Element)parentElement.getElementsByTagName("place").item(0)), doc, cell));
 		
 		try {
 			if(parentElement.getElementsByTagName("characterInventory").getLength()>0) {
@@ -156,11 +156,8 @@ public class Cell implements Serializable, XMLSaving {
 		return place;
 	}
 
-	public void setPlace(GenericPlace place, boolean applyInventoryInit) {
+	public void setPlace(GenericPlace place) {
 		this.place = place;
-		if(applyInventoryInit) {
-			place.getPlaceType().applyInventoryInit(this.getInventory());
-		}
 	}
 
 	public boolean addPlaceUpgrade(PlaceUpgrade upgrade) {

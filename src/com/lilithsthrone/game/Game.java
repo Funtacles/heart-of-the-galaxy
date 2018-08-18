@@ -31,6 +31,7 @@ import org.w3c.dom.NodeList;
 
 import com.lilithsthrone.controller.MainController;
 import com.lilithsthrone.controller.TooltipUpdateThread;
+import com.lilithsthrone.data.SaveManager;
 import com.lilithsthrone.game.character.CharacterImportSetting;
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
@@ -2298,7 +2299,7 @@ public class Game implements Serializable, XMLSaving {
 		}
 		
 		if(Main.game.started) {
-			Main.saveGame("AutoSave_"+Main.game.getPlayer().getName(), true);
+			SaveManager.autoSave();
 		}
 	}
 	

@@ -14,6 +14,8 @@ import com.lilithsthrone.controller.eventListeners.EnchantmentEventListener;
 import com.lilithsthrone.controller.eventListeners.InventorySelectedItemEventListener;
 import com.lilithsthrone.controller.eventListeners.InventoryTooltipEventListener;
 import com.lilithsthrone.controller.eventListeners.TooltipInformationEventListener;
+import com.lilithsthrone.data.ImportExportManager;
+import com.lilithsthrone.data.SaveManager;
 import com.lilithsthrone.game.Game;
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.GameCharacter;
@@ -4720,7 +4722,7 @@ public class MainControllerInitMethod {
 		
 		// Save/load:
 		if (Main.game.getCurrentDialogueNode() == OptionsDialogue.SAVE_LOAD) {
-			for (File f : Main.getSavedGames()) {
+			for (File f : SaveManager.getSavedGames()) {
 				String fileIdentifier = f.getName().substring(0, f.getName().lastIndexOf('.'));
 				
 				id = "overwrite_saved_" + fileIdentifier;
@@ -4729,7 +4731,7 @@ public class MainControllerInitMethod {
 						
 						if(!Main.getProperties().hasValue(PropertyValue.overwriteWarning) || OptionsDialogue.overwriteConfirmationName.equals(f.getName())) {
 							OptionsDialogue.overwriteConfirmationName = "";
-							Main.saveGame(fileIdentifier, true);
+							SaveManager.saveGame(fileIdentifier, true);
 						} else {
 							OptionsDialogue.overwriteConfirmationName = f.getName();
 							OptionsDialogue.loadConfirmationName = "";
@@ -4750,7 +4752,7 @@ public class MainControllerInitMethod {
 						
 						if(!Main.getProperties().hasValue(PropertyValue.overwriteWarning) || OptionsDialogue.loadConfirmationName.equals(f.getName())) {
 							OptionsDialogue.loadConfirmationName = "";
-							Main.loadGame(fileIdentifier);
+							SaveManager.loadGame(fileIdentifier);
 						} else {
 							OptionsDialogue.overwriteConfirmationName = "";
 							OptionsDialogue.loadConfirmationName = f.getName();
@@ -4771,7 +4773,7 @@ public class MainControllerInitMethod {
 						
 						if(!Main.getProperties().hasValue(PropertyValue.overwriteWarning) || OptionsDialogue.deleteConfirmationName.equals(f.getName())) {
 							OptionsDialogue.deleteConfirmationName = "";
-							Main.deleteGame(fileIdentifier);
+							SaveManager.deleteGame(fileIdentifier);
 						} else {
 							OptionsDialogue.overwriteConfirmationName = "";
 							OptionsDialogue.loadConfirmationName = "";
@@ -4791,7 +4793,7 @@ public class MainControllerInitMethod {
 			if (((EventTarget) MainController.document.getElementById(id)) != null) {
 				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {//TODO
 					Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenPField').innerHTML=document.getElementById('new_save_name').value;");
-					Main.saveGame(Main.mainController.getWebEngine().getDocument().getElementById("hiddenPField").getTextContent(), false);
+					SaveManager.saveGame(Main.mainController.getWebEngine().getDocument().getElementById("hiddenPField").getTextContent(), false);
 					
 				}, false);
 
@@ -4814,7 +4816,7 @@ public class MainControllerInitMethod {
 		
 		// Import:
 		if (Main.game.getCurrentDialogueNode() == OptionsDialogue.IMPORT_EXPORT) {
-			for (File f : Main.getCharactersForImport()) {
+			for (File f : ImportExportManager.getCharactersForImport()) {
 				String fileIdentifier = f.getName().substring(0, f.getName().lastIndexOf('.'));
 				
 				id = "delete_saved_character_" + fileIdentifier;
@@ -4823,7 +4825,7 @@ public class MainControllerInitMethod {
 						
 						if(!Main.getProperties().hasValue(PropertyValue.overwriteWarning) || OptionsDialogue.deleteConfirmationName.equals(f.getName())) {
 							OptionsDialogue.deleteConfirmationName = "";
-							Main.deleteExportedCharacter(fileIdentifier);
+							ImportExportManager.deleteExportedCharacter(fileIdentifier);
 						} else {
 							OptionsDialogue.overwriteConfirmationName = "";
 							OptionsDialogue.loadConfirmationName = "";
@@ -4842,19 +4844,19 @@ public class MainControllerInitMethod {
 			if (((EventTarget) MainController.document.getElementById("new_saved")) != null) {
 				((EventTarget) MainController.document.getElementById("new_saved")).addEventListener("click", e -> {
 					Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenPField').innerHTML=document.getElementById('new_save_name').value;");
-					Main.saveGame(Main.mainController.getWebEngine().getDocument().getElementById("hiddenPField").getTextContent(), false);
+					SaveManager.saveGame(Main.mainController.getWebEngine().getDocument().getElementById("hiddenPField").getTextContent(), false);
 					
 				}, false);
 			}
 		}
 		
 		if (Main.game.getCurrentDialogueNode() == CharacterCreation.IMPORT_CHOOSE) {
-			for (File f : Main.getCharactersForImport()) {
+			for (File f : ImportExportManager.getCharactersForImport()) {
 				String fileIdentifier = f.getName().substring(0, f.getName().lastIndexOf('.'));
 				
 				if (((EventTarget) MainController.document.getElementById("character_import_" + fileIdentifier )) != null) {
 					((EventTarget) MainController.document.getElementById("character_import_" + fileIdentifier )).addEventListener("click", e -> {
-						Main.importCharacter(f);
+						ImportExportManager.importCharacter(f);
 						
 					}, false);
 				}
@@ -4863,7 +4865,7 @@ public class MainControllerInitMethod {
 		
 		// Slave import:
 		if (Main.game.getCurrentDialogueNode() == SlaverAlleyDialogue.AUCTION_IMPORT) {
-			for (File f : Main.getSlavesForImport()) {
+			for (File f : ImportExportManager.getSlavesForImport()) {
 				String fileIdentifier = f.getName().substring(0, f.getName().lastIndexOf('.'));
 				
 				if (((EventTarget) MainController.document.getElementById("import_slave_" + fileIdentifier )) != null) {

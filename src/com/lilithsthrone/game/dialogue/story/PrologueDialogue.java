@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lilithsthrone.controller.MainController;
+import com.lilithsthrone.data.SaveManager;
 import com.lilithsthrone.game.Weather;
 import com.lilithsthrone.game.character.body.types.VaginaType;
 import com.lilithsthrone.game.character.body.valueEnums.Femininity;
@@ -1875,7 +1876,7 @@ public class PrologueDialogue {
 					public void effects() {
 						Main.game.setPrologueFinished(true);
 						Main.game.getRose().setLocation(WorldType.LILAYAS_HOUSE_GROUND_FLOOR, PlaceType.LILAYA_HOME_LAB, false);
-						Main.saveGame("AutoSave_"+Main.game.getPlayer().getName(), true);
+						SaveManager.autoSave();
 					}
 				};
 				

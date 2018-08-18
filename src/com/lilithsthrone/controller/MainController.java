@@ -31,6 +31,7 @@ import com.lilithsthrone.controller.eventListeners.buttons.ButtonMoveSouthEventL
 import com.lilithsthrone.controller.eventListeners.buttons.ButtonMoveWestEventListener;
 import com.lilithsthrone.controller.eventListeners.buttons.ButtonZoomEventListener;
 import com.lilithsthrone.controller.eventListeners.information.CopyInfoEventListener;
+import com.lilithsthrone.data.SaveManager;
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.CharacterChangeEventListener;
 import com.lilithsthrone.game.character.GameCharacter;
@@ -443,10 +444,10 @@ public class MainController implements Initializable {
 
 						// Game stuff:
 						if (keyEventMatchesBindings(KeyboardAction.QUICKSAVE, event)) {
-							Main.quickSaveGame();
+							SaveManager.quickSaveGame();
 						}
 						if (keyEventMatchesBindings(KeyboardAction.QUICKLOAD, event)) {
-							Main.quickLoadGame();
+							SaveManager.quickLoadGame();
 						}
 						
 						boolean allowInput = true;
@@ -513,8 +514,8 @@ public class MainController implements Initializable {
 								if (event.getCode() == KeyCode.ENTER) {
 									enterConsumed = true;
 									Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenPField').innerHTML=document.getElementById('new_save_name').value;");
-									if(Main.isSaveGameAvailable()) {
-										Main.saveGame(Main.mainController.getWebEngine().getDocument().getElementById("hiddenPField").getTextContent(), false);
+									if(SaveManager.isSaveGameAvailable()) {
+										SaveManager.saveGame(Main.mainController.getWebEngine().getDocument().getElementById("hiddenPField").getTextContent(), false);
 									}
 									Main.game.setContent(new Response("Save", "", Main.game.getCurrentDialogueNode()));
 								}

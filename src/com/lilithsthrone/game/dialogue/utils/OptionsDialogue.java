@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import com.lilithsthrone.data.ImportExportManager;
+import com.lilithsthrone.data.SaveManager;
 import com.lilithsthrone.game.Game;
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.CharacterUtils;
@@ -171,9 +173,6 @@ public class OptionsDialogue {
 					}
 				};
 			
-			} else if (index == 8) {
-				return new Response("Patch notes", "View the patch notes for this version.", PATCH_NOTES);
-			
 			} else if (index == 9) {
 				return new Response("Credits", "View the game's credits screen.", CREDITS);
 				
@@ -207,11 +206,11 @@ public class OptionsDialogue {
 					};
 					
 				} else {
-					if(Main.isLoadGameAvailable(Main.getProperties().lastSaveLocation)) {
+					if(SaveManager.isLoadGameAvailable(Main.getProperties().lastSaveLocation)) {
 						return new ResponseEffectsOnly("Resume", "Continue playing from your last save."){
 							@Override
 							public void effects() {
-								Main.loadGame(Main.getProperties().lastSaveLocation);
+								SaveManager.loadGame(Main.getProperties().lastSaveLocation);
 								confirmNewGame=false;
 								
 							}
@@ -312,9 +311,7 @@ public class OptionsDialogue {
 				i++;
 			}
 			
-			Main.getSavedGames().sort(Comparator.comparingLong(File::lastModified).reversed());
-			
-			for(File f : Main.getSavedGames()){
+			for(File f : SaveManager.getSavedGames()){
 				try {
 					saveLoadSB.append(getSaveLoadRow("<span style='color:"+Colour.TEXT_GREY.toWebHexString()+";'>"+Util.getFileTime(f)+"</span>", f.getName(), i%2==0));
 				} catch (IOException e3) {
@@ -398,11 +395,9 @@ public class OptionsDialogue {
 						+ "</div>"
 					+ "</div>");
 			
-			Main.getCharactersForImport().sort(Comparator.comparingLong(File::lastModified).reversed());
-			int i = 0;
-			for(File f : Main.getCharactersForImport()){
+			for(File f : ImportExportManager.getCharactersForImport()){
 				try {
-					saveLoadSB.append(OptionsDialogue.getImportRow("<span style='color:"+Colour.TEXT_GREY.toWebHexString()+";'>"+Util.getFileTime(f)+"</span>", f.getName(), i%2==0));
+					saveLoadSB.append(OptionsDialogue.getImportRow("<span style='color:"+Colour.TEXT_GREY.toWebHexString()+";'>"+Util.getFileTime(f)+"</span>", f.getName()));
 				} catch (IOException e3) {
 					e3.printStackTrace();
 				}
@@ -503,7 +498,7 @@ public class OptionsDialogue {
 							+"<form style='padding:0;margin:0;text-align:center;'><input type='text' id='new_save_name' value='New Save' style='padding:0;margin:0;width:100%;'></form>"
 						+ "</div>"
 						+ "<div class='container-full-width' style='width:calc(25% - 16px); text-align:center; background:transparent;'>"
-							+ (Main.isSaveGameAvailable()
+							+ (SaveManager.isSaveGameAvailable()
 								?"<div class='square-button saveIcon' id='new_saved' style='float:left;'><div class='square-button-content'>"+SVGImages.SVG_IMAGE_PROVIDER.getDiskSave()+"</div></div>"
 								:"<div class='square-button saveIcon disabled' id='new_saved_disabled' style='float:left;'><div class='square-button-content'>"+SVGImages.SVG_IMAGE_PROVIDER.getDiskSaveDisabled()+"</div></div>")
 						+ "</div>"
@@ -512,9 +507,9 @@ public class OptionsDialogue {
 		}
 	}
 
-	private static String getImportRow(String date, String name, boolean altColour) {
+	private static String getImportRow(String date, String name) {
 		String baseName = name.substring(0, name.lastIndexOf('.'));
-		return "<div class='container-full-width' style='padding:0; margin:0 0 4px 0;"+(altColour?"background:#222;":"")+"'>"
+		return "<div class='container-full-width' style='padding:0; margin:0 0 4px 0;'>"
 					+ "<div class='container-quarter-width' style='background:transparent;'>"
 						+ date
 					+ "</div>"
@@ -952,30 +947,6 @@ public class OptionsDialogue {
 				+ "</tr>";
 	}
 	
-	
-	public static final DialogueNodeOld PATCH_NOTES = new DialogueNodeOld("Patch Notes", "Patch notes", true) {
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public String getContent(){
-			return Main.patchNotes;
-		}
-		
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 0) {
-				return new Response("Back", "Go back to the options menu.", MENU);
-				
-			}else {
-				return null;
-			}
-		}
-
-		@Override
-		public DialogueNodeType getDialogueNodeType() {
-			return DialogueNodeType.OPTIONS;
-		}
-	};
 	
 	public static final DialogueNodeOld DISCLAIMER = new DialogueNodeOld("", "", true) {
 		private static final long serialVersionUID = 1L;
@@ -1556,7 +1527,216 @@ public class OptionsDialogue {
 		return contentSB.toString();
 	}
 	
-	
+	private static List<CreditsSlot> credits = new ArrayList<>();
+
+	static {
+		
+		credits.add(new CreditsSlot("Anonymous", "", 99, 99, 99, 99));
+
+		credits.add(new CreditsSlot("Adhana Konker", "", 0, 0, 3, 0));
+		credits.add(new CreditsSlot("Akira", "", 0, 0, 0, 2));
+		credits.add(new CreditsSlot("Aleskah", "", 0, 0, 0, 1));
+		credits.add(new CreditsSlot("Lexi <3", "", 0, 0, 0, 1));
+		credits.add(new CreditsSlot("Alvinsimon", "", 0, 0, 2, 0));
+		credits.add(new CreditsSlot("48days", "", 0, 0, 2, 10));
+		credits.add(new CreditsSlot("Mylerra", "", 0, 0, 3, 0));
+		credits.add(new CreditsSlot("Spaghetti Code", "", 0, 0, 2, 3));
+		credits.add(new CreditsSlot("Apthydragon", "", 0, 0, 3, 0));
+		credits.add(new CreditsSlot("Archan9el S117", "", 0, 0, 0, 5));
+		credits.add(new CreditsSlot("SchALLieS", "", 0, 0, 0, 11));
+		credits.add(new CreditsSlot("Argmoe", "", 0, 0, 11, 0));
+		credits.add(new CreditsSlot("HoneyNutQueerios", "", 0, 0, 9, 0));
+		credits.add(new CreditsSlot("Arkhan", "", 0, 0, 6, 0));
+		credits.add(new CreditsSlot("Ash", "", 0, 1, 0, 8));
+		credits.add(new CreditsSlot("Jack Cloudie", "", 0, 1, 10, 0));
+		credits.add(new CreditsSlot("b00marrows", "", 0, 1, 5, 0));
+		credits.add(new CreditsSlot("Deimios", "", 0, 0, 3, 3));
+		credits.add(new CreditsSlot("Baz GoldenClaw", "", 0, 0, 10, 0));
+		credits.add(new CreditsSlot("FidelPinochetov", "", 0, 0, 0, 7));
+		credits.add(new CreditsSlot("Runehood66", "", 0, 0, 0, 4));
+		credits.add(new CreditsSlot("Krissy2017", "", 0, 0, 0, 6));
+		credits.add(new CreditsSlot("Blackcanine", "", 0, 0, 10, 0));
+		credits.add(new CreditsSlot("Blacktouch", "", 0, 0, 2, 10));
+		credits.add(new CreditsSlot("BlakLite", "", 0, 0, 2, 0));
+		credits.add(new CreditsSlot("Blue999", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("Brandon Stach", "", 0, 0, 8, 0));
+		credits.add(new CreditsSlot("BreakerB", "", 0, 0, 5, 0));
+		credits.add(new CreditsSlot("BRobort", "", 0, 0, 9, 0));
+		credits.add(new CreditsSlot("BloodsailXXII", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("Burt", "", 0, 0, 6, 0));
+		credits.add(new CreditsSlot("Calrak", "", 0, 0, 0, 11));
+		credits.add(new CreditsSlot("CancerMage", "", 0, 0, 5, 0));
+		credits.add(new CreditsSlot("Casper &quot;Cdaser&quot; D.", "", 0, 0, 8, 0));
+		credits.add(new CreditsSlot("CelestialNightmare", "", 0, 0, 0, 11));
+		credits.add(new CreditsSlot("Sxythe", "", 0, 0, 0, 2));
+		credits.add(new CreditsSlot("Lexi the slut", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("Chattyneko", "", 0, 0, 3, 0));
+		credits.add(new CreditsSlot("Vmpireassassin (Chloe)", "", 0, 0, 0, 5));
+		credits.add(new CreditsSlot("cinless", "", 0, 0, 0, 6));
+		credits.add(new CreditsSlot("crashtestdummy", "", 0, 0, 8, 4));
+		credits.add(new CreditsSlot("Crimson", "", 0, 0, 0, 10));
+		credits.add(new CreditsSlot("CrowCorvus", "", 0, 0, 2, 0));
+		credits.add(new CreditsSlot("Cryostorm", "", 0, 0, 8, 0));
+		credits.add(new CreditsSlot("Cursed Rena", "", 0, 0, 1, 10));
+		credits.add(new CreditsSlot("Cynical-Cy", "", 0, 0, 4, 0));
+		credits.add(new CreditsSlot("Dace617", "", 0, 0, 0, 3));
+		credits.add(new CreditsSlot("Saladofstones", "", 0, 0, 6, 0));
+		credits.add(new CreditsSlot("Dan", "", 0, 1, 0, 8));
+		credits.add(new CreditsSlot("Daniel D Magnan", "", 0, 0, 3, 0));
+		credits.add(new CreditsSlot("Yllarius", "", 0, 0, 2, 0));
+		credits.add(new CreditsSlot("DeadEyesSee", "", 0, 0, 4, 0));
+		credits.add(new CreditsSlot("DeadMasterZero", "", 0, 0, 7, 0));
+		credits.add(new CreditsSlot("Demonicgamer666", "", 0, 0, 0, 6));
+		credits.add(new CreditsSlot("John Scarlet", "", 0, 0, 0, 1));
+		credits.add(new CreditsSlot("Desgax", "", 0, 0, 6, 0));
+		credits.add(new CreditsSlot("Destont", "", 0, 0, 9, 0));
+		credits.add(new CreditsSlot("rinoskin", "", 0, 0, 0, 2));
+		credits.add(new CreditsSlot("Alatar", "", 0, 0, 0, 2));
+		credits.add(new CreditsSlot("Elmsdor", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("Endless", "", 0, 0, 3, 2));
+		credits.add(new CreditsSlot("Gr33n B3ans", "", 0, 0, 0, 2));
+		credits.add(new CreditsSlot("Erin Kyan", "", 0, 0, 6, 0));
+		credits.add(new CreditsSlot("Blackheart", "", 0, 0, 0, 2));
+		credits.add(new CreditsSlot("Avandemine", "", 0, 0, 1, 4));
+		credits.add(new CreditsSlot("F. Rowan", "", 0, 0, 5, 0));
+		credits.add(new CreditsSlot("Farseeker", "", 0, 0, 8, 0));
+		credits.add(new CreditsSlot("pupslut felix", "", 0, 0, 0, 10));
+		credits.add(new CreditsSlot("Fenrakk101", "", 0, 0, 11, 0));
+		credits.add(new CreditsSlot("Fiona", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("ForeverFree2MeTaMax", "", 0, 0, 12, 0));
+		credits.add(new CreditsSlot("FossorTumulus", "", 0, 0, 4, 0));
+		credits.add(new CreditsSlot("Freekingamer", "", 0, 0, 0, 3));
+		credits.add(new CreditsSlot("fun_bot", "", 0, 0, 0, 3));
+		credits.add(new CreditsSlot("Niki Parks", "", 0, 0, 12, 0));
+		credits.add(new CreditsSlot("Garkylal", "", 0, 0, 3, 0));
+		credits.add(new CreditsSlot("Georgio154", "", 0, 0, 1, 6));
+		credits.add(new CreditsSlot("glocknar", "", 0, 0, 9, 0));
+		credits.add(new CreditsSlot("Goldmember", "", 0, 0, 0, 3));
+		credits.add(new CreditsSlot("Grakcnar", "", 0, 0, 9, 0));
+		credits.add(new CreditsSlot("WodashGSJ", "", 0, 0, 8, 0));
+		credits.add(new CreditsSlot("Assiyalos", "", 0, 0, 2, 0));
+		credits.add(new CreditsSlot("Hedgehog", "", 0, 0, 0, 6));
+		credits.add(new CreditsSlot("Helyriel", "", 0, 0, 8, 0));
+		credits.add(new CreditsSlot("Jatch", "", 0, 0, 4, 0));
+		credits.add(new CreditsSlot("Bocaj91", "", 0, 0, 0, 10));
+		credits.add(new CreditsSlot("Krejil", "", 0, 0, 9, 0));
+		credits.add(new CreditsSlot("Eushully", "", 0, 0, 0, 6));
+		credits.add(new CreditsSlot("suka", "", 0, 0, 12, 0));
+		credits.add(new CreditsSlot("EnigmaticYoshi", "", 0, 0, 12, 0));
+		credits.add(new CreditsSlot("Garth614", "", 0, 0, 0, 8));
+		credits.add(new CreditsSlot("HerrKommissar11", "", 0, 0, 1, 4));
+		credits.add(new CreditsSlot("Kaleb the Wise", "", 0, 0, 0, 3));
+		credits.add(new CreditsSlot("KazukiNero", "", 0, 0, 5, 0));
+		credits.add(new CreditsSlot("Kelly999", "", 0, 1, 8, 0));
+		credits.add(new CreditsSlot("kenshin5491", "", 0, 0, 11, 0));
+		credits.add(new CreditsSlot("Kestrel", "", 0, 0, 12, 0));
+		credits.add(new CreditsSlot("Kiroberos", "", 0, 0, 0, 10));
+		credits.add(new CreditsSlot("Kernog", "", 0, 0, 1, 0));
+		credits.add(new CreditsSlot("Knight-Lord Xander", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("Chris Turpin", "", 0, 0, 10, 0));
+		credits.add(new CreditsSlot("Lee Thompson", "", 0, 0, 7, 0));
+		credits.add(new CreditsSlot("Leob", "", 0, 0, 10, 2));
+		credits.add(new CreditsSlot("Pallid", "", 0, 0, 0, 5));
+		credits.add(new CreditsSlot("ilderon", "", 0, 0, 5, 0));
+		credits.add(new CreditsSlot("Littlemankitten", "", 0, 0, 0, 4));
+		credits.add(new CreditsSlot("Mr L", "", 0, 0, 4, 1));
+		credits.add(new CreditsSlot("loveless", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("Vaddex", "", 0, 0, 0, 5));
+		credits.add(new CreditsSlot("Kitsune Lyn", "", 0, 0, 0, 3));
+		credits.add(new CreditsSlot("KingofKings", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("waaaghkus", "", 0, 0, 12, 0));
+		credits.add(new CreditsSlot("masterpuppet", "", 0, 0, 8, 0));
+		credits.add(new CreditsSlot("matchsticks", "", 0, 0, 3, 0));
+		credits.add(new CreditsSlot("Nightmare", "", 0, 0, 0, 5));
+		credits.add(new CreditsSlot("AlphaOneBravo", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("Max Nobody", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("Neximus", "", 0, 0, 3, 0));
+		credits.add(new CreditsSlot("Mora", "", 0, 0, 4, 0));
+		credits.add(new CreditsSlot("Muhaku", "", 0, 0, 9, 0));
+		credits.add(new CreditsSlot("Kobu", "", 0, 0, 0, 7));
+		credits.add(new CreditsSlot("IreCobra", "", 0, 0, 3, 0));
+		credits.add(new CreditsSlot("NeonRaven94", "", 0, 0, 0, 2));
+		credits.add(new CreditsSlot("Nick LaBlue", "", 0, 0, 10, 0));
+		credits.add(new CreditsSlot("Kvernik", "", 0, 0, 6, 0));
+		credits.add(new CreditsSlot("Niko", "", 0, 0, 12, 0));
+		credits.add(new CreditsSlot("Nnxx", "", 0, 1, 3, 2));
+		credits.add(new CreditsSlot("NorwegianMonster", "", 0, 0, 0, 4));
+		credits.add(new CreditsSlot("Odd8Ball", "", 0, 0, 0, 11));
+		credits.add(new CreditsSlot("Party Commissar", "", 0, 0, 4, 6));
+		credits.add(new CreditsSlot("Rohsie", "", 0, 0, 0, 10));
+		credits.add(new CreditsSlot("P.", "", 0, 0, 0, 4));
+		credits.add(new CreditsSlot("BLKCandy", "", 0, 0, 8, 0));
+		credits.add(new CreditsSlot("Pierre Mura", "", 0, 0, 0, 11));
+		credits.add(new CreditsSlot("Pokys", "", 0, 0, 9, 0));
+		credits.add(new CreditsSlot("QQQ", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("Rakesh", "", 0, 0, 8, 0));
+		credits.add(new CreditsSlot("R.W", "", 0, 3, 4, 0));
+		credits.add(new CreditsSlot("The Void Prince", "", 0, 0, 6, 0));
+		credits.add(new CreditsSlot("Master's dumb bitch", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("Reila Oda", "", 0, 0, 0, 5));
+		credits.add(new CreditsSlot("Roarik", "", 0, 0, 0, 3));
+		credits.add(new CreditsSlot("Dark_Lord", "", 0, 0, 0, 6));
+		credits.add(new CreditsSlot("redwulfen", "", 0, 0, 0, 11));
+		credits.add(new CreditsSlot("Roger Reyne", "", 0, 0, 0, 3));
+		credits.add(new CreditsSlot("RogueRandom", "", 0, 0, 9, 0));
+		credits.add(new CreditsSlot("Horagen81", "", 0, 0, 0, 11));
+		credits.add(new CreditsSlot("RyubosJ", "", 0, 0, 6, 0));
+		credits.add(new CreditsSlot("Saladine the Legendary", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("Sand9k", "", 0, 0, 0, 4));
+		credits.add(new CreditsSlot("Schande", "", 0, 0, 0, 3));
+		credits.add(new CreditsSlot("Blue Kobold", "", 0, 0, 5, 0));
+		credits.add(new CreditsSlot("sebasjac", "", 0, 0, 0, 2));
+		credits.add(new CreditsSlot("S", "", 0, 0, 1, 10));
+		credits.add(new CreditsSlot("Shas'O Dal'yth Kauyon Kais Taku", "", 0, 0, 12, 0));
+		credits.add(new CreditsSlot("Crow Invictus", "", 0, 0, 11, 0));
+		credits.add(new CreditsSlot("Sheltem", "", 0, 0, 10, 0));
+		credits.add(new CreditsSlot("shrikes", "", 0, 0, 3, 0));
+		credits.add(new CreditsSlot("Sig", "", 0, 0, 4, 0));
+		credits.add(new CreditsSlot("Silentark", "", 0, 0, 9, 0));
+		credits.add(new CreditsSlot("Sir beans", "", 0, 0, 3, 0));
+		credits.add(new CreditsSlot("Sorter", "", 0, 0, 0, 9));
+		credits.add(new CreditsSlot("Spectacular", "", 0, 0, 4, 0));
+		credits.add(new CreditsSlot("Spookermen", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("Starchiller", "", 0, 0, 0, 3));
+		credits.add(new CreditsSlot("Steph", "", 0, 0, 2, 0));
+		credits.add(new CreditsSlot("Strigon888", "", 0, 0, 0, 3));
+		credits.add(new CreditsSlot("Suvarestin", "", 0, 0, 2, 0));
+		credits.add(new CreditsSlot("Swift Shot", "", 0, 0, 12, 0));
+		credits.add(new CreditsSlot("TalonMort", "", 0, 0, 10, 0));
+		credits.add(new CreditsSlot("Tanall", "", 0, 1, 10, 0));
+		credits.add(new CreditsSlot("Tanner D.", "", 0, 0, 0, 6));
+		credits.add(new CreditsSlot("Terrance", "", 0, 0, 3, 0));
+		credits.add(new CreditsSlot("Testostetyrone", "", 0, 0, 8, 0));
+		credits.add(new CreditsSlot("Jordan Aitken", "", 0, 0, 12, 0));
+		credits.add(new CreditsSlot("T. Garou", "", 0, 0, 0, 10));
+		credits.add(new CreditsSlot("xerton", "", 0, 0, 2, 0));
+		credits.add(new CreditsSlot("Timmybond24", "", 0, 0, 0, 4));
+		credits.add(new CreditsSlot("FreakyHydra", "", 0, 0, 0, 4));
+		credits.add(new CreditsSlot("Kahvi_Toope", "", 0, 0, 0, 3));
+		credits.add(new CreditsSlot("Torinir", "", 0, 0, 11, 0));
+		credits.add(new CreditsSlot("Torsten015", "", 0, 0, 0, 11));
+		credits.add(new CreditsSlot("TreenVall", "", 0, 0, 3, 0));
+		credits.add(new CreditsSlot("triangleman", "", 0, 0, 12, 0));
+		credits.add(new CreditsSlot("Antriad", "", 0, 0, 1, 8));
+		credits.add(new CreditsSlot("Isidoros", "", 0, 0, 7, 0));
+		credits.add(new CreditsSlot("Vaelin", "", 0, 0, 4, 7));
+		credits.add(new CreditsSlot("vasadariu", "", 0, 0, 8, 0));
+		credits.add(new CreditsSlot("Venomy", "", 0, 0, 0, 3));
+		credits.add(new CreditsSlot("iloveyouMiaoNiNi", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("Weegschaal", "", 0, 0, 0, 1));
+		credits.add(new CreditsSlot("Whatever", "", 0, 0, 10, 0));
+		credits.add(new CreditsSlot("William Brown", "", 0, 0, 5, 2));
+		credits.add(new CreditsSlot("Drahin", "", 0, 0, 0, 3));
+		credits.add(new CreditsSlot("CMPirate9867", "", 0, 0, 8, 0));
+		credits.add(new CreditsSlot("Wolfregis", "", 0, 0, 0, 12));
+		credits.add(new CreditsSlot("Nelson Adams", "", 0, 0, 12, 0));
+		credits.add(new CreditsSlot("Zakarin", "", 0, 0, 0, 7));
+		
+		
+		credits.sort(Comparator.comparing((CreditsSlot a) -> a.getName().toLowerCase()));
+	}
+
+
 	public static final DialogueNodeOld CREDITS = new DialogueNodeOld("Credits", "", true) {
 		private static final long serialVersionUID = 1L;
 		
@@ -1603,7 +1783,7 @@ public class OptionsDialogue {
 					+ "<h5 style='text-align:center; color:"+Colour.RARITY_LEGENDARY.toWebHexString()+";'>Legendary Patrons</h5>"
 					+ "<p style='text-align:center;'>");
 			
-			for(CreditsSlot cs : Main.credits) {
+			for(CreditsSlot cs : OptionsDialogue.credits) {
 				if(cs.getLegendaryCount()>0) {
 					UtilText.nodeContentSB.append("<br/>");
 					UtilText.nodeContentSB.append("<div style='width:50%; display:inline-block; text-align:right;'>");
@@ -1648,7 +1828,7 @@ public class OptionsDialogue {
 					+ "<h5 style='text-align:center; color:"+Colour.RARITY_EPIC.toWebHexString()+";'>Epic Patrons</h5>"
 					+ "<p style='text-align:center;'>");
 			
-			for(CreditsSlot cs : Main.credits) {
+			for(CreditsSlot cs : OptionsDialogue.credits) {
 				if(cs.getLegendaryCount()==0 && cs.getEpicCount()>0) {
 					UtilText.nodeContentSB.append("<br/>");
 					UtilText.nodeContentSB.append("<div style='width:50%; display:inline-block; text-align:right;'>");

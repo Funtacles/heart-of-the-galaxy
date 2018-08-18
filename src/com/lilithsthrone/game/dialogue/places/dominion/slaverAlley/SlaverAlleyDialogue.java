@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import com.lilithsthrone.data.ImportExportManager;
 import com.lilithsthrone.game.character.body.valueEnums.Femininity;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.quests.Quest;
@@ -369,9 +370,9 @@ public class SlaverAlleyDialogue {
 					+ "<p>"
 						+ "<table align='center'>");
 			
-			Main.getSlavesForImport().sort(Comparator.comparingLong(File::lastModified).reversed());
+			ImportExportManager.getSlavesForImport().sort(Comparator.comparingLong(File::lastModified).reversed());
 			
-			for(File f : Main.getSlavesForImport()){
+			for(File f : ImportExportManager.getSlavesForImport()){
 				saveLoadSB.append(getImportRow(f.getName()));
 			}
 			

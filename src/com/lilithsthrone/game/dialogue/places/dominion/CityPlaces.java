@@ -8,11 +8,9 @@ import com.lilithsthrone.game.Season;
 import com.lilithsthrone.game.Weather;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.RentalMommy;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
-import com.lilithsthrone.game.dialogue.npcDialogue.dominion.RentalMommyDialogue;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -439,21 +437,6 @@ public class CityPlaces {
 
 		@Override
 		public Response getResponse(int responseTab, int index) {
-			if(index==1) {
-				for(NPC npc : Main.game.getNonCompanionCharactersPresent()) {
-					if(npc instanceof RentalMommy) {
-						if(Main.game.getCurrentWeather()==Weather.MAGIC_STORM) {
-							return new Response("Mommy", "'Mommy' is not sitting on her usual bench, and you suppose that she's waiting out the current storm inside her house.", null);
-						}
-						return new Response("Mommy", "You see 'Mommy' sitting on the wooden bench outside her house. Walk up to her and say hello.", RentalMommyDialogue.ENCOUNTER) {
-							@Override
-							public void effects() {
-								Main.game.setActiveNPC(npc);	
-							}
-						};
-					}
-				}
-			}
 			return null;
 		}
 	};

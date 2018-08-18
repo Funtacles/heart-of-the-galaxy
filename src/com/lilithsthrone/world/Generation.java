@@ -82,7 +82,7 @@ public class Generation extends Task<Boolean> {
 				
 				for(int w = 0 ; w < img.getWidth(); w++) {
 					for(int h = 0 ; h < img.getHeight(); h++) {
-						grid[w][img.getHeight()-1-h].setPlace(new GenericPlace(worldType.getPlacesMap().get(new Color(img.getRGB(w, h)))), true);
+						grid[w][img.getHeight()-1-h].setPlace(new GenericPlace(worldType.getPlacesMap().get(new Color(img.getRGB(w, h)))));
 					}
 				}
 
@@ -171,7 +171,7 @@ public class Generation extends Task<Boolean> {
 						visited[i * 2 + x][j * 2 + y] = true;
 						grid[i * 2 + x][j * 2 + y].setBlocked(true);
 						if (worldType.getCutOffZone() != null) {
-							grid[i * 2 + x][j * 2 + y].setPlace(new GenericPlace(worldType.getCutOffZone()), true);
+							grid[i * 2 + x][j * 2 + y].setPlace(new GenericPlace(worldType.getCutOffZone()));
 							dangerousPlaces.add(new Vector2i(i * 2 + x, j * 2 + y));
 						}
 					}
@@ -287,7 +287,7 @@ public class Generation extends Task<Boolean> {
 	
 					grid[coreX][coreY].setBlocked(false);
 					visited[coreX][coreY] = false;
-					grid[coreX][coreY].setPlace(new GenericPlace(pt), true);
+					grid[coreX][coreY].setPlace(new GenericPlace(pt));
 
 					if (pt.getBearing() == Bearing.NORTH)
 						grid[coreX][coreY].setNorthAccess(true);
@@ -335,7 +335,7 @@ public class Generation extends Task<Boolean> {
 				if (quadrant > 4)
 					quadrant = 1;
 	
-				grid[coreX][coreY].setPlace(new GenericPlace(p), true);
+				grid[coreX][coreY].setPlace(new GenericPlace(p));
 	
 			}
 	
@@ -344,7 +344,7 @@ public class Generation extends Task<Boolean> {
 				for (PlaceType p : worldType.getDangerousPlaces()) {
 					Vector2i vTemp = dangerousPlaces.get(Util.random.nextInt(dangerousPlaces.size()));
 	
-					grid[vTemp.getX()][vTemp.getY()].setPlace(new GenericPlace(p), true);
+					grid[vTemp.getX()][vTemp.getY()].setPlace(new GenericPlace(p));
 	
 					dangerousPlaces.remove(vTemp);
 				}
@@ -366,7 +366,7 @@ public class Generation extends Task<Boolean> {
 				for (int j = 0; j < height * 2 - 1; j++) {
 					if (i % 2 == 0 && j % 2 == 0) {
 						if (finalGrid[i / 2][j / 2].getPlace().getPlaceType() != worldType.getStandardPlace()) {
-							expandedGrid[i][j].setPlace(finalGrid[i / 2][j / 2].getPlace(), true);
+							expandedGrid[i][j].setPlace(finalGrid[i / 2][j / 2].getPlace());
 						}
 					} else if (i % 2 == 0) {
 						if (finalGrid[i / 2][j / 2].isNorthAccess())
@@ -374,7 +374,7 @@ public class Generation extends Task<Boolean> {
 						if (finalGrid[i / 2][(j + 1) / 2].isSouthAccess())
 							expandedGrid[i][j].setNorthAccess(true);
 						if (!finalGrid[i / 2][j / 2].isNorthAccess() && !finalGrid[i / 2][(j + 1) / 2].isSouthAccess()) {
-							expandedGrid[i][j].setPlace(new GenericPlace(worldType.getCutOffZone()), true);
+							expandedGrid[i][j].setPlace(new GenericPlace(worldType.getCutOffZone()));
 						}
 	
 					} else if (j % 2 == 0) {
@@ -383,14 +383,14 @@ public class Generation extends Task<Boolean> {
 						if (finalGrid[(i + 1) / 2][j / 2].isWestAccess())
 							expandedGrid[i][j].setEastAccess(true);
 						if (!finalGrid[i / 2][j / 2].isEastAccess() && !finalGrid[(i + 1) / 2][j / 2].isWestAccess()) {
-							expandedGrid[i][j].setPlace(new GenericPlace(worldType.getCutOffZone()), true);
+							expandedGrid[i][j].setPlace(new GenericPlace(worldType.getCutOffZone()));
 						}
 	
 					} else {
 						if (Math.random() > 0.8) {
-							expandedGrid[i][j].setPlace(new GenericPlace(worldType.getCutOffZone()), true);
+							expandedGrid[i][j].setPlace(new GenericPlace(worldType.getCutOffZone()));
 						} else {
-							expandedGrid[i][j].setPlace(new GenericPlace(PlaceType.GENERIC_IMPASSABLE), true);
+							expandedGrid[i][j].setPlace(new GenericPlace(PlaceType.GENERIC_IMPASSABLE));
 						}
 					}
 	
@@ -496,7 +496,7 @@ public class Generation extends Task<Boolean> {
 					paddedGrid[i][j] = grid[i/paddedCellSize][j/paddedCellSize];
 				} else {
 					paddedGrid[i][j] = new Cell(worldType, new Vector2i(i, j));
-					paddedGrid[i][j].setPlace(new GenericPlace(PlaceType.GENERIC_IMPASSABLE), true);
+					paddedGrid[i][j].setPlace(new GenericPlace(PlaceType.GENERIC_IMPASSABLE));
 				}
 			}
 		}
@@ -530,7 +530,7 @@ public class Generation extends Task<Boolean> {
 				case 1: // West
 					if (x - 1 >= 0 && y >= 0 && y <= height - 1) {
 						if (!isCorner(x - 1, y, grid) && grid[x - 1][y].getPlace().getPlaceType()==PlaceType.GENERIC_IMPASSABLE) {
-							grid[x - 1][y].setPlace(new GenericPlace(worldType.getStandardPlace()), true);
+							grid[x - 1][y].setPlace(new GenericPlace(worldType.getStandardPlace()));
 							recursiveGenerateTestMap(worldType, x - 1, y, grid, totalMajorPlaces, discoveredMajorPlaces);
 							
 						} else if(grid[x - 1][y].getPlace().getPlaceType()!=worldType.getStandardPlace()) {
@@ -545,7 +545,7 @@ public class Generation extends Task<Boolean> {
 				case 2: // East
 					if (x + 1 <= width - 1 && y >= 0 && y <= height - 1) {
 						if (!isCorner(x + 1, y, grid) &&grid[x + 1][y].getPlace().getPlaceType()==PlaceType.GENERIC_IMPASSABLE) {
-							grid[x + 1][y].setPlace(new GenericPlace(worldType.getStandardPlace()), true);
+							grid[x + 1][y].setPlace(new GenericPlace(worldType.getStandardPlace()));
 							recursiveGenerateTestMap(worldType, x + 1, y, grid, totalMajorPlaces, discoveredMajorPlaces);
 							
 						} else if(grid[x + 1][y].getPlace().getPlaceType()!=worldType.getStandardPlace()) {
@@ -560,7 +560,7 @@ public class Generation extends Task<Boolean> {
 				case 3: // South
 					if (y - 1 >= 0 && x >= 0 && x <= width - 1) {
 						if (!isCorner(x, y-1, grid) &&grid[x][y - 1].getPlace().getPlaceType()==PlaceType.GENERIC_IMPASSABLE) {
-							grid[x][y - 1].setPlace(new GenericPlace(worldType.getStandardPlace()), true);
+							grid[x][y - 1].setPlace(new GenericPlace(worldType.getStandardPlace()));
 							recursiveGenerateTestMap(worldType, x, y - 1, grid, totalMajorPlaces, discoveredMajorPlaces);
 							
 						} else if(grid[x][y-1].getPlace().getPlaceType()!=worldType.getStandardPlace()) {
@@ -575,7 +575,7 @@ public class Generation extends Task<Boolean> {
 				case 4: // North
 					if (y + 1 <= height - 1 && x >= 0 && x <= width - 1) {
 						if (!isCorner(x, y+1, grid) &&grid[x][y + 1].getPlace().getPlaceType()==PlaceType.GENERIC_IMPASSABLE) {
-							grid[x][y + 1].setPlace(new GenericPlace(worldType.getStandardPlace()), true);
+							grid[x][y + 1].setPlace(new GenericPlace(worldType.getStandardPlace()));
 							recursiveGenerateTestMap(worldType, x, y + 1, grid, totalMajorPlaces, discoveredMajorPlaces);
 							
 						} else if(grid[x][y+1].getPlace().getPlaceType()!=worldType.getStandardPlace()) {

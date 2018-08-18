@@ -3,6 +3,7 @@ package com.lilithsthrone.game.dialogue.story;
 import java.io.File;
 import java.time.LocalDateTime;
 
+import com.lilithsthrone.data.ImportExportManager;
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.Weather;
 import com.lilithsthrone.game.character.CharacterUtils;
@@ -74,32 +75,7 @@ public class CharacterCreation {
 		@Override
 		public Response getResponse(int responseTab, int index) {
 			if (index == 1) {
-				return new Response("Agree", "You agree that you are the legal age to view pornographic material, and consent to being exposed to graphic content.", ALPHA_MESSAGE);
-			} else {
-				return null;
-			}
-		}
-	};
-
-	public static final DialogueNodeOld ALPHA_MESSAGE = new DialogueNodeOld("", "", true) {
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public String getLabel() {
-			return "Version " + Main.VERSION_NUMBER + " | <b style='color:" + Colour.BASE_YELLOW_LIGHT.toWebHexString() + ";'>"+Main.VERSION_DESCRIPTION+"</b>";
-		}
-		
-		@Override
-		public String getContent() {
-			return Main.patchNotes;
-			
-		}
-
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 1) {
-				return new Response("Continue", "Continue to the next screen.", CONTENT_PREFERENCES);
-				
+				return new Response("Agree", "You agree that you are the legal age to view pornographic material, and consent to being exposed to graphic content.", CONTENT_PREFERENCES);
 			} else {
 				return null;
 			}
@@ -1862,7 +1838,7 @@ public class CharacterCreation {
 					+ "</tr>");
 			
 			int i=1;
-			for(File f : Main.getCharactersForImport()){
+			for(File f : ImportExportManager.getCharactersForImport()){
 				importSB.append(getImportRow(i, f.getName()));
 				i++;
 			}
