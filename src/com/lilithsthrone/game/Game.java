@@ -41,16 +41,12 @@ import com.lilithsthrone.game.character.attributes.ObedienceLevel;
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
-import com.lilithsthrone.game.character.gender.GenderPreference;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.Angel;
 import com.lilithsthrone.game.character.npc.dominion.Arthur;
 import com.lilithsthrone.game.character.npc.dominion.Ashley;
-import com.lilithsthrone.game.character.npc.dominion.Brax;
 import com.lilithsthrone.game.character.npc.dominion.Bunny;
-import com.lilithsthrone.game.character.npc.dominion.CandiReceptionist;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
-import com.lilithsthrone.game.character.npc.dominion.Finch;
 import com.lilithsthrone.game.character.npc.dominion.Kate;
 import com.lilithsthrone.game.character.npc.dominion.Lilaya;
 import com.lilithsthrone.game.character.npc.dominion.Loppy;
@@ -59,7 +55,6 @@ import com.lilithsthrone.game.character.npc.dominion.Nyan;
 import com.lilithsthrone.game.character.npc.dominion.Pix;
 import com.lilithsthrone.game.character.npc.dominion.Ralph;
 import com.lilithsthrone.game.character.npc.dominion.Rose;
-import com.lilithsthrone.game.character.npc.dominion.SlaveInStocks;
 import com.lilithsthrone.game.character.npc.dominion.SupplierLeader;
 import com.lilithsthrone.game.character.npc.dominion.SupplierPartner;
 import com.lilithsthrone.game.character.npc.dominion.TestNPC;
@@ -69,17 +64,14 @@ import com.lilithsthrone.game.character.npc.misc.GenericFemaleNPC;
 import com.lilithsthrone.game.character.npc.misc.GenericMaleNPC;
 import com.lilithsthrone.game.character.npc.misc.PrologueFemale;
 import com.lilithsthrone.game.character.npc.misc.PrologueMale;
-import com.lilithsthrone.game.character.npc.misc.SlaveImport;
 import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueFlags;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.DialogueNodeType;
-import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
 import com.lilithsthrone.game.dialogue.encounters.Encounter;
 import com.lilithsthrone.game.dialogue.eventLog.EventLogEntry;
-import com.lilithsthrone.game.dialogue.eventLog.SlaveryEventLogEntry;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseCombat;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
@@ -91,14 +83,9 @@ import com.lilithsthrone.game.dialogue.utils.InventoryDialogue;
 import com.lilithsthrone.game.dialogue.utils.MiscDialogue;
 import com.lilithsthrone.game.dialogue.utils.PhoneDialogue;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
-import com.lilithsthrone.game.inventory.item.AbstractItemType;
-import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.settings.KeyCodeWithModifiers;
 import com.lilithsthrone.game.settings.KeyboardAction;
 import com.lilithsthrone.game.sex.Sex;
-import com.lilithsthrone.game.slavery.SlavePermission;
-import com.lilithsthrone.game.slavery.SlavePermissionSetting;
-import com.lilithsthrone.game.slavery.SlaveryUtil;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.rendering.RenderingEngine;
 import com.lilithsthrone.rendering.SVGImages;
@@ -164,17 +151,12 @@ public class Game implements Serializable, XMLSaving {
 	
 	// Logs:
 	private List<EventLogEntry> eventLog = new ArrayList<>();
-	private Map<Integer, List<SlaveryEventLogEntry>> slaveryEventLog = new HashMap<>();
 	
-	// Slavery:
-	private SlaveryUtil slaveryUtil = new SlaveryUtil();
-
 	public Game() {
 		worlds = new EnumMap<>(WorldType.class);
 		for (WorldType type : WorldType.values()) {
 			worlds.put(type, null);
 		}
-		SlaveryManagementDialogue.resetImportantCells();
 		startingDate = LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonth(), LocalDateTime.now().getDayOfMonth(), 00, 00).plusYears(TIME_SKIP_YEARS);
 		minutesPassed = 20 * 60;
 		inCombat = false;
@@ -269,37 +251,6 @@ public class Game implements Serializable, XMLSaving {
 		}
 	}
 	
-	public static GameCharacter importCharacterAsSlave(String name) {
-		File file = new File("data/characters/"+name+".xml");
-		
-		if (file.exists()) {
-			try {
-				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-				Document doc = dBuilder.parse(file);
-				
-				// Cast magic:
-				doc.getDocumentElement().normalize();
-				
-				Element characterElement = (Element) doc.getElementsByTagName("exportedCharacter").item(0);
-				if(characterElement == null) {
-					characterElement = (Element) doc.getElementsByTagName("playerCharacter").item(0);
-				}
-				
-				// Load NPCs:
-				SlaveImport importedSlave = new SlaveImport();
-				importedSlave.loadFromXML(characterElement, doc);
-				importedSlave.applyNewlyImportedSlaveVariables();
-				Main.game.addNPC(importedSlave, false);
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return null;
-	}
-	
 	public static void exportGame(String exportFileName, boolean allowOverwrite) {
 		
 		File dir = new File("data/");
@@ -355,13 +306,6 @@ public class Game implements Serializable, XMLSaving {
 				CharacterUtils.addAttribute(doc, informationNode, "gatheringStormDuration", String.valueOf(Main.game.gatheringStormDuration));
 				CharacterUtils.addAttribute(doc, informationNode, "weatherTimeRemaining", String.valueOf(Main.game.weatherTimeRemaining));
 	
-				try {
-					Main.game.getSlaveryUtil().saveAsXML(game, doc);
-				}catch(Exception ex) {
-					System.err.println("SlaveryUtil saving failed!");
-					Main.game.addEvent(new EventLogEntry(Main.game.getMinutesPassed(), "<style='color:"+Colour.GENERIC_TERRIBLE.toWebHexString()+";'>Partial Save Fail<b>", "SlaveryUtil failure"), false);
-				}
-				
 				Element dateNode = doc.createElement("date");
 				informationNode.appendChild(dateNode);
 				CharacterUtils.addAttribute(doc, dateNode, "year", String.valueOf(Main.game.startingDate.getYear()));
@@ -387,24 +331,6 @@ public class Game implements Serializable, XMLSaving {
 				Main.game.addEvent(new EventLogEntry(Main.game.getMinutesPassed(), "<style='color:"+Colour.GENERIC_TERRIBLE.toWebHexString()+";'>Partial Save Fail<b>", "eventLog failure"), false);
 			}
 		
-			try {
-				Element slaveryEventLogNode = doc.createElement("slaveryEventLog");
-				game.appendChild(slaveryEventLogNode);
-				for(int day = Main.game.getDayNumber() ; day>Main.game.getDayNumber()-28 ; day--) {
-					if(Main.game.getSlaveryEventLog().containsKey(day)) {
-						Element element = doc.createElement("day");
-						slaveryEventLogNode.appendChild(element);
-						CharacterUtils.addAttribute(doc, element, "value", String.valueOf(day));
-						for(SlaveryEventLogEntry event : Main.game.getSlaveryEventLog().get(day)) {
-							event.saveAsXML(element, doc);
-						}
-					}
-				}
-			} catch(Exception ex) {
-				System.err.println("slaveryEventLog saving failed!");
-				Main.game.addEvent(new EventLogEntry(Main.game.getMinutesPassed(), "<style='color:"+Colour.GENERIC_TERRIBLE.toWebHexString()+";'>Partial Save Fail<b>", "slaveryEventLog failure"), false);
-			}
-			
 			// Add maps:
 			try {
 				Element mapNode = doc.createElement("maps");
@@ -523,15 +449,6 @@ public class Game implements Serializable, XMLSaving {
 				}
 				Main.game.weatherTimeRemaining = Integer.valueOf(informationNode.getAttribute("weatherTimeRemaining"));
 
-				try {
-					Element slaveryNode = (Element) gameElement.getElementsByTagName("slavery").item(0);
-					SlaveryUtil su = SlaveryUtil.loadFromXML(slaveryNode, doc);
-					if(su!=null) {
-						Main.game.setSlaveryUtil(su);
-					}
-				} catch(Exception ex) {
-				}
-				
 				Element dateNode = (Element) gameElement.getElementsByTagName("date").item(0);
 				Main.game.startingDate = LocalDateTime.of(
 						Integer.valueOf(dateNode.getAttribute("year")),
@@ -550,23 +467,6 @@ public class Game implements Serializable, XMLSaving {
 				Main.game.eventLog.sort(Comparator.comparingLong(EventLogEntry::getTime));
 				
 				
-				NodeList nodes = gameElement.getElementsByTagName("slaveryEventLog");
-				Element extraEffectNode = (Element) nodes.item(0);
-				if(extraEffectNode != null) {
-					NodeList slaveryDayLogElements = extraEffectNode.getElementsByTagName("day");
-					for(int i = 0; i < slaveryDayLogElements.getLength(); i++){
-						Element e = (Element) gameElement.getElementsByTagName("day").item(i);
-						int day = Integer.valueOf(e.getAttribute("value"));
-						Main.game.slaveryEventLog.put(day, new ArrayList<>());
-						
-						NodeList dayEventLogElements = e.getElementsByTagName("eventLogEntry");
-						for(int j = 0; j < dayEventLogElements.getLength(); j++){
-							Element entry = (Element) dayEventLogElements.item(j);
-							Main.game.slaveryEventLog.get(day).add(SlaveryEventLogEntry.loadFromXML(entry, doc));
-						}
-					}
-				}
-				
 				if(debug) {
 					System.out.println("Core info finished");
 				}
@@ -582,7 +482,6 @@ public class Game implements Serializable, XMLSaving {
 				}
 				
 				List<String> addedIds = new ArrayList<>();
-				List<NPC> slaveImports = new ArrayList<>();
 				// Load NPCs:
 				NodeList npcs = gameElement.getElementsByTagName("NPC");
 				Map<String, Class<? extends NPC>> npcClasses = new HashMap<>();
@@ -598,7 +497,6 @@ public class Game implements Serializable, XMLSaving {
 							int lastIndex = className.lastIndexOf('.');
 							if(className.substring(lastIndex-3, lastIndex).equals("npc")) {
 								className = className.substring(0, lastIndex) + ".misc" + className.substring(lastIndex, className.length());
-//								System.out.println(className);
 							}
 						}
 						
@@ -620,10 +518,6 @@ public class Game implements Serializable, XMLSaving {
 							if(Main.isVersionOlderThan(loadingVersion, "0.2.0") && npc.getFetishDesireMap().size()>10) {
 								npc.clearFetishDesires();
 								CharacterUtils.generateDesires(npc);
-							}
-							
-							if(npc instanceof SlaveImport) {
-								slaveImports.add(npc);
 							}
 						}
 					} else {
@@ -774,20 +668,10 @@ public class Game implements Serializable, XMLSaving {
 			Rose rose = new Rose();
 			addNPC(rose, false);
 			rose.setAffection(Main.game.getPlayer(), AffectionLevel.POSITIVE_ONE_FRIENDLY.getMedianValue());
-			lilaya.addSlave(rose);
 			rose.setObedience(ObedienceLevel.POSITIVE_FIVE_SUBSERVIENT.getMedianValue());
 			lilaya.setAffection(rose, AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
 			rose.setAffection(lilaya, AffectionLevel.POSITIVE_FOUR_LOVE.getMedianValue());
 			
-			Brax brax = new Brax();
-			addNPC(brax, false);
-	
-			CandiReceptionist candiReceptionist = new CandiReceptionist();
-			addNPC(candiReceptionist, false);
-	
-			brax.setAffection(candiReceptionist, AffectionLevel.POSITIVE_TWO_LIKE.getMedianValue());
-			candiReceptionist.setAffection(brax, AffectionLevel.POSITIVE_TWO_LIKE.getMedianValue());
-
 			// Shopping Promenade:
 			
 			addNPC(new Ralph(), false);
@@ -800,10 +684,6 @@ public class Game implements Serializable, XMLSaving {
 			
 			addNPC(new Kate(), false);
 
-			// Harpy nests:
-			
-			addNPC(new Finch(), false);
-			
 			addNPC(new Arthur(), false);
 
 			addNPC(new Ashley(), false);
@@ -841,8 +721,6 @@ public class Game implements Serializable, XMLSaving {
 	
 	public void endTurn(int turnTime, boolean advanceTime) {
 		
-//		long tStart = System.nanoTime();
-		
 		long startHour = getHour();
 		
 		if(advanceTime) {
@@ -850,16 +728,7 @@ public class Game implements Serializable, XMLSaving {
 			updateResponses();
 		}
 		
-		if(Main.game.getCurrentWeather()!=Weather.SNOW && Main.game.getSeason()!=Season.WINTER) {
-			Main.game.getDialogueFlags().values.remove(DialogueFlagValue.hasSnowedThisWinter);
-		}
-		
-		// Slavery: TODO
 		int hoursPassed = (int) (getHour() - startHour);
-		int hourStartTo24 = (int) (startHour%24);
-		for(int i=1; i <= hoursPassed; i++) {
-			slaveryUtil.performHourlyUpdate(this.getDayNumber(startHour*60 + i*60), (hourStartTo24+i)%24);
-		}
 		
 		// If the time has passed midnight on this turn:
 		boolean newDay = getDayNumber(minutesPassed) != getDayNumber(minutesPassed - turnTime);
@@ -869,34 +738,6 @@ public class Game implements Serializable, XMLSaving {
 			Main.game.getPlayer().resetDaysOrgasmCount();
 		}
 		
-		if(pendingSlaveInStocksReset && Main.game.getPlayer().getLocationPlace().getPlaceType()!=PlaceType.SLAVER_ALLEY_PUBLIC_STOCKS) {
-			List<NPC> npcsToBanish = new ArrayList<>();
-			for(NPC npc : Main.game.getCharactersPresent(Main.game.getWorlds().get(WorldType.SLAVER_ALLEY).getCell(PlaceType.SLAVER_ALLEY_PUBLIC_STOCKS))) {
-				if(npc instanceof SlaveInStocks) {
-					npcsToBanish.add(npc);
-				}
-			}
-			for(NPC npc : npcsToBanish) {
-				Main.game.banishNPC(npc);
-			}
-			
-			for(int i=0; i<4; i++) {
-				SlaveInStocks slave = new SlaveInStocks(GenderPreference.getGenderFromUserPreferences(false, false));
-				if(Math.random()>0.5f) {
-					Main.game.getGenericFemaleNPC().addSlave(slave);
-				} else {
-					Main.game.getGenericMaleNPC().addSlave(slave);	
-				}
-				try {
-					Main.game.addNPC(slave, false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			
-			pendingSlaveInStocksReset = false;
-		}
-		
 		handleAtmosphericConditions(turnTime);
 
 		
@@ -904,7 +745,7 @@ public class Game implements Serializable, XMLSaving {
 		isInNPCUpdateLoop = true;
 		
 		for(NPC npc : NPCMap.values()) {
-			// Remove Dominion attackers if they aren't in alleyways: TODO this is because storm attackers need to be removed after a storm
+			// Remove Dominion attackers if they aren't in alleyways
 			if(npc.getLocationPlace().getPlaceType() != PlaceType.DOMINION_BACK_ALLEYS
 					&& npc.getLocationPlace().getPlaceType() != PlaceType.DOMINION_CANAL
 					&& npc.getLocationPlace().getPlaceType() != PlaceType.DOMINION_CANAL_END
@@ -915,7 +756,7 @@ public class Game implements Serializable, XMLSaving {
 					}
 			
 			// Non-slave NPCs clean clothes:
-			if((!npc.isSlave() || (npc.isSlave() && !npc.getOwner().isPlayer())) && !Main.game.getPlayer().getLocation().equals(npc.getLocation())) {
+			if(!Main.game.getPlayer().getLocation().equals(npc.getLocation())) {
 				npc.cleanAllClothing();
 				npc.cleanAllDirtySlots();
 			}
@@ -954,7 +795,7 @@ public class Game implements Serializable, XMLSaving {
 						npc.equipClothing(true, true);
 						npc.setPendingClothingDressing(false);
 						
-					} else if((!npc.isSlave() && !npc.isUnique() && (npc.hasStatusEffect(StatusEffect.EXPOSED) || npc.hasStatusEffect(StatusEffect.EXPOSED_BREASTS) || npc.hasStatusEffect(StatusEffect.EXPOSED_PLUS_BREASTS)))){
+					} else if(!npc.isUnique() && (npc.hasStatusEffect(StatusEffect.EXPOSED) || npc.hasStatusEffect(StatusEffect.EXPOSED_BREASTS) || npc.hasStatusEffect(StatusEffect.EXPOSED_PLUS_BREASTS))){
 						// Try to replace clothing to cover themselves up:
 						if(!npc.hasFetish(Fetish.FETISH_EXHIBITIONIST)) {
 							npc.replaceAllClothing();
@@ -989,10 +830,6 @@ public class Game implements Serializable, XMLSaving {
 				npc.setUrethraVirgin(ureathreVirgin);
 				npc.setVaginaVirgin(vaginaVirgin);
 				npc.setVaginaUrethraVirgin(vaginaUrethraVirgin);
-			}
-			
-			if(npc.isSlave() && npc.getSlavePermissionSettings().get(SlavePermission.PREGNANCY).contains(SlavePermissionSetting.PREGNANCY_VIXENS_VIRILITY)) {
-				npc.useItem(AbstractItemType.generateItem(ItemType.VIXENS_VIRILITY), npc, false);
 			}
 			
 			if(npc.hasStatusEffect(StatusEffect.PREGNANT_3) && (minutesPassed - npc.getTimeProgressedToFinalPregnancyStage())>(12*60)) {
@@ -1124,19 +961,9 @@ public class Game implements Serializable, XMLSaving {
 			character.returnToHome();
 		}
 		
-		// Miscellaneous things:
-		
 		if(Main.game.getCurrentDialogueNode().getDialogueNodeType()==DialogueNodeType.NORMAL) { // Catch slavery management NPC not correctly being assigned to null:
 			Main.game.getDialogueFlags().setSlaveryManagerSlaveSelected(null);
 		}
-		
-		
-		
-//		System.out.println((System.nanoTime()-tStart)/1000000000d+"s");
-	}
-	
-	public Season getSeason() {
-		return Season.getSeasonFromMonth(getDateNow().getMonth());
 	}
 	
 	// Set weather and time remaining.
@@ -1165,11 +992,7 @@ public class Game implements Serializable, XMLSaving {
 						weatherTimeRemaining = (int) (gatheringStormDuration - (minutesPassed - nextStormTime));
 					} else {
 						if (Math.random() > 0.4) { // 40% chance that will start raining
-							if(getSeason()==Season.WINTER) {
-								currentWeather = Weather.SNOW;
-							} else {
-								currentWeather = Weather.RAIN;
-							}
+							currentWeather = Weather.RAIN;
 							weatherTimeRemaining = 1 * 60 + Util.random.nextInt(5 * 60); // Rain lasts for 1-6 hours
 						} else {
 							currentWeather = Weather.CLEAR;
@@ -2416,14 +2239,6 @@ public class Game implements Serializable, XMLSaving {
 		return (NPC) this.getNPCById(getUniqueNPCId(Rose.class));
 	}
 
-	public NPC getBrax() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Brax.class));
-	}
-
-//	public NPC getArthur() {
-//		return arthur;
-//	}
-
 	public NPC getPix() {
 		return (NPC) this.getNPCById(getUniqueNPCId(Pix.class));
 	}
@@ -2444,14 +2259,6 @@ public class Game implements Serializable, XMLSaving {
 		return (NPC) this.getNPCById(getUniqueNPCId(Kate.class));
 	}
 
-	public NPC getCandi() {
-		return (NPC) this.getNPCById(getUniqueNPCId(CandiReceptionist.class));
-	}
-	
-	public NPC getFinch() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Finch.class));
-	}
-	
 	public NPC getArthur() {
 		return (NPC) this.getNPCById(getUniqueNPCId(Arthur.class));
 	}
@@ -2832,30 +2639,10 @@ public class Game implements Serializable, XMLSaving {
 		this.eventLog = eventLog;
 	}
 	
-	public Map<Integer, List<SlaveryEventLogEntry>> getSlaveryEventLog() {
-		return slaveryEventLog;
-	}
-	
-	public void addSlaveryEvent(int day, NPC slave, SlaveryEventLogEntry event) {
-		slaveryEventLog.putIfAbsent(day, new ArrayList<>());
-		
-		slaveryEventLog.get(day).add(event);
-	}
-	
-
 	public int getNpcTally() {
 		return npcTally;
 	}
 
-	public SlaveryUtil getSlaveryUtil() {
-		return slaveryUtil;
-	}
-
-	public SlaveryUtil setSlaveryUtil(SlaveryUtil slaveryUtil) {
-		this.slaveryUtil = slaveryUtil;
-		return slaveryUtil;
-	}
-	
 	public DialogueNodeOld getDefaultDialogue() {
 		return Main.game.getActiveWorld().getCell(Main.game.getPlayer().getLocation()).getPlace().getDialogue(true);
 	}

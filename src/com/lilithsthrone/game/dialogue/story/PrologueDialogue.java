@@ -1438,16 +1438,6 @@ public class PrologueDialogue {
 				return new Response("I'm a demon?!", "Lilaya keeps using the word 'Demon' to describe your 'aura'. You're starting to worry that something must have changed deep inside of you...", INTRO_NEW_WORLD_6){
 					@Override
 					public void effects() {
-						// Equip clothing:
-						List<AbstractClothing> tempList = new ArrayList<>();
-						tempList.addAll(Main.game.getPlayerCell().getInventory().getAllClothingInInventory());
-
-						for (AbstractClothing c : tempList) {
-							if(!c.getClothingType().equals(ClothingType.SCIENTIST_EYES_SAFETY_GOGGLES)) {
-								Main.game.getPlayer().equipClothingFromGround(c, true, Main.game.getPlayer());
-							}
-						}
-						
 						Main.game.getPlayer().equipMainWeaponFromNowhere(AbstractWeaponType.generateWeapon(WeaponType.MELEE_CHAOS_RARE, DamageType.FIRE));
 						
 						Main.game.clearTextStartStringBuilder();

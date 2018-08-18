@@ -83,7 +83,6 @@ public class Angel extends NPC {
 			this.addFetish(Fetish.FETISH_ORAL_GIVING);
 			this.addFetish(Fetish.FETISH_ANAL_RECEIVING);
 			this.addFetish(Fetish.FETISH_VAGINAL_RECEIVING);
-			this.addFetish(Fetish.FETISH_KINK_GIVING);
 			
 			this.setHeight(174);
 			

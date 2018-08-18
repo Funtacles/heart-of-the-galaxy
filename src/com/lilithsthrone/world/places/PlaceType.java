@@ -18,7 +18,6 @@ import com.lilithsthrone.game.dialogue.places.JunglePlaces;
 import com.lilithsthrone.game.dialogue.places.dominion.CityHall;
 import com.lilithsthrone.game.dialogue.places.dominion.CityPlaces;
 import com.lilithsthrone.game.dialogue.places.dominion.DemonHome;
-import com.lilithsthrone.game.dialogue.places.dominion.EnforcerHQDialogue;
 import com.lilithsthrone.game.dialogue.places.dominion.LilithsTower;
 import com.lilithsthrone.game.dialogue.places.dominion.RedLightDistrict;
 import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.Lab;
@@ -34,7 +33,6 @@ import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.RalphsSnac
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.ShoppingArcadeDialogue;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.SuccubisSecrets;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.SupplierDepot;
-import com.lilithsthrone.game.dialogue.places.dominion.slaverAlley.SlaverAlleyDialogue;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.BaseColour;
 import com.lilithsthrone.utils.Bearing;
@@ -83,17 +81,6 @@ public enum PlaceType {
 	
 	DOMINION_LILITHS_TOWER("Lilith's Tower", "dominion/lilithsTowerIcon", BaseColour.PURPLE, Colour.MAP_BACKGROUND_PINK, LilithsTower.OUTSIDE, null, false, false, true, "in the streets of Dominion") {
 
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return DOMINION_PLAZA.getSpeciesPopulatingArea();
-		}
-	},
-	
-	DOMINION_ENFORCER_HQ("Enforcer HQ", "dominion/enforcerHQIcon", BaseColour.BLUE, Colour.MAP_BACKGROUND, EnforcerHQDialogue.EXTERIOR, Encounter.DOMINION_STREET, false, false, true, "in the streets of Dominion") {
-		@Override
-		public boolean isDangerous() {
-			return Main.game.getCurrentWeather() == Weather.MAGIC_STORM;
-		}
 		@Override
 		public List<Subspecies> getSpeciesPopulatingArea() {
 			return DOMINION_PLAZA.getSpeciesPopulatingArea();
@@ -154,17 +141,6 @@ public enum PlaceType {
 		}
 	},
 	
-	DOMINION_SLAVER_ALLEY("Slaver Alley", "dominion/slaverAlleyIcon",  BaseColour.CRIMSON, Colour.MAP_BACKGROUND, SlaverAlleyDialogue.OUTSIDE, null, false, false, true, "in the alleyways near Slaver's Alley") {
-		@Override
-		public boolean isDangerous() {
-			return Main.game.getCurrentWeather() == Weather.MAGIC_STORM;
-		}
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return DOMINION_PLAZA.getSpeciesPopulatingArea();
-		}
-	},
-
 	DOMINION_RED_LIGHT_DISTRICT("Red Light District", "dominion/brothel", BaseColour.MAGENTA, Colour.MAP_BACKGROUND_DARK, RedLightDistrict.OUTSIDE, Encounter.DOMINION_STREET, false, false, true, "in the streets of Dominion") {
 		@Override
 		public boolean isDangerous() {
@@ -246,31 +222,6 @@ public enum PlaceType {
 			return Bearing.SOUTH;
 		}
 	},
-	
-	
-	
-	
-	ENFORCER_HQ_CORRIDOR("Corridor", null, BaseColour.BLACK, Colour.MAP_BACKGROUND, EnforcerHQDialogue.CORRIDOR, null, false, true, true, "in the Enforcer HQ"),
-
-	ENFORCER_HQ_WAITING_AREA("Waiting area", "dominion/enforcerHQ/waitingRoom", BaseColour.BROWN, Colour.MAP_BACKGROUND, EnforcerHQDialogue.WAITING_AREA, null, false, true, true, "in the Enforcer HQ"),
-	
-	ENFORCER_HQ_RECEPTION_DESK("Reception desk", "dominion/enforcerHQ/receptionDesk", BaseColour.BLUE_LIGHT, Colour.MAP_BACKGROUND, EnforcerHQDialogue.RECEPTION_DESK, null, false, true, true, "in Candi's office"),
-	
-	ENFORCER_HQ_GUARDED_DOOR("Guarded door", "dominion/enforcerHQ/guardedDoor", BaseColour.CRIMSON, Colour.MAP_BACKGROUND, EnforcerHQDialogue.GUARDED_DOOR, null, false, true, true, "in the Enforcer HQ"),
-	
-	ENFORCER_HQ_BRAXS_OFFICE("Brax's Office", "dominion/enforcerHQ/braxsOffice", BaseColour.BLUE_STEEL, Colour.MAP_BACKGROUND, EnforcerHQDialogue.INTERIOR_BRAX, null, false, true, true, "in his office") {
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.braxEncountered)) {
-				return EnforcerHQDialogue.INTERIOR_BRAX_REPEAT;
-				
-			} else {
-				return EnforcerHQDialogue.INTERIOR_BRAX;
-			}
-		}
-	},
-
-	ENFORCER_HQ_ENTRANCE("Entranceway", "dominion/enforcerHQ/exit", BaseColour.RED, Colour.MAP_BACKGROUND, EnforcerHQDialogue.ENTRANCE, null, false, true, true, ""),
 	
 	// Standard tiles:
 	JUNGLE_PATH("Jungle Path", null, BaseColour.GREEN, Colour.MAP_BACKGROUND, JunglePlaces.PATH, null, false, false, true, "in the jungle"),
@@ -528,52 +479,6 @@ public enum PlaceType {
 			}
 		}
 	},
-	
-	
-	// Slaver Alley:
-	
-	SLAVER_ALLEY_PATH("Alleyway", null, BaseColour.BLACK, Colour.MAP_BACKGROUND, SlaverAlleyDialogue.ALLEYWAY, null, false, true, true, "in Slaver's Alley") {
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return Subspecies.getWorldSpecies().get(WorldType.DOMINION);
-		}
-	},
-
-	SLAVER_ALLEY_MARKET_STALL("Slaver's Shop", "dominion/slaverAlley/marketStall", BaseColour.BLACK, Colour.MAP_BACKGROUND, SlaverAlleyDialogue.MARKET_STALL, null, false, true, true, "in Slaver's Alley") {
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return Subspecies.getWorldSpecies().get(WorldType.DOMINION);
-		}
-	},
-	
-	SLAVER_ALLEY_AUCTIONING_BLOCK("Auctioning Block", "dominion/slaverAlley/auctionBlock", BaseColour.GOLD, Colour.MAP_BACKGROUND, SlaverAlleyDialogue.AUCTION_BLOCK, null, false, true, true, "in Slaver's Alley") {
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return Subspecies.getWorldSpecies().get(WorldType.DOMINION);
-		}
-	},
-
-	SLAVER_ALLEY_PUBLIC_STOCKS("Public Stocks", "dominion/slaverAlley/stocks", BaseColour.TAN, Colour.MAP_BACKGROUND, SlaverAlleyDialogue.PUBLIC_STOCKS, null, false, true, true, "in the stocks at Slaver's Alley") {
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return Subspecies.getWorldSpecies().get(WorldType.DOMINION);
-		}
-	},
-
-	SLAVER_ALLEY_SLAVERY_ADMINISTRATION("Slavery Administration", "dominion/slaverAlley/slaveryAdministration", BaseColour.PURPLE, Colour.MAP_BACKGROUND, SlaverAlleyDialogue.SLAVERY_ADMINISTRATION_EXTERIOR, null, false, true, true, "in Slaver's Alley"){
-		@Override
-		public ArrayList<PlaceUpgrade> getStartingPlaceUpgrades() {
-			return Util.newArrayListOfValues(PlaceUpgrade.SLAVERY_ADMINISTRATION_CELLS);
-		}
-	},
-	
-	SLAVER_ALLEY_ENTRANCE("Gateway", "dominion/slaverAlley/exit", BaseColour.RED, Colour.MAP_BACKGROUND, SlaverAlleyDialogue.GATEWAY, null, false, true, true, "in Slaver's Alley") {
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return Subspecies.getWorldSpecies().get(WorldType.DOMINION);
-		}
-	}
-	
 	;
 
 	
@@ -764,11 +669,8 @@ public enum PlaceType {
 			
 		} else if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM_DOUBLE)) {
 			return PlaceUpgrade.getSlaveQuartersUpgradesDouble();
-			
-		} else if(upgrades.contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-			return PlaceUpgrade.getMilkingUpgrades();
 		}
-		
+			
 		return PlaceUpgrade.getCoreRoomUpgrades();
 	}
 	
@@ -778,9 +680,6 @@ public enum PlaceType {
 			
 		} else if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM)) {
 			return PlaceType.getSVGOverride("dominion/lilayasHome/roomSlave", Colour.BASE_CRIMSON);
-			
-		} else if(upgrades.contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-			return PlaceType.getSVGOverride("dominion/lilayasHome/roomMilking", Colour.BASE_ORANGE);
 			
 		} else if(upgrades.contains(PlaceUpgrade.LILAYA_SLAVE_ROOM_DOUBLE)) {
 			return PlaceType.getSVGOverride("dominion/lilayasHome/roomSlaveDouble", Colour.BASE_MAGENTA);

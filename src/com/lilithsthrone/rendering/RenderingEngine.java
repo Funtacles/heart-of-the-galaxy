@@ -912,14 +912,8 @@ public enum RenderingEngine {
 		
 		uiAttributeSB.append("<div class='full-width-container' style='background-color:#19191a; border-radius:5px; margin-bottom:1px; padding:4px;'>"
 					+ "<div class='full-width-container' style='text-align:center; margin-left:4px;'>"
-					+"<div class='item-inline' style='float:left;'><div class='overlay' id='DATE_DISPLAY_TOGGLE'>"+SVGImages.SVG_IMAGE_PROVIDER.getCalendarIcon()+"</div></div>"
 							+ "<p style='color:"+Colour.TEXT.getShades(8)[3]+"; float:left; width:50%;'>"
-								+ (Main.getProperties().hasValue(PropertyValue.calendarDisplay)
-									? Main.game.getDateNow().format(DateTimeFormatter.ofPattern("d", Locale.ENGLISH))
-										+ Util.getDayOfMonthSuffix(Main.game.getDateNow().getDayOfMonth())
-										+ " "
-										+ Main.game.getDateNow().format(DateTimeFormatter.ofPattern("MMMM", Locale.ENGLISH))
-									:"Day "+Main.game.getDayNumber())
+								+ "Day "+Main.game.getDayNumber()
 							+ "</p>"
 							+ "<p style='float:right; margin-right:8px;'>");
 		
@@ -1605,12 +1599,6 @@ public enum RenderingEngine {
 
 		for(NPC gc : charactersPresent) {
 			mapIcons.add(gc.getMapIcon());
-		}
-		
-		for(NPC gc : Main.game.getCharactersTreatingCellAsHome(Main.game.getActiveWorld().getCell(x, y))) {
-			if(!charactersPresent.contains(gc) && gc.isSlave() && gc.getOwner().isPlayer()) {
-				mapIcons.add(gc.getHomeMapIcon());
-			}
 		}
 		
 		for(int i = mapIcons.size() ; i>0 ; i--) {

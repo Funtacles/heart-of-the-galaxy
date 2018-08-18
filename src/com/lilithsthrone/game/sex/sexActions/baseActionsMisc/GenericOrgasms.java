@@ -7,7 +7,6 @@ import java.util.List;
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.GameCharacter;
 
-import com.lilithsthrone.game.character.attributes.ObedienceLevel;
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.valueEnums.CumProduction;
 import com.lilithsthrone.game.character.body.valueEnums.PenetrationModifier;
@@ -55,11 +54,9 @@ public class GenericOrgasms {
 			return false;
 		}
 		
-		return (Sex.getActivePartner().isSlave()
-					&& Sex.getActivePartner().getObedienceValue()>=ObedienceLevel.POSITIVE_ONE_AGREEABLE.getMinimumValue())
-				|| (Sex.isDom(Main.game.getPlayer())
-						|| Sex.isSubHasEqualControl())
-				|| Sex.getActivePartner().hasFetish(Fetish.FETISH_SUBMISSIVE);
+		return Sex.isDom(Main.game.getPlayer())
+			|| Sex.isSubHasEqualControl()
+			|| Sex.getActivePartner().hasFetish(Fetish.FETISH_SUBMISSIVE);
 	}
 
 	private static boolean isGenericPartnerCumTargetRequirementsMet() {

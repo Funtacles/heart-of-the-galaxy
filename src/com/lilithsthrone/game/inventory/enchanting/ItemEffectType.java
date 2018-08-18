@@ -19,7 +19,6 @@ import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
-import com.lilithsthrone.game.inventory.clothing.ClothingType;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.main.Main;
@@ -1060,25 +1059,6 @@ public class ItemEffectType {
 			items.add(ItemType.SEX_INGREDIENT_MINCE_PIE);
 			
 			Map<AbstractClothingType, Integer> clothingMap = new HashMap<>();
-			// Common clothing (55%):
-			clothingMap.put(ClothingType.NECK_SNOWFLAKE_NECKLACE, 11);
-			clothingMap.put(ClothingType.PIERCING_EAR_SNOW_FLAKES, 11);
-			clothingMap.put(ClothingType.PIERCING_NOSE_SNOWFLAKE_STUD, 11);
-			
-			// Uncommon clothing (44%):
-			clothingMap.put(ClothingType.JOLNIR_BOOTS, 4);
-			clothingMap.put(ClothingType.JOLNIR_BOOTS_FEMININE, 4);
-			clothingMap.put(ClothingType.JOLNIR_COAT, 4);
-			clothingMap.put(ClothingType.JOLNIR_DRESS, 4);
-			clothingMap.put(ClothingType.JOLNIR_HAT, 4);
-			
-			clothingMap.put(ClothingType.KIMONO_DRESS, 4);
-			clothingMap.put(ClothingType.KIMONO_GETA, 4);
-			clothingMap.put(ClothingType.KIMONO_HAIR_KANZASHI, 4);
-
-			clothingMap.put(ClothingType.KIMONO_MENS_KIMONO, 4);
-			clothingMap.put(ClothingType.KIMONO_MENS_GETA, 4);
-			clothingMap.put(ClothingType.KIMONO_HAORI, 4);
 			
 			// 50% chance for consumable, 50% for clothing:
 			if(Math.random()<0.5f) {

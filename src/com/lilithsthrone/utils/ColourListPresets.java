@@ -69,17 +69,6 @@ public enum ColourListPresets {
 			Colour.CLOTHING_GREY,
 			Colour.CLOTHING_BLACK)),
 	
-	KIMONO(Util.newArrayListOfValues(
-			Colour.CLOTHING_BLUE_LIGHT,
-			Colour.CLOTHING_PINK_LIGHT,
-			Colour.CLOTHING_PINK,
-			Colour.CLOTHING_PURPLE,
-			Colour.CLOTHING_PURPLE_LIGHT,
-			Colour.CLOTHING_RED,
-			Colour.CLOTHING_TURQUOISE,
-			Colour.CLOTHING_WHITE,
-			Colour.CLOTHING_YELLOW)),
-	
 	MAID(Util.newArrayListOfValues(
 			Colour.CLOTHING_PINK_LIGHT,
 			Colour.CLOTHING_PINK,

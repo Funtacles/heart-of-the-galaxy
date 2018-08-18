@@ -1150,10 +1150,6 @@ public interface SexActionInterface {
 					break;
 				case FETISH_VOYEURIST:
 					break;
-				case FETISH_KINK_GIVING:
-					break;
-				case FETISH_KINK_RECEIVING:
-					break;
 				case FETISH_PENIS_GIVING:
 					associatedFetishesPartner.add(Fetish.FETISH_PENIS_RECEIVING);
 					break;

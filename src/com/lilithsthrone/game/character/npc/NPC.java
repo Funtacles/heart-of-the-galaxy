@@ -15,7 +15,6 @@ import org.w3c.dom.NodeList;
 import com.lilithsthrone.game.character.CharacterImportSetting;
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.attributes.ObedienceLevel;
 import com.lilithsthrone.game.character.body.Body;
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.types.PenisType;
@@ -66,7 +65,6 @@ import com.lilithsthrone.game.sex.SexPace;
 import com.lilithsthrone.game.sex.SexParticipantType;
 import com.lilithsthrone.game.sex.SexPositionSlot;
 import com.lilithsthrone.game.sex.SexType;
-import com.lilithsthrone.game.slavery.SlaveJob;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
@@ -543,27 +541,12 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 	// Relationships:
 	
 	public float getHourlyAffectionChange(int hour) {
-		if(this.workHours[hour]) {
-			if(this.getSlaveJob()==SlaveJob.IDLE) {
-				return this.getHomeLocationPlace().getHourlyAffectionChange();
-			}
-			// To get rid of e.g. 2.3999999999999999999999:
-			return Math.round(this.getSlaveJob().getAffectionGain(this)*100)/100f;
-		}
-		
 		// To get rid of e.g. 2.3999999999999999999999:
 		return Math.round(this.getHomeLocationPlace().getHourlyAffectionChange()*100)/100f;
 	}
 	
 	public float getDailyAffectionChange() {
 		float totalAffectionChange = 0;
-		
-		for (int workHour = 0; workHour < this.getTotalHoursWorked(); workHour++) {
-			if(this.getSlaveJob()==SlaveJob.IDLE) {
-				totalAffectionChange+=this.getHomeLocationPlace().getHourlyAffectionChange();
-			}
-			totalAffectionChange += this.getSlaveJob().getAffectionGain(this);
-		}
 		
 		for (int homeHour = 0; homeHour < 24-this.getTotalHoursWorked(); homeHour++) {
 			totalAffectionChange += this.getHomeLocationPlace().getHourlyAffectionChange();
@@ -711,7 +694,7 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		if(generateNew) {
 			this.heldTransformativePotion = null;
 			
-			if(hasFetish(Fetish.FETISH_TRANSFORMATION_GIVING) && hasFetish(Fetish.FETISH_KINK_GIVING)) {
+			if(hasFetish(Fetish.FETISH_TRANSFORMATION_GIVING)) {
 				int randNum = Util.random.nextInt(100);
 				Boolean pairedFetishAvailable = generateFetishPotion(true) == null ? false : true;
 				
@@ -729,24 +712,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					
 				} else {
 					this.heldTransformativePotion = generateTransformativePotion();
-				}
-				
-			} else if(hasFetish(Fetish.FETISH_KINK_GIVING)) {
-				
-				int randNum = Util.random.nextInt(100);
-				Boolean pairedFetishAvailable = generateFetishPotion(true) == null ? false : true;
-				
-				// Leaving this present but commented out so it can be easily re-enabled by anyone wanting to tweak or check the results of potion selection:
-//				System.out.println("Random Fetish Only"); 
-//				System.out.println(randNum); 
-//				System.out.println(pairedFetishAvailable); 
-				
-				// If there's a paired fetish to use, large chance to just choose from paired pool:
-				if(pairedFetishAvailable && randNum < 80 ) {
-					this.heldTransformativePotion = generateFetishPotion(true);
-					
-				} else {
-					this.heldTransformativePotion = generateFetishPotion(false);
 				}
 				
 			} else if(hasFetish(Fetish.FETISH_TRANSFORMATION_GIVING)) {
@@ -1347,44 +1312,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		int desiredFetishIncrement = 2;  // for now, keeping it simple, only modifying add chances based on desires, one increment (or decrement) per level
 		int expFetishIncrement = 1;  // for now, keeping it simple, only modifying add chances based on exp, one increment per level
 		
-		switch(Main.getProperties().forcedFetishTendency) {
-			case NEUTRAL:
-				baseTopChance = 5;
-				baseBottomChance = 5;
-				baseTopRemoveChance = 2;
-				baseBottomRemoveChance = 2;
-				break;
-		
-			case BOTTOM:
-				baseTopChance = 1;
-				baseBottomChance = 8;
-				baseTopRemoveChance = 3;
-				baseBottomRemoveChance = 0;
-				break;
-			
-			case BOTTOM_HEAVY:
-				baseTopChance = -2;
-				baseBottomChance = 10;
-				baseTopRemoveChance = 4;
-				baseBottomRemoveChance = -1;
-				break;
-			
-			case TOP:
-				baseTopChance = 8;
-				baseBottomChance = 1;
-				baseTopRemoveChance = 0;
-				baseBottomRemoveChance = 3;
-				break;
-			
-			case TOP_HEAVY:
-				baseTopChance = 10;
-				baseBottomChance = -2;
-				baseTopRemoveChance = -1;
-				baseBottomRemoveChance = 4;
-				break;
-		
-		}
-		
 		
 		// map of top -> bottom paired fetishes; NPCs with a paired fetish will greatly favor 
 		// giving the player it's pair, and remove that fetish if there is a match
@@ -1410,9 +1337,7 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		// out of the list entirely, but for now let's have them in there
 		if(!pairedFetishesOnly) {
 			pairedFetishMap.put(Fetish.FETISH_TRANSFORMATION_GIVING, Fetish.FETISH_TRANSFORMATION_RECEIVING);
-			pairedFetishMap.put(Fetish.FETISH_KINK_GIVING, Fetish.FETISH_KINK_RECEIVING);
 		}
-		
 		
 		
 		for(Entry<Fetish, Fetish> entry : pairedFetishMap.entrySet()) {
@@ -1940,13 +1865,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		
 		fetishAddFlavorText.put(TFModifier.TF_MOD_FETISH_TRANSFORMATION_RECEIVING, "Don't you just love becoming something new?");
 		fetishRemoveFlavorText.put(TFModifier.TF_MOD_FETISH_TRANSFORMATION_RECEIVING, "I think you're good just as you are.");
-		
-		fetishAddFlavorText.put(TFModifier.TF_MOD_FETISH_KINK_GIVING, "You're into so many interesting things -- you really should share them with others.");
-		fetishRemoveFlavorText.put(TFModifier.TF_MOD_FETISH_KINK_GIVING, "Just let people enjoy what they enjoy, okay?");
-		
-		fetishAddFlavorText.put(TFModifier.TF_MOD_FETISH_KINK_RECEIVING, "You strike me as someone who would really enjoy trying new things.");
-		fetishRemoveFlavorText.put(TFModifier.TF_MOD_FETISH_KINK_RECEIVING, "I think you're already excitable enough as it is.");
-		
 		
 		
 		if(selectedEffect.getPotency() == TFPotency.MINOR_BOOST || selectedEffect.getPotency() == TFPotency.BOOST) {
@@ -2734,20 +2652,9 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 	public SexPace getTheoreticalSexPaceSubPreference(GameCharacter character) {
 		if(!isAttractedTo(character) || this.hasFetish(Fetish.FETISH_NON_CON_SUB)) {
 			if(Main.game.isNonConEnabled()) {
-				if(isSlave()) {
-					if(this.getObedienceValue()>=ObedienceLevel.POSITIVE_FIVE_SUBSERVIENT.getMinimumValue()) {
-						return SexPace.SUB_EAGER;
-						
-					} else if(this.getObedienceValue()>=ObedienceLevel.POSITIVE_TWO_OBEDIENT.getMinimumValue()) {
-						return SexPace.SUB_NORMAL;
-					}
-				}
-				
 				return SexPace.SUB_RESISTING;
-				
 			} else {
 				return SexPace.SUB_NORMAL;
-				
 			}
 		}
 		
@@ -2803,14 +2710,9 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 				
 			// Player uses item on NPC:
 			} else {
-				if(target.isSlave() && target.getOwner()!=null && target.getOwner().isPlayer()) {
-					return Main.game.getPlayer().useItem(item, target, false);
-					
-				} else {
-					return "<p>"
-								+ UtilText.parse(this, "You try to give [npc.name] the "+item.getName()+", but [npc.she] refuses to take it. You put the "+item.getName()+" back in your inventory.")
-							+ "</p>";
-				}
+				return "<p>"
+							+ UtilText.parse(this, "You try to give [npc.name] the "+item.getName()+", but [npc.she] refuses to take it. You put the "+item.getName()+" back in your inventory.")
+						+ "</p>";
 			}
 			
 		// NPC is using an item:

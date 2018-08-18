@@ -1,7 +1,5 @@
 package com.lilithsthrone.game.dialogue.encounters;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.function.Predicate;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +7,6 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import com.lilithsthrone.game.Weather;
-import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.gender.GenderPreference;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
@@ -18,7 +15,6 @@ import com.lilithsthrone.game.character.npc.dominion.Lumi;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
-import com.lilithsthrone.game.dialogue.npcDialogue.SlaveDialogue;
 import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
@@ -30,7 +26,6 @@ import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.game.inventory.weapon.WeaponType;
-import com.lilithsthrone.game.slavery.SlavePermissionSetting;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Vector2i;
@@ -48,46 +43,7 @@ public enum Encounter {
 			new Value<EncounterType, Float>(EncounterType.SLAVE_USES_YOU, 5f))) {
 		@Override
 		protected DialogueNodeOld initialiseEncounter(EncounterType node) {
-			if(node == EncounterType.SLAVE_USES_YOU && Main.game.getNonCompanionCharactersPresent().isEmpty()) {
-				
-				List<NPC> slaves = new ArrayList<>();
-				List<NPC> hornySlaves = new ArrayList<>();
-				
-				for(String id : Main.game.getPlayer().getSlavesOwned()) {
-					NPC slave = (NPC) Main.game.getNPCById(id);
-					if(slave.hasSlavePermissionSetting(SlavePermissionSetting.SEX_INITIATE_PLAYER)
-							&& !slave.getWorkHours()[(int) (Main.game.getHour()%24)]
-							&& slave.hasSlavePermissionSetting(SlavePermissionSetting.GENERAL_HOUSE_FREEDOM)
-							&& slave.isAttractedTo(Main.game.getPlayer())) {
-						if(slave.getLastTimeHadSex()+60*4<Main.game.getMinutesPassed()) {
-							slaves.add(slave);
-						}
-						if(slave.hasStatusEffect(StatusEffect.PENT_UP_SLAVE)) {
-							hornySlaves.add(slave);
-						}
-					}
-				}
-				slaves.removeIf((slave) -> slave.getWorldLocation()==WorldType.SLAVER_ALLEY);
-				hornySlaves.removeIf((slave) -> slave.getWorldLocation()==WorldType.SLAVER_ALLEY);
-				
-				if(!hornySlaves.isEmpty()) {
-					Collections.shuffle(hornySlaves);
-					Main.game.setActiveNPC(hornySlaves.get(0));
-					Main.game.getActiveNPC().setLocation(Main.game.getPlayer().getWorldLocation(), Main.game.getPlayer().getLocation(), false);
-					return SlaveDialogue.SLAVE_USES_YOU;
-					
-				} else if(!slaves.isEmpty()) {
-					Collections.shuffle(slaves);
-					Main.game.setActiveNPC(slaves.get(0));
-					Main.game.getActiveNPC().setLocation(Main.game.getPlayer().getWorldLocation(), Main.game.getPlayer().getLocation(), false);
-					return SlaveDialogue.SLAVE_USES_YOU;
-				}
-				
-				return null;
-				
-			} else {
-				return null;
-			}
+			return null;
 		}
 	},
 	
@@ -252,7 +208,7 @@ public enum Encounter {
 	};
 
 	private static List<NPC> UnspawnedChildren(Predicate<NPC> matcher) {
-		List<NPC> offspringAvailable = Main.game.getOffspring().stream().filter(npc -> !npc.isSlave())
+		List<NPC> offspringAvailable = Main.game.getOffspring().stream()
 										.filter(npc -> npc.getWorldLocation()==WorldType.EMPTY)
 										.filter(npc -> npc.getLastTimeEncountered()==NPC.DEFAULT_TIME_START_VALUE)
 										.filter(matcher).collect(Collectors.toList());

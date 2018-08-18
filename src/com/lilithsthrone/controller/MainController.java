@@ -43,13 +43,11 @@ import com.lilithsthrone.game.character.gender.GenderNames;
 import com.lilithsthrone.game.character.gender.GenderPronoun;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.TestNPC;
-import com.lilithsthrone.game.character.persona.NameTriplet;
 import com.lilithsthrone.game.combat.Combat;
 import com.lilithsthrone.game.combat.SpecialAttack;
 import com.lilithsthrone.game.dialogue.DebugDialogue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.DialogueNodeType;
-import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
 import com.lilithsthrone.game.dialogue.places.dominion.CityHall;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.SuccubisSecrets;
 import com.lilithsthrone.game.dialogue.responses.Response;
@@ -469,35 +467,6 @@ public class MainController implements Initializable {
 								}
 							}
 						}
-						if(Main.game.getCurrentDialogueNode() == SlaveryManagementDialogue.ROOM_UPGRADES
-								|| Main.game.getCurrentDialogueNode() == SlaveryManagementDialogue.ROOM_UPGRADES_MANAGEMENT){
-							if((boolean) Main.mainController.getWebEngine().executeScript("document.getElementById('nameInput') === document.activeElement")) {
-								allowInput = false;
-								if (event.getCode() == KeyCode.ENTER) {
-									enterConsumed = true;
-									boolean unsuitableName = false;
-									if(Main.mainController.getWebEngine().executeScript("document.getElementById('nameInput')")!=null) {
-										 
-										Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenFieldName').innerHTML=document.getElementById('nameInput').value;");
-										if(Main.mainController.getWebEngine().getDocument()!=null) {
-											unsuitableName = Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent().length() < 1
-															|| Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent().length() > 32;
-										}
-										
-										if (!unsuitableName) {
-											Main.game.setContent(new Response("Rename Room", "Rename this room to whatever you've entered in the text box.", Main.game.getCurrentDialogueNode()){
-												@Override
-												public void effects() {
-													Main.game.getPlayerCell().getPlace().setName(Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent());
-												}
-											});
-										} else {
-											Main.game.setContent(new Response("Rename Room", "", Main.game.getCurrentDialogueNode()));
-										}
-									}
-								}
-							}
-						}
 						if(Main.game.getCurrentDialogueNode() == CityHall.CITY_HALL_NAME_CHANGE_FORM){
 							if((boolean) Main.mainController.getWebEngine().executeScript("document.getElementById('nameInput') === document.activeElement")) {
 								allowInput = false;
@@ -544,7 +513,6 @@ public class MainController implements Initializable {
 							}
 						}
 						if(Main.game.getCurrentDialogueNode() == SuccubisSecrets.SHOP_BEAUTY_SALON_TATTOOS_ADD
-								|| Main.game.getCurrentDialogueNode() == SlaveryManagementDialogue.SLAVE_MANAGEMENT_TATTOOS_ADD
 								|| Main.game.getCurrentDialogueNode() == CharacterCreation.CHOOSE_ADVANCED_APPEARANCE_TATTOOS_ADD){
 							if((boolean) Main.mainController.getWebEngine().executeScript("document.getElementById('tattoo_name') === document.activeElement")) {
 								allowInput = false;
@@ -554,63 +522,6 @@ public class MainController implements Initializable {
 								} else {
 									Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenPField').innerHTML=document.getElementById('tattoo_name').value;");
 									CharacterModificationUtils.tattoo.getWriting().setText(Main.mainController.getWebEngine().getDocument().getElementById("hiddenPField").getTextContent());
-								}
-							}
-						}
-						if(Main.game.getCurrentDialogueNode() == SlaveryManagementDialogue.SLAVE_MANAGEMENT_INSPECT
-								|| Main.game.getCurrentDialogueNode() == SlaveryManagementDialogue.SLAVE_MANAGEMENT_JOBS
-								|| Main.game.getCurrentDialogueNode() == SlaveryManagementDialogue.SLAVE_MANAGEMENT_PERMISSIONS){
-							if((boolean) Main.mainController.getWebEngine().executeScript("document.getElementById('slaveToPlayerNameInput') === document.activeElement")) {
-								allowInput = false;
-								if (event.getCode() == KeyCode.ENTER) {
-									enterConsumed = true;
-									boolean unsuitableName = false;
-								 	if(Main.mainController.getWebEngine().executeScript("document.getElementById('slaveToPlayerNameInput')")!=null) {
-									 
-										Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenFieldName').innerHTML=document.getElementById('slaveToPlayerNameInput').value;");
-										if(Main.mainController.getWebEngine().getDocument()!=null) {
-											unsuitableName = Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent().length() < 1
-															|| Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent().length() > 32;
-										}
-										
-										if (!unsuitableName) {
-											Main.game.setContent(new Response("Rename", "", Main.game.getCurrentDialogueNode()){
-												@Override
-												public void effects() {
-													Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().setPlayerPetName(Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent());
-												}
-											});
-										} else {
-											Main.game.setContent(new Response("Rename", "", Main.game.getCurrentDialogueNode()));
-										}
-										
-									}
-								}
-							}
-							if(((boolean) Main.mainController.getWebEngine().executeScript("document.getElementById('slaveNameInput') === document.activeElement"))) {
-								allowInput = false;
-								if (event.getCode() == KeyCode.ENTER) {
-									enterConsumed = true;
-									boolean unsuitableName = false;
-								 	if(Main.mainController.getWebEngine().executeScript("document.getElementById('slaveNameInput')")!=null) {
-									 
-										Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenFieldName').innerHTML=document.getElementById('slaveNameInput').value;");
-										if(Main.mainController.getWebEngine().getDocument()!=null) {
-											unsuitableName = Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent().length() < 1
-															|| Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent().length() > 32;
-										}
-										
-										if (!unsuitableName) {
-											Main.game.setContent(new Response("Rename", "", Main.game.getCurrentDialogueNode()){
-												@Override
-												public void effects() {
-													Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().setName(new NameTriplet(Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent()));
-												}
-											});
-										} else {
-											Main.game.setContent(new Response("Rename", "", Main.game.getCurrentDialogueNode()));
-										}
-									}
 								}
 							}
 						}
@@ -980,21 +891,6 @@ public class MainController implements Initializable {
 				Main.game.setResponseTab(responsePageCounter);
 				Main.game.updateResponses();
 			}, false);
-		
-//		addEventListener(document, id, "mousemove", responseTooltipListener, false);
-//		addEventListener(document, id, "mouseleave", hideTooltipListener, false);
-//		TooltipInformationEventListener el2 = new TooltipInformationEventListener().setInformation(Main.game.getCurrentDialogueNode().getResponseTabTitle(responsePageCounter), "");
-//		addEventListener(document, id, "mouseenter", el2, false);
-	}
-	
-	static void allocateWorkTime(int i) {
-		String id = i+"_WORK";
-		if (((EventTarget) document.getElementById(id)) != null) {
-			((EventTarget) document.getElementById(id)).addEventListener("click", e -> {
-				Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().setWorkHour(i, !Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().getWorkHours()[i]);
-				Main.game.setContent(new Response("", "", SlaveryManagementDialogue.getSlaveryManagementSlaveJobsDialogue(Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected())));
-			}, false);
-		}
 	}
 	
 	static void setInventoryPageLeft(int i) {
@@ -1125,21 +1021,6 @@ public class MainController implements Initializable {
 			addEventListener(documentAttributes, id, "mouseenter", el2, false);
 		}
 
-		id = "DATE_DISPLAY_TOGGLE";
-		if (((EventTarget) documentAttributes.getElementById(id)) != null) {
-			((EventTarget) documentAttributes.getElementById(id)).addEventListener("click", e -> {
-				Main.getProperties().setValue(PropertyValue.calendarDisplay, !Main.getProperties().hasValue(PropertyValue.calendarDisplay));
-				Main.saveProperties();
-				MainController.updateUI();
-			}, false);
-			
-			addEventListener(documentAttributes, id, "mousemove", moveTooltipListener, false);
-			addEventListener(documentAttributes, id, "mouseleave", hideTooltipListener, false);
-			TooltipInformationEventListener el2 = new TooltipInformationEventListener().setInformation("Toggle Calendar Display",
-					"Toggle the date's display between a calendar and day count.");
-			addEventListener(documentAttributes, id, "mouseenter", el2, false);
-		}
-		
 		id = "TWENTY_FOUR_HOUR_TIME_TOGGLE";
 		if (((EventTarget) documentAttributes.getElementById(id)) != null) {
 			((EventTarget) documentAttributes.getElementById(id)).addEventListener("click", e -> {
@@ -1573,8 +1454,7 @@ public class MainController implements Initializable {
 		if(useJavascriptToSetContent
 				 // For rendering images from file:
 				&& !Main.game.getCurrentDialogueNode().equals(CharactersPresentDialogue.MENU)
-				&& !Main.game.getCurrentDialogueNode().equals(PhoneDialogue.CONTACTS_CHARACTER)
-				&& !Main.game.getCurrentDialogueNode().equals(SlaveryManagementDialogue.SLAVE_MANAGEMENT_INSPECT)) {
+				&& !Main.game.getCurrentDialogueNode().equals(PhoneDialogue.CONTACTS_CHARACTER)) {
 			unbindListeners(document);
 			setWebEngineContent(webEngine, content);
 			manageMainListeners();
@@ -1639,7 +1519,7 @@ public class MainController implements Initializable {
 			}
 		}
 		if (lastKeysEqual(KeyCode.N, KeyCode.O, KeyCode.X, KeyCode.X, KeyCode.X)) {
-			if(Main.game.getPlayer().getLocationPlace().getPlaceType()==PlaceType.SHOPPING_ARCADE_GENERIC_SHOP && !Main.game.getTestNPC().isSlave()) {
+			if(Main.game.getPlayer().getLocationPlace().getPlaceType()==PlaceType.SHOPPING_ARCADE_GENERIC_SHOP) {
 				Main.game.setActiveNPC(Main.game.getTestNPC());
 				Main.game.setContent(new Response("", "", TestNPC.TEST_DIALOGUE) {
 					@Override

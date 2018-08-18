@@ -813,14 +813,17 @@ public class Parser {
 		Parser.addParserFunction(new ParserFunction(new String[] {"a_job", "a_jobName", "job", "jobName"}) {
 			@Override
 			public String parse(String command, String arguments, GameCharacter target) {
-				boolean article = StringUtils.startsWithAny(command, "a_", "A_");
-				String result = target.getSlaveJob().getName(target);
+				// TODO replace with career
+				// boolean article = StringUtils.startsWithAny(command, "a_", "A_");
+				// String result = target.getSlaveJob().getName(target);
 
-				if(article){
-					result = UtilText.generateSingularDeterminer(result);
-				}
+				// if(article){
+				// 	result = UtilText.generateSingularDeterminer(result);
+				// }
 
-				return result;
+				// return result;
+
+				return "";
 			}
 		});
 

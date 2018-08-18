@@ -40,8 +40,6 @@ import com.lilithsthrone.utils.ClothingZLayerComparator;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.ColourListPresets;
 import com.lilithsthrone.utils.Util;
-import com.lilithsthrone.world.WorldType;
-import com.lilithsthrone.world.places.PlaceType;
 
 /**
  * @since 0.1.0
@@ -1097,22 +1095,6 @@ public class InventoryDialogue {
 								} else if (!item.isAbleToBeUsed(inventoryNPC)) {
 									return new Response(Util.capitaliseSentence(item.getItemType().getUseName()) +" (opponent)", item.getUnableToBeUsedDescription(inventoryNPC), null);
 
-								} else if(item.getItemType().isFetishGiving()) {
-									return new Response(Util.capitaliseSentence(item.getItemType().getUseName()) +" (opponent)",
-											"Get "+inventoryNPC.getName("the")+" to "+ item.getItemType().getUseName() + " the " + item.getName() + ".", Combat.ENEMY_ATTACK,
-											Util.newArrayListOfValues(Fetish.FETISH_KINK_GIVING),
-											null,
-											null,
-											null){
-										@Override
-										public void effects(){
-											Combat.appendTurnText(Main.game.getPlayer(), Util.capitaliseSentence(item.getItemType().getUseName())+" "+item.getName(), Main.game.getPlayer().useItem(item, inventoryNPC, false));
-											resetPostAction();
-											Combat.endCombatTurn();
-											Combat.setPreviousAction(Attack.NONE);
-											Main.mainController.openInventory();
-										}
-									};
 								} else if(item.getItemType().isTransformative()) {
 									return new Response(Util.capitaliseSentence(item.getItemType().getUseName()) +" (opponent)",
 											"Get "+inventoryNPC.getName("the")+" to "+ item.getItemType().getUseName() + " the " + item.getName() + ".", Combat.ENEMY_ATTACK,
@@ -1264,20 +1246,6 @@ public class InventoryDialogue {
 								} else if (!item.isAbleToBeUsed(inventoryNPC)) {
 									return new Response(Util.capitaliseSentence(item.getItemType().getUseName()) +" (them)", item.getUnableToBeUsedDescription(inventoryNPC), null);
 									
-								} else if(item.getItemType().isFetishGiving()) {
-									return new Response(Util.capitaliseSentence(item.getItemType().getUseName()) +" (them)",
-											"Get "+inventoryNPC.getName("the")+" to "+ item.getItemType().getUseName() + " the " + item.getName() + ".",
-											INVENTORY_MENU,
-											Util.newArrayListOfValues(Fetish.FETISH_KINK_GIVING),
-											null,
-											null,
-											null){
-										@Override
-										public void effects(){
-											Main.game.getTextEndStringBuilder().append(inventoryNPC.getItemUseEffects(item, Main.game.getPlayer(), inventoryNPC));
-											resetPostAction();
-										}
-									};
 								} else if(item.getItemType().isTransformative()) {
 									return new Response(Util.capitaliseSentence(item.getItemType().getUseName()) +" (them)",
 											"Get "+inventoryNPC.getName("the")+" to "+ item.getItemType().getUseName() + " the " + item.getName() + ".",
@@ -1311,23 +1279,6 @@ public class InventoryDialogue {
 								} else if(!item.isAbleToBeUsed(inventoryNPC)) {
 									return new Response(Util.capitaliseSentence(item.getItemType().getUseName())+" all (them)", item.getUnableToBeUsedDescription(inventoryNPC), null);
 									
-								} else if(item.getItemType().isFetishGiving()) {
-									return new Response(Util.capitaliseSentence(item.getItemType().getUseName())+" all (them)",
-											"Get "+inventoryNPC.getName("the")+" to "+ item.getItemType().getUseName() + " all of the " + item.getNamePlural() + " in your inventory.",
-											INVENTORY_MENU,
-											Util.newArrayListOfValues(Fetish.FETISH_KINK_GIVING),
-											null,
-											null,
-											null){
-										@Override
-										public void effects(){
-											int itemCount = Main.game.getPlayer().getItemCount(item);
-											for(int i=0;i<itemCount;i++) {
-												Main.game.getTextEndStringBuilder().append(inventoryNPC.getItemUseEffects(item, Main.game.getPlayer(), inventoryNPC));
-											}
-											resetPostAction();
-										}
-									};
 								} else if(item.getItemType().isTransformative()) {
 									return new Response(Util.capitaliseSentence(item.getItemType().getUseName())+" all (them)",
 											"Get "+inventoryNPC.getName("the")+" to "+ item.getItemType().getUseName() + " all of the " + item.getNamePlural() + " in your inventory.",
@@ -1417,23 +1368,6 @@ public class InventoryDialogue {
 									
 								} else if (!item.isAbleToBeUsed(inventoryNPC)) {
 									return new Response(Util.capitaliseSentence(item.getItemType().getUseName()) +" (partner)", item.getUnableToBeUsedDescription(inventoryNPC), null);
-									
-								} else if(item.getItemType().isFetishGiving()) {
-									return new Response(Util.capitaliseSentence(item.getItemType().getUseName()) +" (partner)",
-											"Get "+inventoryNPC.getName("the")+" to "+ item.getItemType().getUseName() + " the " + item.getName() + ".", Sex.SEX_DIALOGUE,
-											Util.newArrayListOfValues(Fetish.FETISH_KINK_GIVING),
-											null,
-											null,
-											null){
-										@Override
-										public void effects(){
-											Sex.setUsingItemText(Sex.getActivePartner().getItemUseEffects(item, Main.game.getPlayer(), inventoryNPC));
-											resetPostAction();
-											Main.mainController.openInventory();
-											Sex.endSexTurn(SexActionUtility.PLAYER_USE_ITEM);
-											Sex.setSexStarted(true);
-										}
-									};
 									
 								} else if(item.getItemType().isTransformative()) {
 									return new Response(Util.capitaliseSentence(item.getItemType().getUseName()) +" (partner)",
@@ -1830,20 +1764,6 @@ public class InventoryDialogue {
 								} else if (!item.isAbleToBeUsed(inventoryNPC)) {
 									return new Response(Util.capitaliseSentence(item.getItemType().getUseName()) +" (them)", item.getUnableToBeUsedDescription(inventoryNPC), null);
 									
-								} else if(item.getItemType().isFetishGiving()) {
-									return new Response(Util.capitaliseSentence(item.getItemType().getUseName()) +" (them)",
-											"Get "+inventoryNPC.getName("the")+" to "+ item.getItemType().getUseName() + " the " + item.getName() + ".",
-											INVENTORY_MENU,
-											Util.newArrayListOfValues(Fetish.FETISH_KINK_GIVING),
-											null,
-											null,
-											null){
-										@Override
-										public void effects(){
-											Main.game.getTextEndStringBuilder().append("<p style='text-align:center;'>" + inventoryNPC.useItem(item, inventoryNPC, false) + "</p>");
-											resetPostAction();
-										}
-									};
 								} else if(item.getItemType().isTransformative()) {
 									return new Response(Util.capitaliseSentence(item.getItemType().getUseName()) +" (them)",
 											"Get "+inventoryNPC.getName("the")+" to "+ item.getItemType().getUseName() + " the " + item.getName() + ".",
@@ -1877,23 +1797,6 @@ public class InventoryDialogue {
 								} else if(!item.isAbleToBeUsed(inventoryNPC)) {
 									return new Response(Util.capitaliseSentence(item.getItemType().getUseName())+" all (them)", item.getUnableToBeUsedDescription(inventoryNPC), null);
 									
-								} else if(item.getItemType().isFetishGiving()) {
-									return new Response(Util.capitaliseSentence(item.getItemType().getUseName())+" all (them)",
-											UtilText.parse(inventoryNPC, Util.capitaliseSentence("Get [npc.name] to "+item.getItemType().getUseName()) + " all of the " + item.getNamePlural() + " that are currently in [npc.her] inventory."),
-											INVENTORY_MENU,
-											Util.newArrayListOfValues(Fetish.FETISH_KINK_GIVING),
-											null,
-											null,
-											null){
-										@Override
-										public void effects(){
-											int itemCount = inventoryNPC.getItemCount(item);
-											for(int i=0;i<itemCount;i++) {
-												Main.game.getTextEndStringBuilder().append("<p style='text-align:center;'>" + inventoryNPC.useItem(item, inventoryNPC, false) + "</p>");
-											}
-											resetPostAction();
-										}
-									};
 								} else if(item.getItemType().isTransformative()) {
 									return new Response(Util.capitaliseSentence(item.getItemType().getUseName())+" all (them)",
 											UtilText.parse(inventoryNPC, Util.capitaliseSentence("Get [npc.name] to "+item.getItemType().getUseName()) + " all of the " + item.getNamePlural() + " that are currently in [npc.her] inventory."),
@@ -3306,28 +3209,12 @@ public class InventoryDialogue {
 								
 							} else if(index == 11) {
 								if(clothing.isCanBeEquipped(inventoryNPC)) {
-									if(inventoryNPC.isAbleToEquip(clothing, true, Main.game.getPlayer()) && clothing.isEnslavementClothing() && inventoryNPC.isAbleToBeEnslaved() && !inventoryNPC.isSlave()) {
-										return new Response(UtilText.parse(inventoryNPC, "Equip ([npc.Name])"), UtilText.parse(inventoryNPC, "Make [npc.name] equip the "+clothing.getName()+"!"), INVENTORY_MENU){
-											@Override
-											public DialogueNodeOld getNextDialogue() {
-												return inventoryNPC.getEnslavementDialogue(clothing);
-											}
-											@Override
-											public void effects(){
-												Main.game.getPlayer().addSlave(inventoryNPC);
-												inventoryNPC.setLocation(WorldType.SLAVER_ALLEY, PlaceType.SLAVER_ALLEY_SLAVERY_ADMINISTRATION, true);
-												Main.game.getTextEndStringBuilder().append("<p style='text-align:center;'>" + equipClothingFromInventory(inventoryNPC, Main.game.getPlayer(), clothing) + "</p>");
-											}
-										};
-										
-									} else {
-										return new Response(UtilText.parse(inventoryNPC, "Equip ([npc.Name])"), UtilText.parse(inventoryNPC, "Make [npc.name] equip the "+clothing.getName()+"!"), INVENTORY_MENU){
-											@Override
-											public void effects(){
-												Main.game.getTextEndStringBuilder().append("<p style='text-align:center;'>" + equipClothingFromInventory(inventoryNPC, Main.game.getPlayer(), clothing) + "</p>");
-											}
-										};
-									}
+									return new Response(UtilText.parse(inventoryNPC, "Equip ([npc.Name])"), UtilText.parse(inventoryNPC, "Make [npc.name] equip the "+clothing.getName()+"!"), INVENTORY_MENU){
+										@Override
+										public void effects(){
+											Main.game.getTextEndStringBuilder().append("<p style='text-align:center;'>" + equipClothingFromInventory(inventoryNPC, Main.game.getPlayer(), clothing) + "</p>");
+										}
+									};
 								} else {
 									return new Response("Equip ([npc.Name])", clothing.getCannotBeEquippedText(inventoryNPC), null);
 								}
@@ -3794,28 +3681,12 @@ public class InventoryDialogue {
 								
 							} else if(index == 11) {
 								if(clothing.isCanBeEquipped(inventoryNPC)) {
-									if(inventoryNPC.isAbleToEquip(clothing, true, Main.game.getPlayer()) && clothing.isEnslavementClothing() && inventoryNPC.isAbleToBeEnslaved() && !inventoryNPC.isSlave()) {
-										return new Response(UtilText.parse(inventoryNPC, "Equip ([npc.Name])"), UtilText.parse(inventoryNPC, "Make [npc.name] equip the "+clothing.getName()+"!"), INVENTORY_MENU){
-											@Override
-											public DialogueNodeOld getNextDialogue() {
-												return inventoryNPC.getEnslavementDialogue(clothing);
-											}
-											@Override
-											public void effects(){
-												Main.game.getPlayer().addSlave(inventoryNPC);
-												inventoryNPC.setLocation(WorldType.SLAVER_ALLEY, PlaceType.SLAVER_ALLEY_SLAVERY_ADMINISTRATION, true);
-												Main.game.getTextEndStringBuilder().append("<p style='text-align:center;'>" + equipClothingFromInventory(inventoryNPC, Main.game.getPlayer(), clothing) + "</p>");
-											}
-										};
-										
-									} else {
-										return new Response(UtilText.parse(inventoryNPC, "Equip ([npc.Name])"), UtilText.parse(inventoryNPC, "Get [npc.name] to equip the " + clothing.getName() + "."), INVENTORY_MENU){
-											@Override
-											public void effects(){
-												Main.game.getTextEndStringBuilder().append("<p style='text-align:center;'>" + equipClothingFromInventory(inventoryNPC, Main.game.getPlayer(), clothing) + "</p>");
-											}
-										};
-									}
+									return new Response(UtilText.parse(inventoryNPC, "Equip ([npc.Name])"), UtilText.parse(inventoryNPC, "Get [npc.name] to equip the " + clothing.getName() + "."), INVENTORY_MENU){
+										@Override
+										public void effects(){
+											Main.game.getTextEndStringBuilder().append("<p style='text-align:center;'>" + equipClothingFromInventory(inventoryNPC, Main.game.getPlayer(), clothing) + "</p>");
+										}
+									};
 								} else {
 									return new Response("Equip ([npc.Name])", clothing.getCannotBeEquippedText(inventoryNPC), null);
 								}

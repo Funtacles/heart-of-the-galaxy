@@ -52,9 +52,6 @@ public class SexFlags implements Serializable {
 	public static boolean requestedChairOralGiving;
 	public static boolean requestedChairOralReceiving;
 	
-	// Brax: TODO Temporary awaiting Brax rewrite
-	public static boolean braxCumOnChest;
-	
 	// Ralph
 	public static boolean customerAtCounter;
 	public static boolean alertedCustomer;
@@ -90,9 +87,6 @@ public class SexFlags implements Serializable {
 		playerDeniedPartner = false;
 		
 		resetRequests();
-		
-		// Brax:
-		braxCumOnChest = false;
 		
 		// Ralph:
 		customerAtCounter = false;

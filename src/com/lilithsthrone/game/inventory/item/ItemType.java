@@ -981,11 +981,6 @@ public class ItemType {
 		private static final long serialVersionUID = 1L;
 
 		@Override
-		public boolean isFetishGiving() {
-			return true;
-		}
-		
-		@Override
 		public boolean isAbleToBeUsedInSex() {
 			return true;
 		}

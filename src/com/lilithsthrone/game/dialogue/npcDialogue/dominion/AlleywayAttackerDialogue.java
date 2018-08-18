@@ -17,17 +17,14 @@ import com.lilithsthrone.game.dialogue.responses.ResponseSex;
 import com.lilithsthrone.game.dialogue.utils.InventoryInteraction;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
-import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.sex.Sex;
 import com.lilithsthrone.game.sex.SexPace;
 import com.lilithsthrone.game.sex.SexPositionSlot;
 import com.lilithsthrone.game.sex.managers.universal.SMStanding;
-import com.lilithsthrone.game.slavery.SlaveryUtil;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Util.Value;
-import com.lilithsthrone.world.Cell;
 import com.lilithsthrone.world.places.PlaceType;
 
 /**
@@ -287,34 +284,6 @@ public class AlleywayAttackerDialogue {
 					} else {
 						return new Response("Sex (sub)", "You can tell that [npc.name] isn't interested in having sex with you...", null);
 					}
-					
-				} if (index == 5) {
-					if(!Main.game.getPlayer().hasQuest(QuestLine.SIDE_ACCOMMODATION) || !isAffectionHighEnoughToInviteHome()) {
-						return new Response("Offer room",
-								"You feel as though it would be best to spend some more time getting to know [npc.name] before inviting [npc.herHim] back to Lilaya's mansion...<br/>"
-								+ "[style.italics(Requires [npc.name] to have at least "+AffectionLevel.POSITIVE_THREE_CARING.getMinimumValue()+" affection towards you.)]",
-								null);
-						
-					} else if(!Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_ACCOMMODATION)) {
-						return new Response("Offer room",
-								"You'll need to get Lilaya's permission before inviting [npc.name] back to her mansion...",
-								null);
-						
-					} else if(!SlaveryUtil.isFreeRoomAvailableForOccupant()) {
-						return new Response("Offer room",
-								"You don't have a suitable room prepared for [npc.name] to move in to. Upgrade one of the empty rooms in Lilaya's house to a 'Guest Room' first.",
-								null);
-						
-					}else {
-						return new Response("Offer room", "Ask [npc.name] if [npc.she] would like a room in Lilaya's mansion.", ALLEY_PEACEFUL_OFFER_ROOM) {
-							@Override
-							public void effects() {
-								applyPregnancyReactions();
-								Main.game.getTextEndStringBuilder().append(getMugger().incrementAffection(Main.game.getPlayer(), 25));
-							}
-						};
-					}
-					
 				} else if (index==10) {
 					return new Response("Attack", "Betray [npc.namePos] trust and attack [npc.herHim]!", ALLEY_PEACEFUL_ATTACK) {
 						@Override
@@ -394,34 +363,6 @@ public class AlleywayAttackerDialogue {
 		public Response getResponse(int responseTab, int index) {
 			if (index == 1) {
 				return new Response("Continue", "Let [npc.name] go and buy food.", Main.game.getDefaultDialogueNoEncounter());
-				
-			} else {
-				return null;
-			}
-		}
-	};
-	
-	public static final DialogueNodeOld ALLEY_PEACEFUL_OFFER_ROOM = new DialogueNodeOld("Offer room", "", true, true) {
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public String getContent() {
-			return UtilText.parseFromXMLFile("encounters/dominion/alleywayAttack", "ALLEY_PEACEFUL_OFFER_ROOM", getMugger());
-		}
-		
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 1) {
-				return new Response("Take home", "Take [npc.name] to [npc.her] new room.", ALLEY_PEACEFUL_OFFER_ROOM_BACK_HOME) {
-					@Override
-					public void effects() {
-						Cell c = SlaveryUtil.getFreeRoomForOccupant();
-						getMugger().setLocation(c.getType(), c.getLocation(), true);
-						Main.game.getPlayer().setLocation(c.getType(), c.getLocation(), false);
-						Main.game.getPlayer().addFriendlyOccupant(getMugger());
-						Main.game.getTextEndStringBuilder().append(getMugger().incrementAffection(Main.game.getPlayer(), 50));
-					}
-				};
 				
 			} else {
 				return null;
@@ -871,10 +812,6 @@ public class AlleywayAttackerDialogue {
 					
 				} else if (index == 2) {
 					ArrayList<Fetish> applicableFetishes = Util.newArrayListOfValues(Fetish.FETISH_TRANSFORMATION_RECEIVING);
-					
-					if(potion.getValue().getItemType() == ItemType.FETISH_REFINED) {
-						applicableFetishes = Util.newArrayListOfValues(Fetish.FETISH_KINK_RECEIVING);
-					}
 					
 					return new Response("Swallow", "Do as you're told and swallow the strange potion.", AFTER_COMBAT_TRANSFORMATION,
 							applicableFetishes,

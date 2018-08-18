@@ -131,8 +131,6 @@ import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.combat.Combat;
 import com.lilithsthrone.game.combat.DamageType;
 import com.lilithsthrone.game.combat.SpecialAttack;
-import com.lilithsthrone.game.dialogue.DialogueNodeOld;
-import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
 import com.lilithsthrone.game.dialogue.eventLog.EventLogEntry;
 import com.lilithsthrone.game.dialogue.eventLog.EventLogEntryAttributeChange;
 import com.lilithsthrone.game.dialogue.eventLog.EventLogEntryEncyclopediaUnlock;
@@ -163,10 +161,6 @@ import com.lilithsthrone.game.sex.SexAreaPenetration;
 import com.lilithsthrone.game.sex.SexPace;
 import com.lilithsthrone.game.sex.SexParticipantType;
 import com.lilithsthrone.game.sex.SexType;
-import com.lilithsthrone.game.slavery.SlaveJob;
-import com.lilithsthrone.game.slavery.SlaveJobSetting;
-import com.lilithsthrone.game.slavery.SlavePermission;
-import com.lilithsthrone.game.slavery.SlavePermissionSetting;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.rendering.Artist;
 import com.lilithsthrone.rendering.Artwork;
@@ -177,7 +171,6 @@ import com.lilithsthrone.utils.ImageCache;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Vector2i;
 import com.lilithsthrone.utils.XMLSaving;
-import com.lilithsthrone.world.Cell;
 import com.lilithsthrone.world.World;
 import com.lilithsthrone.world.WorldType;
 import com.lilithsthrone.world.places.GenericPlace;
@@ -274,16 +267,6 @@ public abstract class GameCharacter implements XMLSaving {
 	protected String motherId, fatherId;
 	protected LocalDateTime conceptionDate;
 
-	
-	// Slavery:
-	protected List<String> slavesOwned;
-	protected String owner;
-	protected DialogueNodeOld enslavementDialogue;
-	protected AbstractClothing enslavementClothing;
-	
-	protected SlaveJob slaveJob;
-	protected List<SlaveJobSetting> slaveJobSettings;
-	protected Map<SlavePermission, Set<SlavePermissionSetting>> slavePermissionSettings;
 	
 	protected boolean[] workHours;
 	
@@ -392,22 +375,6 @@ public abstract class GameCharacter implements XMLSaving {
 		affectionMap = new HashMap<>();
 		
 		obedience = 0;
-		
-		slavesOwned = new ArrayList<>();
-		owner = "";
-		enslavementDialogue = null;
-		
-		slaveJob = SlaveJob.IDLE;
-		slaveJobSettings = new ArrayList<>();
-		slavePermissionSettings = new HashMap<>();
-		for(SlavePermission permission : SlavePermission.values()) {
-			slavePermissionSettings.put(permission, new HashSet<>());
-			for(SlavePermissionSetting setting : permission.getSettings()) {
-				if(setting.isDefaultValue()) {
-					slavePermissionSettings.get(permission).add(setting);
-				}
-			}
-		}
 		
 		workHours = new boolean[24];
 		
@@ -798,55 +765,6 @@ public abstract class GameCharacter implements XMLSaving {
 		
 		
 		
-		// ************** Slavery **************//
-
-		Element slaveryElement = doc.createElement("slavery");
-		properties.appendChild(slaveryElement);
-		
-		Element slavesOwned = doc.createElement("slavesOwned");
-		slaveryElement.appendChild(slavesOwned);
-		for(String slave : this.getSlavesOwned()) {
-			Element element = doc.createElement("slave");
-			slavesOwned.appendChild(element);
-			
-			CharacterUtils.addAttribute(doc, element, "id", slave);
-		}
-		
-		CharacterUtils.createXMLElementWithValue(doc, slaveryElement, "owner", this.getOwner()==null?"":this.getOwner().getId());
-		CharacterUtils.createXMLElementWithValue(doc, slaveryElement, "slaveJob", this.getSlaveJob().toString());
-		
-		Element slaveJobSettings = doc.createElement("slaveJobSettings");
-		slaveryElement.appendChild(slaveJobSettings);
-		for(SlaveJobSetting setting : this.getSlaveJobSettings()) {
-			Element element = doc.createElement("setting");
-			slaveJobSettings.appendChild(element);
-			
-			CharacterUtils.addAttribute(doc, element, "value", setting.toString());
-		}
-		
-		Element slavePermissionSettings = doc.createElement("slavePermissionSettings");
-		slaveryElement.appendChild(slavePermissionSettings);
-		for(Entry<SlavePermission, Set<SlavePermissionSetting>> entry : this.getSlavePermissionSettings().entrySet()) {
-			Element element = doc.createElement("permission");
-			slavePermissionSettings.appendChild(element);
-
-			CharacterUtils.addAttribute(doc, element, "type", entry.getKey().toString());
-			for(SlavePermissionSetting setting : entry.getValue()) {
-				Element settingElement = doc.createElement("setting");
-				element.appendChild(settingElement);
-				CharacterUtils.addAttribute(doc, settingElement, "value", setting.toString());
-			}
-		}
-		
-
-		Element slaveWorkHours = doc.createElement("slaveWorkHours");
-		slaveryElement.appendChild(slaveWorkHours);
-		for(int i=0; i<workHours.length; i++) {
-			CharacterUtils.addAttribute(doc, slaveWorkHours, "hour"+String.valueOf(i), String.valueOf(workHours[i]));
-		}
-		
-		
-		
 		// ************** Companions **************//
 
 		Element companonElement = doc.createElement("companions");
@@ -1054,7 +972,6 @@ public abstract class GameCharacter implements XMLSaving {
 
 		boolean noPregnancy = Arrays.asList(settings).contains(CharacterImportSetting.NO_PREGNANCY);
 		boolean noCompanions = Arrays.asList(settings).contains(CharacterImportSetting.NO_COMPANIONS);
-		boolean noSlavery = Arrays.asList(settings).contains(CharacterImportSetting.CLEAR_SLAVERY);
 		
 		// ************** Core information **************//
 		
@@ -1663,74 +1580,6 @@ public abstract class GameCharacter implements XMLSaving {
 			
 		}
 		
-		
-		
-		// ************** Slavery **************//
-		
-		if(!noSlavery) {
-			nodes = parentElement.getElementsByTagName("slavery");
-			Element slaveryElement = (Element) nodes.item(0);
-			if(slaveryElement!=null) {
-				
-				for(int i=0; i<((Element) slaveryElement.getElementsByTagName("slavesOwned").item(0)).getElementsByTagName("slave").getLength(); i++){
-					Element e = ((Element)slaveryElement.getElementsByTagName("slave").item(i));
-					
-					if(!e.getAttribute("id").equals("NOT_SET")) {
-						character.getSlavesOwned().add(e.getAttribute("id"));
-						CharacterUtils.appendToImportLog(log, "<br/>Added owned slave: "+e.getAttribute("id"));
-					}
-				}
-				
-				
-				character.setOwner(((Element)slaveryElement.getElementsByTagName("owner").item(0)).getAttribute("value"));
-				CharacterUtils.appendToImportLog(log, "<br/>Set owner: "+character.getOwnerId());
-				
-				character.setSlaveJob(SlaveJob.valueOf(((Element)slaveryElement.getElementsByTagName("slaveJob").item(0)).getAttribute("value")));
-				CharacterUtils.appendToImportLog(log, "<br/>Set slave job: "+character.getSlaveJob());
-				
-				NodeList slaveJobSettingElements = ((Element) slaveryElement.getElementsByTagName("slaveJobSettings").item(0)).getElementsByTagName("setting");
-				for(int i=0; i<slaveJobSettingElements.getLength(); i++){
-					Element e = ((Element)slaveryElement.getElementsByTagName("setting").item(i));
-					
-					try {
-						SlaveJobSetting setting = SlaveJobSetting.valueOf(e.getAttribute("value"));
-						character.addSlaveJobSettings(setting);
-						CharacterUtils.appendToImportLog(log, "<br/>Added slave job setting: "+setting);
-					} catch(Exception ex) {
-					}
-				}
-				
-				// Clear settings first:
-				for(SlavePermission key : character.getSlavePermissionSettings().keySet()) {
-					if(!key.isMutuallyExclusiveSettings()) {
-						character.getSlavePermissionSettings().get(key).clear();
-					}
-				}
-				
-				for(int i=0; i<((Element) slaveryElement.getElementsByTagName("slavePermissionSettings").item(0)).getElementsByTagName("permission").getLength(); i++){
-					Element e = ((Element)slaveryElement.getElementsByTagName("permission").item(i));
-					SlavePermission slavePermission =  SlavePermission.valueOf(e.getAttribute("type"));
-					
-					NodeList settingElements = e.getElementsByTagName("setting");
-					for(int j=0; j<settingElements.getLength(); j++){
-						Element e2 = ((Element)settingElements.item(j));
-						
-						SlavePermissionSetting setting = SlavePermissionSetting.valueOf(e2.getAttribute("value"));
-						character.addSlavePermissionSetting(slavePermission, setting);
-						CharacterUtils.appendToImportLog(log, "<br/>Added slave permission setting: "+slavePermission+", "+setting);
-					}
-				}
-	
-				Element workHourElement = ((Element)slaveryElement.getElementsByTagName("slaveWorkHours").item(0));
-				for(int i=0; i<character.workHours.length; i++) {
-					character.workHours[i] = Boolean.valueOf(workHourElement.getAttribute("hour"+String.valueOf(i)));
-					CharacterUtils.appendToImportLog(log, "<br/>Set work hour: "+i+", "+character.workHours[i]);
-				}
-			}
-		}
-		
-		
-		
 		// ************** Companions **************//
 		
 		if(!noCompanions) {
@@ -2199,27 +2048,12 @@ public abstract class GameCharacter implements XMLSaving {
 				
 				infoScreenSB.append("<br/><br/>"
 							+ "[style.boldObedience(Obedience:)]<br/>"
-							+ UtilText.parse(this,
-									(this.isSlave()
-										?"[npc.Name] [style.boldArcane(is a slave)], owned by "+(this.getOwner().isPlayer()?"you!":this.getOwner().getName("a")+".")
-										:"[npc.Name] [style.boldGood(is not a slave)]."))
+							+ UtilText.parse(this, "[npc.Name] [style.boldGood(is not a slave)].")
 							+ "<br/>"+ObedienceLevel.getDescription(this, ObedienceLevel.getObedienceLevelFromValue(this.getObedienceValue()), true, true));
-				
-				if(!this.getSlavesOwned().isEmpty()) {
-					infoScreenSB.append("<br/><br/>"
-							+ "[style.boldArcane(Slaves owned:)]");
-					for(String id : this.getSlavesOwned()) {
-						infoScreenSB.append(UtilText.parse(Main.game.getNPCById(id), "<br/>[npc.Name]"));
-					}
-				}
-				
 			} else {
 				infoScreenSB.append("<p>"
 						+ "[style.boldObedience(Obedience:)]<br/>"
-						+ UtilText.parse(this,
-								(this.isSlave()
-									?"You [style.boldArcane(are a slave)], owned by "+(this.getOwner().isPlayer()?"you! (How did this happen?!)":this.getOwner().getName("a")+".")
-									:"You [style.boldGood(are not a slave)]."))
+						+ UtilText.parse(this,"You [style.boldGood(are not a slave)].")
 						+ "<br/>"+ObedienceLevel.getDescription(this, ObedienceLevel.getObedienceLevelFromValue(this.getObedienceValue()), true, true));
 			
 			}
@@ -2472,11 +2306,6 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 
 	public String getName() {
-		if(this.isSlave()) {
-			if(Main.game.isStarted() && (this.getOwner() != null && this.getOwner().isPlayer())) {
-				playerKnowsName = true;
-			}
-		}
 		if((nameTriplet==null || !playerKnowsName) && !isPlayer()) {
 			if(isFeminine()) {
 				if(getSubspecies()==Subspecies.HUMAN)
@@ -2682,154 +2511,6 @@ public abstract class GameCharacter implements XMLSaving {
 					+ "</p>");
 	}
 	
-	public float getHourlyObedienceChange(int hour) {
-		if(this.workHours[hour]) {
-			if(this.getSlaveJob()==SlaveJob.IDLE) {
-				return this.getHomeLocationPlace().getHourlyObedienceChange() * 1;
-			}
-			// To get rid of e.g. 2.3999999999999999999999:
-			return (Math.round(this.getSlaveJob().getObedienceGain(this)*100)/100f) * 1;
-		}
-		
-		// To get rid of e.g. 2.3999999999999999999999:
-		return (Math.round(this.getHomeLocationPlace().getHourlyObedienceChange()*100)/100f) * 1;
-	}
-	
-	public float getDailyObedienceChange() {
-		float totalObedienceChange = 0;
-		
-		for (int workHour = 0; workHour < this.getTotalHoursWorked(); workHour++) {
-			if(this.getSlaveJob()==SlaveJob.IDLE) {
-				totalObedienceChange+=this.getHomeLocationPlace().getHourlyObedienceChange();
-			}
-			totalObedienceChange+=this.getSlaveJob().getObedienceGain(this);
-			
-		}
-		
-		for (int homeHour = 0; homeHour < 24-this.getTotalHoursWorked(); homeHour++) {
-			totalObedienceChange+=this.getHomeLocationPlace().getHourlyObedienceChange();
-		}
-		// To get rid of e.g. 2.3999999999999999999999:
-		return (Math.round(totalObedienceChange*100)/100f);
-	}
-	
-	public int getSlavesWorkingJob(SlaveJob job) {
-		int i=0;
-			for(String id : this.getSlavesOwned()) {
-				if(Main.game.getNPCById(id).getSlaveJob()==job) {
-					i++;
-				}
-			}
-		return i;
-	}
-	
-	public int getValueAsSlave() {
-		int value = 10000;
-		switch(this.getRace()) {
-			case NONE:
-				break;
-			case ANGEL:
-				value = 80000;
-				break;
-			case CAT_MORPH: case DOG_MORPH:
-				value = 8000;
-				break;
-			case COW_MORPH: case HORSE_MORPH:
-				value = 15000;
-				break;
-			case DEMON:
-				value = 60000;
-				break;
-			case IMP:
-				value = 1000;
-				break;
-			case HUMAN:
-				value = 4000;
-				break;
-			case SQUIRREL_MORPH:
-				value = 6000;
-				break;
-			case ALLIGATOR_MORPH:
-				value = 10000;
-				break;
-			case WOLF_MORPH: case FOX_MORPH:
-				value = 10000;
-				break;
-			case RABBIT_MORPH:
-				value = 12000;
-				break;
-		}
-		
-		value += (getFetishes().size()*50);
-		
-		value *= (100+(getObedienceValue()/2))/100f;
-		
-		return value;
-	}
-	
-	public SlaveJob getSlaveJob() {
-		return slaveJob;
-	}
-
-	public void setSlaveJob(SlaveJob slaveJob) {
-		slaveJobSettings.clear();
-		this.slaveJob = slaveJob;
-		for(SlaveJobSetting jobSetting : slaveJob.getDefaultMutuallyExclusiveSettings()) {
-			addSlaveJobSettings(jobSetting);
-		}
-	}
-	
-	public boolean addSlaveJobSettings(SlaveJobSetting setting) {
-		if(slaveJobSettings.contains(setting)) {
-			return false;
-		}
-		for(List<SlaveJobSetting> exSettingList : getSlaveJob().getMutuallyExclusiveSettings().values()) {
-			if(exSettingList.contains(setting)) {
-				for(SlaveJobSetting exSetting : exSettingList) {
-					removeSlaveJobSettings(exSetting);
-				}
-			}
-		}
-		
-		return slaveJobSettings.add(setting);
-	}
-	
-	public boolean removeSlaveJobSettings(SlaveJobSetting setting) {
-		return slaveJobSettings.remove(setting);
-	}
-	
-	public List<SlaveJobSetting> getSlaveJobSettings() {
-		return slaveJobSettings;
-	}
-	
-	public boolean addSlavePermissionSetting(SlavePermission permission, SlavePermissionSetting setting) {
-		if(permission.isMutuallyExclusiveSettings()) {
-			slavePermissionSettings.get(permission).clear();
-		}
-		return slavePermissionSettings.get(permission).add(setting);
-	}
-	
-	public boolean removeSlavePermissionSetting(SlavePermission permission, SlavePermissionSetting setting) {
-		if(permission.isMutuallyExclusiveSettings()) {
-			System.err.println("You cannot remove a setting from a mutually exclusive settings list!");
-			return false;
-		}
-		return slavePermissionSettings.get(permission).remove(setting);
-	}
-	
-	public boolean hasSlavePermissionSetting(SlavePermissionSetting setting) {
-		for(SlavePermission permission : SlavePermission.values()) {
-			if(slavePermissionSettings.get(permission).contains(setting)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public Map<SlavePermission, Set<SlavePermissionSetting>> getSlavePermissionSettings() {
-		return slavePermissionSettings;
-	}
-	
 	public void resetWorkHours() {
 		for(int i = 0 ; i<workHours.length ; i++) {
 			workHours[i] = false;
@@ -2845,9 +2526,6 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 	
 	public int getTotalHoursWorked() {
-		if(this.getSlaveJob()==SlaveJob.IDLE) {
-			return 24;
-		}
 		int count = 0;
 		for(int i = 0 ; i<workHours.length ; i++) {
 			if(workHours[i]) {
@@ -2928,133 +2606,6 @@ public abstract class GameCharacter implements XMLSaving {
 	
 	public String getGiftReaction(AbstractCoreItem gift, boolean applyEffects) {
 		return null;
-	}
-	
-	// Slavery:
-	
-	public DialogueNodeOld getEnslavementDialogue(AbstractClothing enslavementClothing) {
-		this.enslavementClothing = enslavementClothing;
-		return enslavementDialogue;
-	}
-	
-	public void setEnslavementDialogue(DialogueNodeOld enslavementDialogue) {
-		this.enslavementDialogue = enslavementDialogue;
-	}
-	
-	public AbstractClothing getEnslavementClothing() {
-		return enslavementClothing;
-	}
-
-	public void applyEnslavementEffects(GameCharacter enslaver) {
-		if(this instanceof NPC) {
-			Main.game.setActiveNPC((NPC) this);
-			this.setPlayerKnowsName(true);
-		}
-		this.setAffection(enslaver, -200);
-		this.setObedience(-100);
-	}
-	
-	public boolean isAbleToBeEnslaved() {
-		return getEnslavementDialogue(enslavementClothing)!=null;
-	}
-	
-	public List<String> getSlavesOwned() {
-		return slavesOwned;
-	}
-	
-	public int getNumberOfSlavesIdle() {
-		int i=0;
-		for(String id : slavesOwned) {
-			if(Main.game.getNPCById(id).getSlaveJob()==SlaveJob.IDLE) {
-				i++;
-			}
-		}
-		return i;
-	}
-	
-	public int getNumberOfSlavesInAdministration() {
-		int i=0;
-		for(String id : slavesOwned) {
-			if(Main.game.getNPCById(id).getLocationPlace().getPlaceType() == PlaceType.SLAVER_ALLEY_SLAVERY_ADMINISTRATION) {
-				i++;
-			}
-		}
-		return i;
-	}
-	
-	public int getSlaveryTotalDailyIncome() {
-		int i=0;
-		for(String id : slavesOwned) {
-			i += Main.game.getNPCById(id).getSlaveJob().getFinalDailyIncomeAfterModifiers(Main.game.getNPCById(id));
-		}
-		return i;
-	}
-	
-	public int getSlaveryTotalDailyUpkeep() {
-		int i=0;
-		for(Cell c : SlaveryManagementDialogue.getImportantCells()) {
-			i += c.getPlace().getUpkeep();
-		}
-		return i;
-	}
-	
-	public boolean addSlave(NPC slave) {
-		boolean added = slavesOwned.add(slave.getId());
-		
-		if(added) {
-			if(slave.isSlave()) {
-				slave.getOwner().removeSlave(slave);
-			}
-			slave.setOwner(this);
-			slave.setPendingClothingDressing(false);
-		}
-		
-		return added;
-	}
-	
-	public boolean removeSlave(GameCharacter slave) {
-		boolean removed = slavesOwned.remove(slave.getId());
-		
-		if(removed) {
-			slave.setOwner("");
-		}
-		
-		return removed;
-	}
-	
-	public void removeAllSlaves() {
-		for(String id : slavesOwned) {
-			if(Main.game.isCharacterExisting(id)) {
-				Main.game.getNPCById(id).setOwner("");
-			}
-		}
-		
-		slavesOwned.clear();
-	}
-	
-	public String getOwnerId() {
-		return owner;
-	}
-	
-	public GameCharacter getOwner() {
-		if(owner==null || owner.isEmpty()) {
-			return null;
-		}
-		return Main.game.getNPCById(owner);
-	}
-
-	/**<b>Do not call this method directly! Use the owner's addSlave() and removeSlave() methods!</b>*/
-	protected void setOwner(GameCharacter owner) {
-		this.owner = owner.getId();
-	}
-
-	/**<b>Do not call this method directly! Use the owner's addSlave() and removeSlave() methods!</b>*/
-	protected void setOwner(String owner) {
-		this.owner = owner;
-	}
-	
-	public boolean isSlave() {
-		return !getOwnerId().isEmpty();
 	}
 	
 	// Companions:
@@ -3183,7 +2734,7 @@ public abstract class GameCharacter implements XMLSaving {
 	 * Override if needed. Returns true if this companion is available to that character. Is called during turn updates to make sure NPCs keep their companionship state updated. 
 	 */
 	public boolean isCompanionAvailable(GameCharacter partyLeader) {
-		return this.isSlave() && this.getOwner().equals(partyLeader);
+		return false;
 	}
 	
 	/**
@@ -3210,14 +2761,11 @@ public abstract class GameCharacter implements XMLSaving {
 			case ANGELS_KISS_GROUND_FLOOR:
 			case DOMINION:
 			case EMPTY:
-			case SLAVER_ALLEY:
 			case JUNGLE:
 			case LILAYAS_HOUSE_FIRST_FLOOR:
 			case LILAYAS_HOUSE_GROUND_FLOOR:
 				break;
 				
-			case ENFORCER_HQ:
-				return "You can't have sex in the Enforcer HQ!";
 			case SHOPPING_ARCADE:
 				if(this.getLocationPlace().getPlaceType()!=PlaceType.SHOPPING_ARCADE_PATH) {
 					return "This isn't a suitable place to be having sex with [npc.name]!";
@@ -3227,7 +2775,7 @@ public abstract class GameCharacter implements XMLSaving {
 				return "This isn't a suitable place to be having sex with [npc.name]!";
 		}
 		for(GameCharacter character : Main.game.getCharactersPresent()) {
-			if(!character.isSlave() && !this.getPartyLeader().getCompanions().contains(character)) {
+			if(!this.getPartyLeader().getCompanions().contains(character)) {
 				return UtilText.parse(character, "You can't have sex in front of [npc.name]!");
 			}
 		}
@@ -3743,7 +3291,7 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 	
 	public boolean hasTransformationFetish() {
-		return hasFetish(Fetish.FETISH_TRANSFORMATION_GIVING) || hasFetish(Fetish.FETISH_KINK_GIVING);
+		return hasFetish(Fetish.FETISH_TRANSFORMATION_GIVING);
 	}
 	
 	public boolean addFetish(Fetish fetish) {
@@ -9979,7 +9527,6 @@ public abstract class GameCharacter implements XMLSaving {
 									?" [npc.She] feels deeply grateful to you for providing [npc.herHim] with what [npc.she] needed most..."
 											+ "</p>"
 											+ this.incrementAffection(charactersFluid, 5)
-											+ (this.isSlave()?this.incrementObedience(5):"")
 									:" [npc.She] wasn't suffering from withdrawal, but [npc.she] still feels thankful to you for feeding [npc.her] addiction..."
 											+ "</p>")));
 				} else {
@@ -9990,7 +9537,6 @@ public abstract class GameCharacter implements XMLSaving {
 									?" [npc.She] feels deeply grateful to [npc2.name] for providing [npc.herHim] with what [npc.she] needed most..."
 											+ "</p>"
 //											+ this.incrementAffection(charactersFluid, 5)
-											+ (this.isSlave()?this.incrementObedience(5):"")
 									:" [npc.She] wasn't suffering from withdrawal, but [npc.she] still feels thankful to [npc2.name] for feeding [npc.her] addiction..."
 											+ "</p>")));
 				}
@@ -11919,7 +11465,7 @@ public abstract class GameCharacter implements XMLSaving {
 			
 			updateInventoryListeners();
 
-			if(!this.isPlayer() && (Main.game.getCharactersPresent().contains(this) || (this.isSlave() && this.getOwner().isPlayer()))) {
+			if(!this.isPlayer() && Main.game.getCharactersPresent().contains(this)) {
 				for(CoverableArea ca : CoverableArea.values()) {
 					if(this.isCoverableAreaExposed(ca) && ca!=CoverableArea.MOUTH) {
 						this.getPlayerKnowsAreas().add(ca);
@@ -12002,7 +11548,7 @@ public abstract class GameCharacter implements XMLSaving {
 					+ droppedItemText(clothing);
 		}
 
-		if(!this.isPlayer() && (Main.game.getCharactersPresent().contains(this) || (this.isSlave() && this.getOwner().isPlayer()))) {
+		if(!this.isPlayer() && Main.game.getCharactersPresent().contains(this)) {
 			for(CoverableArea ca : CoverableArea.values()) {
 				if(this.isCoverableAreaExposed(ca) && ca!=CoverableArea.MOUTH) {
 					this.getPlayerKnowsAreas().add(ca);
@@ -12075,7 +11621,7 @@ public abstract class GameCharacter implements XMLSaving {
 				+"</p>";
 		}
 
-		if(!this.isPlayer() && (Main.game.getCharactersPresent().contains(this) || (this.isSlave() && this.getOwner()!=null && this.getOwner().isPlayer()))) {
+		if(!this.isPlayer() && Main.game.getCharactersPresent().contains(this)) {
 			for(CoverableArea ca : CoverableArea.values()) {
 				if(this.isCoverableAreaExposed(ca) && ca!=CoverableArea.MOUTH) {
 					this.getPlayerKnowsAreas().add(ca);
@@ -12155,7 +11701,7 @@ public abstract class GameCharacter implements XMLSaving {
 			updateInventoryListeners();
 		}
 		
-		if(!this.isPlayer() && (Main.game.getCharactersPresent().contains(this) || (this.isSlave() && this.getOwner().isPlayer()))) {
+		if(!this.isPlayer() && Main.game.getCharactersPresent().contains(this)) {
 			for(CoverableArea ca : CoverableArea.values()) {
 				if(this.isCoverableAreaExposed(ca) && ca!=CoverableArea.MOUTH) {
 					this.getPlayerKnowsAreas().add(ca);

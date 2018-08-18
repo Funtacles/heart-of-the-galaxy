@@ -1370,12 +1370,6 @@ public class CharacterUtils {
 				fetishesAssigned++;
 			}
 			availableFetishes.remove(Fetish.FETISH_TRANSFORMATION_GIVING);
-			
-			if(Math.random() < (Main.getProperties().forcedFetishPercentage/100f)) {
-				character.addFetish(Fetish.FETISH_KINK_GIVING);
-				fetishesAssigned++;
-			}
-			availableFetishes.remove(Fetish.FETISH_KINK_GIVING);
 		}
 		
 		if(character.getRace()==Race.COW_MORPH && availableFetishes.contains(Fetish.FETISH_BREASTS_SELF)) {

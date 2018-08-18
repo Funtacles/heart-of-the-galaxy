@@ -38,7 +38,6 @@ import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.game.inventory.weapon.WeaponType;
-import com.lilithsthrone.game.settings.ForcedFetishTendency;
 import com.lilithsthrone.game.settings.ForcedTFTendency;
 import com.lilithsthrone.game.settings.KeyCodeWithModifiers;
 import com.lilithsthrone.game.settings.KeyboardAction;
@@ -68,7 +67,6 @@ public class Properties implements Serializable {
 	public int humanEncountersLevel = 1;
 	public int multiBreasts = 1;
 	public int forcedTFPercentage = 40;
-	public int forcedFetishPercentage = 0;
 
 	public int pregnancyBreastGrowthVariance = 2;
 	public int pregnancyBreastGrowth = 1;
@@ -91,7 +89,6 @@ public class Properties implements Serializable {
 	
 	// Transformation Settings
 	public ForcedTFTendency forcedTFTendency;
-	public ForcedFetishTendency forcedFetishTendency;
 	
 	// Discoveries:
 	private Set<AbstractItemType> itemsDiscovered;
@@ -132,7 +129,6 @@ public class Properties implements Serializable {
 		}
 		
 		forcedTFTendency = ForcedTFTendency.NEUTRAL;
-		forcedFetishTendency = ForcedFetishTendency.NEUTRAL;
 		
 		subspeciesFemininePreferencesMap = new EnumMap<>(Subspecies.class);
 		subspeciesMasculinePreferencesMap = new EnumMap<>(Subspecies.class);
@@ -206,9 +202,6 @@ public class Properties implements Serializable {
 			createXMLElementWithValue(doc, settings, "pregnancyLactationIncreaseVariance", String.valueOf(pregnancyLactationIncreaseVariance));
 			createXMLElementWithValue(doc, settings, "pregnancyLactationIncrease", String.valueOf(pregnancyLactationIncrease));
 			createXMLElementWithValue(doc, settings, "pregnancyLactationLimit", String.valueOf(pregnancyLactationLimit));
-			
-			createXMLElementWithValue(doc, settings, "forcedFetishPercentage", String.valueOf(forcedFetishPercentage));
-
 			
 			// Game key binds:
 			Element keyBinds = doc.createElement("keyBinds");
@@ -317,7 +310,6 @@ public class Properties implements Serializable {
 			
 			// Forced TF settings:
 			createXMLElementWithValue(doc, settings, "forcedTFTendency", String.valueOf(forcedTFTendency));
-			createXMLElementWithValue(doc, settings, "forcedFetishTendency", String.valueOf(forcedFetishTendency));
 			
 			// Race preferences:
 			Element racePreferences = doc.createElement("subspeciesPreferences");
@@ -511,10 +503,6 @@ public class Properties implements Serializable {
 					this.setValue(PropertyValue.overwriteWarning, Boolean.valueOf(((Element)element.getElementsByTagName("overwriteWarning").item(0)).getAttribute("value")));
 					this.setValue(PropertyValue.fadeInText, Boolean.valueOf(((Element)element.getElementsByTagName("fadeInText").item(0)).getAttribute("value")));
 					
-					if(element.getElementsByTagName("calendarDisplay").item(0)!=null) {
-						this.setValue(PropertyValue.calendarDisplay, Boolean.valueOf(((Element)element.getElementsByTagName("calendarDisplay").item(0)).getAttribute("value")));
-					}
-					
 					if(element.getElementsByTagName("twentyFourHourTime").item(0)!=null) {
 						this.setValue(PropertyValue.twentyFourHourTime, Boolean.valueOf(((Element)element.getElementsByTagName("twentyFourHourTime").item(0)).getAttribute("value")));
 					}
@@ -548,16 +536,10 @@ public class Properties implements Serializable {
 				if(element.getElementsByTagName("forcedTFPercentage").item(0)!=null) {
 					forcedTFPercentage = Integer.valueOf(((Element)element.getElementsByTagName("forcedTFPercentage").item(0)).getAttribute("value"));
 				}
-				if(element.getElementsByTagName("forcedFetishPercentage").item(0)!=null) {
-					forcedFetishPercentage = Integer.valueOf(((Element)element.getElementsByTagName("forcedFetishPercentage").item(0)).getAttribute("value"));
-				}
 
 				// Forced TF preference:
 				if(element.getElementsByTagName("forcedTFTendency").item(0)!=null) {
 					forcedTFTendency = ForcedTFTendency.valueOf(((Element)element.getElementsByTagName("forcedTFTendency").item(0)).getAttribute("value"));
-				}
-				if(element.getElementsByTagName("forcedFetishTendency").item(0)!=null) {
-					forcedFetishTendency = ForcedFetishTendency.valueOf(((Element)element.getElementsByTagName("forcedFetishTendency").item(0)).getAttribute("value"));
 				}
 				
 				try {

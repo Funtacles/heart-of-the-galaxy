@@ -16,7 +16,6 @@ import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
-import com.lilithsthrone.game.dialogue.npcDialogue.SlaveDialogue;
 import com.lilithsthrone.game.dialogue.npcDialogue.dominion.AlleywayAttackerDialogue;
 import com.lilithsthrone.game.dialogue.npcDialogue.dominion.AlleywayAttackerDialogueCompanions;
 import com.lilithsthrone.game.dialogue.responses.Response;
@@ -191,8 +190,6 @@ public class DominionAlleywayAttacker extends NPC {
 			setMana(getAttributeValue(Attribute.MANA_MAXIMUM));
 			setHealth(getAttributeValue(Attribute.HEALTH_MAXIMUM));
 		}
-
-		this.setEnslavementDialogue(SlaveDialogue.DEFAULT_ENSLAVEMENT_DIALOGUE);
 	}
 	
 	@Override
@@ -207,20 +204,12 @@ public class DominionAlleywayAttacker extends NPC {
 	
 	@Override
 	public String getDescription() {
-		if(this.isSlave()) {
-			return (UtilText.parse(this,
-					"[npc.NamePos] days of prowling the back alleys of Dominion and mugging innocent travellers are now over. Having run afoul of the law, [npc.sheIs] now a slave, and is no more than [npc.her] owner's property."));
-		} else {
-			return (UtilText.parse(this,
-					"[npc.Name] is a resident of Dominion, who prowls the back alleys in search of innocent travellers to mug and rape."));
-		}
+		return (UtilText.parse(this, "[npc.Name] is a resident of Dominion, who prowls the back alleys in search of innocent travellers to mug and rape."));
 	}
 	
 	@Override
 	public void endSex() {
-		if(!isSlave()) {
-			setPendingClothingDressing(true);
-		}
+		setPendingClothingDressing(true);
 	}
 
 	@Override

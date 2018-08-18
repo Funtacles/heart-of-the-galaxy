@@ -98,8 +98,6 @@ public class DominionSuccubusAttacker extends NPC {
 			setMana(getAttributeValue(Attribute.MANA_MAXIMUM));
 			setHealth(getAttributeValue(Attribute.HEALTH_MAXIMUM));
 		}
-
-		this.setEnslavementDialogue(DominionSuccubusDialogue.ENSLAVEMENT_DIALOGUE);
 	}
 	
 	@Override
@@ -129,12 +127,10 @@ public class DominionSuccubusAttacker extends NPC {
 	
 	@Override
 	public void endSex() {
-		if(!isSlave()) {
-			if(this.getGender()!=this.getGenderIdentity() && !this.isPregnant()) {
-				this.setPendingTransformationToGenderIdentity(true);
-			}
-			setPendingClothingDressing(true);
+		if(this.getGender()!=this.getGenderIdentity() && !this.isPregnant()) {
+			this.setPendingTransformationToGenderIdentity(true);
 		}
+		setPendingClothingDressing(true);
 	}
 
 	@Override
@@ -155,10 +151,6 @@ public class DominionSuccubusAttacker extends NPC {
 	// Combat:
 
 	public String getItemUseEffects(AbstractItem item, GameCharacter user, GameCharacter target){
-		if (getOwner() == user) {
-			return getItemUseEffectsAllowingUse(item, user, target);
-		}
-		
 		// Player is using an item:
 		if(user.isPlayer()){
 			// Player uses item on themselves:

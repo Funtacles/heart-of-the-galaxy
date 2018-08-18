@@ -22,7 +22,6 @@ import com.lilithsthrone.game.character.persona.SexualOrientation;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
-import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.AbstractCoreItem;
 import com.lilithsthrone.game.inventory.CharacterInventory;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
@@ -128,10 +127,6 @@ public class Ashley extends NPC {
 		
 		infoScreenSB.append("<br/><br/>"
 					+ "[style.boldObedience(Obedience:)]<br/>"
-					+ UtilText.parse(this,
-							(this.isSlave()
-								?"[npc.Name] [style.boldArcane(is a slave)], owned by "+(this.getOwner().isPlayer()?"you!":this.getOwner().getName("a")+".")
-								:"[npc.Name] [style.boldGood(is not a slave)]."))
 					+ "<br/>"+ObedienceLevel.getDescription(this, ObedienceLevel.getObedienceLevelFromValue(this.getObedienceValue()), true, true)
 				+"</p>"
 				+ "<br/>"

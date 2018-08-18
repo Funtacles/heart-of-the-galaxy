@@ -253,39 +253,6 @@ public enum ParserTarget {
 		}
 	},
 	
-	BRAX(Util.newArrayListOfValues("brax"), "") {
-		public String getDescription() {
-			return Main.game.getBrax().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getBrax();
-		}
-	},
-	
-	CANDI(Util.newArrayListOfValues("candi"), "") {
-		public String getDescription() {
-			return Main.game.getCandi().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getCandi();
-		}
-	},
-	
-	FINCH(Util.newArrayListOfValues("finch"), "") {
-		public String getDescription() {
-			return Main.game.getFinch().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getFinch();
-		}
-	},
-	
 	ARTHUR(Util.newArrayListOfValues("arthur"), "") {
 		public String getDescription() {
 			return Main.game.getArthur().getDescription();

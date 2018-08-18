@@ -39,8 +39,6 @@ public class NPCOffspring extends NPC {
 	public NPCOffspring(boolean isImported) {
 		super(null, "",
 				3, Gender.F_V_B_FEMALE, RacialBody.DOG_MORPH, RaceStage.GREATER, new CharacterInventory(10), WorldType.EMPTY, PlaceType.GENERIC_EMPTY_TILE, true);
-		
-		this.setEnslavementDialogue(DominionOffspringDialogue.ENSLAVEMENT_DIALOGUE);
 	}
 	
 	public NPCOffspring(GameCharacter mother, GameCharacter father) {
@@ -88,8 +86,6 @@ public class NPCOffspring extends NPC {
 		
 		CharacterUtils.applyMakeup(this, true);
 
-		this.setEnslavementDialogue(DominionOffspringDialogue.ENSLAVEMENT_DIALOGUE);
-		
 		setMana(getAttributeValue(Attribute.MANA_MAXIMUM));
 		setHealth(getAttributeValue(Attribute.HEALTH_MAXIMUM));
 	}
@@ -99,7 +95,6 @@ public class NPCOffspring extends NPC {
 	@Override
 	public void loadFromXML(Element parentElement, Document doc, CharacterImportSetting... settings) {
 		loadNPCVariablesFromXML(this, null, parentElement, doc, settings);
-		this.setEnslavementDialogue(DominionOffspringDialogue.ENSLAVEMENT_DIALOGUE);
 	}
 	
 	@Override
@@ -138,9 +133,7 @@ public class NPCOffspring extends NPC {
 	
 	@Override
 	public void endSex() {
-		if(!isSlave()) {
-			setPendingClothingDressing(true);
-		}
+		setPendingClothingDressing(true);
 	}
 	
 	@Override

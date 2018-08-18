@@ -21,9 +21,6 @@ import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.body.Breast;
 import com.lilithsthrone.game.character.body.Covering;
-import com.lilithsthrone.game.character.body.FluidCum;
-import com.lilithsthrone.game.character.body.FluidGirlCum;
-import com.lilithsthrone.game.character.body.FluidMilk;
 import com.lilithsthrone.game.character.body.Testicle;
 import com.lilithsthrone.game.character.body.types.AntennaType;
 import com.lilithsthrone.game.character.body.types.ArmType;
@@ -91,19 +88,14 @@ import com.lilithsthrone.game.character.markings.TattooType;
 import com.lilithsthrone.game.character.markings.TattooWriting;
 import com.lilithsthrone.game.character.markings.TattooWritingStyle;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.persona.NameTriplet;
 import com.lilithsthrone.game.character.persona.PersonalityTrait;
 import com.lilithsthrone.game.character.persona.PersonalityWeight;
 import com.lilithsthrone.game.character.persona.SexualOrientation;
 import com.lilithsthrone.game.combat.DamageType;
 import com.lilithsthrone.game.dialogue.DebugDialogue;
-import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.DialogueNodeType;
-import com.lilithsthrone.game.dialogue.SlaveryManagementDialogue;
-import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.LilayaHomeGeneric;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.SuccubisSecrets;
-import com.lilithsthrone.game.dialogue.places.dominion.slaverAlley.SlaverAlleyDialogue;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
 import com.lilithsthrone.game.dialogue.story.CharacterCreation;
@@ -133,19 +125,12 @@ import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.game.inventory.weapon.WeaponType;
-import com.lilithsthrone.game.settings.ForcedFetishTendency;
 import com.lilithsthrone.game.settings.ForcedTFTendency;
 import com.lilithsthrone.game.settings.KeyboardAction;
 import com.lilithsthrone.game.sex.SexAreaOrifice;
 import com.lilithsthrone.game.sex.SexAreaPenetration;
 import com.lilithsthrone.game.sex.SexParticipantType;
 import com.lilithsthrone.game.sex.SexType;
-import com.lilithsthrone.game.slavery.MilkingRoom;
-import com.lilithsthrone.game.slavery.SlaveJob;
-import com.lilithsthrone.game.slavery.SlaveJobHours;
-import com.lilithsthrone.game.slavery.SlaveJobSetting;
-import com.lilithsthrone.game.slavery.SlavePermission;
-import com.lilithsthrone.game.slavery.SlavePermissionSetting;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.rendering.Artist;
 import com.lilithsthrone.rendering.Artwork;
@@ -156,9 +141,7 @@ import com.lilithsthrone.utils.ColourListPresets;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Util.Value;
 import com.lilithsthrone.world.Cell;
-import com.lilithsthrone.world.WorldType;
 import com.lilithsthrone.world.places.PlaceType;
-import com.lilithsthrone.world.places.PlaceUpgrade;
 
 /**
  * This method was causing MainController to lag out Eclipse, so I moved it to a separate file.
@@ -169,7 +152,6 @@ import com.lilithsthrone.world.places.PlaceUpgrade;
  */
 public class MainControllerInitMethod {
 
-	@SuppressWarnings("deprecation")
 	public static void initMainControllerListeners() {
 		MainController.document = (Document) MainController.webEngine.executeScript("document");
 		MainController.EventListenerDataMap.put(MainController.document, new ArrayList<>());
@@ -207,8 +189,7 @@ public class MainControllerInitMethod {
 		}
 		
 		if(Main.game.getCurrentDialogueNode().equals(CharactersPresentDialogue.MENU)
-				|| Main.game.getCurrentDialogueNode().equals(PhoneDialogue.CONTACTS_CHARACTER)
-				|| Main.game.getCurrentDialogueNode().equals(SlaveryManagementDialogue.SLAVE_MANAGEMENT_INSPECT)) {
+				|| Main.game.getCurrentDialogueNode().equals(PhoneDialogue.CONTACTS_CHARACTER)) {
 			if(CharactersPresentDialogue.characterViewed instanceof NPC && !((NPC)CharactersPresentDialogue.characterViewed).getArtworkList().isEmpty()) {
 				
 				try {
@@ -792,7 +773,7 @@ public class MainControllerInitMethod {
 						});
 						
 					} else if(EnchantmentDialogue.getIngredient() instanceof Tattoo) {
-						Main.game.setContent(new Response("Back", "Stop enchanting.", BodyChanging.getTarget().isPlayer()?SuccubisSecrets.SHOP_BEAUTY_SALON_TATTOOS:SlaveryManagementDialogue.SLAVE_MANAGEMENT_TATTOOS){
+						Main.game.setContent(new Response("Back", "Stop enchanting.", SuccubisSecrets.SHOP_BEAUTY_SALON_TATTOOS){
 							@Override
 							public void effects() {
 								EnchantmentDialogue.resetEnchantmentVariables();
@@ -926,820 +907,6 @@ public class MainControllerInitMethod {
 				}
 			}
 
-			
-			// -------------------- Room upgrades -------------------- //
-			
-			if(Main.game.getCurrentDialogueNode() == SlaveryManagementDialogue.ROOM_MANAGEMENT) {
-				for(Cell c : SlaveryManagementDialogue.getImportantCells()) {
-					id = c.getId();
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
-								@Override
-								public void effects() {
-									SlaveryManagementDialogue.cellToInspect = c;
-								}
-								@Override
-								public DialogueNodeOld getNextDialogue() {
-									return SlaveryManagementDialogue.ROOM_UPGRADES_MANAGEMENT;
-								}
-							});
-						}, false);
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Manage Room", "Open this room's management screen.");
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = c.getId()+"_DISABLED";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Manage Room", "You are not able to manage this room!");
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = c.getId()+"_PRESENT";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
-								@Override
-								public void effects() {
-									SlaveryManagementDialogue.cellToInspect = c;
-								}
-								@Override
-								public DialogueNodeOld getNextDialogue() {
-									return SlaveryManagementDialogue.ROOM_UPGRADES_MANAGEMENT;
-								}
-							});
-						}, false);
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Manage Room", "Open this room's management screen.");
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = c.getId()+"_PRESENT_DISABLED";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Manage Room", "You are not able to manage this room!");
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-				}
-			}
-
-			if(Main.game.getCurrentDialogueNode() == SlaveryManagementDialogue.ROOM_UPGRADES
-					|| Main.game.getCurrentDialogueNode() == SlaveryManagementDialogue.ROOM_UPGRADES_MANAGEMENT) {
-				for(PlaceUpgrade placeUpgrade : PlaceUpgrade.values()) {
-					
-					id = "ROOM_MOD_INFO_"+placeUpgrade;
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("", (SlaveryManagementDialogue.cellToInspect.getPlace().getPlaceUpgrades().contains(placeUpgrade)
-								?placeUpgrade.getDescriptionAfterPurchase()
-								:placeUpgrade.getDescriptionForPurchase()));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = placeUpgrade+"_BUY";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							if(placeUpgrade!=PlaceUpgrade.LILAYA_ARTHUR_ROOM) {
-								Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
-									@Override
-									public void effects() {
-										SlaveryManagementDialogue.cellToInspect.addPlaceUpgrade(placeUpgrade);
-										Main.game.getPlayer().incrementMoney(-placeUpgrade.getInstallCost());
-									}
-								});
-							} else {
-								Main.game.setContent(new Response("", "", LilayaHomeGeneric.ROOM_ARTHUR_INSTALLATION){
-									@Override
-									public void effects() {
-										Main.game.getArthur().setLocation(Main.game.getPlayer().getWorldLocation(), Main.game.getPlayer().getLocation(), true);
-										SlaveryManagementDialogue.cellToInspect.addPlaceUpgrade(placeUpgrade);
-										Main.game.getDialogueFlags().setFlag(DialogueFlagValue.arthursRoomInstalled, true);
-									}
-								});
-							}
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Purchase Modification",
-								"This will cost: "+UtilText.formatAsMoney(placeUpgrade.getInstallCost())+"<br/>"+SlaveryManagementDialogue.getPurchaseAvailabilityTooltipText(SlaveryManagementDialogue.cellToInspect, placeUpgrade));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					id = placeUpgrade+"_BUY_DISABLED";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Purchase Modification",
-								"This will cost: "+UtilText.formatAsMoney(placeUpgrade.getInstallCost())+"<br/>"+SlaveryManagementDialogue.getPurchaseAvailabilityTooltipText(SlaveryManagementDialogue.cellToInspect, placeUpgrade));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = placeUpgrade+"_SELL";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
-								@Override
-								public void effects() {
-									SlaveryManagementDialogue.cellToInspect.removePlaceUpgrade(placeUpgrade);
-									Main.game.getPlayer().incrementMoney(-placeUpgrade.getRemovalCost());
-								}
-							});
-						}, false);
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Remove Modification",
-								"This will cost: "+UtilText.formatAsMoney(placeUpgrade.getRemovalCost())+"<br/>"+SlaveryManagementDialogue.getPurchaseAvailabilityTooltipText(SlaveryManagementDialogue.cellToInspect, placeUpgrade));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					id = placeUpgrade+"_SELL_DISABLED";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Remove Modification",
-								(placeUpgrade.isCoreRoomUpgrade()
-										?"You cannot directly remove core upgrades. Instead, you'll have to purchase a different core modification in order to remove the current one."
-										:"This will cost: "+UtilText.formatAsMoney(placeUpgrade.getRemovalCost())+"<br/>"+SlaveryManagementDialogue.getPurchaseAvailabilityTooltipText(SlaveryManagementDialogue.cellToInspect, placeUpgrade)));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-				}
-				
-
-				id = "rename_room_button";
-				if (((EventTarget) MainController.document.getElementById(id)) != null) {
-					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-
-						boolean unsuitableName = false;
-						if(Main.mainController.getWebEngine().executeScript("document.getElementById('nameInput')")!=null) {
-							 
-							Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenFieldName').innerHTML=document.getElementById('nameInput').value;");
-							if(Main.mainController.getWebEngine().getDocument()!=null) {
-								unsuitableName = Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent().length() < 1
-												|| Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent().length() > 32;
-							}
-							
-							if (!unsuitableName) {
-								Main.game.setContent(new Response("Rename Room", "Rename this room to whatever you've entered in the text box.", Main.game.getCurrentDialogueNode()){
-									@Override
-									public void effects() {
-										SlaveryManagementDialogue.cellToInspect.getPlace().setName(Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent());
-									}
-								});
-							}
-						}
-							
-					}, false);
-				}
-			}
-			
-			
-			
-			// -------------------- Slavery -------------------- //
-			
-			// Room specials:
-			if(Main.game.getPlayer().getLocationPlace().getPlaceUpgrades().contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
-				MilkingRoom room = Main.game.getSlaveryUtil().getMilkingRoom(Main.game.getPlayerCell().getType(), Main.game.getPlayerCell().getLocation());
-
-				for(Entry<FluidMilk, Float> entry : room.getMilkStorage().entrySet()) {
-					id ="MILK_DRINK_SMALL_"+entry.hashCode();
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						int milkAmount = (int) (Math.min(room.getMilkStorage().get(entry.getKey()), 100));
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							if(milkAmount>0) {
-								Main.game.getTextEndStringBuilder().append(Main.game.getPlayer().ingestFluid(entry.getKey().getType(), SexAreaOrifice.MOUTH, milkAmount, entry.getKey().getFluidModifiers()));
-								room.incrementMilkStorage(entry.getKey(), -milkAmount);
-								Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-							}
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						if(milkAmount>0) {
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Drink ("+milkAmount+"ml)", "Drink "+milkAmount+"ml of the "+entry.getKey().getName(null)+".");
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						} else {
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Drink (0ml)", "There needs to be at least 1ml of "+entry.getKey().getName(null)+" stored here before you can drink it!");
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						}
-					}
-					
-					id ="MILK_DRINK_"+entry.hashCode();
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							if(room.getMilkStorage().get(entry.getKey())>=500) {
-								Main.game.getTextEndStringBuilder().append(Main.game.getPlayer().ingestFluid(entry.getKey().getType(), SexAreaOrifice.MOUTH, 500, entry.getKey().getFluidModifiers()));
-								room.incrementMilkStorage(entry.getKey(), -500);
-								Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-							}
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						if(room.getMilkStorage().get(entry.getKey())>=500) {
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Drink (500ml)", "Drink 500ml of the "+entry.getKey().getName(null)+".");
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						} else {
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Drink (500ml)", "There needs to be at least 500ml of "+entry.getKey().getName(null)+" stored here before you can drink it!");
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						}
-					}
-					
-					id ="MILK_SELL_"+entry.hashCode();
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							int income = Math.max(1, (int)(entry.getKey().getValuePerMl()*entry.getValue()));
-							Main.game.getPlayer().incrementMoney(income);
-							room.getMilkStorage().remove(entry.getKey());
-							Main.game.getTextEndStringBuilder().append("<p style='text-align:center;'>You sold the milk for "+(UtilText.formatAsMoney(income, "span"))+"!</p>");
-							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Sell",
-								"Sell all of the "+entry.getKey().getName(null)+" for "+(Math.max(1, (int)(entry.getKey().getValuePerMl()*entry.getValue())))+" flames.");
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-				}
-				
-				for(Entry<FluidCum, Float> entry : room.getCumStorage().entrySet()) {
-					id ="CUM_DRINK_SMALL_"+entry.hashCode();
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						int cumAmount = (int) (Math.min(room.getCumStorage().get(entry.getKey()), 100));
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							if(room.getCumStorage().get(entry.getKey())>0) {
-								Main.game.getTextEndStringBuilder().append(Main.game.getPlayer().ingestFluid(entry.getKey().getType(), SexAreaOrifice.MOUTH, cumAmount, entry.getKey().getFluidModifiers()));
-								room.incrementCumStorage(entry.getKey(), -cumAmount);
-								Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-							}
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						if(room.getCumStorage().get(entry.getKey())>0) {
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Drink ("+cumAmount+"ml)", "Drink "+cumAmount+"ml of the "+entry.getKey().getName(null)+".");
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						} else {
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Drink (0ml)", "There needs to be at least 1ml of "+entry.getKey().getName(null)+" stored here before you can drink it!");
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						}
-					}
-					
-					id ="CUM_DRINK_"+entry.hashCode();
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							if(room.getCumStorage().get(entry.getKey())>=500) {
-								Main.game.getTextEndStringBuilder().append(Main.game.getPlayer().ingestFluid(entry.getKey().getType(), SexAreaOrifice.MOUTH, 500, entry.getKey().getFluidModifiers()));
-								room.incrementCumStorage(entry.getKey(), -500);
-								Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-							}
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						if(room.getCumStorage().get(entry.getKey())>=500) {
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Drink (500ml)", "Drink 500ml of the "+entry.getKey().getName(null)+".");
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						} else {
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Drink (500ml)", "There needs to be at least 500ml of "+entry.getKey().getName(null)+" stored here before you can drink it!");
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						}
-					}
-					
-					id ="CUM_SELL_"+entry.hashCode();
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							int income = Math.max(1, (int)(entry.getKey().getValuePerMl()*entry.getValue()));
-							Main.game.getPlayer().incrementMoney(income);
-							room.getCumStorage().remove(entry.getKey());
-							Main.game.getTextEndStringBuilder().append("<p style='text-align:center;'>You sold the cum for "+(UtilText.formatAsMoney(income, "span"))+"!</p>");
-							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Sell",
-								"Sell all of the "+entry.getKey().getName(null)+" for "+(Math.max(1, (int)(entry.getKey().getValuePerMl()*entry.getValue())))+" flames.");
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-				}
-				
-				for(Entry<FluidGirlCum, Float> entry : room.getGirlcumStorage().entrySet()) {
-					id ="GIRLCUM_DRINK_SMALL_"+entry.hashCode();
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						int girlcumAmount = (int) (Math.min(room.getGirlcumStorage().get(entry.getKey()), 100));
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							if(room.getGirlcumStorage().get(entry.getKey())>0) {
-								Main.game.getTextEndStringBuilder().append(Main.game.getPlayer().ingestFluid(entry.getKey().getType(), SexAreaOrifice.MOUTH, girlcumAmount, entry.getKey().getFluidModifiers()));
-								room.incrementGirlcumStorage(entry.getKey(), -girlcumAmount);
-								Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-							}
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						if(room.getGirlcumStorage().get(entry.getKey())>0) {
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Drink ("+girlcumAmount+"ml)", "Drink "+girlcumAmount+"ml of the "+entry.getKey().getName(null)+".");
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						} else {
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Drink (0ml)", "There needs to be at least 1ml of "+entry.getKey().getName(null)+" stored here before you can drink it!");
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						}
-					}
-					
-					id ="GIRLCUM_DRINK_"+entry.hashCode();
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							if(room.getGirlcumStorage().get(entry.getKey())>=500) {
-								Main.game.getTextEndStringBuilder().append(Main.game.getPlayer().ingestFluid(entry.getKey().getType(), SexAreaOrifice.MOUTH, 500, entry.getKey().getFluidModifiers()));
-								room.incrementGirlcumStorage(entry.getKey(), -500);
-								Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-							}
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						if(room.getGirlcumStorage().get(entry.getKey())>=500) {
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Drink (500ml)", "Drink 500ml of the "+entry.getKey().getName(null)+".");
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						} else {
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Drink (500ml)", "There needs to be at least 500ml of "+entry.getKey().getName(null)+" stored here before you can drink it!");
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						}
-					}
-					
-					id ="GIRLCUM_SELL_"+entry.hashCode();
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							int income = Math.max(1, (int)(entry.getKey().getValuePerMl()*entry.getValue()));
-							Main.game.getPlayer().incrementMoney(income);
-							room.getGirlcumStorage().remove(entry.getKey());
-							Main.game.getTextEndStringBuilder().append("<p style='text-align:center;'>You sold the girlcum for "+(UtilText.formatAsMoney(income, "span"))+"!</p>");
-							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Sell",
-								"Sell all of the "+entry.getKey().getName(null)+" for "+(Math.max(1, (int)(entry.getKey().getValuePerMl()*entry.getValue())))+" flames.");
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-				}
-			}
-			
-			
-			if(Main.game.getCurrentDialogueNode() == SlaveryManagementDialogue.SLAVERY_OVERVIEW) {
-				id ="PREVIOUS_DAY";
-				if (((EventTarget) MainController.document.getElementById(id)) != null) {
-					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-						SlaveryManagementDialogue.incrementDayNumber(-1);
-						Main.game.setContent(new Response("Rename", "", Main.game.getCurrentDialogueNode()));
-					}, false);
-				}
-				
-				id ="NEXT_DAY";
-				if (((EventTarget) MainController.document.getElementById(id)) != null) {
-					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-						SlaveryManagementDialogue.incrementDayNumber(1);
-						Main.game.setContent(new Response("Rename", "", Main.game.getCurrentDialogueNode()));
-					}, false);
-				}
-			}
-			
-			if(Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected()!=null) {
-				
-				id = Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().getId()+"_RENAME";
-				if (((EventTarget) MainController.document.getElementById(id)) != null) {
-					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-	
-						boolean unsuitableName = false;
-					 	if(Main.mainController.getWebEngine().executeScript("document.getElementById('slaveNameInput')")!=null) {
-						 
-							Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenFieldName').innerHTML=document.getElementById('slaveNameInput').value;");
-							if(Main.mainController.getWebEngine().getDocument()!=null) {
-								if (Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent().length() < 1
-										|| Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent().length() > 32)
-									unsuitableName = true;
-								else {
-									unsuitableName = false;
-								}
-							}
-							
-							if (!unsuitableName) {
-								Main.game.setContent(new Response("Rename", "", Main.game.getCurrentDialogueNode()){
-									@Override
-									public void effects() {
-										NPC slave = Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected();
-										slave.setName(new NameTriplet(Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent()));
-										slave.loadImages();
-									}
-								});
-							}
-							
-						}
-							
-					}, false);
-				}
-				
-				id = Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().getId()+"_CALLS_PLAYER";
-				if (((EventTarget) MainController.document.getElementById(id)) != null) {
-					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-	
-						boolean unsuitableName = false;
-					 	if(Main.mainController.getWebEngine().executeScript("document.getElementById('slaveToPlayerNameInput')")!=null) {
-						 
-							Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenFieldName').innerHTML=document.getElementById('slaveToPlayerNameInput').value;");
-							if(Main.mainController.getWebEngine().getDocument()!=null) {
-								unsuitableName = Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent().length() < 1
-												|| Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent().length() > 32;
-							}
-							
-							if (!unsuitableName) {
-								Main.game.setContent(new Response("Rename", "", Main.game.getCurrentDialogueNode()){
-									@Override
-									public void effects() {
-										Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().setPlayerPetName(Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent());
-									}
-								});
-							}
-							
-						}
-							
-					}, false);
-				}
-				
-				id = "GLOBAL_CALLS_PLAYER";
-				if (((EventTarget) MainController.document.getElementById(id)) != null) {
-					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-
-						boolean unsuitableName = false;
-					 	if(Main.mainController.getWebEngine().executeScript("document.getElementById('slaveToPlayerNameInput')")!=null) {
-						 
-							Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenFieldName').innerHTML=document.getElementById('slaveToPlayerNameInput').value;");
-							if(Main.mainController.getWebEngine().getDocument()!=null) {
-								unsuitableName = Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent().length() < 1
-												|| Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent().length() > 32;
-							}
-							
-							if (!unsuitableName) {
-								Main.game.setContent(new Response("Rename", "", Main.game.getCurrentDialogueNode()){
-									@Override
-									public void effects() {
-										for(String id: Main.game.getPlayer().getSlavesOwned()) {
-											Main.game.getNPCById(id).setPlayerPetName(Main.mainController.getWebEngine().getDocument().getElementById("hiddenFieldName").getTextContent());
-										}
-									}
-								});
-							}
-							
-						}
-							
-					}, false);
-				}
-				
-				// Job hours:
-				for(int i=0 ; i<24; i++) {
-					MainController.allocateWorkTime(i);
-				}
-				for(SlaveJobHours preset : SlaveJobHours.values()) {
-
-					id = preset+"_TIME";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().resetWorkHours();
-							for(int hour = preset.getStartHour(); hour<preset.getStartHour()+preset.getLength(); hour++) {
-								if(hour>=24) {
-									Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().setWorkHour(hour-24, true);
-								} else {
-									Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().setWorkHour(hour, true);
-								}
-							}
-							
-							Main.game.setContent(new Response("", "", SlaveryManagementDialogue.getSlaveryManagementSlaveJobsDialogue(Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected())));
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Set Preset Work Hours", preset.getDescription());
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = preset+"_TIME_DISABLED";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Set Preset Work Hours", "You can't assign hours to a slave who is idle. Assign them a job first.");
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-				}
-				
-				
-				// Jobs:
-				for(SlaveJob job : SlaveJob.values()) {
-					id = "SLAVE_JOB_INFO_" + job;
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation(
-								Util.capitaliseSentence(job.getName(Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected())),
-								UtilText.parse(Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected(), job.getDescription()));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = job+"_ASSIGN";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().setSlaveJob(job);
-							Main.game.setContent(new Response("", "", SlaveryManagementDialogue.getSlaveryManagementSlaveJobsDialogue(Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected())));
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Assign Job", job.getDescription());
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = job+"_ASSIGN_DISABLED";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Assign Job",
-								UtilText.parse(Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected(), job.getAvailabilityText(Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected())));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					for(SlaveJobSetting setting : job.getMutualSettings()) {
-						id = setting+"_ADD";
-						if (((EventTarget) MainController.document.getElementById(id)) != null) {
-							((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-								Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().addSlaveJobSettings(setting);
-								Main.game.setContent(new Response("", "", SlaveryManagementDialogue.getSlaveryManagementSlaveJobsDialogue(Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected())));
-							}, false);
-							
-							MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-							MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Apply Setting", setting.getDescription());
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						}
-						
-						id = setting+"_REMOVE";
-						if (((EventTarget) MainController.document.getElementById(id)) != null) {
-							((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-								Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().removeSlaveJobSettings(setting);
-								Main.game.setContent(new Response("", "", SlaveryManagementDialogue.getSlaveryManagementSlaveJobsDialogue(Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected())));
-							}, false);
-							
-							MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-							MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Remove Setting", setting.getDescription());
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						}
-						
-						id = setting+"_DISABLED";
-						if (((EventTarget) MainController.document.getElementById(id)) != null) {
-							MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-							MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Apply Setting",
-									UtilText.parse(Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected(), "You'll need to assign this job to [npc.name] before you can apply any settings."));
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						}
-					}
-
-					for(Entry<String, List<SlaveJobSetting>> entry : job.getMutuallyExclusiveSettings().entrySet()) {
-
-						for(SlaveJobSetting setting : entry.getValue()) {
-							id = setting+"_TOGGLE_ADD";
-							if (((EventTarget) MainController.document.getElementById(id)) != null) {
-								((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-									for(SlaveJobSetting settingRem : entry.getValue()) {
-										Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().removeSlaveJobSettings(settingRem);
-									}
-									Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().addSlaveJobSettings(setting);
-									Main.game.setContent(new Response("", "", SlaveryManagementDialogue.getSlaveryManagementSlaveJobsDialogue(Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected())));
-								}, false);
-								
-								MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-								MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-								TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Apply Setting", setting.getDescription());
-								MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-							}
-							
-							id = setting+"_DISABLED";
-							if (((EventTarget) MainController.document.getElementById(id)) != null) {
-								MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-								MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-								TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Setting Applied", setting.getDescription());
-								MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-							}
-						}
-					}
-				}
-				
-				// Permissions:
-				for(SlavePermission permission : SlavePermission.values()) {
-					for(SlavePermissionSetting setting : permission.getSettings()) {
-						id = setting+"_ADD";
-						if (((EventTarget) MainController.document.getElementById(id)) != null) {
-							((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-								Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().addSlavePermissionSetting(permission, setting);
-								Main.game.setContent(new Response("", "", SlaveryManagementDialogue.getSlaveryManagementSlavePermissionsDialogue(Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected())));
-							}, false);
-							
-							MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-							MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Apply Setting", setting.getDescription());
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						}
-						
-						id = setting+"_REMOVE";
-						if (((EventTarget) MainController.document.getElementById(id)) != null) {
-							((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-								Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected().removeSlavePermissionSetting(permission, setting);
-								Main.game.setContent(new Response("", "", SlaveryManagementDialogue.getSlaveryManagementSlavePermissionsDialogue(Main.game.getDialogueFlags().getSlaveryManagerSlaveSelected())));
-							}, false);
-							
-							MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-							MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Remove Setting", setting.getDescription());
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						}
-						
-						id = setting+"_REMOVE_ME";
-						if (((EventTarget) MainController.document.getElementById(id)) != null) {
-							MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-							MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-							TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Remove Setting", "You cannot remove mutually exclusive settings! Choose a different option instead.");
-							MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-						}
-					}
-				}
-			}
-			
-			
-			for(String slaveId : Main.game.getPlayer().getSlavesOwned()) {
-				id = slaveId;
-				NPC slave = (NPC) Main.game.getNPCById(slaveId);
-				if(slave!=null) { // It shouldn't equal null...
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.game.setContent(new Response("", "", SlaveryManagementDialogue.getSlaveryManagementInspectSlaveDialogue(slave)));
-						}, false);
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Inspect Slave",
-								UtilText.parse(slave, "Inspect [npc.name]."));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_JOB"; //TODO
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.game.setContent(new Response("", "", SlaveryManagementDialogue.getSlaveryManagementSlaveJobsDialogue(slave)));
-						}, false);
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Manage Slave's Job",
-								UtilText.parse(slave, "Set [npc.namePos] job and work hours."));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_PERMISSIONS"; //TODO
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.game.setContent(new Response("", "", SlaveryManagementDialogue.getSlaveryManagementSlavePermissionsDialogue(slave)));
-						}, false);
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Manage Slave's Permissions",
-								UtilText.parse(slave, "Manage [npc.namePos] permissions."));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_INVENTORY";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.mainController.openInventory(slave, InventoryInteraction.FULL_MANAGEMENT);
-						}, false);
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Manage Slave's Inventory",
-								UtilText.parse(slave, "Manage [npc.namePos] inventory."));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_TRANSFER";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()) {
-								@Override
-								public void effects() {
-									slave.setHomeLocation(Main.game.getPlayer().getWorldLocation(), Main.game.getPlayer().getLocation());
-									slave.returnToHome();
-								}
-							});
-						}, false);
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Move Slave Here",
-								UtilText.parse(slave, "Move [npc.name] to your current location."));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_TRANSFER_DISABLED";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Move Slave Here",
-								UtilText.parse(slave, "You cannot move [npc.name] to this location, as there's no room for [npc.herHim] here."));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_SELL";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()) {
-								@Override
-								public void effects() {
-									Main.game.getPlayer().incrementMoney((int) (slave.getValueAsSlave()*Main.game.getDialogueFlags().getSlaveTrader().getBuyModifier()));
-									Main.game.getDialogueFlags().getSlaveTrader().addSlave(slave);
-									slave.setLocation(Main.game.getDialogueFlags().getSlaveTrader().getWorldLocation(), Main.game.getDialogueFlags().getSlaveTrader().getLocation(), true);
-								}
-							});
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Sell Slave",
-								UtilText.parse(slave, "[npc.Name] has a value of "+UtilText.formatAsMoney(slave.getValueAsSlave(), "b", Colour.GENERIC_GOOD)+"<br/>"
-										+ "However, "+Main.game.getDialogueFlags().getSlaveTrader().getName()+" will buy [npc.herHim] for "
-											+UtilText.formatAsMoney((int)(slave.getValueAsSlave()*Main.game.getDialogueFlags().getSlaveTrader().getBuyModifier()), "b", Colour.GENERIC_ARCANE)+"."));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_SELL_DISABLED";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Sell Slave",
-								UtilText.parse(slave, "You cannot sell [npc.name], as there's nobody here to sell [npc.herHim] to."));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_COSMETICS";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.game.setContent(new Response("", "", SlaveryManagementDialogue.SLAVE_MANAGEMENT_COSMETICS_HAIR) {
-								@Override
-								public void effects() {
-									Main.game.getDialogueFlags().setSlaveryManagerSlaveSelected(slave);
-									BodyChanging.setTarget(slave);
-								}
-							});
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Send Slave to Kate",
-								UtilText.parse(slave, "Send [npc.name] to Kate's beauty salon, 'Succubi's Secrets', to get [npc.her] appearance changed."));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_COSMETICS_DISABLED";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Send Slave to Kate",
-								UtilText.parse(slave, "You haven't met Kate yet!"));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-				}
-			}
-			
 			for(String occupantId : Main.game.getPlayer().getFriendlyOccupants()) {
 				id = occupantId;
 				NPC occupant = (NPC) Main.game.getNPCById(occupantId);
@@ -1832,110 +999,6 @@ public class MainControllerInitMethod {
 					}
 				}
 			}
-			
-
-			if(Main.game.getDialogueFlags().getSlaveTrader()!=null) {
-				for(String slaveId : Main.game.getDialogueFlags().getSlaveTrader().getSlavesOwned()) {
-					id = slaveId+"_TRADER";
-					NPC slave = (NPC) Main.game.getNPCById(slaveId);
-					
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.game.setContent(new Response("", "", SlaveryManagementDialogue.getSlaveryManagementInspectSlaveDialogue(slave)));
-						}, false);
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Inspect Slave",
-								UtilText.parse(slave, "Take a detailed look at [npc.name]."));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_TRADER_JOB";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Manage Slave's Job",
-								UtilText.parse(slave, "You cannot manage [npc.namePos] job, as you don't own [npc.herHim]!"));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_TRADER_PERMISSIONS";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Manage Slave's Permissions",
-								UtilText.parse(slave, "You cannot manage [npc.namePos] permissions, as you don't own [npc.herHim]!"));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_TRADER_INVENTORY";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Manage Slave's Inventory",
-								UtilText.parse(slave, "You cannot manage [npc.namePos] inventory, as you don't own [npc.herHim]!"));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					
-					id = slaveId+"_TRADER_TRANSFER";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Move Slave To Here",
-								UtilText.parse(slave, "You cannot move [npc.name] to this location, as you don't own [npc.herHim], as well as due to the fact that [npc.sheIs] already here!"));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_BUY";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()) {
-								@Override
-								public void effects() {
-									Main.game.getPlayer().incrementMoney(-(int)(slave.getValueAsSlave()*Main.game.getDialogueFlags().getSlaveTrader().getSellModifier()));
-									Main.game.getPlayer().addSlave(slave);
-									slave.setLocation(WorldType.SLAVER_ALLEY, PlaceType.SLAVER_ALLEY_SLAVERY_ADMINISTRATION, true);
-								}
-							});
-						}, false);
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Buy Slave",
-								UtilText.parse(slave, "[npc.Name] has a value of "+UtilText.formatAsMoney(slave.getValueAsSlave(), "b", Colour.GENERIC_GOOD)+"<br/>"
-										+ "However, "+Main.game.getDialogueFlags().getSlaveTrader().getName()+" will sell [npc.herHim] for "
-											+UtilText.formatAsMoney((int)(slave.getValueAsSlave()*Main.game.getDialogueFlags().getSlaveTrader().getSellModifier()), "b", Colour.GENERIC_ARCANE)+"."));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_BUY_DISABLED";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Buy Slave",
-								UtilText.parse(slave, "You cannot buy [npc.name], as you don't have enough money!"));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-					
-					id = slaveId+"_TRADER_COSMETICS";
-					if (((EventTarget) MainController.document.getElementById(id)) != null) {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation("Send Slave to Kate",
-								UtilText.parse(slave, "You can't send a slave you don't own to Kate!"));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
-				}
-			}
-			
 			
 			// -------------------- Incest Renaming -------------------- //
 			
@@ -3528,7 +2591,6 @@ public class MainControllerInitMethod {
 			}
 			
 			if(Main.game.getCurrentDialogueNode()==SuccubisSecrets.SHOP_BEAUTY_SALON_TATTOOS
-					|| Main.game.getCurrentDialogueNode()==SlaveryManagementDialogue.SLAVE_MANAGEMENT_TATTOOS
 					|| Main.game.getCurrentDialogueNode()==CharacterCreation.CHOOSE_ADVANCED_APPEARANCE_TATTOOS) {
 				for(InventorySlot invSlot : InventorySlot.getClothingSlots()) {
 					id = "TATTOO_INFO_"+invSlot.toString();
@@ -3551,9 +2613,7 @@ public class MainControllerInitMethod {
 							((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
 								Main.game.setContent(new Response("", "",
 										Main.game.isInNewWorld()
-											?(Main.game.getCurrentDialogueNode()==SuccubisSecrets.SHOP_BEAUTY_SALON_TATTOOS
-												?SuccubisSecrets.SHOP_BEAUTY_SALON_TATTOOS_ADD
-												:SlaveryManagementDialogue.SLAVE_MANAGEMENT_TATTOOS_ADD)
+											?SuccubisSecrets.SHOP_BEAUTY_SALON_TATTOOS_ADD
 											:CharacterCreation.CHOOSE_ADVANCED_APPEARANCE_TATTOOS_ADD){
 									@Override
 									public void effects() {
@@ -3611,7 +2671,6 @@ public class MainControllerInitMethod {
 			}
 
 			if(Main.game.getCurrentDialogueNode()==SuccubisSecrets.SHOP_BEAUTY_SALON_TATTOOS_ADD
-					|| Main.game.getCurrentDialogueNode()==SlaveryManagementDialogue.SLAVE_MANAGEMENT_TATTOOS_ADD
 					|| Main.game.getCurrentDialogueNode()==CharacterCreation.CHOOSE_ADVANCED_APPEARANCE_TATTOOS_ADD) {
 				id = "NEW_TATTOO_INFO";
 				if (((EventTarget) MainController.document.getElementById(id)) != null) {
@@ -4349,25 +3408,6 @@ public class MainControllerInitMethod {
 				}, false);
 			}
 			
-			
-			id = "FORCED_FETISH_ON";
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedFetishPercentage = Math.min(100, Main.getProperties().forcedFetishPercentage+10);
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-			}
-			id = "FORCED_FETISH_OFF";
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedFetishPercentage = Math.max(0, Main.getProperties().forcedFetishPercentage-10);
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-			}
-			
-			
 			// Forced TF Tendency setting events
 			id = "FORCED_TF_TENDENCY_"+ForcedTFTendency.NEUTRAL;
 			if (((EventTarget) MainController.document.getElementById(id)) != null) {
@@ -4443,84 +3483,6 @@ public class MainControllerInitMethod {
 				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
 				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(ForcedTFTendency.MASCULINE_HEAVY.getName(),
 						ForcedTFTendency.MASCULINE_HEAVY.getDescription());
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-			}
-			
-			// Forced Fetish Tendency setting events
-			id = "FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.NEUTRAL;
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedFetishTendency = ForcedFetishTendency.NEUTRAL;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-				
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(ForcedFetishTendency.NEUTRAL.getName(),
-						ForcedFetishTendency.NEUTRAL.getDescription());
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-			}
-			
-			
-			
-			id = "FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.BOTTOM;
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedFetishTendency = ForcedFetishTendency.BOTTOM;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-				
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(ForcedFetishTendency.BOTTOM.getName(),
-						ForcedFetishTendency.BOTTOM.getDescription());
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-			}
-			
-			id = "FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.BOTTOM_HEAVY;
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedFetishTendency = ForcedFetishTendency.BOTTOM_HEAVY;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-				
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(ForcedFetishTendency.BOTTOM_HEAVY.getName(),
-						ForcedFetishTendency.BOTTOM_HEAVY.getDescription());
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-			}
-			
-			id = "FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.TOP;
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedFetishTendency = ForcedFetishTendency.TOP;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-				
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(ForcedFetishTendency.TOP.getName(),
-						ForcedFetishTendency.TOP.getDescription());
-				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-			}
-			
-			id = "FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.TOP_HEAVY;
-			if (((EventTarget) MainController.document.getElementById(id)) != null) {
-				((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-					Main.getProperties().forcedFetishTendency = ForcedFetishTendency.TOP_HEAVY;
-					Main.saveProperties();
-					Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-				}, false);
-				
-				MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-				MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-				TooltipInformationEventListener el = new TooltipInformationEventListener().setInformation(ForcedFetishTendency.TOP_HEAVY.getName(),
-						ForcedFetishTendency.TOP_HEAVY.getDescription());
 				MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
 			}
 		}
@@ -4664,58 +3626,6 @@ public class MainControllerInitMethod {
 						ImportExportManager.importCharacter(f);
 						
 					}, false);
-				}
-			}
-		}
-		
-		// Slave import:
-		if (Main.game.getCurrentDialogueNode() == SlaverAlleyDialogue.AUCTION_IMPORT) {
-			for (File f : ImportExportManager.getSlavesForImport()) {
-				String fileIdentifier = f.getName().substring(0, f.getName().lastIndexOf('.'));
-				
-				if (((EventTarget) MainController.document.getElementById("import_slave_" + fileIdentifier )) != null) {
-					((EventTarget) MainController.document.getElementById("import_slave_" + fileIdentifier )).addEventListener("click", e -> {
-						
-						try {
-							Game.importCharacterAsSlave(fileIdentifier);
-							MainController.updateUI();
-							Main.game.flashMessage(Colour.GENERIC_GOOD, "Imported Character!");
-						
-						} catch(Exception ex) {
-							Main.game.flashMessage(Colour.GENERIC_BAD, "Import Failed!");
-						}
-						
-							
-					}, false);
-				}
-			}
-		}
-		if (Main.game.getCurrentDialogueNode() == SlaverAlleyDialogue.AUCTION_BLOCK_LIST) {
-			for (NPC npc : Main.game.getCharactersPresent()) {
-				id = npc.getId()+"_BID";
-				if (((EventTarget) MainController.document.getElementById(id)) != null) {
-					if(Main.game.getPlayer().isHasSlaverLicense()) {
-						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-							SlaverAlleyDialogue.setupBidding(npc);
-							Main.game.setContent(new Response("", "", SlaverAlleyDialogue.AUCTION_BIDDING));
-						}, false);
-						
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation(
-								UtilText.parse(npc, "Bid on [npc.name]"),
-								UtilText.parse(npc, "Start bidding on [npc.name]. There's a chance that the bidding might exceed [npc.her] value, so make sure you have enough money first!"));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					} else {
-						MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);
-						MainController.addEventListener(MainController.document, id, "mouseleave", MainController.hideTooltipListener, false);
-	
-						TooltipInformationEventListener el =  new TooltipInformationEventListener().setInformation(
-								UtilText.parse(npc, "Bid on [npc.name]"),
-								UtilText.parse(npc, "You don't have a slaver license, so you're unable to big on any slaves!"));
-						MainController.addEventListener(MainController.document, id, "mouseenter", el, false);
-					}
 				}
 			}
 		}

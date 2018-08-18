@@ -1038,7 +1038,7 @@ public class UtilText {
 				"Returns the name of this character's job."){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
-				return character.getSlaveJob().getName(character);
+				return ""; // TODO: replace with career;
 			}
 		});
 		
@@ -1047,8 +1047,8 @@ public class UtilText {
 						"gender"},
 				true,
 				true,
-				"(coloured)",//TODO
-				"Description of method"){//TODO
+				"(coloured)",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				Gender gender = character.getGender();
@@ -1075,8 +1075,8 @@ public class UtilText {
 						"appearsAsGender"},
 				true,
 				true,
-				"(coloured)",//TODO
-				"Description of method"){//TODO
+				"(coloured)",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				Gender gender = character.getAppearsAsGender();
@@ -1102,8 +1102,8 @@ public class UtilText {
 						"son"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine()) {
@@ -1120,8 +1120,8 @@ public class UtilText {
 						"father"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine()) {
@@ -1138,8 +1138,8 @@ public class UtilText {
 						"daddy"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine()) {
@@ -1157,8 +1157,8 @@ public class UtilText {
 						"dad"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine()) {
@@ -1175,8 +1175,8 @@ public class UtilText {
 						"brother"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine()) {
@@ -1193,8 +1193,8 @@ public class UtilText {
 						"bro"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine()) {
@@ -1211,8 +1211,8 @@ public class UtilText {
 						"nephew"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine()) {
@@ -1229,8 +1229,8 @@ public class UtilText {
 						"master"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine()) {
@@ -1247,8 +1247,8 @@ public class UtilText {
 						"hero"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine()) {
@@ -1267,8 +1267,8 @@ public class UtilText {
 						"mr"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine()) {
@@ -1285,8 +1285,8 @@ public class UtilText {
 						"girlfriend"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine()) {
@@ -1374,8 +1374,8 @@ public class UtilText {
 						"races"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return getSubspeciesNamePlural(character.getSubspecies());
@@ -1897,8 +1897,8 @@ public class UtilText {
 						"mas"},
 				true,
 				true,
-				"(coloured)",//TODO
-				"Description of method"){//TODO
+				"(coloured)",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return Femininity.valueOf(character.getFemininityValue()).getName(false);
@@ -1910,8 +1910,8 @@ public class UtilText {
 						"bodySize"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return BodySize.valueOf(character.getBodySizeValue()).getName(false);
@@ -1923,8 +1923,8 @@ public class UtilText {
 						"muscle"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return Muscle.valueOf(character.getMuscleValue()).getName(false);
@@ -1936,8 +1936,8 @@ public class UtilText {
 						"bodyShape"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getBodyShape().getName(false);
@@ -1949,8 +1949,8 @@ public class UtilText {
 						"height"},
 				true,
 				true,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getHeight().getDescriptor();
@@ -1962,8 +1962,8 @@ public class UtilText {
 						"heightCm"},
 				false,
 				false,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return String.valueOf(character.getHeightValue());
@@ -1975,8 +1975,8 @@ public class UtilText {
 						"heightInches"},
 				false,
 				false,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return String.valueOf(Util.conversionCentimetresToInches(character.getHeightValue()));
@@ -1988,8 +1988,8 @@ public class UtilText {
 						"heightFeetInches"},
 				false,
 				false,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return Util.inchesToFeetAndInches(Util.conversionCentimetresToInches(character.getHeightValue()));
@@ -2001,8 +2001,8 @@ public class UtilText {
 						"weight"},
 				false,
 				false,
-				"",//TODO
-				"Description of method"){//TODO
+				"",
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return String.valueOf(character.getWeight());
@@ -2018,7 +2018,7 @@ public class UtilText {
 				false,
 				false,
 				"(speech content)",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(arguments!=null) {
@@ -2038,7 +2038,7 @@ public class UtilText {
 				false,
 				false,
 				"(speech content)",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(arguments!=null) {
@@ -2058,7 +2058,7 @@ public class UtilText {
 				false,
 				false,
 				"(speech content)",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(arguments!=null) {
@@ -2078,7 +2078,7 @@ public class UtilText {
 				false,
 				false,
 				"(speech content)",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(arguments!=null) {
@@ -2098,7 +2098,7 @@ public class UtilText {
 				false,
 				false,
 				"(speech content)",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(arguments!=null) {
@@ -2118,7 +2118,7 @@ public class UtilText {
 				false,
 				false,
 				"(speech content)",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(arguments!=null) {
@@ -2135,7 +2135,7 @@ public class UtilText {
 				false,
 				false,
 				"(thought content)",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(arguments!=null) {
@@ -2434,7 +2434,7 @@ public class UtilText {
 				true,
 				false,
 				"",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(Main.game.isInSex()) {
@@ -2468,7 +2468,7 @@ public class UtilText {
 				true,
 				false,
 				"",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(Main.game.isInSex()) {
@@ -2565,7 +2565,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.GENERIC){//TODO
+				BodyPartType.GENERIC){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine()) {
@@ -2586,7 +2586,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.GENERIC){//TODO
+				BodyPartType.GENERIC){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine()) {
@@ -2606,7 +2606,7 @@ public class UtilText {
 				true,
 				true,
 				"",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine())
@@ -2623,7 +2623,7 @@ public class UtilText {
 				true,
 				true,
 				"",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine())
@@ -2640,7 +2640,7 @@ public class UtilText {
 				true,
 				true,
 				"",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine())
@@ -2657,7 +2657,7 @@ public class UtilText {
 				true,
 				true,
 				"",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.isFeminine())
@@ -2746,7 +2746,7 @@ public class UtilText {
 				true,
 				true,
 				"",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(target.startsWith("npc") && arguments==null && character.isPlayer()) {
@@ -2769,7 +2769,7 @@ public class UtilText {
 				true,
 				true,
 				"",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(target.startsWith("npc") && arguments==null && character.isPlayer()) {
@@ -3133,7 +3133,7 @@ public class UtilText {
 				false,
 				false,
 				"(text to make bold)",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(arguments!=null)
@@ -3151,7 +3151,7 @@ public class UtilText {
 				false,
 				false,
 				"(text to italicise)",
-				"Description of method"){//TODO
+				"Description of method"){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(arguments!=null)
@@ -3178,7 +3178,7 @@ public class UtilText {
 						false,
 						false,
 						"(text to colour)",
-						"Description of method"){//TODO
+						"Description of method"){
 					@Override
 					public String parse(String command, String arguments, String target, GameCharacter gc) {
 						if(arguments!=null)
@@ -3199,7 +3199,7 @@ public class UtilText {
 						false,
 						false,
 						"(text to make bold)",
-						"Description of method"){//TODO
+						"Description of method"){
 					@Override
 					public String parse(String command, String arguments, String target, GameCharacter gc) {
 						if(arguments!=null)
@@ -3221,7 +3221,7 @@ public class UtilText {
 						false,
 						false,
 						"(text to italicise)",
-						"Description of method"){//TODO
+						"Description of method"){
 					@Override
 					public String parse(String command, String arguments, String target, GameCharacter gc) {
 						if(arguments!=null)
@@ -3243,7 +3243,7 @@ public class UtilText {
 						false,
 						false,
 						"(text to glow)",
-						"Description of method"){//TODO
+						"Description of method"){
 					@Override
 					public String parse(String command, String arguments, String target, GameCharacter gc) {
 						if(arguments!=null)
@@ -3408,7 +3408,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ARM){//TODO
+				BodyPartType.ARM){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.getArmRows()==1) {
@@ -3428,7 +3428,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ARM){//TODO
+				BodyPartType.ARM){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getArmType().getHandsNameSingular(character);
@@ -3443,7 +3443,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ARM){//TODO
+				BodyPartType.ARM){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getArmType().getHandsDescriptor(character), character.getArmType().getHandsNameSingular(character));
@@ -3457,7 +3457,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ARM){//TODO
+				BodyPartType.ARM){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getArmType().getHandsNamePlural(character);
@@ -3472,7 +3472,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.ARM){//TODO
+				BodyPartType.ARM){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getArmType().getHandsDescriptor(character), character.getArmType().getHandsNamePlural(character));
@@ -3486,7 +3486,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ARM){//TODO
+				BodyPartType.ARM){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getArmType().getFingersNameSingular(character);
@@ -3501,7 +3501,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ARM){//TODO
+				BodyPartType.ARM){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getArmType().getFingersDescriptor(character), character.getArmType().getFingersNameSingular(character));
@@ -3515,7 +3515,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ARM){//TODO
+				BodyPartType.ARM){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getArmType().getFingersNamePlural(character);
@@ -3530,7 +3530,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.ARM){//TODO
+				BodyPartType.ARM){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getArmType().getFingersDescriptor(character), character.getArmType().getFingersNamePlural(character));
@@ -3546,7 +3546,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ASS){//TODO
+				BodyPartType.ASS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getAssSize().getDescriptor();
@@ -3561,7 +3561,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ASS){//TODO
+				BodyPartType.ASS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return Capacity.getCapacityFromValue(character.getAssStretchedCapacity()).getDescriptor();
@@ -3576,7 +3576,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ASS){//TODO
+				BodyPartType.ASS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getAssElasticity().getDescriptor();
@@ -3591,7 +3591,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ASS){//TODO
+				BodyPartType.ASS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getAssWetness().getDescriptor();
@@ -3608,7 +3608,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ASS){//TODO
+				BodyPartType.ASS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return getSkinName(character.getSkinType());
@@ -3623,7 +3623,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ASS){//TODO
+				BodyPartType.ASS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return getSkinNameWithDescriptor(character.getSkinType());
@@ -3638,7 +3638,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ASS){//TODO
+				BodyPartType.ASS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return "hips";
@@ -3655,7 +3655,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ASS){//TODO
+				BodyPartType.ASS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getHipSize().getDescriptor(), "hips");
@@ -3670,7 +3670,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.ASS){//TODO
+				BodyPartType.ASS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getHipSize().getDescriptor();
@@ -3691,7 +3691,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.BREAST){//TODO
+				BodyPartType.BREAST){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getBreastSize().getDescriptor();
@@ -3710,7 +3710,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.BREAST){//TODO
+				BodyPartType.BREAST){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getBreastShape().getName();
@@ -3725,7 +3725,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.BREAST){//TODO
+				BodyPartType.BREAST){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getNippleSize().getName();
@@ -3740,7 +3740,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.BREAST){//TODO
+				BodyPartType.BREAST){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getAreolaeSize().getName();
@@ -3761,7 +3761,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.BREAST){//TODO
+				BodyPartType.BREAST){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getBreastSize().getCupSizeName();
@@ -3780,7 +3780,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.BREAST){//TODO
+				BodyPartType.BREAST){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return Capacity.getCapacityFromValue(character.getNippleStretchedCapacity()).getDescriptor();
@@ -3799,7 +3799,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.BREAST){//TODO
+				BodyPartType.BREAST){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getNippleElasticity().getDescriptor();
@@ -3814,7 +3814,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.BREAST){//TODO
+				BodyPartType.BREAST){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				if(character.getBreastRows()==1) {
@@ -3833,7 +3833,7 @@ public class UtilText {
 //				true,
 //				"",
 //				"Description of method",
-//				BodyPartType.BREAST){//TODO
+//				BodyPartType.BREAST){
 //			@Override
 //			public String parse(String command, String arguments, String target, GameCharacter gc) {
 //				return character.getMilkName();
@@ -3847,7 +3847,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.BREAST){//TODO
+				BodyPartType.BREAST){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getBreastMilkStorage().getDescriptor();
@@ -3862,7 +3862,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.BREAST){//TODO
+				BodyPartType.BREAST){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getBreastLactationRegeneration().getName();
@@ -3881,7 +3881,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.EYE){//TODO
+				BodyPartType.EYE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getEyeDeterminer();
@@ -3898,7 +3898,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.FACE){//TODO
+				BodyPartType.FACE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getTongueLength().getDescriptor();
@@ -3912,7 +3912,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.FACE){//TODO
+				BodyPartType.FACE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getNoseNameSingular();
@@ -3926,7 +3926,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.FACE){//TODO
+				BodyPartType.FACE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getNoseNamePlural();
@@ -3941,7 +3941,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.FACE){//TODO
+				BodyPartType.FACE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getLipSize().getName();
@@ -3955,7 +3955,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.FACE){//TODO
+				BodyPartType.FACE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getLipsNameSingular();
@@ -3970,7 +3970,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.FACE){//TODO
+				BodyPartType.FACE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getLipsDescriptor(), character.getLipsNameSingular());
@@ -3984,7 +3984,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.FACE){//TODO
+				BodyPartType.FACE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getLipsNamePlural();
@@ -3999,7 +3999,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.FACE){//TODO
+				BodyPartType.FACE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getLipsDescriptor(), character.getLipsNamePlural());
@@ -4015,7 +4015,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.HAIR){//TODO
+				BodyPartType.HAIR){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getHairLength().getDescriptor();
@@ -4034,7 +4034,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.HORN){//TODO
+				BodyPartType.HORN){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return HornLength.getHornLengthFromInt(character.getHornLength()).getDescriptor();
@@ -4050,7 +4050,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.LEG){//TODO
+				BodyPartType.LEG){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return "thighs";
@@ -4065,7 +4065,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.LEG){//TODO
+				BodyPartType.LEG){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return "thighs";
@@ -4079,7 +4079,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.LEG){//TODO
+				BodyPartType.LEG){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getLegType().getFeetNameSingular(character);
@@ -4094,7 +4094,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.LEG){//TODO
+				BodyPartType.LEG){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getLegType().getFeetDescriptor(character), character.getLegType().getFeetNameSingular(character));
@@ -4108,7 +4108,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.LEG){//TODO
+				BodyPartType.LEG){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getLegType().getFeetNamePlural(character);
@@ -4123,7 +4123,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.LEG){//TODO
+				BodyPartType.LEG){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getLegType().getFeetDescriptor(character), character.getLegType().getFeetNamePlural(character));
@@ -4137,7 +4137,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.LEG){//TODO
+				BodyPartType.LEG){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getLegType().getToesNamePlural(character);
@@ -4152,7 +4152,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.LEG){//TODO
+				BodyPartType.LEG){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getLegType().getToesDescriptor(character), character.getLegType().getToesNamePlural(character));
@@ -4166,7 +4166,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.LEG){//TODO
+				BodyPartType.LEG){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				switch(character.getLegType().getFootType()) {
@@ -4194,7 +4194,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.VAGINA){//TODO
+				BodyPartType.VAGINA){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return "urethra";
@@ -4215,7 +4215,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.PENIS){//TODO
+				BodyPartType.PENIS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getPenisUrethraDescriptor(), "urethra");
@@ -4233,7 +4233,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.TESTICLES){//TODO
+				BodyPartType.TESTICLES){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getPenisCumStorage().getDescriptor();
@@ -4248,7 +4248,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.TESTICLES){//TODO
+				BodyPartType.TESTICLES){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return String.valueOf(character.getPenisRawCumStorageValue());
@@ -4264,7 +4264,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.TESTICLES){//TODO
+				BodyPartType.TESTICLES){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return (parseCapitalise
@@ -4283,7 +4283,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.TESTICLES){//TODO
+				BodyPartType.TESTICLES){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getTesticleSize().getDescriptor();
@@ -4300,7 +4300,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.PENIS){//TODO
+				BodyPartType.PENIS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getBody().getPenis().getPenisHeadName(character);
@@ -4321,7 +4321,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.PENIS){//TODO
+				BodyPartType.PENIS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getBody().getPenis().getPenisHeadDescriptor(character), character.getBody().getPenis().getPenisHeadName(character));
@@ -4337,7 +4337,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.PENIS){//TODO
+				BodyPartType.PENIS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getPenisSize().getDescriptor();
@@ -4353,7 +4353,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.PENIS){//TODO
+				BodyPartType.PENIS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getPenisGirth().getName();
@@ -4367,7 +4367,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.PENIS){//TODO
+				BodyPartType.PENIS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return String.valueOf(Util.conversionInchesToCentimetres(character.getPenisRawSizeValue()));
@@ -4381,7 +4381,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.PENIS){//TODO
+				BodyPartType.PENIS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return String.valueOf(character.getPenisRawSizeValue());
@@ -4395,7 +4395,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.PENIS){//TODO
+				BodyPartType.PENIS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return "urethra";
@@ -4416,7 +4416,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.PENIS){//TODO
+				BodyPartType.PENIS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getBody().getSecondPenis().getPenisHeadName(character);
@@ -4441,7 +4441,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.PENIS){//TODO
+				BodyPartType.PENIS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getBody().getSecondPenis().getPenisHeadDescriptor(character), character.getBody().getSecondPenis().getPenisHeadName(character));
@@ -4460,7 +4460,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.PENIS){//TODO
+				BodyPartType.PENIS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getSecondPenisSize().getDescriptor();
@@ -4475,7 +4475,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.PENIS){//TODO
+				BodyPartType.PENIS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return String.valueOf(Util.conversionInchesToCentimetres(character.getSecondPenisRawSizeValue()));
@@ -4490,7 +4490,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.PENIS){//TODO
+				BodyPartType.PENIS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return String.valueOf(character.getSecondPenisRawSizeValue());
@@ -4504,7 +4504,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.PENIS){//TODO
+				BodyPartType.PENIS){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return "urethra";
@@ -4521,7 +4521,7 @@ public class UtilText {
 				false,
 				"",
 				"Description of method",
-				BodyPartType.TAIL){//TODO
+				BodyPartType.TAIL){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getTailDeterminer();
@@ -4540,7 +4540,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.VAGINA){//TODO
+				BodyPartType.VAGINA){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return "urethra";
@@ -4561,7 +4561,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.VAGINA){//TODO
+				BodyPartType.VAGINA){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getVaginaUrethraDescriptor(), "urethra");
@@ -4577,7 +4577,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.VAGINA){//TODO
+				BodyPartType.VAGINA){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return Capacity.getCapacityFromValue(character.getVaginaStretchedCapacity()).getDescriptor();
@@ -4593,7 +4593,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.VAGINA){//TODO
+				BodyPartType.VAGINA){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getVaginaElasticity().getDescriptor();
@@ -4609,7 +4609,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.VAGINA){//TODO
+				BodyPartType.VAGINA){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getVaginaWetness().getDescriptor();
@@ -4623,7 +4623,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.VAGINA){//TODO
+				BodyPartType.VAGINA){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getVaginaLabiaSize().getName();
@@ -4637,7 +4637,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.VAGINA){//TODO
+				BodyPartType.VAGINA){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return "labia";
@@ -4652,7 +4652,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.VAGINA){//TODO
+				BodyPartType.VAGINA){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getVaginaLabiaSize().getName()+" labia";
@@ -4667,7 +4667,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.VAGINA){//TODO
+				BodyPartType.VAGINA){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getVaginaClitorisSize().getDescriptor();
@@ -4682,7 +4682,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.VAGINA){//TODO
+				BodyPartType.VAGINA){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return String.valueOf(character.getVaginaRawClitorisSizeValue());
@@ -4697,7 +4697,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.VAGINA){//TODO
+				BodyPartType.VAGINA){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getClitorisGirth().getName();
@@ -4714,7 +4714,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.WING){//TODO
+				BodyPartType.WING){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getWingSize().getName();
@@ -4731,7 +4731,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.EYE){//TODO
+				BodyPartType.EYE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getIrisShape().getName();
@@ -4746,7 +4746,7 @@ public class UtilText {
 				true,
 				"true If you want this colour's name to be coloured.",
 				"Description of method",
-				BodyPartType.EYE){//TODO
+				BodyPartType.EYE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getCovering(character.getEyeType().getBodyCoveringType(character))
@@ -4764,7 +4764,7 @@ public class UtilText {
 				true,
 				"true If you want this colour's name to be coloured.",
 				"Description of method",
-				BodyPartType.EYE){//TODO
+				BodyPartType.EYE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getCovering(character.getEyeType().getBodyCoveringType(character))
@@ -4786,7 +4786,7 @@ public class UtilText {
 				true,
 				"true If you want this colour's name to be coloured.",
 				"Description of method",
-				BodyPartType.EYE){//TODO
+				BodyPartType.EYE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getCovering(character.getEyeType().getBodyCoveringType(character))
@@ -4808,7 +4808,7 @@ public class UtilText {
 				true,
 				"true If you want this colour's name to be coloured.",
 				"Description of method",
-				BodyPartType.EYE){//TODO
+				BodyPartType.EYE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getCovering(character.getEyeType().getBodyCoveringType(character))
@@ -4824,7 +4824,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.EYE){//TODO
+				BodyPartType.EYE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getPupilShape().getName();
@@ -4839,8 +4839,7 @@ public class UtilText {
 				true,
 				"true If you want this colour's name to be coloured.",
 				"Description of method",
-				BodyPartType.EYE){//TODO
-			@Override
+				BodyPartType.EYE){
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getCovering(BodyCoveringType.EYE_PUPILS)
 						.getFullDescription(character, arguments != null && arguments.equalsIgnoreCase("true"));
@@ -4857,7 +4856,7 @@ public class UtilText {
 				true,
 				"true If you want this colour's name to be coloured.",
 				"Description of method",
-				BodyPartType.EYE){//TODO
+				BodyPartType.EYE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getCovering(BodyCoveringType.EYE_PUPILS)
@@ -4879,7 +4878,7 @@ public class UtilText {
 				true,
 				"true If you want this colour's name to be coloured.",
 				"Description of method",
-				BodyPartType.EYE){//TODO
+				BodyPartType.EYE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getCovering(BodyCoveringType.EYE_PUPILS)
@@ -4901,7 +4900,7 @@ public class UtilText {
 				true,
 				"true If you want this colour's name to be coloured.",
 				"Description of method",
-				BodyPartType.EYE){//TODO
+				BodyPartType.EYE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getCovering(BodyCoveringType.EYE_PUPILS)
@@ -4917,7 +4916,7 @@ public class UtilText {
 				true,
 				"true If you want this colour's name to be coloured.",
 				"Description of method",
-				BodyPartType.EYE){//TODO
+				BodyPartType.EYE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getCovering(BodyCoveringType.EYE_SCLERA)
@@ -4935,7 +4934,7 @@ public class UtilText {
 				true,
 				"true If you want this colour's name to be coloured.",
 				"Description of method",
-				BodyPartType.EYE){//TODO
+				BodyPartType.EYE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getCovering(BodyCoveringType.EYE_SCLERA)
@@ -4957,7 +4956,7 @@ public class UtilText {
 				true,
 				"true If you want this colour's name to be coloured.",
 				"Description of method",
-				BodyPartType.EYE){//TODO
+				BodyPartType.EYE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getCovering(BodyCoveringType.EYE_SCLERA)
@@ -4979,7 +4978,7 @@ public class UtilText {
 				true,
 				"true If you want this colour's name to be coloured.",
 				"Description of method",
-				BodyPartType.EYE){//TODO
+				BodyPartType.EYE){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getCovering(BodyCoveringType.EYE_SCLERA)
@@ -4997,7 +4996,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.TAIL){//TODO
+				BodyPartType.TAIL){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return character.getTailType().getTailTipName(character);
@@ -5014,7 +5013,7 @@ public class UtilText {
 				true,
 				"",
 				"Description of method",
-				BodyPartType.TAIL){//TODO
+				BodyPartType.TAIL){
 			@Override
 			public String parse(String command, String arguments, String target, GameCharacter gc) {
 				return applyDescriptor(character.getTailType().getTailTipDescriptor(character), character.getTailType().getTailTipName(character));

@@ -23,7 +23,7 @@ public enum SVGImages {
 
 			displacedIcon, concealedIcon, cummedInIcon, feminineWarningIcon, masculineWarningIcon, jinxedIcon, tattooSwitchTattoo, tattooSwitchClothing, scarIcon,
 
-			menuIcon, inventoryIcon, inventoryIconDisabled, journalIcon, peopleIcon, zoomInIcon, zoomOutIcon, copyIcon, exportIcon, calendarIcon, informationIcon,
+			menuIcon, inventoryIcon, inventoryIconDisabled, journalIcon, peopleIcon, zoomInIcon, zoomOutIcon, copyIcon, exportIcon, informationIcon,
 
 			diskSave, diskSaveDisabled, diskSaveConfirm, diskOverwrite, diskLoad, diskLoadConfirm, diskLoadDisabled, diskDelete, diskDeleteConfirm,
 			
@@ -184,10 +184,6 @@ public enum SVGImages {
 			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/UIElements/information.svg");
 			informationIcon = Util.inputStreamToString(is);
 			informationIcon = setColour(informationIcon, Colour.BASE_BLACK);
-			
-			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/UIElements/calendar.svg");
-			calendarIcon = Util.inputStreamToString(is);
-			calendarIcon = setColour(calendarIcon, Colour.BASE_CRIMSON);
 			
 			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/UIElements/diskSave.svg");
 			diskSave = Util.inputStreamToString(is);
@@ -712,10 +708,6 @@ public enum SVGImages {
 
 	public String getInformationIcon() {
 		return informationIcon;
-	}
-
-	public String getCalendarIcon() {
-		return calendarIcon;
 	}
 
 	public String getDiskSave() {

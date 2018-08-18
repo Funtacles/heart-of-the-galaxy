@@ -27,7 +27,6 @@ import com.lilithsthrone.game.dialogue.DialogueNodeType;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
 import com.lilithsthrone.game.dialogue.story.CharacterCreation;
-import com.lilithsthrone.game.settings.ForcedFetishTendency;
 import com.lilithsthrone.game.settings.ForcedTFTendency;
 import com.lilithsthrone.game.settings.KeyboardAction;
 import com.lilithsthrone.main.Main;
@@ -1306,55 +1305,6 @@ public class OptionsDialogue {
 													+ "</div>"));
 			UtilText.nodeContentSB.append("</div></div>");
 			
-			UtilText.nodeContentSB.append(getContentPreferenceVariableDiv(
-							"FORCED_FETISH",
-							Colour.FETISH,
-							"Forced Fetishes",
-							"This sets the amount of NPCs spawning with the '"+Fetish.FETISH_KINK_GIVING.getName(null)+"' fetish, which causes them to try and forcibly give you fetishes after beating you in combat.",
-							Main.getProperties().forcedFetishPercentage+"%",
-							Main.getProperties().forcedFetishPercentage,
-							0,
-							100));
-					
-
-			UtilText.nodeContentSB.append(getCustomContentPreferenceDivStart("FORCED_FETISH_TENDENCY_", Colour.FETISH, "Forced Fetish Tendency",
-					"This allows you to override NPC tastes and control the tendency for forced fetishes to be for topping or bottoming."));
-			UtilText.nodeContentSB.append((Main.getProperties().forcedFetishTendency==ForcedFetishTendency.NEUTRAL
-												?"<div id='FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.NEUTRAL+"' class='normal-button selected' style='width:31%; margin:1%; text-align:center; float:right; color:"+Colour.ANDROGYNOUS.toWebHexString()+";'>"
-													+ ForcedFetishTendency.NEUTRAL.getName()
-													+ "</div>"
-												:"<div id='FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.NEUTRAL+"' class='normal-button' style='width:31%; margin:1%; text-align:center; float:right;'>"
-													+ "[style.colourDisabled("+ForcedFetishTendency.NEUTRAL.getName()+")]"
-													+ "</div>")	
-										+(Main.getProperties().forcedFetishTendency==ForcedFetishTendency.BOTTOM
-												?"<div id='FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.BOTTOM+"' class='normal-button selected' style='width:31%; margin:1%; text-align:center; float:right; color:"+Colour.BASE_PINK_LIGHT.toWebHexString()+";'>"
-													+ ForcedFetishTendency.BOTTOM.getName()
-													+ "</div>"
-												:"<div id='FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.BOTTOM+"' class='normal-button' style='width:31%; margin:1%; text-align:center; float:right;'>"
-													+ "[style.colourDisabled("+ForcedFetishTendency.BOTTOM.getName()+")]"
-													+ "</div>")
-										+(Main.getProperties().forcedFetishTendency==ForcedFetishTendency.BOTTOM_HEAVY
-												?"<div id='FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.BOTTOM_HEAVY+"' class='normal-button selected' style='width:31%; margin:1%; text-align:center; float:right; color:"+Colour.BASE_PINK.toWebHexString()+";'>"
-													+ ForcedFetishTendency.BOTTOM_HEAVY.getName()
-													+ "</div>"
-												:"<div id='FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.BOTTOM_HEAVY+"' class='normal-button' style='width:31%; margin:1%; text-align:center; float:right;'>"
-													+ "[style.colourDisabled("+ForcedFetishTendency.BOTTOM_HEAVY.getName()+")]"
-													+ "</div>")
-										+(Main.getProperties().forcedFetishTendency==ForcedFetishTendency.TOP_HEAVY
-												?"<div id='FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.TOP_HEAVY+"' class='normal-button selected' style='width:31%; margin:1%; text-align:center; float:right; color:"+Colour.BASE_PURPLE.toWebHexString()+";'>"
-													+ ForcedFetishTendency.TOP_HEAVY.getName()
-													+ "</div>"
-												:"<div id='FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.TOP_HEAVY+"' class='normal-button' style='width:31%; margin:1%; text-align:center; float:right;'>"
-													+ "[style.colourDisabled("+ForcedFetishTendency.TOP_HEAVY.getName()+")]"
-													+ "</div>")
-										+(Main.getProperties().forcedFetishTendency==ForcedFetishTendency.TOP
-												?"<div id='FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.TOP+"' class='normal-button selected' style='width:31%; margin:1%; text-align:center; float:right; color:"+Colour.BASE_PURPLE_LIGHT.toWebHexString()+";'>"
-													+ ForcedFetishTendency.TOP.getName()
-													+ "</div>"
-												:"<div id='FORCED_FETISH_TENDENCY_"+ForcedFetishTendency.TOP+"' class='normal-button' style='width:31%; margin:1%; text-align:center; float:right;'>"
-													+ "[style.colourDisabled("+ForcedFetishTendency.TOP.getName()+")]"
-													+ "</div>"));
-			UtilText.nodeContentSB.append("</div></div>");
 			
 			UtilText.nodeContentSB.append(getContentPreferenceDiv(
 						"FURRY_TAIL_PENETRATION",

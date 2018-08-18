@@ -45,7 +45,6 @@ import com.lilithsthrone.game.sex.SexAreaPenetration;
 import com.lilithsthrone.game.sex.SexType;
 import com.lilithsthrone.game.sex.Sex;
 import com.lilithsthrone.game.sex.SexAreaInterface;
-import com.lilithsthrone.game.slavery.SlaveJob;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.rendering.RenderingEngine;
 import com.lilithsthrone.rendering.SVGImages;
@@ -2391,36 +2390,6 @@ public enum StatusEffect {
 		}
 
 		
-	},
-	
-	OVERWORKED(
-			80,
-			"overworked",
-			"overworked",
-			Colour.BASE_MAGENTA,
-			false,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.MAJOR_PHYSIQUE, -15f),
-					new Value<Attribute, Float>(Attribute.MANA_MAXIMUM, -50f)),
-			Util.newArrayListOfValues("[style.boldBad(-0.1)] <b style='color: " + Colour.AFFECTION.toWebHexString() + ";'>Affection per hour while at work</b>")) {
-
-		@Override
-		public String getDescription(GameCharacter target) {
-			if(target!=null) {
-				if(target.isPlayer()) {
-					return "As a result of working over eight hours a day, you often find yourself feeling tired and lethargic.";
-				} else {
-					return UtilText.parse(target, "As a result of working over eight hours a day, [npc.Name] often finds [npc.herself] feeling tired and lethargic.");
-				}
-			} else {
-				return "";
-			}
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return target.isSlave() && target.getSlaveJob()!=SlaveJob.IDLE && target.getTotalHoursWorked()>8;
-		}
 	},
 	
 	PSYCHOACTIVE(
@@ -4838,31 +4807,6 @@ public enum StatusEffect {
 		@Override
 		public boolean isSexEffect() {
 			return true;
-		}
-	},
-	
-	PENT_UP_SLAVE(
-			80,
-			"Pent-up",
-			"frustrated",
-			Colour.GENERIC_ARCANE,
-			false,
-			Util.newHashMapOfValues(new Value<Attribute, Float>(Attribute.RESISTANCE_LUST, -50f)),
-			null) {
-
-		@Override
-		public String getDescription(GameCharacter target) {
-			return UtilText.parse(target, "[npc.Name] hasn't had any sexual relief for over a day now, and is feeling extremely pent-up...");
-		}
-		
-		@Override
-		public String extraRemovalEffects(GameCharacter target) {
-			return "";
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return !target.isPlayer() && target.isSlave() && (target.getOwner()!=null && target.getOwner().isPlayer()) && ((NPC)target).getLastTimeOrgasmed()+60*24<Main.game.getMinutesPassed();
 		}
 	},
 	

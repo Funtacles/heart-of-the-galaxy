@@ -13,7 +13,6 @@ public enum PropertyValue {
 	lightTheme(false),
 	overwriteWarning(true),
 	fadeInText(false),
-	calendarDisplay(true),
 	twentyFourHourTime(true),
 	tattooRemovalConfirmations(true),
 
