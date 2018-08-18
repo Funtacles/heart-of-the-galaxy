@@ -1150,13 +1150,6 @@ public class OptionsDialogue {
 			UtilText.nodeContentSB.append("</div></div>");
 
 			UtilText.nodeContentSB.append(getContentPreferenceDiv(
-							"AGE",
-							Colour.AGE_TWENTIES,
-							"Age",
-							"This enables descriptions of the age that characters appear to be.",
-							Main.getProperties().hasValue(PropertyValue.ageContent)));
-			
-			UtilText.nodeContentSB.append(getContentPreferenceDiv(
 							"NON_CON",
 							Colour.BASE_CRIMSON,
 							"Non-consent",

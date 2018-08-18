@@ -1,6 +1,5 @@
 package com.lilithsthrone.game.character.npc.dominion;
 
-import java.time.Month;
 import java.util.List;
 import java.util.Map;
 
@@ -93,7 +92,6 @@ public class Brax extends NPC {
 	public Brax(boolean isImported) {
 		super(new NameTriplet("Brax", "Bree", "Brandi"),
 				"The 'Chief of Dominion Operations', Brax is a high-ranking enforcer. Muscular, handsome, and with an incredibly dominant personality, he's the focus of every female enforcer's attention.",
-				30, Month.NOVEMBER, 27,
 				3, Gender.M_P_MALE,
 				RacialBody.WOLF_MORPH, RaceStage.GREATER, new CharacterInventory(10), WorldType.ENFORCER_HQ, PlaceType.ENFORCER_HQ_BRAXS_OFFICE, true);
 

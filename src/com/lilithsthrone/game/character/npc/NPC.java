@@ -1,7 +1,5 @@
 package com.lilithsthrone.game.character.npc;
 
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -106,11 +104,9 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 	
 	protected Value<String, AbstractItem> heldTransformativePotion = null;
 	
-	protected NPC(NameTriplet nameTriplet, String description, int age, Month birthMonth, int birthDay, int level, Gender startingGender, RacialBody startingRace,
+	protected NPC(NameTriplet nameTriplet, String description, int level, Gender startingGender, RacialBody startingRace,
 			RaceStage stage, CharacterInventory inventory, WorldType worldLocation, PlaceType startingPlace, boolean addedToContacts) {
-		super(nameTriplet, description, level,
-				LocalDateTime.of(Main.game.getStartingDate().getYear()-age, birthMonth, birthDay, 12, 0),
-				startingGender, startingRace, stage, inventory, worldLocation, startingPlace);
+		super(nameTriplet, description, level, startingGender, startingRace, stage, inventory, worldLocation, startingPlace);
 		
 		this.addedToContacts = addedToContacts;
 		

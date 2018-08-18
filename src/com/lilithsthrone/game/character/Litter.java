@@ -1,8 +1,6 @@
 package com.lilithsthrone.game.character;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +24,6 @@ public class Litter implements Serializable, XMLSaving {
 
 	private static final long serialVersionUID = 1L;
 
-	private LocalDateTime conceptionDate;
-	private LocalDateTime birthDate;
-	
 	private String motherId;
 	private String fatherId;
 	
@@ -42,10 +37,7 @@ public class Litter implements Serializable, XMLSaving {
 	private Subspecies motherRace;
 	private Subspecies fatherRace;
 
-	public Litter(LocalDateTime conceptionDate, LocalDateTime birthDate, GameCharacter mother, GameCharacter father, List<NPC> offspring) {
-		this.conceptionDate = LocalDateTime.of(conceptionDate.getYear(), conceptionDate.getMonth(), conceptionDate.getDayOfMonth(), 12, 0);
-		this.birthDate = LocalDateTime.of(birthDate.getYear(), birthDate.getMonth(), birthDate.getDayOfMonth(), 12, 0);
-		
+	public Litter(GameCharacter mother, GameCharacter father, List<NPC> offspring) {
 		motherId = mother.getId();
 		fatherId = father.getId();
 		motherRace = mother.getSubspecies();
@@ -78,15 +70,11 @@ public class Litter implements Serializable, XMLSaving {
 		}
 	}
 	
-	public Litter(LocalDateTime conceptionDate, LocalDateTime birthDate,
-			String motherId, String fatherId,
+	public Litter(String motherId, String fatherId,
 			int sonsMother, int daughtersMother, int sonsFather, int daughtersFather,
 			List<String> offspring,
 			Subspecies motherRace, Subspecies fatherRace) {
 
-		this.conceptionDate = LocalDateTime.of(conceptionDate.getYear(), conceptionDate.getMonth(), conceptionDate.getDayOfMonth(), 12, 0);
-		this.birthDate = LocalDateTime.of(birthDate.getYear(), birthDate.getMonth(), birthDate.getDayOfMonth(), 12, 0);
-		
 		this.motherId = motherId;
 		this.fatherId = fatherId;
 		
@@ -104,19 +92,6 @@ public class Litter implements Serializable, XMLSaving {
 		Element element = doc.createElement("litter");
 		parentElement.appendChild(element);
 
-//		CharacterUtils.addAttribute(doc, element, "dayOfConception", String.valueOf(this.getDayOfConception()));
-//		CharacterUtils.addAttribute(doc, element, "dayOfBirth", String.valueOf(this.getDayOfBirth()));
-
-		CharacterUtils.createXMLElementWithValue(doc, element, "yearOfBirth", String.valueOf(this.getBirthDate().getYear()));
-		CharacterUtils.createXMLElementWithValue(doc, element, "monthOfBirth", this.getBirthDate().getMonth().toString());
-		CharacterUtils.createXMLElementWithValue(doc, element, "dayOfBirth", String.valueOf(this.getBirthDate().getDayOfMonth()));
-		
-		CharacterUtils.createXMLElementWithValue(doc, element, "yearOfConception", String.valueOf(this.getConceptionDate().getYear()));
-		CharacterUtils.createXMLElementWithValue(doc, element, "monthOfConception", this.getConceptionDate().getMonth().toString());
-		CharacterUtils.createXMLElementWithValue(doc, element, "dayOfConception", String.valueOf(this.getConceptionDate().getDayOfMonth()));
-		
-		
-		
 		CharacterUtils.addAttribute(doc, element, "motherId", this.getMotherId());
 		CharacterUtils.addAttribute(doc, element, "fatherId", this.getFatherId());
 		
@@ -161,35 +136,7 @@ public class Litter implements Serializable, XMLSaving {
 		} catch(Exception ex) {
 		}
 		
-		LocalDateTime loadedConceptionDate;
-		LocalDateTime loadedBirthDate;
-		
-		if(parentElement.getElementsByTagName("dayOfConception").getLength()>0) {
-
-			int day = Integer.valueOf(((Element)parentElement.getElementsByTagName("dayOfConception").item(0)).getAttribute("value"));
-			Month month = Month.valueOf(((Element)parentElement.getElementsByTagName("monthOfConception").item(0)).getAttribute("value"));
-			int year = Integer.valueOf(((Element)parentElement.getElementsByTagName("yearOfConception").item(0)).getAttribute("value"));
-			
-			loadedConceptionDate = LocalDateTime.of(year, month, day, 12, 0);
-			
-
-			day = Integer.valueOf(((Element)parentElement.getElementsByTagName("dayOfBirth").item(0)).getAttribute("value"));
-			month = Month.valueOf(((Element)parentElement.getElementsByTagName("monthOfBirth").item(0)).getAttribute("value"));
-			year = Integer.valueOf(((Element)parentElement.getElementsByTagName("yearOfBirth").item(0)).getAttribute("value"));
-			
-			loadedBirthDate = LocalDateTime.of(year, month, day, 12, 0);
-			
-		} else {
-			int conceptionDay = Integer.valueOf(parentElement.getAttribute("dayOfConception"));
-			loadedConceptionDate = Main.game.getStartingDate().plusDays(conceptionDay);
-			
-			int birthDay = Integer.valueOf(parentElement.getAttribute("dayOfBirth"));
-			loadedBirthDate = Main.game.getStartingDate().plusDays(birthDay);
-		}
-		
 		return new Litter(
-				loadedConceptionDate,
-				loadedBirthDate,
 				parentElement.getAttribute("motherId"),
 				parentElement.getAttribute("fatherId"),
 				Integer.valueOf(parentElement.getAttribute("sonsMother")),
@@ -201,18 +148,6 @@ public class Litter implements Serializable, XMLSaving {
 				fatherRace);
 	}
 
-	public LocalDateTime getConceptionDate() {
-		return conceptionDate;
-	}
-
-	public LocalDateTime getBirthDate() {
-		return birthDate;
-	}
-	
-	public void setBirthDate(LocalDateTime birthDate) {
-		this.birthDate = birthDate;
-	}
-	
 	public String getMotherId() {
 		return motherId;
 	}

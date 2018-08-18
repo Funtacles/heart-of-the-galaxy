@@ -1,6 +1,5 @@
 package com.lilithsthrone.game.character.npc.dominion;
 
-import java.time.Month;
 import java.util.List;
 
 import org.w3c.dom.Document;
@@ -54,7 +53,6 @@ public class SupplierLeader extends NPC {
 	public SupplierLeader(boolean isImported) {
 		super(new NameTriplet("Wolfgang", "Wolfgang", "Winifred"),
 				".",
-				30, Month.DECEMBER, 4,
 				8,
 				Gender.M_P_MALE,
 				RacialBody.DOG_MORPH,

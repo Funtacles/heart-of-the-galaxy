@@ -1,8 +1,5 @@
 package com.lilithsthrone.game.character.npc.misc;
 
-import java.time.Month;
-import java.time.temporal.ChronoUnit;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -41,7 +38,6 @@ public class NPCOffspring extends NPC {
 	
 	public NPCOffspring(boolean isImported) {
 		super(null, "",
-				18, Month.JUNE, 15,
 				3, Gender.F_V_B_FEMALE, RacialBody.DOG_MORPH, RaceStage.GREATER, new CharacterInventory(10), WorldType.EMPTY, PlaceType.GENERIC_EMPTY_TILE, true);
 		
 		this.setEnslavementDialogue(DominionOffspringDialogue.ENSLAVEMENT_DIALOGUE);
@@ -49,7 +45,6 @@ public class NPCOffspring extends NPC {
 	
 	public NPCOffspring(GameCharacter mother, GameCharacter father) {
 		super(null, "",
-				18, Main.game.getDateNow().minusMonths(1).getMonth(), 1+Util.random.nextInt(25),
 				3, Gender.F_V_B_FEMALE, RacialBody.DOG_MORPH, RaceStage.GREATER,
 				new CharacterInventory(10), WorldType.EMPTY, PlaceType.GENERIC_EMPTY_TILE, true);
 		
@@ -133,20 +128,11 @@ public class NPCOffspring extends NPC {
 	
 	@Override
 	public String getDescription() {
-		int daysToBirth = (int) ChronoUnit.DAYS.between(this.getBirthday(), this.getConceptionDate());
-		
 		if(this.getMother()==null || this.getFather()==null) {
 			return "";
 		}
 		return (UtilText.parse(this,
 				"[npc.Name] is your [npc.daughter], who you "+(this.getMother().isPlayer()?"mothered with "+(this.getFather().getName("a")):"fathered with "+(this.getMother().getName("a")))+"."
-						+ " [npc.She] was conceived on "+Util.getStringOfLocalDateTime(this.getConceptionDate())+", and "
-						+(daysToBirth==0
-							?"later that same day"
-							:daysToBirth>1?Util.intToString(daysToBirth)+" days later":Util.intToString(daysToBirth)+" day later")
-						+(this.getMother().isPlayer()
-							?" you gave birth to [npc.herHim]."
-							:" [npc.she] was born.")
 						+ " You first encountered [npc.herHim] prowling the alleyways of Dominion, and, through some arcane-influenced instinct, you both recognised your relationship at first sight."));
 	}
 	

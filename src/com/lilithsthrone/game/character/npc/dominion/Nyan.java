@@ -1,6 +1,5 @@
 package com.lilithsthrone.game.character.npc.dominion;
 
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -82,7 +81,6 @@ public class Nyan extends NPC {
 	public Nyan(boolean isImported) {
 		super(new NameTriplet("Nyan"), "Nyan is the owner of the store 'Nyan's Clothing Emporium', found in Dominion's shopping arcade."
 				+ " She's extremely shy, and gets very nervous when having to talk to people.",
-				21, Month.APRIL, 12,
 				10, Gender.F_V_B_FEMALE, RacialBody.CAT_MORPH, RaceStage.LESSER,
 				new CharacterInventory(10), WorldType.SHOPPING_ARCADE, PlaceType.SHOPPING_ARCADE_NYANS_SHOP, true);
 

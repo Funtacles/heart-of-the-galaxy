@@ -1,6 +1,5 @@
 package com.lilithsthrone.game.character.npc.dominion;
 
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +65,6 @@ public class Lumi extends NPC {
 		super(new NameTriplet(
 				"Lumi"),
 				"Lumi is a semi-feral wolf-girl, who you first met prowling one of Dominion's alleyways.",
-				19, Month.JULY, 15,
 				5,
 				Gender.F_V_B_FEMALE,
 				RacialBody.HUMAN,

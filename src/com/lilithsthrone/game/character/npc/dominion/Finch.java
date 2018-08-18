@@ -1,7 +1,5 @@
 package com.lilithsthrone.game.character.npc.dominion;
 
-import java.time.Month;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -49,7 +47,6 @@ public class Finch extends NPC {
 				"Finch is the manager of Slaver Alley's 'Slave Administration' building."
 						+ " Although he acts friendly enough, you can't help but wonder if his disarming disposition is just for show."
 						+ " After all, would the manager of Dominion's 'Slave Administration' really have got to that position just by being nice?",
-				27, Month.SEPTEMBER, 29,
 				10,
 				Gender.M_P_MALE,
 				RacialBody.CAT_MORPH, RaceStage.PARTIAL_FULL, new CharacterInventory(10),

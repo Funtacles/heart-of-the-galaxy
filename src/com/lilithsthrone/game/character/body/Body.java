@@ -15,7 +15,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.Litter;
@@ -1472,38 +1471,6 @@ public class Body implements Serializable, XMLSaving {
 								+ owner.getAppearsAsGenderDescription(true)
 								+ " Standing at full height, [npc.she] measures [npc.heightFeetInches] ([npc.heightCm]cm).");
 				}
-			}
-		}
-		if(Main.getProperties().hasValue(PropertyValue.ageContent)) {
-			if(owner.getAppearsAsAge()<20) {
-				sb.append(" [npc.She] [npc.verb(appear)] to be in [npc.her] <span style='color:"+Colour.AGE_TEENS.toWebHexString()+";'>late teens</span>.");
-				
-			} else if(owner.getAppearsAsAge()<=23) {
-				sb.append(" [npc.She] [npc.verb(appear)] to be in [npc.her] <span style='color:"+Colour.AGE_TWENTIES.toWebHexString()+";'>early twenties</span>.");
-				
-			} else if(owner.getAppearsAsAge()<=27) {
-				sb.append(" [npc.She] [npc.verb(appear)] to be in [npc.her] <span style='color:"+Colour.AGE_TWENTIES.toWebHexString()+";'>mid-twenties</span>.");
-				
-			} else if(owner.getAppearsAsAge()<30) {
-				sb.append(" [npc.She] [npc.verb(appear)] to be in [npc.her] <span style='color:"+Colour.AGE_TWENTIES.toWebHexString()+";'>late twenties</span>.");
-				
-			}  else if(owner.getAppearsAsAge()<=33) {
-				sb.append(" [npc.She] [npc.verb(appear)] to be in [npc.her] <span style='color:"+Colour.AGE_THIRTIES.toWebHexString()+";'>early thirties</span>.");
-				
-			} else if(owner.getAppearsAsAge()<=37) {
-				sb.append(" [npc.She] [npc.verb(appear)] to be in [npc.her] <span style='color:"+Colour.AGE_THIRTIES.toWebHexString()+";'>mid-thirties</span>.");
-				
-			} else if(owner.getAppearsAsAge()<40) {
-				sb.append(" [npc.She] [npc.verb(appear)] to be in [npc.her] <span style='color:"+Colour.AGE_THIRTIES.toWebHexString()+";'>late thirties</span>.");
-				
-			} else if(owner.getAppearsAsAge()<=43) {
-				sb.append(" [npc.She] [npc.verb(appear)] to be in [npc.her] <span style='color:"+Colour.AGE_FORTIES.toWebHexString()+";'>early forties</span>.");
-				
-			} else if(owner.getAppearsAsAge()<=47) {
-				sb.append(" [npc.She] [npc.verb(appear)] to be in [npc.her] <span style='color:"+Colour.AGE_FORTIES.toWebHexString()+";'>mid-forties</span>.");
-				
-			} else {
-				sb.append(" [npc.She] [npc.verb(appear)] to be in [npc.her] <span style='color:"+Colour.AGE_FORTIES.toWebHexString()+";'>late forties</span>.");
 			}
 		}
 		sb.append("</p>");
@@ -5709,20 +5676,6 @@ public class Body implements Serializable, XMLSaving {
 						+ "[npc.Name] has given birth "+Util.intToString(owner.getLittersBirthed().size())+" "+(owner.getLittersBirthed().size()==1?"time":"times")+".</span>");
 			
 			for(Litter litter : owner.getLittersBirthed()) {
-				
-				if(litter.getFather() == null) {
-					descriptionSB.append("<br/>On "+Util.getStringOfLocalDateTime(litter.getConceptionDate())
-							+", [npc.she] was impregnated, and then on "+Util.getStringOfLocalDateTime(litter.getBirthDate())+", [npc.she] gave birth to ");
-					
-				} else if(litter.getFather().isPlayer()) {
-					descriptionSB.append("<br/>On "+Util.getStringOfLocalDateTime(litter.getConceptionDate())
-							+", you impregnated [npc.herHim], and then on "+Util.getStringOfLocalDateTime(litter.getBirthDate())+", [npc.she] gave birth to ");
-					
-				} else {
-					descriptionSB.append("<br/>On "+Util.getStringOfLocalDateTime(litter.getConceptionDate())+", "+litter.getFather().getName()
-							+" impregnated [npc.herHim], and then on "+Util.getStringOfLocalDateTime(litter.getBirthDate())+", [npc.she] gave birth to ");
-				}
-				
 				descriptionSB.append(litter.getBirthedDescriptionList());
 				
 				descriptionSB.append(".");
@@ -5757,13 +5710,6 @@ public class Body implements Serializable, XMLSaving {
 				descriptionSB.append("<p>"
 					+ "<span style='color:" + Colour.GENERIC_ARCANE.toWebHexString() + ";'>"
 							+ "[npc.Name] is the father of some of your children, and has, in total, impregnated you "+Util.intToString(fatheredLitters)+" "+(fatheredLitters==1?"time":"times")+".</span>");
-				
-				for(Litter litter : Main.game.getPlayer().getLittersBirthed()) {
-					if(litter.getFather()!=null && litter.getFather().equals(owner)){
-						descriptionSB.append("<br/>On "+Util.getStringOfLocalDateTime(litter.getConceptionDate())
-								+", [npc.she] impregnated you, and then on "+Util.getStringOfLocalDateTime(litter.getBirthDate())+", you gave birth to "+litter.getBirthedDescriptionList()+".");
-					}
-				}
 				
 				descriptionSB.append("</p>");
 			}

@@ -1,7 +1,5 @@
 package com.lilithsthrone.game.character.npc.misc;
 
-import java.time.Month;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -50,7 +48,6 @@ public class PrologueMale extends NPC {
 	public PrologueMale(boolean isImported) {
 		super(new NameTriplet("Alexander", "Alex", "Alexandria"),
 				"One of the guests at the museum's opening exhibit. He's tall, handsome, and muscular, and, even better, he seems to have taken an instant liking towards you...",
-				29, Month.APRIL, 12,
 				3,
 				Gender.M_P_MALE,
 				RacialBody.HUMAN,

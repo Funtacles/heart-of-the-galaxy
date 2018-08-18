@@ -1,7 +1,6 @@
 package com.lilithsthrone.game.dialogue.story;
 
 import java.io.File;
-import java.time.LocalDateTime;
 
 import com.lilithsthrone.data.ImportExportManager;
 import com.lilithsthrone.game.PropertyValue;
@@ -572,8 +571,6 @@ public class CharacterCreation {
 							+ "<i>You can change all gender names in the options menu.</i>"
 						+ "</div>"
 
-						+ CharacterModificationUtils.getBirthdayChoiceDiv()
-						
 						+ CharacterModificationUtils.getOrientationChoiceDiv()
 						
 						+ CharacterModificationUtils.getPersonalityChoiceDiv()
@@ -1720,8 +1717,6 @@ public class CharacterCreation {
 		
 		Main.game.getLilaya().setSkinCovering(new Covering(BodyCoveringType.HUMAN, Main.game.getPlayer().getCovering(BodyCoveringType.HUMAN).getPrimaryColour()), true);
 
-		Main.game.getLilaya().setBirthday(LocalDateTime.of(Main.game.getPlayer().getBirthday().getYear()-22, Main.game.getLilaya().getBirthMonth(), Main.game.getLilaya().getDayOfBirth(), 12, 0));
-		
 		Main.game.clearTextStartStringBuilder();
 		Main.game.clearTextEndStringBuilder();
 

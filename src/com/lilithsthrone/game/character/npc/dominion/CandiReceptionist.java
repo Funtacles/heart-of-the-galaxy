@@ -1,7 +1,5 @@
 package com.lilithsthrone.game.character.npc.dominion;
 
-import java.time.Month;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -49,7 +47,6 @@ public class CandiReceptionist extends NPC {
 		super(new NameTriplet("Candi"),
 				"Candi is the receptionist at the Enforcer HQ."
 				+ " A completely brain-dead bimbo, Candi seems to only ever be interested in three things; applying makeup, flirting, and fucking.",
-				24, Month.JUNE, 11,
 				1, Gender.F_V_B_FEMALE, RacialBody.CAT_MORPH, RaceStage.LESSER,
 				new CharacterInventory(30), WorldType.ENFORCER_HQ, PlaceType.ENFORCER_HQ_RECEPTION_DESK, true);
 

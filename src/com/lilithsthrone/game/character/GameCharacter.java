@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.time.temporal.ChronoUnit;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +24,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.lilithsthrone.data.SaveManager;
-import com.lilithsthrone.game.Game;
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.attributes.AffectionLevel;
 import com.lilithsthrone.game.character.attributes.AlcoholLevel;
@@ -217,7 +215,6 @@ public abstract class GameCharacter implements XMLSaving {
 	protected String playerPetName = "";
 	protected String description;
 	protected int level;
-	protected LocalDateTime birthday;
 	
 	protected History history;
 	protected Map<PersonalityTrait, PersonalityWeight> personality;
@@ -355,7 +352,6 @@ public abstract class GameCharacter implements XMLSaving {
 	protected GameCharacter(NameTriplet nameTriplet,
 			String description,
 			int level,
-			LocalDateTime birthday,
 			Gender startingGender,
 			RacialBody startingRace,
 			RaceStage stage,
@@ -370,16 +366,6 @@ public abstract class GameCharacter implements XMLSaving {
 		raceConcealed = false;
 		this.description = description;
 		this.level = level;
-		
-		if(birthday==null) {
-			if(Main.game != null) {
-				this.birthday = Main.game.getDateNow().minusYears(21+(this.isPlayer()?Game.TIME_SKIP_YEARS:0)).minusDays(1);
-			} else {
-				this.birthday = LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonth(), LocalDateTime.now().getDayOfMonth(), 00, 00).minusYears(21+(this.isPlayer()?Game.TIME_SKIP_YEARS:0));
-			}
-		} else {
-			this.setBirthday(birthday);
-		}
 		
 		this.worldLocation = worldLocation;
 		this.homeWorldLocation = worldLocation;
@@ -437,7 +423,6 @@ public abstract class GameCharacter implements XMLSaving {
 		
 		motherId = "";
 		fatherId = "";
-		conceptionDate = this.birthday.minusDays(280);
 		
 		perkPoints = 0;
 		experience = 0;
@@ -569,9 +554,6 @@ public abstract class GameCharacter implements XMLSaving {
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "playerKnowsName", String.valueOf(this.isPlayerKnowsName()));
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "raceConcealed", String.valueOf(this.isRaceConcealed()));
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "level", String.valueOf(this.getTrueLevel()));
-		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "yearOfBirth", String.valueOf(this.getBirthday().getYear()));
-		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "monthOfBirth", this.getBirthMonth().toString());
-		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "dayOfBirth", String.valueOf(this.getDayOfBirth()));
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "version", Main.VERSION_NUMBER);
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "history", this.getHistory().toString());
 		
@@ -1149,16 +1131,6 @@ public abstract class GameCharacter implements XMLSaving {
 		// Level:
 		character.setLevel(Integer.valueOf(((Element)element.getElementsByTagName("level").item(0)).getAttribute("value")));
 		CharacterUtils.appendToImportLog(log, "<br/>Set level: " + Integer.valueOf(((Element)element.getElementsByTagName("level").item(0)).getAttribute("value")));
-		
-		// Birthday:
-		try {
-			int day = Integer.valueOf(((Element)element.getElementsByTagName("dayOfBirth").item(0)).getAttribute("value"));
-			Month month = Month.valueOf(((Element)element.getElementsByTagName("monthOfBirth").item(0)).getAttribute("value"));
-			int year = Integer.valueOf(((Element)element.getElementsByTagName("yearOfBirth").item(0)).getAttribute("value"));
-			
-			character.setBirthday(LocalDateTime.of(year, month, day, 12, 0));
-		} catch(Exception ex) {
-		}
 		
 		// Sexual Orientation:
 		if(element.getElementsByTagName("sexualOrientation").getLength()!=0) {
@@ -2666,40 +2638,6 @@ public abstract class GameCharacter implements XMLSaving {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public LocalDateTime getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(LocalDateTime birthday) {
-		this.birthday = birthday;
-		
-		if(this.isPlayer()) {
-			if(this.getAge()<18) {
-				this.birthday = (this.getBirthday().minusYears(18-this.getAge()));
-				
-			} else if(this.getAge()>50) {
-				this.birthday = (this.getBirthday().plusYears(this.getAge()-50));
-			}
-		}
-	}
-	
-	public int getAppearsAsAge() {
-		return getAge();
-	}
-	
-	public int getAge() {
-		return Math.max(18, (int) ChronoUnit.YEARS.between(birthday, Main.game.getDateNow()));
-	}
-	
-	public Month getBirthMonth() {
-		return birthday.getMonth();
-	}
-	
-	public int getDayOfBirth() {
-		return birthday.getDayOfMonth();
-	}
-	
 
 	public History getHistory() {
 		return history;
@@ -11004,7 +10942,7 @@ public abstract class GameCharacter implements XMLSaving {
 					}
 				}
 				
-				pregnantLitter = new Litter(Main.game.getDateNow(), Main.game.getDateNow(), this, partner, offspring);
+				pregnantLitter = new Litter(this, partner, offspring);
 			}
 		}
 		
@@ -11048,17 +10986,6 @@ public abstract class GameCharacter implements XMLSaving {
 		
 		if (withBirth) {
 			Litter birthedLitter = pregnantLitter;
-			
-			if((birthedLitter.getFather()!=null && birthedLitter.getFather().isPlayer()) || (birthedLitter.getMother()!=null && birthedLitter.getMother().isPlayer())) {
-				for(String id: birthedLitter.getOffspring()) {
-					if(Main.game.isCharacterExisting(id)) {
-						NPC npc = (NPC) Main.game.getNPCById(id);
-						birthedLitter.setBirthDate(Main.game.getDateNow());
-						npc.setConceptionDate(birthedLitter.getConceptionDate());
-						npc.setBirthday(LocalDateTime.of(Main.game.getDateNow().getYear(), Main.game.getDateNow().getMonth(), Main.game.getDateNow().getDayOfMonth(), Main.game.getDateNow().getHour(), Main.game.getDateNow().getMinute()));
-					}
-				}
-			}
 			
 			littersBirthed.add(birthedLitter);
 			

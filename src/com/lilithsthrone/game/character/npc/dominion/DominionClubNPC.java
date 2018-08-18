@@ -1,6 +1,5 @@
 package com.lilithsthrone.game.character.npc.dominion;
 
-import java.time.Month;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -38,7 +37,6 @@ public class DominionClubNPC extends NPC {
 	
 	public DominionClubNPC(Gender gender, Subspecies subspecies, boolean isImported) {
 		super(null, "",
-				Util.random.nextInt(28)+18, Util.randomItemFrom(Month.values()), 1+Util.random.nextInt(25),
 				3, gender, RacialBody.DOG_MORPH, RaceStage.GREATER,
 				new CharacterInventory(10), WorldType.DOMINION, PlaceType.DOMINION_STREET, false);
 
