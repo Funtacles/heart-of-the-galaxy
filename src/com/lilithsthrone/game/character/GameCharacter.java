@@ -26,11 +26,9 @@ import org.w3c.dom.NodeList;
 import com.lilithsthrone.data.SaveManager;
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.attributes.AffectionLevel;
-import com.lilithsthrone.game.character.attributes.AlcoholLevel;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.attributes.IntelligenceLevel;
 import com.lilithsthrone.game.character.attributes.LustLevel;
-import com.lilithsthrone.game.character.attributes.ObedienceLevel;
 import com.lilithsthrone.game.character.body.Body;
 import com.lilithsthrone.game.character.body.BodyPartInterface;
 import com.lilithsthrone.game.character.body.CoverableArea;
@@ -205,7 +203,6 @@ public abstract class GameCharacter implements XMLSaving {
 	
 	protected Map<PersonalityTrait, PersonalityWeight> personality;
 	protected SexualOrientation sexualOrientation;
-	private float obedience;
 
 	private int experience, perkPoints;
 
@@ -374,8 +371,6 @@ public abstract class GameCharacter implements XMLSaving {
 
 		affectionMap = new HashMap<>();
 		
-		obedience = 0;
-		
 		workHours = new boolean[24];
 		
 		motherId = "";
@@ -522,7 +517,6 @@ public abstract class GameCharacter implements XMLSaving {
 		}
 		
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "sexualOrientation", this.getSexualOrientation().toString());
-		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "obedience", String.valueOf(this.getObedienceValue()));
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "genderIdentity", String.valueOf(this.getGenderIdentity()));
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "foughtPlayerCount", String.valueOf(this.getFoughtPlayerCount()));
 		CharacterUtils.createXMLElementWithValue(doc, characterCoreInfo, "lostCombatCount", String.valueOf(this.getLostCombatCount()));
@@ -1052,11 +1046,6 @@ public abstract class GameCharacter implements XMLSaving {
 				}
 			}
 		
-		}
-		
-		if(element.getElementsByTagName("obedience").getLength()!=0) {
-			character.setObedienceSilentlyFromSavefile(Float.valueOf(((Element)element.getElementsByTagName("obedience").item(0)).getAttribute("value")));
-			CharacterUtils.appendToImportLog(log, "<br/>Set obedience: "+character.getObedience());
 		}
 		
 		boolean setGenderIdentity = false;
@@ -2045,17 +2034,6 @@ public abstract class GameCharacter implements XMLSaving {
 						infoScreenSB.append("<br/>" + AffectionLevel.getDescription(this, target, AffectionLevel.getAffectionLevelFromValue(this.getAffection(target)), true));
 					}
 				}
-				
-				infoScreenSB.append("<br/><br/>"
-							+ "[style.boldObedience(Obedience:)]<br/>"
-							+ UtilText.parse(this, "[npc.Name] [style.boldGood(is not a slave)].")
-							+ "<br/>"+ObedienceLevel.getDescription(this, ObedienceLevel.getObedienceLevelFromValue(this.getObedienceValue()), true, true));
-			} else {
-				infoScreenSB.append("<p>"
-						+ "[style.boldObedience(Obedience:)]<br/>"
-						+ UtilText.parse(this,"You [style.boldGood(are not a slave)].")
-						+ "<br/>"+ObedienceLevel.getDescription(this, ObedienceLevel.getObedienceLevelFromValue(this.getObedienceValue()), true, true));
-			
 			}
 			
 			infoScreenSB.append("<br/>"
@@ -2472,43 +2450,6 @@ public abstract class GameCharacter implements XMLSaving {
 		}
 		
 		return true;
-	}
-	
-	// Obedience:
-	
-	public ObedienceLevel getObedience() {
-		return ObedienceLevel.getObedienceLevelFromValue(obedience);
-	}
-	
-	public float getObedienceValue() {
-		return Math.round(obedience*100)/100f;
-	}
-	
-	public void setObedienceSilentlyFromSavefile(float obedience) {
-		this.obedience = Math.max(-100, Math.min(100, obedience));
-	}
-
-	public String setObedience(float obedience) {
-		return setObedience(obedience, true);
-	}
-	
-	public String setObedience(float obedience, boolean applyJobPerkGains) {
-		return incrementObedience(obedience - this.getObedienceValue(), applyJobPerkGains);
-	}
-
-	public String incrementObedience(float increment) {
-		return incrementObedience(increment, true);
-	}
-	
-	public String incrementObedience(float increment, boolean applyJobPerkGains) {
-		this.obedience = Math.max(-100, Math.min(100, obedience+increment));
-		
-		return UtilText.parse(this,
-				"<p style='text-align:center'>"
-						+ "[npc.Name] "+(increment>0?"[style.boldGrow(gains)]":"[style.boldShrink(loses)]")+" <b>"+Math.abs(increment)+"</b> [style.boldObedience(obedience)]!<br/>"
-						+ "[npc.She] now has <b>"+(obedience>0?"+":"")+obedience+"</b> [style.boldObedience(obedience)].<br/>"
-						+ ObedienceLevel.getDescription(this, ObedienceLevel.getObedienceLevelFromValue(obedience), true, false)
-					+ "</p>");
 	}
 	
 	public void resetWorkHours() {
@@ -9471,10 +9412,6 @@ public abstract class GameCharacter implements XMLSaving {
 			fluidIngestionSB.append(rollForPregnancy(charactersFluid, millilitres));
 		}
 		
-		if(modifiers.contains(FluidModifier.ALCOHOLIC)) { //TODO factor in body size:
-			fluidIngestionSB.append(this.incrementAlcoholLevel(millilitres * 0.001f));
-		}
-		
 		if(modifiers.contains(FluidModifier.HALLUCINOGENIC)) {
 			this.addPsychoactiveFluidIngested(fluid);
 			this.addStatusEffect(StatusEffect.PSYCHOACTIVE, 6*60);
@@ -9550,9 +9487,6 @@ public abstract class GameCharacter implements XMLSaving {
 	@Deprecated
 	public String ingestFluid(FluidType fluid, SexAreaOrifice orificeIngestedThrough, int millilitres, List<FluidModifier> modifiers) {
 		StringBuilder fluidIngestionSB = new StringBuilder();
-		if(modifiers.contains(FluidModifier.ALCOHOLIC)) { //TODO factor in body size:
-			fluidIngestionSB.append(this.incrementAlcoholLevel(millilitres * 0.001f));
-		}
 		
 		if(modifiers.contains(FluidModifier.HALLUCINOGENIC)) {
 			this.addPsychoactiveFluidIngested(fluid);
@@ -9615,56 +9549,6 @@ public abstract class GameCharacter implements XMLSaving {
 		}
 		
 		return fluidIngestionSB.toString();
-	}
-	
-	public AlcoholLevel getAlcoholLevel() {
-		return AlcoholLevel.getAlcoholLevelFromValue(alcoholLevel);
-	}
-	
-	public float getAlcoholLevelValue() {
-		return alcoholLevel;
-	}
-	
-	public String setAlcoholLevel(float alcoholLevel) {
-		this.alcoholLevel = Math.max(0, Math.min(1, alcoholLevel));
-		if(this.isPlayer()) {
-			return "<p style='text-align:center;'>"
-					+ "You start to feel "
-						+(this.alcoholLevel>=0.75f
-						?"immensely dizzy and light headed as the alcohol quickly enters your system."
-						:this.alcoholLevel>=0.5f
-						?"incredibly dizzy and light headed as the alcohol quickly enters your system."
-						:this.alcoholLevel>=0.3f
-						?"very dizzy and light headed as the alcohol quickly enters your system."
-						:this.alcoholLevel>=0.15f?"dizzy and light headed as the alcohol quickly enters your system."
-						:"a little dizzy and light headed as the alcohol quickly enters your system.")
-						+"<br/>"
-						+ "Your [style.boldAlcohol(intoxication level)] is now at "+((int)getIntoxicationPercentage())+"%"
-					+ "</p>";
-		} else {
-			return "<p style='text-align:center;'>"
-					+UtilText.parse(this,
-					"[npc.Name] starts to feel "
-						+(this.alcoholLevel>=0.75f
-						?"immensely dizzy and light headed as the alcohol quickly enters [npc.her] system."
-						:this.alcoholLevel>=0.5f
-						?"incredibly dizzy and light headed as the alcohol quickly enters [npc.her] system."
-						:this.alcoholLevel>=0.3f
-						?"very dizzy and light headed as the alcohol quickly enters [npc.her] system."
-						:this.alcoholLevel>=0.15f?"dizzy and light headed as the alcohol quickly enters [npc.her] system."
-						:"a little dizzy and light headed as the alcohol quickly enters [npc.her] system.")
-					+"<br/>"
-					+ "[npc.NamePos] [style.boldAlcohol(intoxication level)] is now at "+((int)getIntoxicationPercentage())+"%")
-				+ "</p>";
-		}
-	}
-	
-	public String incrementAlcoholLevel(float alcoholLevelIncrement) {
-		return setAlcoholLevel(alcoholLevel + alcoholLevelIncrement);
-	}
-	
-	public float getIntoxicationPercentage() {
-		return getAlcoholLevelValue()*100;
 	}
 	
 	public Addiction getAddiction(FluidType fluid) {

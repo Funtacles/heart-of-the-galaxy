@@ -188,7 +188,6 @@ public enum Colour {
 	COMPANION(false, BaseColour.GREEN_LIGHT,  "light green", Util.newArrayListOfValues("companion", "companions")),
 	
 	AFFECTION(false, BaseColour.PINK_LIGHT,  "light pink", Util.newArrayListOfValues("affection")),
-	OBEDIENCE(false, BaseColour.PURPLE_LIGHT,  "light purple", Util.newArrayListOfValues("obedience")),
 	
 	AFFECTION_NEGATIVE_FIVE(false, Util.newColour(0xff0066), Util.newColour(0x8e011e), "magenta"),
 	AFFECTION_NEGATIVE_FOUR(false, Util.newColour(0xff2a7f), Util.newColour(0xa40123), "magenta"),

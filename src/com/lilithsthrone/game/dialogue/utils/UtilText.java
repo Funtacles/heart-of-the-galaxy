@@ -124,12 +124,6 @@ public class UtilText {
 			modifiedSentence = Util.addBimbo(modifiedSentence, 6);
 		}
 		
-		if(Main.game.getPlayer().getAlcoholLevelValue()>0.75f) {
-			modifiedSentence = Util.addDrunkSlur(modifiedSentence, 4);
-		} else if(Main.game.getPlayer().getAlcoholLevelValue()>0.5f) {
-			modifiedSentence = Util.addDrunkSlur(modifiedSentence, 8);
-		}
-		
 		// Apply speech effects:
 		if(Main.game.isInSex()) {
 			if(Sex.isCharacterEngagedInOngoingAction(Main.game.getPlayer())) {
@@ -177,12 +171,6 @@ public class UtilText {
 		
 		if (target.hasFetish(Fetish.FETISH_BIMBO)) {
 			modifiedSentence = Util.addBimbo(modifiedSentence, 6);
-		}
-		
-		if(target.getAlcoholLevelValue()>0.75f) {
-			modifiedSentence = Util.addDrunkSlur(modifiedSentence, 4);
-		} else if(target.getAlcoholLevelValue()>0.5f) {
-			modifiedSentence = Util.addDrunkSlur(modifiedSentence, 8);
 		}
 		
 		// Apply speech effects:

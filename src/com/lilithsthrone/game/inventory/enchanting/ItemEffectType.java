@@ -577,26 +577,6 @@ public class ItemEffectType {
 	// Ingredients and potions:
 	
 	// Strength:
-	
-	public static AbstractItemEffectType STR_EQUINE_CIDER = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(Restores)] 5% [style.boldHealth(energy)]",
-			"[style.boldGood(+1)] [style.boldPhysique(physique)] to 'potion effects'",
-			"[style.boldMinorBad(Adds)] 15% to [style.boldAlcohol(intoxication level)]"),
-			Colour.ATTRIBUTE_PHYSIQUE) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			target.incrementHealth(target.getAttributeValue(Attribute.HEALTH_MAXIMUM)/20);
-			
-			return "<p style='text-align:center;'>"
-					+(target.isPlayer()
-						?"A powerful wave of arcane energy washes over you..."
-						:UtilText.parse(target, "A powerful wave of arcane energy washes over [npc.name]..."))
-					+ "</p>"
-					+ target.addPotionEffect(Attribute.MAJOR_PHYSIQUE, 1)
-					+ target.incrementAlcoholLevel(0.15f);
-		}
-	};
 
 	public static AbstractItemEffectType STR_BUBBLE_MILK = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldGood(Restores)] 5% [style.boldHealth(energy)]",
@@ -627,125 +607,10 @@ public class ItemEffectType {
 		}
 	};
 
-	public static AbstractItemEffectType STR_WOLF_WHISKEY = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(Restores)] 5% [style.boldHealth(energy)]",
-			"[style.boldGood(+1)] [style.boldPhysique(physique)] to 'potion effects'",
-			"[style.boldMinorBad(Adds)] 40% to [style.boldAlcohol(intoxication level)]"),
-			Colour.ATTRIBUTE_PHYSIQUE) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			target.incrementHealth(target.getAttributeValue(Attribute.HEALTH_MAXIMUM)/20);
-
-			return "<p style='text-align:center;'>"
-					+(target.isPlayer()
-						?"A powerful wave of arcane energy washes over you..."
-						:UtilText.parse(target, "A powerful wave of arcane energy washes over [npc.name]..."))
-					+ "</p>"
-					+ target.addPotionEffect(Attribute.MAJOR_PHYSIQUE, 1)
-					+ target.incrementAlcoholLevel(0.4f);
-		}
-	};
-	
-	public static AbstractItemEffectType STR_SWAMP_WATER = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(Restores)] 5% [style.boldHealth(energy)]",
-			"[style.boldGood(+1)] [style.boldPhysique(physique)] to 'potion effects'",
-			"[style.boldMinorBad(Adds)] 50% to [style.boldAlcohol(intoxication level)]"),
-			Colour.ATTRIBUTE_PHYSIQUE) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			target.incrementHealth(target.getAttributeValue(Attribute.HEALTH_MAXIMUM)/20);
-
-			return "<p style='text-align:center;'>"
-					+"A powerful wave of arcane energy washes over you..."
-					+ "</p>"
-					+ target.addPotionEffect(Attribute.MAJOR_PHYSIQUE, 1)
-					+ target.incrementAlcoholLevel(0.5f);
-		}
-	};
 	
 	// Intelligence:
 	
-	public static AbstractItemEffectType INT_FELINE_FANCY = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(Restores)] 5% [style.boldAura(aura)]",
-			"[style.boldGood(+1)] [style.boldIntelligence(arcane)] to 'potion effects'",
-			"[style.boldMinorBad(Adds)] 10% to [style.boldAlcohol(intoxication level)]"),
-			Colour.ATTRIBUTE_ARCANE) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			target.incrementMana(target.getAttributeValue(Attribute.MANA_MAXIMUM)/20);
-			
-			return "<p style='text-align:center;'>"
-					+(target.isPlayer()
-						?"A cool wave of arcane energy washes over you..."
-						:UtilText.parse(target, "A cool wave of arcane energy washes over [npc.name]..."))
-					+ "</p>"
-					+ target.addPotionEffect(Attribute.MAJOR_ARCANE, 1)
-					+ target.incrementAlcoholLevel(0.1f);
-		}
-	};
-	
-	public static AbstractItemEffectType INT_GRAPE_JUICE = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(Restores)] 5% [style.boldAura(aura)]",
-			"[style.boldGood(+10)] [style.boldPhysique(critical hit damage)] to 'potion effects'",
-			"[style.boldMinorBad(Adds)] 10% to [style.boldAlcohol(intoxication level)]"),
-			Colour.ATTRIBUTE_PHYSIQUE) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			target.incrementMana(target.getAttributeValue(Attribute.MANA_MAXIMUM)/20);
-			
-			return "<p style='text-align:center;'>"
-					+(target.isPlayer()
-						?"Your senses are heightened..."
-						:UtilText.parse(target, "[npc.NamePos] senses are heightened..."))
-					+ "</p>"
-					+ target.addPotionEffect(Attribute.CRITICAL_DAMAGE, 10)
-					+ target.incrementAlcoholLevel(0.1f);
-		}
-	};
-	
-	public static AbstractItemEffectType INT_VANILLA_WATER = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(Restores)] 5% [style.boldAura(aura)]",
-			"[style.boldGood(+1)] [style.boldIntelligence(arcane)] to 'potion effects'"),
-			Colour.ATTRIBUTE_ARCANE) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			target.incrementMana(target.getAttributeValue(Attribute.MANA_MAXIMUM)/20);
-			
-			return "<p style='text-align:center;'>"
-					+(target.isPlayer()
-							?"A cool wave of arcane energy washes over you..."
-							:UtilText.parse(target, "A cool wave of arcane energy washes over [npc.name]..."))
-					+ "</p>"
-					+ target.addPotionEffect(Attribute.MAJOR_ARCANE, 1);
-		}
-	};
-	
 	// Fitness:
-	
-	public static AbstractItemEffectType FIT_CANINE_CRUSH = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(Restores)] 5% [style.boldHealth(energy)]",
-			"[style.boldGood(+1)] [style.boldPhysique(physique)] to 'potion effects'",
-			"[style.boldMinorBad(Adds)] 5% to [style.boldAlcohol(intoxication level)]"),
-			Colour.ATTRIBUTE_PHYSIQUE) {
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			target.incrementHealth(target.getAttributeValue(Attribute.HEALTH_MAXIMUM)/20);
-
-			return "<p style='text-align:center;'>"
-					+(target.isPlayer()
-						?"A soothing wave of arcane energy washes over you..."
-						:UtilText.parse(target, "A soothing wave of arcane energy washes over [npc.name]..."))
-					+ "</p>"
-					+ target.addPotionEffect(Attribute.MAJOR_PHYSIQUE, 1)
-					+ target.incrementAlcoholLevel(0.05f);
-		}
-	};
 	
 	public static AbstractItemEffectType FIT_SQUIRREL_JAVA = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldGood(Restores)] 5% [style.boldHealth(energy)]",
@@ -929,7 +794,6 @@ public class ItemEffectType {
 		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
 			boolean hadAddictions = !target.getAddictions().isEmpty();
 			target.clearAddictions();
-			target.setAlcoholLevel(0);
 			target.removeStatusEffect(StatusEffect.PSYCHOACTIVE);
 			
 			if(target.isPlayer()) {

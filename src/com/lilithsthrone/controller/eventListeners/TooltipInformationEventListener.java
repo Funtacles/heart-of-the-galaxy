@@ -765,8 +765,6 @@ public class TooltipInformationEventListener implements EventListener {
 					+ "</div>"));
 			
 		} else if(loadedEnchantment!=null) {
-			//TODO
-			
 			int yIncrease = 0;
 
 			// Title:

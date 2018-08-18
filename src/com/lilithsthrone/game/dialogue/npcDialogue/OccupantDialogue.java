@@ -3,8 +3,6 @@ package com.lilithsthrone.game.dialogue.npcDialogue;
 import java.util.List;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.attributes.AffectionLevelBasic;
-import com.lilithsthrone.game.character.attributes.ObedienceLevelBasic;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.NPCFlagValue;
@@ -56,56 +54,6 @@ public class OccupantDialogue {
 					GameCharacter father = Main.game.getActiveNPC().getPregnantLitter().getFather();
 					
 					if(father!=null && father.isPlayer()) {
-						switch(AffectionLevelBasic.getAffectionLevelFromValue(Main.game.getActiveNPC().getAffection(Main.game.getPlayer()))) {
-							case DISLIKE:
-								switch(ObedienceLevelBasic.getObedienceLevelFromValue(Main.game.getActiveNPC().getObedienceValue())) {
-									case DISOBEDIENT:
-										UtilText.nodeContentSB.append(" not bothering to even to try and conceal the look of hatred in [npc.her] [npc.eyes] as [npc.she] spits,"
-												+ " [npc.speech(Eugh, it's <i>you</i>. You went and got me pregnant, so I expect some time off work. Fucking asshole...)]");
-										break;
-									case NEUTRAL:
-										UtilText.nodeContentSB.append(" trying to conceal the look of hatred in [npc.her] [npc.eyes] as [npc.she] remarks,"
-												+ " [npc.speech(Oh, hello, [npc.pcName]. You got me pregnant, so I'll need some time off work.)]");
-										break;
-									case OBEDIENT:
-										UtilText.nodeContentSB.append(" obediently doing [npc.her] very best to conceal the look of hatred in [npc.her] [npc.eyes] as [npc.she] calls out,"
-												+ " [npc.speech(Hello, [npc.pcName]. As I'm sure you can see, you've got me pregnant...)]");
-										break;
-								}
-								break;
-							case NEUTRAL:
-								switch(ObedienceLevelBasic.getObedienceLevelFromValue(Main.game.getActiveNPC().getObedienceValue())) {
-									case DISOBEDIENT:
-										UtilText.nodeContentSB.append(" sighing,"
-												+ " [npc.speech(Hi, [npc.pcName]. You got me pregnant, so I'm going to need to take it easy for a while, ok?)]");
-										break;
-									case NEUTRAL:
-										UtilText.nodeContentSB.append(" sighing,"
-												+ " [npc.speech(Hello, [npc.pcName]. You got me pregnant...)]");
-										break;
-									case OBEDIENT:
-										UtilText.nodeContentSB.append(" sighing,"
-												+ " [npc.speech(Hello, [npc.pcName]. You got me pregnant... I'll make sure to take good care of our children!)]");
-										break;
-								}
-								break;
-							case LIKE:
-								switch(ObedienceLevelBasic.getObedienceLevelFromValue(Main.game.getActiveNPC().getObedienceValue())) {
-									case DISOBEDIENT:
-										UtilText.nodeContentSB.append(" a huge smile breaking out across [npc.her] face as [npc.she] joyously calls out,"
-												+ " [npc.speech([npc.PcName]! Look! You got me pregnant, isn't it wonderful?! I'm going to need to take it easy for a while, so that I can take good care of myself, ok?)]");
-										break;
-									case NEUTRAL:
-										UtilText.nodeContentSB.append(" a huge smile breaking out across [npc.her] face as [npc.she] joyously calls out,"
-												+ " [npc.speech([npc.PcName]! You got me pregnant, isn't it wonderful?! I'll make sure to take good care of our children!)]");
-										break;
-									case OBEDIENT:
-										UtilText.nodeContentSB.append(" a huge smile breaking out across [npc.her] face as [npc.she] joyously calls out,"
-												+ " [npc.speech(Hello, [npc.pcName]! You got me pregnant! I'll make sure to take good care of our children!)]");
-										break;
-								}
-								break;
-						}
 						UtilText.nodeContentSB.append("</p>"
 								+ "<p>"
 									+ "You walk over to your slave, and, running your [pc.hands] over [npc.her] pregnant belly, you smile reassuringly at the mother of your children."
@@ -116,20 +64,6 @@ public class OccupantDialogue {
 								+ "</p>");
 						
 					} else {
-						switch(ObedienceLevelBasic.getObedienceLevelFromValue(Main.game.getActiveNPC().getObedienceValue())) {
-							case DISOBEDIENT:
-								UtilText.nodeContentSB.append(" sighing,"
-										+ " [npc.speech(Hi, [npc.pcName]. "+(father==null?"I ended up getting pregnant":father.getName("A")+" got me pregnant")+", so I'm going to take it easy for a while. Get one of the other slaves to cover for me, ok?)]");
-								break;
-							case NEUTRAL:
-								UtilText.nodeContentSB.append(" sighing,"
-										+ " [npc.speech(Hi, [npc.pcName]. "+(father==null?"I ended up getting pregnant":father.getName("A")+" got me pregnant")+", so I'm going to need to take it easy for a while, ok?)]");
-								break;
-							case OBEDIENT:
-								UtilText.nodeContentSB.append(" obediently informing you of what happened,"
-										+ " [npc.speech(Hello, [npc.pcName]. "+(father==null?"I ended up getting pregnant":father.getName("A")+" got me pregnant")+", but I won't let it get in the way of my duties!)]");
-								break;
-						}
 						UtilText.nodeContentSB.append("</p>"
 								+ "<p>"
 									+ "You walk over to your slave, and, running your [pc.hands] over [npc.her] pregnant belly, you smile reassuringly at [npc.herHim]."
@@ -144,56 +78,6 @@ public class OccupantDialogue {
 					UtilText.nodeContentSB.append(
 							"<p>"
 								+ "As you approach [npc.name], you see that [npc.sheIs] still sporting a round belly, and [npc.she] absent-mindedly strokes [npc.her] pregnant bump as [npc.she] looks up at you,");
-					switch(AffectionLevelBasic.getAffectionLevelFromValue(Main.game.getActiveNPC().getAffection(Main.game.getPlayer()))) {
-						case DISLIKE:
-							switch(ObedienceLevelBasic.getObedienceLevelFromValue(Main.game.getActiveNPC().getObedienceValue())) {
-								case DISOBEDIENT:
-									UtilText.nodeContentSB.append(" not bothering to even to try and conceal the look of hatred in [npc.her] [npc.eyes] as [npc.she] spits,"
-											+ "[npc.speech(Eugh, it's <i>you</i>. What the hell do you want now?!)]");
-									break;
-								case NEUTRAL:
-									UtilText.nodeContentSB.append(" trying to conceal the look of hatred in [npc.her] [npc.eyes] as [npc.she] remarks,"
-											+ "[npc.speech(Oh, hello, [npc.pcName]. What is it that you want?)]");
-									break;
-								case OBEDIENT:
-									UtilText.nodeContentSB.append(" obediently doing [npc.her] very best to conceal the look of hatred in [npc.her] [npc.eyes] as [npc.she] calls out,"
-											+ " [npc.speech(Hello, [npc.pcName]. What can I do for you?)]");
-									break;
-							}
-							break;
-						case NEUTRAL:
-							switch(ObedienceLevelBasic.getObedienceLevelFromValue(Main.game.getActiveNPC().getObedienceValue())) {
-								case DISOBEDIENT:
-									UtilText.nodeContentSB.append(" sighing,"
-											+ " [npc.speech(Hi, [npc.pcName]. I'm taking it easy, what with the pregnancy and all, ok?)]");
-									break;
-								case NEUTRAL:
-									UtilText.nodeContentSB.append(" sighing,"
-											+ " [npc.speech(Hello, [npc.pcName]. What can I do for you?)]");
-									break;
-								case OBEDIENT:
-									UtilText.nodeContentSB.append(" sighing,"
-											+ " [npc.speech(Hello, [npc.pcName]. Is there anything that I can do for you?)]");
-									break;
-							}
-							break;
-						case LIKE:
-							switch(ObedienceLevelBasic.getObedienceLevelFromValue(Main.game.getActiveNPC().getObedienceValue())) {
-								case DISOBEDIENT:
-									UtilText.nodeContentSB.append(" a huge smile breaking out across [npc.her] face as [npc.she] joyously calls out,"
-											+ " [npc.speech(Hi, [npc.pcName]! How are you doing?! I'm taking it easy at the moment, so that I can take good care of myself, ok?)]");
-									break;
-								case NEUTRAL:
-									UtilText.nodeContentSB.append(" a huge smile breaking out across [npc.her] face as [npc.she] joyously calls out,"
-											+ " [npc.speech(Hello, [npc.pcName]! I'm taking good care of myself! How are you?)]");
-									break;
-								case OBEDIENT:
-									UtilText.nodeContentSB.append(" a huge smile breaking out across [npc.her] face as [npc.she] joyously calls out,"
-											+ " [npc.speech(Hello, [npc.pcName]! Is there anything I can do for you?)]");
-									break;
-							}
-							break;
-					}
 					UtilText.nodeContentSB.append("</p>"
 							+ "<p>"
 								+ "You walk over to your slave, and, running your [pc.hands] over [npc.her] pregnant belly, you smile reassuringly at [npc.herHim]."
@@ -209,56 +93,6 @@ public class OccupantDialogue {
 				UtilText.nodeContentSB.append(
 						"<p>"
 							+ "As you approach [npc.name], [npc.she] looks up at you,");
-				switch(AffectionLevelBasic.getAffectionLevelFromValue(Main.game.getActiveNPC().getAffection(Main.game.getPlayer()))) {
-					case DISLIKE:
-						switch(ObedienceLevelBasic.getObedienceLevelFromValue(Main.game.getActiveNPC().getObedienceValue())) {
-							case DISOBEDIENT:
-								UtilText.nodeContentSB.append(" not bothering to even to try to conceal the look of hatred in [npc.her] [npc.eyes] as [npc.she] spits,"
-										+ "[npc.speech(Eugh, it's <i>you</i>. What the hell do you want now?!)]");
-								break;
-							case NEUTRAL:
-								UtilText.nodeContentSB.append(" trying to conceal the look of hatred in [npc.her] [npc.eyes] as [npc.she] remarks,"
-										+ "[npc.speech(Oh, hello, [npc.pcName]. What is it that you want?)]");
-								break;
-							case OBEDIENT:
-								UtilText.nodeContentSB.append(" obediently doing [npc.her] very best to conceal the look of hatred in [npc.her] [npc.eyes] as [npc.she] calls out,"
-										+ " [npc.speech(Hello, [npc.pcName]. What can I do for you?)]");
-								break;
-						}
-						break;
-					case NEUTRAL:
-						switch(ObedienceLevelBasic.getObedienceLevelFromValue(Main.game.getActiveNPC().getObedienceValue())) {
-							case DISOBEDIENT:
-								UtilText.nodeContentSB.append(" sighing,"
-										+ " [npc.speech(Hi, [npc.pcName]. What do you want?)]");
-								break;
-							case NEUTRAL:
-								UtilText.nodeContentSB.append(" sighing,"
-										+ " [npc.speech(Hello, [npc.pcName]. What can I do for you?)]");
-								break;
-							case OBEDIENT:
-								UtilText.nodeContentSB.append(" sighing,"
-										+ " [npc.speech(Hello, [npc.pcName]. Is there anything that I can do for you?)]");
-								break;
-						}
-						break;
-					case LIKE:
-						switch(ObedienceLevelBasic.getObedienceLevelFromValue(Main.game.getActiveNPC().getObedienceValue())) {
-							case DISOBEDIENT:
-								UtilText.nodeContentSB.append(" a huge smile breaking out across [npc.her] face as [npc.she] joyously calls out,"
-										+ " [npc.speech(Hi, [npc.pcName]! Oh, I'm so happy to see you again! I've been on my best behaviour!)]");
-								break;
-							case NEUTRAL:
-								UtilText.nodeContentSB.append(" a huge smile breaking out across [npc.her] face as [npc.she] joyously calls out,"
-										+ " [npc.speech(Hello, [npc.pcName]! How are you? Is there anything I can do for you?)]");
-								break;
-							case OBEDIENT:
-								UtilText.nodeContentSB.append(" a huge smile breaking out across [npc.her] face as [npc.she] joyously calls out,"
-										+ " [npc.speech(Hello, [npc.pcName]! Is there anything I can do for you?)]");
-								break;
-						}
-						break;
-				}
 				UtilText.nodeContentSB.append("</p>"
 						+ "<p>"
 							+ "You walk over to your slave, wondering what to do next..."
@@ -561,56 +395,6 @@ public class OccupantDialogue {
 					+ "</p>"
 					+ "<p>");
 			
-			switch(AffectionLevelBasic.getAffectionLevelFromValue(Main.game.getActiveNPC().getAffection(Main.game.getPlayer()))) {
-				case DISLIKE:
-					switch(ObedienceLevelBasic.getObedienceLevelFromValue(Main.game.getActiveNPC().getObedienceValue())) {
-						case DISOBEDIENT:
-							UtilText.nodeContentSB.append("With a look of intense hatred in [npc.her] [npc.eyes], [npc.she] quickly spits out an insolent response,"
-									+ " [npc.speech(Fuck off! Like I'm going to talk about that stuff with you! Asshole!)]");
-							break;
-						case NEUTRAL:
-							UtilText.nodeContentSB.append("Although [npc.she] tries to conceal it, you see the distinct look of hatred in [npc.her] [npc.eyes] as [npc.she] remarks,"
-									+ " [npc.speech(I wasn't doing much. There's really nothing more to say, [npc.pcName].)]");
-							break;
-						case OBEDIENT:
-							UtilText.nodeContentSB.append("[npc.She] obediently does [npc.her] very best to conceal the look of hatred in [npc.her] [npc.eyes] as [npc.she] responds,"
-									+ " [npc.speech(There's not really much to say about all that, [npc.pcName]. I lived an uneventful life up until becoming your property. Is there anything else you need?)]");
-							break;
-					}
-					break;
-				case NEUTRAL:
-					switch(ObedienceLevelBasic.getObedienceLevelFromValue(Main.game.getActiveNPC().getObedienceValue())) {
-						case DISOBEDIENT:
-							UtilText.nodeContentSB.append("Although [npc.she] doesn't seem to hate you, [npc.name] obviously doesn't feel too comfortable talking about [npc.her] past with you, and sighs,"
-									+ " [npc.speech(I don't know, [npc.pcName], it's not like there's anything to tell, really. Let's just talk about something else, ok?)]");
-							break;
-						case NEUTRAL:
-							UtilText.nodeContentSB.append("Although [npc.she] doesn't seem to hate you, [npc.name] obviously doesn't feel too comfortable talking about [npc.her] past with you, and sighs,"
-									+ " [npc.speech(I'm sorry [npc.pcName], there's not really anything to say about my past. Perhaps I can do something else for you?)]");
-							break;
-						case OBEDIENT:
-							UtilText.nodeContentSB.append("Although [npc.she] doesn't seem to hate you, [npc.name] obviously doesn't feel too comfortable talking about [npc.her] past with you, and simply responds,"
-									+ " [npc.speech(There isn't anything to say about that, [npc.pcName]. My life was entirely uneventful before becoming your slave. Can I do anything else for you?)]");
-							break;
-					}
-					break;
-				case LIKE:
-					switch(ObedienceLevelBasic.getObedienceLevelFromValue(Main.game.getActiveNPC().getObedienceValue())) { //TODO
-						case DISOBEDIENT:
-							UtilText.nodeContentSB.append("Barely able to contain [npc.her] excitement at being asked about [npc.her] past life, [npc.name] quickly responds,"
-									+ " [npc.speech(Thanks for asking, [npc.pcName]! Oh, but maybe we should talk about this some other time...)]");
-							break;
-						case NEUTRAL:
-							UtilText.nodeContentSB.append("[npc.Name] smiles as you ask [npc.herHim] about [npc.her] past life, and responds,"
-									+ " [npc.speech(Ah, [npc.pcName], maybe we should talk about this some other time...)]");
-							break;
-						case OBEDIENT:
-							UtilText.nodeContentSB.append("Clearly happy at being asked about [npc.her] past life, [npc.name] quickly responds,"
-									+ " [npc.speech(I'm sorry, [npc.pcName], but we'll have to talk about this some other time...)]");
-							break;
-					}
-					break;
-			}
 			UtilText.nodeContentSB.append("</p>"
 					+getFooterText());
 			

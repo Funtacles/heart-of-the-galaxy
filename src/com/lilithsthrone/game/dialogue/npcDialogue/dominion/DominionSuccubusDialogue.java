@@ -1238,7 +1238,6 @@ public class DominionSuccubusDialogue {
 					public void effects() {
 						Main.game.getActiveNPC().setPlayerKnowsName(true);
 						Main.game.getActiveNPC().setAffection(Main.game.getPlayer(), -100+Util.random.nextInt(10));
-						Main.game.getActiveNPC().setObedience(-100+Util.random.nextInt(10));
 					}
 					@Override
 					public DialogueNodeOld getNextDialogue(){

@@ -29,7 +29,6 @@ public enum PlaceUpgrade {
 			0,
 			1000,
 			-0.5f,
-			-0.5f,
 			null),
 	
 	LILAYA_EMPTY_ROOM(true,
@@ -39,7 +38,6 @@ public enum PlaceUpgrade {
 			"This room is empty, and would need conversion work to be done if you'd like to house any of your slaves here.",
 			"This room is unoccupied, and although Rose seems to be doing an excellent job of keeping it clean and well-dusted, it seems a shame that it's not being used to its full potential...",
 			2000,
-			0,
 			0,
 			0,
 			0,
@@ -82,7 +80,6 @@ public enum PlaceUpgrade {
 			"Help Rose to move arcane instrumentation into this room in order to make it suitable for Arthur to stay in. <b>This is a permanent modification, and can never be undone!</b>",
 			"This room now belongs to Arthur, who uses it as his personal lab-cum-bedroom.",
 			"This room is unoccupied, and although Rose seems to be doing an excellent job of keeping it clean and well-dusted, it seems a shame that it's not being used to its full potential...",
-			0,
 			0,
 			0,
 			0,
@@ -131,7 +128,6 @@ public enum PlaceUpgrade {
 			100,
 			1,
 			0,
-			0,
 			null) {
 		
 		@Override
@@ -169,7 +165,6 @@ public enum PlaceUpgrade {
 			0,
 			100,
 			1,
-			0,
 			0,
 			null) {
 		
@@ -228,7 +223,6 @@ public enum PlaceUpgrade {
 			100,
 			2,
 			-0.05f,
-			0,
 			null) {
 		
 		@Override
@@ -291,7 +285,6 @@ public enum PlaceUpgrade {
 			-10,
 			0,
 			-0.1f,
-			0.2f,
 			null) {
 		
 		@Override
@@ -321,7 +314,6 @@ public enum PlaceUpgrade {
 			25,
 			0,
 			0.2f,
-			-0.1f,
 			null) {
 		
 		@Override
@@ -351,26 +343,6 @@ public enum PlaceUpgrade {
 		}
 	},
 	
-	LILAYA_SLAVE_ROOM_OBEDIENCE_TRAINER(false,
-			Colour.GENERIC_ARCANE,
-			"Obedience Trainer",
-			"Lilaya has asked you if you'd consider installing one of her experimental devices in this room; a so-called 'obedience trainer'."
-					+ " This particular addition takes the form of a large, glowing crystal that is to be placed in the centre of the room."
-					+ " Whenever the room's occupant thinks a disobedient thought, the crystal will shoot out a shocking bolt of arcane energy, thereby training a slave's obedience in the most intrusive fashion imaginable.",
-			"You've installed one one of Lilaya's experimental devices in this room; a so-called 'obedience trainer'."
-					+ " This particular addition takes the form of a large, glowing crystal that has been placed in the centre of the room."
-					+ " Whenever the room's occupant thinks a disobedient thought, the crystal shoots out a shocking bolt of arcane energy, thereby training a slave's obedience in the most intrusive fashion imaginable.",
-			"One of Lilaya's experimental devices, a so-called 'obedience trainer', has been installed in the middle of this room."
-					+ " Taking the form of a large, glowing crystal, the obedience trainer will shoot a shocking bolt of arcane energy at any slave nearby that dares to think a disobedient thought."
-					+ " Although highly effective at training obedience, any slaves subjected to this intrusive training method will be sure to loathe you before long...",
-			10000,
-			500,
-			250,
-			0,
-			-0.2f,
-			0.4f,
-			null),
-	
 	LILAYA_SLAVE_ROOM_ROOM_SERVICE(false,
 			Colour.GENERIC_ARCANE,
 			"Room service",
@@ -385,7 +357,6 @@ public enum PlaceUpgrade {
 			250,
 			0,
 			0.4f,
-			-0.2f,
 			null),
 	
 	LILAYA_SLAVE_ROOM_ARCANE_INSTRUMENTS(false,
@@ -402,7 +373,6 @@ public enum PlaceUpgrade {
 			-25,
 			0,
 			-0.1f,
-			0f,
 			null),
 	
 	LILAYA_MILKING_ROOM_ARTISAN_MILKERS(false,
@@ -419,7 +389,6 @@ public enum PlaceUpgrade {
 			250,
 			0,
 			1f,
-			0.5f,
 			null) {
 		
 		@Override
@@ -450,7 +419,6 @@ public enum PlaceUpgrade {
 			100,
 			0,
 			-1f,
-			0.5f,
 			null) {
 		
 		@Override
@@ -478,7 +446,6 @@ public enum PlaceUpgrade {
 			10,
 			0,
 			0,
-			0,
 			null),
 	
 	LILAYA_MILKING_ROOM_CUM_EFFICIENCY(false,
@@ -492,7 +459,6 @@ public enum PlaceUpgrade {
 			10,
 			0,
 			0,
-			0,
 			null),
 
 	LILAYA_MILKING_ROOM_GIRLCUM_EFFICIENCY(false,
@@ -504,7 +470,6 @@ public enum PlaceUpgrade {
 			500,
 			100,
 			10,
-			0,
 			0,
 			0,
 			null),
@@ -574,7 +539,6 @@ public enum PlaceUpgrade {
 				PlaceUpgrade.LILAYA_SLAVE_ROOM_DOWNGRADE_BED,
 				
 				PlaceUpgrade.LILAYA_SLAVE_ROOM_ARCANE_INSTRUMENTS,
-				PlaceUpgrade.LILAYA_SLAVE_ROOM_OBEDIENCE_TRAINER,
 
 				PlaceUpgrade.LILAYA_SLAVE_ROOM_DOUBLE,
 				PlaceUpgrade.LILAYA_EMPTY_ROOM,
@@ -587,7 +551,6 @@ public enum PlaceUpgrade {
 				PlaceUpgrade.LILAYA_SLAVE_ROOM_DOWNGRADE_BED,
 				
 				PlaceUpgrade.LILAYA_SLAVE_ROOM_ARCANE_INSTRUMENTS,
-				PlaceUpgrade.LILAYA_SLAVE_ROOM_OBEDIENCE_TRAINER,
 				
 				PlaceUpgrade.LILAYA_EMPTY_ROOM,
 				PlaceUpgrade.LILAYA_ARTHUR_ROOM);
@@ -619,7 +582,6 @@ public enum PlaceUpgrade {
 	private Colour colour;
 	
 	private float affectionGain;
-	private float obedienceGain;
 	
 	private List<PlaceUpgrade> prerequisites;
 
@@ -634,7 +596,6 @@ public enum PlaceUpgrade {
 			int upkeep,
 			int capacity,
 			float affectionGain,
-			float obedienceGain,
 			List<PlaceUpgrade> prerequisites) {
 		
 		this.isCoreRoomUpgrade = isCoreRoomUpgrade;
@@ -650,8 +611,6 @@ public enum PlaceUpgrade {
 		this.capacity = capacity;
 		
 		this.affectionGain = affectionGain;
-		
-		this.obedienceGain = obedienceGain;
 		
 		if(prerequisites==null) {
 			this.prerequisites = new ArrayList<>();
@@ -728,10 +687,6 @@ public enum PlaceUpgrade {
 
 	public float getHourlyAffectionGain() {
 		return affectionGain;
-	}
-
-	public float getHourlyObedienceGain() {
-		return obedienceGain;
 	}
 
 	public List<PlaceUpgrade> getPrerequisites() {

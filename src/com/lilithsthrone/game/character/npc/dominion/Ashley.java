@@ -9,7 +9,6 @@ import com.lilithsthrone.game.Game;
 import com.lilithsthrone.game.character.CharacterImportSetting;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.AffectionLevel;
-import com.lilithsthrone.game.character.attributes.ObedienceLevel;
 import com.lilithsthrone.game.character.body.Covering;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
 import com.lilithsthrone.game.character.effects.Perk;
@@ -125,10 +124,7 @@ public class Ashley extends NPC {
 			}
 		}
 		
-		infoScreenSB.append("<br/><br/>"
-					+ "[style.boldObedience(Obedience:)]<br/>"
-					+ "<br/>"+ObedienceLevel.getDescription(this, ObedienceLevel.getObedienceLevelFromValue(this.getObedienceValue()), true, true)
-				+"</p>"
+		infoScreenSB.append("</p>"
 				+ "<br/>"
 					+ "<h4>Appearance</h4>"
 				+ "<p>"
