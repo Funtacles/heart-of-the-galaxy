@@ -296,9 +296,6 @@ public class SupplierDepot {
 						Main.game.getDialogueFlags().setFlag(DialogueFlagValue.suppliersTriedConvincing, true);
 					}
 				};
-				
-			} else if (index == 2) {
-				return new Response("Enforcer Bluff", "You'd need to be wearing an Enforcer's uniform in order to attempt this!", null);
 			} else if (index == 3) {
 				return new ResponseCombat("Fight", "Immediately launch into combat!",
 						Util.newArrayListOfValues(
@@ -402,8 +399,6 @@ public class SupplierDepot {
 			if (index == 1) {
 				return new Response("Convince", "You are already trying to convince them!", null);
 				
-			} else if (index == 2) {
-				return new Response("Enforcer Bluff", "You'd need to be wearing an Enforcer's uniform in order to attempt this!", null);
 			} else if (index == 3) {
 				return new ResponseCombat("Fight", "It looks as though you're left with no choice but to fight!",
 						Util.newArrayListOfValues(
@@ -470,53 +465,6 @@ public class SupplierDepot {
 						Main.mainController.moveGameWorld(WorldType.SHOPPING_ARCADE, PlaceType.SHOPPING_ARCADE_SUPPLIER_DEPOT, true);
 					}
 				};
-			} else {
-				return null;
-			}
-		}
-
-		@Override
-		public boolean isInventoryDisabled() {
-			return true;
-		}
-	};
-	
-	public static final DialogueNodeOld SUPPLIER_DEPOT_OFFICE_ENFORCER_BLUFF = new DialogueNodeOld("Office", "-", true) {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getContent() {
-			return UtilText.parseFromXMLFile("places/dominion/shoppingArcade/suppliersDepot", "OFFICE_ENFORCER_BLUFF");
-		}
-		
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 1) {
-				return new ResponseEffectsOnly("Exit", "Tidy yourself up and leave the Depot.") {
-					@Override
-					public void effects() {
-						Main.game.getDialogueFlags().setFlag(DialogueFlagValue.suppliersEncountered, true);
-						Main.mainController.moveGameWorld(WorldType.SHOPPING_ARCADE, PlaceType.SHOPPING_ARCADE_SUPPLIER_DEPOT, true);
-						Main.game.getTextStartStringBuilder().append(
-								"<p>"
-									+ "Exit."
-								+ "</p>");
-					}
-				};
-				
-			} else if (index == 2) {
-				return new ResponseSex("\"Thank\" them",
-						UtilText.parse(Main.game.getSupplierLeader(), Main.game.getSupplierPartner(), "You've always fantasised about being fucked by two strong men while wearing a uniform..."),
-						null, null, null, null, null,
-						true, true,
-						new SMDoggy(
-								Util.newHashMapOfValues(
-										new Value<>(Main.game.getSupplierLeader(), SexPositionSlot.DOGGY_BEHIND),
-										new Value<>(Main.game.getSupplierPartner(), SexPositionSlot.DOGGY_INFRONT)),
-								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.DOGGY_ON_ALL_FOURS))),
-						null,
-						AFTER_SEX_WILLING, UtilText.parseFromXMLFile("places/dominion/shoppingArcade/suppliersDepot", "OFFICE_ENFORCER_THANKS"));
-				
 			} else {
 				return null;
 			}

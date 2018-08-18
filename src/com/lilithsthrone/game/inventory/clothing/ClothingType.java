@@ -73,62 +73,6 @@ public class ClothingType {
 				null, null, null);
 	}
 	
-	// Special:
-	
-	public static AbstractClothingType HEAD_CHEATERS_CIRCLET = new AbstractClothingType(1000,
-			"a",
-			false,
-			"cheater's circlet",
-			"cheater's circlets",
-			"A thin band of metal that sits on top of your head. On the inside, an engraved message reads: 'FOR INTERNAL TESTING ONLY!'",
-			1,
-			null,
-			InventorySlot.HEAD,
-			Rarity.LEGENDARY,
-			null,
-			"head_circlet",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.INTELLIGENCE, TFPotency.MAJOR_DRAIN, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(
-									ClothingAccess.HEAD),
-							null,
-							null, null)),
-			null,
-			ColourListPresets.JUST_GOLD.getPresetColourList(),
-			null,
-			null,
-			null,
-			null,
-			null,
-			null){
-		
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You place the circlet on your head.",
-					"You place the circlet on [npc.namePos] head.",
-					"You force the circlet onto [npc.namePos] head.",
-					"[npc.Name] places the circlet on [npc.her] head.",
-					"[npc.Name] places the circlet on your head.",
-					"[npc.Name] forces the circlet onto your head.", null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You take off your circlet.",
-					"You take off [npc.namePos] circlet.",
-					"You grab [npc.namePos] circlet and throw it to the floor.",
-					"[npc.Name] takes off [npc.her] circlet.",
-					"[npc.Name] takes off your circlet.",
-					"[npc.Name] grabs your circlet and throws it to the floor.", null, null);
-		}
-	};
-	
 	// PIERCINGS:
 	public static AbstractClothingType PIERCING_EAR_BASIC_RING = new AbstractClothingType(80,
 			"a pair of",
@@ -140,7 +84,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PIERCING_EAR,
 			Rarity.COMMON,
-			null,
 			"piercing_ear_ring",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
@@ -186,7 +129,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.PIERCING_EAR,
 			Rarity.COMMON,
-			null,
 			"piercing_ear_hoops",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
@@ -232,7 +174,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PIERCING_NOSE,
 			Rarity.COMMON,
-			null,
 			"piercing_nose_ring",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
@@ -280,7 +221,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PIERCING_LIP,
 			Rarity.COMMON,
-			null,
 			"piercing_lip_double_ring",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
@@ -327,7 +267,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PIERCING_TONGUE,
 			Rarity.COMMON,
-			null,
 			"piercing_tongue_bar",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
@@ -373,7 +312,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.PIERCING_STOMACH,
 			Rarity.COMMON,
-			null,
 			"piercing_navel_basic",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
@@ -420,7 +358,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PIERCING_NIPPLE,
 			Rarity.COMMON,
-			null,
 			"piercing_nipple_bars",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
@@ -467,7 +404,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PIERCING_VAGINA,
 			Rarity.COMMON,
-			null,
 			"piercing_vagina_barbell_ring",
 			null,
 			Util.newArrayListOfValues(
@@ -519,7 +455,6 @@ public class ClothingType {
 			null,
 			InventorySlot.PIERCING_PENIS,
 			Rarity.COMMON,
-			null,
 			"piercing_penis_ring",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
@@ -566,7 +501,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.HEAD,
 			Rarity.COMMON,
-			null,
 			"head_circlet",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, Util.newArrayListOfValues(ClothingAccess.HEAD), null, null, null)),
@@ -612,7 +546,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.HEAD,
 			Rarity.COMMON,
-			null,
 			"head_tiara",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, Util.newArrayListOfValues(ClothingAccess.HEAD), null, null, null)),
@@ -659,7 +592,6 @@ public class ClothingType {
 			null,
 			InventorySlot.HEAD,
 			Rarity.COMMON,
-			null,
 			"head_headband",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, Util.newArrayListOfValues(ClothingAccess.HEAD), null, null, null)),
@@ -705,7 +637,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.HEAD,
 			Rarity.COMMON,
-			null,
 			"head_headband_bow",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, Util.newArrayListOfValues(ClothingAccess.HEAD), null, null, null)),
@@ -751,7 +682,6 @@ public class ClothingType {
 			null,
 			InventorySlot.HEAD,
 			Rarity.COMMON,
-			null,
 			"head_sweatband",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, Util.newArrayListOfValues(ClothingAccess.HEAD), null, null, null)),
@@ -797,7 +727,6 @@ public class ClothingType {
 			null,
 			InventorySlot.HEAD,
 			Rarity.COMMON,
-			null,
 			"head_cap",
 			null,
 			Util.newArrayListOfValues(
@@ -849,7 +778,6 @@ public class ClothingType {
 			null,
 			InventorySlot.HEAD,
 			Rarity.COMMON,
-			null,
 			"head_cowboy_hat",
 			null,
 			Util.newArrayListOfValues(
@@ -902,7 +830,6 @@ public class ClothingType {
 			null,
 			InventorySlot.EYES,
 			Rarity.COMMON,
-			null,
 			"eye_glasses",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, Util.newArrayListOfValues(ClothingAccess.EYES), null, null, null)),
@@ -947,7 +874,6 @@ public class ClothingType {
 			null,
 			InventorySlot.EYES,
 			Rarity.COMMON,
-			null,
 			"eye_aviators",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, Util.newArrayListOfValues(ClothingAccess.EYES), null, null, null)),
@@ -993,7 +919,6 @@ public class ClothingType {
 			null,
 			InventorySlot.EYES,
 			Rarity.COMMON,
-			null,
 			"eye_patch",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, Util.newArrayListOfValues(ClothingAccess.EYES), null, null, null)),
@@ -1041,7 +966,6 @@ public class ClothingType {
 			null,
 			InventorySlot.MOUTH,
 			Rarity.COMMON,
-			null,
 			"mouth_bandana",
 			null,
 			Util.newArrayListOfValues(
@@ -1125,7 +1049,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.NECK,
 			Rarity.COMMON,
-			null,
 			"neck_heartNecklace",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
@@ -1171,7 +1094,6 @@ public class ClothingType {
 			null,
 			InventorySlot.NECK,
 			Rarity.COMMON,
-			null,
 			"neck_ankhNecklace",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
@@ -1217,7 +1139,6 @@ public class ClothingType {
 			null,
 			InventorySlot.NECK,
 			Rarity.COMMON,
-			null,
 			"neck_bell_collar",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
@@ -1263,7 +1184,6 @@ public class ClothingType {
 			null,
 			InventorySlot.NECK,
 			Rarity.COMMON,
-			null,
 			"neck_scarf",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
@@ -1309,7 +1229,6 @@ public class ClothingType {
 			null,
 			InventorySlot.NECK,
 			Rarity.COMMON,
-			null,
 			"neck_tie",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
@@ -1355,7 +1274,6 @@ public class ClothingType {
 			null,
 			InventorySlot.NECK,
 			Rarity.COMMON,
-			null,
 			"neck_collar_bowtie",
 			null,
 			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
@@ -1398,7 +1316,6 @@ public class ClothingType {
 			null,
 			InventorySlot.NECK,
 			Rarity.EPIC,
-			null,
 			"neck_breeder_collar",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.FERTILITY, TFPotency.MAJOR_BOOST, 0),
@@ -1462,7 +1379,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_oxfordShirt",
 			null,
 			Util.newArrayListOfValues(
@@ -1546,7 +1462,6 @@ public class ClothingType {
 			null,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_shortSleeveShirt",
 			null,
 			Util.newArrayListOfValues(
@@ -1630,7 +1545,6 @@ public class ClothingType {
 			null,
 			InventorySlot.TORSO_OVER,
 			Rarity.COMMON,
-			null,
 			"torso_over_hoodie",
 			null,
 			Util.newArrayListOfValues(
@@ -1715,7 +1629,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_OVER,
 			Rarity.COMMON,
-			null,
 			"torso_open_cardigan",
 			null,
 			Util.newArrayListOfValues(
@@ -1767,7 +1680,6 @@ public class ClothingType {
 			null,
 			InventorySlot.TORSO_OVER,
 			Rarity.COMMON,
-			null,
 			"torso_over_blazer",
 			null,
 			Util.newArrayListOfValues(
@@ -1830,9 +1742,7 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_OVER,
 			Rarity.COMMON,
-			null,
 			"torso_over_womens_leather_jacket",
-
 			null,
 			Util.newArrayListOfValues(
 					new BlockedParts(
@@ -1895,7 +1805,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.TORSO_OVER,
 			Rarity.COMMON,
-			null,
 			"torso_over_suit_jacket",
 			null,
 			Util.newArrayListOfValues(
@@ -1959,7 +1868,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_OVER,
 			Rarity.COMMON,
-			null,
 			"torso_over_dress_coat",
 			null,
 			Util.newArrayListOfValues(
@@ -2023,7 +1931,6 @@ public class ClothingType {
 			null,
 			InventorySlot.TORSO_OVER,
 			Rarity.COMMON,
-			null,
 			"torso_over_cloak",
 			null,
 			Util.newArrayListOfValues(
@@ -2147,7 +2054,6 @@ public class ClothingType {
 			null,
 			InventorySlot.TORSO_OVER,
 			Rarity.COMMON,
-			null,
 			"torso_ribbed_sweater",
 			null,
 			Util.newArrayListOfValues(
@@ -2189,7 +2095,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_OVER,
 			Rarity.COMMON,
-			null,
 			"torso_keyhole_sweater",
 			null,
 
@@ -2237,7 +2142,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_sleeveless_turtleneck",
 			null,
 			Util.newArrayListOfValues(
@@ -2278,7 +2182,6 @@ public class ClothingType {
 			null,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_tshirt",
 			null,
 			Util.newArrayListOfValues(
@@ -2365,7 +2268,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_keyhole_croptop",
 			null,
 			Util.newArrayListOfValues(
@@ -2429,7 +2331,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_short_croptop",
 			null,
 			Util.newArrayListOfValues(
@@ -2490,7 +2391,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_fishnet_top",
 			null,
 			Util.newArrayListOfValues(
@@ -2549,7 +2449,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_blouse",
 			null,
 			Util.newArrayListOfValues(
@@ -2615,7 +2514,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_cami_straps",
 			null,
 			Util.newArrayListOfValues(
@@ -2656,7 +2554,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_skater_dress",
 			null,
 			Util.newArrayListOfValues(
@@ -2748,7 +2645,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_corset_dress",
 			null,
 			Util.newArrayListOfValues(
@@ -2819,7 +2715,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_virgin_killer_sweater",
 			null,
 			Util.newArrayListOfValues(
@@ -2865,7 +2760,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_slip_dress",
 			null,
 			Util.newArrayListOfValues(
@@ -2956,7 +2850,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_plunge_dress",
 			null,
 			Util.newArrayListOfValues(
@@ -3043,7 +2936,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_long_sleeve_dress",
 			null,
 			Util.newArrayListOfValues(
@@ -3134,7 +3026,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.TORSO_UNDER,
 			Rarity.COMMON,
-			null,
 			"torso_bodyconzip_dress",
 			null,
 			Util.newArrayListOfValues(
@@ -3258,7 +3149,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.CHEST,
 			Rarity.COMMON,
-			null,
 			"chest_swimsuit",
 			null,
 			Util.newArrayListOfValues(
@@ -3387,7 +3277,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.CHEST,
 			Rarity.COMMON,
-			null,
 			"torso_tube_top",
 			null,
 			Util.newArrayListOfValues(
@@ -3448,7 +3337,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.CHEST,
 			Rarity.COMMON,
-			null,
 			"chest_chemise",
 			null,
 			Util.newArrayListOfValues(
@@ -3506,7 +3394,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.CHEST,
 			Rarity.COMMON,
-			null,
 			"chest_plunge_bra",
 			null,
 			Util.newArrayListOfValues(
@@ -3562,7 +3449,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.CHEST,
 			Rarity.COMMON,
-			null,
 			"chest_lacy_plunge_bra",
 			null,
 
@@ -3619,7 +3505,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.CHEST,
 			Rarity.COMMON,
-			null,
 			"chest_open_cup_bra",
 			null,
 			Util.newArrayListOfValues(
@@ -3658,7 +3543,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.CHEST,
 			Rarity.COMMON,
-			null,
 			"chest_sports_bra",
 			null,
 			Util.newArrayListOfValues(
@@ -3716,7 +3600,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.CHEST,
 			Rarity.COMMON,
-			null,
 			"chest_croptop_bra",
 			null,
 			Util.newArrayListOfValues(
@@ -3774,7 +3657,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.CHEST,
 			Rarity.COMMON,
-			null,
 			"chest_fullcup_bra",
 			null,
 			Util.newArrayListOfValues(
@@ -3829,7 +3711,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.CHEST,
 			Rarity.COMMON,
-			null,
 			"chest_nursing_bra",
 			null,
 			Util.newArrayListOfValues(
@@ -3896,7 +3777,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.CHEST,
 			Rarity.COMMON,
-			null,
 			"chest_striped_bra",
 			null,
 			Util.newArrayListOfValues(
@@ -3952,7 +3832,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.CHEST,
 			Rarity.COMMON,
-			null,
 			"chest_bikini",
 			null,
 			Util.newArrayListOfValues(
@@ -4031,7 +3910,6 @@ public class ClothingType {
 			null,
 			InventorySlot.CHEST,
 			Rarity.COMMON,
-			null,
 			"chest_sarashi",
 			null,
 			Util.newArrayListOfValues(
@@ -4086,7 +3964,6 @@ public class ClothingType {
 			null,
 			InventorySlot.NIPPLE,
 			Rarity.COMMON,
-			null,
 			"chest_tapecrosses",
 			null,
 			Util.newArrayListOfValues(
@@ -4107,16 +3984,6 @@ public class ClothingType {
 					ItemTag.PLUGS_NIPPLES,
 					ItemTag.SOLD_BY_NYAN)){
 		
-		/* TODO:
-			Replace with special item "roll of tape"
-			10 uses, and can:
-				tape mouth
-				bind wrists
-				bind feet
-				tape nipples
-				tape pussy
-				tape asshole
-		*/
 		@Override
 		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
 			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
@@ -4153,7 +4020,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.STOMACH,
 			Rarity.COMMON,
-			null,
 			"stomach_lowback_body",
 			null,
 			Util.newArrayListOfValues(
@@ -4267,7 +4133,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.STOMACH,
 			Rarity.COMMON,
-			null,
 			"stomach_underbust_corset",
 			null,
 			Util.newArrayListOfValues(
@@ -4321,7 +4186,7 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.STOMACH,
 			Rarity.COMMON,
-			null, "stomach_overbust_corset",
+			"stomach_overbust_corset",
 			null,
 			Util.newArrayListOfValues(
 					new BlockedParts(DisplacementType.REMOVE_OR_EQUIP,
@@ -4383,7 +4248,6 @@ public class ClothingType {
 			null,
 			InventorySlot.STOMACH,
 			Rarity.COMMON,
-			null,
 			"stomach_sarashi",
 			null,
 			Util.newArrayListOfValues(
@@ -4440,7 +4304,6 @@ public class ClothingType {
 			null,
 			InventorySlot.HAND,
 			Rarity.COMMON,
-			null,
 			"hand_gloves",
 			null,
 			Util.newArrayListOfValues(
@@ -4493,7 +4356,6 @@ public class ClothingType {
 			null,
 			InventorySlot.HAND,
 			Rarity.COMMON,
-			null,
 			"hand_fingerless_gloves",
 			null,
 			Util.newArrayListOfValues(
@@ -4545,7 +4407,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.HAND,
 			Rarity.COMMON,
-			null,
 			"hand_elbowlength_gloves",
 			null,
 			Util.newArrayListOfValues(
@@ -4599,7 +4460,6 @@ public class ClothingType {
 			null,
 			InventorySlot.HAND,
 			Rarity.COMMON,
-			null,
 			"hand_wraps",
 			null,
 			Util.newArrayListOfValues(
@@ -4653,7 +4513,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.HAND,
 			Rarity.COMMON,
-			null,
 			"hand_fishnet_gloves",
 			null,
 			Util.newArrayListOfValues(
@@ -4714,7 +4573,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.WRIST,
 			Rarity.COMMON,
-			null,
 			"wrist_womens_watch",
 			null,
 			Util.newArrayListOfValues(
@@ -4768,7 +4626,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.WRIST,
 			Rarity.COMMON,
-			null,
 			"wrist_mens_watch",
 			null,
 			Util.newArrayListOfValues(
@@ -4821,7 +4678,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.WRIST,
 			Rarity.COMMON,
-			null,
 			"wrist_bangle",
 			null,
 			Util.newArrayListOfValues(
@@ -4873,7 +4729,6 @@ public class ClothingType {
 			null,
 			InventorySlot.WRIST,
 			Rarity.COMMON,
-			null,
 			"wrist_suit_cuffs",
 			null,
 			Util.newArrayListOfValues(
@@ -4923,7 +4778,6 @@ public class ClothingType {
 			null,
 			InventorySlot.WRIST,
 			Rarity.COMMON,
-			null,
 			"wrist_sweatbands",
 			null,
 			Util.newArrayListOfValues(
@@ -4977,7 +4831,6 @@ public class ClothingType {
 			null,
 			InventorySlot.FINGER,
 			Rarity.COMMON,
-			null,
 			"finger_ring",
 			null,
 			Util.newArrayListOfValues(
@@ -5020,62 +4873,6 @@ public class ClothingType {
 
 	// BELT
 	
-	public static AbstractClothingType HIPS_CONDOMS = new AbstractClothingType(20,
-			"a",
-			false,
-			"condom belt",
-			"condom belts",
-			"A strip of strong elastic fabric that hugs the wearer's hips. You could use it to tie used condoms to...",
-			0,
-			null,
-			InventorySlot.HIPS,
-			Rarity.COMMON,
-			null,
-			"belt_used_condoms",
-			null,
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							null,
-							null,
-							null,
-							null)),
-			null,
-			ColourListPresets.ALL.getPresetColourList(),
-			null,
-			null,
-			null,
-			null,
-			null, 
-			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			if (clothingOwner.isPlayer() && clothingRemover.isPlayer()) {
-				return "You step into the belt before pulling it up to your waist.";
-			} else {
-				return UtilText.parse(clothingOwner, "[npc.Name] steps into the belt before pulling it up to [npc.her] waist.");
-			}
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			if (clothingOwner.isPlayer() && clothingRemover.isPlayer()) {
-				return "You pull down your belt and kick it off your [pc.feet].";
-				
-			} else if (!clothingOwner.isPlayer() && !clothingRemover.isPlayer()) {
-				return UtilText.parse(clothingOwner, "[npc.Name] pulls down [npc.her] belt before kicking it off [npc.her] [npc.feet].");
-				
-			} else {
-				if (clothingOwner.isPlayer()) {
-					return UtilText.parse(clothingRemover, "[npc.Name] pulls your belt down and slides it off your [pc.feet].");
-				} else {
-					return UtilText.parse(clothingOwner, "You pull [npc.namePos] belt down and slide it off [npc.her] [npc.feet].");
-				}
-			}
-		}
-	};
-	
 	public static AbstractClothingType HIPS_SUSPENDER_BELT = new AbstractClothingType(150,
 			"a",
 			false,
@@ -5086,7 +4883,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.HIPS,
 			Rarity.COMMON,
-			null,
 			"hips_suspender_belt",
 			null,
 			Util.newArrayListOfValues(
@@ -5138,7 +4934,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_skirt",
 			null,
 			Util.newArrayListOfValues(
@@ -5215,7 +5010,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_pencil_skirt",
 			null,
 			Util.newArrayListOfValues(
@@ -5292,7 +5086,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_mini_skirt",
 			null,
 			Util.newArrayListOfValues(
@@ -5346,7 +5139,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_micro_skirt_pleated",
 			null,
 			Util.newArrayListOfValues(
@@ -5402,7 +5194,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_micro_skirt_belted",
 			null,
 			Util.newArrayListOfValues(
@@ -5458,7 +5249,6 @@ public class ClothingType {
 			null,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_shorts",
 			null,
 			Util.newArrayListOfValues(
@@ -5525,7 +5315,6 @@ public class ClothingType {
 			null,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_bikeShorts",
 			null,
 			Util.newArrayListOfValues(
@@ -5586,7 +5375,6 @@ public class ClothingType {
 			null,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_sport_shorts",
 			null,
 			Util.newArrayListOfValues(
@@ -5647,7 +5435,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_hotpants",
 			null,
 			Util.newArrayListOfValues(
@@ -5708,7 +5495,6 @@ public class ClothingType {
 			null,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_tight_jeans",
 			null,
 			Util.newArrayListOfValues(
@@ -5777,7 +5563,6 @@ public class ClothingType {
 			null,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_jeans",
 			null,
 			Util.newArrayListOfValues(
@@ -5846,7 +5631,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_trousers",
 			null,
 			Util.newArrayListOfValues(
@@ -5915,7 +5699,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_cargo_trousers",
 			null,
 			Util.newArrayListOfValues(
@@ -5985,7 +5768,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_yoga_pants",
 			null,
 			Util.newArrayListOfValues(
@@ -6047,7 +5829,6 @@ public class ClothingType {
 			null,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_assless_chaps",
 			null,
 			Util.newArrayListOfValues(
@@ -6136,7 +5917,6 @@ public class ClothingType {
 			null,
 			InventorySlot.LEG,
 			Rarity.COMMON,
-			null,
 			"leg_crotchless_chaps",
 			null,
 			Util.newArrayListOfValues(
@@ -6195,10 +5975,8 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.GROIN,
 			Rarity.COMMON,
-			null,
 			"groin_panties",
 			null,
-
 			Util.newArrayListOfValues(
 					new BlockedParts(DisplacementType.REMOVE_OR_EQUIP,
 							Util.newArrayListOfValues(
@@ -6257,7 +6035,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.GROIN,
 			Rarity.COMMON,
-			null,
 			"groin_shimapan",
 			null,
 			Util.newArrayListOfValues(
@@ -6318,7 +6095,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.GROIN,
 			Rarity.COMMON,
-			null,
 			"groin_lacy_panties",
 			null,
 			Util.newArrayListOfValues(
@@ -6380,7 +6156,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.GROIN,
 			Rarity.COMMON,
-			null,
 			"groin_vstring",
 			null,
 			Util.newArrayListOfValues(
@@ -6441,7 +6216,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.GROIN,
 			Rarity.COMMON,
-			null,
 			"groin_thong",
 			null,
 			Util.newArrayListOfValues(
@@ -6505,7 +6279,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.GROIN,
 			Rarity.COMMON,
-			null,
 			"groin_bikini",
 			null,
 			Util.newArrayListOfValues(
@@ -6568,7 +6341,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.GROIN,
 			Rarity.COMMON,
-			null,
 			"groin_boyshorts",
 			null,
 			Util.newArrayListOfValues(
@@ -6631,7 +6403,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.GROIN,
 			Rarity.COMMON,
-			null,
 			"groin_briefs",
 			null,
 			Util.newArrayListOfValues(
@@ -6693,7 +6464,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.GROIN,
 			Rarity.COMMON,
-			null,
 			"groin_boxers",
 			null,
 			Util.newArrayListOfValues(
@@ -6761,7 +6531,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.GROIN,
 			Rarity.COMMON,
-			null,
 			"groin_jockstrap",
 			null,
 			Util.newArrayListOfValues(
@@ -6820,7 +6589,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.GROIN,
 			Rarity.COMMON,
-			null,
 			"groin_backless_panties",
 			null,
 			Util.newArrayListOfValues(
@@ -6907,7 +6675,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.GROIN,
 			Rarity.COMMON,
-			null,
 			"groin_crotchless_panties",
 			null,
 			Util.newArrayListOfValues(
@@ -6963,7 +6730,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.GROIN,
 			Rarity.COMMON,
-			null,
 			"groin_crotchless_thong",
 			null,
 			Util.newArrayListOfValues(
@@ -7017,7 +6783,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.GROIN,
 			Rarity.COMMON,
-			null,
 			"groin_crotchless_briefs",
 			null,
 			Util.newArrayListOfValues(
@@ -7103,7 +6868,6 @@ public class ClothingType {
 			null,
 			InventorySlot.SOCK,
 			Rarity.COMMON,
-			null,
 			"sock_socks",
 			null,
 			Util.newArrayListOfValues(
@@ -7155,7 +6919,6 @@ public class ClothingType {
 			null,
 			InventorySlot.SOCK,
 			Rarity.COMMON,
-			null,
 			"sock_trainer_socks",
 			null,
 			Util.newArrayListOfValues(
@@ -7206,7 +6969,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.SOCK,
 			Rarity.COMMON,
-			null,
 			"sock_kneehigh_socks",
 			null,
 			Util.newArrayListOfValues(
@@ -7260,7 +7022,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.SOCK,
 			Rarity.COMMON,
-			null,
 			"sock_thighhigh_socks",
 			null,
 			Util.newArrayListOfValues(
@@ -7314,7 +7075,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.SOCK,
 			Rarity.COMMON,
-			null,
 			"sock_stockings",
 			null,
 			Util.newArrayListOfValues(
@@ -7370,7 +7130,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.SOCK,
 			Rarity.COMMON,
-			null,
 			"sock_toeless_striped_stockings",
 			null,
 			Util.newArrayListOfValues(
@@ -7425,7 +7184,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.SOCK,
 			Rarity.COMMON,
-			null,
 			"sock_thighhigh_socks_striped",
 			null,
 			Util.newArrayListOfValues(
@@ -7478,7 +7236,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.SOCK,
 			Rarity.COMMON,
-			null,
 			"sock_tights",
 			null,
 			Util.newArrayListOfValues(
@@ -7566,7 +7323,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.SOCK,
 			Rarity.COMMON,
-			null,
 			"sock_fishnets",
 			null,
 			Util.newArrayListOfValues(
@@ -7622,7 +7378,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.ANKLE,
 			Rarity.COMMON,
-			null,
 			"ankle_bracelet",
 			null,
 			Util.newArrayListOfValues(
@@ -7674,7 +7429,6 @@ public class ClothingType {
 			null,
 			InventorySlot.ANKLE,
 			Rarity.COMMON,
-			null,
 			"ankle_shin_guards",
 			null,
 			Util.newArrayListOfValues(
@@ -7730,7 +7484,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.FOOT,
 			Rarity.COMMON,
-			null,
 			"foot_heels",
 			null,
 			Util.newArrayListOfValues(
@@ -7782,7 +7535,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.FOOT,
 			Rarity.COMMON,
-			null,
 			"foot_stiletto_heels",
 			null,
 			Util.newArrayListOfValues(
@@ -7834,7 +7586,6 @@ public class ClothingType {
 			null,
 			InventorySlot.FOOT,
 			Rarity.COMMON,
-			null,
 			"foot_chelsea_boots",
 			null,
 			Util.newArrayListOfValues(
@@ -7887,7 +7638,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.FOOT,
 			Rarity.COMMON,
-			null,
 			"foot_ankle_boots",
 			null,
 			Util.newArrayListOfValues(
@@ -7940,7 +7690,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.FOOT,
 			Rarity.COMMON,
-			null,
 			"foot_platform_boots",
 			null,
 			Util.newArrayListOfValues(
@@ -7993,7 +7742,6 @@ public class ClothingType {
 			Femininity.FEMININE,
 			InventorySlot.FOOT,
 			Rarity.COMMON,
-			null,
 			"foot_thigh_high_boots",
 			null,
 			Util.newArrayListOfValues(
@@ -8046,7 +7794,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.FOOT,
 			Rarity.COMMON,
-			null,
 			"foot_mens_smart_shoes",
 			null,
 			Util.newArrayListOfValues(
@@ -8098,7 +7845,6 @@ public class ClothingType {
 			Femininity.MASCULINE,
 			InventorySlot.FOOT,
 			Rarity.COMMON,
-			null,
 			"foot_work_boots",
 			null,
 			Util.newArrayListOfValues(
@@ -8153,7 +7899,6 @@ public class ClothingType {
 			null,
 			InventorySlot.FOOT,
 			Rarity.COMMON,
-			null,
 			"foot_trainers",
 			null,
 			Util.newArrayListOfValues(
@@ -8205,7 +7950,6 @@ public class ClothingType {
 			null,
 			InventorySlot.FOOT,
 			Rarity.COMMON,
-			null,
 			"foot_low_top_skater_shoes",
 			null,
 			Util.newArrayListOfValues(
@@ -8258,7 +8002,6 @@ public class ClothingType {
 			InventorySlot.PENIS,
 			Rarity.COMMON,
 			"penis_condom_unequipped",
-			"penis_condom_equipped",
 			null,
 			Util.newArrayListOfValues(
 					new BlockedParts(
@@ -8693,11 +8436,6 @@ public class ClothingType {
 					"[npc.Name] takes your metal collar off.",
 					null, null, null);
 		}
-		
-//		@Override
-//		public int getEnchantmentLimit() {
-//			return 17;
-//		}
 	};
 	
 	public static AbstractClothingType BDSM_BALLGAG = new AbstractClothingType(150,
@@ -9279,203 +9017,6 @@ public class ClothingType {
 		}
 	};
 	
-	public static AbstractClothingType ENFORCER_SHIRT = new AbstractClothingType(1500,
-			"an",
-			false,
-			"Enforcer's shirt",
-			"Enforcer's shirts",
-			"An Enforcer's shirt, it comes with what appears to be a stab-proof vest.",
-			10,
-			null,
-			InventorySlot.TORSO_UNDER,
-			Rarity.EPIC,
-			"enforcerShirt",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_PHYSICAL, TFPotency.MAJOR_BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							Util.newArrayListOfValues(ClothingAccess.ARMS_UP_TO_SHOULDER),
-							Util.newArrayListOfValues(CoverableArea.BACK),
-							null,
-							null),
-					new BlockedParts(
-							DisplacementType.UNBUTTONS,
-							null,
-							Util.newArrayListOfValues(
-									CoverableArea.BREASTS,
-									CoverableArea.NIPPLES,
-									CoverableArea.STOMACH),
-							Util.newArrayListOfValues(
-									ClothingAccess.CHEST,
-									ClothingAccess.WAIST),
-							PresetConcealmentLists.CONCEALED_PARTIAL_TORSO.getPresetInventorySlotList())),
-			null,
-			Util.newArrayListOfValues(
-					Colour.CLOTHING_BLUE,
-					Colour.CLOTHING_BLACK,
-					Colour.CLOTHING_PINK),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_BLACK.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_STEEL.getPresetColourList(),
-			ColourListPresets.ALL_METAL.getPresetColourList(),
-			null){
-		
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull on the shirt and button it up.",
-					"You put the shirt onto [npc.name] and button it up.",
-					null,
-					"[npc.Name] pulls on the shirt and buttons it up.",
-					"[npc.Name] puts the shirt onto you and buttons it up.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You unbutton your shirt and pull it off.",
-					"You unbutton [npc.namePos] shirt and pull it off.",
-					null,
-					"[npc.Name] unbuttons [npc.her] shirt and pulls it off.",
-					"[npc.Name] unbuttons your shirt and pull it off.",
-					null, null, null);
-		}
-	};
-
-	public static AbstractClothingType ENFORCER_SHORTS = new AbstractClothingType(600,
-			"a pair of",
-			true,
-			"Enforcer's shorts",
-			"Enforcer's shorts",
-			"A pair of shorts, they come with a utility belt.",
-			2,
-			null,
-			InventorySlot.LEG,
-			Rarity.EPIC,
-			"enforcerShorts",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_PHYSICAL, TFPotency.MAJOR_BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-									DisplacementType.REMOVE_OR_EQUIP,
-									Util.newArrayListOfValues(ClothingAccess.LEGS_UP_TO_GROIN),
-									null,
-									Util.newArrayListOfValues(ClothingAccess.LEGS_UP_TO_GROIN),
-									null),
-					new BlockedParts(
-									DisplacementType.PULLS_DOWN,
-									null,
-									Util.newArrayListOfValues(
-											CoverableArea.ANUS,
-											CoverableArea.PENIS,
-											CoverableArea.VAGINA),
-									Util.newArrayListOfValues(ClothingAccess.GROIN),
-									PresetConcealmentLists.CONCEALED_GROIN.getPresetInventorySlotList()),
-					new BlockedParts(
-									DisplacementType.UNZIPS,
-									null,
-									Util.newArrayListOfValues(CoverableArea.PENIS),
-									Util.newArrayListOfValues(ClothingAccess.GROIN),
-									PresetConcealmentLists.CONCEALED_UNZIPS_GROIN.getPresetInventorySlotList())),
-			null,
-			Util.newArrayListOfValues(
-					Colour.CLOTHING_BLUE,
-					Colour.CLOTHING_BLACK,
-					Colour.CLOTHING_PINK),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_BLACK.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_STEEL.getPresetColourList(),
-			ColourListPresets.ALL_METAL.getPresetColourList(),
-			null) {
-		
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You step into the shorts before pulling them up to your waist.",
-					"You pull the shorts all the way up [npc.namePos] [npc.legs] to [npc.her] waist.",
-					null,
-					"[npc.Name] steps into the shorts before pulling them up to [npc.her] waist.",
-					"[npc.Name] pull the shorts all the way up your [pc.legs] to your waist.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull down your shorts and kick them off your [pc.feet].",
-					"You pull [npc.namePos] shorts down and slide them off [npc.her] [npc.feet].",
-					null,
-					"[npc.Name] pulls [npc.her] shorts down and kicks them off [npc.her] [npc.feet].",
-					"[npc.Name] pulls your shorts down and slides them off your [pc.feet].",
-					null, null, null);
-		}
-	};
-	
-	public static AbstractClothingType ENFORCER_MINI_SKIRT = new AbstractClothingType(600,
-			"an",
-			false,
-			"Enforcer's miniskirt",
-			"Enforcer's miniskirts",
-			"A very short skirt, equipped with a utility belt, which barely reaches down to mid-thigh.",
-			1,
-			Femininity.FEMININE,
-			InventorySlot.LEG,
-			Rarity.EPIC,
-			"enforcer_miniskirt",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_PHYSICAL, TFPotency.MAJOR_BOOST, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(DisplacementType.PULLS_UP,
-							null,
-							Util.newArrayListOfValues(
-									CoverableArea.ANUS,
-									CoverableArea.PENIS,
-									CoverableArea.VAGINA),
-							Util.newArrayListOfValues(ClothingAccess.GROIN),
-							PresetConcealmentLists.CONCEALED_GROIN.getPresetInventorySlotList())),
-			null,
-			Util.newArrayListOfValues(
-					Colour.CLOTHING_BLUE,
-					Colour.CLOTHING_BLACK,
-					Colour.CLOTHING_PINK),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_BLACK.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_STEEL.getPresetColourList(),
-			ColourListPresets.ALL_METAL.getPresetColourList(),
-			null){
-		
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You step into the miniskirt before pulling it up to your waist.",
-					"You slide the miniskirt up [npc.namePos] [npc.legs] to rest around [npc.her] waist.",
-					null,
-					"[npc.Name] steps into the miniskirt before pulling it up to [npc.her] waist.",
-					"[npc.Name] slides the miniskirt up your [pc.legs] to rest around your waist.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You pull down your miniskirt and kick it off your [pc.feet].",
-					"You pull [npc.namePos] miniskirt down and slide it off [npc.her] [npc.feet].",
-					null,
-					"[npc.Name] pulls down [npc.her] miniskirt before kicking it off [npc.her] [npc.feet].",
-					"[npc.Name] pulls your miniskirt down and slides it off your [pc.feet].",
-					null, null, null);
-		}
-	};
-	
 	public static AbstractClothingType CATTLE_PIERCING_EAR_TAGS = new AbstractClothingType(150,
 			"an",
 			false,
@@ -9896,7 +9437,6 @@ public class ClothingType {
 			null,
 			InventorySlot.TORSO_UNDER,
 			Rarity.UNCOMMON,
-			null,
 			"torso_tshirt_megamilk",
 			Util.newArrayListOfValues(
 					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0)),
@@ -10056,7 +9596,6 @@ public class ClothingType {
 											AbstractClothingType ct = new AbstractClothingType(innerChild) {};
 											allClothing.add(ct);
 											String id = authorDirectory.getName()+"_"+innerChild.getParentFile().getName()+"_"+innerChild.getName().split("\\.")[0];
-		//											System.out.println(id);
 											clothingToIdMap.put(ct, id);
 											idToClothingMap.put(id, ct);
 										} catch(Exception ex) {
@@ -10119,7 +9658,6 @@ public class ClothingType {
 				
 			}
 		}
-//  	    System.out.println(allClothing.size());
 	}
 	
 	public static List<AbstractClothingType> getAllClothing() {

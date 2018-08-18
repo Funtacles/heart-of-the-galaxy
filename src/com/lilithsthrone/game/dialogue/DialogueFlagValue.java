@@ -89,15 +89,6 @@ public enum DialogueFlagValue {
 	givenLilayaPresent2,
 	givenLilayaPresent3,
 	
-	// Brax:
-	braxEncountered,
-	accessToEnforcerHQ,
-	braxTransformedPlayer,
-	braxBeaten,
-	seenBraxAfterQuest,
-	feminisedBrax,
-	bimbofiedBrax,
-	
 	// Slaver Alley:
 	finchIntroduced,
 	

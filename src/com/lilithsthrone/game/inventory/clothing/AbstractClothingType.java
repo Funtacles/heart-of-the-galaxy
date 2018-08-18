@@ -32,8 +32,6 @@ import com.lilithsthrone.game.inventory.enchanting.ItemEffectType;
 import com.lilithsthrone.game.inventory.enchanting.TFEssence;
 import com.lilithsthrone.game.inventory.enchanting.TFModifier;
 import com.lilithsthrone.game.inventory.enchanting.TFPotency;
-import com.lilithsthrone.game.inventory.item.AbstractItem;
-import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.rendering.Pattern;
 import com.lilithsthrone.rendering.SVGImages;
@@ -50,7 +48,7 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 
 	protected static final long serialVersionUID = 1L;
 	
-	private String determiner, name, namePlural, description, pathName, pathNameEquipped;
+	private String determiner, name, namePlural, description, pathName;
 
 	private boolean plural;
 	private boolean isMod;
@@ -68,7 +66,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 	
 	// Images:
 	private Map<Colour, Map<Colour, Map<Colour, Map<String, Map<Colour, Map<Colour, Map<Colour, String>>>>>>> SVGStringMap;
-	private Map<Colour, Map<Colour, Map<Colour, Map<String, Map<Colour, Map<Colour, Map<Colour, String>>>>>>> SVGStringEquippedMap;
 	
 	// Pattern data:
 	private boolean isPatternAvailable;
@@ -97,52 +94,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 	private Map<DisplacementType, Map<DisplacementDescriptionType, String>> displacementDescriptionsPlayer;
 	private Map<DisplacementType, Map<DisplacementDescriptionType, String>> displacementDescriptionsNPC;
 	
-	protected AbstractClothingType(
-			int baseValue,
-			String determiner,
-			boolean plural,
-			String name,
-			String namePlural,
-			String description,
-			int physicalResistance,
-			Femininity femininityRestriction,
-			InventorySlot slot,
-			Rarity rarity,
-			String pathName,
-			List<ItemEffect> effects,
-			List<BlockedParts> blockedPartsList,
-			List<InventorySlot> incompatibleSlots,
-			List<Colour> availablePrimaryColours,
-			List<Colour> availablePrimaryDyeColours,
-			List<Colour> availableSecondaryColours,
-			List<Colour> availableSecondaryDyeColours,
-			List<Colour> availableTertiaryColours,
-			List<Colour> availableTertiaryDyeColours,
-			List<ItemTag> itemTags) {
-		this(baseValue,
-				determiner,
-				plural,
-				name,
-				namePlural,
-				description,
-				physicalResistance,
-				femininityRestriction,
-				slot,
-				rarity,
-				pathName,
-				null,
-				effects,
-				blockedPartsList,
-				incompatibleSlots,
-				availablePrimaryColours,
-				availablePrimaryDyeColours,
-				availableSecondaryColours,
-				availableSecondaryDyeColours,
-				availableTertiaryColours,
-				availableTertiaryDyeColours,
-				itemTags);
-	}
-	
 	public AbstractClothingType(
 			int baseValue,
 			String determiner,
@@ -155,7 +106,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 			InventorySlot slot,
 			Rarity rarity,
 			String pathName,
-			String pathNameEquipped,
 			List<ItemEffect> effects,
 			List<BlockedParts> blockedPartsList,
 			List<InventorySlot> incompatibleSlots,
@@ -187,7 +137,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 		this.rarity = rarity;
 
 		this.pathName = pathName;
-		this.pathNameEquipped = pathNameEquipped;
 		
 		this.isPatternAvailable = false;
 
@@ -425,10 +374,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 				
 				this.pathName = clothingXMLFile.getParentFile().getAbsolutePath() + "/" + coreAttributes.getElementsByTagName("imageName").item(0).getTextContent();
 				
-				this.pathNameEquipped = !coreAttributes.getElementsByTagName("imageEquippedName").item(0).hasChildNodes()
-									? null
-									: coreAttributes.getElementsByTagName("imageEquippedName").item(0).getTextContent();
-				
 				this.effects = defaultEffects;
 
 				this.blockedPartsList = defaultBlockedParts;
@@ -656,7 +601,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 		Collections.sort(displacementTypesAvailableWithoutNONE);
 
 		SVGStringMap = new HashMap<>();
-		SVGStringEquippedMap = new HashMap<>();
 		
 		// Causes crash if done from here for some reason.
 		//this.isPatternAvailable = this.getSVGImage().contains("label=\"patternLayer\"");
@@ -1357,10 +1301,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 		return pathName;
 	}
 
-	public String getPathNameEquipped() {
-		return pathNameEquipped;
-	}
-
 	public int getzLayer() {
 		return slot.getZLayer();
 	}
@@ -1430,16 +1370,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 		map.get(colour).get(colourSecondary).get(colourTertiary).get(pattern).get(patternColourPrimary).putIfAbsent(patternColourSecondary, new HashMap<>());
 	}
 	
-	private void addSVGStringEquippedMapping(Colour colour, Colour colourSecondary, Colour colourTertiary, String pattern, Colour patternColourPrimary, Colour patternColourSecondary, Colour patternColourTertiary, String s) {
-		if(pattern == null) {
-			pattern = "none"; // The map does not contain null as a key.
-		}
-
-		initMapIfAbsent(SVGStringEquippedMap, colour, colourSecondary, colourTertiary, pattern, patternColourPrimary, patternColourSecondary, patternColourTertiary);
-		
-		SVGStringEquippedMap.get(colour).get(colourSecondary).get(colourTertiary).get(pattern).get(patternColourPrimary).get(patternColourSecondary).put(patternColourTertiary, s);
-	}
-	
 	
 	private String getSVGStringFromMap(Colour colour, Colour colourSecondary, Colour colourTertiary, String pattern, Colour patternColourPrimary, Colour patternColourSecondary, Colour patternColourTertiary) {
 		if(pattern == null) {
@@ -1449,14 +1379,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 		return SVGStringMap.get(colour).get(colourSecondary).get(colourTertiary).get(pattern).get(patternColourPrimary).get(patternColourSecondary).get(patternColourTertiary);
 	}
 	
-	private String getSVGStringFromEquippedMap(Colour colour, Colour colourSecondary, Colour colourTertiary, String pattern, Colour patternColourPrimary, Colour patternColourSecondary, Colour patternColourTertiary) {
-		if(pattern == null) {
-			pattern = "none"; // The map does not contain null as a key.
-		}
-		initMapIfAbsent(SVGStringEquippedMap, colour, colourSecondary, colourTertiary, pattern, patternColourPrimary, patternColourSecondary, patternColourTertiary);
-		return SVGStringEquippedMap.get(colour).get(colourSecondary).get(colourTertiary).get(pattern).get(patternColourPrimary).get(patternColourSecondary).get(patternColourTertiary);
-	}
-
 	public String getSVGImage() {
 		Colour pColour = Colour.CLOTHING_BLACK;
 		if(this.getAllAvailablePrimaryColours()!=null && !this.getAllAvailablePrimaryColours().isEmpty()) {
@@ -1498,169 +1420,52 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 			return "";
 		}
 		
-		if(this.equals(ClothingType.HIPS_CONDOMS)) {
-			if (getAllAvailablePrimaryColours().contains(colour)) {
-				try {
-					InputStream is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/clothing/belt_used_condoms_base_back.svg");
-					String s = "<div style='width:100%;height:100%;position:absolute;left:0;bottom:0;padding:0;margin:0'>"+Util.inputStreamToString(is)+"</div>";
-					is.close();
-					s = getSVGWithHandledPattern(s, pattern, patternColour, patternSecondaryColour, patternTertiaryColour);
-					s = Util.colourReplacement(this.getId(), colour, colourSecondary, colourTertiary, s);
-
-					if(!equippedVariant) {
-						is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/clothing/belt_used_condoms_base_front.svg");
-						s += "<div style='width:100%;height:100%;position:absolute;left:0;bottom:0;padding:0;margin:0'>" + Util.inputStreamToString(is) + "</div>";
-						s = getSVGWithHandledPattern(s, pattern, patternColour, patternSecondaryColour, patternTertiaryColour);
-						s = Util.colourReplacement(this.getId(), colour, colourSecondary, colourTertiary, s);
-						is.close();
-						
-						addSVGStringEquippedMapping(colour, colourSecondary, colourTertiary, pattern, patternColour, patternSecondaryColour, patternTertiaryColour, s);
-						
-						return s;
-						
-					} else {
-						List<Colour> condomColours = new ArrayList<>();
-						// Draw all backs:
-						for(AbstractItem item : character.getAllItemsInInventory()) {
-							if(item.getItemType().equals(ItemType.CONDOM_USED)) {
-								if(condomColours.size()<8) {
-									condomColours.add(item.getColour());
-									
-									is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/clothing/belt_used_condoms_"+condomColours.size()+"_back.svg");
-									s += "<div style='width:100%;height:100%;position:absolute;left:0;bottom:0;padding:0;margin:0'>" + Util.inputStreamToString(is) + "</div>";
-									s = getSVGWithHandledPattern(s, pattern, patternColour, patternSecondaryColour, patternTertiaryColour);
-									s = Util.colourReplacement(this.getId(), item.getColour(), null, null, s);
-									is.close();
-								}
-							}
-						}
-						
-						is.close();
-						is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/clothing/belt_used_condoms_base_front.svg");
-						s += "<div style='width:100%;height:100%;position:absolute;left:0;bottom:0;padding:0;margin:0'>" + Util.inputStreamToString(is) + "</div>";
-						s = getSVGWithHandledPattern(s, pattern, patternColour, patternSecondaryColour, patternTertiaryColour);
-						s = Util.colourReplacement(this.getId(), colour, colourSecondary, colourTertiary, s);
-						is.close();
-						
-						int i = 1;
-						for(Colour c : condomColours) {
-							is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/clothing/belt_used_condoms_"+i+"_front.svg");
-							s += "<div style='width:100%;height:100%;position:absolute;left:0;bottom:0;padding:0;margin:0'>" + Util.inputStreamToString(is) + "</div>";
-							s = getSVGWithHandledPattern(s, pattern, patternColour, patternSecondaryColour, patternTertiaryColour);
-							s = Util.colourReplacement(this.getId(), c, null, null, s);
-							is.close();
-							i++;
-						}
-						
-						return s;
-					}
-					
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
+		String stringFromMap = getSVGStringFromMap(colour, colourSecondary, colourTertiary, pattern, patternColour, patternSecondaryColour, patternTertiaryColour);
+		if (stringFromMap!=null && !this.equals(ClothingType.WRIST_WOMENS_WATCH) && !this.equals(ClothingType.WRIST_MENS_WATCH)) {
+			return stringFromMap;
 			
 		} else {
-			if(equippedVariant && pathNameEquipped!=null) {
-				String stringFromMap = getSVGStringFromEquippedMap(colour, colourSecondary, colourTertiary, pattern, patternColour, patternSecondaryColour, patternTertiaryColour);
-				if (stringFromMap!=null && !this.equals(ClothingType.WRIST_WOMENS_WATCH) && !this.equals(ClothingType.WRIST_MENS_WATCH)) {
-					return stringFromMap;
+			if (getAllAvailablePrimaryColours().contains(colour)) {
+				try {
 					
-				} else {
-					if (getAllAvailablePrimaryColours().contains(colour)) {
-						try {
-							
-							InputStream is;
-							String s;
-							if(isMod) {
-								List<String> lines = Files.readAllLines(Paths.get(pathNameEquipped));
-								StringBuilder sb = new StringBuilder();
-								for(String line : lines) {
-									sb.append(line);
-								}
-								s = sb.toString();
-							} else {
-								is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/clothing/" + pathNameEquipped + ".svg");
-								s = Util.inputStreamToString(is);
-								is.close();
-							}
-							
-							s = getSVGWithHandledPattern(s, pattern, patternColour, patternSecondaryColour, patternTertiaryColour);
-							
-							s = Util.colourReplacement(this.getId(), colour, colourSecondary, colourTertiary, s);
-							
-							// Add minute and hour hands to women's and men's watches:
-							s += (this.equals(ClothingType.WRIST_WOMENS_WATCH)
-									? "<div style='width:100%;height:100%;position:absolute;left:0;top:0;-webkit-transform: rotate(" + ((Main.game.getMinutesPassed() % (60 * 24)) / 2f) + "deg);'>"
-										+ SVGImages.SVG_IMAGE_PROVIDER.getWomensWatchHourHand() + "</div>"
-										+ "<div style='width:100%;height:100%;position:absolute;left:0;top:0;-webkit-transform: rotate(" + (Main.game.getMinutesPassed() % (60)) * 6 + "deg);'>"
-										+ SVGImages.SVG_IMAGE_PROVIDER.getWomensWatchMinuteHand() + "</div>"
-									: "")
-									+ (this.equals(ClothingType.WRIST_MENS_WATCH)
-										? "<div style='width:100%;height:100%;position:absolute;left:0;top:0;-webkit-transform: rotate(" + ((Main.game.getMinutesPassed() % (60 * 24)) / 2f) + "deg);'>"
-											+ SVGImages.SVG_IMAGE_PROVIDER.getMensWatchHourHand() + "</div>"
-											+ "<div style='width:100%;height:100%;position:absolute;left:0;top:0;-webkit-transform: rotate(" + (Main.game.getMinutesPassed() % (60)) * 6
-											+ "deg);'>" + SVGImages.SVG_IMAGE_PROVIDER.getMensWatchMinuteHand() + "</div>"
-										: "");
+					InputStream is;
+					String s;
+					if(isMod) {
+						List<String> lines = Files.readAllLines(Paths.get(pathName));
+						StringBuilder sb = new StringBuilder();
+						for(String line : lines) {
+							sb.append(line);
+						}
+						s = sb.toString();
+					} else {
+						is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/clothing/" + pathName + ".svg");
+						s = Util.inputStreamToString(is);
+						is.close();
+					}
+					
+					s = getSVGWithHandledPattern(s, pattern, patternColour, patternSecondaryColour, patternTertiaryColour);
+					
+					s = Util.colourReplacement(this.getId(), colour, colourSecondary, colourTertiary, s);
+					
+					// Add minute and hour hands to women's and men's watches:
+					s += (this.equals(ClothingType.WRIST_WOMENS_WATCH)
+							? "<div style='width:100%;height:100%;position:absolute;left:0;top:0;-webkit-transform: rotate(" + ((Main.game.getMinutesPassed() % (60 * 24)) / 2f) + "deg);'>"
+								+ SVGImages.SVG_IMAGE_PROVIDER.getWomensWatchHourHand() + "</div>"
+								+ "<div style='width:100%;height:100%;position:absolute;left:0;top:0;-webkit-transform: rotate(" + (Main.game.getMinutesPassed() % (60)) * 6 + "deg);'>"
+								+ SVGImages.SVG_IMAGE_PROVIDER.getWomensWatchMinuteHand() + "</div>"
+							: "")
+							+ (this.equals(ClothingType.WRIST_MENS_WATCH)
+								? "<div style='width:100%;height:100%;position:absolute;left:0;top:0;-webkit-transform: rotate(" + ((Main.game.getMinutesPassed() % (60 * 24)) / 2f) + "deg);'>"
+									+ SVGImages.SVG_IMAGE_PROVIDER.getMensWatchHourHand() + "</div>"
+									+ "<div style='width:100%;height:100%;position:absolute;left:0;top:0;-webkit-transform: rotate(" + (Main.game.getMinutesPassed() % (60)) * 6
+									+ "deg);'>" + SVGImages.SVG_IMAGE_PROVIDER.getMensWatchMinuteHand() + "</div>"
+								: "");
+					
+					addSVGStringMapping(colour, colourSecondary, colourTertiary, pattern, patternColour, patternSecondaryColour, patternTertiaryColour, s);
 
-							addSVGStringEquippedMapping(colour, colourSecondary, colourTertiary, pattern, patternColour, patternSecondaryColour, patternTertiaryColour, s);
-							
-							return s;
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-				
-			} else {
-				String stringFromMap = getSVGStringFromMap(colour, colourSecondary, colourTertiary, pattern, patternColour, patternSecondaryColour, patternTertiaryColour);
-				if (stringFromMap!=null && !this.equals(ClothingType.WRIST_WOMENS_WATCH) && !this.equals(ClothingType.WRIST_MENS_WATCH)) {
-					return stringFromMap;
-					
-				} else {
-					if (getAllAvailablePrimaryColours().contains(colour)) {
-						try {
-							
-							InputStream is;
-							String s;
-							if(isMod) {
-								List<String> lines = Files.readAllLines(Paths.get(pathName));
-								StringBuilder sb = new StringBuilder();
-								for(String line : lines) {
-									sb.append(line);
-								}
-								s = sb.toString();
-							} else {
-								is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/clothing/" + pathName + ".svg");
-								s = Util.inputStreamToString(is);
-								is.close();
-							}
-							
-							s = getSVGWithHandledPattern(s, pattern, patternColour, patternSecondaryColour, patternTertiaryColour);
-							
-							s = Util.colourReplacement(this.getId(), colour, colourSecondary, colourTertiary, s);
-							
-							// Add minute and hour hands to women's and men's watches:
-							s += (this.equals(ClothingType.WRIST_WOMENS_WATCH)
-									? "<div style='width:100%;height:100%;position:absolute;left:0;top:0;-webkit-transform: rotate(" + ((Main.game.getMinutesPassed() % (60 * 24)) / 2f) + "deg);'>"
-										+ SVGImages.SVG_IMAGE_PROVIDER.getWomensWatchHourHand() + "</div>"
-										+ "<div style='width:100%;height:100%;position:absolute;left:0;top:0;-webkit-transform: rotate(" + (Main.game.getMinutesPassed() % (60)) * 6 + "deg);'>"
-										+ SVGImages.SVG_IMAGE_PROVIDER.getWomensWatchMinuteHand() + "</div>"
-									: "")
-									+ (this.equals(ClothingType.WRIST_MENS_WATCH)
-										? "<div style='width:100%;height:100%;position:absolute;left:0;top:0;-webkit-transform: rotate(" + ((Main.game.getMinutesPassed() % (60 * 24)) / 2f) + "deg);'>"
-											+ SVGImages.SVG_IMAGE_PROVIDER.getMensWatchHourHand() + "</div>"
-											+ "<div style='width:100%;height:100%;position:absolute;left:0;top:0;-webkit-transform: rotate(" + (Main.game.getMinutesPassed() % (60)) * 6
-											+ "deg);'>" + SVGImages.SVG_IMAGE_PROVIDER.getMensWatchMinuteHand() + "</div>"
-										: "");
-							
-							addSVGStringMapping(colour, colourSecondary, colourTertiary, pattern, patternColour, patternSecondaryColour, patternTertiaryColour, s);
-		
-							return s;
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
+					return s;
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
 			}
 		}
