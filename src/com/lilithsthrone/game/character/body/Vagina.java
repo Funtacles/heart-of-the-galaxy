@@ -768,8 +768,6 @@ public class Vagina implements BodyPartInterface, Serializable {
 						+ "</p>"));
 				}
 				break;
-			case ANGEL://TODO
-				break;
 		}
 		
 		orificeVagina.getOrificeModifiers().clear();

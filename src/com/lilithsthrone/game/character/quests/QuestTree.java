@@ -15,7 +15,6 @@ public class QuestTree {
 	public static TreeNode<Quest> slaveryTree = new TreeNode<Quest>(Quest.SIDE_SLAVER_NEED_RECOMMENDATION);
 	public static TreeNode<Quest> accommodationTree = new TreeNode<Quest>(Quest.SIDE_ACCOMMODATION_NEED_LILAYAS_PERMISSION);
 	public static TreeNode<Quest> hypnoWatchTree = new TreeNode<Quest>(Quest.SIDE_HYPNO_WATCH_VICKY);
-	public static TreeNode<Quest> nyanTree = new TreeNode<Quest>(Quest.RELATIONSHIP_NYAN_STOCK_ISSUES);
 	
 	static {
 		TreeNode<Quest> node1 = new TreeNode<Quest>(Quest.MAIN_1_A_LILAYAS_TESTS);
@@ -57,12 +56,5 @@ public class QuestTree {
 		hypnoWatchTree.addChild(node1);
 		node2 = new TreeNode<Quest>(Quest.SIDE_UTIL_COMPLETE);
 		node1.addChild(node2);
-		
-		node1 = new TreeNode<Quest>(Quest.RELATIONSHIP_NYAN_STOCK_ISSUES_AGREED_TO_HELP);
-		nyanTree.addChild(node1);
-		node2 = new TreeNode<Quest>(Quest.RELATIONSHIP_NYAN_STOCK_ISSUES_SUPPLIERS_BEATEN);
-		node1.addChild(node2);
-		node1 = new TreeNode<Quest>(Quest.SIDE_UTIL_COMPLETE);
-		node2.addChild(node1);
 	}
 }

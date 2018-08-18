@@ -41,21 +41,16 @@ import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.npc.dominion.Angel;
 import com.lilithsthrone.game.character.npc.dominion.Arthur;
 import com.lilithsthrone.game.character.npc.dominion.Ashley;
-import com.lilithsthrone.game.character.npc.dominion.Bunny;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.Kate;
 import com.lilithsthrone.game.character.npc.dominion.Lilaya;
-import com.lilithsthrone.game.character.npc.dominion.Loppy;
 import com.lilithsthrone.game.character.npc.dominion.Lumi;
 import com.lilithsthrone.game.character.npc.dominion.Nyan;
 import com.lilithsthrone.game.character.npc.dominion.Pix;
 import com.lilithsthrone.game.character.npc.dominion.Ralph;
 import com.lilithsthrone.game.character.npc.dominion.Rose;
-import com.lilithsthrone.game.character.npc.dominion.SupplierLeader;
-import com.lilithsthrone.game.character.npc.dominion.SupplierPartner;
 import com.lilithsthrone.game.character.npc.dominion.TestNPC;
 import com.lilithsthrone.game.character.npc.dominion.Vicky;
 import com.lilithsthrone.game.character.npc.misc.GenericAndrogynousNPC;
@@ -552,21 +547,6 @@ public class Game implements Serializable, XMLSaving {
 				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Ashley.class))) {
 					Main.game.addNPC(new Ashley(), false);
 				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(SupplierLeader.class))) {
-					Main.game.addNPC(new SupplierLeader(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(SupplierPartner.class))) {
-					Main.game.addNPC(new SupplierPartner(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Angel.class))) {
-					Main.game.addNPC(new Angel(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Bunny.class))) {
-					Main.game.addNPC(new Bunny(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Loppy.class))) {
-					Main.game.addNPC(new Loppy(), false);
-				}
 				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Lumi.class))) {
 					Main.game.addNPC(new Lumi(), false);
 				}
@@ -685,13 +665,7 @@ public class Game implements Serializable, XMLSaving {
 			addNPC(new Arthur(), false);
 
 			addNPC(new Ashley(), false);
-			addNPC(new SupplierLeader(), false);
-			addNPC(new SupplierPartner(), false);
 
-			addNPC(new Angel(), false);
-			addNPC(new Bunny(), false);
-			addNPC(new Loppy(), false);
-			
 			addNPC(new Lumi(), false);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2263,26 +2237,6 @@ public class Game implements Serializable, XMLSaving {
 
 	public NPC getAshley() {
 		return (NPC) this.getNPCById(getUniqueNPCId(Ashley.class));
-	}
-	
-	public NPC getSupplierLeader() {
-		return (NPC) this.getNPCById(getUniqueNPCId(SupplierLeader.class));
-	}
-	
-	public NPC getSupplierPartner() {
-		return (NPC) this.getNPCById(getUniqueNPCId(SupplierPartner.class));
-	}
-	
-	public NPC getAngel() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Angel.class));
-	}
-	
-	public NPC getBunny() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Bunny.class));
-	}
-	
-	public NPC getLoppy() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Loppy.class));
 	}
 	
 	public NPC getLumi() {

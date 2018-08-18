@@ -19,8 +19,6 @@ public enum MouthType implements BodyPartTypeInterface {
 	
 	HUMAN(BodyCoveringType.MOUTH, Race.HUMAN),
 
-	ANGEL(BodyCoveringType.MOUTH, Race.ANGEL),
-
 	DEMON_COMMON(BodyCoveringType.MOUTH, Race.DEMON),
 
 	IMP(BodyCoveringType.MOUTH, Race.IMP),

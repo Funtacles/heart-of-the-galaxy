@@ -472,7 +472,6 @@ public class Properties implements Serializable {
 					element = (Element) nodes.item(0);
 					
 					this.setValue(PropertyValue.lightTheme, Boolean.valueOf((((Element)element.getElementsByTagName("lightTheme").item(0)).getAttribute("value"))));
-					this.setValue(PropertyValue.furryTailPenetrationContent, Boolean.valueOf((((Element)element.getElementsByTagName("furryTailPenetrationContent").item(0)).getAttribute("value"))));
 					this.setValue(PropertyValue.nonConContent, Boolean.valueOf((((Element)element.getElementsByTagName("nonConContent").item(0)).getAttribute("value"))));
 					this.setValue(PropertyValue.incestContent, Boolean.valueOf((((Element)element.getElementsByTagName("incestContent").item(0)).getAttribute("value"))));
 					

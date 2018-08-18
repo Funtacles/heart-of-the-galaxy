@@ -19,8 +19,6 @@ public enum NippleType implements BodyPartTypeInterface {
 	
 	HUMAN(BodyCoveringType.NIPPLES, Race.HUMAN),
 
-	ANGEL(BodyCoveringType.NIPPLES, Race.ANGEL),
-
 	DEMON_COMMON(BodyCoveringType.NIPPLES, Race.DEMON),
 
 	IMP(BodyCoveringType.NIPPLES, Race.IMP),
@@ -98,9 +96,6 @@ public enum NippleType implements BodyPartTypeInterface {
 		String descriptor[];
 		
 		switch(this){
-			case ANGEL:
-				descriptor = new String[] { "flawless", "perky" };
-				break;
 			case DEMON_COMMON:
 				descriptor = new String[] { "demonic", "irresistible" };
 				break;

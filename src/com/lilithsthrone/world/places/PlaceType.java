@@ -9,9 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.lilithsthrone.game.Weather;
-import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.character.race.Subspecies;
-import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.encounters.Encounter;
 import com.lilithsthrone.game.dialogue.places.JunglePlaces;
@@ -19,7 +17,6 @@ import com.lilithsthrone.game.dialogue.places.dominion.CityHall;
 import com.lilithsthrone.game.dialogue.places.dominion.CityPlaces;
 import com.lilithsthrone.game.dialogue.places.dominion.DemonHome;
 import com.lilithsthrone.game.dialogue.places.dominion.LilithsTower;
-import com.lilithsthrone.game.dialogue.places.dominion.RedLightDistrict;
 import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.Lab;
 import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.Library;
 import com.lilithsthrone.game.dialogue.places.dominion.lilayashome.LilayaHomeGeneric;
@@ -32,7 +29,6 @@ import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.PixsPlaygr
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.RalphsSnacks;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.ShoppingArcadeDialogue;
 import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.SuccubisSecrets;
-import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.SupplierDepot;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.BaseColour;
 import com.lilithsthrone.utils.Bearing;
@@ -141,17 +137,6 @@ public enum PlaceType {
 		}
 	},
 	
-	DOMINION_RED_LIGHT_DISTRICT("Red Light District", "dominion/brothel", BaseColour.MAGENTA, Colour.MAP_BACKGROUND_DARK, RedLightDistrict.OUTSIDE, Encounter.DOMINION_STREET, false, false, true, "in the streets of Dominion") {
-		@Override
-		public boolean isDangerous() {
-			return Main.game.getCurrentWeather() == Weather.MAGIC_STORM;
-		}
-		@Override
-		public List<Subspecies> getSpeciesPopulatingArea() {
-			return DOMINION_PLAZA.getSpeciesPopulatingArea();
-		}
-	},
-
 	DOMINION_PARK("Park", "dominion/park", BaseColour.GREEN, Colour.MAP_BACKGROUND, CityPlaces.PARK, Encounter.DOMINION_STREET, false, false, true, "in one of Dominion's parks") {
 		@Override
 		public boolean isDangerous() {
@@ -380,18 +365,6 @@ public enum PlaceType {
 	LILAYA_HOME_STAIR_DOWN("Staircase", "dominion/lilayasHome/stairsDown", BaseColour.RED, Colour.MAP_BACKGROUND, LilayaHomeGeneric.STAIRCASE_DOWN, null, false, true, false, "in Lilaya's Home"),
 	
 
-	// Angel's Kiss:
-
-	ANGELS_KISS_CORRIDOR("Corridor", null, BaseColour.GREY, Colour.MAP_BACKGROUND, RedLightDistrict.ANGELS_KISS_CORRIDOR, null, false, true, false, "in Angel's Kiss"),
-	ANGELS_KISS_ENTRANCE("Entrance Hall", "dominion/angelsKiss/entrance", BaseColour.RED, Colour.MAP_BACKGROUND, RedLightDistrict.ANGELS_KISS_ENTRANCE, null, false, true, false, "in Angel's Kiss"),
-	ANGELS_KISS_STAIRCASE_UP("Entrance Hall", "dominion/angelsKiss/stairsUp", BaseColour.GREEN_LIGHT, Colour.MAP_BACKGROUND, RedLightDistrict.ANGELS_KISS_STAIRS_UP, null, false, true, false, "in Angel's Kiss"),
-	ANGELS_KISS_STAIRCASE_DOWN("Entrance Hall", "dominion/angelsKiss/stairsDown", BaseColour.RED, Colour.MAP_BACKGROUND, RedLightDistrict.ANGELS_KISS_STAIRS_DOWN, null, false, true, false, "in Angel's Kiss"),
-	ANGELS_KISS_BEDROOM("Bedroom", "dominion/angelsKiss/bedroom", BaseColour.PINK, Colour.MAP_BACKGROUND, RedLightDistrict.ANGELS_KISS_BEDROOM, null, false, true, false, "in Angel's Kiss"),
-	ANGELS_KISS_BEDROOM_BUNNY("Bunny's Bedroom", "dominion/angelsKiss/bedroomBunny", BaseColour.PINK_LIGHT, Colour.MAP_BACKGROUND, RedLightDistrict.ANGELS_KISS_BEDROOM_BUNNY, null, false, true, false, "in Bunny's Bedroom"),
-	ANGELS_KISS_BEDROOM_LOPPY("Loppy's Bedroom", "dominion/angelsKiss/bedroomLoppy", BaseColour.PURPLE, Colour.MAP_BACKGROUND, RedLightDistrict.ANGELS_KISS_BEDROOM_LOPPY, null, false, true, false, "in Loppy's Bedroom"),
-	ANGELS_KISS_OFFICE("Angel's Office", "dominion/angelsKiss/office", BaseColour.BLUE_LIGHT, Colour.MAP_BACKGROUND, RedLightDistrict.ANGELS_KISS_OFFICE, null, false, true, false, "in Angel's Office"),
-	
-	
 	// Shopping arcade:
 	
 	SHOPPING_ARCADE_PATH("Arcade", null, BaseColour.BLACK, Colour.MAP_BACKGROUND, ShoppingArcadeDialogue.ARCADE, null, false, true, true, "in the Shopping Arcade") {
@@ -418,67 +391,10 @@ public enum PlaceType {
 
 	SHOPPING_ARCADE_ASHLEYS_SHOP("Dream Lover", "dominion/shoppingArcade/ashleyShop", BaseColour.LILAC_LIGHT, Colour.MAP_BACKGROUND, DreamLover.EXTERIOR, null, false, true, true, "in their store"),
 	
-	SHOPPING_ARCADE_SUPPLIER_DEPOT("Supplier Depot", "dominion/shoppingArcade/supplierDepot", BaseColour.CRIMSON, Colour.MAP_BACKGROUND, SupplierDepot.EXTERIOR, null, false, true, true, "in the supplier depot") {
-		@Override
-		public BaseColour getColour() {
-			if(Main.game.getPlayer().isQuestCompleted(QuestLine.RELATIONSHIP_NYAN_HELP)) {
-				return BaseColour.GREEN;
-			} else {
-				return BaseColour.CRIMSON;
-			}
-		}
-		@Override
-		public String getSVGString(Set<PlaceUpgrade> upgrades) {
-			if(Main.game.getPlayer().isQuestCompleted(QuestLine.RELATIONSHIP_NYAN_HELP)) {
-				return PlaceType.getSVGOverride("dominion/shoppingArcade/supplierDepot", Colour.BASE_GREEN);
-			} else {
-				return SVGString;
-			}
-		}
-	},
-	
 	SHOPPING_ARCADE_PIXS_GYM("Pix's Playground", "dominion/shoppingArcade/gym", BaseColour.GOLD, Colour.MAP_BACKGROUND, PixsPlayground.GYM_EXTERIOR, null, false, true, true, "in her gym"),
 
 	// Exits & entrances:
 	SHOPPING_ARCADE_ENTRANCE("Exit", "dominion/shoppingArcade/exit", BaseColour.RED, Colour.MAP_BACKGROUND, ShoppingArcadeDialogue.ENTRY, null, false, true, true, "in the Shopping Arcade"),
-	
-	
-	// Supplier Depot:
-	
-	SUPPLIER_DEPOT_CORRIDOR("Corridor", null, BaseColour.BLACK, Colour.MAP_BACKGROUND, SupplierDepot.SUPPLIER_DEPOT_CORRIDOR, null, false, true, false, "in the supplier depot"),
-	
-	SUPPLIER_DEPOT_ENTRANCE("Reception Area", "dominion/shoppingArcade/exit", BaseColour.GREY, Colour.MAP_BACKGROUND, SupplierDepot.SUPPLIER_DEPOT_RECEPTION, null, false, true, false, "in the supplier depot") {
-		@Override
-		public boolean isPopulated() {
-			return Main.game.getPlayer().isQuestCompleted(QuestLine.RELATIONSHIP_NYAN_HELP);
-		}
-		@Override
-		public String getSVGString(Set<PlaceUpgrade> upgrades) {
-			if(Main.game.getPlayer().isQuestCompleted(QuestLine.RELATIONSHIP_NYAN_HELP)) {
-				return PlaceType.getSVGOverride("dominion/shoppingArcade/exit", Colour.BASE_GREEN);
-			} else {
-				return SVGString;
-			}
-		}
-	},
-	
-	SUPPLIER_DEPOT_STORAGE_ROOM("Storage Room", "dominion/shoppingArcade/supplierStorageRoom", BaseColour.ORANGE, Colour.MAP_BACKGROUND, SupplierDepot.SUPPLIER_DEPOT_STORAGE_ROOM, null, false, true, false, "in the supplier depot"),
-	
-	SUPPLIER_DEPOT_OFFICE("Office", "dominion/shoppingArcade/supplierOffice", BaseColour.CRIMSON, Colour.MAP_BACKGROUND, SupplierDepot.SUPPLIER_DEPOT_OFFICE, null, true, true, false, "in the supplier depot") {
-		@Override
-		public boolean isDangerous() {
-			return !Main.game.getPlayer().isQuestCompleted(QuestLine.RELATIONSHIP_NYAN_HELP);
-		}
-		@Override
-		public DialogueNodeOld getDialogue(boolean withRandomEncounter, boolean forceEncounter) {
-			if(Main.game.getDialogueFlags().hasFlag(DialogueFlagValue.suppliersEncountered)) {
-				return SupplierDepot.SUPPLIER_DEPOT_OFFICE_REPEAT;
-				
-			} else {
-				return SupplierDepot.SUPPLIER_DEPOT_OFFICE;
-			}
-		}
-	},
 	;
 
 	

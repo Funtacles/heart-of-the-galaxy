@@ -1307,13 +1307,6 @@ public class OptionsDialogue {
 			
 			
 			UtilText.nodeContentSB.append(getContentPreferenceDiv(
-						"FURRY_TAIL_PENETRATION",
-						Colour.BASE_MAGENTA,
-						"Furry tail penetrations",
-						"This enables furry tails to engage in penetrative actions in sex.",
-						Main.getProperties().hasValue(PropertyValue.furryTailPenetrationContent)));
-					
-			UtilText.nodeContentSB.append(getContentPreferenceDiv(
 							"INFLATION_CONTENT",
 							Colour.CUM,
 							"Cum Inflation",

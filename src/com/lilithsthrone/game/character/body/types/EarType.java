@@ -18,8 +18,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 public enum EarType implements BodyPartTypeInterface {
 	HUMAN(BodyCoveringType.HUMAN, Race.HUMAN),
 
-	ANGEL(BodyCoveringType.ANGEL, Race.ANGEL),
-
 	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, Race.DEMON),
 
 	IMP(BodyCoveringType.IMP, Race.IMP),
@@ -80,8 +78,6 @@ public enum EarType implements BodyPartTypeInterface {
 	@Override
 	public String getDescriptor(GameCharacter gc) {
 		switch(this){
-			case ANGEL:
-				return UtilText.returnStringAtRandom("pointed", "delicate");
 			case CAT_MORPH:
 				return UtilText.returnStringAtRandom("furry", "fur-coated", "cat-like");
 			case CAT_MORPH_TUFTED:
@@ -122,8 +118,6 @@ public enum EarType implements BodyPartTypeInterface {
 	
 	public String getTransformName() {
 		switch(this){
-			case ANGEL:
-				return "angelic";
 			case CAT_MORPH:
 				return "feline";
 			case CAT_MORPH_TUFTED:

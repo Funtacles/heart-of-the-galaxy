@@ -2698,11 +2698,9 @@ public abstract class GameCharacter implements XMLSaving {
 			return "You're in the middle of something right now!";
 		}
 		switch(this.getWorldLocation()) {
-			case ANGELS_KISS_FIRST_FLOOR:
-			case ANGELS_KISS_GROUND_FLOOR:
+			case JUNGLE:
 			case DOMINION:
 			case EMPTY:
-			case JUNGLE:
 			case LILAYAS_HOUSE_FIRST_FLOOR:
 			case LILAYAS_HOUSE_GROUND_FLOOR:
 				break;
@@ -2712,8 +2710,6 @@ public abstract class GameCharacter implements XMLSaving {
 					return "This isn't a suitable place to be having sex with [npc.name]!";
 				}
 				break;
-			case SUPPLIER_DEN:
-				return "This isn't a suitable place to be having sex with [npc.name]!";
 		}
 		for(GameCharacter character : Main.game.getCharactersPresent()) {
 			if(!this.getPartyLeader().getCompanions().contains(character)) {

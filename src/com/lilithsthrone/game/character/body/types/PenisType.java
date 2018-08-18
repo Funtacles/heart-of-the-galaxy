@@ -24,8 +24,6 @@ public enum PenisType implements BodyPartTypeInterface {
 
 	HUMAN(BodyCoveringType.PENIS, TesticleType.HUMAN, Race.HUMAN),
 
-	ANGEL(BodyCoveringType.PENIS, TesticleType.ANGEL, Race.ANGEL),
-
 	BOVINE(BodyCoveringType.PENIS, TesticleType.BOVINE, Race.COW_MORPH, PenetrationModifier.TAPERED, PenetrationModifier.VEINY, PenetrationModifier.SHEATHED),
 
 	DEMON_COMMON(BodyCoveringType.PENIS, TesticleType.DEMON_COMMON, Race.DEMON, PenetrationModifier.RIBBED, PenetrationModifier.TENTACLED, PenetrationModifier.PREHENSILE),
@@ -89,8 +87,6 @@ public enum PenisType implements BodyPartTypeInterface {
 		switch(Util.random.nextInt(3)){
 			case 0:
 				switch(this){
-					case ANGEL:
-						return UtilText.returnStringAtRandom("angelic");
 					case BOVINE:
 						return UtilText.returnStringAtRandom("bovine", "bull-", "bull-like", "bestial");
 					case CANINE:
@@ -137,8 +133,6 @@ public enum PenisType implements BodyPartTypeInterface {
 	
 	public String getTransformName() {
 		switch(this){
-			case ANGEL:
-				return "angelic";
 			case BOVINE:
 				return "bovine";
 			case CANINE:
@@ -227,9 +221,6 @@ public enum PenisType implements BodyPartTypeInterface {
 				return UtilText.returnStringAtRandom("");
 			case ALLIGATOR_MORPH:
 				prefix = UtilText.returnStringAtRandom("alligator-");
-				break;
-			case ANGEL:
-				prefix = UtilText.returnStringAtRandom("angel-");
 				break;
 			case DEMON_COMMON:
 				prefix = UtilText.returnStringAtRandom("demon-");

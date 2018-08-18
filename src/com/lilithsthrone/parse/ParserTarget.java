@@ -264,65 +264,6 @@ public enum ParserTarget {
 		}
 	},
 	
-	WOLFGANG(Util.newArrayListOfValues(
-			"wolfgang",
-			"supplierLeader"), "") {
-		public String getDescription() {
-			return Main.game.getSupplierLeader().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getSupplierLeader();
-		}
-	},
-	
-	KARL(Util.newArrayListOfValues(
-			"karl",
-			"supplierPartner"), "") {
-		public String getDescription() {
-			return Main.game.getSupplierPartner().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getSupplierPartner();
-		}
-	},
-	
-	ANGEL(Util.newArrayListOfValues("angel"), "") {
-		public String getDescription() {
-			return Main.game.getAngel().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getAngel();
-		}
-	},
-	
-	BUNNY(Util.newArrayListOfValues("bunny"), "") {
-		public String getDescription() {
-			return Main.game.getBunny().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getBunny();
-		}
-	},
-	
-	LOPPY(Util.newArrayListOfValues("loppy"), "") {
-		public String getDescription() {
-			return Main.game.getLoppy().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getLoppy();
-		}
-	},
-	
 	LUMI(Util.newArrayListOfValues("lumi"), "") {
 		public String getDescription() {
 			return Main.game.getLumi().getDescription();

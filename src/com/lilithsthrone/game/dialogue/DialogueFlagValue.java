@@ -58,10 +58,6 @@ public enum DialogueFlagValue {
 	nyanSex,
 	nyanGift,
 	
-	supplierDepotDoorUnlocked,
-	suppliersEncountered,
-	suppliersTriedConvincing,
-	
 	ashleySexToysDiscovered,
 	ashleyAttitude,
 	

@@ -59,7 +59,7 @@ public class Ashley extends NPC {
 						+ " They are very stand-offish and loathe helping out their customers, to the point where they'd rather stare at the walls instead of offering any help.",
 				10,
 				Gender.N_P_TRAP,
-				RacialBody.ANGEL,
+				RacialBody.DEMON,
 				RaceStage.GREATER,
 				new CharacterInventory(10),
 				WorldType.SHOPPING_ARCADE,
@@ -76,7 +76,7 @@ public class Ashley extends NPC {
 		if(!isImported) {
 			this.setSexualOrientation(SexualOrientation.AMBIPHILIC);
 			
-			this.setEyeCovering(new Covering(BodyCoveringType.EYE_ANGEL, Colour.EYE_BLUE));
+			this.setEyeCovering(new Covering(BodyCoveringType.EYE_HUMAN, Colour.EYE_BLUE));
 			this.setHeight(186);
 			
 			this.setMoney(0);

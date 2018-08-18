@@ -18,8 +18,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 public enum HairType implements BodyPartTypeInterface {
 	HUMAN(BodyCoveringType.HAIR_HUMAN, Race.HUMAN),
 
-	ANGEL(BodyCoveringType.HAIR_ANGEL, Race.ANGEL),
-
 	DEMON_COMMON(BodyCoveringType.HAIR_DEMON, Race.DEMON),
 	
 	IMP(BodyCoveringType.HAIR_IMP, Race.IMP),
@@ -91,8 +89,6 @@ public enum HairType implements BodyPartTypeInterface {
 	@Override
 	public String getDescriptor(GameCharacter gc) {
 		switch(this){
-			case ANGEL:
-				return UtilText.returnStringAtRandom("angelic");
 			case CAT_MORPH:
 				return UtilText.returnStringAtRandom("cat-like");
 			case CAT_MORPH_SIDEFLUFF:
@@ -135,8 +131,6 @@ public enum HairType implements BodyPartTypeInterface {
 
 	public String getTransformName() {
 		switch(this){
-			case ANGEL:
-				return "angelic";
 			case CAT_MORPH:
 				return "feline";
 			case CAT_MORPH_SIDEFLUFF:

@@ -46,8 +46,7 @@ public enum WorldType {
 					new Value<>(new Color(0x004000), PlaceType.DOMINION_PLAZA),
 					new Value<>(new Color(0x00ffff), PlaceType.DOMINION_AUNTS_HOME),
 					new Value<>(new Color(0xffff00), PlaceType.DOMINION_SHOPPING_ARCADE),
-					new Value<>(new Color(0x4bff00), PlaceType.DOMINION_PARK),
-					new Value<>(new Color(0xff4000), PlaceType.DOMINION_RED_LIGHT_DISTRICT)
+					new Value<>(new Color(0x4bff00), PlaceType.DOMINION_PARK)
 					
 					)),
 	
@@ -122,49 +121,13 @@ public enum WorldType {
 					new Value<>(new Color(0x8000ff), PlaceType.SHOPPING_ARCADE_PIXS_GYM),
 					new Value<>(new Color(0xff8000), PlaceType.SHOPPING_ARCADE_KATES_SHOP),
 					new Value<>(new Color(0xff00ff), PlaceType.SHOPPING_ARCADE_GENERIC_SHOP),
-					new Value<>(new Color(0x008000), PlaceType.SHOPPING_ARCADE_ASHLEYS_SHOP),
-					new Value<>(new Color(0x00ff00), PlaceType.SHOPPING_ARCADE_SUPPLIER_DEPOT)
+					new Value<>(new Color(0x008000), PlaceType.SHOPPING_ARCADE_ASHLEYS_SHOP)
 					)){
 		@Override
 		public boolean isRevealedOnStart() {
 			return true;
 		}
 	},
-	
-	SUPPLIER_DEN("Supplier Depot",
-			Colour.BASE_CRIMSON,
-			1,
-			"/com/lilithsthrone/res/map/dominion/shoppingArcade/supplierDen.png",
-			Util.newHashMapOfValues(
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-					new Value<>(new Color(0x808080), PlaceType.SUPPLIER_DEPOT_CORRIDOR),
-					new Value<>(new Color(0xff0000), PlaceType.SUPPLIER_DEPOT_ENTRANCE),
-					new Value<>(new Color(0xff00ff), PlaceType.SUPPLIER_DEPOT_STORAGE_ROOM),
-					new Value<>(new Color(0x00ff00), PlaceType.SUPPLIER_DEPOT_OFFICE))),
-
-	ANGELS_KISS_GROUND_FLOOR("Angel's Kiss",
-			Colour.BASE_MAGENTA,
-			1,
-			"/com/lilithsthrone/res/map/dominion/angelsKiss/angelsKissGroundFloor.png",
-			Util.newHashMapOfValues(
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-					new Value<>(new Color(0x808080), PlaceType.ANGELS_KISS_CORRIDOR),
-					new Value<>(new Color(0x00ff00), PlaceType.ANGELS_KISS_ENTRANCE),
-					new Value<>(new Color(0xff0000), PlaceType.ANGELS_KISS_STAIRCASE_UP),
-					new Value<>(new Color(0x00ffff), PlaceType.ANGELS_KISS_OFFICE),
-					new Value<>(new Color(0xff00ff), PlaceType.ANGELS_KISS_BEDROOM))),
-	
-	ANGELS_KISS_FIRST_FLOOR("Angel's Kiss",
-			Colour.BASE_MAGENTA,
-			1,
-			"/com/lilithsthrone/res/map/dominion/angelsKiss/angelsKissFirstFloor.png",
-			Util.newHashMapOfValues(
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-					new Value<>(new Color(0x808080), PlaceType.ANGELS_KISS_CORRIDOR),
-					new Value<>(new Color(0xff0000), PlaceType.ANGELS_KISS_STAIRCASE_DOWN),
-					new Value<>(new Color(0xff00ff), PlaceType.ANGELS_KISS_BEDROOM),
-					new Value<>(new Color(0xffff00), PlaceType.ANGELS_KISS_BEDROOM_BUNNY),
-					new Value<>(new Color(0xff8000), PlaceType.ANGELS_KISS_BEDROOM_LOPPY))),
 	
 	// Other:
 

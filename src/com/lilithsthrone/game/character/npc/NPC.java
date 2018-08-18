@@ -449,8 +449,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 				case WOLF_MORPH:
 				case HUMAN:
 					break;
-				case ANGEL:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.DYE_BRUSH));
 				case DEMON:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.COR_INGREDIENT_LILITHS_GIFT));
 				case IMP:
@@ -481,8 +479,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_WOLF_MORPH));
 				case HUMAN:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_HUMAN));
-				case ANGEL:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.DYE_BRUSH));
 				case DEMON:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.BOOK_DEMON));
 				case IMP:
@@ -512,8 +508,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 				case WOLF_MORPH:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_WOLF_MORPH));
 				case HUMAN:
-					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_HUMAN));
-				case ANGEL:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_HUMAN));
 				case DEMON: case IMP:
 					return Util.newArrayListOfValues(AbstractItemType.generateItem(ItemType.RACE_INGREDIENT_DEMON));
@@ -787,7 +781,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 				case RABBIT_MORPH:
 					itemType = ItemType.RACE_INGREDIENT_RABBIT_MORPH;
 					break;
-				case ANGEL:
 				case DEMON:
 				case IMP:
 				case HUMAN:

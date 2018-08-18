@@ -12,7 +12,6 @@ import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.main.Main;
-import com.lilithsthrone.utils.Vector2i;
 import com.lilithsthrone.utils.XMLSaving;
 
 /**
@@ -34,9 +33,6 @@ public class DialogueFlags implements Serializable, XMLSaving {
 	
 	// Amount of dialogue choices you can make before offspring interaction ends:
 	public int offspringDialogueTokens = 2;
-	
-	// Supplier storage rooms checked:
-	public Set<Vector2i> supplierStorageRoomsChecked = new HashSet<>();
 	
 	private String slaveTrader;
 	private String slaveryManagerSlaveSelected;
@@ -75,16 +71,6 @@ public class DialogueFlags implements Serializable, XMLSaving {
 		for(DialogueFlagValue value : values) {
 			CharacterUtils.createXMLElementWithValue(doc, valuesElement, "dialogueValue", value.toString());
 		}
-		
-		Element supplierStorageRoomsCheckedElement = doc.createElement("supplierStorageRoomsChecked");
-		element.appendChild(supplierStorageRoomsCheckedElement);
-		for(Vector2i value : supplierStorageRoomsChecked) {
-			Element location = doc.createElement("location");
-			supplierStorageRoomsCheckedElement.appendChild(location);
-			CharacterUtils.addAttribute(doc, location, "x", String.valueOf(value.getX()));
-			CharacterUtils.addAttribute(doc, location, "y", String.valueOf(value.getY()));
-		}
-		
 		
 		return element;
 	}
@@ -125,16 +111,6 @@ public class DialogueFlags implements Serializable, XMLSaving {
 			newFlags.values.remove(DialogueFlagValue.eponaIntroduced);
 		}
 		
-		if(parentElement.getElementsByTagName("supplierStorageRoomsChecked").item(0)!=null) {
-			for(int i=0; i<((Element) parentElement.getElementsByTagName("supplierStorageRoomsChecked").item(0)).getElementsByTagName("location").getLength(); i++){
-				Element e = (Element) ((Element) parentElement.getElementsByTagName("supplierStorageRoomsChecked").item(0)).getElementsByTagName("location").item(i);
-				
-				newFlags.supplierStorageRoomsChecked.add(
-						new Vector2i(
-								Integer.valueOf(e.getAttribute("x")),
-								Integer.valueOf(e.getAttribute("y"))));
-			}
-		}
 		return newFlags;
 	}
 	

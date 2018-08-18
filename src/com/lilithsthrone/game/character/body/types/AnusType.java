@@ -18,8 +18,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 public enum AnusType implements BodyPartTypeInterface {
 	HUMAN(BodyCoveringType.ANUS, Race.HUMAN),
 	
-	ANGEL(BodyCoveringType.ANUS, Race.ANGEL, OrificeModifier.RIBBED, OrificeModifier.TENTACLED, OrificeModifier.MUSCLE_CONTROL),
-	
 	DEMON_COMMON(BodyCoveringType.ANUS, Race.DEMON, OrificeModifier.RIBBED, OrificeModifier.TENTACLED, OrificeModifier.MUSCLE_CONTROL),
 	
 	IMP(BodyCoveringType.ANUS, Race.IMP, OrificeModifier.RIBBED, OrificeModifier.TENTACLED, OrificeModifier.MUSCLE_CONTROL),
@@ -87,8 +85,6 @@ public enum AnusType implements BodyPartTypeInterface {
 	@Override
 	public String getDescriptor(GameCharacter gc) {
 		switch(this){
-			case ANGEL:
-				return UtilText.returnStringAtRandom("angelic", "perfect");
 			case DEMON_COMMON:
 				return UtilText.returnStringAtRandom("demonic", "irresistible");
 			case HORSE_MORPH:

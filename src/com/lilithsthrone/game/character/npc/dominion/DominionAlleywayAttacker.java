@@ -74,7 +74,6 @@ public class DominionAlleywayAttacker extends NPC {
 			for(Subspecies s : Subspecies.values()) {
 				switch(s) {
 					// No spawn chance:
-					case ANGEL:
 					case DEMON:
 					case HUMAN:
 					case IMP:

@@ -18,8 +18,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 public enum FaceType implements BodyPartTypeInterface {
 	HUMAN(BodyCoveringType.HUMAN, MouthType.HUMAN, TongueType.HUMAN, Race.HUMAN),
 
-	ANGEL(BodyCoveringType.ANGEL, MouthType.ANGEL, TongueType.ANGEL, Race.ANGEL),
-
 	DEMON_COMMON(BodyCoveringType.DEMON_COMMON, MouthType.DEMON_COMMON, TongueType.DEMON_COMMON, Race.DEMON),
 
 	IMP(BodyCoveringType.IMP, MouthType.IMP, TongueType.IMP, Race.IMP),
@@ -71,7 +69,6 @@ public enum FaceType implements BodyPartTypeInterface {
 		switch(this){
 			case ALLIGATOR_MORPH:
 				return UtilText.returnStringAtRandom("snout", "face");
-			case ANGEL:
 			case DEMON_COMMON:
 			case HORSE_MORPH:
 			case HUMAN:
@@ -96,7 +93,6 @@ public enum FaceType implements BodyPartTypeInterface {
 		switch(this){
 			case ALLIGATOR_MORPH:
 				return UtilText.returnStringAtRandom("snouts", "faces");
-			case ANGEL:
 			case DEMON_COMMON:
 			case HORSE_MORPH:
 			case HUMAN:
@@ -120,8 +116,6 @@ public enum FaceType implements BodyPartTypeInterface {
 	@Override
 	public String getDescriptor(GameCharacter gc) {
 		switch(this){
-			case ANGEL:
-				return UtilText.returnStringAtRandom("perfect", "flawless", "angelic");
 			case CAT_MORPH:
 				return UtilText.returnStringAtRandom("anthropomorphic cat-like", "cat-like", "feline");
 			case CAT_MORPH_PANTHER:
@@ -154,8 +148,6 @@ public enum FaceType implements BodyPartTypeInterface {
 
 	public String getTransformName() {
 		switch(this){
-			case ANGEL:
-				return "angelic";
 			case CAT_MORPH:
 				return "feline";
 			case CAT_MORPH_PANTHER:

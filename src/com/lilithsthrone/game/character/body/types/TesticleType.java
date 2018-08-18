@@ -16,8 +16,6 @@ public enum TesticleType implements BodyPartTypeInterface {
 
 	HUMAN(BodyCoveringType.PENIS, FluidType.CUM_HUMAN, Race.HUMAN, false),
 
-	ANGEL(BodyCoveringType.PENIS, FluidType.CUM_ANGEL, Race.ANGEL, false),
-
 	DEMON_COMMON(BodyCoveringType.PENIS, FluidType.CUM_DEMON, Race.DEMON, false),
 
 	IMP(BodyCoveringType.PENIS, FluidType.CUM_IMP, Race.IMP, false),

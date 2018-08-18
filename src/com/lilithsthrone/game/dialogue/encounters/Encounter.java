@@ -12,7 +12,6 @@ import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.DominionSuccubusAttacker;
 import com.lilithsthrone.game.character.npc.dominion.Lumi;
-import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.inventory.ItemTag;
@@ -97,7 +96,7 @@ public enum Encounter {
 				
 				if(Math.random()<IncestEncounterRate()) { // Incest
 					List<NPC> offspringAvailable = UnspawnedChildren(
-						npc-> (npc.getSubspecies().getWorldLocations().contains(WorldType.DOMINION) || npc.getSubspecies()==Subspecies.ANGEL));
+						npc-> npc.getSubspecies().getWorldLocations().contains(WorldType.DOMINION));
 					
 					if(!offspringAvailable.isEmpty()) {
 						return SpawnAndStartChildHere(offspringAvailable);

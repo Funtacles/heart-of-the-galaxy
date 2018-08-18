@@ -318,8 +318,6 @@ public class Leg implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case ANGEL: //TODO
-				break;
 		}
 		UtilText.transformationContentSB.append(
 				"<p>"

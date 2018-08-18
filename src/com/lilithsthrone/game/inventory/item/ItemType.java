@@ -778,7 +778,7 @@ public class ItemType {
 			null,
 			Rarity.RARE,
 			TFEssence.ARCANE,
-			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.RACE_ANGELS_TEARS)),
+			Util.newArrayListOfValues(),
 			Util.newArrayListOfValues(
 					ItemTag.DOMINION_ALLEYWAY_SPAWN,
 					ItemTag.RACIAL_TF_ITEM)) {

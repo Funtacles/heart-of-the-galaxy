@@ -978,28 +978,6 @@ public class ItemEffectType {
 		}
 	};
 	
-	public static AbstractItemEffectType RACE_ANGELS_TEARS = new AbstractItemEffectType(Util.newArrayListOfValues(
-			"[style.boldGood(+1)] [style.boldIntelligence(arcane)] to 'potion effects'",
-			"[style.boldGood(+1)] [style.boldPhysique(physique)] to 'potion effects'"),
-			Colour.RACE_HUMAN) {
-
-		@Override
-		public String getPotionDescriptor() {
-			return "angelic";
-		}
-		
-		@Override
-		public String applyEffect(TFModifier primaryModifier, TFModifier secondaryModifier, TFPotency potency, int limit, GameCharacter user, GameCharacter target, ItemEffectTimer timer) {
-			return "<p style='text-align:center;'>"
-						+(target.isPlayer()
-							?"You start to feel a lot healthier..."
-							:UtilText.parse(target, "[npc.Name] starts to feel a lot healthier..."))
-					+ "</p>"
-					+ target.addPotionEffect(Attribute.MAJOR_PHYSIQUE, 1)
-					+ target.addPotionEffect(Attribute.MAJOR_ARCANE, 1);
-		}
-	};
-	
 	public static AbstractItemEffectType RACE_CANINE_CRUNCH = new AbstractItemEffectType(Util.newArrayListOfValues(
 			"[style.boldGood(+2)] [style.boldPhysique(physique)] to 'potion effects'"),
 			Colour.RACE_DOG_MORPH) {

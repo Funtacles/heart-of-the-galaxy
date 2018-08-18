@@ -110,14 +110,6 @@
 	
 	<!-- Flirting -->
 	
-	<htmlContent tag="NYAN_FLIRT_BASE"><![CDATA[
-	<p>
-		As you've grown closer to Nyan since helping her with her supplier problem, you've noticed that she's started relaxing a lot more when in your presence.
-		 You've also grown aware of the fact that she keeps on taking glances at your body when she thinks you're not looking, and, confident that she's comfortable enough around you by now, you decide to flirt with her a little. 
-	</p>
-	]]>
-	</htmlContent>
-
 	<htmlContent tag="NYAN_FLIRT"><![CDATA[
 	<p>
 		Playfully teasing her over the subject of which lingerie she likes the most, you soon manage to get the blushing cat-girl smiling and giggling as she light-heartedly smacks you on the [pc.arm].

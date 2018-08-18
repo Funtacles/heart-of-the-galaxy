@@ -347,17 +347,6 @@ public class Penis implements BodyPartInterface, Serializable {
 							+ "[npc.She] has [style.boldWolfMorph([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" lupine balls)], covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldWolfMorph(lupine cum)].");
 				}
 				break;
-			case ANGEL:
-				if (owner.isPlayer()) {
-					UtilText.transformationContentSB.append(
-							"You now have an [style.boldAngel(angelic penis)], covered in [pc.penisFullDescription(true)].<br/>"
-							+ "You have [style.boldAngel([pc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" angelic balls)], covered in [pc.ballsFullDescription(true)], which produce [pc.cumColour(true)] [style.boldAngel(angelic cum)].");
-				} else {
-					UtilText.transformationContentSB.append(
-							"[npc.She] now has an [style.boldAngel(angelic penis)], covered in [npc.penisFullDescription(true)].<br/>"
-							+ "[npc.She] has [style.boldAngel([npc.ballsCount]"+(owner.isInternalTesticles()?" internal,":"")+" angelic balls)], covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldAngel(angelic cum)].");
-				}
-				break;
 			case EQUINE:
 				if (owner.isPlayer()) {
 					UtilText.transformationContentSB.append(

@@ -19,8 +19,6 @@ public enum TongueType implements BodyPartTypeInterface {
 
 	HUMAN(BodyCoveringType.TONGUE, Race.HUMAN, 1),
 	
-	ANGEL(BodyCoveringType.TONGUE, Race.ANGEL, 1),
-
 	DEMON_COMMON(BodyCoveringType.TONGUE, Race.DEMON, 1, TongueModifier.BIFURCATED),
 	
 	IMP(BodyCoveringType.TONGUE, Race.IMP, 1, TongueModifier.BIFURCATED),
@@ -93,8 +91,6 @@ public enum TongueType implements BodyPartTypeInterface {
 			case HORSE_MORPH:
 				return UtilText.returnStringAtRandom("strong", "horse-like");
 			case HUMAN:
-				break;
-			case ANGEL:
 				break;
 			case SQUIRREL_MORPH:
 				break;

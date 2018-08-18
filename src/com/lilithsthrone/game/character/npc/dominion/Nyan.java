@@ -33,7 +33,6 @@ import com.lilithsthrone.game.character.persona.NameTriplet;
 import com.lilithsthrone.game.character.persona.PersonalityTrait;
 import com.lilithsthrone.game.character.persona.PersonalityWeight;
 import com.lilithsthrone.game.character.persona.SexualOrientation;
-import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
@@ -299,42 +298,6 @@ public class Nyan extends NPC {
 					specials.add(AbstractClothingType.generateClothing(clothing, false));
 				}
 			}
-		}
-		
-		if(Main.game.getPlayer().isQuestCompleted(QuestLine.RELATIONSHIP_NYAN_HELP)) {
-			addEnchantedClothing(commonFemaleClothing);
-			addEnchantedClothing(commonFemaleUnderwear);
-			addEnchantedClothing(commonFemaleAccessories);
-	
-			addEnchantedClothing(commonMaleClothing);
-			addEnchantedClothing(commonMaleLingerie);
-			addEnchantedClothing(commonMaleAccessories);
-	
-			addEnchantedClothing(commonAndrogynousClothing);
-			addEnchantedClothing(commonAndrogynousLingerie);
-			addEnchantedClothing(commonAndrogynousAccessories);
-		}
-	}
-	
-	/**
-	 * Adds three uncommon clothing items to the list, and one rare item.
-	 */
-	private static void addEnchantedClothing(List<AbstractClothing> clothingList) {
-		List<AbstractClothingType> typesToAdd = new ArrayList<>();
-		for(int i=0;i<4;i++) {
-			typesToAdd.add(Util.randomItemFrom(clothingList).getClothingType());
-		}
-		
-		for(int i=0; i<typesToAdd.size(); i++) {
-			if(i==typesToAdd.size()-1) {
-				clothingList.add(AbstractClothingType.generateRareClothing(typesToAdd.get(i)));
-			} else {
-				clothingList.add(AbstractClothingType.generateClothingWithEnchantment(typesToAdd.get(i)));
-			}
-		}
-
-		for(AbstractClothing c : clothingList) {
-			c.setEnchantmentKnown(true);
 		}
 	}
 	

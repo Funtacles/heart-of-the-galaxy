@@ -413,61 +413,6 @@ public enum Quest {
 			return "The Hypno-Watch appeared to work, although Lilaya stopped the test before it had a permanent effect."
 					+ " She warned that it will have a strong corruptive effect upon the mind of the whoever is targeted, and disenchanted it for good measure, before handing it over to you.";
 		}
-	},
-	
-	
-	RELATIONSHIP_NYAN_STOCK_ISSUES(QuestType.RELATIONSHIP, 1, 0) {
-		@Override
-		public String getName() {
-			return "Offer Nyan your help";
-		}
-
-		@Override
-		public String getDescription() {
-			return "Nyan explained that she's unable to sell any enchanted clothing due to the fact that her suppliers don't offer any."
-					+ " Apparently, these suppliers have used force to drive all of their rivals out of the area, so she has no alternative but to use them...<br/>"
-					+ "Perhaps you could offer to convince these new suppliers to let the old ones back?";
-		}
-
-		@Override
-		public String getCompletedDescription() {
-			return "You offered Nyan your help in convincing the new suppliers to let the old ones back.";
-		}
-	},
-	
-	RELATIONSHIP_NYAN_STOCK_ISSUES_AGREED_TO_HELP(QuestType.RELATIONSHIP, 10, 0) {
-		@Override
-		public String getName() {
-			return "Confront the suppliers";
-		}
-
-		@Override
-		public String getDescription() {
-			return "Nyan explained that the suppliers still work out of the supply depot here in the Shopping Arcane."
-					+ " From all that Nyan's told you about these new suppliers, you should be prepared for a tough fight if you decide to go and talk to them...";
-		}
-
-		@Override
-		public String getCompletedDescription() {
-			return "You put an end to the dobermanns' monopoly, and although they'll continue to work as clothing suppliers, they'll stop intimidating the others.";
-		}
-	},
-	
-	RELATIONSHIP_NYAN_STOCK_ISSUES_SUPPLIERS_BEATEN(QuestType.RELATIONSHIP, 10, 100) {
-		@Override
-		public String getName() {
-			return "Reward";
-		}
-
-		@Override
-		public String getDescription() {
-			return "You should return to Nyan and get the reward she promised you.";
-		}
-
-		@Override
-		public String getCompletedDescription() {
-			return "Nyan paid you the reward she promised, and also offered to give you a 25% discount in her store. She also let slip that she's single, in a clumsy attempt to hit on you...";
-		}
 	}
 	;
 

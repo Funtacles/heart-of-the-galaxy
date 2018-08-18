@@ -293,8 +293,6 @@ public class Body implements Serializable, XMLSaving {
 		switch(race) {
 			case NONE:
 				break;
-			case ANGEL:
-				return BodyCoveringType.BODY_HAIR_ANGEL;
 			case CAT_MORPH:
 				return BodyCoveringType.BODY_HAIR_FELINE_FUR;
 			case COW_MORPH:
@@ -873,7 +871,6 @@ public class Body implements Serializable, XMLSaving {
 		
 		Map<String, String> eyeTypeConverterMap = new HashMap<>();
 		eyeTypeConverterMap.put("EYE_HUMAN", "HUMAN");
-		eyeTypeConverterMap.put("EYE_ANGEL", "ANGEL");
 		eyeTypeConverterMap.put("EYE_DEMON_COMMON", "DEMON_COMMON");
 		eyeTypeConverterMap.put("EYE_DOG_MORPH", "DOG_MORPH");
 		eyeTypeConverterMap.put("EYE_LYCAN", "LYCAN");
@@ -970,7 +967,6 @@ public class Body implements Serializable, XMLSaving {
 		
 		Map<String, String> hairTypeConverterMap = new HashMap<>();
 		hairTypeConverterMap.put("HAIR_HUMAN", "HUMAN");
-		hairTypeConverterMap.put("HAIR_ANGEL", "ANGEL");
 		hairTypeConverterMap.put("HAIR_DEMON", "DEMON_COMMON");
 		hairTypeConverterMap.put("HAIR_CANINE_FUR", "DOG_MORPH");
 		hairTypeConverterMap.put("HAIR_LYCAN_FUR", "LYCAN");
@@ -1161,7 +1157,6 @@ public class Body implements Serializable, XMLSaving {
 		
 		Map<String, String> skinTypeConverterMap = new HashMap<>();
 		skinTypeConverterMap.put("HUMAN", "HUMAN");
-		skinTypeConverterMap.put("ANGEL", "ANGEL");
 		skinTypeConverterMap.put("DEMON_COMMON", "DEMON_COMMON");
 		skinTypeConverterMap.put("CANINE_FUR", "DOG_MORPH");
 		skinTypeConverterMap.put("LYCAN_FUR", "LYCAN");
@@ -1520,9 +1515,6 @@ public class Body implements Serializable, XMLSaving {
 			case HUMAN:
 				sb.append(" face.");
 				break;
-			case ANGEL:
-				sb.append(", perfectly proportioned face.");
-				break;
 			case DEMON_COMMON:
 				sb.append(", perfectly proportioned face.");
 				break;
@@ -1601,9 +1593,6 @@ public class Body implements Serializable, XMLSaving {
 					sb.append(", silken hair");
 					break;
 				case IMP:
-					sb.append(", silken hair");
-					break;
-				case ANGEL:
 					sb.append(", silken hair");
 					break;
 				case DOG_MORPH:
@@ -1792,9 +1781,6 @@ public class Body implements Serializable, XMLSaving {
 		}
 		
 		switch(eye.getType()) {
-			case ANGEL:
-				sb.append(" angelic eyes");
-				break;
 			case CAT_MORPH:
 				sb.append(" cat-like eyes");
 				break;
@@ -1889,12 +1875,6 @@ public class Body implements Serializable, XMLSaving {
 		
 		// Ear:
 		switch (ear.getType()) {
-			case ANGEL:
-				if (owner.isPlayer())
-					sb.append(" You have a pair of perfectly-formed angelic ears, which are "+getCoveredInDescriptor(owner)+" [pc.earFullDescription(true)]" + (ear.isPierced() ? ", and which have been pierced" : "") + ".");
-				else
-					sb.append(" [npc.She] has a pair of perfectly-formed angelic ears, which are "+getCoveredInDescriptor(owner)+" [npc.earFullDescription(true)]" + (ear.isPierced() ? ", and which have been pierced" : "") + ".");
-				break;
 			case HUMAN:
 				if (owner.isPlayer())
 					sb.append(" You have a pair of normal, human ears, which are "+getCoveredInDescriptor(owner)+" [pc.earFullDescription(true)]" + (ear.isPierced() ? ", and which have been pierced" : "") + ".");
@@ -2670,12 +2650,6 @@ public class Body implements Serializable, XMLSaving {
 				else
 					sb.append("[npc.She] has "+armDeterminer+" normal human arms and hands, which are "+getCoveredInDescriptor(owner)+" [npc.armFullDescription(true)].");
 				break;
-			case ANGEL:
-				if (owner.isPlayer())
-					sb.append("You have "+armDeterminer+" human-like arms and hands, which are "+getCoveredInDescriptor(owner)+" [pc.armFullDescription(true)].");
-				else
-					sb.append("[npc.She] has "+armDeterminer+" human-like arms and hands, which are "+getCoveredInDescriptor(owner)+" [npc.armFullDescription(true)].");
-				break;
 			case DEMON_COMMON:
 				if (owner.isPlayer())
 					sb.append("You have "+armDeterminer+" slender, human-looking arms and hands, which are "+getCoveredInDescriptor(owner)+" [pc.armFullDescription(true)].");
@@ -2899,12 +2873,6 @@ public class Body implements Serializable, XMLSaving {
 				else
 					sb.append("[npc.Her] legs and feet are human, and are "+getCoveredInDescriptor(owner)+" [npc.legFullDescription(true)].");
 				break;
-			case ANGEL:
-				if (owner.isPlayer())
-					sb.append("Your legs and feet are human in shape, but are "+getCoveredInDescriptor(owner)+" [pc.legFullDescription(true)].");
-				else
-					sb.append("[npc.Her] legs and feet are human in shape, but are "+getCoveredInDescriptor(owner)+" [npc.legFullDescription(true)].");
-				break;
 			case DEMON_COMMON:
 				if (owner.isPlayer())
 					sb.append("Your legs and feet are human in shape, but are "+getCoveredInDescriptor(owner)+" [pc.legFullDescription(true)].");
@@ -3081,13 +3049,6 @@ public class Body implements Serializable, XMLSaving {
 						sb.append("Growing from your shoulder-blades, you have a pair of [pc.wingSize] bat-like wings, which are covered in [pc.wingFullDescription(true)].");
 					} else {
 						sb.append("Growing from [npc.her] shoulder-blades, [npc.she] has a pair of [npc.wingSize] bat-like wings, which are covered in [npc.wingFullDescription(true)].");
-					}
-					break;
-				case ANGEL:
-					if (owner.isPlayer()) {
-						sb.append("Growing from your shoulder-blades, you have a pair of [pc.wingSize] angelic wings, which are covered in [pc.wingFullDescription(true)].");
-					} else {
-						sb.append("Growing from [npc.her] shoulder-blades, [npc.she] has a pair of [npc.wingSize] angelic wings, which are covered in [npc.wingFullDescription(true)].");
 					}
 					break;
 				case IMP:
@@ -3661,14 +3622,6 @@ public class Body implements Serializable, XMLSaving {
 					descriptionSB.append("You have a human, [pc.anusFullDescription(true)]");
 				} else {
 					descriptionSB.append("[npc.She] has a human, [npc.anusFullDescription(true)]");
-				}
-				break;
-				
-			case ANGEL:
-				if (isPlayer) {
-					descriptionSB.append("You have an angelic, [pc.anusFullDescription(true)]");
-				} else {
-					descriptionSB.append("[npc.She] has an angelic, [npc.anusFullDescription(true)]");
 				}
 				break;
 				
@@ -4479,9 +4432,6 @@ public class Body implements Serializable, XMLSaving {
 			case EQUINE:
 				descriptionSB.append(" equine cock");
 				break;
-			case ANGEL:
-				descriptionSB.append(" angelic cock");
-				break;
 			case NONE:
 				break;
 		}
@@ -5042,13 +4992,6 @@ public class Body implements Serializable, XMLSaving {
 					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" a")+" human pussy, with [pc.labiaSize], [pc.pussyPrimaryColour(true)] labia and [pc.pussySecondaryColour(true)] inner-walls.");
 				} else {
 					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" a")+" human pussy, with [npc.labiaSize], [npc.pussyPrimaryColour(true)] labia and [npc.pussySecondaryColour(true)] inner-walls.");
-				}
-				break;
-			case ANGEL:
-				if (isPlayer) {
-					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" an")+" angelic pussy, with [pc.labiaSize], [pc.pussyPrimaryColour(true)] labia and [pc.pussySecondaryColour(true)] inner-walls.");
-				} else {
-					descriptionSB.append((viewedVagina.isPierced()?" a pierced,":" an")+" angelic pussy, with [npc.labiaSize], [npc.pussyPrimaryColour(true)] labia and [npc.pussySecondaryColour(true)] inner-walls.");
 				}
 				break;
 			case DEMON_COMMON:
@@ -6016,9 +5959,6 @@ public class Body implements Serializable, XMLSaving {
 			switch(r) {
 				case NONE:
 					break;
-				case ANGEL:
-					coverings.put(BodyCoveringType.BODY_HAIR_ANGEL, new Covering(BodyCoveringType.BODY_HAIR_ANGEL, coverings.get(BodyCoveringType.HAIR_ANGEL).getPrimaryColour()));
-					break;
 				case CAT_MORPH:
 					coverings.put(BodyCoveringType.BODY_HAIR_FELINE_FUR, new Covering(BodyCoveringType.BODY_HAIR_FELINE_FUR, coverings.get(BodyCoveringType.HAIR_FELINE_FUR).getPrimaryColour()));
 					break;
@@ -6090,9 +6030,6 @@ public class Body implements Serializable, XMLSaving {
 				switch(r) {
 					case NONE:
 						break;
-					case ANGEL:
-						coverings.put(BodyCoveringType.BODY_HAIR_ANGEL, new Covering(BodyCoveringType.BODY_HAIR_ANGEL, coverings.get(BodyCoveringType.HAIR_ANGEL).getPrimaryColour()));
-						break;
 					case CAT_MORPH:
 						coverings.put(BodyCoveringType.BODY_HAIR_FELINE_FUR, new Covering(BodyCoveringType.BODY_HAIR_FELINE_FUR, coverings.get(BodyCoveringType.HAIR_FELINE_FUR).getPrimaryColour()));
 						break;
@@ -6136,9 +6073,6 @@ public class Body implements Serializable, XMLSaving {
 		// Make all orifice colours the same as their surroundings:
 		if(updateSkin) {
 			switch(ass.getType().getRace()) {
-				case ANGEL:
-					coverings.put(BodyCoveringType.ANUS, new Covering(BodyCoveringType.ANUS, CoveringPattern.ORIFICE_ANUS, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-					break;
 				case DEMON:
 					coverings.put(BodyCoveringType.ANUS, new Covering(BodyCoveringType.ANUS, CoveringPattern.ORIFICE_ANUS, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
 					break;
@@ -6148,9 +6082,6 @@ public class Body implements Serializable, XMLSaving {
 			}
 			
 			switch(breast.getType().getRace()) {
-				case ANGEL:
-					coverings.put(BodyCoveringType.NIPPLES, new Covering(BodyCoveringType.NIPPLES, CoveringPattern.ORIFICE_NIPPLE, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-					break;
 				case DEMON:
 					coverings.put(BodyCoveringType.NIPPLES, new Covering(BodyCoveringType.NIPPLES, CoveringPattern.ORIFICE_NIPPLE, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
 					break;
@@ -6160,9 +6091,6 @@ public class Body implements Serializable, XMLSaving {
 			}
 			
 			switch(face.getType().getRace()) {
-				case ANGEL:
-					coverings.put(BodyCoveringType.MOUTH, new Covering(BodyCoveringType.MOUTH, CoveringPattern.ORIFICE_MOUTH, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-					break;
 				case DEMON:
 					coverings.put(BodyCoveringType.MOUTH, new Covering(BodyCoveringType.MOUTH, CoveringPattern.ORIFICE_MOUTH, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
 					break;
@@ -6173,9 +6101,6 @@ public class Body implements Serializable, XMLSaving {
 			
 			if(vagina.getType().getRace()!=null) {
 				switch(vagina.getType().getRace()) {
-					case ANGEL:
-						coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-						break;
 					case DEMON:
 						coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
 						break;
@@ -6185,9 +6110,6 @@ public class Body implements Serializable, XMLSaving {
 				}
 			} else {
 				switch(getRace()) {
-					case ANGEL:
-						coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-						break;
 					case DEMON:
 						coverings.put(BodyCoveringType.VAGINA, new Covering(BodyCoveringType.VAGINA, CoveringPattern.ORIFICE_VAGINA, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
 						break;
@@ -6199,9 +6121,6 @@ public class Body implements Serializable, XMLSaving {
 			
 			if(penis.getType().getRace()!=null) {
 				switch(penis.getType().getRace()) {
-					case ANGEL:
-						coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-						break;
 					case DEMON:
 						coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
 						break;
@@ -6214,9 +6133,6 @@ public class Body implements Serializable, XMLSaving {
 				}
 			} else {
 				switch(getRace()) {
-					case ANGEL:
-						coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.ANGEL).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
-						break;
 					case DEMON:
 						coverings.put(BodyCoveringType.PENIS, new Covering(BodyCoveringType.PENIS, CoveringPattern.NONE, coverings.get(BodyCoveringType.DEMON_COMMON).getPrimaryColour(), false, Colour.ORIFICE_INTERIOR, false));
 						break;

@@ -25,8 +25,6 @@ public enum VaginaType implements BodyPartTypeInterface {
 
 	HUMAN(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_HUMAN, Race.HUMAN),
 
-	ANGEL(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_ANGEL, Race.ANGEL, OrificeModifier.MUSCLE_CONTROL),
-
 	DEMON_COMMON(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_DEMON, Race.DEMON, OrificeModifier.MUSCLE_CONTROL, OrificeModifier.TENTACLED),
 
 	IMP(BodyCoveringType.VAGINA, FluidType.GIRL_CUM_IMP, Race.IMP, OrificeModifier.MUSCLE_CONTROL, OrificeModifier.TENTACLED),
@@ -157,8 +155,6 @@ public enum VaginaType implements BodyPartTypeInterface {
 		switch(Util.random.nextInt(3)){
 			case 0:
 				switch(this){
-					case ANGEL:
-						return UtilText.returnStringAtRandom("perfect");
 					case DEMON_COMMON:
 						return UtilText.returnStringAtRandom("irresistible", "demonic");
 					case IMP:
@@ -205,8 +201,6 @@ public enum VaginaType implements BodyPartTypeInterface {
 
 	public String getTransformName() {
 		switch(this){
-			case ANGEL:
-				return "angelic";
 			case COW_MORPH:
 				return "bovine";
 			case DOG_MORPH:

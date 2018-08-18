@@ -336,8 +336,6 @@ public class Ear implements BodyPartInterface, Serializable {
 							+ "</p>");
 				}
 				break;
-			case ANGEL://TODO
-				break;
 		}
 		
 		return UtilText.parse(owner, UtilText.transformationContentSB.toString())

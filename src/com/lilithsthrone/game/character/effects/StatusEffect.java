@@ -1358,33 +1358,6 @@ public enum StatusEffect {
 		}
 	},
 
-	// ANGEL:
-	ANGEL(1000,
-			"angel",
-			null,
-			Colour.CLOTHING_WHITE,
-			true,
-			Util.newHashMapOfValues(new Value<Attribute, Float>(Attribute.RESISTANCE_LUST, 100f)),
-			null) {
-
-		@Override
-		public String getDescription(GameCharacter target) {
-			return "Angels are completely immune to corruption.";
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return target.getRace() == Race.ANGEL
-					&& !target.isRaceConcealed()
-					&& target.getRaceStage() == RaceStage.GREATER;
-		}
-
-		@Override
-		public String getSVGString(GameCharacter owner) {
-			return owner.getSubspecies().getSVGString(owner);
-		}
-	},
-
 	// DEMON:
 	DEMON(1000,
 			"demon",
@@ -5030,30 +5003,6 @@ public enum StatusEffect {
 	},
 	
 	// Combat bonuses:
-	
-	COMBAT_BONUS_ANGEL(
-			80,
-			"angelic intuition",
-			"combatBonusAngel",
-			Colour.RACE_ANGEL,
-			true,
-			Util.newHashMapOfValues(
-					new Value<Attribute, Float>(Attribute.MAJOR_ARCANE, 2f),
-					new Value<Attribute, Float>(Attribute.DAMAGE_ANGEL, 25f),
-					new Value<Attribute, Float>(Attribute.RESISTANCE_ANGEL, 25f)),
-			null) {		@Override
-		public String getDescription(GameCharacter target) {
-			if(target == null) {
-				return "";
-			}
-			if (target.isPlayer()) {
-				return "After absorbing a specially-enchanted arcane essence, you find that you're able to accurately predict how angels will behave.";
-			} else {
-				return UtilText.parse(target, "After absorbing a specially-enchanted arcane essence, [npc.name] is able to accurately predict how angels will behave.");
-			}
-		}
-		
-	},
 	
 	COMBAT_BONUS_CAT_MORPH(
 			80,
