@@ -27,23 +27,17 @@ import com.lilithsthrone.game.character.body.valueEnums.Capacity;
 import com.lilithsthrone.game.character.body.valueEnums.CumProduction;
 import com.lilithsthrone.game.character.body.valueEnums.OrificePlasticity;
 import com.lilithsthrone.game.character.body.valueEnums.PenisSize;
-import com.lilithsthrone.game.character.effects.Perk;
 import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.fetishes.FetishDesire;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.quests.QuestLine;
-import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
-import com.lilithsthrone.game.inventory.clothing.ClothingType;
 import com.lilithsthrone.game.inventory.clothing.DisplacementType;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
-import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.sex.managers.SexManagerInterface;
 import com.lilithsthrone.game.sex.sexActions.SexAction;
 import com.lilithsthrone.game.sex.sexActions.SexActionCategory;
@@ -541,7 +535,6 @@ public class Sex {
 	public static void applyEndSexEffects() {
 		sexSB = new StringBuilder();
 
-		boolean auraEventTriggered = false;
 		for(GameCharacter participant : Sex.getAllParticipants()) {
 			if(participant.isPlayer()) {
 				// Stretching effects for each of the player's orifices:
@@ -689,80 +682,6 @@ public class Sex {
 				if(getNumberOfOrgasms(participant) > 0
 						&& Main.game.isInNewWorld()) {
 					participant.removeStatusEffect(StatusEffect.FRUSTRATED_NO_ORGASM);
-					if(participant.hasStatusEffect(StatusEffect.RECOVERING_AURA)) {
-						sexSB.append("<p style='text-align:center'><b>Your arcane aura is still strengthened from a previous sexual encounter, so</b> [style.boldArcane(you don't receive any arcane essences!)]</p>");
-						
-					} else {
-						if(!Main.game.getDialogueFlags().values.contains(DialogueFlagValue.essenceOrgasmDiscovered)) {
-							Main.game.getDialogueFlags().values.add(DialogueFlagValue.essenceOrgasmDiscovered);
-							if(!((PlayerCharacter) participant).isQuestCompleted(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-								if(Sex.getActivePartner()!=null) {
-									sexSB.append(
-											UtilText.parse(Sex.getActivePartner(),
-											"<p>"
-												+ "As you disentangle yourself from [npc.name], you suddenly become aware of a strange, shimmering pink glow that's started to materialise around your body,"
-													+ " just like the one you saw in Lilaya's lab when she ran her tests on you."
-												+ " Quickly realising that you're somehow able to see your own arcane aura, you watch, fascinated, as it rapidly increases in luminosity."
-												+ " Just as you think that it can't get any brighter, your aura suddenly leaps back into your body, and you find yourself sharply inhaling as you feel it gaining strength."
-											+ "</p>"
-											+ "<p>"
-												+ "Looking back over at [npc.name], you see that [npc.she] seems completely oblivious to what you've just witnessed."
-												+ " You think that it would probably be best to go and ask Lilaya about what just happened..."
-											+ "</p>"
-											+(!((PlayerCharacter) participant).hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)
-													?((PlayerCharacter) participant).startQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)
-													:"")));
-								} else {
-									sexSB.append("<p>"
-												+ "As you stop masturbating, you suddenly become aware of a strange, shimmering pink glow that's started to materialise around your body,"
-													+ " just like the one you saw in Lilaya's lab when she ran her tests on you."
-												+ " Quickly realising that you're somehow able to see your own arcane aura, you watch, fascinated, as it rapidly increases in luminosity."
-												+ " Just as you think that it can't get any brighter, your aura suddenly leaps back into your body, and you find yourself sharply inhaling as you feel it gaining strength."
-											+ "</p>"
-											+ "<p>"
-												+ "You think that it would probably be best to go and ask Lilaya about what just happened..."
-											+ "</p>"
-											+(!((PlayerCharacter) participant).hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)
-													?((PlayerCharacter) participant).startQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)
-													:""));
-								}
-								
-							} else {
-								if(Sex.getActivePartner()!=null) {
-									sexSB.append(
-											UtilText.parse(Sex.getActivePartner(),
-											"<p>"
-												+ "As you disentangle yourself from [npc.name], you suddenly become aware of a strange, shimmering pink glow that's started to materialise around your body,"
-													+ " just like the one you saw in Lilaya's lab when she ran her tests on you."
-												+ " Quickly realising that you're somehow able to see your own arcane aura, you watch, fascinated, as it rapidly increases in luminosity."
-												+ " Just as you think that it can't get any brighter, your aura suddenly leaps back into your body, and you find yourself sharply inhaling as you feel it gaining strength."
-											+ "</p>"
-											+ "<p>"
-												+ "Looking back over at [npc.name], you see that [npc.she] seems completely oblivious to what you've just witnessed."
-												+ " You suddenly remember what Lilaya told you about absorbing essences, and how it's absolutely harmless for both parties involved, and breathe a sigh of relief..."
-											+ "</p>"));
-								} else {
-									sexSB.append("<p>"
-												+ "As you stop masturbating, you suddenly become aware of a strange, shimmering pink glow that's started to materialise around your body,"
-													+ " just like the one you saw in Lilaya's lab when she ran her tests on you."
-												+ " Quickly realising that you're somehow able to see your own arcane aura, you watch, fascinated, as it rapidly increases in luminosity."
-												+ " Just as you think that it can't get any brighter, your aura suddenly leaps back into your body, and you find yourself sharply inhaling as you feel it gaining strength."
-											+ "</p>"
-											+ "<p>"
-												+ "You suddenly remember what Lilaya told you about absorbing essences, and how it's absolutely harmless for both parties involved, and breathe a sigh of relief..."
-											+ "</p>");
-								}
-							}
-						}
-						
-						sexSB.append("<p style='text-align:center'>You feel your aura pulsating all around you as it draws strength from the sexual energy of your orgasm...</p>"
-										+"<div class='container-full-width' style='text-align:center;'>"
-											+ (participant.hasTrait(Perk.NYMPHOMANIAC, true)
-													?participant.incrementEssenceCount(TFEssence.ARCANE, 4, true)
-													:participant.incrementEssenceCount(TFEssence.ARCANE, 2, true))
-										+ "</div>");
-						
-					}
 					participant.addStatusEffect(StatusEffect.RECOVERING_AURA, 240);
 					
 					participant.setLust(0);
@@ -929,57 +848,6 @@ public class Sex {
 				if(getNumberOfOrgasms(participant) > 0
 						&& Main.game.isInNewWorld()) {
 					participant.removeStatusEffect(StatusEffect.FRUSTRATED_NO_ORGASM);
-					if(participant.hasStatusEffect(StatusEffect.RECOVERING_AURA)) {
-						sexSB.append("<p style='text-align:center'><b>[npc.NamePos] arcane aura is still strengthened from a previous sexual encounter, so</b> [style.boldArcane(you don't receive any arcane essences!)]</p>");
-						
-					} else {
-						
-						if(!Main.game.getDialogueFlags().values.contains(DialogueFlagValue.essenceOrgasmDiscovered)) {
-							Main.game.getDialogueFlags().values.add(DialogueFlagValue.essenceOrgasmDiscovered);
-							if(!auraEventTriggered) {
-								if(!Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-									sexSB.append(
-											UtilText.parse(participant,
-											"<p>"
-												+ "As you disentangle yourself from [npc.name], you suddenly become aware of a strange, shimmering pink glow that's started to materialise around [npc.her] body,"
-													+ " just like the one you saw in Lilaya's lab when she ran her tests on you."
-												+ " Quickly realising that you're somehow able to see [npc.namePos] arcane aura, you watch, fascinated, as it rapidly increases in luminosity."
-												+ " Just as you think that it can't get any brighter, [npc.her] aura suddenly leaps back into [npc.her] body, but as it does so, a single shard breaks off and flies towards you."
-												+ " Unable to dodge in time, you find yourself sharply inhaling as the small piece of [npc.namePos] aura shoots into your chest."
-											+ "</p>"
-											+ "<p>"
-												+ "Alarmed at what's just happened, you look back over at [npc.name], only to see that [npc.she] seems completely oblivious to what you've just witnessed."
-												+ " You think that it would probably be best to go and ask Lilaya about what just happened..."
-											+ "</p>"
-											+(!Main.game.getPlayer().hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)?Main.game.getPlayer().startQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY):"")));
-									
-								} else {
-									sexSB.append(
-											UtilText.parse(participant,
-											"<p>"
-												+ "As you disentangle yourself from [npc.name], you suddenly become aware of a strange, shimmering pink glow that's started to materialise around [npc.her] body,"
-													+ " just like the one you saw in Lilaya's lab when she ran her tests on you."
-												+ " Quickly realising that you're somehow able to see [npc.namePos] arcane aura, you watch, fascinated, as it rapidly increases in luminosity."
-												+ " Just as you think that it can't get any brighter, [npc.her] aura suddenly leaps back into [npc.her] body, but as it does so, a single shard breaks off and flies towards you."
-												+ " Unable to dodge in time, you find yourself sharply inhaling as the small piece of [npc.namePos] aura shoots into your chest."
-											+ "</p>"
-											+ "<p>"
-												+ "Alarmed at what's just happened, you look back over at [npc.name], only to see that [npc.she] seems completely oblivious to what you've just witnessed."
-												+ " You suddenly remember what Lilaya told you about absorbing essences, and how it's absolutely harmless for both parties involved, and breathe a sigh of relief..."
-											+ "</p>"));
-								}
-								auraEventTriggered = true;
-							}
-						}
-						
-						sexSB.append("<p style='text-align:center'>You feel your aura drawing strength from the sexual energy of [npc.namePos] orgasm...</p>"
-								+"<div class='container-full-width' style='text-align:center;'>"
-									+ (Main.game.getPlayer().hasTrait(Perk.NYMPHOMANIAC, true)
-											?Main.game.getPlayer().incrementEssenceCount(TFEssence.ARCANE, 4, true)
-											:Main.game.getPlayer().incrementEssenceCount(TFEssence.ARCANE, 2, true))
-								+ "</div>");
-						
-					}
 					participant.addStatusEffect(StatusEffect.RECOVERING_AURA, 240);
 
 				}
@@ -1928,18 +1796,6 @@ public class Sex {
 		
 		// Handle player orgasms:
 		if(sexAction.getActionType()==SexActionType.ORGASM && Sex.getCharacterPerformingAction().isPlayer()) {
-			// Condom removal:
-			if(Main.game.getPlayer().isWearingCondom()){
-				Main.game.getPlayer().getClothingInSlot(ClothingType.PENIS_CONDOM.getSlot()).setSealed(false);
-				if(Main.game.getPlayer().getPenisRawOrgasmCumQuantity()>0) {
-					sexSB.append(Main.game.getPlayer().addItem(
-							AbstractItemType.generateFilledCondom(
-									Main.game.getPlayer().getClothingInSlot(ClothingType.PENIS_CONDOM.getSlot()).getColour(), Main.game.getPlayer(), Main.game.getPlayer().getCum(), Main.game.getPlayer().getPenisRawOrgasmCumQuantity()),
-							false, true));
-				}
-				Main.game.getPlayer().unequipClothingIntoVoid(Main.game.getPlayer().getClothingInSlot(ClothingType.PENIS_CONDOM.getSlot()), true, Main.game.getPlayer());
-				
-			}
 			
 			if(Main.game.getPlayer().hasVagina() && Main.game.getPlayer().isVaginaSquirter()) {
 				if(Main.game.getPlayer().getLowestZLayerCoverableArea(CoverableArea.VAGINA)!=null) {
@@ -1984,19 +1840,6 @@ public class Sex {
 		// Handle partner orgasms:
 		if(sexAction.getActionType()==SexActionType.ORGASM  && !Sex.getCharacterPerformingAction().isPlayer()) {
 			// Condom removal:
-			if(Sex.getCharacterPerformingAction().isWearingCondom()){
-				Sex.getCharacterPerformingAction().getClothingInSlot(ClothingType.PENIS_CONDOM.getSlot()).setSealed(false);
-				if(Sex.getCharacterPerformingAction().getPenisRawOrgasmCumQuantity()>0) {
-					sexSB.append(Main.game.getPlayer().addItem(
-							AbstractItemType.generateFilledCondom(
-									Sex.getCharacterPerformingAction().getClothingInSlot(ClothingType.PENIS_CONDOM.getSlot()).getColour(),
-									Sex.getCharacterPerformingAction(), Sex.getCharacterPerformingAction().getCum(), Sex.getCharacterPerformingAction().getPenisRawOrgasmCumQuantity()),
-							false, true));
-				}
-				Sex.getCharacterPerformingAction().unequipClothingIntoVoid(Sex.getCharacterPerformingAction().getClothingInSlot(ClothingType.PENIS_CONDOM.getSlot()), true, Sex.getCharacterPerformingAction());
-				
-			}
-			
 			if(Sex.getCharacterPerformingAction().hasVagina() && Sex.getCharacterPerformingAction().isVaginaSquirter()) {
 				if(Sex.getCharacterPerformingAction().getLowestZLayerCoverableArea(CoverableArea.VAGINA)!=null) {
 					Sex.getCharacterPerformingAction().getLowestZLayerCoverableArea(CoverableArea.VAGINA).setDirty(true);
@@ -3673,44 +3516,6 @@ public class Sex {
 		
 		updateAvailableActions();
 	}
-	
-	//TODO not used???
-//	public static void setSexPositionSlot(GameCharacter character, SexPositionSlot slot) {
-//		// Check to see if character is in this sex scene:
-//		if(!Sex.dominants.keySet().contains(character) && !Sex.submissives.keySet().contains(character)) {
-//			throw new IllegalArgumentException("This character is not in this sex scene!");
-//		}
-//		
-//		// Check to see if this slot is available:
-//		if(getPosition().getSlotTargets().keySet().contains(slot)
-//				|| slot==SexPositionSlot.MISC_WATCHING) {
-//			for(Entry<GameCharacter, SexPositionSlot> e : dominants.entrySet()) {
-//				if(!e.getKey().equals(character)) {
-//					if(getPosition().getSlotTargets().keySet().contains(e.getValue())) {
-//						throw new IllegalArgumentException("A dominant participant ("+character.getName()+") is already occupying this slot ("+slot+")!");
-//					}
-//				}
-//			}
-//			for(Entry<GameCharacter, SexPositionSlot> e : submissives.entrySet()) {
-//				if(!e.getKey().equals(character)) {
-//					if(getPosition().getSlotTargets().keySet().contains(e.getValue())) {
-//						throw new IllegalArgumentException("A submissive participant ("+character.getName()+") is already occupying this slot ("+slot+")!");
-//					}
-//				}
-//			}
-//		} else {
-//			throw new IllegalArgumentException("This slot ("+slot+") is not available in this position ("+getPosition()+")!");
-//		}
-//		
-//		if(Sex.dominants.keySet().contains(character)) {
-//			Sex.dominants.put(character, slot);
-//		}
-//		if(Sex.submissives.keySet().contains(character)) {
-//			Sex.submissives.put(character, slot);
-//		}
-//		
-//		updateAvailableActions();
-//	}
 	
 	public static boolean isDom(GameCharacter character) {
 		return Sex.dominants.keySet().contains(character);

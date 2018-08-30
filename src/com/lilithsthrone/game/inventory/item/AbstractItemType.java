@@ -9,15 +9,11 @@ import java.util.List;
 import java.util.Set;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.body.FluidCum;
-import com.lilithsthrone.game.character.body.FluidMilk;
 import com.lilithsthrone.game.inventory.AbstractCoreType;
 import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
-import com.lilithsthrone.game.inventory.enchanting.AbstractItemEffectType;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
@@ -40,7 +36,6 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 	private int value;
 	private Rarity rarity;
 	protected String SVGString;
-	private TFEssence relatedEssence;
 	protected List<ItemEffect> effects;
 	protected Set<ItemTag> itemTags;
 
@@ -56,7 +51,6 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 			Colour colourSecondary,
 			Colour colourTertiary,
 			Rarity rarity,
-			TFEssence relatedEssence,
 			List<ItemEffect> effects,
 			List<ItemTag> itemTags) {
 
@@ -69,8 +63,6 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 
 		this.value = value;
 		this.rarity = rarity;
-		
-		this.relatedEssence = relatedEssence;
 		
 		this.itemTags = new HashSet<>();
 		if(itemTags!=null) {
@@ -127,8 +119,6 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 				if(((AbstractItemType)o).getName(false).equals(getName(false))
 						&& ((AbstractItemType)o).getPathName().equals(getPathName())
 						&& ((AbstractItemType)o).getRarity() == getRarity()
-						&& ((AbstractItemType)o).getRelatedEssence() == getRelatedEssence()
-						&& ((AbstractItemType)o).getEffects().equals(getEffects())
 						){
 					return true;
 				}
@@ -143,9 +133,6 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 		result = 31 * result + getName(false).hashCode();
 		result = 31 * result + getPathName().hashCode();
 		result = 31 * result + getRarity().hashCode();
-		if(getRelatedEssence() != null)
-			result = 31 * result + getRelatedEssence().hashCode();
-		result = 31 * result + getEffects().hashCode();
 		return result;
 	}
 
@@ -155,46 +142,12 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 		};
 	}
 	
-	public static AbstractItem generateFilledCondom(Colour colour, GameCharacter character, FluidCum cum, int millilitres) {
-		return new AbstractFilledCondom(ItemType.CONDOM_USED, colour, character, cum, millilitres) {
-			private static final long serialVersionUID = 1L;
-		};
-	}
-
-	public static AbstractItem generateFilledBreastPump(Colour colour, GameCharacter character, FluidMilk milk, int quantity) {
-		return new AbstractFilledBreastPump(ItemType.MOO_MILKER_FULL, colour, character, milk, quantity) {
-			private static final long serialVersionUID = 1L;
-		};
-	}
-	
 	public String getId() {
 		return ItemType.itemToIdMap.get(this);
 	}
 	
-	public List<ItemEffect> getEffects() {
-		return effects;
-	}
-	
 	public boolean canBeSold() {
 		return true;
-	}
-	
-	// Enchantments:
-	
-	public int getEnchantmentLimit() {
-		return 100;
-	}
-	
-	public AbstractItemEffectType getEnchantmentEffect() {
-		return null;
-	}
-	
-	public TFEssence getRelatedEssence() {
-		return relatedEssence;
-	}
-	
-	public AbstractItemType getEnchantmentItemType(List<ItemEffect> effects) {
-		return null;
 	}
 	
 	// Getters & setters:

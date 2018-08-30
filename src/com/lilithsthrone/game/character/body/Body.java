@@ -19,7 +19,6 @@ import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.Litter;
 import com.lilithsthrone.game.character.PregnancyPossibility;
-import com.lilithsthrone.game.character.body.types.AntennaType;
 import com.lilithsthrone.game.character.body.types.ArmType;
 import com.lilithsthrone.game.character.body.types.AssType;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
@@ -102,7 +101,6 @@ public class Body implements Serializable, XMLSaving {
 	private BodyMaterial bodyMaterial;
 
 	// Optional:
-	private Antenna antenna;
 	private Horn horn;
 	private Penis penis;
 	private Penis secondPenis;
@@ -143,7 +141,6 @@ public class Body implements Serializable, XMLSaving {
 		private final int femininity, bodySize, muscle;
 		
 		// Optional parameters - initialised to null values:
-		private Antenna antenna = new Antenna(AntennaType.NONE);
 		private Horn horn = new Horn(HornType.NONE, 0);
 		private Penis penis = new Penis(PenisType.NONE, 0, 0, 0, 0, 0);
 		private Penis secondPenis = new Penis(PenisType.NONE, 0, 0, 0, 0, 0);
@@ -170,11 +167,6 @@ public class Body implements Serializable, XMLSaving {
 			this.muscle = muscle;
 		}
 		
-		public BodyBuilder antenna(Antenna antenna) {
-			this.antenna = antenna;
-			return this;
-		}
-
 		public BodyBuilder horn(Horn horn) {
 			this.horn = horn;
 			return this;
@@ -216,7 +208,6 @@ public class Body implements Serializable, XMLSaving {
 	}
 
 	private Body(BodyBuilder builder) {
-		antenna = builder.antenna;
 		arm = builder.arm;
 		ass = builder.ass;
 		breast = builder.breast;
@@ -245,7 +236,6 @@ public class Body implements Serializable, XMLSaving {
 		this.pubicHair = BodyHair.ZERO_NONE;
 
 		allBodyParts = new ArrayList<>();
-		allBodyParts.add(antenna);
 		allBodyParts.add(arm);
 		allBodyParts.add(ass);
 		allBodyParts.add(breast);
@@ -417,12 +407,6 @@ public class Body implements Serializable, XMLSaving {
 		}
 		
 
-		// Antennae:
-		Element bodyAntennae = doc.createElement("antennae");
-		parentElement.appendChild(bodyAntennae);
-			CharacterUtils.addAttribute(doc, bodyAntennae, "type", this.antenna.getType().toString());
-			CharacterUtils.addAttribute(doc, bodyAntennae, "rows", String.valueOf(this.antenna.getAntennaRows()));
-		
 		// Arm:
 		Element bodyArm = doc.createElement("arm");
 		parentElement.appendChild(bodyArm);
@@ -693,18 +677,6 @@ public class Body implements Serializable, XMLSaving {
 		if(element.getAttribute("bodyMaterial") != null && !element.getAttribute("bodyMaterial").isEmpty()) {
 			importedBodyMaterial = BodyMaterial.valueOf(element.getAttribute("bodyMaterial"));
 		}
-		
-		
-		// **************** Antenna **************** //
-		
-		Element antennae = (Element)parentElement.getElementsByTagName("antennae").item(0);
-		
-		Antenna importedAntenna = new Antenna(AntennaType.valueOf(antennae.getAttribute("type")));
-		CharacterUtils.appendToImportLog(log, "<br/><br/>Body: Antennae:"+ "<br/>type: "+importedAntenna.getType());
-
-		importedAntenna.rows = Integer.valueOf(antennae.getAttribute("rows"));
-		CharacterUtils.appendToImportLog(log, "<br/>rows: "+importedAntenna.getAntennaRows());
-		
 		
 		// **************** Arm **************** //
 		
@@ -1316,7 +1288,6 @@ public class Body implements Serializable, XMLSaving {
 						.vagina(importedVagina)
 						.penis(importedPenis)
 						.horn(importedHorn)
-						.antenna(importedAntenna)
 						.tail(importedTail)
 						.wing(importedWing)
 						.build();
@@ -1748,18 +1719,6 @@ public class Body implements Serializable, XMLSaving {
 					sb.append(" "+Util.capitaliseSentence(horn.getDeterminer(owner))+" "+horn.getHornLength().getDescriptor()+", [npc.hornColour(true)], swept-back "+hornDescription+" of [npc.her] forehead.");
 				}
 				break;
-		}
-		
-		// Antenna:
-		
-		switch (antenna.getType()) {
-			case NONE:
-				sb.append("");
-				break;
-//				if (owner.isPlayer())
-//					sb.append(" [pc.A_antennae+] protrude from your upper forehead.");
-//				else
-//					sb.append(" [npc.A_antennae+] protrude from [npc.her] upper forehead.");
 		}
 		
 		// Nose:
@@ -3431,7 +3390,6 @@ public class Body implements Serializable, XMLSaving {
 		addRaceWeight(raceWeightMap, arm.getType().getRace(), 2);
 		addRaceWeight(raceWeightMap, leg.getType().getRace(), 2);
 
-		addRaceWeight(raceWeightMap, antenna.getType().getRace(), 1);
 		addRaceWeight(raceWeightMap, eye.getType().getRace(), 1);
 		addRaceWeight(raceWeightMap, ear.getType().getRace(), 1);
 		addRaceWeight(raceWeightMap, hair.getType().getRace(), 1);
@@ -3472,10 +3430,6 @@ public class Body implements Serializable, XMLSaving {
 		return raceStage;
 	}
 	
-	public Antenna getAntenna() {
-		return antenna;
-	}
-
 	public Arm getArm() {
 		return arm;
 	}
@@ -3538,10 +3492,6 @@ public class Body implements Serializable, XMLSaving {
 
 	public Wing getWing() {
 		return wing;
-	}
-
-	public void setAntenna(Antenna antenna) {
-		this.antenna = antenna;
 	}
 
 	public void setArm(Arm arm) {
@@ -4127,9 +4077,6 @@ public class Body implements Serializable, XMLSaving {
 				for(FluidModifier fm : FluidModifier.values()) {
 					if(owner.hasMilkModifier(fm)) {
 						switch(fm) {
-							case ADDICTIVE:
-								descriptionSB.append(" It is highly addictive, and anyone who drinks too much will quickly become dependent on it.");
-								break;
 							case BUBBLING:
 								descriptionSB.append(" It fizzes and bubbles like a carbonated drink.");
 								break;
@@ -4327,9 +4274,6 @@ public class Body implements Serializable, XMLSaving {
 					for(FluidModifier fm : FluidModifier.values()) {
 						if(owner.hasMilkModifier(fm)) {
 							switch(fm) {
-								case ADDICTIVE:
-									descriptionSB.append(" It is highly addictive, and anyone who drinks too much will quickly become dependent on it.");
-									break;
 								case BUBBLING:
 									descriptionSB.append(" It fizzes and bubbles like a carbonated drink.");
 									break;
@@ -4922,9 +4866,6 @@ public class Body implements Serializable, XMLSaving {
 		for(FluidModifier fm : FluidModifier.values()) {
 			if(owner.hasCumModifier(fm)) {
 				switch(fm) {
-					case ADDICTIVE:
-						descriptionSB.append(" It is highly addictive, and anyone who drinks too much will quickly become dependent on it.");
-						break;
 					case BUBBLING:
 						descriptionSB.append(" It fizzes and bubbles like a carbonated drink.");
 						break;

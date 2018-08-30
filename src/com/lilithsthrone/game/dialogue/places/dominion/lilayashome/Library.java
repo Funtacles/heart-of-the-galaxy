@@ -4,13 +4,10 @@ import java.util.List;
 
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
-import com.lilithsthrone.game.inventory.item.AbstractItemType;
-import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.rendering.RenderingEngine;
 import com.lilithsthrone.world.Cell;
@@ -104,12 +101,6 @@ public class Library {
 						}
 					}
 				};
-
-			}  else if (books == 6) {
-				return new Response("Races of Dominion", "A section of the library dedicated to books concerning the predominate races within the city.", DOMINION_RACES);
-
-			} else if (books == 7) {
-				return new Response("Foloi Fields", "A section of the library dedicated to books about the area known as the Foloi Fields.", FIELDS_BOOKS);
 
 			} else if (books == 8) {
 				return new Response("Endless Sea", "A section of the library dedicated to books on the area known as the Endless Sea. (Not yet implemented.)", null);
@@ -397,123 +388,4 @@ public class Library {
 		
 	};
 	
-	public static final DialogueNodeOld DOMINION_RACES = new DialogueNodeOld("", "", false) {
-		/**
-		 */
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getLabel() {
-			return "Library";
-		}
-
-		@Override
-		public String getContent() {
-			return "<p>"
-						+ "Walking down one of the aisles, you find yourself surrounded by heavy wooden shelves, fastened together by prominent beams of iron and steel."
-						+ " A lot of the books here seem to be about local history of Dominion's many districts, and, while fascinating for a historian, they don't offer much use to you."
-					+ "</p>"
-					+ "<p>"
-						+ "You notice that a couple of the shelves look a little different from the others."
-						+ " The top-most shelf seems to be decorated to make it look as though it's crafted from twigs, just like a bird's nest."
-						+ " The shelf nearest to the floor has a very smooth surface, almost like the wood as been transmuted into stone."
-						+ " It looks like it would be moist to the touch."
-					+ "</p>"
-					+ "<p>"
-						+ "Despite most of these books not being worth your time, there are a few here and there that detail the many races found within the city, and you wonder if you should give them a read..."
-					+ "</p>";
-							
-		}
-
-		@Override
-		public Response getResponse(int responseTab, int city) {
-			if (city == 2) {
-				return bookResponse(ItemType.BOOK_DEMON, Race.DEMON);
-
-			} else if (city == 3) {
-				return bookResponse(ItemType.BOOK_DOG_MORPH, Race.DOG_MORPH);
-
-			} else if (city == 4) {
-				return bookResponse(ItemType.BOOK_CAT_MORPH, Race.CAT_MORPH);
-
-			} else if (city == 5) {
-				return bookResponse(ItemType.BOOK_HORSE_MORPH, Race.HORSE_MORPH);
-
-			} else if (city == 6) {
-				return bookResponse(ItemType.BOOK_WOLF_MORPH, Race.WOLF_MORPH);
-
-			} else if (city == 7) {
-				return bookResponse(ItemType.BOOK_HUMAN, Race.HUMAN);
-
-			} else if (city == 8) {
-				return bookResponse(ItemType.BOOK_ALLIGATOR_MORPH, Race.ALLIGATOR_MORPH);
-
-			} else if (city == 10) {
-				return bookResponse(ItemType.BOOK_IMP, Race.IMP);
-
-			} else if (city == 0) {
-				return new Response("Back", "Return to browsing the shelves.", BROWSE_BOOKS);
-			} else {
-				return null;
-			}
-		}
-	
-	};
-	
-	public static final DialogueNodeOld FIELDS_BOOKS = new DialogueNodeOld("", "", false) {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getLabel() {
-			return "Library";
-		}
-
-		@Override
-		public String getContent() {
-			return "<p>"
-						+ "As you walk down one of the library's many aisles, you notice that the air feels somehow fresher than normal."
-						+ " Realising that it must be an arcane enchantment of some sort, you take a closer look at some of the shelves around you."
-					+ "</p>"
-					+ "<p>"
-						+ "At first glance, they look to be crafted from blocks of sod, but upon closer inspection, you see that it's actually masterfully-engraved pieces of wood."
-						+ " One shelf looks like the sod is covered in snow, you can feel the cold wafting off of it"
-						+ " The books that they hold all seem to be related to the Foloi Fields and the many races found there, which would explain the pastoral scent and appearance of this particular section."
-					+ "</p>";
-							
-		}
-
-		@Override
-		public Response getResponse(int responseTab, int field) {
-			if (field == 1) {
-				return bookResponse(ItemType.BOOK_SQUIRREL_MORPH, Race.SQUIRREL_MORPH);
-
-			} else if (field == 2) {
-				return bookResponse(ItemType.BOOK_COW_MORPH, Race.COW_MORPH);
-
-			} else if (field == 3) {
-				return bookResponse(ItemType.BOOK_RABBIT_MORPH, Race.RABBIT_MORPH);
-
-			} else if (field == 0) {
-				return new Response("Back to the shelves", "Return to strolling the shelves.", BROWSE_BOOKS);
-
-
-			} else {
-				return null;
-			}
-		}
-	
-	};
-	
-	private static Response bookResponse(AbstractItemType book, Race race) {
-		if(Main.getProperties().isAdvancedRaceKnowledgeDiscovered(race)) {
-			return new Response(book.getName(false), book.getDescription(), LIBRARY) {
-				@Override
-				public void effects() {
-					Main.game.getTextEndStringBuilder().append(book.getEffects().get(0).applyEffect(Main.game.getPlayer(), Main.game.getPlayer(), 1));
-				}
-			};
-		} else {
-			return new Response(book.getName(false), "You haven't discovered this book yet!", null);
-		}
-	}
 }

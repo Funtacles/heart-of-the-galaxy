@@ -63,7 +63,6 @@ public class Properties implements Serializable {
 	public int fontSize = 18;
 	public int level = 1;
 	public int money = 0;
-	public int arcaneEssences = 0;
 	public int humanEncountersLevel = 1;
 	public int multiBreasts = 1;
 	public int forcedTFPercentage = 40;
@@ -172,7 +171,6 @@ public class Properties implements Serializable {
 			createXMLElementWithValue(doc, previousSave, "quest", quest);
 			createXMLElementWithValue(doc, previousSave, "level", String.valueOf(level));
 			createXMLElementWithValue(doc, previousSave, "money", String.valueOf(money));
-			createXMLElementWithValue(doc, previousSave, "arcaneEssences", String.valueOf(arcaneEssences));
 			createXMLElementWithValue(doc, previousSave, "versionNumber", Main.VERSION_NUMBER);
 			createXMLElementWithValue(doc, previousSave, "lastQuickSaveName", lastQuickSaveName);
 			
@@ -438,9 +436,6 @@ public class Properties implements Serializable {
 				quest = ((Element)element.getElementsByTagName("quest").item(0)).getAttribute("value");
 				level = Integer.valueOf(((Element)element.getElementsByTagName("level").item(0)).getAttribute("value"));
 				money = Integer.valueOf(((Element)element.getElementsByTagName("money").item(0)).getAttribute("value"));
-				if(element.getElementsByTagName("arcaneEssences").item(0)!=null) {
-					arcaneEssences = Integer.valueOf(((Element)element.getElementsByTagName("arcaneEssences").item(0)).getAttribute("value"));
-				}
 				versionNumber = ((Element)element.getElementsByTagName("versionNumber").item(0)).getAttribute("value");
 				if(element.getElementsByTagName("lastQuickSaveName").item(0)!=null) {
 					lastQuickSaveName = ((Element)element.getElementsByTagName("lastQuickSaveName").item(0)).getAttribute("value");
@@ -471,7 +466,6 @@ public class Properties implements Serializable {
 					nodes = doc.getElementsByTagName("settings");
 					element = (Element) nodes.item(0);
 					
-					this.setValue(PropertyValue.lightTheme, Boolean.valueOf((((Element)element.getElementsByTagName("lightTheme").item(0)).getAttribute("value"))));
 					this.setValue(PropertyValue.nonConContent, Boolean.valueOf((((Element)element.getElementsByTagName("nonConContent").item(0)).getAttribute("value"))));
 					this.setValue(PropertyValue.incestContent, Boolean.valueOf((((Element)element.getElementsByTagName("incestContent").item(0)).getAttribute("value"))));
 					

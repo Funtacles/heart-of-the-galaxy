@@ -44,8 +44,6 @@ import com.lilithsthrone.world.places.PlaceType;
 public class Ashley extends NPC {
 
 	private AbstractItemType[] itemsForSale = new AbstractItemType[] {
-			ItemType.GIFT_CHOCOLATES,
-			ItemType.GIFT_PERFUME,
 			ItemType.GIFT_ROSE_BOUQUET,
 			ItemType.GIFT_TEDDY_BEAR};
 	

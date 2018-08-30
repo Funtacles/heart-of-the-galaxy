@@ -341,19 +341,7 @@ public class Nyan extends NPC {
 		String text = null;
 		if(gift instanceof AbstractItem) {
 			AbstractItemType type = ((AbstractItem)gift).getItemType();
-			if(type.equals(ItemType.GIFT_CHOCOLATES)) {
-				text =  UtilText.parseFromXMLFile("characters/dominion/nyan", "NYAN_GIFT_CHOCOLATES")
-						+(applyEffects
-								?Main.game.getNyan().incrementAffection(Main.game.getPlayer(), 5)
-								:"");
-				
-			} else if(type.equals(ItemType.GIFT_PERFUME)) {
-				text =  UtilText.parseFromXMLFile("characters/dominion/nyan", "NYAN_GIFT_PERFUME")
-					+(applyEffects
-							?Main.game.getNyan().incrementAffection(Main.game.getPlayer(), 5)
-							:"");
-				
-			} else if(type.equals(ItemType.GIFT_ROSE)) {
+			if(type.equals(ItemType.GIFT_ROSE)) {
 				text =  UtilText.parseFromXMLFile("characters/dominion/nyan", "NYAN_GIFT_SINGLE_ROSE")
 						+(applyEffects
 								?Main.game.getNyan().incrementAffection(Main.game.getPlayer(), 5)

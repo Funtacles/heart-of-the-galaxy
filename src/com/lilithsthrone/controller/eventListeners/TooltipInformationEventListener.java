@@ -20,7 +20,6 @@ import com.lilithsthrone.game.character.attributes.IntelligenceLevel;
 import com.lilithsthrone.game.character.attributes.LustLevel;
 import com.lilithsthrone.game.character.attributes.PhysiqueLevel;
 import com.lilithsthrone.game.character.body.CoverableArea;
-import com.lilithsthrone.game.character.body.types.AntennaType;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
 import com.lilithsthrone.game.character.body.types.HornType;
 import com.lilithsthrone.game.character.body.types.TailType;
@@ -41,8 +40,6 @@ import com.lilithsthrone.game.combat.SpecialAttack;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
-import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
-import com.lilithsthrone.game.inventory.enchanting.LoadedEnchantment;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.rendering.RenderingEngine;
 import com.lilithsthrone.utils.Colour;
@@ -66,7 +63,6 @@ public class TooltipInformationEventListener implements EventListener {
 	private SpecialAttack specialAttack;
 	private Attribute attribute;
 	private InventorySlot concealedSlot;
-	private LoadedEnchantment loadedEnchantment;
 	private static StringBuilder tooltipSB  = new StringBuilder();
 	
 	
@@ -282,9 +278,7 @@ public class TooltipInformationEventListener implements EventListener {
 					tooltipSB.append("<div class='subTitle' style='text-align:center;'>Cost: [style.boldDisabled(N/A)]</div>");
 				} else {
 					tooltipSB.append("<div class='subTitle' style='text-align:center;'>Cost: [style.boldArcane("
-							+ (FetishDesire.getCostToChange()==0
-								?"Free"
-								:Integer.toString(FetishDesire.getCostToChange())+" Arcane Essence"+(FetishDesire.getCostToChange()>1?"s":""))
+							+ "Free"
 							+ ")]</div>");
 				}
 			}
@@ -347,11 +341,7 @@ public class TooltipInformationEventListener implements EventListener {
 				tooltipSB.append("<div class='description'>" + fetish.getDescription(owner) + "</div>");
 				
 				if(fetish.getFetishesForAutomaticUnlock().isEmpty()) {
-					if(owner.hasBaseFetish(fetish)) {
-						tooltipSB.append("<div class='subTitle' style='text-align:center;'>Cost: [style.boldDisabled(N/A)]</div>");
-					} else {
-						tooltipSB.append("<div class='subTitle' style='text-align:center;'>Cost: [style.boldArcane("+fetish.getCost()+" Arcane Essences)]</div>");
-					}
+					tooltipSB.append("<div class='subTitle' style='text-align:center;'>Cost: [style.boldDisabled(N/A)]</div>");
 				}
 				
 				Main.mainController.setTooltipContent(UtilText.parse(tooltipSB.toString()));
@@ -557,11 +547,6 @@ public class TooltipInformationEventListener implements EventListener {
 					} else {
 						tooltipSB.append(getEmptyBodyPartDiv("Horns", "None"));
 					}
-					if (owner.getAntennaType() != AntennaType.NONE) {
-						tooltipSB.append(getBodyPartDiv("Antennae", owner.getAntennaRace(), owner.getAntennaType().getBodyCoveringType(owner)));
-					} else {
-						tooltipSB.append(getEmptyBodyPartDiv("Antennae", "None"));
-					}
 					if (owner.getWingType() != WingType.NONE) {
 						tooltipSB.append(getBodyPartDiv("Wings", owner.getWingRace(), owner.getWingType().getBodyCoveringType(owner)));
 					} else {
@@ -648,15 +633,6 @@ public class TooltipInformationEventListener implements EventListener {
 
 		} else if (extraAttributes) {
 
-//			if(owner.isRaceConcealed()) {
-//				Main.mainController.setTooltipSize(420, 64);
-//				
-//				tooltipSB.setLength(0);
-//				tooltipSB.append("<div class='title' style='color:" + Colour.RACE_UNKNOWN.toWebHexString() + ";'>"
-//						+ "Unknown Stats!"
-//						+ "</div>");
-//				
-//			} else {
 				Main.mainController.setTooltipSize(400, 608);
 	
 				tooltipSB.setLength(0);
@@ -691,7 +667,6 @@ public class TooltipInformationEventListener implements EventListener {
 						
 						+ extraAttributeBonus(owner, Attribute.FERTILITY)
 						+ extraAttributeBonus(owner, Attribute.VIRILITY)));
-//			}
 			
 			Main.mainController.setTooltipContent(UtilText.parse(tooltipSB.toString()));
 
@@ -763,47 +738,6 @@ public class TooltipInformationEventListener implements EventListener {
 										+Util.clothesToStringList(concealedSlots.get(concealedSlot).stream().filter(clothing -> !concealedSlots.containsKey(clothing.getClothingType().getSlot())).collect(Collectors.toList()), false)
 									+"</b>.")
 					+ "</div>"));
-			
-		} else if(loadedEnchantment!=null) {
-			int yIncrease = 0;
-
-			// Title:
-			tooltipSB.setLength(0);
-			tooltipSB.append("<div class='title'>" + Util.capitaliseSentence(loadedEnchantment.getName()) + "</div>");
-
-			if(loadedEnchantment.isSuitableItemAvailable()) {
-				tooltipSB.append("<div class='subTitle' style='color:"+Colour.GENERIC_GOOD.toWebHexString()+";'>Suitable item in inventory</div>");
-			} else {
-				tooltipSB.append("<div class='subTitle' style='color:"+Colour.GENERIC_BAD.toWebHexString()+";'>No suitable item in inventory</div>");
-			}
-			
-			// Attribute modifiers:
-			tooltipSB.append("<div class='subTitle-picture'>");
-			int i=0;
-			for (ItemEffect ie : loadedEnchantment.getEffects()) {
-				for(String s : ie.getEffectsDescription(Main.game.getPlayer(), Main.game.getPlayer())) {
-					tooltipSB.append((i!=0?"<br/>":"") + s);
-					yIncrease++;
-					if(UtilText.parse(s).replaceAll("<.*?>", "").length()>32) { // Yes, this is terrible...
-						yIncrease++;
-					}
-				}
-				i++;
-			}
-			if(yIncrease>=5) {
-				yIncrease-=5;
-			} else {
-				yIncrease=0;
-			}
-			tooltipSB.append("</div>");
-
-			// Picture:
-			tooltipSB.append("<div class='picture'>" + loadedEnchantment.getSVGString() + "</div>");
-
-			Main.mainController.setTooltipSize(360, 208 + (yIncrease>0?4:0) + (yIncrease * LINE_HEIGHT));
-			
-			Main.mainController.setTooltipContent(UtilText.parse(tooltipSB.toString()));
-			
 			
 		} else { // Standard information:
 			if(description==null || description.isEmpty()) {
@@ -981,13 +915,6 @@ public class TooltipInformationEventListener implements EventListener {
 		return this;
 	}
 
-	public TooltipInformationEventListener setLoadedEnchantment(LoadedEnchantment loadedEnchantment) {
-		resetFields();
-		this.loadedEnchantment = loadedEnchantment;
-
-		return this;
-	}
-	
 	private void resetFields() {
 		extraAttributes = false;
 		weather = false;
@@ -1005,6 +932,5 @@ public class TooltipInformationEventListener implements EventListener {
 		tattoo=false;
 		copyInformation=false;
 		concealedSlot=null;
-		loadedEnchantment=null;
 	}
 }

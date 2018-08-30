@@ -114,11 +114,7 @@ public enum Encounter {
 
 			} else if (node == EncounterType.DOMINION_FIND_ITEM) {
 				
-				if(Math.random()<0.995f) {
-					randomItem = AbstractItemType.generateItem(ItemType.dominionAlleywayItems.get(Util.random.nextInt(ItemType.dominionAlleywayItems.size())));
-				} else {
-					randomItem = AbstractItemType.generateItem(ItemType.EGGPLANT);
-				}
+				randomItem = AbstractItemType.generateItem(ItemType.dominionAlleywayItems.get(Util.random.nextInt(ItemType.dominionAlleywayItems.size())));
 				
 				Main.game.getActiveWorld().getCell(Main.game.getPlayer().getLocation()).getInventory().addItem(randomItem);
 				return DominionEncounterDialogue.ALLEY_FIND_ITEM;

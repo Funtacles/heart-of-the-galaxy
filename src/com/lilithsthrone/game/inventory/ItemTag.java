@@ -41,7 +41,6 @@ public enum ItemTag {
 	DILDO_GIGANTIC, // 22 inches
 	DILDO_STALLION, // 32 inches
 	
-	ESSENCE,
 	ATTRIBUTE_TF_ITEM,
 	RACIAL_TF_ITEM,
 	MISC_TF_ITEM,

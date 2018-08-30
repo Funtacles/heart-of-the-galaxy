@@ -20,7 +20,6 @@ import com.lilithsthrone.game.inventory.AbstractCoreType;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.Rarity;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
@@ -423,24 +422,15 @@ public abstract class AbstractWeaponType extends AbstractCoreType implements Ser
 
 
 	public boolean isAbleToBeUsed(GameCharacter user, GameCharacter target) {
-		if(this.getArcaneCost()>0) {
-			return user.getEssenceCount(TFEssence.ARCANE) > 0;
-		} else {
-			return true;
-		}
+		return true;
 	}
 
 	public String getUnableToBeUsedDescription() {
-		if(this.getArcaneCost()>0) {
-			return "You need at least [style.boldBad(one)] [style.boldArcane(arcane essence)] in order to use this weapon!";
-		} else {
-			return "";
-		}
+		return "";
 	}
 	
 	public String applyExtraEfects(GameCharacter user, GameCharacter target, boolean isHit) {
 		if(this.getArcaneCost()>0) {
-			user.incrementEssenceCount(TFEssence.ARCANE, -this.getArcaneCost(), false);
 			if(user.isPlayer()) {
 				return "<p>"
 							+ "Firing the "+this.getName()+" drains [style.boldBad("+Util.intToString(this.getArcaneCost())+")] [style.boldArcane(arcane essence)] from your aura!"

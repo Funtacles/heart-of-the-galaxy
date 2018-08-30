@@ -10,7 +10,6 @@ public enum PropertyValue {
 	artwork(true),
 	thumbnail(true),
 	
-	lightTheme(false),
 	overwriteWarning(true),
 	fadeInText(false),
 	twentyFourHourTime(true),

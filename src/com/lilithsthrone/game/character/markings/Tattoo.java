@@ -10,7 +10,6 @@ import java.util.Map.Entry;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
@@ -18,11 +17,7 @@ import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.AbstractCoreItem;
 import com.lilithsthrone.game.inventory.Rarity;
-import com.lilithsthrone.game.inventory.enchanting.AbstractItemEffectType;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
-import com.lilithsthrone.game.inventory.enchanting.ItemEffectType;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
-import com.lilithsthrone.game.inventory.enchanting.TFModifier;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
@@ -96,8 +91,7 @@ public class Tattoo extends AbstractCoreItem implements XMLSaving {
 					&& ((Tattoo)o).getPrimaryColour()==tertiaryColour
 					&& ((Tattoo)o).isGlowing()==glowing
 					&& ((Tattoo)o).getWriting().equals(this.getWriting())
-					&& ((Tattoo)o).getCounter().equals(this.getCounter())
-					&& ((Tattoo)o).getEffects().equals(this.getEffects());
+					&& ((Tattoo)o).getCounter().equals(this.getCounter());
 		} else {
 			return false;
 		}
@@ -117,7 +111,6 @@ public class Tattoo extends AbstractCoreItem implements XMLSaving {
 		result = 31 * result + (this.isGlowing() ? 1 : 0);
 		result = 31 * result + this.getWriting().hashCode();
 		result = 31 * result + this.getCounter().hashCode();
-		result = 31 * result + this.getEffects().hashCode();
 		return result;
 	}
 	
@@ -152,10 +145,6 @@ public class Tattoo extends AbstractCoreItem implements XMLSaving {
 		Element innerElement = doc.createElement("effects");
 		element.appendChild(innerElement);
 		
-		for(ItemEffect ie : this.getEffects()) {
-			ie.saveAsXML(innerElement, doc);
-		}
-		
 		return element;
 	}
 	
@@ -182,18 +171,6 @@ public class Tattoo extends AbstractCoreItem implements XMLSaving {
 			try {
 				tat.setName(parentElement.getAttribute("name"));
 			} catch(Exception ex) {
-			}
-			
-			Element element = (Element)parentElement.getElementsByTagName("effects").item(0);
-			if(element!=null) {
-				NodeList nodeList = element.getElementsByTagName("effect");
-				for(int i = 0; i < nodeList.getLength(); i++){
-					Element e = ((Element)nodeList.item(i));
-					ItemEffect ie = ItemEffect.loadFromXML(e, doc);
-					if(ie!=null) {
-						tat.addEffect(ie);
-					}
-				}
 			}
 			
 			return tat;
@@ -271,36 +248,9 @@ public class Tattoo extends AbstractCoreItem implements XMLSaving {
 							?"tattoo"
 							:this.getName() + " tattoo")
 						+ "</span>"
-					: this.getName()+" tattoo")
-				+(!this.getEffects().isEmpty()
-						? " "+getEnchantmentPostfix(withRarityColour, "b")
-						: "");
+					: this.getName()+" tattoo");
 	}
 	
-	public String getEnchantmentPostfix(boolean coloured, String tag) {
-		if(!this.getEffects().isEmpty()) {
-			for(ItemEffect ie : this.getEffects()) {
-				if(ie.getPrimaryModifier() == TFModifier.CLOTHING_ENSLAVEMENT) {
-					return "of "+(coloured?"<"+tag+" style='color:"+TFModifier.CLOTHING_ENSLAVEMENT.getColour().toWebHexString()+";'>enslavement</"+tag+">":"enslavement");
-					
-				} else if(ie.getPrimaryModifier() == TFModifier.TF_MOD_FETISH_BEHAVIOUR || ie.getPrimaryModifier() == TFModifier.TF_MOD_FETISH_BODY_PART) {
-					return "of "+(coloured?"<"+tag+" style='color:"+Colour.FETISH.toWebHexString()+";'>"+ie.getSecondaryModifier().getDescriptor()+"</"+tag+">":ie.getSecondaryModifier().getDescriptor());
-					
-				} else if(ie.getPrimaryModifier() == TFModifier.CLOTHING_ATTRIBUTE) {
-					String name = (this.isBadEnchantment()?this.getCoreEnchantment().getNegativeEnchantment():this.getCoreEnchantment().getPositiveEnchantment());
-					return "of "+(coloured?"<"+tag+" style='color:"+this.getCoreEnchantment().getColour().toWebHexString()+";'>"+name+"</"+tag+">":name);
-					
-				} else if(ie.getPrimaryModifier() == TFModifier.CLOTHING_SEALING) {
-					return "of "+(coloured?"<"+tag+" style='color:"+Colour.SEALED.toWebHexString()+";'>sealing</"+tag+">":"sealing");
-					
-				} else {
-					return "of "+(coloured?"<"+tag+" style='color:"+Colour.TRANSFORMATION_GENERIC.toWebHexString()+";'>transformation</"+tag+">":"transformation");
-				}
-			}
-		}
-		return "";
-	}
-
 	public Attribute getCoreEnchantment() {
 		Attribute att = Attribute.MAJOR_PHYSIQUE;
 		int max = 0;
@@ -314,40 +264,8 @@ public class Tattoo extends AbstractCoreItem implements XMLSaving {
 		return att;
 	}
 	
-	public boolean isBadEnchantment() {
-		return this.getEffects().stream().anyMatch(e -> e.getPrimaryModifier() == TFModifier.CLOTHING_ATTRIBUTE && e.getPotency().isNegative());
-	}
-	
-	public Map<Attribute, Integer> getAttributeModifiers() {
-		attributeModifiers.clear();
-		
-		for(ItemEffect ie : getEffects()) {
-			if(ie.getPrimaryModifier() == TFModifier.CLOTHING_ATTRIBUTE) {
-				if(attributeModifiers.containsKey(ie.getSecondaryModifier().getAssociatedAttribute())) {
-					attributeModifiers.put(ie.getSecondaryModifier().getAssociatedAttribute(), attributeModifiers.get(ie.getSecondaryModifier().getAssociatedAttribute()) + ie.getPotency().getClothingBonusValue());
-				} else {
-					attributeModifiers.put(ie.getSecondaryModifier().getAssociatedAttribute(), ie.getPotency().getClothingBonusValue());
-				}
-			}
-		}
-		
-		return attributeModifiers;
-	}
-	
 	public AbstractTattooType getType() {
 		return type;
-	}
-
-	public List<ItemEffect> getEffects() {
-		return effects;
-	}
-	
-	public void setEffects(List<ItemEffect> effects) {
-		this.effects = effects;
-	}
-
-	public void addEffect(ItemEffect effect) {
-		effects.add(effect);
 	}
 
 	public Colour getPrimaryColour() {
@@ -433,25 +351,5 @@ public class Tattoo extends AbstractCoreItem implements XMLSaving {
 	@Override
 	public int getValue() {
 		return this.getType().getValue();
-	}
-	
-	@Override
-	public int getEnchantmentLimit() {
-		return this.getType().getEnchantmentLimit();
-	}
-	
-	@Override
-	public AbstractItemEffectType getEnchantmentEffect() {
-		return ItemEffectType.TATTOO;
-	}
-	
-	@Override
-	public AbstractTattooType getEnchantmentItemType(List<ItemEffect> effects) {
-		return this.getType();
-	}
-	
-	@Override
-	public TFEssence getRelatedEssence() {
-		return TFEssence.ARCANE;
 	}
 }

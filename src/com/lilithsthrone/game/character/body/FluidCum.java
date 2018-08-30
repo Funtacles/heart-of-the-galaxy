@@ -233,19 +233,6 @@ public class FluidCum implements FluidInterface, Serializable, XMLSaving {
 		fluidModifiers.add(fluidModifier);
 		
 		switch(fluidModifier) {
-			case ADDICTIVE:
-				if(owner.isPlayer()) {
-					return "<p>"
-								+ "You feel a strange, pulsating heat deep within your [pc.balls], causing you to let out [pc.a_moan+].<br/>"
-								+ "Your [pc.cum] is now [style.boldGrow(addictive)]!"
-							+ "</p>";
-				} else {
-					return UtilText.parse(owner,
-							"<p>"
-								+ "A strange, pulsating heat takes root deep within [npc.namePos] [npc.balls], causing [npc.herHim] to let out [npc.a_moan+].<br/>"
-								+ "[npc.NamePos] [npc.cum] is now [style.boldGrow(addictive)]!"
-							+ "</p>");
-				}
 			case ALCOHOLIC:
 				if(owner.isPlayer()) {
 					return "<p>"
@@ -355,19 +342,6 @@ public class FluidCum implements FluidInterface, Serializable, XMLSaving {
 		fluidModifiers.remove(fluidModifier);
 		
 		switch(fluidModifier) {
-			case ADDICTIVE:
-				if(owner.isPlayer()) {
-					return "<p>"
-								+ "You feel a soft coolness spreading up into your [pc.balls], causing you to let out a gentle sigh.<br/>"
-								+ "Your [pc.cum] is [style.boldShrink(no longer addictive)]!"
-							+ "</p>";
-				} else {
-					return UtilText.parse(owner,
-							"<p>"
-								+ "A soft coolness spreads up into [npc.namePos] [npc.balls], causing [npc.herHim] to let out a gentle sigh.<br/>"
-								+ "[npc.NamePos] [npc.cum] is [style.boldShrink(no longer addictive)]!"
-							+ "</p>");
-				}
 			case ALCOHOLIC:
 				if(owner.isPlayer()) {
 					return "<p>"

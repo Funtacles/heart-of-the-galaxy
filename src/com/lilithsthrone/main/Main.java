@@ -9,11 +9,11 @@ import com.lilithsthrone.controller.TooltipUpdateThread;
 import com.lilithsthrone.data.SaveManager;
 import com.lilithsthrone.game.Game;
 import com.lilithsthrone.game.Properties;
-import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.PlayerCharacter;
 import com.lilithsthrone.game.character.gender.Gender;
 import com.lilithsthrone.game.character.persona.NameTriplet;
 import com.lilithsthrone.game.character.race.RaceStage;
+import com.lilithsthrone.game.character.race.RaceTemplate;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.responses.Response;
@@ -54,8 +54,7 @@ public class Main extends Application {
 
 	public static Stage primaryStage;
 
-	public static final String VERSION_NUMBER = "0.2.9.5",
-			VERSION_DESCRIPTION = "Alpha";
+	public static final String VERSION_NUMBER = "0.2.9.5", VERSION_DESCRIPTION = "Alpha";
 	
 	private final static boolean DEBUG = false;
 
@@ -90,7 +89,6 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		CheckForDataDirectory();
-		CheckForResFolder();
 				
 		Main.primaryStage = primaryStage;
 		
@@ -113,11 +111,9 @@ public class Main extends Application {
 
 		mainScene = new Scene(pane);
 
-		if (properties.hasValue(PropertyValue.lightTheme)) {
-			mainScene.getStylesheets().add("/com/lilithsthrone/res/css/stylesheet_light.css");
-		} else {
-			mainScene.getStylesheets().add("/com/lilithsthrone/res/css/stylesheet_hotg.css");
-		}
+		mainScene.getStylesheets().add("/com/lilithsthrone/res/css/stylesheet_hotg.css");
+
+		RaceTemplate.importTemplates();
 
 		mainController = loader.getController();
 		Main.primaryStage.setScene(Main.mainScene);
@@ -141,19 +137,6 @@ public class Main extends Application {
 		}
 	}
 	
-	protected static void CheckForResFolder() {
-		File dir = new File("res/");
-		if(!dir.exists()) {
-			Alert a = new Alert(AlertType.WARNING, "Could not find the 'res' folder. This might cause errors and present sections of missing text.\nContinue?", ButtonType.YES, ButtonType.NO);
-			a.showAndWait().ifPresent(response -> {
-				if(response == ButtonType.NO)
-				{
-					System.exit(1);
-				}
-			});
-		}
-	}
-
 	public static void main(String[] args) {
 		SaveManager.createSaveFolders();
 		

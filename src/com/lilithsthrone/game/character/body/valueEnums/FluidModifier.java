@@ -13,7 +13,6 @@ public enum FluidModifier {
 	SLIMY("slimy"),
 	BUBBLING("bubbling"),
 	ALCOHOLIC("alcoholic"),
-	ADDICTIVE("addictive"),
 	HALLUCINOGENIC("psychoactive");
 	
 	private String descriptor;

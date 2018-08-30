@@ -265,27 +265,6 @@ public enum Quest {
 	},
 	
 	
-	// For when you discover your first essence:
-	
-	SIDE_ENCHANTMENTS_LILAYA_HELP(QuestType.SIDE, 1, 10) {
-		@Override
-		public String getName() {
-			return "Ask Lilaya for help";
-		}
-
-		@Override
-		public String getDescription() {
-			return "You recently felt a strange force entering your body, and although it doesn't seem to have had any obvious effect, you should probably have it checked out."
-					+ " Lilaya is sure to know more, so perhaps you should go and talk to her about it.";
-		}
-
-		@Override
-		public String getCompletedDescription() {
-			return "Lilaya informed you that you're able to collect 'essences' from other people's arcane aura."
-					+ " She seemed a little worried that you're able to do this, as apparently it's normally only Lilin who are able to gather essences in this fashion...";
-		}
-	},
-
 	// For the first time you get pregnant:
 	
 	SIDE_PREGNANCY_CONSULT_LILAYA(QuestType.SIDE, 1, 10) {

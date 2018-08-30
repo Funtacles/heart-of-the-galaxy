@@ -38,7 +38,6 @@ import com.lilithsthrone.game.character.body.FluidGirlCum;
 import com.lilithsthrone.game.character.body.FluidMilk;
 import com.lilithsthrone.game.character.body.Penis;
 import com.lilithsthrone.game.character.body.Testicle;
-import com.lilithsthrone.game.character.body.types.AntennaType;
 import com.lilithsthrone.game.character.body.types.ArmType;
 import com.lilithsthrone.game.character.body.types.AssType;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
@@ -101,7 +100,6 @@ import com.lilithsthrone.game.character.body.valueEnums.TongueLength;
 import com.lilithsthrone.game.character.body.valueEnums.TongueModifier;
 import com.lilithsthrone.game.character.body.valueEnums.Wetness;
 import com.lilithsthrone.game.character.body.valueEnums.WingSize;
-import com.lilithsthrone.game.character.effects.Addiction;
 import com.lilithsthrone.game.character.effects.Perk;
 import com.lilithsthrone.game.character.effects.PerkManager;
 import com.lilithsthrone.game.character.effects.StatusEffect;
@@ -144,7 +142,6 @@ import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
 import com.lilithsthrone.game.inventory.clothing.DisplacementType;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
@@ -304,8 +301,6 @@ public abstract class GameCharacter implements XMLSaving {
 	private Map<String, Map<SexType, Integer>> sexPartnerMap;
 	
 	// Fluids:
-	private float alcoholLevel = 0f;
-	private List<Addiction> addictions;
 	private Set<FluidType> psychoactiveFluidsIngested;
 	
 	
@@ -437,7 +432,6 @@ public abstract class GameCharacter implements XMLSaving {
 		virginityLossMap = new HashMap<>();
 		
 		// Addictions:
-		addictions = new ArrayList<>();
 		psychoactiveFluidsIngested = new HashSet<>();
 		
 		// Start all attributes and bonus attributes at 0:
@@ -910,15 +904,6 @@ public abstract class GameCharacter implements XMLSaving {
 		Element characterAddictionsCore = doc.createElement("addictionsCore");
 		properties.appendChild(characterAddictionsCore);
 
-		CharacterUtils.addAttribute(doc, characterAddictionsCore, "alcoholLevel", String.valueOf(alcoholLevel));
-		
-		Element characterAddictions = doc.createElement("addictions");
-		characterAddictionsCore.appendChild(characterAddictions);
-		for(Addiction add : addictions) {
-			add.saveAsXML(characterAddictions, doc);
-		}
-		
-		
 		Element psychoactives = doc.createElement("psychoactiveFluids");
 		characterAddictionsCore.appendChild(psychoactives);
 		for(FluidType ft : this.getPsychoactiveFluidsIngested()) {
@@ -1370,11 +1355,7 @@ public abstract class GameCharacter implements XMLSaving {
 					Element e = ((Element)fetishElements.item(i));
 					
 					try {
-						if(e.getAttribute("type").equals("FETISH_NON_CON")) { // Support for old non-con fetish:
-							character.incrementEssenceCount(TFEssence.ARCANE, 5, false);
-							CharacterUtils.appendToImportLog(log, "<br/>Added refund for old non-con fetish. (+5 arcane essences)");
-							
-						} else if(Fetish.valueOf(e.getAttribute("type")) != null) {
+						if(Fetish.valueOf(e.getAttribute("type")) != null) {
 							if(Boolean.valueOf(e.getAttribute("value"))) {
 								character.addFetish(Fetish.valueOf(e.getAttribute("type")));
 								CharacterUtils.appendToImportLog(log, "<br/>Added Fetish: "+Fetish.valueOf(e.getAttribute("type")).getName(character));
@@ -1389,11 +1370,7 @@ public abstract class GameCharacter implements XMLSaving {
 					Element e = ((Element)fetishElements.item(i));
 					
 					try {
-						if(e.getAttribute("type").equals("FETISH_NON_CON")) { // Support for old non-con fetish:
-							character.incrementEssenceCount(TFEssence.ARCANE, 5, false);
-							CharacterUtils.appendToImportLog(log, "<br/>Added refund for old non-con fetish. (+5 arcane essences)");
-							
-						} else if(Fetish.valueOf(e.getAttribute("type")) != null) {
+						if(Fetish.valueOf(e.getAttribute("type")) != null) {
 							character.addFetish(Fetish.valueOf(e.getAttribute("type")));
 							CharacterUtils.appendToImportLog(log, "<br/>Added Fetish: "+Fetish.valueOf(e.getAttribute("type")).getName(character));
 						}
@@ -1760,35 +1737,10 @@ public abstract class GameCharacter implements XMLSaving {
 		}
 		
 		
-		// ************** Addictions **************//
-
-//		Element characterAddictions = doc.createElement("addictions");
-//		properties.appendChild(characterAddictions);
-//		for(Addiction add : addictions) {
-//			add.saveAsXML(characterAddictions, doc);
-//		}
-//		
-//		CharacterUtils.addAttribute(doc, characterAddictions, "alcoholLevel", String.valueOf(alcoholLevel));
-//		
-//		Element psychoactives = doc.createElement("psychoactiveFluids");
-//		properties.appendChild(psychoactives);
-//		for(FluidType ft : this.getPsychoactiveFluidsIngested()) {
-//			Element element = doc.createElement("fluid");
-//			psychoactives.appendChild(element);
-//			CharacterUtils.addAttribute(doc, element, "value", ft.toString());
-//		}
-		
 		nodes = parentElement.getElementsByTagName("addictionsCore");
 		Element addictionsElement = (Element) nodes.item(0);
 		
 		if(addictionsElement!=null) {
-			if(!addictionsElement.getAttribute("alcoholLevel").isEmpty()) {
-				try {
-					character.alcoholLevel = (Float.valueOf(addictionsElement.getAttribute("alcoholLevel")));
-				} catch(Exception ex) {
-				}
-			}
-			
 			element = (Element) addictionsElement.getElementsByTagName("psychoactiveFluids").item(0);
 			if(element!=null) {
 				NodeList fluidElements = element.getElementsByTagName("fluid");
@@ -1797,30 +1749,6 @@ public abstract class GameCharacter implements XMLSaving {
 					
 					character.addPsychoactiveFluidIngested(FluidType.valueOf(e.getAttribute("value")));
 					CharacterUtils.appendToImportLog(log, "<br/>Added psychoactive fluid:"+e.getAttribute("value"));
-				}
-			}
-			
-			// Old addiction support:
-			element = (Element) addictionsElement.getElementsByTagName("addictionSatisfiedMap").item(0);
-			if(element!=null) {
-				NodeList addictionElements = element.getElementsByTagName("addiction");
-				for(int i=0; i<addictionElements.getLength(); i++){
-					Element e = ((Element)addictionElements.item(i));
-					
-					character.setLastTimeSatisfiedAddiction(FluidType.valueOf(e.getAttribute("type")), Long.valueOf(e.getAttribute("value")));
-					CharacterUtils.appendToImportLog(log, "<br/>Set satisfied time:"+e.getAttribute("type")+" "+e.getAttribute("value"));
-				}
-			}
-			
-			// New addiction:
-			element = (Element) addictionsElement.getElementsByTagName("addictions").item(0);
-			if(element!=null) {
-				NodeList addictionElements = element.getElementsByTagName("addiction");
-				for(int i=0; i<addictionElements.getLength(); i++){
-					try {
-						character.addAddiction(Addiction.loadFromXML(log, ((Element)addictionElements.item(i)), doc));
-					} catch(Exception ex) {	
-					}
 				}
 			}
 		}
@@ -3227,10 +3155,6 @@ public abstract class GameCharacter implements XMLSaving {
 		return fetishes.contains(f) || fetishesFromClothing.contains(f);
 	}
 	
-	public boolean hasTransformationFetish() {
-		return hasFetish(Fetish.FETISH_TRANSFORMATION_GIVING);
-	}
-	
 	public boolean addFetish(Fetish fetish) {
 		if (fetishes.contains(fetish)) {
 			return false;
@@ -3406,26 +3330,6 @@ public abstract class GameCharacter implements XMLSaving {
 		for (StatusEffect se : StatusEffect.values()) {
 			if (se.isConditionsMet(this)) {
 				addStatusEffect(se, -1);
-			}
-		}
-		
-		// Clothing effects:
-		for(AbstractClothing c : this.getClothingCurrentlyEquipped()) {
-			for(ItemEffect ie : c.getEffects()) {
-				String clothingEffectDescription = ie.applyEffect(this, this, turnTime);
-				if (this.isPlayer() && !clothingEffectDescription.isEmpty()) {
-					statusEffectDescriptions.put(StatusEffect.CLOTHING_EFFECT, statusEffectDescriptions.computeIfAbsent(StatusEffect.CLOTHING_EFFECT, x -> "") + clothingEffectDescription);
-				}
-			}
-		}
-		
-		// Tattoo effects:
-		for(Tattoo tattoo : tattoos.values()) {
-			for(ItemEffect ie : tattoo.getEffects()) {
-				String tattooEffectDescription = ie.applyEffect(this, this, turnTime);
-				if (this.isPlayer() && !tattooEffectDescription.isEmpty()) {
-					statusEffectDescriptions.put(StatusEffect.CLOTHING_EFFECT, statusEffectDescriptions.computeIfAbsent(StatusEffect.CLOTHING_EFFECT, x -> "") + tattooEffectDescription);
-				}
 			}
 		}
 		
@@ -9346,7 +9250,6 @@ public abstract class GameCharacter implements XMLSaving {
 	/**
 	 * @param fluid The FluidType to be ingested.
 	 * @param orificeIngestedThrough Orifice through which the fluid is being ingested.
-	 * @param addictive Is this fluid addictive or not.
 	 * @return A <b>formatted paragraph</b> description of addiction increasing/satisfied, or an empty String if no addictive effects occur.
 	 */
 	public String ingestFluid(GameCharacter charactersFluid, FluidType fluid, SexAreaOrifice orificeIngestedThrough, int millilitres, List<FluidModifier> modifiers) {
@@ -9425,57 +9328,6 @@ public abstract class GameCharacter implements XMLSaving {
 			}
 		}
 		
-		if(modifiers.contains(FluidModifier.ADDICTIVE) && this.getAddiction(fluid) == null) {
-			addAddiction(new Addiction(fluid, Main.game.getMinutesPassed(), charactersFluid.getId()));
-			if(isPlayer()) {
-				fluidIngestionSB.append("<p>"
-							+ "Due to the addictive properties of "+(charactersFluid.isPlayer()?"your":charactersFluid.getName()+"'s")+" "+fluid.getName(charactersFluid)
-								+", you find yourself [style.colourArcane(craving)] <span style='color:"+fluid.getRace().getColour().toWebHexString()+";'>"+fluid.getDescriptor(charactersFluid)+"</span> "+fluid.getName(charactersFluid)+"!"
-						+ "</p>");
-			} else {
-				fluidIngestionSB.append(UtilText.parse(this,
-						"<p>"
-							+ "Due to the addictive properties of "+(charactersFluid.equals(this)?"[npc.her]":(charactersFluid.isPlayer()?"your":charactersFluid.getName()+"'s"))+" "+fluid.getName(charactersFluid)
-								+", [npc.name] finds [npc.herself] [style.colourArcane(craving)] <span style='color:"+fluid.getRace().getColour().toWebHexString()+";'>"+fluid.getDescriptor(charactersFluid)+"</span> "+fluid.getName(charactersFluid)+"!"
-						+ "</p>"));
-			}
-			
-		} else if(this.getAddiction(fluid) != null) {
-			boolean curedWithdrawal = Main.game.getMinutesPassed()-this.getAddiction(fluid).getLastTimeSatisfied()>=24*60;
-			setLastTimeSatisfiedAddiction(fluid, Main.game.getMinutesPassed());
-			if(isPlayer()) {
-				fluidIngestionSB.append(UtilText.parse(charactersFluid,
-						"<p>"
-							+ "Your [style.colourArcane(craving)] for <span style='color:"+fluid.getRace().getColour().toWebHexString()+";'>"+fluid.getDescriptor(charactersFluid)+"</span> "+fluid.getName(charactersFluid)+" has been satisfied!"
-							+ (curedWithdrawal
-								?" You feel deeply grateful to [npc.name] for providing you with what you needed most..."
-								:" You weren't suffering from withdrawal, but you still feel thankful to [npc.name] for feeding your addiction...")
-						+ "</p>"));
-			} else {
-				if(charactersFluid.isPlayer()) {
-					fluidIngestionSB.append(UtilText.parse(this,
-							"<p>"
-								+ "[npc.NamePos] [style.colourArcane(craving)] for <span style='color:"+fluid.getRace().getColour().toWebHexString()+";'>"+fluid.getDescriptor(charactersFluid)+"</span> "+fluid.getName(charactersFluid)+" has been satisfied!"
-								+ (curedWithdrawal
-									?" [npc.She] feels deeply grateful to you for providing [npc.herHim] with what [npc.she] needed most..."
-											+ "</p>"
-											+ this.incrementAffection(charactersFluid, 5)
-									:" [npc.She] wasn't suffering from withdrawal, but [npc.she] still feels thankful to you for feeding [npc.her] addiction..."
-											+ "</p>")));
-				} else {
-					fluidIngestionSB.append(UtilText.parse(this, charactersFluid,
-							"<p>"
-								+ "[npc.NamePos] [style.colourArcane(craving)] for <span style='color:"+fluid.getRace().getColour().toWebHexString()+";'>"+fluid.getDescriptor(charactersFluid)+"</span> "+fluid.getName(charactersFluid)+" has been satisfied!"
-								+ (curedWithdrawal
-									?" [npc.She] feels deeply grateful to [npc2.name] for providing [npc.herHim] with what [npc.she] needed most..."
-											+ "</p>"
-//											+ this.incrementAffection(charactersFluid, 5)
-									:" [npc.She] wasn't suffering from withdrawal, but [npc.she] still feels thankful to [npc2.name] for feeding [npc.her] addiction..."
-											+ "</p>")));
-				}
-			}
-		}
-		
 		return fluidIngestionSB.toString();
 	}
 	
@@ -9501,36 +9353,6 @@ public abstract class GameCharacter implements XMLSaving {
 			}
 		}
 		
-		if(modifiers.contains(FluidModifier.ADDICTIVE) && this.getAddiction(fluid) == null) {
-			addAddiction(new Addiction(fluid, Main.game.getMinutesPassed(), this.getId()));
-			if(isPlayer()) {
-				fluidIngestionSB.append("<p>"
-							+ "Due to the addictive properties of the "+fluid.getName(null)
-								+", you find yourself [style.colourArcane(craving)] <span style='color:"+fluid.getRace().getColour().toWebHexString()+";'>"+fluid.getDescriptor(null)+"</span> "+fluid.getName(null)+"!"
-						+ "</p>");
-			} else {
-				fluidIngestionSB.append(UtilText.parse(this,
-						"<p>"
-							+ "Due to the addictive properties of the "+fluid.getName(null)+", [npc.name] finds [npc.herself] [style.colourArcane(craving)]"
-									+ " <span style='color:"+fluid.getRace().getColour().toWebHexString()+";'>"+fluid.getDescriptor(null)+"</span> "+fluid.getName(null)+"!"
-						+ "</p>"));
-			}
-			
-		} else if(this.getAddiction(fluid) != null) {
-			setLastTimeSatisfiedAddiction(fluid, Main.game.getMinutesPassed());
-			if(isPlayer()) {
-				fluidIngestionSB.append(
-						"<p>"
-							+ "Your [style.colourArcane(craving)] for <span style='color:"+fluid.getRace().getColour().toWebHexString()+";'>"+fluid.getDescriptor(null)+"</span> "+fluid.getName(null)+" has been satisfied!"
-						+ "</p>");
-			} else {
-				fluidIngestionSB.append(UtilText.parse(this,
-						"<p>"
-							+ "[npc.NamePos] [style.colourArcane(craving)] for <span style='color:"+fluid.getRace().getColour().toWebHexString()+";'>"+fluid.getDescriptor(null)+"</span> "+fluid.getName(null)+" has been satisfied!"
-						+ "</p>"));
-			}
-		}
-		
 		if(fluidIngestionSB.length()==0) {
 			if(isPlayer()) {
 				fluidIngestionSB.append("<p style='text-align:center;'>"
@@ -9545,56 +9367,6 @@ public abstract class GameCharacter implements XMLSaving {
 		}
 		
 		return fluidIngestionSB.toString();
-	}
-	
-	public Addiction getAddiction(FluidType fluid) {
-		for(Addiction add : addictions) {
-			if(add.getFluid() == fluid) {
-				return add;
-			}
-		}
-		return null;
-	}
-	
-	public List<Addiction> getAddictions() {
-		return addictions;
-	}
-	
-	public void clearAddictions() {
-		addictions.clear();
-	}
-	
-	public boolean addAddiction(Addiction addiction) {
-		for(Addiction add : addictions) {
-			if(add.getFluid() == addiction.getFluid()) {
-				add.setLastTimeSatisfied(addiction.getLastTimeSatisfied());
-				add.getProviderIDs().addAll(addiction.getProviderIDs());
-				return true;
-			}
-		}
-		return addictions.add(addiction);
-	}
-	
-	public boolean removeAddiction(Addiction addiction) {
-		return addictions.remove(addiction);
-	}
-	
-	public void setLastTimeSatisfiedAddiction(FluidType fluid, long minutes) {
-		for(Addiction add : addictions) {
-			if(add.getFluid() == fluid) {
-				add.setLastTimeSatisfied(minutes);
-				return;
-			}
-		}
-	}
-	
-	public long getLastTimeSatisfiedAddiction(FluidType fluid) {
-		for(Addiction add : addictions) {
-			if(add.getFluid() == fluid) {
-				return add.getLastTimeSatisfied();
-			}
-		}
-		return 0;
 	}
 	
 	public Set<FluidType> getPsychoactiveFluidsIngested() {
@@ -9920,9 +9692,6 @@ public abstract class GameCharacter implements XMLSaving {
 		for(SexAreaOrifice ot : SexAreaOrifice.values()) {
 			if(this.fluidsStoredMap.get(ot)!=null) {
 				for(FluidStored fs : this.fluidsStoredMap.get(ot)) {
-					if(fs.getFluid().getFluidModifiers().contains(FluidModifier.ADDICTIVE)) {
-						addAddiction(new Addiction(fs.getFluid().getType(), Main.game.getMinutesPassed(), fs.getCharactersFluidID()));
-					}
 					if(fs.getFluid().getFluidModifiers().contains(FluidModifier.HALLUCINOGENIC)) {
 						this.addStatusEffect(StatusEffect.PSYCHOACTIVE, 6*60);
 					}
@@ -10498,9 +10267,6 @@ public abstract class GameCharacter implements XMLSaving {
 	public void unequipAllClothingIntoVoid() {
 		List<AbstractClothing> clothingEquipped = new ArrayList<>(this.getClothingCurrentlyEquipped());
 		for(AbstractClothing clothing : clothingEquipped) {
-			clothing.setSealed(false);
-		}
-		for(AbstractClothing clothing : clothingEquipped) {
 			this.unequipClothingIntoVoid(clothing, true, this);
 		}
 	}
@@ -10532,63 +10298,6 @@ public abstract class GameCharacter implements XMLSaving {
 			}
 		}
 	}
-	
-	// Essences:
-	
-	public Map<TFEssence, Integer> getEssenceMap() {
-		return inventory.getEssenceMap();
-	}
-	
-	public int getEssenceCount(TFEssence essence) {
-		return getEssenceMap().get(essence);
-	}
-	
-	public void setEssenceCount(TFEssence essence, int amount) {
-		getEssenceMap().put(essence, amount);
-	}
-	
-	public String incrementEssenceCount(TFEssence essence, int increment, boolean withGainModifiers) {
-		String additional = "";
-		if(withGainModifiers && increment>0) {
-			if(this.hasStatusEffect(StatusEffect.WEATHER_STORM) || this.hasStatusEffect(StatusEffect.WEATHER_STORM_VULNERABLE)) {
-				increment *= 2;
-				additional = "<br/>Essence gain was [style.boldExcellent(doubled)] due to the ongoing arcane storm!";
-			}
-		}
-		
-		if(getEssenceCount(essence)+increment < 0) {
-			getEssenceMap().put(essence, 0);
-		} else {
-			getEssenceMap().put(essence, getEssenceCount(essence)+increment);
-		}
-		
-		if(increment>0) {
-			return "You gained "+UtilText.formatAsEssences(increment, "b", false)+" <b style='color:"+essence.getColour().toWebHexString()+";'>"+essence.getName()+" essence"+(increment>1?"s":"")+"</b>!"
-						+ additional;
-		} else {
-			return "You lost "+UtilText.formatAsEssences(-increment, "b", false)+" <b style='color:"+essence.getColour().toWebHexString()+";'>"+essence.getName()+" essence"+(increment<-1?"s":"")+"</b>!";
-		}
-	}
-	
-	public boolean hasEssences() {
-		for(Integer i : getEssenceMap().values()) {
-			if(i>0) {
-				return true;
-			}
-		}
-		return false;
-	}
-	public boolean hasNonArcaneEssences() {
-		for(Entry<TFEssence, Integer> entry : getEssenceMap().entrySet()) {
-			if(entry.getKey()!=TFEssence.ARCANE) {
-				if(entry.getValue()>0) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-	
 	
 	public void clearNonEquippedInventory(){
 		inventory.clearNonEquippedInventory();
@@ -11053,7 +10762,6 @@ public abstract class GameCharacter implements XMLSaving {
 		List<AbstractClothing> equippedClothing = new ArrayList<>();
 		for(AbstractClothing clothing : getClothingCurrentlyEquipped()) {
 			equippedClothing.add(clothing);
-			clothing.setSealed(false);
 		}
 		for(AbstractClothing clothing : equippedClothing) {
 			unequipClothingIntoVoid(clothing, true, this);
@@ -11066,72 +10774,12 @@ public abstract class GameCharacter implements XMLSaving {
 		for (Entry<Attribute, Integer> e : newClothing.getAttributeModifiers().entrySet()) {
 			incrementBonusAttribute(e.getKey(), e.getValue());
 		}
-		
-		for(ItemEffect ie : newClothing.getEffects()) {
-			if(ie.getSecondaryModifier()!=null && ie.getSecondaryModifier().getFetish()!=null) {
-				Fetish associatedFetish = ie.getSecondaryModifier().getFetish();
-				switch(ie.getPotency()) {
-					case MINOR_BOOST:
-						clothingFetishDesireModifiersMap.putIfAbsent(ie.getSecondaryModifier().getFetish(), 0);
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) + 1);
-						break;
-					case BOOST:
-						clothingFetishDesireModifiersMap.putIfAbsent(associatedFetish, 0);
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) + 2);
-						break;
-					case MAJOR_BOOST:
-						fetishesFromClothing.add(associatedFetish);
-						applyFetishGainEffects(associatedFetish);
-						break;
-					case MINOR_DRAIN:
-						clothingFetishDesireModifiersMap.putIfAbsent(associatedFetish, 0);
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) - 1);
-						break;
-					case DRAIN:
-						clothingFetishDesireModifiersMap.putIfAbsent(associatedFetish, 0);
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) - 2);
-						break;
-					case MAJOR_DRAIN:
-						clothingFetishDesireModifiersMap.putIfAbsent(associatedFetish, 0);
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) - 999);
-						break;
-				}
-			}
-		}
 	}
 	
 	private void applyUnequipClothingEffects(AbstractClothing clothing) {
 		incrementBonusAttribute(Attribute.RESISTANCE_PHYSICAL, -clothing.getClothingType().getPhysicalResistance());
 		for (Entry<Attribute, Integer> e : clothing.getAttributeModifiers().entrySet()) {
 			incrementBonusAttribute(e.getKey(), -e.getValue());
-		}
-		
-		for(ItemEffect ie : clothing.getEffects()) {
-			if(ie.getSecondaryModifier()!=null && ie.getSecondaryModifier().getFetish()!=null) {
-				Fetish associatedFetish = ie.getSecondaryModifier().getFetish();
-				switch(ie.getPotency()) {
-					case MINOR_BOOST:
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) - 1);
-						break;
-					case BOOST:
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) - 2);
-						break;
-					case MAJOR_BOOST:
-						fetishesFromClothing.remove(associatedFetish);
-						applyFetishLossEffects(associatedFetish);
-						break;
-					case MINOR_DRAIN:
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) + 1);
-						break;
-					case DRAIN:
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) + 2);
-						break;
-					case MAJOR_DRAIN:
-						clothingFetishDesireModifiersMap.putIfAbsent(associatedFetish, 0);
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) + 999);
-						break;
-				}
-			}
 		}
 	}
 	
@@ -11151,8 +10799,6 @@ public abstract class GameCharacter implements XMLSaving {
 			applyEquipClothingEffects(newClothing);
 			
 			fromCharactersInventory.removeClothing(newClothing);
-
-			newClothing.setEnchantmentKnown(true);
 
 			updateInventoryListeners();
 
@@ -11175,8 +10821,6 @@ public abstract class GameCharacter implements XMLSaving {
 
 		applyEquipClothingEffects(newClothing);
 		
-		newClothing.setEnchantmentKnown(true);
-
 		updateInventoryListeners();
 	}
 
@@ -11188,8 +10832,6 @@ public abstract class GameCharacter implements XMLSaving {
 		if (wasAbleToEquip) {
 			applyEquipClothingEffects(newClothing);
 			
-			newClothing.setEnchantmentKnown(true);
-
 			updateInventoryListeners();
 
 			if (isPlayer() && Main.game.isInNewWorld()) {
@@ -11212,8 +10854,6 @@ public abstract class GameCharacter implements XMLSaving {
 			applyEquipClothingEffects(newClothing);
 
 			Main.game.getWorlds().get(getWorldLocation()).getCell(getLocation()).getInventory().removeClothing(newClothing);
-
-			newClothing.setEnchantmentKnown(true);
 
 			updateInventoryListeners();
 
@@ -12519,10 +12159,6 @@ public abstract class GameCharacter implements XMLSaving {
 		return this.getRace()==Race.DEMON;
 	}
 	
-	public Race getAntennaRace() {
-		return body.getAntenna().getType().getRace();
-	}
-	
 	public Race getArmRace() {
 		return body.getArm().getType().getRace();
 	}
@@ -12678,71 +12314,11 @@ public abstract class GameCharacter implements XMLSaving {
 		for (Entry<Attribute, Integer> e : tattoo.getAttributeModifiers().entrySet()) {
 			incrementBonusAttribute(e.getKey(), e.getValue());
 		}
-		
-		for(ItemEffect ie : tattoo.getEffects()) {
-			if(ie.getSecondaryModifier()!=null && ie.getSecondaryModifier().getFetish()!=null) {
-				Fetish associatedFetish = ie.getSecondaryModifier().getFetish();
-				switch(ie.getPotency()) {
-					case MINOR_BOOST:
-						clothingFetishDesireModifiersMap.putIfAbsent(ie.getSecondaryModifier().getFetish(), 0);
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) + 1);
-						break;
-					case BOOST:
-						clothingFetishDesireModifiersMap.putIfAbsent(associatedFetish, 0);
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) + 2);
-						break;
-					case MAJOR_BOOST:
-						fetishesFromClothing.add(associatedFetish);
-						applyFetishGainEffects(associatedFetish);
-						break;
-					case MINOR_DRAIN:
-						clothingFetishDesireModifiersMap.putIfAbsent(associatedFetish, 0);
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) - 1);
-						break;
-					case DRAIN:
-						clothingFetishDesireModifiersMap.putIfAbsent(associatedFetish, 0);
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) - 2);
-						break;
-					case MAJOR_DRAIN:
-						clothingFetishDesireModifiersMap.putIfAbsent(associatedFetish, 0);
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) - 999);
-						break;
-				}
-			}
-		}
 	}
 	
 	private void applyUnequipTattooEffects(Tattoo tattoo) {
 		for (Entry<Attribute, Integer> e : tattoo.getAttributeModifiers().entrySet()) {
 			incrementBonusAttribute(e.getKey(), -e.getValue());
-		}
-		
-		for(ItemEffect ie : tattoo.getEffects()) {
-			if(ie.getSecondaryModifier()!=null && ie.getSecondaryModifier().getFetish()!=null) {
-				Fetish associatedFetish = ie.getSecondaryModifier().getFetish();
-				switch(ie.getPotency()) {
-					case MINOR_BOOST:
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) - 1);
-						break;
-					case BOOST:
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) - 2);
-						break;
-					case MAJOR_BOOST:
-						fetishesFromClothing.remove(associatedFetish);
-						applyFetishLossEffects(associatedFetish);
-						break;
-					case MINOR_DRAIN:
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) + 1);
-						break;
-					case DRAIN:
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) + 2);
-						break;
-					case MAJOR_DRAIN:
-						clothingFetishDesireModifiersMap.putIfAbsent(associatedFetish, 0);
-						clothingFetishDesireModifiersMap.put(associatedFetish, clothingFetishDesireModifiersMap.get(associatedFetish) + 999);
-						break;
-				}
-			}
 		}
 	}
 
@@ -13205,52 +12781,6 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 
 	// Body parts in alphabetical order:
-	
-	
-	
-	// ------------------------------ Antennae: ------------------------------ //
-	
-	// Type:
-	public AntennaType getAntennaType() {
-		return body.getAntenna().getType();
-	}
-	public String setAntennaType(AntennaType hornType) {
-		return body.getAntenna().setType(this, hornType);
-	}
-	// Misc.:
-	public boolean hasAntennas() {
-		return body.getAntenna().getType() != AntennaType.NONE;
-	}
-	// Names:
-	public String getAntennaName() {
-		return body.getAntenna().getName(this);
-	}
-	public String getAntennaNameSingular() {
-		return body.getAntenna().getNameSingular(this);
-	}
-	public String getAntennaName(boolean withDescriptor) {
-		return body.getAntenna().getName(this, withDescriptor);
-	}
-	public String getAntennaDescriptor() {
-		return body.getAntenna().getDescriptor(this);
-	}
-	public String getAntennaDeterminer() {
-		return body.getAntenna().getDeterminer(this);
-	}
-	public String getAntennaPronoun() {
-		return body.getAntenna().getType().getPronoun();
-	}
-	// Rows:
-	public int getAntennaRows() {
-		return body.getAntenna().getAntennaRows();
-	}
-	public String setAntennaRows(int rows) {
-		return body.getAntenna().setAntennaRows(this, rows);
-	}
-	public String incrementAntennaRows(int increment) {
-		return body.getAntenna().setAntennaRows(this, getAntennaRows()+increment);
-	}
-	
 	
 	
 	// ------------------------------ Arms: ------------------------------ //

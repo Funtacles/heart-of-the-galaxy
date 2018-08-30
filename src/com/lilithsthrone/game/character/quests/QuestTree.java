@@ -10,7 +10,6 @@ import com.lilithsthrone.utils.TreeNode;
 public class QuestTree {
 
 	public static TreeNode<Quest> mainQuestTree = new TreeNode<Quest>(Quest.MAIN_PROLOGUE);
-	public static TreeNode<Quest> enchantmentTree = new TreeNode<Quest>(Quest.SIDE_ENCHANTMENTS_LILAYA_HELP);
 	public static TreeNode<Quest> pregnancyTree = new TreeNode<Quest>(Quest.SIDE_PREGNANCY_CONSULT_LILAYA);
 	public static TreeNode<Quest> slaveryTree = new TreeNode<Quest>(Quest.SIDE_SLAVER_NEED_RECOMMENDATION);
 	public static TreeNode<Quest> accommodationTree = new TreeNode<Quest>(Quest.SIDE_ACCOMMODATION_NEED_LILAYAS_PERMISSION);
@@ -37,8 +36,6 @@ public class QuestTree {
 		node2.addChild(node1);
 		node2 = new TreeNode<Quest>(Quest.MAIN_1_J_ARTHURS_ROOM);
 		node1.addChild(node2);
-
-		enchantmentTree.addChild(new TreeNode<Quest>(Quest.SIDE_UTIL_COMPLETE));
 
 		node1 = new TreeNode<Quest>(Quest.SIDE_PREGNANCY_LILAYA_THE_MIDWIFE);
 		pregnancyTree.addChild(node1);

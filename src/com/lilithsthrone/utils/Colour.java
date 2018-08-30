@@ -2,9 +2,6 @@ package com.lilithsthrone.utils;
 
 import java.util.List;
 
-import com.lilithsthrone.game.PropertyValue;
-import com.lilithsthrone.main.Main;
-
 import javafx.scene.paint.Color;
 
 /**
@@ -65,13 +62,13 @@ public enum Colour {
 	
 	
 	// Game colours:
-	BACKGROUND(false, Util.newColour(0x222222), Util.newColour(0xcccccc), "grey"),
-	BACKGROUND_ALT(false, Util.newColour(0x292929), Util.newColour(0xbbbbbb), "grey"),
+	BACKGROUND(false, Util.newColour(0x222222), "grey"),
+	BACKGROUND_ALT(false, Util.newColour(0x292929), "grey"),
 	
-	MAP_BACKGROUND_UNEXPLORED(false, Util.newColour(0x111), Util.newColour(0x111), "black"),
-	MAP_BACKGROUND_PINK(false, Util.newColour(0xb2a4bb), Util.newColour(0xb2a4bb), "pink"),
-	MAP_BACKGROUND(false, Util.newColour(0xbbbbbb), Util.newColour(0xbbbbbb), "grey"),
-	MAP_BACKGROUND_DARK(false, Util.newColour(0x888888), Util.newColour(0x8f8f8f), "dark grey"),
+	MAP_BACKGROUND_UNEXPLORED(false, Util.newColour(0x111), "black"),
+	MAP_BACKGROUND_PINK(false, Util.newColour(0xb2a4bb),  "pink"),
+	MAP_BACKGROUND(false, Util.newColour(0xbbbbbb),  "grey"),
+	MAP_BACKGROUND_DARK(false, Util.newColour(0x888888), "dark grey"),
 	MAP_BACKGROUND_BLUE(false, BaseColour.BLUE_LIGHT, "light blue", Util.newArrayListOfValues("lightBlue")),
 	
 	GENERIC_SEX(false, BaseColour.PINK_LIGHT, "pink", Util.newArrayListOfValues("sex")),
@@ -126,7 +123,7 @@ public enum Colour {
 	QUEST_SIDE(false, BaseColour.BLUE, "blue"),
 	QUEST_RELATIONSHIP(false, BaseColour.PINK_LIGHT, "pink"),
 
-	MAP_MARKER(false, Util.newColour(0x6163DB), Util.newColour(0x6163DB), "blue"),
+	MAP_MARKER(false, Util.newColour(0x6163DB), "blue"),
 
 	ATTRIBUTE_HEALTH(false, BaseColour.CRIMSON, "crimson", Util.newArrayListOfValues("health", "hp", "energy")),
 	ATTRIBUTE_MANA(false, BaseColour.PURPLE_LIGHT, "light purple", Util.newArrayListOfValues("willpower", "wp", "mana", "aura")),
@@ -163,88 +160,88 @@ public enum Colour {
 	FITNESS_STAGE_FOUR(false, BaseColour.LILAC, "light purple"),
 	FITNESS_STAGE_FIVE(false, BaseColour.GOLD, "gold"),
 	
-	AROUSAL_STAGE_ZERO(false, Util.newColour(0xfee6ff), Util.newColour(0xfee6ff), "pink"),
-	AROUSAL_STAGE_ONE(false, Util.newColour(0xfcb3ff), Util.newColour(0xfcb3ff), "pink"),
-	AROUSAL_STAGE_TWO(false, Util.newColour(0xfb80ff), Util.newColour(0xfb80ff), "pink"),
-	AROUSAL_STAGE_THREE(false, Util.newColour(0xf94dff), Util.newColour(0xf94dff), "pink"),
-	AROUSAL_STAGE_FOUR(false, Util.newColour(0xf824ff), Util.newColour(0xf824ff), "pink"),
-	AROUSAL_STAGE_FIVE(false, Util.newColour(0xf700ff), Util.newColour(0xf700ff), "pink"),
+	AROUSAL_STAGE_ZERO(false, Util.newColour(0xfee6ff), "pink"),
+	AROUSAL_STAGE_ONE(false, Util.newColour(0xfcb3ff), "pink"),
+	AROUSAL_STAGE_TWO(false, Util.newColour(0xfb80ff), "pink"),
+	AROUSAL_STAGE_THREE(false, Util.newColour(0xf94dff), "pink"),
+	AROUSAL_STAGE_FOUR(false, Util.newColour(0xf824ff), "pink"),
+	AROUSAL_STAGE_FIVE(false, Util.newColour(0xf700ff), "pink"),
 	
-	LUST_STAGE_ZERO(false, Util.newColour(0x80CAFF), Util.newColour(0xfee6ff), "blue"),
-	LUST_STAGE_ONE(false, Util.newColour(0xB699FF), Util.newColour(0xfcb3ff), "purple"),
-	LUST_STAGE_TWO(false, Util.newColour(0xFF99D1), Util.newColour(0xfb80ff), "pink"),
-	LUST_STAGE_THREE(false, Util.newColour(0xFF61AB), Util.newColour(0xf94dff), "pink"),
-	LUST_STAGE_FOUR(false, Util.newColour(0xFF3377), Util.newColour(0xf824ff), "dark pink"),
-	LUST_STAGE_FIVE(false, Util.newColour(0xFF1A66), Util.newColour(0xf824ff), "dark pink"),
+	LUST_STAGE_ZERO(false, Util.newColour(0x80CAFF), "blue"),
+	LUST_STAGE_ONE(false, Util.newColour(0xB699FF), "purple"),
+	LUST_STAGE_TWO(false, Util.newColour(0xFF99D1), "pink"),
+	LUST_STAGE_THREE(false, Util.newColour(0xFF61AB), "pink"),
+	LUST_STAGE_FOUR(false, Util.newColour(0xFF3377), "dark pink"),
+	LUST_STAGE_FIVE(false, Util.newColour(0xFF1A66), "dark pink"),
 
-	DESIRE_STAGE_ZERO(false, Util.newColour(0xB699FF), Util.newColour(0xfcb3ff), "purple"),
-	DESIRE_STAGE_ONE(false, Util.newColour(0xFF99D1), Util.newColour(0xfb80ff), "pink"),
-	DESIRE_STAGE_TWO(false, Util.newColour(0xFF61AB), Util.newColour(0xf94dff), "pink"),
-	DESIRE_STAGE_THREE(false, Util.newColour(0xFF3377), Util.newColour(0xf824ff), "dark pink"),
-	DESIRE_STAGE_FOUR(false, Util.newColour(0xffdf80), Util.newColour(0xffdf80), "gold"),
+	DESIRE_STAGE_ZERO(false, Util.newColour(0xB699FF), "purple"),
+	DESIRE_STAGE_ONE(false, Util.newColour(0xFF99D1), "pink"),
+	DESIRE_STAGE_TWO(false, Util.newColour(0xFF61AB), "pink"),
+	DESIRE_STAGE_THREE(false, Util.newColour(0xFF3377), "dark pink"),
+	DESIRE_STAGE_FOUR(false, Util.newColour(0xffdf80), "gold"),
 
 
 	COMPANION(false, BaseColour.GREEN_LIGHT,  "light green", Util.newArrayListOfValues("companion", "companions")),
 	
 	AFFECTION(false, BaseColour.PINK_LIGHT,  "light pink", Util.newArrayListOfValues("affection")),
 	
-	AFFECTION_NEGATIVE_FIVE(false, Util.newColour(0xff0066), Util.newColour(0x8e011e), "magenta"),
-	AFFECTION_NEGATIVE_FOUR(false, Util.newColour(0xff2a7f), Util.newColour(0xa40123), "magenta"),
-	AFFECTION_NEGATIVE_THREE(false, Util.newColour(0xff5599), Util.newColour(0xb21e44), "pink"),
-	AFFECTION_NEGATIVE_TWO(false, Util.newColour(0xff80b2), Util.newColour(0xbc325a), "pink"),
-	AFFECTION_NEGATIVE_ONE(false, Util.newColour(0xffaacc), Util.newColour(0xc44670), "pink"),
-	AFFECTION_NEUTRAL(false, Util.newColour(0xe3dedb), Util.newColour(0xcd5986), "grey"),
-	AFFECTION_POSITIVE_ONE(false, Util.newColour(0xffeeaa), Util.newColour(0xd66e9d), "yellow"),
-	AFFECTION_POSITIVE_TWO(false, Util.newColour(0xffe680), Util.newColour(0xe082b3), "yellow"),
-	AFFECTION_POSITIVE_THREE(false, Util.newColour(0xffdd55), Util.newColour(0xe996c9), "yellow"),
-	AFFECTION_POSITIVE_FOUR(false, Util.newColour(0xffd42a), Util.newColour(0xf2aadf), "gold"),
-	AFFECTION_POSITIVE_FIVE(false, Util.newColour(0xffcc00), Util.newColour(0xfbbcf4), "gold"),
+	AFFECTION_NEGATIVE_FIVE(false, Util.newColour(0xff0066), "magenta"),
+	AFFECTION_NEGATIVE_FOUR(false, Util.newColour(0xff2a7f), "magenta"),
+	AFFECTION_NEGATIVE_THREE(false, Util.newColour(0xff5599), "pink"),
+	AFFECTION_NEGATIVE_TWO(false, Util.newColour(0xff80b2), "pink"),
+	AFFECTION_NEGATIVE_ONE(false, Util.newColour(0xffaacc), "pink"),
+	AFFECTION_NEUTRAL(false, Util.newColour(0xe3dedb), "grey"),
+	AFFECTION_POSITIVE_ONE(false, Util.newColour(0xffeeaa), "yellow"),
+	AFFECTION_POSITIVE_TWO(false, Util.newColour(0xffe680), "yellow"),
+	AFFECTION_POSITIVE_THREE(false, Util.newColour(0xffdd55), "yellow"),
+	AFFECTION_POSITIVE_FOUR(false, Util.newColour(0xffd42a), "gold"),
+	AFFECTION_POSITIVE_FIVE(false, Util.newColour(0xffcc00), "gold"),
 
-	MASCULINE_PLUS(false, Util.newColour(0x4D9DFF), Util.newColour(0x4D9DFF), "dark blue", Util.newArrayListOfValues("masculineStrong", "masStr", "masculinePlus")),
-	MASCULINE(false, Util.newColour(0x8ABEFF), Util.newColour(0x8ABEFF), "blue", Util.newArrayListOfValues("masculine", "mas")),
-	ANDROGYNOUS(false, Util.newColour(0xB39EFF), Util.newColour(0xB39EFF), "purple", Util.newArrayListOfValues("androgynous", "andro")),
-	FEMININE(false, Util.newColour(0xFFBDFF), Util.newColour(0xFFFBDFF), "pink", Util.newArrayListOfValues("feminine", "fem")),
-	FEMININE_PLUS(false, Util.newColour(0xFF85FF), Util.newColour(0xFF85FF), "pink", Util.newArrayListOfValues("feminineStrong", "femStr", "femininePlus")),
+	MASCULINE_PLUS(false, Util.newColour(0x4D9DFF), "dark blue", Util.newArrayListOfValues("masculineStrong", "masStr", "masculinePlus")),
+	MASCULINE(false, Util.newColour(0x8ABEFF), "blue", Util.newArrayListOfValues("masculine", "mas")),
+	ANDROGYNOUS(false, Util.newColour(0xB39EFF), "purple", Util.newArrayListOfValues("androgynous", "andro")),
+	FEMININE(false, Util.newColour(0xFFBDFF), "pink", Util.newArrayListOfValues("feminine", "fem")),
+	FEMININE_PLUS(false, Util.newColour(0xFF85FF), "pink", Util.newArrayListOfValues("feminineStrong", "femStr", "femininePlus")),
 	
-	BODY_SIZE_ZERO(false, Util.newColour(0xFFEBD6), Util.newColour(0x241D00), "tan", Util.newArrayListOfValues("bodySizeZero")),
-	BODY_SIZE_ONE(false, Util.newColour(0xFFE0BD), Util.newColour(0x3D3100), "tan", Util.newArrayListOfValues("bodySizeOne")),
-	BODY_SIZE_TWO(false, Util.newColour(0xFFC88A), Util.newColour(0x5C4900), "tan", Util.newArrayListOfValues("bodySizeTwo")),
-	BODY_SIZE_THREE(false, Util.newColour(0xFFAB57), Util.newColour(0x806600), "tan", Util.newArrayListOfValues("bodySizeThree")),
-	BODY_SIZE_FOUR(false, Util.newColour(0xFF9124), Util.newColour(0x9E7E00), "tan", Util.newArrayListOfValues("bodySizeFour")),
+	BODY_SIZE_ZERO(false, Util.newColour(0xFFEBD6), "tan", Util.newArrayListOfValues("bodySizeZero")),
+	BODY_SIZE_ONE(false, Util.newColour(0xFFE0BD), "tan", Util.newArrayListOfValues("bodySizeOne")),
+	BODY_SIZE_TWO(false, Util.newColour(0xFFC88A), "tan", Util.newArrayListOfValues("bodySizeTwo")),
+	BODY_SIZE_THREE(false, Util.newColour(0xFFAB57), "tan", Util.newArrayListOfValues("bodySizeThree")),
+	BODY_SIZE_FOUR(false, Util.newColour(0xFF9124), "tan", Util.newArrayListOfValues("bodySizeFour")),
 
-	MUSCLE_ZERO(false, Util.newColour(0xDBFFF6), Util.newColour(0x001F17), "teal", Util.newArrayListOfValues("muscleZero")),
-	MUSCLE_ONE(false, Util.newColour(0xBDFFED), Util.newColour(0x00382B), "teal", Util.newArrayListOfValues("muscleOne")),
-	MUSCLE_TWO(false, Util.newColour(0x8AFFE0), Util.newColour(0x00523F), "teal", Util.newArrayListOfValues("muscleTwo")),
-	MUSCLE_THREE(false, Util.newColour(0x57FFD2), Util.newColour(0x006B52), "teal", Util.newArrayListOfValues("muscleThree")),
-	MUSCLE_FOUR(false, Util.newColour(0x24FFC5), Util.newColour(0x008566), "teal", Util.newArrayListOfValues("muscleFour")),
+	MUSCLE_ZERO(false, Util.newColour(0xDBFFF6), "teal", Util.newArrayListOfValues("muscleZero")),
+	MUSCLE_ONE(false, Util.newColour(0xBDFFED), "teal", Util.newArrayListOfValues("muscleOne")),
+	MUSCLE_TWO(false, Util.newColour(0x8AFFE0), "teal", Util.newArrayListOfValues("muscleTwo")),
+	MUSCLE_THREE(false, Util.newColour(0x57FFD2), "teal", Util.newArrayListOfValues("muscleThree")),
+	MUSCLE_FOUR(false, Util.newColour(0x24FFC5), "teal", Util.newArrayListOfValues("muscleFour")),
 
-	AGE_TEENS(false, Util.newColour(0xE1F0C1), Util.newColour(0x73A112), "green", Util.newArrayListOfValues("ageTeens")),
-	AGE_TWENTIES(false, Util.newColour(0xCCE698), Util.newColour(0x638A0F), "green", Util.newArrayListOfValues("ageTwenties")),
-	AGE_THIRTIES(false, Util.newColour(0xB8DC6F), Util.newColour(0x52730D), "green", Util.newArrayListOfValues("ageThirties")),
-	AGE_FORTIES(false, Util.newColour(0xA4D246), Util.newColour(0x41590D), "green", Util.newArrayListOfValues("ageForties")),
+	AGE_TEENS(false, Util.newColour(0xE1F0C1), "green", Util.newArrayListOfValues("ageTeens")),
+	AGE_TWENTIES(false, Util.newColour(0xCCE698), "green", Util.newArrayListOfValues("ageTwenties")),
+	AGE_THIRTIES(false, Util.newColour(0xB8DC6F), "green", Util.newArrayListOfValues("ageThirties")),
+	AGE_FORTIES(false, Util.newColour(0xA4D246), "green", Util.newArrayListOfValues("ageForties")),
 	
 	ALCOHOL(false, BaseColour.YELLOW_LIGHT, "light yellow", Util.newArrayListOfValues("alcohol")),
 
-	ALCOHOL_LEVEL_ZERO(false, Util.newColour(0xF2E8C0), Util.newColour(0x967F22), "light yellow"),
-	ALCOHOL_LEVEL_ONE(false,  Util.newColour(0xEDDFAB), Util.newColour(0x967F22), "light yellow"),
-	ALCOHOL_LEVEL_TWO(false,  Util.newColour(0xE8D696), Util.newColour(0x967F22), "yellow"),
-	ALCOHOL_LEVEL_THREE(false,  Util.newColour(0xE3CE82), Util.newColour(0x967F22), "yellow"),
-	ALCOHOL_LEVEL_FOUR(false,  Util.newColour(0xDEC66E), Util.newColour(0x967F22), "yellow"),
-	ALCOHOL_LEVEL_FIVE(false, Util.newColour(0xD9BD59), Util.newColour(0x967F22), "gold"),
+	ALCOHOL_LEVEL_ZERO(false, Util.newColour(0xF2E8C0), "light yellow"),
+	ALCOHOL_LEVEL_ONE(false,  Util.newColour(0xEDDFAB), "light yellow"),
+	ALCOHOL_LEVEL_TWO(false,  Util.newColour(0xE8D696), "yellow"),
+	ALCOHOL_LEVEL_THREE(false,  Util.newColour(0xE3CE82), "yellow"),
+	ALCOHOL_LEVEL_FOUR(false,  Util.newColour(0xDEC66E), "yellow"),
+	ALCOHOL_LEVEL_FIVE(false, Util.newColour(0xD9BD59), "gold"),
 	
 	PSYCHOACTIVE(false, BaseColour.MAGENTA, "magenta", Util.newArrayListOfValues("psychoactive")),
 
 	TRANSFORMATION_SHRINK(false, BaseColour.RED, "red", Util.newArrayListOfValues("tfShrink", "shrink", "tfShrunk", "shrunk", "tfShrinking", "shrinking")),
 	TRANSFORMATION_GROW(false, BaseColour.GREEN, "green", Util.newArrayListOfValues("tfGrow", "grow", "tfGrown", "grown", "tfGrowth", "growth")),
 
-	GENERIC_SIZE_ONE(false, Util.newColour(0xAFE9B3), Util.newColour(0xc44670), "green"),
-	GENERIC_SIZE_TWO(false, Util.newColour(0xA0E4A3), Util.newColour(0xbc325a), "green"),
-	GENERIC_SIZE_THREE(false, Util.newColour(0x8FE096), Util.newColour(0xb21e44), "green"),
-	GENERIC_SIZE_FOUR(false, Util.newColour(0x77DA7F), Util.newColour(0xa40123), "green"),
-	GENERIC_SIZE_FIVE(false, Util.newColour(0x67D570), Util.newColour(0x8e011e), "green"),
-	GENERIC_SIZE_SIX(false, Util.newColour(0x57D161), Util.newColour(0x8e011e), "green"),
-	GENERIC_SIZE_SEVEN(false, Util.newColour(0x47CD52), Util.newColour(0x8e011e), "green"),
-	GENERIC_SIZE_EIGHT(false, Util.newColour(0x37C843), Util.newColour(0x8e011e), "green"),
+	GENERIC_SIZE_ONE(false, Util.newColour(0xAFE9B3), "green"),
+	GENERIC_SIZE_TWO(false, Util.newColour(0xA0E4A3), "green"),
+	GENERIC_SIZE_THREE(false, Util.newColour(0x8FE096), "green"),
+	GENERIC_SIZE_FOUR(false, Util.newColour(0x77DA7F), "green"),
+	GENERIC_SIZE_FIVE(false, Util.newColour(0x67D570), "green"),
+	GENERIC_SIZE_SIX(false, Util.newColour(0x57D161), "green"),
+	GENERIC_SIZE_SEVEN(false, Util.newColour(0x47CD52), "green"),
+	GENERIC_SIZE_EIGHT(false, Util.newColour(0x37C843), "green"),
 	
 	WETNESS(false, BaseColour.BLUE_LIGHT, "light blue", Util.newArrayListOfValues("wetness", "wet", "tfWetness", "tfWet")),
 	PLASTICITY(false, BaseColour.LILAC, "lilac", Util.newArrayListOfValues("plasticity", "tfPlasticity")),
@@ -252,10 +249,10 @@ public enum Colour {
 	TRANSFORMATION_GENERIC(false, BaseColour.GREEN_LIME, "lime", Util.newArrayListOfValues("tfGeneric", "tfBase", "genericTF")),
 	TRANSFORMATION_SEXUAL(false, BaseColour.PINK_LIGHT, "pink", Util.newArrayListOfValues("tfSex", "tfSexual", "sexualTF")),
 	TRANSFORMATION_HUMAN(false, BaseColour.BLUE_STEEL, "pale blue", Util.newArrayListOfValues("tfHuman")),
-	TRANSFORMATION_PARTIAL(false, Util.newColour(0xff80bf), Util.newColour(0xff80bf), "purple", Util.newArrayListOfValues("tfPartial")),
-	TRANSFORMATION_PARTIAL_FULL(false, Util.newColour(0xff1a8c), Util.newColour(0xff1a8c), "purple", Util.newArrayListOfValues("tfMinor")),
-	TRANSFORMATION_LESSER(false, Util.newColour(0xe600ac), Util.newColour(0xe600ac), "purple", Util.newArrayListOfValues("tfLesser")),
-	TRANSFORMATION_GREATER(false, Util.newColour(0xd411d4), Util.newColour(0xd411d4), "purple-pink", Util.newArrayListOfValues("tfGreater")),
+	TRANSFORMATION_PARTIAL(false, Util.newColour(0xff80bf), "purple", Util.newArrayListOfValues("tfPartial")),
+	TRANSFORMATION_PARTIAL_FULL(false, Util.newColour(0xff1a8c), "purple", Util.newArrayListOfValues("tfMinor")),
+	TRANSFORMATION_LESSER(false, Util.newColour(0xe600ac), "purple", Util.newArrayListOfValues("tfLesser")),
+	TRANSFORMATION_GREATER(false, Util.newColour(0xd411d4), "purple-pink", Util.newArrayListOfValues("tfGreater")),
 
 	// Speech colours:
 	MASCULINE_PLUS_NPC(false, BaseColour.BLUE, "blue"),
@@ -265,14 +262,14 @@ public enum Colour {
 	FEMININE_PLUS_NPC(false, BaseColour.PINK, "pink"),
 
 	// Combat colours:
-	DAMAGE_TYPE_PHYSICAL(false, Util.newColour(0xFF428E), Util.newColour(0xFF428E), "red", Util.newArrayListOfValues("dmgPhysical", "resPhysical", "physical")),
+	DAMAGE_TYPE_PHYSICAL(false, Util.newColour(0xFF428E), "red", Util.newArrayListOfValues("dmgPhysical", "resPhysical", "physical")),
 	DAMAGE_TYPE_MANA(false, BaseColour.PURPLE_LIGHT, "purple", Util.newArrayListOfValues("dmgMana", "resMana")),
 	DAMAGE_TYPE_LUST(false, BaseColour.MAGENTA, "magenta", Util.newArrayListOfValues("dmgLust", "resLust")),
-	DAMAGE_TYPE_SPELL(false, Util.newColour(0xFF6BDA), Util.newColour(0xFF6BDA), "pink", Util.newArrayListOfValues("dmgSpell", "resSpell", "spell")),
-	DAMAGE_TYPE_FIRE(false, Util.newColour(0xff9955), Util.newColour(0xff9955), "orange", Util.newArrayListOfValues("dmgFire", "resFire", "fire")),
-	DAMAGE_TYPE_COLD(false, Util.newColour(0x85C6FF), Util.newColour(0x85C6FF), "blue", Util.newArrayListOfValues("dmgCold", "resCold", "cold", "ice")),
-	DAMAGE_TYPE_POISON(false, Util.newColour(0x85FF8B), Util.newColour(0x85FF8B), "green", Util.newArrayListOfValues("dmgPoison", "resPoison", "poison")),
-	DAMAGE_TYPE_PURE(false, Util.newColour(0xFFCC00), Util.newColour(0xFFCC00), "gold", Util.newArrayListOfValues("dmgPure", "resPure", "pure")),
+	DAMAGE_TYPE_SPELL(false, Util.newColour(0xFF6BDA), "pink", Util.newArrayListOfValues("dmgSpell", "resSpell", "spell")),
+	DAMAGE_TYPE_FIRE(false, Util.newColour(0xff9955), "orange", Util.newArrayListOfValues("dmgFire", "resFire", "fire")),
+	DAMAGE_TYPE_COLD(false, Util.newColour(0x85C6FF), "blue", Util.newArrayListOfValues("dmgCold", "resCold", "cold", "ice")),
+	DAMAGE_TYPE_POISON(false, Util.newColour(0x85FF8B), "green", Util.newArrayListOfValues("dmgPoison", "resPoison", "poison")),
+	DAMAGE_TYPE_PURE(false, Util.newColour(0xFFCC00), "gold", Util.newArrayListOfValues("dmgPure", "resPure", "pure")),
 
 	SPELL_SCHOOL_FIRE(false, BaseColour.ORANGE, "orange", Util.newArrayListOfValues("spellFire", "schoolFire")),
 	SPELL_SCHOOL_WATER(false, BaseColour.AQUA, "aqua", Util.newArrayListOfValues("water", "spellWater", "schoolWater")),
@@ -283,11 +280,11 @@ public enum Colour {
 	// Rarity colours:
 	RARITY_UNKNOWN(false, BaseColour.BLACK, "grey"),
 	RARITY_JINXED(false, BaseColour.RED, "red", Util.newArrayListOfValues("jinx", "jinxed")),
-	RARITY_COMMON(false, Util.newColour(0xf2f2f2), Util.newColour(0xf2f2f2), "white", Util.newArrayListOfValues("common")),
-	RARITY_UNCOMMON(false, Util.newColour(0x1de547), Util.newColour(0x108228), "green", Util.newArrayListOfValues("uncommon")),
-	RARITY_RARE(false, Util.newColour(0x47C2FF), Util.newColour(0x47C2FF), "blue", Util.newArrayListOfValues("rare")),
-	RARITY_EPIC(false, Util.newColour(0xFF4DFC), Util.newColour(0xFF4DFC), "purple", Util.newArrayListOfValues("epic")),
-	RARITY_LEGENDARY(false, Util.newColour(0xffcc00), Util.newColour(0xffcc00), "gold", Util.newArrayListOfValues("legendary")),
+	RARITY_COMMON(false, Util.newColour(0xf2f2f2), "white", Util.newArrayListOfValues("common")),
+	RARITY_UNCOMMON(false, Util.newColour(0x1de547), "green", Util.newArrayListOfValues("uncommon")),
+	RARITY_RARE(false, Util.newColour(0x47C2FF), "blue", Util.newArrayListOfValues("rare")),
+	RARITY_EPIC(false, Util.newColour(0xFF4DFC), "purple", Util.newArrayListOfValues("epic")),
+	RARITY_LEGENDARY(false, Util.newColour(0xffcc00), "gold", Util.newArrayListOfValues("legendary")),
 
 	// Inventory colours:
 	CURRENCY_GOLD(true, BaseColour.GOLD, "gold"),
@@ -302,61 +299,61 @@ public enum Colour {
 	DISPLACED(false, BaseColour.CRIMSON, "crimson"),
 
 	// Text colours:
-	TEXT(false, Util.newColour(0xDDDDDD), Util.newColour(0x262626), "grey", Util.newArrayListOfValues("text")),
-	TEXT_HALF_GREY(false, Util.newColour(0xBBBBBB), Util.newColour(0x444444), "grey", Util.newArrayListOfValues("halfDisabled")),
-	TEXT_GREY(false, Util.newColour(0x777777), Util.newColour(0x777777), "grey", Util.newArrayListOfValues("disabled")),
-	TEXT_GREY_DARK(false, Util.newColour(0x444444), Util.newColour(0xcccccc), "grey", Util.newArrayListOfValues("disabledDark")),
+	TEXT(false, Util.newColour(0xDDDDDD), "grey", Util.newArrayListOfValues("text")),
+	TEXT_HALF_GREY(false, Util.newColour(0xBBBBBB), "grey", Util.newArrayListOfValues("halfDisabled")),
+	TEXT_GREY(false, Util.newColour(0x777777), "grey", Util.newArrayListOfValues("disabled")),
+	TEXT_GREY_DARK(false, Util.newColour(0x444444), "grey", Util.newArrayListOfValues("disabledDark")),
 
 	// Standard colours used for clothing:
-	CLOTHING_WHITE(false, Util.newColour(0xdddddd), Util.newColour(0xdddddd), "white"),
-	CLOTHING_GREY(false, Util.newColour(0x777777), Util.newColour(0x777777), "grey"),
-	CLOTHING_BLACK(false, Util.newColour(0x333333), Util.newColour(0x333333), "black"),
+	CLOTHING_WHITE(false, Util.newColour(0xdddddd), "white"),
+	CLOTHING_GREY(false, Util.newColour(0x777777), "grey"),
+	CLOTHING_BLACK(false, Util.newColour(0x333333), "black"),
 	
-	CLOTHING_RED_DARK(false, Util.newColour(0x900020), Util.newColour(0x900020), "burgundy"),
-	CLOTHING_RED_BRIGHT(false, Util.newColour(0xFA2424), Util.newColour(0xFA2424), "bright red"),
-	CLOTHING_RED(false, Util.newColour(0xD84646), Util.newColour(0xD84646), "red"),
-	CLOTHING_BROWN(false, Util.newColour(0xC87137), Util.newColour(0xC87137), "brown"),
-	CLOTHING_BROWN_DARK(false, Util.newColour(0x63391C), Util.newColour(0x63391C), "dark brown"),
-	CLOTHING_ORANGE(false, Util.newColour(0xE79F6F), Util.newColour(0xE79F6F), "orange"),
-	CLOTHING_ORANGE_BRIGHT(false, Util.newColour(0xFF7900), Util.newColour(0xFF7900), "bright orange"),
-	CLOTHING_ORANGE_DARK(false, Util.newColour(0xE56D00), Util.newColour(0xE56D00), "dark orange"),
+	CLOTHING_RED_DARK(false, Util.newColour(0x900020),  "burgundy"),
+	CLOTHING_RED_BRIGHT(false, Util.newColour(0xFA2424), "bright red"),
+	CLOTHING_RED(false, Util.newColour(0xD84646), "red"),
+	CLOTHING_BROWN(false, Util.newColour(0xC87137), "brown"),
+	CLOTHING_BROWN_DARK(false, Util.newColour(0x63391C), "dark brown"),
+	CLOTHING_ORANGE(false, Util.newColour(0xE79F6F), "orange"),
+	CLOTHING_ORANGE_BRIGHT(false, Util.newColour(0xFF7900), "bright orange"),
+	CLOTHING_ORANGE_DARK(false, Util.newColour(0xE56D00), "dark orange"),
 	CLOTHING_TAN(false, BaseColour.TAN, "tan"),
-	CLOTHING_YELLOW(false, Util.newColour(0xE2C360), Util.newColour(0xE2C360), "yellow"),
-	CLOTHING_GREEN_LIME(false, Util.newColour(0xD0E37D), Util.newColour(0xD0E37D), "lime green"),
-	CLOTHING_GREEN(false, Util.newColour(0x74AA74), Util.newColour(0x74AA74), "green"),
-	CLOTHING_GREEN_DARK(false, Util.newColour(0x3B6F3D), Util.newColour(0x3B6F3D), "dark green"),
-	CLOTHING_TURQUOISE(false, Util.newColour(0x6EC4B3), Util.newColour(0x6EC4B3), "turquoise"),
-	CLOTHING_BLUE_LIGHT(false, Util.newColour(0x72CFE3), Util.newColour(0x72CFE3), "light blue"),
-	CLOTHING_BLUE(false, Util.newColour(0x3971C6), Util.newColour(0x3971C6), "blue"),
-	CLOTHING_BLUE_DARK(false, Util.newColour(0x003C89), Util.newColour(0x003C89), "dark blue"),
-	CLOTHING_PURPLE_DARK(false, Util.newColour(0x674A95), Util.newColour(0x674A95), "dark purple"),
-	CLOTHING_PURPLE(false, Util.newColour(0xA382D3), Util.newColour(0xA382D3), "purple"),
-	CLOTHING_PURPLE_LIGHT(false, Util.newColour(0xC58ED7), Util.newColour(0xC58ED7), "violet"),
+	CLOTHING_YELLOW(false, Util.newColour(0xE2C360), "yellow"),
+	CLOTHING_GREEN_LIME(false, Util.newColour(0xD0E37D), "lime green"),
+	CLOTHING_GREEN(false, Util.newColour(0x74AA74), "green"),
+	CLOTHING_GREEN_DARK(false, Util.newColour(0x3B6F3D), "dark green"),
+	CLOTHING_TURQUOISE(false, Util.newColour(0x6EC4B3), "turquoise"),
+	CLOTHING_BLUE_LIGHT(false, Util.newColour(0x72CFE3), "light blue"),
+	CLOTHING_BLUE(false, Util.newColour(0x3971C6), "blue"),
+	CLOTHING_BLUE_DARK(false, Util.newColour(0x003C89), "dark blue"),
+	CLOTHING_PURPLE_DARK(false, Util.newColour(0x674A95), "dark purple"),
+	CLOTHING_PURPLE(false, Util.newColour(0xA382D3), "purple"),
+	CLOTHING_PURPLE_LIGHT(false, Util.newColour(0xC58ED7), "violet"),
 	CLOTHING_PERIWINKLE(false, BaseColour.PERIWINKLE, "periwinkle"),
-	CLOTHING_PINK_LIGHT(false, Util.newColour(0xF4B3F4), Util.newColour(0xF4B3F4), "light pink"),
-	CLOTHING_PINK(false, Util.newColour(0xD75086), Util.newColour(0xD75086), "pink"),
+	CLOTHING_PINK_LIGHT(false, Util.newColour(0xF4B3F4), "light pink"),
+	CLOTHING_PINK(false, Util.newColour(0xD75086), "pink"),
 	
-	CLOTHING_BLACK_STEEL(true, Util.newColour(0x333333), Util.newColour(0x333333), "black"),
-	CLOTHING_STEEL(true, Util.newColour(0x969696), Util.newColour(0x969696), "steel"),
-	CLOTHING_COPPER(true, Util.newColour(0xD46F2B), Util.newColour(0xD46F2B), "copper", Util.newArrayListOfValues("copper")),
-	CLOTHING_SILVER(true, Util.newColour(0xC4C4C4), Util.newColour(0xC4C4C4), "silver", Util.newArrayListOfValues("silver")),
-	CLOTHING_GOLD(true, Util.newColour(0xEBC633), Util.newColour(0xEBC633), "gold"),
+	CLOTHING_BLACK_STEEL(true, Util.newColour(0x333333), "black"),
+	CLOTHING_STEEL(true, Util.newColour(0x969696), "steel"),
+	CLOTHING_COPPER(true, Util.newColour(0xD46F2B), "copper", Util.newArrayListOfValues("copper")),
+	CLOTHING_SILVER(true, Util.newColour(0xC4C4C4), "silver", Util.newArrayListOfValues("silver")),
+	CLOTHING_GOLD(true, Util.newColour(0xEBC633), "gold"),
 	CLOTHING_ROSE_GOLD(true, BaseColour.ROSE_GOLD, "rose gold"),
 	CLOTHING_PLATINUM(true, BaseColour.PLATINUM, "platinum"),
 	
 	// For special use with rainbow clothing:
-	CLOTHING_MULTICOLOURED(false, Util.newColour(0xff3030), Util.newColour(0xccffff), "multicoloured"),
+	CLOTHING_MULTICOLOURED(false, Util.newColour(0xff3030), "multicoloured"),
 
 	// Body parts:
 
 	// Skin (Human and Demon):
-	SKIN_PORCELAIN(false, Util.newColour(0xDBCDB9), Util.newColour(0xDBCDB9), "porcelain"),
-	SKIN_PALE(false, Util.newColour(0xFBF4E9), Util.newColour(0x534946), "pale"),
+	SKIN_PORCELAIN(false, Util.newColour(0xDBCDB9), "porcelain"),
+	SKIN_PALE(false, Util.newColour(0xFBF4E9), "pale"),
 	SKIN_LIGHT(false, BaseColour.YELLOW_LIGHT, "light"),
-	SKIN_ROSY(false, Util.newColour(0xDDAA93), Util.newColour(0xDDAA93), "rosy"),
-	SKIN_TANNED(false, Util.newColour(0xC39D6B), Util.newColour(0xC39D6B), "tanned"),
+	SKIN_ROSY(false, Util.newColour(0xDDAA93), "rosy"),
+	SKIN_TANNED(false, Util.newColour(0xC39D6B), "tanned"),
 	SKIN_OLIVE(false, BaseColour.TAN, "olive"),
-	SKIN_CHOCOLATE(false, Util.newColour(0x59372D), Util.newColour(0x59372D), "chocolate"),
+	SKIN_CHOCOLATE(false, Util.newColour(0x59372D), "chocolate"),
 	SKIN_DARK(false, BaseColour.BROWN_DARK, "dark"),
 	SKIN_EBONY(false, BaseColour.BLACK, "ebony"),
 	
@@ -427,7 +424,7 @@ public enum Colour {
 	COVERING_PLATINUM(true, BaseColour.PLATINUM, "metallic platinum"),
 	COVERING_ROSE_GOLD(true, BaseColour.ROSE_GOLD, "metallic rose gold"),
 	COVERING_COPPER(true, BaseColour.COPPER, "metallic copper"),
-	COVERING_STEEL(true, Util.newColour(0x969696), Util.newColour(0x969696), "metallic steel"),
+	COVERING_STEEL(true, Util.newColour(0x969696), "metallic steel"),
 	COVERING_TAN(false, BaseColour.TAN, "tan"),
 	COVERING_BROWN(false, BaseColour.BROWN, "brown"),
 	COVERING_BROWN_DARK(false, BaseColour.BROWN_DARK, "dark brown"),
@@ -848,30 +845,26 @@ public enum Colour {
 	
 	
 	private Color colour;
-	private Color lightColour;
 	private boolean metallic;
 	private String name;
 	private List<String> formattingNames;
 	
-	private Colour(boolean metallic, Color colour, Color lightColour, String name) {
+	private Colour(boolean metallic, Color colour, String name) {
 		this.metallic = metallic;
 		this.colour = colour;
-		this.lightColour = lightColour;
 		this.name = name;
 	}
 	
 	private Colour(boolean metallic, BaseColour colour, String name) {
 		this.metallic = metallic;
 		this.colour = colour.getColour();
-		this.lightColour = colour.getLightColour();
 		this.name = name;
 	}
 	
 	// Constructors with formatting names:
-	private Colour(boolean metallic, Color colour, Color lightColour, String name, List<String> formattingNames) {
+	private Colour(boolean metallic, Color colour, String name, List<String> formattingNames) {
 		this.metallic = metallic;
 		this.colour = colour;
-		this.lightColour = lightColour;
 		this.name = name;
 		this.formattingNames=formattingNames;
 	}
@@ -879,7 +872,6 @@ public enum Colour {
 	private Colour(boolean metallic, BaseColour colour, String name, List<String> formattingNames) {
 		this.metallic = metallic;
 		this.colour = colour.getColour();
-		this.lightColour = colour.getLightColour();
 		this.name = name;
 		this.formattingNames=formattingNames;
 	}
@@ -894,15 +886,7 @@ public enum Colour {
 	}
 
 	public Color getColor() {
-		if(Main.getProperties()!=null) {
-			if(Main.getProperties().hasValue(PropertyValue.lightTheme))
-				return lightColour;
-			else
-				return colour;
-			
-		} else {
-			return colour;
-		}
+		return colour;
 	}
 
 	public boolean isMetallic() {

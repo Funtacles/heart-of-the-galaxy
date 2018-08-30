@@ -1,19 +1,15 @@
 package com.lilithsthrone.game.dialogue.utils;
 
-import java.time.Month;
-import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.body.Breast;
 import com.lilithsthrone.game.character.body.Covering;
 import com.lilithsthrone.game.character.body.Testicle;
-import com.lilithsthrone.game.character.body.types.AntennaType;
 import com.lilithsthrone.game.character.body.types.ArmType;
 import com.lilithsthrone.game.character.body.types.AssType;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
@@ -94,39 +90,6 @@ import com.lilithsthrone.utils.Util;
 public class CharacterModificationUtils {
 
 	private static StringBuilder contentSB = new StringBuilder();
-	
-	public static String getStartDateDiv() {
-		contentSB.setLength(0);
-		
-		contentSB.append(
-				"<div class='container-full-width'>"
-						+"<div class='cosmetics-inner-container full'>"
-						+ "<h5 style='text-align:center;'>"
-							+"Start Date"
-						+"</h5>"
-						+ "<p style='text-align:center;'>"
-							+ "Select the month in which the game starts."
-						+ "</p>");
-		
-		for(Month month : Month.values()) {
-			if(Main.game.getStartingDate().getMonth() == month) {
-				contentSB.append(
-						"<div class='cosmetics-button active'>"
-							+ "<b style='color:"+Colour.GENERIC_MINOR_GOOD.toWebHexString()+";'>"+Util.capitaliseSentence(month.getDisplayName(TextStyle.FULL, Locale.ENGLISH))+"</b>"
-						+ "</div>");
-				
-			} else {
-				contentSB.append(
-						"<div id='STARTING_MONTH_"+month+"' class='cosmetics-button'>"
-							+ "<span style='color:"+Colour.GENERIC_MINOR_GOOD.getShades()[0]+";'>"+Util.capitaliseSentence(month.getDisplayName(TextStyle.FULL, Locale.ENGLISH))+"</span>"
-						+ "</div>");
-			}
-		}
-		
-		contentSB.append("</div></div>");
-		
-		return contentSB.toString();
-	}
 	
 	// Basics:
 	
@@ -502,15 +465,8 @@ public class CharacterModificationUtils {
 						+ "<div class='normal-button"+(index==3?" selected":"")+"' id='"+id+"_3' style='width:18%; margin-right:2%; text-align:center;"+(index==3?" color:"+sexColours[index].toWebHexString()+";":"")+"'>"+values[3]+"</div>"
 						+ "<div class='normal-button"+(index==4?" selected":"")+"' id='"+id+"_4' style='width:18%; margin-right:2%; text-align:center;"+(index==4?" color:"+sexColours[index].toWebHexString()+";":"")+"'>"+values[4]+"</div>"
 					+ "</div>"
-						//TODO
-//					+ "<div class='container-full-width inner' style='width:calc(100%);margin:0;padding:0;'>"
-//						+ "Virginity lost: "
-//						+ (Main.game.getPlayer().getVirginityLoss(associatedSexType)==null?"[style.boldDisabled(N/A)]":Main.game.getPlayer().getVirginityLoss(associatedSexType))
-//					+ "</div>"
 				+ "</div>";
 	}
-	
-	
 	
 	// Advanced:
 	
@@ -852,41 +808,6 @@ public class CharacterModificationUtils {
 				contentSB.toString(), true);
 	}
 	
-	public static String getSelfTransformAntennaChoiceDiv(List<Race> availableRaces) {
-		contentSB.setLength(0);
-		
-		for(AntennaType antenna : AntennaType.values()) {
-			if((antenna.getRace() !=null && availableRaces.contains(antenna.getRace()))
-					|| antenna==AntennaType.NONE) {
-				
-				Colour c = Colour.TEXT_GREY;
-				
-				if(antenna.getRace() != null) {
-					c = antenna.getRace().getColour();
-				}
-				
-				if(BodyChanging.getTarget().getAntennaType() == antenna) {
-					contentSB.append(
-							"<div class='cosmetics-button active'>"
-								+ "<b style='color:"+c.toWebHexString()+";'>"+Util.capitaliseSentence(antenna.getTransformName())+"</b>"
-							+ "</div>");
-					
-				} else {
-					contentSB.append(
-							"<div id='CHANGE_ANTENNA_"+antenna+"' class='cosmetics-button'>"
-								+ "<span style='color:"+c.getShades()[0]+";'>"+Util.capitaliseSentence(antenna.getTransformName())+"</span>"
-							+ "</div>");
-				}
-			}
-		}
-
-		return applyWrapper("Antennae",
-				(BodyChanging.getTarget().isPlayer()
-					?"Change your antenna type."
-					:UtilText.parse(BodyChanging.getTarget(), "Change [npc.namePos] antenna type.")),
-				contentSB.toString(), true);
-	}
-
 	public static String getSelfTransformHairChoiceDiv(List<Race> availableRaces) {
 		contentSB.setLength(0);
 		
@@ -3415,7 +3336,6 @@ public class CharacterModificationUtils {
 		return contentSB.toString();
 	}
 	
-	//TODO reset on open
 	private static Map<BodyCoveringType, Covering> coveringsToBeApplied = new HashMap<>();
 	
 	public static Map<BodyCoveringType, Covering> getCoveringsToBeApplied() {

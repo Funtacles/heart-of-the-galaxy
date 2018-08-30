@@ -1,10 +1,8 @@
 package com.lilithsthrone.game.inventory;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -13,10 +11,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.lilithsthrone.game.character.attributes.Attribute;
-import com.lilithsthrone.game.inventory.enchanting.AbstractItemEffectType;
-import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
-import com.lilithsthrone.game.inventory.enchanting.TFModifier;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.XMLSaving;
 
@@ -34,7 +28,6 @@ public abstract class AbstractCoreItem implements Serializable, XMLSaving {
 	protected Rarity rarity;
 
 	protected Map<Attribute, Integer> attributeModifiers;
-	protected TFEssence relatedEssence;
 	
 	protected Set<ItemTag> itemTags;
 
@@ -70,8 +63,6 @@ public abstract class AbstractCoreItem implements Serializable, XMLSaving {
 		this.attributeModifiers = new EnumMap<>(Attribute.class);
 		this.itemTags = new HashSet<>();
 		
-		relatedEssence = null;
-
 		if (attributeModifiers != null) {
 			for (Entry<Attribute, Integer> e : attributeModifiers.entrySet()) {
 				this.attributeModifiers.put(e.getKey(), e.getValue());
@@ -93,38 +84,8 @@ public abstract class AbstractCoreItem implements Serializable, XMLSaving {
 		return null;
 	}
 	
-	// Enchantments:
-	
-	public boolean isAbleToBeEnchanted() {
-		return getEnchantmentEffect() != null
-				&& getEnchantmentItemType(null) != null;
-	}
-	
-	public int getEnchantmentLimit() {
-		return 100;
-	}
-	
-	public AbstractItemEffectType getEnchantmentEffect() {
-		return null;
-	}
-	
-	public AbstractCoreType getEnchantmentItemType(List<ItemEffect> effects) {
-		return null;
-	}
-	
-	public AbstractCoreItem enchant(TFEssence essence, TFModifier primaryModifier, TFModifier secondaryModifier) {
-		return this;
-	}
-	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-	public TFEssence getRelatedEssence() {
-		return relatedEssence;
-	}
-	public void setRelatedEssence(TFEssence relatedEssence) {
-		this.relatedEssence = relatedEssence;
 	}
 
 	// Other:
@@ -136,9 +97,6 @@ public abstract class AbstractCoreItem implements Serializable, XMLSaving {
 				&& ((AbstractCoreItem)o).getColour() == this.getColour()
 				&& ((AbstractCoreItem)o).getRarity() == this.getRarity()
 				&& ((AbstractCoreItem)o).getAttributeModifiers().equals(this.getAttributeModifiers())
-				&& ((AbstractCoreItem)o).getEnchantmentEffect() == getEnchantmentEffect()
-				&& ((AbstractCoreItem)o).getEnchantmentItemType(null) == getEnchantmentItemType(null)
-				&& ((AbstractCoreItem)o).getRelatedEssence() == getRelatedEssence()
 				&& ((AbstractCoreItem)o).getItemTags().equals(getItemTags())){
 					return true;
 			}
@@ -153,15 +111,6 @@ public abstract class AbstractCoreItem implements Serializable, XMLSaving {
 		result = 31 * result + this.getColour().hashCode();
 		result = 31 * result + this.getRarity().hashCode();
 		result = 31 * result + this.getAttributeModifiers().hashCode();
-		if(getEnchantmentEffect()!=null) {
-			result = 31 * result + getEnchantmentEffect().hashCode();
-		}
-		if(getEnchantmentItemType(null)!=null) {
-			result = 31 * result + getEnchantmentItemType(null).hashCode();
-		}
-		if(getRelatedEssence()!=null) {
-			result = 31 * result + getRelatedEssence().hashCode();
-		}
 		if(getItemTags()!=null) {
 			result = 31 * result + getItemTags().hashCode();
 		}
@@ -227,10 +176,6 @@ public abstract class AbstractCoreItem implements Serializable, XMLSaving {
 		this.attributeModifiers = attributeModifiers;
 	}
 	
-	public List<ItemEffect> getEffects() {
-		return new ArrayList<ItemEffect>();
-	}
-
 	public Set<ItemTag> getItemTags() {
 		return itemTags;
 	}

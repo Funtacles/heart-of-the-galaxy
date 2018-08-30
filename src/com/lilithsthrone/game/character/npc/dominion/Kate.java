@@ -44,12 +44,7 @@ import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
-import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
-import com.lilithsthrone.game.inventory.enchanting.ItemEffectType;
-import com.lilithsthrone.game.inventory.enchanting.TFModifier;
-import com.lilithsthrone.game.inventory.enchanting.TFPotency;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
-import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.sex.Sex;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
@@ -96,10 +91,6 @@ public class Kate extends NPC {
 								true,
 								TattooWritingStyle.ITALICISED),
 						null);
-				
-				for(int i=0; i<10; i++) {
-					tat.addEffect(new ItemEffect(ItemEffectType.TATTOO, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.FERTILITY, TFPotency.MAJOR_BOOST, 0));
-				}
 				
 				this.addTattoo(InventorySlot.GROIN, tat);
 				
@@ -214,10 +205,6 @@ public class Kate extends NPC {
 								TattooWritingStyle.ITALICISED),
 						null);
 				
-				for(int i=0; i<10; i++) {
-					tat.addEffect(new ItemEffect(ItemEffectType.TATTOO, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.FERTILITY, TFPotency.MAJOR_BOOST, 0));
-				}
-				
 				this.addTattoo(InventorySlot.GROIN, tat);
 				
 				this.addTattoo(InventorySlot.TORSO_OVER,
@@ -267,35 +254,11 @@ public class Kate extends NPC {
 			}
 		}
 		
-		addEnchantedClothing(clothingToSell);
-		
 		for(AbstractClothing c : clothingToSell) {
 			this.addClothing(c, false);
 		}
 	}
 	
-	/**
-	 * Adds four uncommon clothing items to the list, and two rare items.
-	 */
-	private static void addEnchantedClothing(List<AbstractClothing> clothingList) {
-		List<AbstractClothingType> typesToAdd = new ArrayList<>();
-		for(int i=0;i<6;i++) {
-			typesToAdd.add(Util.randomItemFrom(clothingList).getClothingType());
-		}
-		
-		for(int i=0; i<typesToAdd.size(); i++) {
-			if(i>=typesToAdd.size()-2) {
-				clothingList.add(AbstractClothingType.generateRareClothing(typesToAdd.get(i)));
-			} else {
-				clothingList.add(AbstractClothingType.generateClothingWithEnchantment(typesToAdd.get(i)));
-			}
-		}
-
-		for(AbstractClothing c : clothingList) {
-			c.setEnchantmentKnown(true);
-		}
-	}
-
 	@Override
 	public DialogueNodeOld getEncounterDialogue() {
 		return null;
@@ -422,17 +385,9 @@ public class Kate extends NPC {
 						
 			// Player uses item on NPC:
 			}else{
-				if(item.getItemType().equals(ItemType.VIXENS_VIRILITY)) {
-					Main.game.getPlayer().useItem(item, target, false);
-						return "<p>"
-							+ "Producing a Vixen's Virility pill from your inventory, you pop it out of its plastic wrapper before pushing it into Kate's mouth."
-							+ " She giggles as she happily swallows the little pink pill, knowing that it's going to make her womb far more fertile."
-						+ "</p>";
-				} else {
-					return "<p>"
-						+ "You start to pull "+item.getItemType().getDeterminer()+" "+item.getName()+" out from your inventory, but Kate quickly kicks your hand away and frowns at you."
-					+ "</p>";
-				}
+				return "<p>"
+					+ "You start to pull "+item.getItemType().getDeterminer()+" "+item.getName()+" out from your inventory, but Kate quickly kicks your hand away and frowns at you."
+				+ "</p>";
 			}
 			
 		// NPC is using an item:

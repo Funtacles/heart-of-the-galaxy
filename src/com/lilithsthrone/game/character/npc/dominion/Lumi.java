@@ -40,8 +40,6 @@ import com.lilithsthrone.game.inventory.AbstractCoreItem;
 import com.lilithsthrone.game.inventory.CharacterInventory;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
-import com.lilithsthrone.game.inventory.item.AbstractItemType;
-import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.sex.SexPace;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
@@ -80,8 +78,6 @@ public class Lumi extends NPC {
 				new Value<>(PersonalityTrait.CONSCIENTIOUSNESS, PersonalityWeight.LOW),
 				new Value<>(PersonalityTrait.EXTROVERSION, PersonalityWeight.LOW),
 				new Value<>(PersonalityTrait.NEUROTICISM, PersonalityWeight.AVERAGE)));
-		
-		this.useItem(AbstractItemType.generateItem(ItemType.PROMISCUITY_PILL), this, false);
 		
 		if(!isImported) {
 			this.setSexualOrientation(SexualOrientation.AMBIPHILIC);
@@ -158,11 +154,6 @@ public class Lumi extends NPC {
 		}
 	}
 
-	@Override
-	public void hourlyUpdate() {
-		this.useItem(AbstractItemType.generateItem(ItemType.PROMISCUITY_PILL), this, false);
-	}
-	
 	@Override
 	public boolean isUnique() {
 		return true;

@@ -29,9 +29,6 @@ import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.enchanting.AbstractItemEffectType;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffectType;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
-import com.lilithsthrone.game.inventory.enchanting.TFModifier;
-import com.lilithsthrone.game.inventory.enchanting.TFPotency;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.rendering.Pattern;
 import com.lilithsthrone.rendering.SVGImages;
@@ -753,56 +750,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 	 */
 	public static AbstractClothing generateClothing(AbstractClothingType clothingType, List<ItemEffect> effects) {
 		return AbstractClothingType.generateClothing(clothingType, clothingType.getAvailablePrimaryColours().get(Util.random.nextInt(clothingType.getAvailablePrimaryColours().size())), effects);
-	}
-	
-	/**
-	 * Generates clothing with a random enchantment.
-	 */
-	public static AbstractClothing generateClothingWithEnchantment(AbstractClothingType clothingType, Colour colour) {
-		List<ItemEffect> effects = new ArrayList<>();
-
-		TFModifier rndMod = TFModifier.getClothingAttributeList().get(Util.random.nextInt(TFModifier.getClothingAttributeList().size()));
-		effects.add(new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, rndMod, TFPotency.getRandomWeightedPositivePotency(), 0));
-		
-		return generateClothing(clothingType, colour, effects);
-	}
-	
-	/**
-	 * Uses random colour.
-	 */
-	public static AbstractClothing generateClothingWithEnchantment(AbstractClothingType clothingType) {
-		return AbstractClothingType.generateClothingWithEnchantment(clothingType, clothingType.getAvailablePrimaryColours().get(Util.random.nextInt(clothingType.getAvailablePrimaryColours().size())));
-	}
-
-	public static AbstractClothing generateClothingWithNegativeEnchantment(AbstractClothingType clothingType, Colour colour) {
-		List<ItemEffect> effects = new ArrayList<>();
-
-		TFModifier rndMod = TFModifier.getClothingAttributeList().get(Util.random.nextInt(TFModifier.getClothingAttributeList().size()));
-		effects.add(new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, rndMod, TFPotency.getRandomWeightedNegativePotency(), 0));
-		
-		return generateClothing(clothingType, colour, effects);
-	}
-	
-	public static AbstractClothing generateClothingWithNegativeEnchantment(AbstractClothingType clothingType) {
-		return AbstractClothingType.generateClothingWithNegativeEnchantment(clothingType, clothingType.getAvailablePrimaryColours().get(Util.random.nextInt(clothingType.getAvailablePrimaryColours().size())));
-	}
-	
-	public static AbstractClothing generateRareClothing(AbstractClothingType type) {
-		List<ItemEffect> effects = new ArrayList<>();
-		
-		List<TFModifier> attributeMods = new ArrayList<>(TFModifier.getClothingAttributeList());
-		
-		TFModifier rndMod = attributeMods.get(Util.random.nextInt(attributeMods.size()));
-		attributeMods.remove(rndMod);
-		TFModifier rndMod2 = attributeMods.get(Util.random.nextInt(attributeMods.size()));
-		
-		effects.add(new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, rndMod, TFPotency.MAJOR_BOOST, 0));
-		effects.add(new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, rndMod2, TFPotency.MAJOR_BOOST, 0));
-		
-		return AbstractClothingType.generateClothing(
-				type,
-				type.getAvailablePrimaryColours().get(Util.random.nextInt(type.getAvailablePrimaryColours().size())),
-				effects);
 	}
 	
 	public String getId() {
@@ -1601,14 +1548,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 		return ItemEffectType.CLOTHING;
 	}
 	
-	public TFEssence getRelatedEssence() {
-		return TFEssence.ARCANE;
-	}
-	
-	public AbstractClothingType getEnchantmentItemType(List<ItemEffect> effects) {
-		return this;
-	}
-
 	public List<ItemTag> getItemTags() {
 		return itemTags;
 	}

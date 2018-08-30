@@ -203,19 +203,6 @@ public class FluidMilk implements FluidInterface, Serializable {
 		}
 		
 		switch(fluidModifier) {
-			case ADDICTIVE:
-				if(owner.isPlayer()) {
-					return "<p>"
-								+ "You feel a strange, pulsating heat spreading up through your [pc.breasts], causing you to let out [pc.a_moan+].<br/>"
-								+ "Your [pc.milk] is now [style.boldGrow(addictive)]!"
-							+ "</p>";
-				} else {
-					return UtilText.parse(owner,
-							"<p>"
-								+ "A strange, pulsating heat spreads up through [npc.namePos] [npc.breasts], causing [npc.herHim] to let out [npc.a_moan+].<br/>"
-								+ "[npc.NamePos] [npc.milk] is now [style.boldGrow(addictive)]!"
-							+ "</p>");
-				}
 			case ALCOHOLIC:
 				if(owner.isPlayer()) {
 					return "<p>"
@@ -324,19 +311,6 @@ public class FluidMilk implements FluidInterface, Serializable {
 		}
 		
 		switch(fluidModifier) {
-			case ADDICTIVE:
-				if(owner.isPlayer()) {
-					return "<p>"
-								+ "You feel a soft coolness spreading up through your [pc.breasts], causing you to let out a gentle sigh.<br/>"
-								+ "Your [pc.milk] is [style.boldShrink(no longer addictive)]!"
-							+ "</p>";
-				} else {
-					return UtilText.parse(owner,
-							"<p>"
-								+ "A soft coolness spreads up through [npc.namePos] [npc.breasts], causing [npc.herHim] to let out a gentle sigh.<br/>"
-								+ "[npc.NamePos] [npc.milk] is [style.boldShrink(no longer addictive)]!"
-							+ "</p>");
-				}
 			case ALCOHOLIC:
 				if(owner.isPlayer()) {
 					return "<p>"

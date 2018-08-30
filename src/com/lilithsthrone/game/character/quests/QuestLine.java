@@ -17,18 +17,6 @@ public enum QuestLine {
 
 	// Side quests:
 
-//	SIDE_ITEM_DISCOVERY("Item Discovery", "You have found all the different items that are in this version!",
-//			QuestType.SIDE,
-//			Quest.SIDE_DISCOVER_ALL_ITEMS),
-//
-//	SIDE_RACE_DISCOVERY("Race Discovery", "You have found all the different races that are in this version!",
-//			QuestType.SIDE,
-//			Quest.SIDE_DISCOVER_ALL_RACES),
-
-	SIDE_ENCHANTMENT_DISCOVERY("Enchantments, Essences, and Jinxes", "You now know how to create enchanted items and remove jinxes!",
-			QuestType.SIDE,
-			QuestTree.enchantmentTree),
-
 	SIDE_FIRST_TIME_PREGNANCY("Knocked up", "With Lilaya's help, you managed to complete your first pregnancy. Perhaps the first of many...",
 			QuestType.SIDE,
 			QuestTree.pregnancyTree),

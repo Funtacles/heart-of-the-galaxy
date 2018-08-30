@@ -1,23 +1,16 @@
 package com.lilithsthrone.game.inventory.item;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.AbstractCoreItem;
-import com.lilithsthrone.game.inventory.AbstractCoreType;
-import com.lilithsthrone.game.inventory.enchanting.AbstractItemEffectType;
-import com.lilithsthrone.game.inventory.enchanting.EnchantingUtils;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
-import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.XMLSaving;
 
@@ -37,15 +30,13 @@ public abstract class AbstractItem extends AbstractCoreItem implements Serializa
 		super(itemType.getName(false), itemType.getNamePlural(false), itemType.getSVGString(), itemType.getColourPrimary(), itemType.getRarity(), null, itemType.getItemTags());
 
 		this.itemType = itemType;
-		this.itemEffects = itemType.getEffects();
 	}
 	
 	@Override
 	public boolean equals (Object o) {
 		if(super.equals(o)) {
 			return (o instanceof AbstractItem)
-					&& ((AbstractItem)o).getItemType().equals(itemType)
-					&& ((AbstractItem)o).getEffects().equals(itemEffects);
+					&& ((AbstractItem)o).getItemType().equals(itemType);
 		} else {
 			return false;
 		}
@@ -70,10 +61,6 @@ public abstract class AbstractItem extends AbstractCoreItem implements Serializa
 		Element innerElement = doc.createElement("itemEffects");
 		element.appendChild(innerElement);
 		
-		for(ItemEffect ie : this.getEffects()) {
-			ie.saveAsXML(innerElement, doc);
-		}
-		
 		return element;
 	}
 	
@@ -83,21 +70,6 @@ public abstract class AbstractItem extends AbstractCoreItem implements Serializa
 			
 			if(!parentElement.getAttribute("name").isEmpty()) {
 				item.setName(parentElement.getAttribute("name"));
-			}
-			
-			List<ItemEffect> effectsToBeAdded = new ArrayList<>();
-			NodeList element = ((Element) parentElement.getElementsByTagName("itemEffects").item(0)).getElementsByTagName("effect");
-			for(int i = 0; i < element.getLength(); i++){
-				Element e = ((Element)element.item(i));
-				ItemEffect itemEffect = ItemEffect.loadFromXML(e, doc);
-				if(itemEffect != null) {
-					effectsToBeAdded.add(itemEffect);
-				}
-			}
-			item.setItemEffects(effectsToBeAdded);
-			
-			if(!effectsToBeAdded.isEmpty() && (item.getItemType().getId().equals(ItemType.ELIXIR.getId()) || item.getItemType().getId().equals(ItemType.POTION.getId()))) {
-				item.setSVGString(EnchantingUtils.getImportedSVGString(item, (parentElement.getAttribute("colour").isEmpty()?Colour.GENERIC_ARCANE:Colour.valueOf(parentElement.getAttribute("colour"))), effectsToBeAdded));
 			}
 			
 			return item;
@@ -111,45 +83,10 @@ public abstract class AbstractItem extends AbstractCoreItem implements Serializa
 		return itemType;
 	}
 
-	@Override
-	public List<ItemEffect> getEffects() {
-		return itemEffects;
-	}
-
-	public void setItemEffects(List<ItemEffect> itemEffects) {
-		this.itemEffects = itemEffects;
-	}
-
 	public String applyEffect(GameCharacter user, GameCharacter target) {
 		StringBuilder sb = new StringBuilder();
 		
-		for(ItemEffect ie : getEffects()) {
-			sb.append(UtilText.parse(target, ie.applyEffect(user, target, 1)));
-		}
-		
 		return sb.toString();
-	}
-	
-	// Enchantments:
-
-	@Override
-	public int getEnchantmentLimit() {
-		return itemType.getEnchantmentLimit();
-	}
-	
-	@Override
-	public AbstractItemEffectType getEnchantmentEffect() {
-		return itemType.getEnchantmentEffect();
-	}
-	
-	@Override
-	public AbstractCoreType getEnchantmentItemType(List<ItemEffect> effects) {
-		return itemType.getEnchantmentItemType(effects);
-	}
-	
-	@Override
-	public TFEssence getRelatedEssence() {
-		return itemType.getRelatedEssence();
 	}
 	
 	// Getters & setters:
@@ -183,12 +120,6 @@ public abstract class AbstractItem extends AbstractCoreItem implements Serializa
 		sb.append("<p>"
 					+ "<b>Effects:</b><br/>");
 		
-		for(ItemEffect ie : getEffects()) {
-			for(String s : ie.getEffectsDescription(user, target)) {
-				sb.append(s+"<br/>");
-			}
-		}
-
 		sb.append("</p>"
 				+ "<p>"
 					+ (this.getItemType().isPlural()?"They have":"It has")+" a value of " + UtilText.formatAsMoney(getValue()) + "."

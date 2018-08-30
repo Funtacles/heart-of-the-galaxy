@@ -1,7 +1,5 @@
 package com.lilithsthrone.game.dialogue.npcDialogue.dominion;
 
-import java.util.ArrayList;
-
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.AffectionLevel;
 
@@ -16,13 +14,11 @@ import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
 import com.lilithsthrone.game.dialogue.responses.ResponseSex;
 import com.lilithsthrone.game.dialogue.utils.InventoryInteraction;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
-import com.lilithsthrone.game.inventory.item.AbstractItem;
 import com.lilithsthrone.game.sex.Sex;
 import com.lilithsthrone.game.sex.SexPace;
 import com.lilithsthrone.game.sex.SexPositionSlot;
 import com.lilithsthrone.game.sex.managers.universal.SMStanding;
 import com.lilithsthrone.main.Main;
-import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Util.Value;
 import com.lilithsthrone.world.places.PlaceType;
@@ -757,8 +753,6 @@ public class AlleywayAttackerDialogue {
 	public static final DialogueNodeOld AFTER_COMBAT_DEFEAT = new DialogueNodeOld("Defeat", "", true) {
 		private static final long serialVersionUID = 1L;
 		
-		Value<String, AbstractItem> potion = null;
-		
 		@Override
 		public String getDescription() {
 			return "You have been defeated by [npc.name]!";
@@ -767,21 +761,6 @@ public class AlleywayAttackerDialogue {
 		@Override
 		public String getContent() {
 			
-			if(getMugger().hasTransformationFetish() && getMugger().isWillingToRape(Main.game.getPlayer()) ) {
-				potion = getMugger().getTransfomativePotion(true);
-				
-//				System.out.println("Potion Check 1"); 
-//				System.out.println(potion); 
-//				System.out.println(potion.getValue().getName()); 
-				
-				if(potion == null) {
-					return UtilText.parseFromXMLFile("encounters/dominion/alleywayAttack", "AFTER_COMBAT_DEFEAT_TF_FINISHED", getMugger());
-					
-				} else {
-					return UtilText.parseFromXMLFile("encounters/dominion/alleywayAttack", "AFTER_COMBAT_DEFEAT_TF", getMugger());
-				}
-			}
-				
 			if(getMugger().isAttractedTo(Main.game.getPlayer()) && getMugger().isWillingToRape(Main.game.getPlayer())) {
 				return UtilText.parseFromXMLFile("encounters/dominion/alleywayAttack", "AFTER_COMBAT_DEFEAT_NO_TF_ATTRACTED", getMugger());
 				
@@ -792,50 +771,7 @@ public class AlleywayAttackerDialogue {
 		
 		@Override
 		public Response getResponse(int responseTab, int index) {
-			if(getMugger().hasTransformationFetish()
-					&& potion != null
-					&& getMugger().isWillingToRape(Main.game.getPlayer())) {
-				
-//				System.out.println("Potion Check 2"); 
-//				System.out.println(potion); 
-//				System.out.println(potion.getValue()); 
-				
-				if (index == 1) {
-					if(Main.game.getPlayer().hasFetish(Fetish.FETISH_TRANSFORMATION_RECEIVING)) {
-						return new Response("Spit",
-								"Due to your <b style='color:"+Colour.FETISH.toWebHexString()+";'>"+Fetish.FETISH_TRANSFORMATION_RECEIVING.getName(Main.game.getPlayer())
-									+"</b> fetish, you love being transformed so much that you can't bring yourself to spit out the transformative liquid!",
-								null);
-					} else {
-						return new Response("Spit", "Spit out the potion.", AFTER_COMBAT_TRANSFORMATION_REFUSED);
-					}
-					
-				} else if (index == 2) {
-					ArrayList<Fetish> applicableFetishes = Util.newArrayListOfValues(Fetish.FETISH_TRANSFORMATION_RECEIVING);
-					
-					return new Response("Swallow", "Do as you're told and swallow the strange potion.", AFTER_COMBAT_TRANSFORMATION,
-							applicableFetishes,
-							null,
-							null,
-							null){
-						@Override
-						public void effects(){
-							Util.Value<String, AbstractItem> potion = getMugger().getTransfomativePotion();
-							
-							Main.game.getTextStartStringBuilder().append(
-									"<p>"
-										+ "[npc.Name] steps back, grinning down at you as you obediently swallow the strange liquid."
-										+ " [npc.speech(Good [pc.girl]! "+potion.getKey()+")]"
-									+ "</p>"
-									+ "<p>"
-										+getMugger().useItem(potion.getValue(), Main.game.getPlayer(), false, true)
-									+"</p>");
-						}
-					};
-					
-				}
-				
-			} else if(getMugger().isAttractedTo(Main.game.getPlayer()) && getMugger().isWillingToRape(Main.game.getPlayer())) {
+			if(getMugger().isAttractedTo(Main.game.getPlayer()) && getMugger().isWillingToRape(Main.game.getPlayer())) {
 				
 				if (index == 1) {
 					return new ResponseSex("Sex",

@@ -18,9 +18,6 @@ import com.lilithsthrone.game.character.body.valueEnums.Femininity;
 import com.lilithsthrone.game.character.effects.Perk;
 import com.lilithsthrone.game.character.effects.PerkManager;
 import com.lilithsthrone.game.character.effects.StatusEffect;
-import com.lilithsthrone.game.character.fetishes.Fetish;
-import com.lilithsthrone.game.character.fetishes.FetishDesire;
-import com.lilithsthrone.game.character.fetishes.FetishLevel;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.quests.Quest;
 import com.lilithsthrone.game.character.quests.QuestLine;
@@ -36,7 +33,6 @@ import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
-import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
@@ -107,9 +103,6 @@ public class PhoneDialogue {
 					}
 				};
 
-			} else if (index == 4) {
-				return new Response("Fetishes", "View your fetishes page.", CHARACTER_FETISHES);
-				
 			} else if (index == 5) {
 				return new Response("Stats", "Take a detailed look at your stats.", CHARACTER_STATS);
 				
@@ -1716,20 +1709,7 @@ public class PhoneDialogue {
 							+ "</div>"
 							+ "<div class='container-full-width' style='width:calc(60% - 16px)'>");
 					
-					if (item.getEffects().isEmpty()) {
-						journalSB.append("-");
-					} else {
-						int i=1;
-						for(ItemEffect ie : item.getEffects()) {
-							for(String s : ie.getEffectsDescription(Main.game.getPlayer(), Main.game.getPlayer())) {
-								journalSB.append(s);
-								if(i != ie.getEffectsDescription(Main.game.getPlayer(), Main.game.getPlayer()).size())
-									journalSB.append("<br/>");
-								i++;
-							}
-						}
-					}
-					
+					journalSB.append("-");
 					journalSB.append("</div>"
 							+ "</div>");
 					
@@ -1969,165 +1949,4 @@ public class PhoneDialogue {
 			return DialogueNodeType.PHONE;
 		}
 	};
-	
-//	private static boolean confirmReset = false;
-	public static final DialogueNodeOld CHARACTER_FETISHES = new DialogueNodeOld("Desires & Fetishes", "", true) {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getContent() {
-			journalSB = new StringBuilder(
-					"<details>"
-						+ "<summary>[style.boldFetish(Fetish Information)]</summary>"
-							+ "You can select your [style.colourLust(desire)] for each fetish [style.colourArcane(for free)],"
-							+ " or choose to take the associated [style.colourFetish(fetish)] for [style.colourArcane("+Fetish.FETISH_ANAL_GIVING.getCost()+" Arcane Essences)].<br/><br/>"
-							+ "Choosing a desire will affect bonus lust gains in sex, while taking a fetish will permanently lock your desire to 'love', and also give you special bonuses."
-							+ " Fetishes can only be removed through enchanted potions.<br/><br/>"
-							+ "Your currently selected desire has a "+Colour.FETISH.getName()+" border, but your true desire (indicated by the coloured desire icon) may be modified by enchanted clothes or other items.<br/><br/>"
-							+ "You earn experience for each fetish through performing related actions in sex."
-							+ " Experience is earned regardless of whether or not you have the associated fetish."
-							+ " Higher level fetishes will cause both you and your partner to gain more arousal from related sex actions, as well as increase the fetish's bonuses.<br/><br/>"
-							+ "Finally, derived fetishes cannot be directly unlocked, but are instead automatically applied when you meet their requirements."
-					+ "</details>");
-			
-			// Normal fetishes:
-
-			journalSB.append("<div class='container-full-width' style='text-align:center; font-weight:bold;'><h6>Fetishes</h6></div>");
-			journalSB.append(getFetishEntry(Fetish.FETISH_DOMINANT, Fetish.FETISH_SUBMISSIVE));
-			journalSB.append(getFetishEntry(Fetish.FETISH_VAGINAL_GIVING, Fetish.FETISH_VAGINAL_RECEIVING));
-			journalSB.append(getFetishEntry(Fetish.FETISH_PENIS_GIVING, Fetish.FETISH_PENIS_RECEIVING));
-			journalSB.append(getFetishEntry(Fetish.FETISH_ANAL_GIVING, Fetish.FETISH_ANAL_RECEIVING));
-			journalSB.append(getFetishEntry(Fetish.FETISH_BREASTS_OTHERS, Fetish.FETISH_BREASTS_SELF));
-			journalSB.append(getFetishEntry(Fetish.FETISH_LACTATION_OTHERS, Fetish.FETISH_LACTATION_SELF));
-			journalSB.append(getFetishEntry(Fetish.FETISH_ORAL_RECEIVING, Fetish.FETISH_ORAL_GIVING));
-			journalSB.append(getFetishEntry(Fetish.FETISH_LEG_LOVER, Fetish.FETISH_STRUTTER));
-			journalSB.append(getFetishEntry(Fetish.FETISH_FOOT_GIVING, Fetish.FETISH_FOOT_RECEIVING));
-			journalSB.append(getFetishEntry(Fetish.FETISH_CUM_STUD, Fetish.FETISH_CUM_ADDICT));
-			journalSB.append(getFetishEntry(Fetish.FETISH_DEFLOWERING, Fetish.FETISH_PURE_VIRGIN));
-			journalSB.append(getFetishEntry(Fetish.FETISH_IMPREGNATION, Fetish.FETISH_PREGNANCY));
-			journalSB.append(getFetishEntry(Fetish.FETISH_TRANSFORMATION_GIVING, Fetish.FETISH_TRANSFORMATION_RECEIVING));
-			journalSB.append(getFetishEntry(Fetish.FETISH_SADIST, Fetish.FETISH_MASOCHIST));
-			journalSB.append(getFetishEntry(Fetish.FETISH_NON_CON_DOM, Fetish.FETISH_NON_CON_SUB));
-
-//			journalSB.append("<div class='container-full-width' style='text-align:center; font-weight:bold; margin-top:16px;'><h6>Individual Fetishes</h6></div>");
-			journalSB.append(getFetishEntry(Fetish.FETISH_DENIAL, Fetish.FETISH_DENIAL_SELF));
-			journalSB.append(getFetishEntry(Fetish.FETISH_VOYEURIST, Fetish.FETISH_EXHIBITIONIST));
-			journalSB.append(getFetishEntry(Fetish.FETISH_BIMBO, Fetish.FETISH_CROSS_DRESSER));
-			journalSB.append(getFetishEntry(Fetish.FETISH_MASTURBATION, Fetish.FETISH_INCEST));
-			
-			// Derived fetishes:
-
-			journalSB.append("<div class='container-full-width' style='text-align:center; font-weight:bold; margin-top:16px;'><h6>Derived Fetishes</h6></div>");
-			journalSB.append("<div class='fetish-container'>");
-			
-			for(Fetish fetish : Fetish.values()) {
-				if(!fetish.getFetishesForAutomaticUnlock().isEmpty()) {
-					journalSB.append(
-							"<div id='fetishUnlock" + fetish + "' class='fetish-icon" + (Main.game.getPlayer().hasFetish(fetish)
-							? " owned' style='border:2px solid " + Colour.FETISH.getShades()[1] + ";'>"
-							: (fetish.isAvailable(Main.game.getPlayer())
-									? " unlocked' style='border:2px solid " +  Colour.TEXT_GREY.toWebHexString() + ";" + "'>"
-									: " locked' style='border:2px solid " + Colour.TEXT_GREY.toWebHexString() + ";'>"))
-							+ "<div class='fetish-icon-content'>"+fetish.getSVGString()+"</div>"
-							+ (Main.game.getPlayer().hasFetish(fetish) // Overlay to create disabled effect:
-									? ""
-									: (fetish.isAvailable(Main.game.getPlayer())
-											? "<div style='position:absolute; left:0; top:0; margin:0; padding:0; width:100%; height:100%; background-color:#000; opacity:0.5; border-radius:5px;'></div>"
-											: "<div style='position:absolute; left:0; top:0; margin:0; padding:0; width:100%; height:100%; background-color:#000; opacity:0.7; border-radius:5px;'></div>"))
-							+ "</div>");
-				}
-			}
-			
-			// Free Fetishes:
-			
-			journalSB.append("</div>");
-			
-			
-			return journalSB.toString();
-		}
-		
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 0) {
-				return new Response("Back", "Return to your phone's main menu.", MENU);
-			
-			} else {
-				return null;
-			}
-		}
-
-		@Override
-		public DialogueNodeType getDialogueNodeType() {
-			return DialogueNodeType.PHONE;
-		}
-	};
-	
-	
-	private static String getFetishEntry(Fetish othersFetish, Fetish selfFetish) {
-		return "<div class='container-full-width' style='background:transparent; margin:2px 0; width:100%;'>"
-					+ getIndividualFetishEntry(othersFetish)
-					+ getIndividualFetishEntry(selfFetish)
-				+ "</div>";
-	}
-	
-	private static String getIndividualFetishEntry(Fetish fetish) {
-		FetishLevel level = FetishLevel.getFetishLevelFromValue(Main.game.getPlayer().getFetishExperience(fetish));
-		float experiencePercentage = ((Main.game.getPlayer().getFetishExperience(fetish)) / (float)(level.getMaximumExperience()))*100;
-		
-		return "<div class='container-half-width' style='margin:0 8px;'>"
-					+"<div class='container-full-width' style='text-align:center; font-weight:bold; margin:0 8px; width: calc(78% - 16px);'>"
-						+ (Main.game.getPlayer().hasFetish(fetish)
-								?"[style.colourPink("+Util.capitaliseSentence(fetish.getName(Main.game.getPlayer()))+" "+level.getNumeral()+")]"
-								:Util.capitaliseSentence(fetish.getName(Main.game.getPlayer()))+" "+level.getNumeral())
-						+"<div class='container-full-width' style='margin:2px 0; padding:0; width:100%;'></div>" // Spacer
-						+getFetishDesireEntry(fetish, FetishDesire.ZERO_HATE)
-						+getFetishDesireEntry(fetish, FetishDesire.ONE_DISLIKE)
-						+getFetishDesireEntry(fetish, FetishDesire.TWO_NEUTRAL)
-						+getFetishDesireEntry(fetish, FetishDesire.THREE_LIKE)
-						+getFetishDesireEntry(fetish, FetishDesire.FOUR_LOVE)
-					+ "</div>"
-					+"<div class='container-full-width' style='margin:0 8px; width: calc(22% - 16px);'>"
-						+ "<div id='fetishUnlock" + fetish + "' class='fetish-icon full" + (Main.game.getPlayer().hasFetish(fetish)
-							? " owned' style='border:2px solid " + Colour.FETISH.toWebHexString() + ";'>"
-							: (fetish.isAvailable(Main.game.getPlayer())
-									? " unlocked' style='border:2px solid " + Colour.TEXT_GREY.toWebHexString() + ";" + "'>"
-									: " locked' style='border:2px solid " + Colour.TEXT_GREY.toWebHexString() + ";'>"))
-										+ "<div class='fetish-icon-content'>"+fetish.getSVGString()+"</div>"
-										+ "<div style='width:40%;height:40%;position:absolute;top:0;right:4px;'>"+level.getSVGImageOverlay()+"</div>"
-										+ (Main.game.getPlayer().hasFetish(fetish) // Overlay to create disabled effect:
-											? ""
-											: (fetish.isAvailable(Main.game.getPlayer())
-													? "<div style='position:absolute; left:0; top:0; margin:0; padding:0; width:100%; height:100%; background-color:#000; opacity:0.5; border-radius:5px;'></div>"
-													: "<div style='position:absolute; left:0; top:0; margin:0; padding:0; width:100%; height:100%; background-color:#000; opacity:0.7; border-radius:5px;'></div>"))
-						+ "</div>"
-					+ "</div>"
-					+"<div class='container-full-width' style='margin:0; padding:0; width:100%;'>"
-						+"<div class='container-full-width' style='text-align:center; font-weight:bold; margin:0 8px; width: calc(78% - 16px);'>"
-							+"<div class='container-full-width' style='margin:4px 0; padding:2px; width:100%; background:#222;'>"
-								+ "<div class='container-full-width' style='margin:0; padding:2px; width:" + experiencePercentage + "%; background:"+level.getColour().toWebHexString()+";'></div>"
-							+ "</div>"
-						+ "</div>"
-						+"<div class='container-full-width' style='text-align:center; margin:0 8px; width: calc(22% - 16px);'>"
-							+ "<span style='color:"+level.getColour().toWebHexString()+";'>"+Main.game.getPlayer().getFetishExperience(fetish)+" xp</span>"
-						+ "</div>"
-//						+ "<div class='overlay no-pointer' id='"+fetish+"_EXPERIENCE'></div>"
-					+ "</div>"
-				+ "</div>";
-	}
-	
-	private static String getFetishDesireEntry(Fetish fetish, FetishDesire desire) {
-		boolean disabled = desire!=FetishDesire.FOUR_LOVE && Main.game.getPlayer().hasFetish(fetish);
-		
-		return "<div class='square-button"+(disabled?" disabled":"")+"' id='"+fetish+"_"+desire+"'"
-					+ " style='"+(Main.game.getPlayer().getBaseFetishDesire(fetish)==desire
-								?"border:2px solid "+Colour.FETISH.getShades()[1]+";"
-								:"")+"width:10%; margin:0 5%; float:left; cursor:pointer;'>"
-				+ "<div class='square-button-content'>"+(Main.game.getPlayer().getFetishDesire(fetish)==desire?desire.getSVGImage():desire.getSVGImageDesaturated())+"</div>"
-				+ (Main.game.getPlayer().hasFetish(fetish) && Main.game.getPlayer().getFetishDesire(fetish)!=desire
-					?"<div style='position:absolute; left:0; top:0; margin:0; padding:0; width:100%; height:100%; background-color:#000; opacity:0.8; border-radius:5px;'></div>"
-					:Main.game.getPlayer().getFetishDesire(fetish)!=desire
-						?"<div style='position:absolute; left:0; top:0; margin:0; padding:0; width:100%; height:100%; background-color:#000; opacity:0.6; border-radius:5px;'></div>"
-						:"")
-			+ "</div>";
-	}
 }

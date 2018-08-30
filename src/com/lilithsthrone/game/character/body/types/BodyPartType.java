@@ -9,7 +9,6 @@ public enum BodyPartType {
 	
 	GENERIC("generic"),
 	
-	ANTENNA("antenna"),
 	ARM("arms"),
 	ASS("ass"),
 	ANUS("anus"),

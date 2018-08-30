@@ -7,7 +7,6 @@ import java.util.Map;
 
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.attributes.AttributeRange;
-import com.lilithsthrone.game.character.body.types.AntennaType;
 import com.lilithsthrone.game.character.body.types.ArmType;
 import com.lilithsthrone.game.character.body.types.AssType;
 import com.lilithsthrone.game.character.body.types.BreastType;
@@ -65,7 +64,6 @@ public enum RacialBody {
 	HUMAN(Util.newHashMapOfValues(
 				new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(5f, 15f)),
 				new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f))),
-			AntennaType.NONE,
 			ArmType.HUMAN, 1,
 			AssType.HUMAN, AssSize.TWO_SMALL, AssSize.FOUR_LARGE, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
 			BreastType.HUMAN,
@@ -93,7 +91,6 @@ public enum RacialBody {
 	DEMON(Util.newHashMapOfValues(
 				new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(20f, 40f)),
 				new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(20f, 30f))),
-			AntennaType.NONE,
 			ArmType.DEMON_COMMON, 1,
 			AssType.DEMON_COMMON, AssSize.TWO_SMALL, AssSize.FOUR_LARGE, Wetness.FOUR_SLIMY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.SEVEN_ELASTIC, OrificePlasticity.ZERO_RUBBERY,
 			BreastType.DEMON_COMMON,
@@ -137,7 +134,6 @@ public enum RacialBody {
 	IMP(Util.newHashMapOfValues(
 				new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(1, 10)),
 				new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(5, 10))),
-			AntennaType.NONE,
 			ArmType.IMP, 1,
 			AssType.IMP, AssSize.TWO_SMALL, AssSize.FOUR_LARGE, Wetness.FOUR_SLIMY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.SEVEN_ELASTIC, OrificePlasticity.ZERO_RUBBERY,
 			BreastType.IMP,
@@ -183,7 +179,6 @@ public enum RacialBody {
 			Util.newHashMapOfValues(
 					new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(20f, 50f)),
 					new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f))),
-			AntennaType.NONE,
 			ArmType.COW_MORPH, 1,
 			AssType.COW_MORPH, AssSize.TWO_SMALL, AssSize.THREE_NORMAL, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE,  OrificePlasticity.THREE_RESILIENT,
 			BreastType.COW_MORPH,
@@ -213,7 +208,6 @@ public enum RacialBody {
 			Util.newHashMapOfValues(
 					new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(20f, 30f)),
 					new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f))),
-			AntennaType.NONE,
 			ArmType.DOG_MORPH, 1,
 			AssType.DOG_MORPH, AssSize.TWO_SMALL, AssSize.THREE_NORMAL, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
 			BreastType.DOG_MORPH,
@@ -252,7 +246,6 @@ public enum RacialBody {
 			Util.newHashMapOfValues(
 					new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(22f, 28f)),
 					new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(2f, 5f))),
-			AntennaType.NONE,
 			ArmType.FOX_MORPH, 1,
 			AssType.FOX_MORPH, AssSize.TWO_SMALL, AssSize.THREE_NORMAL, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
 			BreastType.FOX_MORPH,
@@ -282,7 +275,6 @@ public enum RacialBody {
 			Util.newHashMapOfValues(
 					new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(20f, 40f)),
 					new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f))),
-			AntennaType.NONE,
 			ArmType.LYCAN, 1,
 			AssType.WOLF_MORPH, AssSize.TWO_SMALL, AssSize.THREE_NORMAL, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
 			BreastType.WOLF_MORPH,
@@ -313,7 +305,6 @@ public enum RacialBody {
 			Util.newHashMapOfValues(
 					new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(10f, 30f)),
 					new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f))),
-			AntennaType.NONE,
 			ArmType.CAT_MORPH, 1,
 			AssType.CAT_MORPH, AssSize.TWO_SMALL, AssSize.THREE_NORMAL, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
 			BreastType.CAT_MORPH,
@@ -344,7 +335,6 @@ public enum RacialBody {
 			Util.newHashMapOfValues(
 					new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(20f, 40f)),
 					new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f))),
-			AntennaType.NONE,
 			ArmType.HORSE_MORPH, 1,
 			AssType.HORSE_MORPH, AssSize.TWO_SMALL, AssSize.FIVE_HUGE, Wetness.ZERO_DRY, Capacity.THREE_SLIGHTLY_LOOSE, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
 			BreastType.HORSE_MORPH,
@@ -374,7 +364,6 @@ public enum RacialBody {
 	ALLIGATOR_MORPH(Util.newHashMapOfValues(
 	            new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(20f, 40f)),
 	            new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f))),
-		    AntennaType.NONE,
 		    ArmType.ALLIGATOR_MORPH, 1,
 		    AssType.ALLIGATOR_MORPH, AssSize.TWO_SMALL, AssSize.TWO_SMALL, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
 		    BreastType.ALLIGATOR_MORPH,
@@ -408,7 +397,6 @@ public enum RacialBody {
 	SQUIRREL_MORPH(Util.newHashMapOfValues(
 				new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(5f, 15f)),
 				new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f))),
-			AntennaType.NONE,
 			ArmType.SQUIRREL_MORPH, 1,
 			AssType.SQUIRREL_MORPH, AssSize.TWO_SMALL, AssSize.THREE_NORMAL, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
 			BreastType.SQUIRREL_MORPH,
@@ -437,7 +425,6 @@ public enum RacialBody {
 	RABBIT_MORPH(Util.newHashMapOfValues(
 				new Value<Attribute, AttributeRange>(Attribute.MAJOR_PHYSIQUE, new AttributeRange(5f, 15f)),
 				new Value<Attribute, AttributeRange>(Attribute.MAJOR_ARCANE, new AttributeRange(0f, 0f))),
-			AntennaType.NONE,
 			ArmType.RABBIT_MORPH, 1,
 			AssType.RABBIT_MORPH, AssSize.TWO_SMALL, AssSize.THREE_NORMAL, Wetness.ZERO_DRY, Capacity.ONE_EXTREMELY_TIGHT, OrificeElasticity.THREE_FLEXIBLE, OrificePlasticity.THREE_RESILIENT,
 			BreastType.RABBIT_MORPH,
@@ -466,7 +453,6 @@ public enum RacialBody {
 	// Attributes modified by this Trait:
 	private HashMap<Attribute, AttributeRange> attributeModifiers;
 
-	private AntennaType antennaType;
 	private ArmType armType;
 	private AssType assType;
 	private BreastType breastType;
@@ -505,7 +491,6 @@ public enum RacialBody {
 			maleWingSize, femaleWingSize;
 
 	private RacialBody(HashMap<Attribute, AttributeRange> attributeModifiers,
-			AntennaType antennaType,
 			ArmType armType, int armRows,
 			AssType assType, AssSize maleAssSize, AssSize femaleAssSize, Wetness anusWetness, Capacity anusCapacity, OrificeElasticity anusElasticity, OrificePlasticity anusPlasticity,
 			BreastType breastType,
@@ -533,7 +518,6 @@ public enum RacialBody {
 		
 		this.attributeModifiers = attributeModifiers;
 		
-		this.antennaType = antennaType;
 		this.armType = armType;
 		this.armRows = armRows;
 		
@@ -715,10 +699,6 @@ public enum RacialBody {
 	
 	public HashMap<Attribute, AttributeRange> getAttributeModifiers() {
 		return attributeModifiers;
-	}
-
-	public AntennaType getAntennaType() {
-		return antennaType;
 	}
 
 	public ArmType getArmType() {

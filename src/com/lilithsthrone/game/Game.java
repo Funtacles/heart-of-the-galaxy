@@ -906,10 +906,6 @@ public class Game implements Serializable, XMLSaving {
 			Main.game.setContent(new Response("", "", MiscDialogue.STATUS_EFFECTS){
 				@Override
 				public void effects() {
-					if(!Main.game.getPlayer().hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY) && Main.game.getPlayer().hasNonArcaneEssences()) {
-						Main.game.getTextEndStringBuilder().append(Main.game.getPlayer().startQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY));
-					}
-					
 					if (!Main.game.getPlayer().hasQuest(QuestLine.SIDE_FIRST_TIME_PREGNANCY) && Main.game.getPlayer().isVisiblyPregnant()) {
 						Main.game.getTextEndStringBuilder().append(Main.game.getPlayer().startQuest(QuestLine.SIDE_FIRST_TIME_PREGNANCY));
 					}
@@ -1124,8 +1120,6 @@ public class Game implements Serializable, XMLSaving {
 				} else {
 					dialogueTitle = UtilText.parse(node.getLabel());
 				}
-				// currentDialogueNode.applyResponse(index, true);
-				// updateUIAttributes();
 
 
 				boolean resetPointer = true;
@@ -1145,8 +1139,6 @@ public class Game implements Serializable, XMLSaving {
 								"<div id='main-content'>"
 									+ getTitleDiv(dialogueTitle)
 									+ "<div class='div-center' id='content-block'>"
-//										+ "<div class='inner-text-content'>"
-											+ getMapDiv()
 											+ (headerContent != null
 												? "<div id='header-content' style='font-size:" + Main.getProperties().fontSize + "px; line-height:" + (Main.getProperties().fontSize + 6) + "px; -webkit-user-select: none;'>"
 													+ (currentDialogueNode.disableHeaderParsing() ? headerContent : UtilText.parse(headerContent))
@@ -1159,8 +1151,6 @@ public class Game implements Serializable, XMLSaving {
 															+ pastDialogueSB.toString()
 														+ "</div>"
 													: "")
-	//												+ textStartStringBuilder.toString() + pastDialogueSB.toString() + textEndStringBuilder.toString() + "</div>" : "")
-//										+ "</div>"
 									+ "</div>"
 									+"<div id='bottom-text'>Game saved!</div>"
 									+ getResponsesDiv(currentDialogueNode, resetPointer)
@@ -1172,22 +1162,18 @@ public class Game implements Serializable, XMLSaving {
 								+ getTitleDiv(dialogueTitle)
 								+ "<span id='position" + positionAnchor + "'></span>"
 								+ "<div class='div-center' id='content-block'>"
-//									+ "<div class='inner-text-content'>"
-										+ getMapDiv()
-										+ (headerContent != null
-											? "<div id='header-content' style='font-size:" + Main.getProperties().fontSize + "px; line-height:" + (Main.getProperties().fontSize + 6) + "px;-webkit-user-select: none;'>"
-												+ (currentDialogueNode.disableHeaderParsing() ? headerContent : UtilText.parse(headerContent))
+									+ (headerContent != null
+										? "<div id='header-content' style='font-size:" + Main.getProperties().fontSize + "px; line-height:" + (Main.getProperties().fontSize + 6) + "px;-webkit-user-select: none;'>"
+											+ (currentDialogueNode.disableHeaderParsing() ? headerContent : UtilText.parse(headerContent))
+											+ "</div>"
+										: "")
+									+ (content != null
+											? "<div "+(Main.getProperties().hasValue(PropertyValue.fadeInText)?"id='text-content'":"")
+													+" style='font-size:" + Main.getProperties().fontSize + "px; line-height:" + (Main.getProperties().fontSize + 6) + "px;"
+														+ (requiresYScroll(node)?" overflow-y:scroll; overflow-x:hidden;":"")+ "'>"
+													+ pastDialogueSB.toString()
 												+ "</div>"
 											: "")
-										+ (content != null
-												? "<div "+(Main.getProperties().hasValue(PropertyValue.fadeInText)?"id='text-content'":"")
-														+" style='font-size:" + Main.getProperties().fontSize + "px; line-height:" + (Main.getProperties().fontSize + 6) + "px;"
-															+ (requiresYScroll(node)?" overflow-y:scroll; overflow-x:hidden;":"")+ "'>"
-														+ pastDialogueSB.toString()
-													+ "</div>"
-												: "")
-	//									+ textStartStringBuilder.toString() + pastDialogueSB.toString() + textEndStringBuilder.toString() + "</div>" : "")
-//									+ "</div>"
 								+ "</div>"
 								+"<div id='bottom-text'>Game saved!</div>"
 								+ getResponsesDiv(currentDialogueNode, resetPointer)
@@ -1195,7 +1181,6 @@ public class Game implements Serializable, XMLSaving {
 							+ "</body>";
 				}
 
-//				Main.mainController.unbindListeners();
 				setMainContentRegex(
 						(node.isContinuesDialogue() && isContentScroll(node)
 							?"<body onLoad='scrollToElement()'>"
@@ -1211,8 +1196,6 @@ public class Game implements Serializable, XMLSaving {
 				}
 				
 				TooltipUpdateThread.cancelThreads=true;
-				//Main.mainController.processNewDialogue();
-
 			}
 		}
 	}
@@ -1317,8 +1300,6 @@ public class Game implements Serializable, XMLSaving {
 			currentDialogue = "<div id='main-content'>"
 						+ getTitleDiv(dialogueTitle)
 						+ "<div class='div-center' id='content-block'>"
-//							+ "<div class='inner-text-content'>"
-								+ getMapDiv()
 								+ (headerContent != null
 									? "<div id='header-content' style='font-size:" + Main.getProperties().fontSize + "px; line-height:" + (Main.getProperties().fontSize + 6) + "px;-webkit-user-select: none;'>"
 										+ (currentDialogueNode.disableHeaderParsing() ? headerContent : UtilText.parse(headerContent))
@@ -1329,8 +1310,6 @@ public class Game implements Serializable, XMLSaving {
 											+" style='font-size:" + Main.getProperties().fontSize + "px; line-height:" + (Main.getProperties().fontSize + 6) + "px;"
 												+ (requiresYScroll(node)?" overflow-y:scroll; overflow-x:hidden;":"")+ "'>"
 									+ pastDialogueSB.toString() + "</div>" : "")
-	//									+ textStartStringBuilder.toString() + pastDialogueSB.toString() + textEndStringBuilder.toString() + "</div>" : "")
-//							+ "</div>"
 						+ "</div>"
 						+"<div id='bottom-text'>Game saved!</div>"
 						+ getResponsesDiv(currentDialogueNode, resetPointer)
@@ -1342,8 +1321,6 @@ public class Game implements Serializable, XMLSaving {
 						+ getTitleDiv(dialogueTitle)
 						+ "<span id='position" + positionAnchor + "'></span>"
 							+ "<div class='div-center' id='content-block'>"
-//								+ "<div class='inner-text-content'>"
-									+ getMapDiv()
 									+ (headerContent != null
 										? "<div id='header-content' style='font-size:" + Main.getProperties().fontSize + "px; line-height:" + (Main.getProperties().fontSize + 6) + "px;-webkit-user-select: none;'>"
 											+ (currentDialogueNode.disableHeaderParsing() ? headerContent : UtilText.parse(headerContent))
@@ -1356,8 +1333,6 @@ public class Game implements Serializable, XMLSaving {
 												+ pastDialogueSB.toString()
 											+ "</div>"
 										: "")
-	//								+ textStartStringBuilder.toString() + pastDialogueSB.toString() + textEndStringBuilder.toString() + "</div>" : "")
-//								+ "</div>"
 							+ "</div>"
 						+"<div id='bottom-text'>Game saved!</div>"
 						+ getResponsesDiv(currentDialogueNode, resetPointer)
@@ -1439,16 +1414,6 @@ public class Game implements Serializable, XMLSaving {
 							:"")
 					+ "<h4 style='text-align:center;'>" + dialogueTitle + "</h4>"
 				+ "</div>";
-	}
-	
-	private String getMapDiv() {
-		return "";
-//		return (Main.game.getActiveWorld() != null && isStarted() && isRenderMap()
-//					&& !Main.game.getCurrentDialogueNode().isMapDisabled() && Main.game.getCurrentDialogueNode().getMapDisplay() == MapDisplay.NORMAL && !Main.game.isInSex() && !Main.game.isInCombat()
-//				? "<div style='float:left; width:250px; height:250px; padding:8px; margin:8px; border-radius:5px; background:#333;'>"
-//					+ (Main.game.isStarted()?RenderingEngine.ENGINE.renderedHTMLMap():"")
-//				+ "</div>"
-//				:"");
 	}
 	
 	/**
@@ -1884,7 +1849,6 @@ public class Game implements Serializable, XMLSaving {
 					"<div id='main-content'>"
 						+ getTitleDiv(dialogueTitle)
 						+ "<div class='div-center' id='content-block'>"
-								+ getMapDiv()
 								+ (headerContent != null
 									? "<div id='header-content' style='font-size:" + Main.getProperties().fontSize + "px; line-height:" + (Main.getProperties().fontSize + 6) + "px;-webkit-user-select: none;'>"
 										+ (currentDialogueNode.disableHeaderParsing() ? headerContent : UtilText.parse(headerContent))
@@ -2109,9 +2073,6 @@ public class Game implements Serializable, XMLSaving {
 		} else {
 			startingDate = startingDate.plusMonths(month.getValue() - startingDate.getMonthValue());
 		}
-		
-		
-//		startingDate = LocalDateTime.of(LocalDateTime.now().getYear(), month, LocalDateTime.now().getDayOfMonth(), 00, 00).plusYears(3);
 	}
 	
 	public LocalDateTime getDateNow() {
@@ -2300,7 +2261,6 @@ public class Game implements Serializable, XMLSaving {
 		if(!NPCMap.containsKey(id)) {
 			System.err.println("!WARNING! getNPC("+id+") is returning null!");
 			return null;
-//			new NullPointerException().printStackTrace();
 		}
 		return NPCMap.get(id);
 	}

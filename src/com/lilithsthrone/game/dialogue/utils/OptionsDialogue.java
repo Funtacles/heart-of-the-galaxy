@@ -80,7 +80,6 @@ public class OptionsDialogue {
 								+ "<h5 style='color:" + Main.getProperties().nameColour + ";text-align:center;'>" + Main.getProperties().name + "</h5>"
 								+ "<p style='text-align:center;'><b>Level " + Main.getProperties().level + " " + Util.capitaliseSentence(Main.getProperties().race) + "</b></p>"
 								+ "<p style='text-align:center;'>" + UtilText.formatAsMoney(Main.getProperties().money, "b") + "</p>"
-								+ "<div style='text-align:center; display:block; margin:auto;'>" + UtilText.formatAsEssences(Main.getProperties().arcaneEssences, "b", false) + "</div>"
 								+ "<p style='text-align:center;'>Quest: " + Util.capitaliseSentence(Main.getProperties().quest) + "</p>");
 		}
 		
@@ -533,10 +532,6 @@ public class OptionsDialogue {
 			
 			UtilText.nodeContentSB.append(
 					"<p>"
-					+ "<b>Light/Dark theme:</b>"
-					+ "<br/>This switches the main display between a light and dark theme. (Work in progress!)"
-					+ "</p>"
-					
 					+"<p>"
 					+ "<b>Font-size:</b><br/>"
 					+ "This cycles the game's base font size. This currently only affects the size of the text in the main dialogue, but in the future I'll expand it to include every display element.<br/>"
@@ -560,26 +555,6 @@ public class OptionsDialogue {
 		public Response getResponse(int responseTab, int index) {
 			if (index == 1) {
 				return new Response("Keybinds", "Open the keybinds page, where you can customise all the game's key bindings.", KEYBINDS);
-				
-			} else if (index == 2) {
-
-				if (Main.getProperties().hasValue(PropertyValue.lightTheme)) {
-					return new Response("Dark theme", "Switch the theme to the dark variant.", OPTIONS){
-						@Override
-						public void effects() {
-							Main.mainController.switchTheme();
-							
-						}
-						};
-				} else {
-					return new Response("Light theme (WIP)", "Switch the theme to the light variant.<br/><br/><b>This is still a work in progress...</b>.", OPTIONS){
-						@Override
-						public void effects() {
-							Main.mainController.switchTheme();
-							
-						}
-					};
-				}
 
 			} else if (index == 3) {
 				return new Response("Font-size -",

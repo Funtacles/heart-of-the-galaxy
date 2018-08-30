@@ -15,14 +15,6 @@ public class InventoryClothingComparator implements Comparator<AbstractClothing>
 
 	@Override
 	public int compare(AbstractClothing first, AbstractClothing second) {
-		if(!first.isEnchantmentKnown() && !second.isEnchantmentKnown()) {
-			return 0;
-		} else if(first.isEnchantmentKnown() && !second.isEnchantmentKnown()) {
-			return -1;
-		} else if(!first.isEnchantmentKnown() && second.isEnchantmentKnown()) {
-			return 1;
-		}
-		
 		int result = first.getRarity().compareTo(second.getRarity());
 		
 		if (result != 0) {

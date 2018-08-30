@@ -22,7 +22,6 @@ import com.lilithsthrone.game.character.markings.TattooCounterType;
 import com.lilithsthrone.game.character.markings.TattooWritingStyle;
 import com.lilithsthrone.game.combat.Attack;
 import com.lilithsthrone.game.combat.DamageType;
-import com.lilithsthrone.game.dialogue.utils.EnchantmentDialogue;
 import com.lilithsthrone.game.dialogue.utils.InventoryDialogue;
 import com.lilithsthrone.game.dialogue.utils.InventoryInteraction;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -31,11 +30,6 @@ import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.ShopTransaction;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
-import com.lilithsthrone.game.inventory.enchanting.EnchantingUtils;
-import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
-import com.lilithsthrone.game.inventory.enchanting.TFModifier;
-import com.lilithsthrone.game.inventory.enchanting.TFPotency;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
@@ -71,9 +65,6 @@ public class InventoryTooltipEventListener implements EventListener {
 	private AbstractClothing dyeClothing;
 	private AbstractWeapon dyeWeapon;
 	private InventorySlot invSlot;
-	private TFModifier enchantmentModifier;
-	private TFPotency potency;
-	private TFEssence essence;
 	private static StringBuilder tooltipSB = new StringBuilder();
 
 	private static final int LINE_HEIGHT = 16;
@@ -93,33 +84,10 @@ public class InventoryTooltipEventListener implements EventListener {
 				yIncrease += 2;
 			}
 			
-			if(!item.getEffects().isEmpty()) {
-				yIncrease+=1;
-				for(ItemEffect ie : item.getEffects()) {
-					yIncrease += ie.getEffectsDescription(Main.game.getPlayer(), Main.game.getPlayer()).size();
-				}
-			}
-			
 			Main.mainController.setTooltipSize(TOOLTIP_WIDTH, 256 + (LINE_HEIGHT * yIncrease));
 
 			tooltipSB.setLength(0);
 			tooltipSB.append("<div class='title'>" + Util.capitaliseSentence(item.getDisplayName(true)) + "</div>");
-
-			if(!item.getEffects().isEmpty()) {
-				tooltipSB.append("<div class='subTitle'>");
-				int ieCount=0;
-				for(ItemEffect ie : item.getEffects()) {
-					if(ieCount>0)
-						tooltipSB.append("<br/>");
-					ieCount++;
-					for(int i=0; i<ie.getEffectsDescription(Main.game.getPlayer(), Main.game.getPlayer()).size(); i++) {
-						if(i!=0)
-							tooltipSB.append("<br/>");
-						tooltipSB.append(ie.getEffectsDescription(Main.game.getPlayer(), Main.game.getPlayer()).get(i));
-					}
-				}
-				tooltipSB.append("</div>");
-			}
 
 			tooltipSB.append("<div class='subTitle-half'>"
 					+ (item.isConsumedOnUse() ? "<span style='color:" + Colour.GENERIC_BAD.toWebHexString() + ";'>Consumed on use</span>" : "<span style='color:" + Colour.GENERIC_GOOD.toWebHexString() + ";'>Infinite uses</span>") + "</div>"
@@ -524,29 +492,6 @@ public class InventoryTooltipEventListener implements EventListener {
 				}
 			}
 			
-		} else if (enchantmentModifier != null) {
-			Main.mainController.setTooltipSize(TOOLTIP_WIDTH, 152);
-			Main.mainController.setTooltipContent(UtilText.parse(
-					"<div class='title' style='color:"+enchantmentModifier.getRarity().getColour().toWebHexString()+";'>"
-							+ Util.capitaliseSentence(enchantmentModifier.getName())
-					+ "</div>"
-					+ "<div class='description' style='height:48px'>"
-					+ UtilText.parse(enchantmentModifier.getDescription())
-					+ "</div>"
-					+ "<div class='subTitle'>"
-					+(EnchantmentDialogue.getIngredient() instanceof Tattoo
-							? UtilText.formatAsMoney(enchantmentModifier.getValue()*EnchantingUtils.FLAME_COST_MODIFER, "b")+" cost"
-							: UtilText.formatAsEssences(enchantmentModifier.getValue(), "b", false)+" essence cost")
-					+ "</div>"));
-		
-		} else if(potency!=null) {
-			Main.mainController.setTooltipSize(TOOLTIP_WIDTH, 60);
-			Main.mainController.setTooltipContent(UtilText.parse("<div class='title'>Set potency to <b style='color:"+potency.getColour().toWebHexString()+";'>" + Util.capitaliseSentence(potency.getName()) + "</b></div>"));
-			
-		} else if (essence != null) {
-			Main.mainController.setTooltipSize(TOOLTIP_WIDTH, 60);
-			Main.mainController.setTooltipContent(UtilText.parse("<div class='title'><b style='color:"+essence.getColour().toWebHexString()+";'>" + Util.capitaliseSentence(essence.getName()) + "</b> essence</div>"));
-		
 		}  else {
 			return;
 		}
@@ -674,24 +619,6 @@ public class InventoryTooltipEventListener implements EventListener {
 		return this;
 	}
 	
-	public InventoryTooltipEventListener setTFModifier(TFModifier enchantmentModifier) {
-		resetVariables();
-		this.enchantmentModifier = enchantmentModifier;
-		return this;
-	}
-	
-	public InventoryTooltipEventListener setTFPotency(TFPotency potency) {
-		resetVariables();
-		this.potency = potency;
-		return this;
-	}
-	
-	public InventoryTooltipEventListener setEssence(TFEssence essence) {
-		resetVariables();
-		this.essence = essence;
-		return this;
-	}
-
 	private void resetVariables() {
 		owner = null;
 		equippedToCharacter = null;
@@ -711,9 +638,6 @@ public class InventoryTooltipEventListener implements EventListener {
 		pattern = null;
 		genericClothing = null;
 		invSlot = null;
-		enchantmentModifier = null;
-		potency = null;
-		essence = null;
 	}
 
 	private void weaponTooltip(AbstractWeapon absWep) {
@@ -827,14 +751,6 @@ public class InventoryTooltipEventListener implements EventListener {
 
 		yIncrease += absClothing.getExtraDescriptions(equippedToCharacter).size();
 		
-		for(ItemEffect ie : absClothing.getEffects()) {
-			if(ie.getPrimaryModifier()==TFModifier.CLOTHING_ENSLAVEMENT
-					|| ie.getPrimaryModifier()==TFModifier.CLOTHING_SEALING) {
-				listIncrease+=1;
-			} else if(ie.getPrimaryModifier()!=TFModifier.CLOTHING_ATTRIBUTE) {
-				listIncrease+=2;
-			}
-		}
 		yIncrease += Math.max(0, listIncrease-4);
 		
 		
@@ -855,30 +771,6 @@ public class InventoryTooltipEventListener implements EventListener {
 					?"[style.boldGood(+"+absClothing.getClothingType().getPhysicalResistance()+")]"
 					:"[style.boldDisabled(0)]")
 				+" [style.boldResPhysical("+Util.capitaliseSentence(Attribute.RESISTANCE_PHYSICAL.getName())+")]");
-		
-		if (!absClothing.getEffects().isEmpty()) {
-			if (!absClothing.isEnchantmentKnown()) {
-				tooltipSB.append("<br/>[style.colourDisabled(Unidentified effects!)]");
-			} else {
-				for (ItemEffect e : absClothing.getEffects()) {
-					if(e.getPrimaryModifier()!=TFModifier.CLOTHING_ATTRIBUTE) {
-						for(String s : e.getEffectsDescription(owner, owner)) {
-							tooltipSB.append("<br/>"+ s);
-						}
-					}
-				}
-				for(Entry<Attribute, Integer> entry : absClothing.getAttributeModifiers().entrySet()) {
-					tooltipSB.append("<br/>"+ 
-							(entry.getValue()<0
-									?"[style.boldBad("+entry.getValue()+")] "
-									:"[style.boldGood(+"+entry.getValue()+")] ")
-							+ "<b style='color:"+entry.getKey().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(entry.getKey().getName())+"</b>");
-				}
-			}
-			
-		} else {
-			tooltipSB.append("<br/>[style.colourDisabled(No bonuses)]");
-		}
 		
 		tooltipSB.append("</div>");
 		
@@ -911,13 +803,13 @@ public class InventoryTooltipEventListener implements EventListener {
 			if (owner.isPlayer()) {
 				if (InventoryDialogue.getInventoryNPC().willBuy(absClothing)) {
 					tooltipSB.append("<div class='container-full-width titular'>"
-										+ "Value: "+(absClothing.isEnchantmentKnown() ? UtilText.formatAsMoney(absClothing.getValue()) : UtilText.formatAsMoney("?", "b"))
+										+ "Value: "+UtilText.formatAsMoney(absClothing.getValue())
 										+" | "
 										+ InventoryDialogue.getInventoryNPC().getName("The") + " offers " + UtilText.formatAsMoney(absClothing.getPrice(InventoryDialogue.getInventoryNPC().getBuyModifier()))
 									+ "</div>");
 				} else {
 					tooltipSB.append("<div class='container-full-width titular'>"
-										+ "Value: "+(absClothing.isEnchantmentKnown() ? UtilText.formatAsMoney(absClothing.getValue()) : UtilText.formatAsMoney("?", "b"))
+										+ "Value: "+ UtilText.formatAsMoney(absClothing.getValue())
 										+" | "
 										+ "<span style='color:" + Colour.TEXT_GREY.toWebHexString() + ";'>" + InventoryDialogue.getInventoryNPC().getName("The") + " will not buy this</span>"
 									+ "</div>");
@@ -925,20 +817,20 @@ public class InventoryTooltipEventListener implements EventListener {
 			} else {
 				if (InventoryDialogue.isBuyback()) {
 					tooltipSB.append("<div class='container-full-width titular'>"
-											+ "Value: "+(absClothing.isEnchantmentKnown() ? UtilText.formatAsMoney(absClothing.getValue()) : UtilText.formatAsMoney("?", "b"))
+											+ "Value: "+UtilText.formatAsMoney(absClothing.getValue())
 											+" | "
 											+ InventoryDialogue.getInventoryNPC().getName("The") + " wants " + UtilText.formatAsMoney( + getBuybackPriceFor(absClothing))
 									+ "</div>");
 				} else {
 					tooltipSB.append("<div class='container-full-width titular'>"
-											+ "Value: "+(absClothing.isEnchantmentKnown() ? UtilText.formatAsMoney(absClothing.getValue()) : UtilText.formatAsMoney("?", "b"))
+											+ "Value: "+UtilText.formatAsMoney(absClothing.getValue())
 											+" | "
 											+ InventoryDialogue.getInventoryNPC().getName("The") + " wants " + UtilText.formatAsMoney(absClothing.getPrice(InventoryDialogue.getInventoryNPC().getSellModifier()))
 									+ "</div>");
 				}
 			}
 		} else {
-			tooltipSB.append("<div class='container-full-width titular'>Value: "+ (absClothing.isEnchantmentKnown() ? UtilText.formatAsMoney(absClothing.getValue()) : UtilText.formatAsMoney("?", "b")) + "</div>");
+			tooltipSB.append("<div class='container-full-width titular'>Value: "+  UtilText.formatAsMoney(absClothing.getValue()) + "</div>");
 		}
 		
 		tooltipSB.append("</body>");
@@ -981,15 +873,6 @@ public class InventoryTooltipEventListener implements EventListener {
 			yIncrease++;
 		}
 		int lSize=0;
-		for (ItemEffect e : tattoo.getEffects()) {
-			if(e.getPrimaryModifier()==TFModifier.CLOTHING_ATTRIBUTE
-					|| e.getPrimaryModifier()==TFModifier.TF_MOD_FETISH_BEHAVIOUR
-					|| e.getPrimaryModifier()==TFModifier.TF_MOD_FETISH_BODY_PART) {
-				lSize++;
-			} else {
-				lSize+=2;
-			}
-		}
 		lSize-=4;
 		if(lSize<0) {
 			lSize=0;
@@ -1011,29 +894,6 @@ public class InventoryTooltipEventListener implements EventListener {
 		// Attribute modifiers:
 		tooltipSB.append("<div class='container-full-width'>"
 				+ "<div class='container-half-width titular' style='width:calc(66.6% - 16px);'>");
-		
-		if (!tattoo.getEffects().isEmpty()) {
-			int i=0;
-			for (ItemEffect e : tattoo.getEffects()) {
-				if(e.getPrimaryModifier()!=TFModifier.CLOTHING_ATTRIBUTE) {
-					for(String s : e.getEffectsDescription(owner, owner)) {
-						tooltipSB.append((i>0?"<br/>"+s:s));
-					}
-					i++;
-				}
-			}
-			for(Entry<Attribute, Integer> entry : tattoo.getAttributeModifiers().entrySet()) {
-				tooltipSB.append((i>0?"<br/>":"")
-						+ (entry.getValue()<0
-								?"[style.boldBad("+entry.getValue()+")] "
-								:"[style.boldGood(+"+entry.getValue()+")] ")
-						+ "<b style='color:"+entry.getKey().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(entry.getKey().getName())+"</b>");
-				i++;
-			}
-			
-		} else {
-			tooltipSB.append("[style.colourDisabled(No bonuses)]");
-		}
 		
 		tooltipSB.append("</div>");
 		
@@ -1068,21 +928,7 @@ public class InventoryTooltipEventListener implements EventListener {
 							+"[style.colourDisabled(This tattoo doesn't have any writing.)]"
 						+ "</div>");
 			}
-			
-			if (tattoo.getCounter()!=null && tattoo.getCounter().getType()!=TattooCounterType.NONE) {
-				tooltipSB.append("<div class='container-full-width' style='padding:8px; height:54px; text-align:center;'>"
-									+ "An enchanted, "+tattoo.getCounter().getColour().getName()+" "+tattoo.getCounter().getType().getName()+" counter reads:<br/>"
-										+ "<span style='color:"+tattoo.getCounter().getColour().toWebHexString()+";'>"
-												+tattoo.getFormattedCounterOutput(equippedToCharacter)
-										+"</span>"
-								+ "</div>");
-			} else {
-				tooltipSB.append(
-						"<div class='container-full-width' style='padding:8px; height:28px; text-align:center;'>"
-							+"[style.colourDisabled(This tattoo doesn't have a counter.)]"
-						+ "</div>");
-			}
-			
+	
 		tooltipSB.append("</div>");
 		
 		tooltipSB.append("</body>");

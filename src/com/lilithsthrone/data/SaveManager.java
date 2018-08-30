@@ -11,7 +11,6 @@ import com.lilithsthrone.game.character.body.valueEnums.Femininity;
 import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.dialogue.DialogueNodeType;
 import com.lilithsthrone.game.dialogue.responses.Response;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 
@@ -97,7 +96,6 @@ public class SaveManager {
 			Main.getProperties().name = Main.game.getPlayer().getName();
 			Main.getProperties().level = Main.game.getPlayer().getLevel();
 			Main.getProperties().money = Main.game.getPlayer().getMoney();
-			Main.getProperties().arcaneEssences = Main.game.getPlayer().getEssenceCount(TFEssence.ARCANE);
 			Main.getProperties().race = Main.game.getPlayer().getSubspecies().getName();
 			Main.getProperties().quest = Main.game.getPlayer().getQuest(QuestLine.MAIN).getName();
 

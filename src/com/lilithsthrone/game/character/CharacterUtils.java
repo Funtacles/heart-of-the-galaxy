@@ -20,7 +20,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.lilithsthrone.game.PropertyValue;
-import com.lilithsthrone.game.character.body.Antenna;
 import com.lilithsthrone.game.character.body.Arm;
 import com.lilithsthrone.game.character.body.Ass;
 import com.lilithsthrone.game.character.body.Body;
@@ -40,7 +39,6 @@ import com.lilithsthrone.game.character.body.Tail;
 import com.lilithsthrone.game.character.body.Tentacle;
 import com.lilithsthrone.game.character.body.Vagina;
 import com.lilithsthrone.game.character.body.Wing;
-import com.lilithsthrone.game.character.body.types.AntennaType;
 import com.lilithsthrone.game.character.body.types.ArmType;
 import com.lilithsthrone.game.character.body.types.AssType;
 import com.lilithsthrone.game.character.body.types.BodyCoveringType;
@@ -92,8 +90,6 @@ import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.BlockedParts;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
-import com.lilithsthrone.game.inventory.item.AbstractItemType;
-import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.rendering.Pattern;
@@ -904,7 +900,6 @@ public class CharacterUtils {
 							startingBodyType.getTesticleQuantity())
 						: new Penis(PenisType.NONE, 0, 0, 0, 0, 2))
 				.horn(new Horn((stage.isHornFurry()?startingBodyType.getRandomHornType(false):HornType.NONE), (startingGender.isFeminine() ? startingBodyType.getFemaleHornLength() : startingBodyType.getMaleHornLength())))
-				.antenna(new Antenna(stage.isAntennaFurry()?startingBodyType.getAntennaType():AntennaType.NONE))
 				.tail(new Tail(stage.isTailFurry()?startingBodyType.getTailType():TailType.NONE))
 				.tentacle(new Tentacle(stage.isTentacleFurry()?startingBodyType.getTentacleType():TentacleType.NONE))
 				.wing(new Wing((stage.isWingFurry()?startingBodyType.getWingType():WingType.NONE), (startingGender.isFeminine() ? startingBodyType.getFemaleWingSize() : startingBodyType.getMaleWingSize())))
@@ -1019,8 +1014,6 @@ public class CharacterUtils {
 		
 		body.setHorn(new Horn((stage.isHornFurry()?startingBodyType.getRandomHornType(false):HornType.NONE), (startingGender.isFeminine() ? startingBodyType.getFemaleHornLength() : startingBodyType.getMaleHornLength())));
 		
-		body.setAntenna(new Antenna(stage.isAntennaFurry()?startingBodyType.getAntennaType():AntennaType.NONE));
-		
 		body.setTail(new Tail(stage.isTailFurry()?startingBodyType.getTailType():TailType.NONE));
 		
 		body.setTentacle(new Tentacle(stage.isTentacleFurry()?startingBodyType.getTentacleType():TentacleType.NONE));
@@ -1106,9 +1099,6 @@ public class CharacterUtils {
 			if(Math.random()<=0.015f || character.hasFetish(Fetish.FETISH_LACTATION_SELF)) {
 				character.setBreastMilkStorage((int)((character.getBreastSize().getMeasurement() * 5)*(1+(Math.random()*2))));
 				if(Math.random()<=0.025f) {
-					character.addMilkModifier(FluidModifier.ADDICTIVE);
-				}
-				if(Math.random()<=0.025f) {
 					character.addMilkModifier(FluidModifier.HALLUCINOGENIC);
 				}
 			}
@@ -1178,9 +1168,6 @@ public class CharacterUtils {
 			}
 			
 			if(Math.random()<=0.02f) {
-				character.addCumModifier(FluidModifier.ADDICTIVE);
-			}
-			if(Math.random()<=0.02f) {
 				character.addCumModifier(FluidModifier.HALLUCINOGENIC);
 			}
 		}
@@ -1202,9 +1189,6 @@ public class CharacterUtils {
 				}
 			}
 			character.setVaginaWetness(character.getVaginaWetness().getValue() -1 + Util.random.nextInt(3)); // +1 or -1 either way
-			if(Math.random()<=0.02f) {
-				character.addGirlcumModifier(FluidModifier.ADDICTIVE);
-			}
 			if(Math.random()<=0.02f) {
 				character.addGirlcumModifier(FluidModifier.HALLUCINOGENIC);
 			}
@@ -1289,10 +1273,6 @@ public class CharacterUtils {
 
 			character.setSexualOrientation(SexualOrientation.AMBIPHILIC);
 			character.setName(Name.getRandomProstituteTriplet());
-			character.useItem(AbstractItemType.generateItem(ItemType.PROMISCUITY_PILL),
-					character,
-					false);
-
 		}
 	}
 	
@@ -1541,7 +1521,7 @@ public class CharacterUtils {
 				if((!slot.isCoreClothing() && onlyAddCoreClothing)
 						|| (slot==InventorySlot.LEG
 							&& character.getClothingInSlot(InventorySlot.TORSO_UNDER)!=null
-							&& character.getClothingInSlot(InventorySlot.TORSO_UNDER).getClothingType().toString().contains("DRESS"))) {//TODO please don't do this
+							&& character.getClothingInSlot(InventorySlot.TORSO_UNDER).getClothingType().toString().contains("DRESS"))) {
 					// Don't add clothing if not core
 				} else {
 					if((slot.isCoreClothing() || Math.random()>0.75f || (slot.isJewellery() && character.getBodyMaterial().isRequiresPiercing())) && !character.isSlotIncompatible(slot) && character.getClothingInSlot(slot)==null) {

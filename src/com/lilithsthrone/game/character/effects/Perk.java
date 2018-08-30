@@ -33,7 +33,7 @@ public enum Perk {
 			null) {
 		@Override
 		public String getDescription(GameCharacter owner) {
-			return ".";//TODO
+			return ".";
 		}
 	},
 	
@@ -49,7 +49,7 @@ public enum Perk {
 			Util.newArrayListOfValues("[style.boldExcellent(Doubles)] all slave and self-prostitution income")) {
 		@Override
 		public String getDescription(GameCharacter owner) {
-			return ".";//TODO
+			return ".";
 		}
 	},
 	
@@ -65,7 +65,7 @@ public enum Perk {
 			Util.newArrayListOfValues("[style.boldExcellent(Triples)] all mugging income")) {
 		@Override
 		public String getDescription(GameCharacter owner) {
-			return ".";//TODO
+			return ".";
 		}
 	},
 	

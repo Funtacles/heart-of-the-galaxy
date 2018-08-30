@@ -55,7 +55,6 @@ import com.lilithsthrone.game.dialogue.story.CharacterCreation;
 import com.lilithsthrone.game.dialogue.utils.BodyChanging;
 import com.lilithsthrone.game.dialogue.utils.CharacterModificationUtils;
 import com.lilithsthrone.game.dialogue.utils.CharactersPresentDialogue;
-import com.lilithsthrone.game.dialogue.utils.EnchantmentDialogue;
 import com.lilithsthrone.game.dialogue.utils.InventoryDialogue;
 import com.lilithsthrone.game.dialogue.utils.InventoryInteraction;
 import com.lilithsthrone.game.dialogue.utils.OptionsDialogue;
@@ -64,7 +63,6 @@ import com.lilithsthrone.game.inventory.AbstractCoreItem;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
 import com.lilithsthrone.game.settings.KeyCodeWithModifiers;
@@ -489,29 +487,6 @@ public class MainController implements Initializable {
 								}
 							}
 						}
-						if(Main.game.getCurrentDialogueNode() == EnchantmentDialogue.ENCHANTMENT_MENU){
-							if((boolean) Main.mainController.getWebEngine().executeScript("document.getElementById('output_name') === document.activeElement")) {
-								allowInput = false;
-								if (event.getCode() == KeyCode.ENTER) {
-									enterConsumed = true;
-									Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-								} else {
-									Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenPField').innerHTML=document.getElementById('output_name').value;");
-									EnchantmentDialogue.setOutputName(Main.mainController.getWebEngine().getDocument().getElementById("hiddenPField").getTextContent());
-								}
-							}
-						}
-						if(Main.game.getCurrentDialogueNode() == EnchantmentDialogue.ENCHANTMENT_SAVE_LOAD){
-							if((boolean) Main.mainController.getWebEngine().executeScript("document.getElementById('new_save_name') === document.activeElement")) {
-								allowInput = false;
-								if (event.getCode() == KeyCode.ENTER) {
-									enterConsumed = true;
-									Main.mainController.getWebEngine().executeScript("document.getElementById('hiddenPField').innerHTML=document.getElementById('new_save_name').value;");
-									EnchantmentDialogue.saveEnchant(Main.mainController.getWebEngine().getDocument().getElementById("hiddenPField").getTextContent(), false);
-									Main.game.setContent(new Response("Save", "", Main.game.getCurrentDialogueNode()));
-								}
-							}
-						}
 						if(Main.game.getCurrentDialogueNode() == SuccubisSecrets.SHOP_BEAUTY_SALON_TATTOOS_ADD
 								|| Main.game.getCurrentDialogueNode() == CharacterCreation.CHOOSE_ADVANCED_APPEARANCE_TATTOOS_ADD){
 							if((boolean) Main.mainController.getWebEngine().executeScript("document.getElementById('tattoo_name') === document.activeElement")) {
@@ -746,11 +721,7 @@ public class MainController implements Initializable {
 		webEngineTooltip.setJavaScriptEnabled(false);
 		webEngineTooltip.getHistory().setMaxSize(0);
 		
-		if (Main.getProperties().hasValue(PropertyValue.lightTheme)) {
-			webEngineTooltip.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewTooltip_stylesheet_light.css").toExternalForm());
-		} else {
-			webEngineTooltip.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewTooltip_stylesheet_hotg.css").toExternalForm());
-		}
+		webEngineTooltip.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewTooltip_stylesheet_hotg.css").toExternalForm());
 
 		// Main WebView:
 		webViewMain.setContextMenuEnabled(false);
@@ -758,11 +729,7 @@ public class MainController implements Initializable {
 //		webEngine.setJavaScriptEnabled(false);
 		webEngine.getHistory().setMaxSize(0);
 		
-		if (Main.getProperties().hasValue(PropertyValue.lightTheme)) {
-			webEngine.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webView_stylesheet_light.css").toExternalForm());
-		} else {
-			webEngine.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webView_stylesheet_hotg.css").toExternalForm());
-		}
+		webEngine.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webView_stylesheet_hotg.css").toExternalForm());
 		
 		if(debugAllowListeners) {
 			webEngine.getLoadWorker().stateProperty().addListener((ObservableValue<? extends State> ov, State oldState, State newState) -> {
@@ -780,11 +747,7 @@ public class MainController implements Initializable {
 		webEngineButtons.setJavaScriptEnabled(false);
 		webEngineButtons.getHistory().setMaxSize(0);
 		
-		if (Main.getProperties().hasValue(PropertyValue.lightTheme)) {
-			webEngineButtons.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewButtons_stylesheet_light.css").toExternalForm());
-		} else {
-			webEngineButtons.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewButtons_stylesheet_hotg.css").toExternalForm());
-		}
+		webEngineButtons.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewButtons_stylesheet_hotg.css").toExternalForm());
 		
 		if(debugAllowListeners)
 		webEngineButtons.getLoadWorker().stateProperty().addListener((ObservableValue<? extends State> ov, State oldState, State newState) -> {
@@ -801,11 +764,7 @@ public class MainController implements Initializable {
 		webEngineAttributes.setJavaScriptEnabled(false);
 		webEngineAttributes.getHistory().setMaxSize(0);
 		
-		if (Main.getProperties().hasValue(PropertyValue.lightTheme)) {
-			webEngineAttributes.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet_light.css").toExternalForm());
-		} else {
-			webEngineAttributes.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet_hotg.css").toExternalForm());
-		}
+		webEngineAttributes.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet_hotg.css").toExternalForm());
 		
 		if(debugAllowListeners){
 			webEngineAttributes.getLoadWorker().stateProperty().addListener((ObservableValue<? extends State> ov, State oldState, State newState) -> {
@@ -822,11 +781,7 @@ public class MainController implements Initializable {
 		webEngineRight.setJavaScriptEnabled(false);
 		webEngineRight.getHistory().setMaxSize(0);
 		
-		if (Main.getProperties().hasValue(PropertyValue.lightTheme)) {
-			webEngineRight.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet_light.css").toExternalForm());
-		} else {
-			webEngineRight.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet_hotg.css").toExternalForm());
-		}
+		webEngineRight.setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet_hotg.css").toExternalForm());
 		
 		if(debugAllowListeners) {
 			webEngineRight.getLoadWorker().stateProperty().addListener((ObservableValue<? extends State> ov, State oldState, State newState) -> {
@@ -1035,16 +990,6 @@ public class MainController implements Initializable {
 					"Toggle the display of time between a 24 and 12-hour clock.");
 			addEventListener(documentAttributes, id, "mouseenter", el2, false);
 		}
-		
-		if (((EventTarget) documentAttributes.getElementById("ESSENCE_" + TFEssence.ARCANE.hashCode())) != null) {
-			addEventListener(documentAttributes, "ESSENCE_" + TFEssence.ARCANE.hashCode(), "mousemove", moveTooltipListener, false);
-			addEventListener(documentAttributes, "ESSENCE_" + TFEssence.ARCANE.hashCode(), "mouseleave", hideTooltipListener, false);
-			
-			InventoryTooltipEventListener el2 = new InventoryTooltipEventListener().setEssence(TFEssence.ARCANE);
-			addEventListener(documentAttributes, "ESSENCE_" + TFEssence.ARCANE.hashCode(), "mouseenter", el2, false);
-		}
-		
-		
 		
 		Attribute[] attributes = {
 				Attribute.HEALTH_MAXIMUM,
@@ -1697,31 +1642,7 @@ public class MainController implements Initializable {
 		return primaryBinding;
 	}
 	
-	public void switchTheme() {
-		if (Main.getProperties().hasValue(PropertyValue.lightTheme)) {
-			getWebEngineTooltip().setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewTooltip_stylesheet.css").toExternalForm());
-			getWebEngine().setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webView_stylesheet.css").toExternalForm());
-			getWebEngineButtons().setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewButtons_stylesheet.css").toExternalForm());
-			getWebEngineAttributes().setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet.css").toExternalForm());
-			getWebEngineRight().setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet.css").toExternalForm());
-	
-			Main.mainScene.getStylesheets().clear();
-			Main.mainScene.getStylesheets().add("/com/lilithsthrone/res/css/stylesheet.css");
-			Main.primaryStage.setScene(Main.mainScene);
-		} else {
-			getWebEngineTooltip().setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewTooltip_stylesheet_light.css").toExternalForm());
-			getWebEngine().setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webView_stylesheet_light.css").toExternalForm());
-			getWebEngineButtons().setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewButtons_stylesheet_light.css").toExternalForm());
-			getWebEngineAttributes().setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet_light.css").toExternalForm());
-			getWebEngineRight().setUserStyleSheetLocation(getClass().getResource("/com/lilithsthrone/res/css/webViewAttributes_stylesheet_light.css").toExternalForm());
-	
-			Main.mainScene.getStylesheets().clear();
-			Main.mainScene.getStylesheets().add("/com/lilithsthrone/res/css/stylesheet_light.css");
-			Main.primaryStage.setScene(Main.mainScene);
-		}
-		Main.getProperties().setValue(PropertyValue.lightTheme, !Main.getProperties().hasValue(PropertyValue.lightTheme));
-		Main.saveProperties();
-	}
+
 
 	public Colour getFlashMessageColour() {
 		return flashMessageColour;

@@ -39,7 +39,6 @@ import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DebugDialogue;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
 import com.lilithsthrone.game.sex.SexAreaOrifice;
 import com.lilithsthrone.game.sex.Sex;
 import com.lilithsthrone.game.sex.SexPace;
@@ -361,24 +360,6 @@ public class UtilText {
 	
 	public static String getPentagramSymbol() {
 		return "&#9737;"; // Java doesn't support unicode 6 ;_;   No pentagram for me... ;_;  "&#9956";
-	}
-	
-	public static String formatAsEssencesUncoloured(int amount, String tag, boolean withOverlay) {
-		String essenceString = formatter.format(amount);
-		return "<div class='item-inline'>"
-					+ TFEssence.ARCANE.getSVGStringUncoloured() + (withOverlay?"<div class='overlay no-pointer' id='ESSENCE_"+TFEssence.ARCANE.hashCode()+"'></div>":"")
-				+"</div>"
-				+ " <"+tag+" style='color:"+Colour.TEXT_GREY.toWebHexString()+";'>"+essenceString+"</"+tag+">";
-	}
-	
-	
-	public static String formatAsEssences(int amount, String tag, boolean withOverlay) {
-		String essenceString = formatter.format(amount);
-		
-		return "<div class='item-inline'>"
-					+ TFEssence.ARCANE.getSVGString() + (withOverlay?"<div class='overlay no-pointer' id='ESSENCE_"+TFEssence.ARCANE.hashCode()+"'></div>":"")
-				+"</div>"
-				+ " <"+tag+" style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>"+essenceString+"</"+tag+">";
 	}
 	
 	public static String formatAsMoney(int money, String tag) {
@@ -3253,11 +3234,6 @@ public class UtilText {
 		// Body parts:
 		
 		// Add standard parsing for all types:
-
-		addStandardParsingCommands(
-				new String[] {"antenna"},
-				new String[] {"antennae"},
-				BodyPartType.ANTENNA);
 				
 		addStandardParsingCommands(
 				new String[] {"arm"},
@@ -5446,8 +5422,6 @@ public class UtilText {
 	
 	private static BodyPartInterface getBodyPartFromType(BodyPartType type) {
 		switch(type){
-			case ANTENNA:
-				return character.getBody().getAntenna();
 			case ARM:
 				return character.getBody().getArm();
 			case ASS:

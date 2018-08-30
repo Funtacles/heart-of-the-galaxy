@@ -11,7 +11,6 @@ import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.types.LegType;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.combat.Attack;
 import com.lilithsthrone.game.combat.Combat;
 import com.lilithsthrone.game.combat.DamageType;
@@ -26,7 +25,6 @@ import com.lilithsthrone.game.inventory.ShopTransaction;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.BlockedParts;
 import com.lilithsthrone.game.inventory.clothing.DisplacementType;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
@@ -49,8 +47,6 @@ import com.lilithsthrone.utils.Util;
 public class InventoryDialogue {
 	
 	// Welcome to a slightly cleaned-up hell!
-	
-	private static final int IDENTIFICATION_PRICE = 10;
 	
 	private static AbstractItem item;
 	private static AbstractClothing clothing;
@@ -114,22 +110,6 @@ public class InventoryDialogue {
 			} else if(interactionType==InventoryInteraction.CHARACTER_CREATION) {
 				return CharacterCreation.getCheckingClothingDescription();
 			}
-//			if(item!=null) {
-//				return ITEM_INVENTORY.getResponse(responseTab, index);
-//			} else if(clothing!=null) {
-//				if(Main.game.getPlayer().getClothingCurrentlyEquipped().contains(clothing) || (inventoryNPC!=null && inventoryNPC.getClothingCurrentlyEquipped().contains(clothing))) {
-//					return CLOTHING_EQUIPPED.getResponse(responseTab, index);
-//				} else {
-//					return CLOTHING_INVENTORY.getResponse(responseTab, index);
-//				}
-//			} else if(weapon!=null) {
-//				if((Main.game.getPlayer().getMainWeapon().equals(weapon) || Main.game.getPlayer().getOffhandWeapon().equals(weapon))
-//						 || (inventoryNPC!=null && (inventoryNPC.getMainWeapon().equals(weapon) || inventoryNPC.getOffhandWeapon().equals(weapon)))) {
-//					return WEAPON_EQUIPPED.getResponse(responseTab, index);
-//				} else {
-//					return WEAPON_INVENTORY.getResponse(responseTab, index);
-//				}
-//			}
 			
 			return UtilText.nodeContentSB.toString();
 		}
@@ -140,9 +120,6 @@ public class InventoryDialogue {
 		
 		@Override
 		public Response getResponse(int responseTab, int index) {
-			//TODO sex end
-			// What does that even mean? BlobSweats
-			
 			if (index == 0) {
 				return getCloseInventoryResponse();
 			}
@@ -961,31 +938,6 @@ public class InventoryDialogue {
 							}
 						}
 						
-					} else if(index == 5) {
-						if(item.getEnchantmentItemType(null)==null) {
-							return new Response("Enchant", "This item cannot be enchanted!", null);
-							
-						} else if(Main.game.isDebugMode()) {
-							return new Response("Enchant", "Enchant this item.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-								@Override
-								public DialogueNodeOld getNextDialogue() {
-									return EnchantmentDialogue.getEnchantmentMenu(item);
-								}
-							};
-							
-						} else if(Main.game.getPlayer().hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-							if(Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-								return new Response("Enchant", "Enchant this item.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-									@Override
-									public DialogueNodeOld getNextDialogue() {
-										return EnchantmentDialogue.getEnchantmentMenu(item);
-									}
-								};
-							}
-						}
-						
-						return null;
-						
 					} else if(index == 6) {
 						if (!item.isAbleToBeUsedFromInventory()) {
 							return new Response(Util.capitaliseSentence(item.getItemType().getUseName())+" (self)", item.getUnableToBeUsedFromInventoryDescription(), null);
@@ -1172,31 +1124,6 @@ public class InventoryDialogue {
 										transferItems(Main.game.getPlayer(), inventoryNPC, item, Main.game.getPlayer().getItemCount(item));
 									}
 								};
-								
-							} else if(index == 5) {
-								if(item.getEnchantmentItemType(null)==null) {
-									return new Response("Enchant", "This item cannot be enchanted!", null);
-									
-								} else if(Main.game.isDebugMode()) {
-									return new Response("Enchant", "Enchant this item.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-										@Override
-										public DialogueNodeOld getNextDialogue() {
-											return EnchantmentDialogue.getEnchantmentMenu(item);
-										}
-									};
-									
-								} else if(Main.game.getPlayer().hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-									if(Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-										return new Response("Enchant", "Enchant this item.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-											@Override
-											public DialogueNodeOld getNextDialogue() {
-												return EnchantmentDialogue.getEnchantmentMenu(item);
-											}
-										};
-									}
-								}
-								
-								return null;
 								
 							} else if(index == 6) {
 								if (!item.isAbleToBeUsedFromInventory()) {
@@ -1452,31 +1379,6 @@ public class InventoryDialogue {
 								} else {
 									return new Response("Sell (All)", inventoryNPC.getName("The") + " doesn't want to buy these.", null);
 								}
-								
-							} else if(index == 5) {
-								if(item.getEnchantmentItemType(null)==null) {
-									return new Response("Enchant", "This item cannot be enchanted!", null);
-									
-								} else if(Main.game.isDebugMode()) {
-									return new Response("Enchant", "Enchant this item.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-										@Override
-										public DialogueNodeOld getNextDialogue() {
-											return EnchantmentDialogue.getEnchantmentMenu(item);
-										}
-									};
-									
-								} else if(Main.game.getPlayer().hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-									if(Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-										return new Response("Enchant", "Enchant this item.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-											@Override
-											public DialogueNodeOld getNextDialogue() {
-												return EnchantmentDialogue.getEnchantmentMenu(item);
-											}
-										};
-									}
-								}
-								
-								return null;
 								
 							} else if(index == 6) {
 								if (!item.isAbleToBeUsedFromInventory()) {
@@ -2143,31 +2045,6 @@ public class InventoryDialogue {
 							return new Response("Dye", "You'll need to find a dye-brush if you want to dye your weapons.", null);
 						}
 						
-					} else if(index == 5) {
-						if(weapon.getEnchantmentItemType(null)==null) {
-							return new Response("Enchant", "This weapon cannot be enchanted!", null);
-							
-						} else if(Main.game.isDebugMode()) {
-							return new Response("Enchant", "Enchant this weapon.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-								@Override
-								public DialogueNodeOld getNextDialogue() {
-									return EnchantmentDialogue.getEnchantmentMenu(weapon);
-								}
-							};
-							
-						} else if(Main.game.getPlayer().hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-							if(Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-								return new Response("Enchant", "Enchant this weapon.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-									@Override
-									public DialogueNodeOld getNextDialogue() {
-										return EnchantmentDialogue.getEnchantmentMenu(weapon);
-									}
-								};
-							}
-						}
-						
-						return null;
-						
 					} else if(index == 6) {
 							return new Response("Equip (self)", "Equip the " + weapon.getName() + ".", INVENTORY_MENU){
 								@Override
@@ -2185,10 +2062,6 @@ public class InventoryDialogue {
 						return getQuickTradeResponse();
 						
 					} 
-//					else if(index == 11) {
-//						return new Response("Equip (Ground)", "You can't make the ground equip your "+weapon.getName()+"!", null);
-//						
-//					} 
 					else {
 						return null;
 					}
@@ -2297,31 +2170,6 @@ public class InventoryDialogue {
 								} else {
 									return new Response("Dye", "You'll need to find a dye-brush if you want to dye your weapons.", null);
 								}
-								
-							} else if(index == 5) {
-								if(weapon.getEnchantmentItemType(null)==null) {
-									return new Response("Enchant", "This weapon cannot be enchanted!", null);
-									
-								} else if(Main.game.isDebugMode()) {
-									return new Response("Enchant", "Enchant this weapon.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-										@Override
-										public DialogueNodeOld getNextDialogue() {
-											return EnchantmentDialogue.getEnchantmentMenu(weapon);
-										}
-									};
-									
-								} else if(Main.game.getPlayer().hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-									if(Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-										return new Response("Enchant", "Enchant this weapon.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-											@Override
-											public DialogueNodeOld getNextDialogue() {
-												return EnchantmentDialogue.getEnchantmentMenu(weapon);
-											}
-										};
-									}
-								}
-								
-								return null;
 								
 							}  else if(index == 6) {
 								return new Response("Equip (self)", "Equip the " + weapon.getName() + ".", INVENTORY_MENU){
@@ -2449,31 +2297,6 @@ public class InventoryDialogue {
 								} else {
 									return new Response("Dye", "You'll need to find a dye-brush if you want to dye your weapons.", null);
 								}
-								
-							} else if(index == 5) {
-								if(weapon.getEnchantmentItemType(null)==null) {
-									return new Response("Enchant", "This weapon cannot be enchanted!", null);
-									
-								} else if(Main.game.isDebugMode()) {
-									return new Response("Enchant", "Enchant this weapon.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-										@Override
-										public DialogueNodeOld getNextDialogue() {
-											return EnchantmentDialogue.getEnchantmentMenu(weapon);
-										}
-									};
-									
-								} else if(Main.game.getPlayer().hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-									if(Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-										return new Response("Enchant", "Enchant this weapon.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-											@Override
-											public DialogueNodeOld getNextDialogue() {
-												return EnchantmentDialogue.getEnchantmentMenu(weapon);
-											}
-										};
-									}
-								}
-								
-								return null;
 								
 							} else if(index == 6) {
 								return new Response("Equip (self)", "Equip the " + weapon.getName() + ".", INVENTORY_MENU){
@@ -3007,34 +2830,6 @@ public class InventoryDialogue {
 							return new Response("Dye", "You'll need to find a dye-brush if you want to dye your clothes.", null);
 						}
 						
-					} else if(index == 5) {
-						if(clothing.getEnchantmentItemType(null)==null) {
-							return new Response("Enchant", "This clothing cannot be enchanted!", null);
-							
-						} else if(!clothing.isEnchantmentKnown()) {
-							return new Response("Enchant", "You need to identify the clothing before it can be enchanted!", null);
-							
-						} else if(Main.game.isDebugMode()) {
-							return new Response("Enchant", "Enchant this clothing.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-								@Override
-								public DialogueNodeOld getNextDialogue() {
-									return EnchantmentDialogue.getEnchantmentMenu(clothing);
-								}
-							};
-							
-						} else if(Main.game.getPlayer().hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-							if(Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-								return new Response("Enchant", "Enchant this clothing.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-									@Override
-									public DialogueNodeOld getNextDialogue() {
-										return EnchantmentDialogue.getEnchantmentMenu(clothing);
-									}
-								};
-							}
-						}
-						
-						return null;
-						
 					} else if(index == 6) {
 						if(clothing.isCanBeEquipped(Main.game.getPlayer())) {
 							return new Response("Equip (self)", "Equip the " + clothing.getName() + ".", INVENTORY_MENU){
@@ -3162,34 +2957,6 @@ public class InventoryDialogue {
 								} else {
 									return new Response("Dye", "You'll need to find a dye-brush if you want to dye your clothes.", null);
 								}
-								
-							} else if(index == 5) {
-								if(clothing.getEnchantmentItemType(null)==null) {
-									return new Response("Enchant", "This clothing cannot be enchanted!", null);
-									
-								} else if(!clothing.isEnchantmentKnown()) {
-									return new Response("Enchant", "You need to identify the clothing before it can be enchanted!", null);
-									
-								}  else if(Main.game.isDebugMode()) {
-									return new Response("Enchant", "Enchant this clothing.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-										@Override
-										public DialogueNodeOld getNextDialogue() {
-											return EnchantmentDialogue.getEnchantmentMenu(clothing);
-										}
-									};
-									
-								} else if(Main.game.getPlayer().hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-									if(Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-										return new Response("Enchant", "Enchant this clothing.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-											@Override
-											public DialogueNodeOld getNextDialogue() {
-												return EnchantmentDialogue.getEnchantmentMenu(clothing);
-											}
-										};
-									}
-								}
-								
-								return null;
 								
 							}  else if(index == 6) {
 								if(clothing.isCanBeEquipped(Main.game.getPlayer())) {
@@ -3359,35 +3126,7 @@ public class InventoryDialogue {
 								} else {
 									return new Response("Dye", "You'll need to find a dye-brush if you want to dye your clothes.", null);
 								}
-								
-							} else if(index == 5) {
-								if(clothing.getEnchantmentItemType(null)==null) {
-									return new Response("Enchant", "This clothing cannot be enchanted!", null);
-									
-								} else if(!clothing.isEnchantmentKnown()) {
-									return new Response("Enchant", "You need to identify the clothing before it can be enchanted!", null);
-									
-								}  else if(Main.game.isDebugMode()) {
-									return new Response("Enchant", "Enchant this clothing.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-										@Override
-										public DialogueNodeOld getNextDialogue() {
-											return EnchantmentDialogue.getEnchantmentMenu(clothing);
-										}
-									};
-									
-								} else if(Main.game.getPlayer().hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-									if(Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-										return new Response("Enchant", "Enchant this clothing.", EnchantmentDialogue.ENCHANTMENT_MENU) {
-											@Override
-											public DialogueNodeOld getNextDialogue() {
-												return EnchantmentDialogue.getEnchantmentMenu(clothing);
-											}
-										};
-									}
-								}
-								
-								return null;
-								
+							
 							} else if(index == 6) {
 								if(clothing.isCanBeEquipped(Main.game.getPlayer())) {
 									return new Response("Equip (self)", "Equip the " + clothing.getName() + ".", INVENTORY_MENU){
@@ -3409,31 +3148,6 @@ public class InventoryDialogue {
 							} else if(index == 11) {
 								return new Response(UtilText.parse(inventoryNPC, "Equip ([npc.Name])"), UtilText.parse(inventoryNPC, "[npc.Name] doesn't want to wear your clothing."), null);
 								
-							} else if (index == 14 && !clothing.isEnchantmentKnown()) {
-								if(!inventoryNPC.willBuy(clothing)) {
-									return new Response("Identify", inventoryNPC.getName("The") + " can't identify clothing!", null);
-									
-								} else if(Main.game.getPlayer().getMoney() < IDENTIFICATION_PRICE){
-									// don't format as money because we don't want to highlight non-selectable choices
-									return new Response("Identify (" + UtilText.formatAsMoneyUncoloured(IDENTIFICATION_PRICE, "span") + ")", "You don't have enough money!", null);
-									
-								}else {
-									return new Response("Identify (" + UtilText.formatAsMoney(IDENTIFICATION_PRICE, "span") + ")",
-												"Have the " + clothing.getName() + " identified for " + UtilText.formatAsMoney(IDENTIFICATION_PRICE, "span") + ".", INVENTORY_MENU){
-										@Override
-										public void effects(){
-											Main.game.getPlayer().removeClothing(clothing);
-											Main.game.getTextEndStringBuilder().append(
-													"<p style='text-align:center;'>" + "You hand over " + UtilText.formatAsMoney(IDENTIFICATION_PRICE) + " to "
-															+inventoryNPC.getName("the")+", who promptly identifies your "+clothing.getName()+"."
-													+ "</p>"
-													+clothing.setEnchantmentKnown(true));
-											
-											Main.game.getPlayer().addClothing(clothing, false);
-											Main.game.getPlayer().incrementMoney(-IDENTIFICATION_PRICE);
-										}
-									};
-								}
 							} else {
 								return null;
 							}
@@ -4374,16 +4088,7 @@ public class InventoryDialogue {
 							return new Response("Dye", "You can't dye "+(owner.isPlayer()?"your":owner.getName("")+"'s")+" clothes in combat!", null);
 							
 						} else if(index == 5) {
-							if(clothing.isSealed()) {
-								if(isAbleToRemoveJinxes()) {
-									return new Response("Unjinx (<b>5 Essences</b>)", "You can't unjinx clothing in combat!", null);
-								} else {
-									return new Response("Unjinx", "You don't know how to remove jinxes! Perhaps you should pay Lilaya a visit...", null);
-								}
-							} else {
-								return new Response("Enchant", "You can't enchant equipped clothing!", null);
-							}
-							
+							return new Response("Enchant", "You can't enchant equipped clothing!", null);
 						} else if(index == 6 && !clothing.getClothingType().isDiscardedOnUnequip()) {
 							if (owner.isAbleToUnequip(clothing, false, Main.game.getPlayer())) {
 								return new Response("Unequip", "Unequip the " + clothing.getName() + ".", Combat.ENEMY_ATTACK){
@@ -4511,33 +4216,7 @@ public class InventoryDialogue {
 							}
 							
 						} else if(index == 5) {
-							if(clothing.isSealed()) {
-								if(isAbleToRemoveJinxes()) {
-									if(Main.game.getPlayer().getEssenceCount(TFEssence.ARCANE) >= 5) {
-										return new Response("Unjinx (<b style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>5 Essences</b>)", "Spend 5 arcane essences on removing the jinx from this piece of clothing.", INVENTORY_MENU) {
-											@Override
-											public void effects() {
-												Main.game.getPlayer().incrementEssenceCount(TFEssence.ARCANE, -5, false);
-												clothing.setSealed(false);
-												Main.game.getTextEndStringBuilder().append(
-														"<p>"
-															+ "You channel the power of your arcane essences into your "+clothing.getName()+", and with a bright purple flash, you manage to remove the jinx!"
-														+ "</p>"
-														+ "<p style='text-align:center;'>"
-															+ "Removing the jinx has cost you [style.boldBad(5)] [style.boldArcane(Arcane Essences)]!"
-														+ "</p>");
-											}
-										};
-									} else {
-										return new Response("Unjinx (<b>5 Essences</b>)", "You need at least 5 arcane essences in order to unjinx a piece of clothing!", null);
-									}
-								} else {
-									return new Response("Unjinx", "You don't know how to remove jinxes! Perhaps you should pay Lilaya a visit...", null);
-								}
-							} else {
-								return new Response("Enchant", "You can't enchant equipped clothing!", null);
-							}
-							
+							return new Response("Enchant", "You can't enchant equipped clothing!", null);
 						} else if(index == 6 && !clothing.getClothingType().isDiscardedOnUnequip()) {
 							return new Response("Unequip", "Unequip the " + clothing.getName() + ".", INVENTORY_MENU){
 								@Override
@@ -4672,38 +4351,7 @@ public class InventoryDialogue {
 							return new Response("Dye", "You can't dye "+(owner.isPlayer()?"your":owner.getName("")+"'s")+" clothes in sex!", null);
 							
 						} else if(index == 5) {
-							if(clothing.isSealed()) {
-								if(isAbleToRemoveJinxes()) {
-									if(Main.game.getPlayer().getEssenceCount(TFEssence.ARCANE) >= 5) {
-										return new Response("Unjinx (<b style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>5 Essences</b>)",
-												"Spend 5 arcane essences on removing the jinx from this piece of clothing.",
-												Sex.SEX_DIALOGUE) {
-											@Override
-											public void effects() {
-												Main.game.getPlayer().incrementEssenceCount(TFEssence.ARCANE, -5, false);
-												clothing.setSealed(false);
-												Sex.setUnequipClothingText(
-														"<p>"
-															+ "You channel the power of your arcane essences into your "+clothing.getName()+", and with a bright purple flash, you manage to remove the jinx!"
-														+ "</p>"
-														+ "<p style='text-align:center;'>"
-															+ "Removing the jinx has cost you [style.boldBad(5)] [style.boldArcane(Arcane Essences)]!"
-														+ "</p>");
-												Main.mainController.openInventory();
-												Sex.endSexTurn(SexActionUtility.CLOTHING_REMOVAL);
-												Sex.setSexStarted(true);
-											}
-										};
-									} else {
-										return new Response("Unjinx (<b>5 Essences</b>)", "You need at least 5 arcane essences in order to unjinx a piece of clothing!", null);
-									}
-								} else {
-									return new Response("Unjinx", "You don't know how to remove jinxes! Perhaps you should pay Lilaya a visit...", null);
-								}
-							} else {
-								return new Response("Enchant", "You can't enchant equipped clothing!", null);
-							}
-							
+							return new Response("Enchant", "You can't enchant equipped clothing!", null);
 						} else if(index == 6 && !clothing.getClothingType().isDiscardedOnUnequip()) {
 							if(!Sex.getSexManager().isAbleToRemoveSelfClothing(Main.game.getPlayer())) {
 								return new Response("Unequip", "You can't unequip the " + clothing.getName() + " in this sex scene!", null);
@@ -4782,16 +4430,7 @@ public class InventoryDialogue {
 							return new Response("Dye", "You can't dye someone else's equipped clothing while you're fighting them!", null);
 							
 						} else if(index == 5) {
-							if(clothing.isSealed()) {
-								if(isAbleToRemoveJinxes()) {
-									return new Response("Unjinx (<b>5 Essences</b>)", "You can't unjinx someone's clothing while fighting them!", null);
-								} else {
-									return new Response("Unjinx", "You don't know how to remove jinxes! Perhaps you should pay Lilaya a visit...", null);
-								}
-							} else {
-								return new Response("Enchant", "You can't enchant equipped clothing!", null);
-							}
-							
+							return new Response("Enchant", "You can't enchant equipped clothing!", null);
 						} else if(index == 6) {
 							return new Response("Unequip", "You can't unequip someone's clothing while fighting them!", null);
 							
@@ -4881,34 +4520,6 @@ public class InventoryDialogue {
 								
 							} else {
 								return new Response("Dye", UtilText.parse(inventoryNPC, "You'll need to find a dye-brush if you want to dye [npc.namePos] clothes."), null);
-							}
-							
-						} else if(index == 5) {
-							if(clothing.isSealed()) {
-								if(isAbleToRemoveJinxes()) {
-									if(Main.game.getPlayer().getEssenceCount(TFEssence.ARCANE) >= 5) {
-										return new Response("Unjinx (<b style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>5 Essences</b>)", "Spend 5 arcane essences on removing the jinx from this piece of clothing.", INVENTORY_MENU) {
-											@Override
-											public void effects() {
-												Main.game.getPlayer().incrementEssenceCount(TFEssence.ARCANE, -5, false);
-												clothing.setSealed(false);
-												Main.game.getTextEndStringBuilder().append(UtilText.parse(inventoryNPC,
-														"<p>"
-															+ "You channel the power of your arcane essences into [npc.namePos] "+clothing.getName()+", and with a bright purple flash, you manage to remove the jinx!"
-														+ "</p>"
-														+ "<p style='text-align:center;'>"
-															+ "Removing the jinx has cost you [style.boldBad(5)] [style.boldArcane(Arcane Essences)]!"
-														+ "</p>"));
-											}
-										};
-									} else {
-										return new Response("Unjinx (<b>5 Essences</b>)", "You need at least 5 arcane essences in order to unjinx a piece of clothing!", null);
-									}
-								} else {
-									return new Response("Unjinx", "You don't know how to remove jinxes! Perhaps you should pay Lilaya a visit...", null);
-								}
-							} else {
-								return new Response("Enchant", "You can't enchant equipped clothing!", null);
 							}
 							
 						} else if(index == 6 && !clothing.getClothingType().isDiscardedOnUnequip()) {
@@ -5016,36 +4627,7 @@ public class InventoryDialogue {
 							return new Response("Dye", UtilText.parse(inventoryNPC, "You can't dye [npc.namePos] clothes in sex!"), null);
 							
 						} else if(index == 5) {
-							if(clothing.isSealed()) {
-								if(isAbleToRemoveJinxes()) {
-									if(Main.game.getPlayer().getEssenceCount(TFEssence.ARCANE) >= 5) {
-										return new Response("Unjinx (<b style='color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>5 Essences</b>)", "Spend 5 arcane essences on removing the jinx from this piece of clothing.", Sex.SEX_DIALOGUE) {
-											@Override
-											public void effects() {
-												Main.game.getPlayer().incrementEssenceCount(TFEssence.ARCANE, -5, false);
-												clothing.setSealed(false);
-												Sex.setUnequipClothingText(UtilText.parse(inventoryNPC,
-														"<p>"
-																+ "You channel the power of your arcane essences into [npc.namePos] "+clothing.getName()+", and with a bright purple flash, you manage to remove the jinx!"
-														+ "</p>"
-														+ "<p style='text-align:center;'>"
-															+ "Removing the jinx has cost you [style.boldBad(5)] [style.boldArcane(Arcane Essences)]!"
-														+ "</p>"));
-												Main.mainController.openInventory();
-												Sex.endSexTurn(SexActionUtility.CLOTHING_REMOVAL);
-												Sex.setSexStarted(true);
-											}
-										};
-									} else {
-										return new Response("Unjinx (<b>5 Essences</b>)", "You need at least 5 arcane essences in order to unjinx a piece of clothing!", null);
-									}
-								} else {
-									return new Response("Unjinx", "You don't know how to remove jinxes! Perhaps you should pay Lilaya a visit...", null);
-								}
-							} else {
-								return new Response("Enchant", "You can't enchant equipped clothing!", null);
-							}
-							
+							return new Response("Enchant", "You can't enchant equipped clothing!", null);
 						} else if(index == 6 && !clothing.getClothingType().isDiscardedOnUnequip()) {
 							if(!Sex.getSexManager().isAbleToRemoveOthersClothing(Main.game.getPlayer())) {
 								return new Response("Unequip", "You can't unequip the " + clothing.getName() + " in this sex scene!", null);
@@ -5806,43 +5388,6 @@ public class InventoryDialogue {
 	private static Response getQuickTradeResponse() {
 		
 		return null;
-		
-//		if (Main.game.getDialogueFlags().quickTrade) {
-//			return new Response("Quick-Manage: <b style='color:" + Colour.GENERIC_GOOD.toWebHexString() + ";'>ON</b>",
-//					"Quick-Manage is turned <b style='color:" + Colour.GENERIC_GOOD.toWebHexString() + ";'>ON</b>!<br/>"
-//							+ "That means you can buy and sell items with a single click when trading, and pick-up and drop items with a single click when in normal inventory mode.", INVENTORY_MENU){
-//				
-//				@Override
-//				public DialogueNodeOld getNextDialogue() {
-//					return Main.game.getCurrentDialogueNode();
-//				}
-//				
-//				@Override
-//				public void effects(){
-//					Main.game.getDialogueFlags().quickTrade = !Main.game.getDialogueFlags().quickTrade;
-//				}
-//			};
-//			
-//		} else {
-//			return new Response("Quick-Manage: <b style='color:" + Colour.TEXT_GREY.toWebHexString() + ";'>OFF</b>",
-//					"Quick-Manage is turned <b style='color:" + Colour.TEXT_GREY.toWebHexString() + ";'>OFF</b>.<br/>"
-//							+ "That means when you click on an item, you get a detailed view of the item before deciding whether to buy/sell or pick-up/drop it.", INVENTORY_MENU){
-//
-//				@Override
-//				public DialogueNodeOld getNextDialogue() {
-//					return Main.game.getCurrentDialogueNode();
-//				}
-//				
-//				@Override
-//				public void effects(){
-//					Main.game.getDialogueFlags().quickTrade = !Main.game.getDialogueFlags().quickTrade;
-//				}
-//			};
-//		}
-	}
-	
-	private static boolean isAbleToRemoveJinxes() {
-		return Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_ENCHANTMENT_DISCOVERY);
 	}
 	
 	

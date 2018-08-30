@@ -211,7 +211,7 @@ public class CharactersPresentDialogue {
 						}
 					};
 					
-				} else if (index == 1) { //TODO improve descriptions and affection hit from rape
+				} else if (index == 1) { 
 					if(Main.game.isNonConEnabled() && !((NPC) characterViewed).isAttractedTo(Main.game.getPlayer())) {
 						if(!characterViewed.isCompanionAvailableForSex(true)) { // Takes into account whether in a neutral dialogue or not.
 							return new Response("Rape", characterViewed.getCompanionSexRejectionReason(true), null);

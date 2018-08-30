@@ -1367,23 +1367,6 @@ float:left;
 	padding:0;
 }
 
-.essence-inline{
-	background-color: #333333;
-	position:relative;
-	display:inline-block;
-	border-radius: 5px;
-	width:3vw;
-	height:3vw;
-	padding:0;
-	margin:0;
-	vertical-align: middle;
-}
-@media screen and (min-width: 800px) {
-	.essence-inline {
-		width:24px;
-		height:24px;
-	}
-}
 @media screen and (min-width: 666px) {
 	.enchanting-text{
 		font-size:20px;
@@ -1395,52 +1378,6 @@ float:left;
 	}
 }
 
-.enchanting-essence-title{
-	text-align: center;
-	display:block;
-	margin:0 auto;
-	padding:8px 0 8px 0;
-	
-	background-color: transparent;
-	background:#19191a;
-	border-radius:5px;
-	
-	width:100%;
-}
-.enchanting-essence-main{
-	margin:0 auto;
-	padding:8px 0 8px 0;
-	
-	background-color: transparent;
-	border-radius:5px;
-	
-	width:100%;
-	
-	display: -ms-flex; display: -webkit-flex; display: flex;
-}
-.enchanting-essence-main>.enchanting-essence-inner-left>.enchanting-essence-inner-right { flex:1; }
-.enchanting-essence-inner-left{
-	float:left;
-	margin:0 auto;
-	padding:8px 0 8px 0;
-	
-	background-color: transparent;
-	background:#19191a;
-	border-radius:5px;
-	
-	width:20%;
-}
-.enchanting-essence-inner-right{
-	float:left;
-	margin:0 auto;
-	padding:8px 0 8px 0;
-	
-	background-color: transparent;
-	background:#19191a;
-	border-radius:5px;
-	
-	width:80%;
-}
 .enchanting-ingredient {
 	display:inline-block;
 	background-color: #333333;
@@ -1527,18 +1464,6 @@ float:left;
   width: 100%;
   height: 100%;
 	border-radius: 5px;
-}
-.enchanting-essence-effect {
-	text-align: center;
-	display:block;
-	margin:0 auto;
-	padding:8px 0 8px 0;
-	
-	background-color: transparent;
-	background:#19191a;
-	border-radius:5px;
-	
-	width:100%;
 }
 .empty {
 	background-color:#242424;

@@ -7,7 +7,6 @@ import java.util.Map;
 
 import com.lilithsthrone.game.inventory.enchanting.AbstractItemEffectType;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffectType;
-import com.lilithsthrone.game.inventory.enchanting.TFModifier;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
 
@@ -609,13 +608,6 @@ public enum SVGImages {
 			}
 			
 			tempString = "";
-			for(TFModifier secondaryModifier : TFModifier.values()) {
-				is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/items/refined_swirls.svg");
-				tempString = Util.inputStreamToString(is);
-				tempString = setColour(tempString, secondaryModifier.getColour());
-				
-				refinedSwirlsMap.put(secondaryModifier.getColour(), tempString);
-			}
 
 			is.close();
 

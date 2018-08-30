@@ -12,13 +12,6 @@ public enum DialogueFlagValue {
 	hasSnowedThisWinter,
 	
 	
-	// Essence reactions:
-	jinxedClothingDiscovered,
-	essencePostCombatDiscovered,
-	essenceOrgasmDiscovered,
-	essenceBottledDiscovered,
-
-	
 	// Misc.:
 	foundHappiness,
 	mommyFound,
@@ -70,7 +63,6 @@ public enum DialogueFlagValue {
 	hadSexWithLilaya,
 	reactedToPregnancyLilaya,
 	waitingOnLilayaPregnancyResults,
-	essenceExtractionKnown,
 	roseToldOnYou,
 	
 	readBook1,
@@ -107,12 +99,6 @@ public enum DialogueFlagValue {
 	lumiMet,
 	lumiDisabled,
 	lumiPromisedDinner,
-	
-	// Gambling Den:
-	axelToldAboutVengar,
-	roxyAddicted,
-	playedPregnancyRouletteAsMother,
-	playedPregnancyRouletteAsBreeder,
 	
 	// Nightlife:
 	julesIntroduced,

@@ -44,7 +44,6 @@ import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
 import com.lilithsthrone.game.settings.KeyboardAction;
@@ -215,8 +214,7 @@ public enum RenderingEngine {
 					// add to content:
 					equippedPanelSB.append(
 							// If slot is sealed:
-							"<div class='inventory-item-slot piercing " + getClassRarityIdentifier(clothing.getRarity()) + "'"
-								+ (clothing.isSealed() ? "style='border-width:2px; border-color:" + Colour.SEALED.toWebHexString() + "; border-style:solid;'" : "") + ">"
+							"<div class='inventory-item-slot piercing " + getClassRarityIdentifier(clothing.getRarity()) + "'>"
 								
 								// Picture:
 								+ "<div class='inventory-icon-content'>"+clothing.getSVGEquippedString(charactersInventoryToRender)+"</div>"
@@ -356,8 +354,7 @@ public enum RenderingEngine {
 					// add to content:
 					equippedPanelSB.append(
 							// If slot is sealed:
-							"<div class='"+inventorySlotId + getClassRarityIdentifier(clothing.getRarity()) + "'"
-								+ (clothing.isSealed() ? "style='border-width:2px; border-color:" + Colour.SEALED.toWebHexString() + "; border-style:solid;'" : "") + ">"
+							"<div class='"+inventorySlotId + getClassRarityIdentifier(clothing.getRarity()) + "'>"
 								
 								// Picture:
 								+ "<div class='inventory-icon-content'>"+clothing.getSVGEquippedString(charactersInventoryToRender)+"</div>"
@@ -489,7 +486,6 @@ public enum RenderingEngine {
 		if(charactersInventoryToRender != null) {
 			inventorySB.append(
 					"<div style='position:absolute; left:16px'>"+ UtilText.formatAsMoney(charactersInventoryToRender.getMoney(), "b") +"</div>"
-					+ "<div style='position:absolute; right:16px'>"+ UtilText.formatAsEssences(charactersInventoryToRender.getEssenceCount(TFEssence.ARCANE), "b", true) +"</div>"
 					+"<p style='width:100%; text-align:center; padding:0 margin:0;'>"
 						+(charactersInventoryToRender.isPlayer()
 							?"<b style='color:"+Femininity.valueOf(charactersInventoryToRender.getFemininityValue()).getColour().toWebHexString()+";'>Your</b> <b>Inventory | Page "+(charactersInventoryToRender.isPlayer()?pageLeft+1:pageRight+1)+"</b>"
@@ -1769,7 +1765,6 @@ public enum RenderingEngine {
 						+ (character.isPlayer()
 								?"<div class='full-width-container' style='text-align:center;'>"
 									+ "<div class='half-width-container' style='padding:0 8px;'>"+ UtilText.formatAsMoney(character.getMoney(), "b") +"</div>"
-									+ "<div class='half-width-container' style='padding:0 8px;'>"+ UtilText.formatAsEssences(character.getEssenceCount(TFEssence.ARCANE), "b", true) +"</div>"
 								+"</div>"
 								:"")
 					+"</div>");

@@ -22,7 +22,6 @@ import com.lilithsthrone.game.character.persona.NameTriplet;
 import com.lilithsthrone.game.character.persona.PersonalityTrait;
 import com.lilithsthrone.game.character.persona.PersonalityWeight;
 import com.lilithsthrone.game.character.persona.SexualOrientation;
-import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.character.race.RaceStage;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
@@ -33,11 +32,6 @@ import com.lilithsthrone.game.inventory.CharacterInventory;
 import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
-import com.lilithsthrone.game.inventory.enchanting.EnchantingUtils;
-import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
-import com.lilithsthrone.game.inventory.enchanting.TFModifier;
-import com.lilithsthrone.game.inventory.enchanting.TFPotency;
-import com.lilithsthrone.game.inventory.item.AbstractItem;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
@@ -61,17 +55,6 @@ import com.lilithsthrone.world.places.PlaceType;
  * @author Innoxia
  */
 public class Vicky extends NPC {
-	
-	private AbstractItemType[] availableIngredients = new AbstractItemType[] {
-			ItemType.RACE_INGREDIENT_CAT_MORPH,
-			ItemType.RACE_INGREDIENT_DOG_MORPH,
-			ItemType.RACE_INGREDIENT_HORSE_MORPH,
-			ItemType.RACE_INGREDIENT_WOLF_MORPH,
-			ItemType.RACE_INGREDIENT_SQUIRREL_MORPH,
-			ItemType.RACE_INGREDIENT_COW_MORPH,
-			ItemType.RACE_INGREDIENT_ALLIGATOR_MORPH,
-			ItemType.RACE_INGREDIENT_HUMAN,
-			ItemType.RACE_INGREDIENT_DEMON};
 	
 	public Vicky() {
 		this(false);
@@ -164,27 +147,6 @@ public class Vicky extends NPC {
 				}
 			}
 		}
-		
-		AbstractItem ingredient = AbstractItemType.generateItem(availableIngredients[Util.random.nextInt(availableIngredients.length)]);
-		TFModifier primaryMod = TFModifier.getTFRacialBodyPartsList().get(Util.random.nextInt(TFModifier.getTFRacialBodyPartsList().size()));
-		for(int i=0; i<10;i++) {
-			if(ingredient.getEnchantmentEffect().getEffectsDescription(primaryMod, TFModifier.NONE, TFPotency.MINOR_BOOST, 0, Main.game.getPlayer(), Main.game.getPlayer())!=null) {
-				AbstractItem potion = EnchantingUtils.craftItem(ingredient, Util.newArrayListOfValues(new ItemEffect(ingredient.getEnchantmentEffect(), primaryMod, TFModifier.NONE, TFPotency.MINOR_BOOST, 0)));
-				this.addItem(potion, false);
-				potion.setName(EnchantingUtils.getPotionName(ingredient, potion.getEffects()));
-			}
-			
-			ingredient = AbstractItemType.generateItem(availableIngredients[Util.random.nextInt(availableIngredients.length)]);
-			primaryMod = TFModifier.getTFRacialBodyPartsList().get(Util.random.nextInt(TFModifier.getTFRacialBodyPartsList().size()));
-		}
-		
-		if(Main.game.getPlayer().hasQuest(QuestLine.SIDE_ENCHANTMENT_DISCOVERY)) {
-			for(AbstractItemType itemType : ItemType.essences) {
-				for(int i=0;i<20+Util.random.nextInt(11);i++) {
-					this.addItem(AbstractItemType.generateItem(itemType), false);
-				}
-			}
-		}
 	}
 	
 	@Override
@@ -213,14 +175,6 @@ public class Vicky extends NPC {
 	public boolean willBuy(AbstractCoreItem item) {
 		if(item instanceof AbstractWeapon)
 			return true;
-		
-		if(item instanceof AbstractItem) {
-			if(((AbstractItem)item).getItemType().getItemTags().contains(ItemTag.ESSENCE)
-					|| ((AbstractItem)item).getItemType()==ItemType.POTION
-					|| ((AbstractItem)item).getItemType()==ItemType.ELIXIR) {
-				return true;
-			}
-		}
 		
 		return false;
 	}

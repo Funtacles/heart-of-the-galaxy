@@ -11,7 +11,6 @@ import java.util.Map;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.valueEnums.Femininity;
-import com.lilithsthrone.game.character.body.valueEnums.Wetness;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.dialogue.utils.InventoryDialogue;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -20,8 +19,6 @@ import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffectType;
-import com.lilithsthrone.game.inventory.enchanting.TFModifier;
-import com.lilithsthrone.game.inventory.enchanting.TFPotency;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.ColourListPresets;
 import com.lilithsthrone.utils.Util;
@@ -1306,67 +1303,6 @@ public class ClothingType {
 		}
 	};
 	
-	public static AbstractClothingType NECK_BREEDER_COLLAR = new AbstractClothingType(10000,
-			"a",
-			false,
-			"breeder collar",
-			"breeder collars",
-			"A [style.glowPink(glowing pink)] leather collar, with bold metal lettering attached to the front spelling out the word 'BREEDER'.",
-			1,
-			null,
-			InventorySlot.NECK,
-			Rarity.EPIC,
-			"neck_breeder_collar",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.FERTILITY, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.FERTILITY, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.FERTILITY, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.FERTILITY, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.FERTILITY, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ENSLAVEMENT, TFModifier.ARCANE_BOOST, TFPotency.MINOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.MINOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.TF_MOD_FETISH_BEHAVIOUR, TFModifier.TF_MOD_FETISH_PREGNANCY, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.TF_MOD_FETISH_BEHAVIOUR, TFModifier.TF_MOD_FETISH_IMPREGNATION, TFPotency.MAJOR_BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.TF_VAGINA, TFModifier.TF_MOD_WETNESS, TFPotency.MAJOR_BOOST, Wetness.SEVEN_DROOLING.getValue())),
-			Util.newArrayListOfValues(new BlockedParts(DisplacementType.REMOVE_OR_EQUIP, null, null, null, null)),
-			null,
-			ColourListPresets.JUST_PINK.getPresetColourList(),
-			ColourListPresets.ALL.getPresetColourList(),
-			ColourListPresets.JUST_STEEL.getPresetColourList(),
-			ColourListPresets.ALL_METAL.getPresetColourList(),
-			ColourListPresets.JUST_STEEL.getPresetColourList(),
-			ColourListPresets.ALL_METAL.getPresetColourList(), 
-			Util.newArrayListOfValues(ItemTag.SOLD_BY_NYAN)){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You can't help but let out a small, needy moan as you fasten the enchanted collar around your neck.",
-					"A small, needy moan drifts out from [npc.namePos] mouth as you fasten the enchanted collar around [npc.her] neck.",
-					null,
-					"[npc.Name] can't help but let out a small, needy moan as [npc.she] fastens the collar around [npc.her] neck.",
-					"You can't help but let out a small, needy moan as [npc.name] fastens the collar around your neck.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You take off your collar.",
-					"You take off [npc.namePos] collar.",
-					null,
-					"[npc.Name] takes [npc.her] collar off.",
-					"[npc.Name] takes your collar off.",
-					null, null, null);
-		}
-		
-		@Override
-		public int getEnchantmentLimit() {
-			return 12;
-		}
-	};
-	
-
 	// TORSO
 
 	public static AbstractClothingType TORSO_OXFORD_SHIRT = new AbstractClothingType(150,
@@ -8074,7 +8010,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"maidHeadband",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -8128,7 +8064,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"maidDress",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.MAJOR_BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -8239,7 +8175,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"maidStockings",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -8291,7 +8227,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"maidHeels",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -8343,7 +8279,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"maidGloves",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.DAMAGE_LUST, TFPotency.BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -8383,61 +8319,6 @@ public class ClothingType {
 
 	// BDSM:
 	
-	public static AbstractClothingType NECK_SLAVE_COLLAR = new AbstractClothingType(2500,
-			"a",
-			false,
-			"metal collar",
-			"metal collars",
-			"A heavy metal collar, of the type typically worn by slaves.",
-			2,
-			null,
-			InventorySlot.NECK,
-			Rarity.EPIC,
-			"bdsm_neck_metal_collar",
-			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ENSLAVEMENT, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_LUST, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_LUST, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_LUST, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_LUST, TFPotency.MAJOR_DRAIN, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.RESISTANCE_LUST, TFPotency.MAJOR_DRAIN, 0)),
-			Util.newArrayListOfValues(
-					new BlockedParts(
-							DisplacementType.REMOVE_OR_EQUIP,
-							null, null, null, null)),
-			null,
-			ColourListPresets.ALL_METAL.getPresetColourList(),
-			null,
-			ColourListPresets.JUST_STEEL.getPresetColourList(),
-			ColourListPresets.ALL_METAL.getPresetColourList(),
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.SOLD_BY_FINCH)){
-
-		@Override
-		public String equipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You clasp the heavy metal collar around your neck.",
-					"You clasp the heavy metal collar around [npc.namePos] neck.",
-					null,
-					"[npc.Name] clasps the heavy metal collar around [npc.her] neck.",
-					"[npc.Name] clasps the heavy metal collar around your neck.",
-					null, null, null);
-		}
-
-		@Override
-		public String unequipText(GameCharacter clothingOwner, GameCharacter clothingRemover, boolean rough, AbstractClothing clothing, boolean applyEffects) {
-			return getEquipDescriptions(clothingOwner, clothingRemover, rough,
-					"You take off your metal collar.",
-					"You take off [npc.namePos] metal collar.",
-					null,
-					"[npc.Name] takes [npc.her] metal collar off.",
-					"[npc.Name] takes your metal collar off.",
-					null, null, null);
-		}
-	};
-	
 	public static AbstractClothingType BDSM_BALLGAG = new AbstractClothingType(150,
 			"a",
 			false,
@@ -8450,8 +8331,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"bdsm_mouth_ballgag",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_DRAIN, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -8511,8 +8391,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"bdsm_mouth_ringgag",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_DRAIN, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -8565,8 +8444,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"bdsm_neck_choker",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_DRAIN, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -8618,8 +8496,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"bdsm_wrist_restraints",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_DRAIN, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(new BlockedParts(
 					DisplacementType.REMOVE_OR_EQUIP,
 					Util.newArrayListOfValues(ClothingAccess.WRISTS),
@@ -8676,8 +8553,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"bdsm_ankle_spreaderbar",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_DRAIN, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(new BlockedParts(
 					DisplacementType.REMOVE_OR_EQUIP,
 					Util.newArrayListOfValues(ClothingAccess.CALVES),
@@ -8740,8 +8616,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"bdsm_groin_chastity_belt",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_DRAIN, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -8798,8 +8673,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"bdsm_groin_chastity_belt_full",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_DRAIN, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -8857,8 +8731,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"bdsm_groin_chastityCage",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_DRAIN, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -8972,8 +8845,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"bdsm_stomach_karada",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_SEALING, TFModifier.ARCANE_BOOST, TFPotency.BOOST, 0),
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_DRAIN, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -9029,7 +8901,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"piercing_livestock_tags",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING,  0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -9078,7 +8950,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"piercing_nose_cow_ring",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING,  0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -9127,7 +8999,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"neck_cowbell_collar",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -9178,7 +9050,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"milk_maid_dress",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -9232,7 +9104,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"milk_maid_headband",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING,  0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -9282,7 +9154,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"milk_maid_kerchief",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -9332,7 +9204,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"sock_rainbow_stockings",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -9385,7 +9257,7 @@ public class ClothingType {
 			Rarity.EPIC,
 			"hand_rainbow_fingerless_gloves",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,
@@ -9439,7 +9311,7 @@ public class ClothingType {
 			Rarity.UNCOMMON,
 			"torso_tshirt_megamilk",
 			Util.newArrayListOfValues(
-					new ItemEffect(ItemEffectType.CLOTHING, TFModifier.CLOTHING_ATTRIBUTE, TFModifier.STRENGTH, TFPotency.MAJOR_BOOST, 0)),
+					new ItemEffect(ItemEffectType.CLOTHING, 0)),
 			Util.newArrayListOfValues(
 					new BlockedParts(
 							DisplacementType.REMOVE_OR_EQUIP,

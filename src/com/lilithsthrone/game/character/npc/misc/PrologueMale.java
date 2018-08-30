@@ -3,7 +3,6 @@ package com.lilithsthrone.game.character.npc.misc;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.CharacterImportSetting;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.body.Covering;
@@ -27,7 +26,6 @@ import com.lilithsthrone.game.inventory.CharacterInventory;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
 import com.lilithsthrone.game.sex.SexPace;
-import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Util.Value;
@@ -119,12 +117,7 @@ public class PrologueMale extends NPC {
 
 	@Override
 	public String getSpeechColour() {
-		if(Main.getProperties().hasValue(PropertyValue.lightTheme)) {
-			return "#2D3795";
-			
-		} else {
-			return "#6B86FF";
-		}
+		return "#6B86FF";
 	}
 
 	@Override

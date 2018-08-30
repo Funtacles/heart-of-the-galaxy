@@ -552,8 +552,6 @@ public class CharacterCreation {
 					+ "</p>"
 					+ "<br/>"
 					
-					+ CharacterModificationUtils.getStartDateDiv()
-					
 					+ "<div class='cosmetics-container' style='background:transparent;'>"
 					
 						+ CharacterModificationUtils.getGenderChoiceDiv()

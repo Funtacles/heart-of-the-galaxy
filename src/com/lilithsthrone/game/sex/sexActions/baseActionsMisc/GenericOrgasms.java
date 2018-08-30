@@ -1521,9 +1521,6 @@ public class GenericOrgasms {
 							cumTargetSB.append(" gulp down as much of the");
 							if(!characterOrgasming.getCumModifiers().isEmpty()) {
 								switch(characterOrgasming.getCumModifiers().get(Util.random.nextInt(characterOrgasming.getCumModifiers().size()))) { //TODO specials for ALCOHOLIC & HALLUCINOGENIC
-									case ADDICTIVE:
-										cumTargetSB.append(" delicious, highly-addictive [npc1.cum] as you possibly can.");
-										break;
 									case ALCOHOLIC:
 										cumTargetSB.append(" alcoholic [npc1.cum] as you possibly can.");
 										break;

@@ -1,0 +1,37 @@
+<race-template id="human" name="human" plural-name="humans">
+    <form stature="humanoid" symmetry="bilateral">
+        <height-range min="150" max="200"/>
+    </form>
+    <anus orifice="true" type="mammal" wetness="0" capacity="1" elasticity="3" plasticity="3"/>
+    <arm-set type="humanoid" hand="human" covering="human-skin"/>
+    <breasts type="human" covering="human-skin" size="0" lactation="0">
+        <nipples orifice="true" type="human" count="1" size="0" capacity="0" elasticity="3" plasticity="3">
+        <areola type="human" size="0" shape="circular">
+    </breasts>
+    <head>
+        <ears type="human" />
+        <eyes type="human" iris="circular" pupil="circular" />
+        <face type="human" lip-size="1" lip-fullness="2" />
+        <hair type="human" length-min="2" length-max="4">
+        <mouth orifice="true" type="human">
+    </head>
+    <leg-set type="humanoid" feet="human" covering="human-skin"/>
+    <posterior type="human" covering="human-skin"/>
+    <sex name="female">
+        <vagina orifice="true" type="human" wetness="2" capacity="2" elasticity="4" plasticity="3">
+            <clitoris penetrator="true" type="human" size="0" />
+        </vagina>
+        <breasts size="3" lactation="0">
+            <nipples size="1">
+            <areola size="2">
+        </breasts>
+    </sex>
+    <sex name="male">
+        <penis penetrator="true" type="human" girth="2" length="2"></penis>
+        <testis external="true" count="2" size="2" semen-production="3"></testis>
+    </sex>
+    <stat-ranges>
+        <physique min="5" max="15"/>
+        <arcane min="0" max="0"/>
+    </stat-ranges>
+</race-template>

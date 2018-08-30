@@ -1845,12 +1845,6 @@ public class Parser {
 		// Body parts:
 		
 		// Add standard parsing for all types:
-
-		addStandardParsingCommands(
-				new String[] {"antenna"},
-				new String[] {"antennae"},
-				BodyPartType.ANTENNA);
-				
 		addStandardParsingCommands(
 				new String[] {"arm"},
 				new String[] {"arms"},
@@ -2955,8 +2949,6 @@ public class Parser {
 	
 	private static BodyPartInterface getBodyPartFromType(GameCharacter character, BodyPartType type) {
 		switch(type){
-			case ANTENNA:
-				return character.getBody().getAntenna();
 			case ARM:
 				return character.getBody().getArm();
 			case ASS:

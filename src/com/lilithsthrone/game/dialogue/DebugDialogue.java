@@ -34,7 +34,6 @@ import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
-import com.lilithsthrone.game.inventory.enchanting.TFEssence;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
@@ -132,16 +131,6 @@ public class DebugDialogue {
 					@Override
 					public void effects() {
 						Main.game.getPlayer().incrementMoney(10000);
-					}
-				};
-				
-			} else if (index == 6) {
-				return new Response("+50 essences", "Add 50 to each essence type.", DEBUG_MENU){
-					@Override
-					public void effects() {
-						for(TFEssence essence : TFEssence.values()) {
-							Main.game.getPlayer().incrementEssenceCount(essence, 50, false);
-						}
 					}
 				};
 				
@@ -362,8 +351,7 @@ public class DebugDialogue {
 			if(activeSlot == null) {
 				for(AbstractItemType itemType : itemsTotal) {
 					if((itemTag==null
-							&& (!itemType.getItemTags().contains(ItemTag.BOOK)
-							&& !itemType.getItemTags().contains(ItemTag.ESSENCE)))
+							&& (!itemType.getItemTags().contains(ItemTag.BOOK)))
 							|| (itemTag!=null
 								&& (itemType.getItemTags().contains(itemTag)))) {
 						inventorySB.append("<div class='inventory-item-slot unequipped "+ itemType.getRarity().getName() + "'>"
@@ -420,7 +408,6 @@ public class DebugDialogue {
 						+ (slot == InventorySlot.WEAPON_MAIN || slot == InventorySlot.WEAPON_OFFHAND ? Colour.BASE_RED_LIGHT.toWebHexString() : Colour.BASE_YELLOW_LIGHT.toWebHexString())+";'>"+Util.capitaliseSentence(slot.getName())+"</div>");
 			}
 			inventorySB.append("<div class='normal-button' id='ITEM_SPAWN_SELECT' style='width:18%; margin:1%; padding:2px; font-size:0.9em; color:"+Colour.BASE_BLUE_LIGHT.toWebHexString()+";'>Items</div>");
-			inventorySB.append("<div class='normal-button' id='ESSENCE_SPAWN_SELECT' style='width:18%; margin:1%; padding:2px; font-size:0.9em; color:"+Colour.GENERIC_ARCANE.toWebHexString()+";'>Essences</div>");
 			inventorySB.append("<div class='normal-button' id='BOOK_SPAWN_SELECT' style='width:18%; margin:1%; padding:2px; font-size:0.9em; color:"+Colour.BASE_ORANGE.toWebHexString()+";'>Books</div>");
 			inventorySB.append("</div>");
 			
