@@ -1136,12 +1136,6 @@ public interface SexActionInterface {
 					break;
 				case FETISH_SWITCH:
 					break;
-				case FETISH_TRANSFORMATION_GIVING:
-					associatedFetishesPartner.add(Fetish.FETISH_TRANSFORMATION_RECEIVING);
-					break;
-				case FETISH_TRANSFORMATION_RECEIVING:
-					associatedFetishesPartner.add(Fetish.FETISH_TRANSFORMATION_GIVING);
-					break;
 				case FETISH_VAGINAL_GIVING:
 					associatedFetishesPartner.add(Fetish.FETISH_VAGINAL_RECEIVING);
 					break;

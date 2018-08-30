@@ -671,59 +671,6 @@ public enum Fetish {
 		}
 	},
 	
-	FETISH_TRANSFORMATION_GIVING(60,
-			"transformer",
-			"transforming others",
-			"fetish_transformation_giving",
-			Fetish.BASE_RARE_EXPERIENCE_GAIN,
-			Colour.GENERIC_ARCANE,
-			null,
-			Util.newArrayListOfValues(
-					"<span style='color:"+ Colour.GENERIC_GOOD.toWebHexString()+ ";'>Halves cost of all potion making</span>"),
-			null) {
-		
-		@Override
-		public String getDescription(GameCharacter owner) {
-			if (owner.isPlayer()) {
-				return "You love the idea of transforming others. Watching their bodies change, either voluntarily or otherwise, is a massive turn-on for you.";
-			} else {
-				return UtilText.parse(owner, "[npc.Name] loves transforming others. Watching their bodies change, either voluntarily or otherwise, is a massive turn-on for [npc.herHim].");
-			}
-		}
-
-		@Override
-		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
-			return getGenericFetishDesireDescription(target, desire, "transforming others");
-		}
-	},
-	
-	FETISH_TRANSFORMATION_RECEIVING(60,
-			"test subject",
-			"being transformed",
-			"fetish_transformation_receiving",
-			Fetish.BASE_RARE_EXPERIENCE_GAIN,
-			Colour.GENERIC_ARCANE,
-			null,
-			Util.newArrayListOfValues(
-					"[style.boldGood(Increases potency)] <span style='color:"+ Colour.GENERIC_ARCANE.toWebHexString()+ ";'>of receiving forced transformations</span>",
-					"[style.boldBad(Disables)] ability to spit out TF potions"),
-			null) {
-		
-		@Override
-		public String getDescription(GameCharacter owner) {
-			if (owner.isPlayer()) {
-				return "You love the idea of being transformed. Having your body parts changed, either voluntarily or otherwise, is a massive turn-on for you.";
-			} else {
-				return UtilText.parse(owner, "[npc.Name] loves being transformed. Having [npc.her] body parts changed, either voluntarily or otherwise, is a massive turn-on for [npc.herHim].");
-			}
-		}
-		
-		@Override
-		public String getFetishDesireDescription(GameCharacter target, FetishDesire desire) {
-			return getGenericFetishDesireDescription(target, desire, "the idea of being transformed");
-		}
-	},
-	
 	// Behaviour (organised roughly in active/passive pairs):
 
 	FETISH_DENIAL(60,

@@ -244,10 +244,6 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 		return true;
 	}
 	
-	public boolean isTransformative() {
-		return false;
-	}
-	
 	public boolean isGift() {
 		return false;
 	}

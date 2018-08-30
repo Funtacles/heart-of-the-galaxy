@@ -1344,12 +1344,6 @@ public class CharacterUtils {
 				availableFetishes.remove(Fetish.FETISH_INCEST);
 				fetishesAssigned++;
 			}
-		} else { // If not offspring, give them the chance for TF fetish and the Kink giving fetish:
-			if(Math.random() < (Main.getProperties().forcedTFPercentage/100f)) {
-				character.addFetish(Fetish.FETISH_TRANSFORMATION_GIVING);
-				fetishesAssigned++;
-			}
-			availableFetishes.remove(Fetish.FETISH_TRANSFORMATION_GIVING);
 		}
 		
 		if(character.getRace()==Race.COW_MORPH && availableFetishes.contains(Fetish.FETISH_BREASTS_SELF)) {

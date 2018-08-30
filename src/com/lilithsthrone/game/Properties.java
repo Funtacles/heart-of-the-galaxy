@@ -38,7 +38,6 @@ import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.game.inventory.weapon.WeaponType;
-import com.lilithsthrone.game.settings.ForcedTFTendency;
 import com.lilithsthrone.game.settings.KeyCodeWithModifiers;
 import com.lilithsthrone.game.settings.KeyboardAction;
 import com.lilithsthrone.main.Main;
@@ -65,7 +64,6 @@ public class Properties implements Serializable {
 	public int money = 0;
 	public int humanEncountersLevel = 1;
 	public int multiBreasts = 1;
-	public int forcedTFPercentage = 40;
 
 	public int pregnancyBreastGrowthVariance = 2;
 	public int pregnancyBreastGrowth = 1;
@@ -85,9 +83,6 @@ public class Properties implements Serializable {
 	
 	public Map<Gender, Integer> genderPreferencesMap;
 	private Map<Subspecies, SubspeciesPreference> subspeciesFemininePreferencesMap, subspeciesMasculinePreferencesMap;
-	
-	// Transformation Settings
-	public ForcedTFTendency forcedTFTendency;
 	
 	// Discoveries:
 	private Set<AbstractItemType> itemsDiscovered;
@@ -126,8 +121,6 @@ public class Properties implements Serializable {
 		for(Gender g : Gender.values()) {
 			genderPreferencesMap.put(g, g.getGenderPreferenceDefault().getValue());
 		}
-		
-		forcedTFTendency = ForcedTFTendency.NEUTRAL;
 		
 		subspeciesFemininePreferencesMap = new EnumMap<>(Subspecies.class);
 		subspeciesMasculinePreferencesMap = new EnumMap<>(Subspecies.class);
@@ -192,7 +185,6 @@ public class Properties implements Serializable {
 			createXMLElementWithValue(doc, settings, "androgynousIdentification", String.valueOf(androgynousIdentification));
 			createXMLElementWithValue(doc, settings, "humanEncountersLevel", String.valueOf(humanEncountersLevel));
 			createXMLElementWithValue(doc, settings, "multiBreasts", String.valueOf(multiBreasts));
-			createXMLElementWithValue(doc, settings, "forcedTFPercentage", String.valueOf(forcedTFPercentage));
 
 			createXMLElementWithValue(doc, settings, "pregnancyBreastGrowthVariance", String.valueOf(pregnancyBreastGrowthVariance));
 			createXMLElementWithValue(doc, settings, "pregnancyBreastGrowth", String.valueOf(pregnancyBreastGrowth));
@@ -305,9 +297,6 @@ public class Properties implements Serializable {
 				value.setValue(String.valueOf(genderPreferencesMap.get(g).intValue()));
 				element.setAttributeNode(value);
 			}
-			
-			// Forced TF settings:
-			createXMLElementWithValue(doc, settings, "forcedTFTendency", String.valueOf(forcedTFTendency));
 			
 			// Race preferences:
 			Element racePreferences = doc.createElement("subspeciesPreferences");
@@ -525,16 +514,7 @@ public class Properties implements Serializable {
 				} else {
 					multiBreasts = 1;
 				}
-				
-				if(element.getElementsByTagName("forcedTFPercentage").item(0)!=null) {
-					forcedTFPercentage = Integer.valueOf(((Element)element.getElementsByTagName("forcedTFPercentage").item(0)).getAttribute("value"));
-				}
 
-				// Forced TF preference:
-				if(element.getElementsByTagName("forcedTFTendency").item(0)!=null) {
-					forcedTFTendency = ForcedTFTendency.valueOf(((Element)element.getElementsByTagName("forcedTFTendency").item(0)).getAttribute("value"));
-				}
-				
 				try {
 					pregnancyBreastGrowthVariance = Integer.valueOf(((Element)element.getElementsByTagName("pregnancyBreastGrowthVariance").item(0)).getAttribute("value"));
 					pregnancyBreastGrowth = Integer.valueOf(((Element)element.getElementsByTagName("pregnancyBreastGrowth").item(0)).getAttribute("value"));

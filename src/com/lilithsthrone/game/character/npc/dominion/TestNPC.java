@@ -118,7 +118,6 @@ public class TestNPC extends NPC {
 			this.addFetish(Fetish.FETISH_PREGNANCY);
 			this.addFetish(Fetish.FETISH_PURE_VIRGIN);
 			this.addFetish(Fetish.FETISH_SUBMISSIVE);
-			this.addFetish(Fetish.FETISH_TRANSFORMATION_RECEIVING);
 			
 			this.equipClothingFromNowhere(AbstractClothingType.generateClothing(ClothingType.GROIN_PANTIES, Colour.CLOTHING_WHITE, false), true, this);
 			this.equipClothingFromNowhere(AbstractClothingType.generateClothing(ClothingType.CHEST_FULLCUP_BRA, Colour.CLOTHING_WHITE, false), true, this);
