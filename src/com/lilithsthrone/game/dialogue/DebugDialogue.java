@@ -333,7 +333,7 @@ public class DebugDialogue {
 							&& (!itemType.getItemTags().contains(ItemTag.BOOK)))
 							|| (itemTag!=null
 								&& (itemType.getItemTags().contains(itemTag)))) {
-						inventorySB.append("<div class='inventory-item-slot unequipped "+ itemType.getRarity().getName() + "'>"
+						inventorySB.append("<div class='inventory-item-slot unequipped'>"
 												+ "<div class='inventory-icon-content'>"+itemType.getSVGString()+"</div>"
 												+ "<div class='overlay' id='" + itemType.getId() + "_SPAWN'></div>"
 											+ "</div>");
@@ -344,7 +344,7 @@ public class DebugDialogue {
 			} else if(activeSlot == InventorySlot.WEAPON_MAIN || activeSlot == InventorySlot.WEAPON_OFFHAND) {
 				for(AbstractWeaponType weaponType : weaponsTotal) {
 					if(weaponType.getSlot()==activeSlot) {
-						inventorySB.append("<div class='inventory-item-slot unequipped "+ weaponType.getRarity().getName() + "'>"
+						inventorySB.append("<div class='inventory-item-slot unequipped'>"
 												+ "<div class='inventory-icon-content'>"+weaponType.getSVGImage(
 														weaponType.getAvailableDamageTypes().get(0),
 														weaponType.getAvailablePrimaryColours().isEmpty()?null:weaponType.getAvailablePrimaryColours().get(0),
@@ -359,7 +359,7 @@ public class DebugDialogue {
 			} else {
 				for(AbstractClothingType clothingType : clothingTotal) {
 					if(clothingType.getSlot()==activeSlot) {
-						inventorySB.append("<div class='inventory-item-slot unequipped "+ clothingType.getRarity().getName() + "'>"
+						inventorySB.append("<div class='inventory-item-slot unequipped'>"
 												+ "<div class='inventory-icon-content'>"
 													+clothingType.getSVGImage(
 														clothingType.getAllAvailablePrimaryColours().get(0),

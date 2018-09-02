@@ -16,9 +16,4 @@ public class AbstractCoreType {
 	public int hashCode() {
 		return 1;
 	}
-
-	public Rarity getRarity() {
-		return Rarity.COMMON;
-	}
-	
 }

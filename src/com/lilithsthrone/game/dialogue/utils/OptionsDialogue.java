@@ -1641,7 +1641,7 @@ public class OptionsDialogue {
 						+ "<b>Everyone for playing Lilith's Throne!</b>"
 					+ "</p>"
 					+ "<br/>"
-					+ "<h5 style='text-align:center; color:"+Colour.RARITY_LEGENDARY.toWebHexString()+";'>Legendary Patrons</h5>"
+					+ "<h5 style='text-align:center; color: gold;'>Legendary Patrons</h5>"
 					+ "<p style='text-align:center;'>");
 			
 			for(CreditsSlot cs : OptionsDialogue.credits) {
@@ -1649,31 +1649,31 @@ public class OptionsDialogue {
 					UtilText.nodeContentSB.append("<br/>");
 					UtilText.nodeContentSB.append("<div style='width:50%; display:inline-block; text-align:right;'>");
 					if(cs.getName().equals("Anonymous")) {
-						UtilText.nodeContentSB.append("<b style='color:"+Colour.RARITY_UNCOMMON.toWebHexString()+";'>?</b> ");
-						UtilText.nodeContentSB.append("<b style='color:"+Colour.RARITY_RARE.toWebHexString()+";'>?</b> ");
-						UtilText.nodeContentSB.append("<b style='color:"+Colour.RARITY_EPIC.toWebHexString()+";'>?</b> ");
-						UtilText.nodeContentSB.append("<b style='color:"+Colour.RARITY_LEGENDARY.toWebHexString()+";'>?</b> ");
+						UtilText.nodeContentSB.append("<b style='color: green;'>?</b> ");
+						UtilText.nodeContentSB.append("<b style='color: blue;'>?</b> ");
+						UtilText.nodeContentSB.append("<b style='color: purple;'>?</b> ");
+						UtilText.nodeContentSB.append("<b style='color: gold;'>?</b> ");
 					} else {
 						for(int i=0; i<cs.getUncommonCount()%5; i++) {
-							UtilText.nodeContentSB.append("<b style='color:"+Colour.RARITY_UNCOMMON.toWebHexString()+";'>&#9679</b> ");
+							UtilText.nodeContentSB.append("<b style='color: green;'>&#9679</b> ");
 						}
 						
 						for(int i=0; i<cs.getRareCount()%5; i++) {
-							UtilText.nodeContentSB.append("<b style='color:"+Colour.RARITY_RARE.toWebHexString()+";'>&#9679</b> ");
+							UtilText.nodeContentSB.append("<b style='color: blue;'>&#9679</b> ");
 						}
 						
 						for(int i=0; i<cs.getEpicCount()/5; i++) {// 5-marks:
-							UtilText.nodeContentSB.append("<b style='color:"+Colour.RARITY_EPIC.toWebHexString()+";'>&#127775</b> ");
+							UtilText.nodeContentSB.append("<b style='color: purple;'>&#127775</b> ");
 						}
 						for(int i=0; i<cs.getEpicCount()%5; i++) {
-							UtilText.nodeContentSB.append("<b style='color:"+Colour.RARITY_EPIC.toWebHexString()+";'>&#9679</b> ");
+							UtilText.nodeContentSB.append("<b style='color: purple;'>&#9679</b> ");
 						}
 						
 						for(int i=0; i<cs.getLegendaryCount()/5; i++) {// 5-marks:
-							UtilText.nodeContentSB.append("<b style='color:"+Colour.RARITY_LEGENDARY.toWebHexString()+";'>&#127775</b> ");
+							UtilText.nodeContentSB.append("<b style='color: gold;'>&#127775</b> ");
 						}
 						for(int i=0; i<cs.getLegendaryCount()%5; i++) {
-							UtilText.nodeContentSB.append("<b style='color:"+Colour.RARITY_LEGENDARY.toWebHexString()+";'>&#9679</b> ");
+							UtilText.nodeContentSB.append("<b style='color: gold;'>&#9679</b> ");
 						}
 					}
 					UtilText.nodeContentSB.append("</div>");
@@ -1686,7 +1686,7 @@ public class OptionsDialogue {
 			UtilText.nodeContentSB.append(
 					"</p>"
 					+ "<br/>"
-					+ "<h5 style='text-align:center; color:"+Colour.RARITY_EPIC.toWebHexString()+";'>Epic Patrons</h5>"
+					+ "<h5 style='text-align:center; color: gold;'>Epic Patrons</h5>"
 					+ "<p style='text-align:center;'>");
 			
 			for(CreditsSlot cs : OptionsDialogue.credits) {
@@ -1694,18 +1694,18 @@ public class OptionsDialogue {
 					UtilText.nodeContentSB.append("<br/>");
 					UtilText.nodeContentSB.append("<div style='width:50%; display:inline-block; text-align:right;'>");
 					for(int i=0; i<cs.getUncommonCount()%5; i++) {
-						UtilText.nodeContentSB.append("<b style='color:"+Colour.RARITY_UNCOMMON.toWebHexString()+";'>&#9679</b> ");
+						UtilText.nodeContentSB.append("<b style='color: green;'>&#9679</b> ");
 					}
 					
 					for(int i=0; i<cs.getRareCount()%5; i++) {
-						UtilText.nodeContentSB.append("<b style='color:"+Colour.RARITY_RARE.toWebHexString()+";'>&#9679</b> ");
+						UtilText.nodeContentSB.append("<b style='color: blue;'>&#9679</b> ");
 					}
 					
 					for(int i=0; i<cs.getEpicCount()/5; i++) {// 5-marks:
-						UtilText.nodeContentSB.append("<b style='color:"+Colour.RARITY_EPIC.toWebHexString()+";'>&#127775</b> ");
+						UtilText.nodeContentSB.append("<b style='color: gold;'>&#127775</b> ");
 					}
 					for(int i=0; i<cs.getEpicCount()%5; i++) {
-						UtilText.nodeContentSB.append("<b style='color:"+Colour.RARITY_EPIC.toWebHexString()+";'>&#9679</b> ");
+						UtilText.nodeContentSB.append("<b style='color: gold;'>&#9679</b> ");
 					}
 					UtilText.nodeContentSB.append("</div>");
 					UtilText.nodeContentSB.append("<div style='width:50%; display:inline-block; text-align:left;'>");

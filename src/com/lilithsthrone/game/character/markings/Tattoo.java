@@ -16,7 +16,6 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.AbstractCoreItem;
-import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
@@ -221,33 +220,9 @@ public class Tattoo extends AbstractCoreItem implements XMLSaving {
 		return "";
 	}
 
-	public Rarity getRarity() {
-		if(effects.isEmpty()) {
-			return Rarity.COMMON;
-			
-		} else if(effects.size()<=1) {
-			return Rarity.UNCOMMON;
-			
-		} else if(effects.size()<=3) {
-			return Rarity.RARE;
-			
-		} else if(effects.size()<=5) {
-			return Rarity.EPIC;
-			
-		} else {
-			return Rarity.LEGENDARY;
-		}
-	}
-
-	public String getDisplayName(boolean withRarityColour) {
+	public String getDisplayName() {
 		return Util.capitaliseSentence(this.getPrimaryColour().getName()) + " "
-				+ (withRarityColour
-					?" <span style='color: " + this.getRarity().getColour().toWebHexString() + ";'>"
-						+ (this.getType()==TattooType.NONE
-							?"tattoo"
-							:this.getName() + " tattoo")
-						+ "</span>"
-					: this.getName()+" tattoo");
+				+  this.getName()+" tattoo";
 	}
 	
 	public Attribute getCoreEnchantment() {

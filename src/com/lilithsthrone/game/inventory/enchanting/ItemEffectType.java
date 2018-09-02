@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.lilithsthrone.utils.Colour;
-
 /**
  * @since 0.1.7
  * @version 0.2.4
@@ -15,13 +13,13 @@ import com.lilithsthrone.utils.Colour;
  */
 public class ItemEffectType {
 	
-	public static AbstractItemEffectType DYE_BRUSH = new AbstractItemEffectType(Colour.GENERIC_ARCANE) {};
+	public static AbstractItemEffectType DYE_BRUSH = new AbstractItemEffectType() {};
 
 	// CLOTHING:
 	
-	public static AbstractItemEffectType CLOTHING = new AbstractItemEffectType(Colour.RARITY_RARE) { };
+	public static AbstractItemEffectType CLOTHING = new AbstractItemEffectType() { };
 	
-	public static AbstractItemEffectType TATTOO = new AbstractItemEffectType(Colour.RARITY_RARE) { };
+	public static AbstractItemEffectType TATTOO = new AbstractItemEffectType() { };
 	
 
 	private static Map<AbstractItemEffectType, String> itemEffectTypeToIdMap = new HashMap<>();

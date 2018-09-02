@@ -410,7 +410,7 @@ public class Parser {
 		for(DialogueFlagValue flag : DialogueFlagValue.values()) {
 			engine.put("FLAG_"+flag.toString(), flag);
 		}
-		engine.put("sex", Main.sexEngine); //TODO static methods don't work...
+		engine.put("sex", Main.sexEngine); // static methods don't work...
 	}
 	
 	private static String parseConditionalSyntaxNew(List<GameCharacter> specialNPC, String conditionalStatement, String conditionalTrue, String conditionalFalse) {

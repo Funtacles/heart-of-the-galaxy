@@ -9,7 +9,6 @@ import java.util.Map;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.ItemTag;
-import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffectType;
 import com.lilithsthrone.utils.Colour;
@@ -21,11 +20,6 @@ import com.lilithsthrone.utils.Util;
  * @author Innoxia
  */
 public class ItemType {
-
-	/*
-	 * Common: Restore resources Rare: Apply status effect Epic: Transformation
-	 * Legendary: Uniques
-	 */
 
 	private static String getGenericUseDescription(GameCharacter user, GameCharacter target, String playerUseSelf, String playerUsePartner, String partnerUseSelf, String partnerUsePlayer) {
 		if (user!=null && user.isPlayer()) {
@@ -65,7 +59,6 @@ public class ItemType {
 			Colour.FETISH,
 			null,
 			null,
-			Rarity.LEGENDARY,
 			null, null) {
 
 		private static final long serialVersionUID = 1L;
@@ -109,7 +102,6 @@ public class ItemType {
 			Colour.CLOTHING_WHITE,
 			null,
 			null,
-			Rarity.EPIC,
 			Util.newArrayListOfValues(new ItemEffect(ItemEffectType.DYE_BRUSH)),
 			Util.newArrayListOfValues(
 					ItemTag.DOMINION_ALLEYWAY_SPAWN)) {
@@ -157,7 +149,6 @@ public class ItemType {
 			Colour.ANDROGYNOUS,
 			null,
 			null,
-			Rarity.LEGENDARY,
 			null, null) {
 
 		private static final long serialVersionUID = 1L;
@@ -201,7 +192,6 @@ public class ItemType {
 			Colour.BASE_CRIMSON,
 			Colour.BASE_GREEN_DARK,
 			null,
-			Rarity.UNCOMMON,
 			null,
 			Util.newArrayListOfValues(ItemTag.GIFT)) {
 
@@ -246,7 +236,6 @@ public class ItemType {
 			Colour.BASE_RED,
 			Colour.BASE_ORANGE,
 			Colour.BASE_YELLOW,
-			Rarity.UNCOMMON,
 			null,
 			Util.newArrayListOfValues(ItemTag.GIFT)) {
 
@@ -289,7 +278,6 @@ public class ItemType {
 			Colour.BASE_TAN,
 			null,
 			null,
-			Rarity.UNCOMMON,
 			null,
 			Util.newArrayListOfValues(ItemTag.GIFT)) {
 

@@ -13,7 +13,6 @@ import com.lilithsthrone.game.combat.DamageVariance;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.ItemTag;
-import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.utils.ColourListPresets;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Util.Value;
@@ -24,235 +23,6 @@ import com.lilithsthrone.utils.Util.Value;
  * @author Innoxia
  */
 public class WeaponType {
-	
-	public static AbstractWeaponType MELEE_CHAOS_RARE = new AbstractWeaponType(1000,
-			true,
-			"an",
-			"it",
-			false,
-			"opaque demonstone",
-			"opaque demonstones",
-			"Crystal Strike",
-			"A common type of demonstone, the power of which can be harnessed as a weapon."
-					+ " Demonstones are rumoured to be crystallised essences of a Lilin's orgasm.",
-			InventorySlot.WEAPON_MAIN,
-			"meleeCrystal1",
-			Rarity.RARE,
-			Util.newArrayListOfValues(
-					DamageType.PHYSICAL,
-					DamageType.FIRE,
-					DamageType.ICE,
-					DamageType.POISON),
-			8,
-			0,
-			DamageVariance.MEDIUM,
-			null,
-			null,
-			null,
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.SOLD_BY_VICKY)) {
-		
-		private static final long serialVersionUID = 1L;
-				
-		@Override
-		public String equipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(focus)] on the energy in the crystal."
-					+ " As [npc.she] [npc.does] so, it dissolves and flows into [npc.her] body, granting [npc.herHim] the ability to perform magical attacks.");
-		}
-
-		@Override
-		public String unequipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(focus)] on the energy inside of [npc.herHim], forcing it out from [npc.her] body."
-					+ " As [npc.she] [npc.does] so, it reforms back into a demonstone.");
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter character, GameCharacter target, boolean isHit) {
-			return genericMeleeAttackDescription(character, target, isHit);
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter user, GameCharacter target) {
-			return UtilText.parse(target,
-					"Strike at [npc.name] in melee, using your crystal's power to inflict extra damage!");
-		}
-		
-		@Override
-		public Map<Attribute, Integer> getGenerationAttributeModifiers(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newHashMapOfValues(new Value<>(Attribute.DAMAGE_FIRE, 5));
-				case ICE:
-					return Util.newHashMapOfValues(new Value<>(Attribute.DAMAGE_ICE, 5));
-				case LUST:
-					return Util.newHashMapOfValues(new Value<>(Attribute.DAMAGE_PHYSICAL, 5));
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newHashMapOfValues(new Value<>(Attribute.DAMAGE_PHYSICAL, 5));
-				case POISON:
-					return Util.newHashMapOfValues(new Value<>(Attribute.DAMAGE_POISON, 5));
-			}
-			return null;
-		}
-	};
-	
-	public static AbstractWeaponType MELEE_CHAOS_EPIC = new AbstractWeaponType(1500,
-			true,
-			"a",
-			"it",
-			false,
-			"misty demonstone",
-			"misty demonstones",
-			"Crystal Strike",
-			"A powerful demonstone, the power of which can be harnessed as a weapon."
-					+ " Demonstones are rumoured to be crystallised essences of a Lilin's orgasm.",
-			InventorySlot.WEAPON_MAIN,
-			"meleeCrystal2",
-			Rarity.EPIC,
-			Util.newArrayListOfValues(
-					DamageType.PHYSICAL,
-					DamageType.FIRE,
-					DamageType.ICE,
-					DamageType.POISON),
-			12,
-			0,
-			DamageVariance.MEDIUM,
-			null,
-			null,
-			null,
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.SOLD_BY_VICKY)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String equipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(focus)] on the energy in the crystal."
-					+ " As [npc.she] [npc.does] so, it dissolves and flows into [npc.her] body, granting [npc.herHim] the ability to perform magical attacks.");
-		}
-
-		@Override
-		public String unequipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(focus)] on the energy inside of [npc.herHim], forcing it out from [npc.her] body."
-					+ " As [npc.she] [npc.does] so, it reforms back into a demonstone.");
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter character, GameCharacter target, boolean isHit) {
-			return genericMeleeAttackDescription(character, target, isHit);
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter user, GameCharacter target) {
-			return UtilText.parse(target,
-					"Strike at [npc.name] in melee, using your crystal's power to inflict extra damage!");
-		}
-
-		@Override
-		public Map<Attribute, Integer> getGenerationAttributeModifiers(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newHashMapOfValues(new Value<>(Attribute.DAMAGE_FIRE, 10));
-				case ICE:
-					return Util.newHashMapOfValues(new Value<>(Attribute.DAMAGE_ICE, 10));
-				case LUST:
-					return Util.newHashMapOfValues(new Value<>(Attribute.DAMAGE_PHYSICAL, 10));
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newHashMapOfValues(new Value<>(Attribute.DAMAGE_PHYSICAL, 10));
-				case POISON:
-					return Util.newHashMapOfValues(new Value<>(Attribute.DAMAGE_POISON, 10));
-			}
-			return null;
-		}
-	};
-	
-	public static AbstractWeaponType MELEE_CHAOS_LEGENDARY = new AbstractWeaponType(2500,
-			true,
-			"a",
-			"it",
-			false,
-			"clear demonstone",
-			"clear demonstones",
-			"Crystal Strike",
-			"An extremely powerful demonstone, the power of which can be harnessed as a weapon."
-					+ " Demonstones are rumoured to be crystallised essences of a Lilin's orgasm.",
-			InventorySlot.WEAPON_MAIN,
-			"meleeCrystal3",
-			Rarity.LEGENDARY,
-			Util.newArrayListOfValues(
-					DamageType.PHYSICAL,
-					DamageType.FIRE,
-					DamageType.ICE,
-					DamageType.POISON),
-			16,
-			0,
-			DamageVariance.LOW,
-			null,
-			null,
-			null,
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.SOLD_BY_VICKY)){
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String equipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(focus)] on the energy in the crystal."
-					+ " As [npc.she] [npc.does] so, it dissolves and flows into [npc.her] body, granting [npc.herHim] the ability to perform magical attacks.");
-		}
-
-		@Override
-		public String unequipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(focus)] on the energy inside of [npc.herHim], forcing it out from [npc.her] body."
-					+ " As [npc.she] [npc.does] so, it reforms back into a demonstone.");
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter character, GameCharacter target, boolean isHit) {
-			return genericMeleeAttackDescription(character, target, isHit);
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter user, GameCharacter target) {
-			return UtilText.parse(target,
-					"Strike at [npc.name] in melee, using your crystal's power to inflict extra damage!");
-		}
-
-		@Override
-		public Map<Attribute, Integer> getGenerationAttributeModifiers(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newHashMapOfValues(
-							new Value<>(Attribute.DAMAGE_FIRE, 10),
-							new Value<>(Attribute.RESISTANCE_FIRE, 5));
-				case ICE:
-					return Util.newHashMapOfValues(
-							new Value<>(Attribute.DAMAGE_ICE, 10),
-							new Value<>(Attribute.RESISTANCE_ICE, 5));
-				case LUST:
-					return Util.newHashMapOfValues(
-							new Value<>(Attribute.DAMAGE_PHYSICAL, 10),
-							new Value<>(Attribute.RESISTANCE_PHYSICAL, 5));
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newHashMapOfValues(
-							new Value<>(Attribute.DAMAGE_PHYSICAL, 10),
-							new Value<>(Attribute.RESISTANCE_PHYSICAL, 5));
-				case POISON:
-					return Util.newHashMapOfValues(
-							new Value<>(Attribute.DAMAGE_POISON, 10),
-							new Value<>(Attribute.RESISTANCE_POISON, 5));
-			}
-			return null;
-		}
-	};
 	
 	public static AbstractWeaponType MELEE_ZWEIHANDER = new AbstractWeaponType(5000,
 			true,
@@ -266,7 +36,6 @@ public class WeaponType {
 					+ " The blade is made out of ethereal arcane energy, which, instead of cutting someone, drains their energy as it passes through them.",
 			InventorySlot.WEAPON_MAIN,
 			"zweihander",
-			Rarity.EPIC,
 			Util.newArrayListOfValues(
 					DamageType.PHYSICAL,
 					DamageType.FIRE,
@@ -371,7 +140,6 @@ public class WeaponType {
 					+ " The 75cm-long blade is made out of ethereal arcane energy, which, instead of cutting someone, drains their energy as it passes through them.",
 			InventorySlot.WEAPON_MAIN,
 			"knightlySword",
-			Rarity.EPIC,
 			Util.newArrayListOfValues(
 					DamageType.PHYSICAL,
 					DamageType.FIRE,
@@ -476,7 +244,6 @@ public class WeaponType {
 					+ " Shields such as this one are typically enchanted to help the wielder resist a certain type of arcane damage.",
 			InventorySlot.WEAPON_OFFHAND,
 			"buckler",
-			Rarity.EPIC,
 			Util.newArrayListOfValues(
 					DamageType.FIRE,
 					DamageType.ICE,
@@ -567,145 +334,6 @@ public class WeaponType {
 		}
 	};
 
-	// OFFHAND
-	public static AbstractWeaponType OFFHAND_CHAOS_RARE = new AbstractWeaponType(1000,
-			false,
-			"a",
-			"it",
-			false,
-			"chaos feather",
-			"chaos feathers",
-			"Feather Bolt",
-			"A magical feather, the power of which can be harnessed as a weapon."
-					+ " Feathers like this are rumoured to have been plucked from a Lilin's wings.",
-			InventorySlot.WEAPON_OFFHAND,
-			"rangedFeather1",
-			Rarity.RARE,
-			Util.newArrayListOfValues(DamageType.PHYSICAL, DamageType.FIRE, DamageType.ICE, DamageType.POISON),
-			8,
-			0,
-			DamageVariance.HIGH,
-			null,
-			null,
-			null,
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.SOLD_BY_VICKY)) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String equipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(focus)] on the energy in the feather."
-					+ " As [npc.she] [npc.does] so, it dissolves and flows into [npc.her] body, granting [npc.herHim] the ability to perform magical attacks at range.");
-		}
-
-		@Override
-		public String unequipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(focus)] on the energy inside of [npc.herHim], forcing it out from [npc.her] body."
-					+ " As [npc.she] [npc.does] so, it reforms back into a chaos feather.");
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter character, GameCharacter target, boolean isHit) {
-			return genericRangedAttackDescription(character, target, isHit);
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter user, GameCharacter target) {
-			return UtilText.parse(target,
-					"Use your feather's power to shoot a bolt of energy at [npc.name]!");
-		}
-		
-		@Override
-		public Map<Attribute, Integer> getGenerationAttributeModifiers(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_FIRE, 5));
-				case ICE:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_ICE, 5));
-				case LUST:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_PHYSICAL, 5));
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_PHYSICAL, 5));
-				case POISON:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_POISON, 5));
-			}
-			return null;
-		}
-	};
-	
-	public static AbstractWeaponType OFFHAND_CHAOS_EPIC = new AbstractWeaponType(1500,
-			false,
-			"a",
-			"it",
-			false,
-			"chaos feather",
-			"chaos feathers",
-			"Feather Bolt",
-			"A well-preserved magical feather, the power of which can be harnessed as a weapon."
-					+ " Feathers like this are rumoured to have been plucked from a Lilin's wings.",
-			InventorySlot.WEAPON_OFFHAND,
-			"rangedFeather2",
-			Rarity.EPIC,
-			Util.newArrayListOfValues(DamageType.PHYSICAL, DamageType.FIRE, DamageType.ICE, DamageType.POISON),
-			14,
-			0,
-			DamageVariance.HIGH,
-			null,
-			null,
-			null,
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.SOLD_BY_VICKY)) {
-		
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String equipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(focus)] on the energy in the feather."
-					+ " As [npc.she] [npc.does] so, it dissolves and flows into [npc.her] body, granting [npc.herHim] the ability to perform magical attacks at range.");
-		}
-
-		@Override
-		public String unequipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(focus)] on the energy inside of [npc.herHim], forcing it out from [npc.her] body."
-					+ " As [npc.she] [npc.does] so, it reforms back into a chaos feather.");
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter character, GameCharacter target, boolean isHit) {
-			return genericRangedAttackDescription(character, target,isHit);
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter user, GameCharacter target) {
-			return UtilText.parse(target,
-					"Use your feather's power to shoot a bolt of energy at [npc.name]!");
-		}
-
-		@Override
-		public Map<Attribute, Integer> getGenerationAttributeModifiers(DamageType dt) {
-			switch(dt) {
-				case FIRE:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_FIRE, 10));
-				case ICE:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_ICE, 10));
-				case LUST:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_PHYSICAL, 10));
-				case MISC:
-					break;
-				case PHYSICAL:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_PHYSICAL, 10));
-				case POISON:
-					return Util.newHashMapOfValues(new Value<>(Attribute.RESISTANCE_POISON, 10));
-			}
-			return null;
-		}
-	};
-	
 	// I made this in one of my lunch breaks x_x
 	public static AbstractWeaponType MAIN_WESTERN_KKP = new AbstractWeaponType(25000,
 			false,
@@ -718,7 +346,6 @@ public class WeaponType {
 			"A blowback-operated semi-automatic pistol, featuring an exposed hammer, a traditional double-action trigger mechanism, a single-column magazine, and a fixed barrel that also acts as the guide rod for the recoil spring.",
 			InventorySlot.WEAPON_MAIN,
 			"western_kkp",
-			Rarity.LEGENDARY,
 			Util.newArrayListOfValues(DamageType.PHYSICAL),
 			100000,
 			0,
@@ -766,7 +393,6 @@ public class WeaponType {
 					+ " Each discharge drains one arcane essence from the user, meaning that only those who have the ability to absorb arcane essences can fire it.",
 			InventorySlot.WEAPON_MAIN,
 			"arcaneMusket",
-			Rarity.LEGENDARY,
 			Util.newArrayListOfValues(
 					DamageType.PHYSICAL),
 			25,
@@ -834,8 +460,8 @@ public class WeaponType {
 		}
 	};
 	
-	public static List<AbstractWeaponType> rareWeapons = new ArrayList<>(), allweapons = new ArrayList<>();
-	
+	public static List<AbstractWeaponType> allweapons = new ArrayList<>();
+
 	public static Map<AbstractWeaponType, String> weaponToIdMap = new HashMap<>();
 	public static Map<String, AbstractWeaponType> idToWeaponMap = new HashMap<>();
 
@@ -855,14 +481,6 @@ public class WeaponType {
 					// I feel like this is stupid :thinking:
 					weaponToIdMap.put(weapon, f.getName());
 					idToWeaponMap.put(f.getName(), weapon);
-					
-					if(weapon != MAIN_WESTERN_KKP) {
-						allweapons.add(weapon);
-					
-						if (weapon.getRarity() == Rarity.RARE) {
-							rareWeapons.add(weapon);
-						}
-					}
 					
 				} catch (IllegalArgumentException | IllegalAccessException e) {
 					e.printStackTrace();

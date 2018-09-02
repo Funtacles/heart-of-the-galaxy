@@ -31,7 +31,6 @@ import com.lilithsthrone.game.character.gender.GenderPronoun;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.character.race.SubspeciesPreference;
-import com.lilithsthrone.game.dialogue.eventLog.EventLogEntryEncyclopediaUnlock;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
@@ -762,7 +761,6 @@ public class Properties implements Serializable {
 	
 	public boolean addRaceDiscovered(Race race) {
 		if(racesDiscovered.add(race)) {
-			Main.game.addEvent(new EventLogEntryEncyclopediaUnlock(race.getName(), race.getColour()), true);
 			setValue(PropertyValue.newRaceDiscovered, true);
 			return true;
 		}
@@ -774,11 +772,7 @@ public class Properties implements Serializable {
 	}
 	
 	public boolean addAdvancedRaceKnowledge(Race race) {
-		boolean added = racesAdvancedKnowledge.add(race);
-		if(added) {
-			Main.game.addEvent(new EventLogEntryEncyclopediaUnlock(race.getName()+" (Advanced)", race.getColour()), true);
-		}
-		return added;
+		return racesAdvancedKnowledge.add(race);
 	}
 	
 	public boolean isAdvancedRaceKnowledgeDiscovered(Race race) {

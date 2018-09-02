@@ -3620,7 +3620,7 @@ public class CharacterModificationUtils {
 					:"<div class='modifier-icon' style='width:48%;margin:0 1%'>"
 						+ (tattooInSlot==null
 							?"<div class='modifier-icon-content'></div>"
-							:"<div class='modifier-icon-content "+tattooInSlot.getRarity().getName()+"'>"+tattooInSlot.getSVGImage(BodyChanging.getTarget())+"</div>")
+							:"<div class='modifier-icon-content'>"+tattooInSlot.getSVGImage(BodyChanging.getTarget())+"</div>")
 						+ "<div class='overlay no-pointer' id='TATTOO_INFO_"+invSlot.toString()+"'></div>"
 					+ "</div>")
 				

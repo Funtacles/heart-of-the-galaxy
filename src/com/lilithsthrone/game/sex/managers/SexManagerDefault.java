@@ -47,17 +47,6 @@ public abstract class SexManagerDefault implements SexManagerInterface {
 	public SexManagerDefault(SexPositionType position, Map<GameCharacter, SexPositionSlot> dominants, Map<GameCharacter, SexPositionSlot> submissives) {
 		int totalParticipants = dominants.size() + submissives.size();
 		
-//		for(GameCharacter character : dominants.keySet()) {
-//			if(dominants.get(character)==SexPositionSlot.MISC_WATCHING) {
-//				totalParticipants--;
-//			}
-//		}
-//		for(GameCharacter character : submissives.keySet()) {
-//			if(submissives.get(character)==SexPositionSlot.MISC_WATCHING) {
-//				totalParticipants--;
-//			}
-//		}
-		
 		if(totalParticipants > position.getMaximumSlots()) {
 			throw new IllegalArgumentException("Too many characters for Sex Manager!");
 		}

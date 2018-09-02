@@ -11,7 +11,6 @@ import java.util.Set;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.inventory.AbstractCoreType;
 import com.lilithsthrone.game.inventory.ItemTag;
-import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
@@ -34,7 +33,6 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 	private Colour colourSecondary;
 	private Colour colourTertiary;
 	private int value;
-	private Rarity rarity;
 	protected String SVGString;
 	protected List<ItemEffect> effects;
 	protected Set<ItemTag> itemTags;
@@ -50,7 +48,6 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 			Colour colourPrimary,
 			Colour colourSecondary,
 			Colour colourTertiary,
-			Rarity rarity,
 			List<ItemEffect> effects,
 			List<ItemTag> itemTags) {
 
@@ -62,7 +59,6 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 		this.pathName = pathName;
 
 		this.value = value;
-		this.rarity = rarity;
 		
 		this.itemTags = new HashSet<>();
 		if(itemTags!=null) {
@@ -118,7 +114,6 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 			if(o instanceof AbstractItemType){
 				if(((AbstractItemType)o).getName(false).equals(getName(false))
 						&& ((AbstractItemType)o).getPathName().equals(getPathName())
-						&& ((AbstractItemType)o).getRarity() == getRarity()
 						){
 					return true;
 				}
@@ -132,7 +127,6 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 		int result = super.hashCode();
 		result = 31 * result + getName(false).hashCode();
 		result = 31 * result + getPathName().hashCode();
-		result = 31 * result + getRarity().hashCode();
 		return result;
 	}
 
@@ -162,7 +156,7 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 
 	public String getName(boolean displayName) {
 		if(displayName) {
-			return Util.capitaliseSentence((determiner!=null?determiner:"") + " <span style='color: " + rarity.getColour().toWebHexString() + ";'>" + (this.isPlural()?namePlural:name) + "</span>");
+			return Util.capitaliseSentence((determiner!=null?determiner:"") + " <span>" + (this.isPlural()?namePlural:name) + "</span>");
 		} else {
 			return (this.isPlural()?namePlural:name);
 		}
@@ -170,7 +164,7 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 	
 	public String getNamePlural(boolean displayName) {
 		if(displayName) {
-			return Util.capitaliseSentence((determiner!=null?determiner:"") + " <span style='color: " + rarity.getColour().toWebHexString() + ";'>" + namePlural + "</span>");
+			return Util.capitaliseSentence((determiner!=null?determiner:"") + " <span>" + namePlural + "</span>");
 		} else {
 			return namePlural;
 		}
@@ -180,10 +174,8 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 		return description;
 	}
 
-	public String getDisplayName(boolean withRarityColour) {
-		return Util.capitaliseSentence((determiner!=null?determiner:"") + (withRarityColour
-				? (" <span style='color: " + rarity.getColour().toWebHexString() + ";'>" + (this.isPlural()?getNamePlural(false):getName(false)) + "</span>")
-				: (this.isPlural()?getNamePlural(false):getName(false))));
+	public String getDisplayName() {
+		return Util.capitaliseSentence((determiner!=null?determiner:"") + (this.isPlural()?getNamePlural(false):getName(false)));
 	}
 
 	public String getPathName() {
@@ -208,10 +200,6 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 
 	public String getSVGString() {
 		return SVGString;
-	}
-
-	public Rarity getRarity() {
-		return rarity;
 	}
 
 	public String getUseName() {

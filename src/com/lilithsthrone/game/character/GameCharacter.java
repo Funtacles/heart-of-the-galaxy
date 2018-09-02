@@ -2633,7 +2633,7 @@ public abstract class GameCharacter implements XMLSaving {
 	
 	// Relationships:
 	
-	public Relationship getRelationship(GameCharacter character) {//TODO grandchildren, cousins, etc.
+	public Relationship getRelationship(GameCharacter character) {
 		// If this character is the character's parent:
 		if((!character.getMotherId().isEmpty() && character.getMotherId().equals(getId()))
 				|| (!character.getFatherId().isEmpty() && character.getFatherId().equals(getId()))) {
@@ -2759,8 +2759,6 @@ public abstract class GameCharacter implements XMLSaving {
 		
 		if(isPlayer()) {
 			Main.getProperties().setValue(PropertyValue.levelUpHightlight, true);
-		} else {
-			//TODO NPC level up
 		}
 	}
 	

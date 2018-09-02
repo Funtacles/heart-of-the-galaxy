@@ -5,8 +5,6 @@ import java.io.InputStream;
 import java.util.EnumMap;
 import java.util.Map;
 
-import com.lilithsthrone.game.inventory.enchanting.AbstractItemEffectType;
-import com.lilithsthrone.game.inventory.enchanting.ItemEffectType;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
 
@@ -598,17 +596,6 @@ public enum SVGImages {
 			is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/statusEffects/sexEffects/holeTooBig.svg");
 			holeTooBig = Util.inputStreamToString(is);
 			
-			String tempString = "";
-			for(AbstractItemEffectType effect : ItemEffectType.getAllEffectTypes()) {
-				is = this.getClass().getResourceAsStream("/com/lilithsthrone/res/items/refined_background.svg");
-				tempString = Util.inputStreamToString(is);
-				tempString = setColour(tempString, effect.getColour());
-				
-				refinedBackgroundMap.put(effect.getColour(), tempString);
-			}
-			
-			tempString = "";
-
 			is.close();
 
 		} catch (IOException e) {

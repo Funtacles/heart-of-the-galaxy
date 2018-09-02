@@ -14,13 +14,10 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.combat.DamageType;
 import com.lilithsthrone.game.combat.DamageVariance;
-import com.lilithsthrone.game.dialogue.eventLog.EventLogEntryEncyclopediaUnlock;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.AbstractCoreType;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.ItemTag;
-import com.lilithsthrone.game.inventory.Rarity;
-import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
 
@@ -48,7 +45,6 @@ public abstract class AbstractWeaponType extends AbstractCoreType implements Ser
 	protected DamageVariance damageVariance;
 	private InventorySlot slot;
 	private List<DamageType> availableDamageTypes;
-	private Rarity rarity;
 	private Map<Attribute, Integer> attributeModifiers;
 	private Map<DamageType, Map<Colour, Map<Colour, String>>> SVGStringMap;
 	
@@ -73,7 +69,6 @@ public abstract class AbstractWeaponType extends AbstractCoreType implements Ser
 			String description,
 			InventorySlot slot,
 			String pathName,
-			Rarity rarity,
 			List<DamageType> availableDamageTypes,
 			int damage,
 			int arcaneCost,
@@ -96,7 +91,6 @@ public abstract class AbstractWeaponType extends AbstractCoreType implements Ser
 		this.namePlural = namePlural;
 		this.attackDescriptor = attackDescriptor;
 		this.description = description;
-		this.rarity = rarity;
 
 		this.slot = slot;
 		this.availableDamageTypes = availableDamageTypes;
@@ -138,7 +132,6 @@ public abstract class AbstractWeaponType extends AbstractCoreType implements Ser
 						&& ((AbstractWeaponType)o).getDamage() == getDamage()
 						&& ((AbstractWeaponType)o).getDamageVariance() == getDamageVariance()
 						&& ((AbstractWeaponType)o).getSlot() == getSlot()
-						&& ((AbstractWeaponType)o).getRarity() == getRarity()
 						&& ((AbstractWeaponType)o).getAvailableDamageTypes().equals(getAvailableDamageTypes())
 						&& ((AbstractWeaponType)o).getAttributeModifiers().equals(getAttributeModifiers())
 						){
@@ -158,7 +151,6 @@ public abstract class AbstractWeaponType extends AbstractCoreType implements Ser
 		result = 31 * result + getDamageVariance().hashCode();
 		result = 31 * result + (melee ? 1 : 0);
 		result = 31 * result + getSlot().hashCode();
-		result = 31 * result + getRarity().hashCode();
 		result = 31 * result + getAvailableDamageTypes().hashCode();
 		result = 31 * result + getAttributeModifiers().hashCode();
 		return result;
@@ -201,11 +193,6 @@ public abstract class AbstractWeaponType extends AbstractCoreType implements Ser
 
 			@Override
 			public String onEquip(GameCharacter character) {
-				if (character.isPlayer()) {
-					if (Main.getProperties().addWeaponDiscovered(wt)) {
-						Main.game.addEvent(new EventLogEntryEncyclopediaUnlock(wt.getName(), wt.getRarity().getColour()), true);
-					}
-				}
 				return wt.equipText(character);
 			}
 
@@ -481,10 +468,6 @@ public abstract class AbstractWeaponType extends AbstractCoreType implements Ser
 
 	public String getDescription() {
 		return description;
-	}
-
-	public Rarity getRarity() {
-		return rarity;
 	}
 
 	public InventorySlot getSlot() {

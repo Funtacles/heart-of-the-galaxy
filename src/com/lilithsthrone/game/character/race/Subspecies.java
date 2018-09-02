@@ -381,42 +381,6 @@ public enum Subspecies {
 		}
 	},
 	
-//	FOX_TAILED("statusEffects/raceFoxMorph",
-//			"pipefox",
-//			"pipefoxes",
-//			"pipefox-boy",
-//			"pipefox-girl",
-//			"pipefox-boys",
-//			"pipefox-girls",
-//			Race.FOX_MORPH,
-//			Colour.RACE_FOX_MORPH,
-//			SubspeciesPreference.FOUR_ABUNDANT,
-//			"A fox-morph with a serpentine lower body, devoid of legs.",
-//			Util.newArrayListOfValues(WorldType.DOMINION)) {
-//		@Override
-//		public void applySpeciesChanges(Body body) {
-//			//apply fox coloring
-//		}
-//	},
-	
-//	FOX_TAUR("statusEffects/raceFoxMorph",
-//			"yegan",
-//			"yegans",
-//			"yegan-boy",
-//			"yegan-girl",
-//			"yegan-boys",
-//			"yegan-girls",
-//			Race.FOX_MORPH,
-//			Colour.RACE_FOX_MORPH,
-//			SubspeciesPreference.FOUR_ABUNDANT,
-//			"A fox-morph a bestial lower body that walks on four legs.",
-//			Util.newArrayListOfValues(WorldType.DOMINION)) {
-//		@Override
-//		public void applySpeciesChanges(Body body) {
-//			//apply fox coloring
-//		}
-//	},
-
 	// FELINES:
 	CAT_MORPH("statusEffects/raceCatMorph",
 			"cat-morph",
@@ -438,7 +402,6 @@ public enum Subspecies {
 		}
 	},
 	
-	//TODO
 	CAT_MORPH_LYNX("statusEffects/raceCatMorphLynx",
 			"lynx-morph",
 			"lynx-morphs",

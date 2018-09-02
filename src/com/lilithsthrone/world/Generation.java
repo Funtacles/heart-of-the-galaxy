@@ -26,7 +26,7 @@ import javafx.concurrent.Task;
  */
 public class Generation extends Task<Boolean> {
 	
-	/* TODO
+	/* 
 	 * Only supports an even number for world sizes.
 	 */
 

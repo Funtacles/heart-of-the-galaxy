@@ -37,7 +37,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.CharacterInventory;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
-import com.lilithsthrone.game.sex.sexActions.dominion.SALilayaSpecials;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
@@ -286,13 +285,6 @@ public class Lilaya extends NPC {
 		}
 	};
 	
-	// Sex:
-	
-	@Override
-	public List<Class<?>> getUniqueSexClasses() {
-		return Util.newArrayListOfValues(SALilayaSpecials.class);
-	}
-
 	/**
 	 * @return A <b>non-formatted</b> String of this NPCs speech related to no ongoing penetration.
 	 */

@@ -399,8 +399,6 @@ public abstract class AbstractClothing extends AbstractCoreItem implements Seria
 	}
 	
 	/**
-	 * @param withRarityColour
-	 *            If true, the name will be coloured to its rarity.
 	 * @return A string in the format "Blue cap of frostbite" or
 	 *         "Gold circlet of anti-magic"
 	 */

@@ -95,24 +95,11 @@ public class Pathing {
 			// 2) c)
 			for (int i = -1; i <= 1; i++)
 				for (int j = -1; j <= 1; j++)
-					if (!(i == 0 && j == 0) && n.getX() + i >= 0 && n.getX() + i < grid.length - 1 && n.getY() + j >= 0 && n.getY() + j < grid[0].length - 1) // Make
-																																								// sure
-																																								// we
-																																								// don't
-																																								// go
-																																								// out
-																																								// of
-																																								// bounds
-																																								// //TODO
-																																								// add
-																																								// checks
-																																								// to
-																																								// see
-																																								// if
-																																								// the
-																																								// direction
-																																								// is
-																																								// open
+					if (!(i == 0 && j == 0) 
+						&& n.getX() + i >= 0 
+						&& n.getX() + i < grid.length - 1 
+						&& n.getY() + j >= 0 
+						&& n.getY() + j < grid[0].length - 1) 
 						if (!closedList.contains(nodeArray[n.getX() + i][n.getY() + j])) { // c)
 																							// i)
 							// 1000 if diagonal, 10 if vertical/horizontal
@@ -201,26 +188,12 @@ public class Pathing {
 			// 2) c)
 			for (int i = -1; i <= 1; i++)
 				for (int j = -1; j <= 1; j++)
-					if (!(i == 0 && j == 0) && n.getX() + i >= 0 && n.getX() + i < grid.length - 1 && n.getY() + j >= 0 && n.getY() + j < grid[0].length - 1) // Make
-																																								// sure
-																																								// we
-																																								// don't
-																																								// go
-																																								// out
-																																								// of
-																																								// bounds
-																																								// //TODO
-																																								// add
-																																								// checks
-																																								// to
-																																								// see
-																																								// if
-																																								// the
-																																								// direction
-																																								// is
-																																								// open
-						if (!closedList.contains(nodeArray[n.getX() + i][n.getY() + j])) { // c)
-																							// i)
+					if (!(i == 0 && j == 0) 
+						&& n.getX() + i >= 0 
+						&& n.getX() + i < grid.length - 1 
+						&& n.getY() + j >= 0 
+						&& n.getY() + j < grid[0].length - 1) 
+						if (!closedList.contains(nodeArray[n.getX() + i][n.getY() + j])) { 
 							// 14 if diagonal, 10 if vertical/horizontal
 							int g = ((i == 0 || j == 0) ? 10 : 14) + grid[n.getX() + i][n.getY() + j].getType().getMoveCost();
 

@@ -41,7 +41,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.AbstractCoreItem;
 import com.lilithsthrone.game.inventory.CharacterInventory;
 import com.lilithsthrone.game.inventory.InventorySlot;
-import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
@@ -424,7 +423,7 @@ public enum RenderingEngine {
 					// add to content:
 					equippedPanelSB.append(
 							// If slot is sealed:
-							"<div class='"+inventorySlotId + getClassRarityIdentifier(tattoo.getRarity()) +"'>"
+							"<div class='"+inventorySlotId + "'>"
 								// Picture:
 								+ "<div class='inventory-icon-content'>"+tattoo.getSVGImage(charactersInventoryToRender)+"</div>"
 								
@@ -1666,15 +1665,6 @@ public enum RenderingEngine {
 
 	public static void setRenderedDisabledMap(boolean renderedDisabledMap) {
 		RenderingEngine.renderedDisabledMap = renderedDisabledMap;
-	}
-	
-	private String getClassRarityIdentifier(Rarity rarity) {
-		return (rarity == Rarity.COMMON ? " common" : "")
-				+ (rarity == Rarity.UNCOMMON ? " uncommon" : "")
-				+ (rarity == Rarity.RARE ? " rare" : "")
-				+ (rarity == Rarity.EPIC ? " epic" : "")
-				+ (rarity == Rarity.LEGENDARY ? " legendary" : "")
-				+ (rarity == Rarity.JINXED ? " jinxed" : "");
 	}
 	
 	private static String getAttributeBar(String SVGImage, Colour barColour, float attributeValue, float attributeMaximum, String id) {

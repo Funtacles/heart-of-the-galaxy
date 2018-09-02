@@ -25,7 +25,6 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.AbstractCoreType;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.ItemTag;
-import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.enchanting.AbstractItemEffectType;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffectType;
@@ -71,7 +70,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 	private List<BlockedParts> blockedPartsList;
 	private List<InventorySlot> incompatibleSlots;
 
-	private Rarity rarity;
 	private List<Colour> availablePrimaryColours;
 	private List<Colour> availablePrimaryDyeColours;
 	private List<Colour> allAvailablePrimaryColours;
@@ -101,7 +99,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 			int physicalResistance,
 			Femininity femininityRestriction,
 			InventorySlot slot,
-			Rarity rarity,
 			String pathName,
 			List<ItemEffect> effects,
 			List<BlockedParts> blockedPartsList,
@@ -131,7 +128,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 		this.femininityRestriction = femininityRestriction;
 
 		this.slot = slot;
-		this.rarity = rarity;
 
 		this.pathName = pathName;
 		
@@ -359,7 +355,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 				this.femininityRestriction = Femininity.valueOf(coreAttributes.getElementsByTagName("femininity").item(0).getTextContent());
 				setUpFemininity(this.femininityRestriction);
 				this.slot = InventorySlot.valueOf(coreAttributes.getElementsByTagName("slot").item(0).getTextContent());
-				this.rarity = Rarity.valueOf(coreAttributes.getElementsByTagName("rarity").item(0).getTextContent());
 				
 				this.isPatternAvailable = false;
 				
@@ -615,7 +610,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 						&& ((AbstractClothingType)o).getFemininityRestriction() == getFemininityRestriction()
 						&& ((AbstractClothingType)o).getSlot() == getSlot()
 						&& ((AbstractClothingType)o).getEffects().equals(getEffects())
-						&& ((AbstractClothingType)o).getRarity() == getRarity()
 						){
 					return true;
 				}
@@ -635,7 +629,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 		if(getFemininityRestriction()!=null)
 			result = 31 * result + getFemininityRestriction().hashCode();
 		result = 31 * result + getEffects().hashCode();
-		result = 31 * result + getRarity().hashCode();
 		return result;
 	}
 	
@@ -1514,10 +1507,6 @@ public abstract class AbstractClothingType extends AbstractCoreType {
 	
 	public boolean isPatternAvailable() {
 		return this.isPatternAvailable;
-	}
-
-	public Rarity getRarity() {
-		return rarity;
 	}
 
 	public List<ItemEffect> getEffects() {

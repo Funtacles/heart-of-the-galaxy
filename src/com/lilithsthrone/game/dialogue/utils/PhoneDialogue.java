@@ -44,7 +44,6 @@ import com.lilithsthrone.game.sex.SexType;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.rendering.RenderingEngine;
 import com.lilithsthrone.rendering.SVGImages;
-import com.lilithsthrone.utils.ClothingRarityComparator;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.TreeNode;
 import com.lilithsthrone.utils.Util;
@@ -1576,7 +1575,6 @@ public class PhoneDialogue {
 		weaponsDiscoveredList.addAll(WeaponType.allweapons);
 		
 		clothingDiscoveredList.addAll(ClothingType.getAllClothing());
-		clothingDiscoveredList.sort(new ClothingRarityComparator());
 	}
 	public static final DialogueNodeOld WEAPON_CATALOGUE = new DialogueNodeOld("Discovered Weapons", "", true) {
 		private static final long serialVersionUID = 1L;
@@ -1594,7 +1592,7 @@ public class PhoneDialogue {
 					journalSB.append(
 							"<div class='container-full-width' style='margin-bottom:0;'>"
 							+ "<div class='container-full-width' style='width:calc(60% - 16px)'>"
-									+ "<b style='color:" + weapon.getRarity().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(weapon.getName()) + "</b> ("+Util.capitaliseSentence(weapon.getSlot().getName())+")"
+									+ "<b>" + Util.capitaliseSentence(weapon.getName()) + "</b> ("+Util.capitaliseSentence(weapon.getSlot().getName())+")"
 							+ "</div>"
 							+ "<div class='container-full-width' style='width:calc(40% - 16px)'>");
 					
@@ -1647,7 +1645,7 @@ public class PhoneDialogue {
 					journalSB.append(
 							"<div class='container-full-width' style='margin-bottom:0;'>"
 							+ "<div class='container-full-width' style='width:calc(40% - 16px)'>"
-									+ "<b style='color:" + clothing.getRarity().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(clothing.getName()) + "</b> ("+Util.capitaliseSentence(clothing.getSlot().getName())+")"
+									+ "<b>" + Util.capitaliseSentence(clothing.getName()) + "</b> ("+Util.capitaliseSentence(clothing.getSlot().getName())+")"
 							+ "</div>"
 							+ "<div class='container-full-width' style='width:calc(60% - 16px)'>");
 					
@@ -1701,7 +1699,7 @@ public class PhoneDialogue {
 							"<div class='container-full-width' style='margin-bottom:0;'>"
 							+ "<div class='container-full-width' style='width:calc(40% - 16px)'>"
 									+ "<div class='title-button' id='"+ItemType.itemToIdMap.get(item)+"' style='background:transparent; position:relative; top:0; left:0; float:left; margin:0 8px 0 0;'>"+SVGImages.SVG_IMAGE_PROVIDER.getInformationIcon()+"</div>"
-									+ " <b style='color:" + item.getRarity().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(item.getName(false)) + "</b>"
+									+ " <b>" + Util.capitaliseSentence(item.getName(false)) + "</b>"
 							+ "</div>"
 							+ "<div class='container-full-width' style='width:calc(60% - 16px)'>");
 					

@@ -1,7 +1,6 @@
 package com.lilithsthrone.game.inventory.enchanting;
 
 import com.lilithsthrone.game.character.race.Race;
-import com.lilithsthrone.game.dialogue.eventLog.EventLogEntryBookAddedToLibrary;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
@@ -13,14 +12,7 @@ import com.lilithsthrone.utils.Colour;
  */
 public abstract class AbstractItemEffectType {
 	
-	private Colour colour;
-	
-	public AbstractItemEffectType(Colour colour) {
-		this.colour = colour;
-	}
-	
-	public Colour getColour() {
-		return colour;
+	public AbstractItemEffectType() {
 	}
 	
 	public String getPotionDescriptor() {
@@ -29,9 +21,6 @@ public abstract class AbstractItemEffectType {
 
 	protected static String getBookEffect(Race race, AbstractItemType book) {
 		Main.getProperties().addRaceDiscovered(race);
-		if(Main.getProperties().addAdvancedRaceKnowledge(race) && book!=null) {
-			Main.game.addEvent(new EventLogEntryBookAddedToLibrary(book), true);
-		}
 		
 		if(Main.game.getPlayer().addRaceDiscoveredFromBook(race)) {
 			return race.getBasicDescription()

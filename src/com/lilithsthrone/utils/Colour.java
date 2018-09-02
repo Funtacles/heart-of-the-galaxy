@@ -277,15 +277,6 @@ public enum Colour {
 	SPELL_SCHOOL_AIR(false, BaseColour.BLUE_LIGHT, "light blue", Util.newArrayListOfValues("air", "spellAir", "schoolAir")),
 	SPELL_SCHOOL_ARCANE(false, BaseColour.PINK, "pink", Util.newArrayListOfValues("spellArcane", "schoolArcane")),
 	
-	// Rarity colours:
-	RARITY_UNKNOWN(false, BaseColour.BLACK, "grey"),
-	RARITY_JINXED(false, BaseColour.RED, "red", Util.newArrayListOfValues("jinx", "jinxed")),
-	RARITY_COMMON(false, Util.newColour(0xf2f2f2), "white", Util.newArrayListOfValues("common")),
-	RARITY_UNCOMMON(false, Util.newColour(0x1de547), "green", Util.newArrayListOfValues("uncommon")),
-	RARITY_RARE(false, Util.newColour(0x47C2FF), "blue", Util.newArrayListOfValues("rare")),
-	RARITY_EPIC(false, Util.newColour(0xFF4DFC), "purple", Util.newArrayListOfValues("epic")),
-	RARITY_LEGENDARY(false, Util.newColour(0xffcc00), "gold", Util.newArrayListOfValues("legendary")),
-
 	// Inventory colours:
 	CURRENCY_GOLD(true, BaseColour.GOLD, "gold"),
 	CURRENCY_SILVER(true, BaseColour.SILVER, "gold"),

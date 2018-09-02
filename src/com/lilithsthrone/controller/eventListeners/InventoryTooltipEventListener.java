@@ -224,7 +224,7 @@ public class InventoryTooltipEventListener implements EventListener {
 			Main.mainController.setTooltipSize(TOOLTIP_WIDTH, 446);
 
 			tooltipSB.setLength(0);
-			tooltipSB.append("<div class='title' style='color:" + genericClothing.getRarity().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(genericClothing.getName()) + "</div>"
+			tooltipSB.append("<div class='title'>" + Util.capitaliseSentence(genericClothing.getName()) + "</div>"
 					
 					+ "<div class='subTitle'>" + Util.capitaliseSentence(colour.getName()) + "</div>"
 
@@ -240,7 +240,7 @@ public class InventoryTooltipEventListener implements EventListener {
 			Main.mainController.setTooltipSize(TOOLTIP_WIDTH, 446);
 
 			tooltipSB.setLength(0);
-			tooltipSB.append("<div class='title' style='color:" + genericWeapon.getRarity().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(genericWeapon.getName()) + "</div>"
+			tooltipSB.append("<div class='title'>" + Util.capitaliseSentence(genericWeapon.getName()) + "</div>"
 
 					+ "<div class='subTitle'>" + Util.capitaliseSentence(dt.getName()) + "</div>"
 
@@ -881,7 +881,7 @@ public class InventoryTooltipEventListener implements EventListener {
 		// Title:
 		tooltipSB.setLength(0);
 		tooltipSB.append("<body>"
-			+ "<div class='container-full-width center'><h5>" + Util.capitaliseSentence(tattoo.getDisplayName(true)) + "</h5></div>");
+			+ "<div class='container-full-width center'><h5>" + Util.capitaliseSentence(tattoo.getDisplayName()) + "</h5></div>");
 
 		// Core info:
 		tooltipSB.append("<div class='container-half-width titular'>" + (invSlot.getTattooSlotName()==null?"[style.colourDisabled(Cannot be tattooed)]":Util.capitaliseSentence(invSlot.getTattooSlotName())) + "</div>");
@@ -934,7 +934,7 @@ public class InventoryTooltipEventListener implements EventListener {
 		tooltipSB.append("</body>");
 
 		int specialIncrease = 0;
-		if(tattoo.getDisplayName(false).length()>40) {
+		if(tattoo.getDisplayName().length()>40) {
 			specialIncrease = 26;
 		}
 		Main.mainController.setTooltipSize(TOOLTIP_WIDTH, 396 + ((lSize+yIncrease) * LINE_HEIGHT_TITULAR) + yIncrease*8 + specialIncrease);
