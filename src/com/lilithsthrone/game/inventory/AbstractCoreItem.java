@@ -25,7 +25,6 @@ public abstract class AbstractCoreItem implements Serializable, XMLSaving {
 
 	protected String name, namePlural, SVGString;
 	protected Colour colourShade;
-	protected Rarity rarity;
 
 	protected Map<Attribute, Integer> attributeModifiers;
 	
@@ -35,13 +34,11 @@ public abstract class AbstractCoreItem implements Serializable, XMLSaving {
 			String namePlural,
 			String SVGString,
 			Colour colour,
-			Rarity rarity,
 			Map<Attribute, Integer> attributeModifiers) {
 		this(name,
 				namePlural,
 				SVGString,
 				colour,
-				rarity,
 				attributeModifiers,
 				new HashSet<>());
 	}
@@ -50,14 +47,12 @@ public abstract class AbstractCoreItem implements Serializable, XMLSaving {
 			String namePlural,
 			String SVGString,
 			Colour colour,
-			Rarity rarity,
 			Map<Attribute, Integer> attributeModifiers,
 			Set<ItemTag> itemTags) {
 		super();
 		this.name = name;
 		this.namePlural = namePlural;
 		this.colourShade = colour;
-		this.rarity = rarity;
 		this.SVGString = SVGString;
 
 		this.attributeModifiers = new EnumMap<>(Attribute.class);
@@ -95,7 +90,6 @@ public abstract class AbstractCoreItem implements Serializable, XMLSaving {
 		if(o instanceof AbstractCoreItem){
 			if(((AbstractCoreItem)o).getName().equals(this.getName())
 				&& ((AbstractCoreItem)o).getColour() == this.getColour()
-				&& ((AbstractCoreItem)o).getRarity() == this.getRarity()
 				&& ((AbstractCoreItem)o).getAttributeModifiers().equals(this.getAttributeModifiers())
 				&& ((AbstractCoreItem)o).getItemTags().equals(getItemTags())){
 					return true;
@@ -109,7 +103,6 @@ public abstract class AbstractCoreItem implements Serializable, XMLSaving {
 		int result = 17;
 		result = 31 * result + this.getName().hashCode();
 		result = 31 * result + this.getColour().hashCode();
-		result = 31 * result + this.getRarity().hashCode();
 		result = 31 * result + this.getAttributeModifiers().hashCode();
 		if(getItemTags()!=null) {
 			result = 31 * result + getItemTags().hashCode();
@@ -143,21 +136,6 @@ public abstract class AbstractCoreItem implements Serializable, XMLSaving {
 	
 	public int getPrice(float modifier) {
 		return (int) (getValue() * modifier);
-	}
-
-	public void setRarity(Rarity rarity) {
-		this.rarity = rarity;
-	}
-
-	public Rarity getRarity() {
-		return rarity;
-	}
-	
-	/**
-	 * @return the name of a css class to use as a displayed rarity in inventory screens
-	 */
-	public String getDisplayRarity() {
-		return getRarity().getName();
 	}
 
 	public Colour getColour() {

@@ -158,14 +158,6 @@ public class PlayerCharacter extends GameCharacter implements XMLSaving {
 			CharacterUtils.addAttribute(doc, element, "id", occupant);
 		}
 		
-//		private SizedStack<ShopTransaction> buybackStack; TODO
-		
-//		Element slavesOwned = doc.createElement("slavesExported");
-//		properties.appendChild(slavesOwned);
-//		for(String id : this.getSlavesOwned()) {
-//			Main.game.getNPCById(id).saveAsXML(slavesOwned, doc);
-//		}
-		
 		return properties;
 	}
 	
@@ -256,14 +248,8 @@ public class PlayerCharacter extends GameCharacter implements XMLSaving {
 						Element e = (Element) questMapEntries.item(i);
 						try {
 							String questLine = e.getAttribute("questLine");
-							if(questLine.contains("SIDE_NYAN")) {
-								questLine = questLine.replace("SIDE_NYAN", "RELATIONSHIP_NYAN");
-							}
 							
 							String quest = e.getAttribute("quest");
-							if(quest.contains("SIDE_NYAN")) {
-								quest = quest.replace("SIDE_NYAN", "RELATIONSHIP_NYAN");
-							}
 							character.quests.put(
 									QuestLine.valueOf(questLine),
 									Quest.valueOf(quest));

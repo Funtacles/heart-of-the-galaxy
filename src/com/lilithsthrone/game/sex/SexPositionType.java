@@ -12,7 +12,6 @@ import com.lilithsthrone.game.sex.sexActions.SexActionInterface;
 import com.lilithsthrone.game.sex.sexActions.SexActionPresets;
 import com.lilithsthrone.game.sex.sexActions.SexActionType;
 import com.lilithsthrone.game.sex.sexActions.baseActionsMisc.GenericOrgasms;
-import com.lilithsthrone.game.sex.sexActions.dominion.GloryHole;
 import com.lilithsthrone.game.sex.sexActions.dominion.MasturbationPanties;
 import com.lilithsthrone.game.sex.sexActions.dominion.ToiletStall;
 import com.lilithsthrone.game.sex.sexActions.dominion.VickyDominating;
@@ -28,8 +27,6 @@ import com.lilithsthrone.game.sex.sexActions.universal.MilkingStall;
 import com.lilithsthrone.game.sex.sexActions.universal.Missionary;
 import com.lilithsthrone.game.sex.sexActions.universal.PetMounting;
 import com.lilithsthrone.game.sex.sexActions.universal.PetOral;
-import com.lilithsthrone.game.sex.sexActions.universal.PixShower;
-import com.lilithsthrone.game.sex.sexActions.universal.RalphOral;
 import com.lilithsthrone.game.sex.sexActions.universal.SixtyNine;
 import com.lilithsthrone.game.sex.sexActions.universal.Standing;
 import com.lilithsthrone.game.sex.sexActions.universal.StocksSex;
@@ -882,67 +879,6 @@ public enum SexPositionType {
 		}
 	},
 	
-	UNDER_DESK_RALPH("Under desk",
-			false,
-			false,
-			Util.newArrayListOfValues(RalphOral.class), Util.newHashMapOfValues(
-					new Value<>(
-							SexPositionSlot.KNEELING_RECEIVING_ORAL_RALPH,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.KNEELING_PERFORMING_ORAL_RALPH,
-									new SexActionInteractions(
-										Util.mergeMaps(
-											SexActionPresets.tailToUpperTorso,
-											SexActionPresets.tentacleToUpperTorso,
-											SexActionPresets.vaginaToMouth,
-											SexActionPresets.penisToMouth,
-											SexActionPresets.groinToGroin,
-											SexActionPresets.penisToAss))))),
-					new Value<>(
-							SexPositionSlot.KNEELING_PERFORMING_ORAL_RALPH,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.KNEELING_RECEIVING_ORAL_RALPH,
-									new SexActionInteractions(
-											Util.mergeMaps(
-											SexActionPresets.fingerToLowerHalf,
-											SexActionPresets.penisToFeet))))))) {
-		@Override
-		public String getDescription() {
-			return "You're kneeling under Ralph's counter, with your face just inches away from his crotch.";
-		}
-	},
-	
-	SHOWER_TIME_PIX("Shower sex",
-			false,
-			false,
-			Util.newArrayListOfValues(PixShower.class), Util.newHashMapOfValues(
-					new Value<>(
-							SexPositionSlot.FACE_TO_WALL_FACING_TARGET_SHOWER_PIX,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.FACE_TO_WALL_AGAINST_WALL_SHOWER_PIX,
-									new SexActionInteractions(
-										Util.mergeMaps(
-												SexActionPresets.tailToAllAreas,
-												SexActionPresets.tentacleToAllAreas,
-												SexActionPresets.vaginaToPenis,
-												SexActionPresets.assToPenis,
-												SexActionPresets.kissing))))),
-					new Value<>(
-							SexPositionSlot.FACE_TO_WALL_AGAINST_WALL_SHOWER_PIX,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.FACE_TO_WALL_FACING_TARGET_SHOWER_PIX,
-									new SexActionInteractions(
-											SexActionPresets.appendagesToAllAreas)))))) {
-		@Override
-		public String getDescription() {
-			return "You're standing with your face pressed up against one wall of the shower, and behind you, Pix is growling hungrily into your ear.";
-		}
-	},
-	
 	HANDS_ROSE("Hand-holding",
 			false,
 			false,
@@ -1229,114 +1165,6 @@ public enum SexPositionType {
 		public String getDescription() {
 			return UtilText.parse(Sex.getCharacterInPosition(SexPositionSlot.KNEELING_RECEIVING_ORAL), Sex.getCharacterInPosition(SexPositionSlot.KNEELING_PERFORMING_ORAL),
 					"[npc2.NameIsFull] kneeling on the floor of the toilet in front of [npc.name], with [npc2.her] [npc2.face+] hovering just inches away from [npc.her] groin.");
-		}
-	},
-	
-	GLORY_HOLE("Glory hole oral",
-			true,
-			false,
-			Util.newArrayListOfValues(GloryHole.class), Util.newHashMapOfValues(
-					new Value<>(
-							SexPositionSlot.GLORY_HOLE_RECEIVING_ORAL_ONE,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.GLORY_HOLE_KNEELING,
-									new SexActionInteractions(
-										Util.mergeMaps(
-											SexActionPresets.vaginaToMouth,
-											SexActionPresets.penisToMouth))))),
-					new Value<>(
-							SexPositionSlot.GLORY_HOLE_RECEIVING_ORAL_TWO,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.GLORY_HOLE_KNEELING,
-									new SexActionInteractions(
-										Util.mergeMaps(
-											SexActionPresets.vaginaToMouth,
-											SexActionPresets.penisToMouth))))),
-					new Value<>(
-							SexPositionSlot.GLORY_HOLE_KNEELING,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.GLORY_HOLE_RECEIVING_ORAL_ONE,
-									new SexActionInteractions(
-										Util.mergeMaps(
-											SexActionPresets.fingerToPenis,
-											SexActionPresets.fingerToVagina))),
-							new Value<>(
-									SexPositionSlot.GLORY_HOLE_RECEIVING_ORAL_TWO,
-									new SexActionInteractions(
-										Util.mergeMaps(
-											SexActionPresets.fingerToPenis,
-											SexActionPresets.fingerToVagina))))))) {
-		@Override
-		public String getDescription() {
-			List<GameCharacter> characters = new ArrayList<>();
-			characters.add(Sex.getCharacterInPosition(SexPositionSlot.GLORY_HOLE_KNEELING));
-			characters.add(Sex.getCharacterInPosition(SexPositionSlot.GLORY_HOLE_RECEIVING_ORAL_ONE));
-			
-			if(Sex.getTotalParticipantCount(false)==3) {
-				characters.add(Sex.getCharacterInPosition(SexPositionSlot.GLORY_HOLE_RECEIVING_ORAL_TWO));
-				return UtilText.parse(characters,
-						"[npc.NameIsFull] kneeling on the floor of the toilet, ready to serve [npc2.namePos] [npc2.cock+] on one side, an [npc3.namePos] [npc3.cock+] on the other.");
-			} else {
-				return UtilText.parse(characters,
-						"[npc.NameIsFull] kneeling on the floor of the toilet, [npc.her] mouth up against the glory hole in preparation to serve whatever set of genitals [npc2.name] [npc2.has].");
-			}
-		}
-	},
-	
-	GLORY_HOLE_SEX("Glory hole sex",
-			true,
-			false,
-			Util.newArrayListOfValues(GloryHole.class), Util.newHashMapOfValues(
-					new Value<>(
-							SexPositionSlot.GLORY_HOLE_RECEIVING_ORAL_ONE,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.GLORY_HOLE_FUCKED,
-									new SexActionInteractions(
-										Util.mergeMaps(
-											SexActionPresets.vaginaToMouth,
-											SexActionPresets.penisToMouth))))),
-					new Value<>(
-							SexPositionSlot.GLORY_HOLE_FUCKING,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.GLORY_HOLE_FUCKED,
-									new SexActionInteractions(
-										Util.mergeMaps(
-											SexActionPresets.penisToVagina))))),
-					new Value<>(
-							SexPositionSlot.GLORY_HOLE_FUCKED,
-							Util.newHashMapOfValues(
-							new Value<>(
-									SexPositionSlot.GLORY_HOLE_RECEIVING_ORAL_ONE,
-									new SexActionInteractions(
-											Util.mergeMaps(
-												SexActionPresets.fingerToPenis,
-												SexActionPresets.fingerToVagina))),
-							new Value<>(
-									SexPositionSlot.GLORY_HOLE_FUCKING,
-									new SexActionInteractions(
-											Util.mergeMaps(
-													SexActionPresets.anusToPenis))))))) {
-		@Override
-		public String getDescription() {
-			List<GameCharacter> characters = new ArrayList<>();
-			characters.add(Sex.getCharacterInPosition(SexPositionSlot.GLORY_HOLE_FUCKED));
-			characters.add(Sex.getCharacterInPosition(SexPositionSlot.GLORY_HOLE_FUCKING));
-
-			if(Sex.getTotalParticipantCount(false)==3) {
-				characters.add(Sex.getCharacterInPosition(SexPositionSlot.GLORY_HOLE_RECEIVING_ORAL_ONE));
-				return UtilText.parse(characters,
-						"[npc.NameIsFull] pressing [npc.her] [npc.ass+] up against [npc2.namePos] glory hole, ready to get penetrated by [npc2.her] [npc2.cock+],"
-								+ " while bringing [npc.her] mouth down to [npc3.namePos] [npc3.cock+] on the other side of the narrow toilet stall.");
-				
-			} else {
-				return UtilText.parse(characters,
-						"[npc.NameIsFull] pressing [npc.her] [npc.ass+] up against [npc2.namePos] glory hole, ready to get penetrated by [npc2.her] [npc2.cock+].");
-			}
 		}
 	},
 	;

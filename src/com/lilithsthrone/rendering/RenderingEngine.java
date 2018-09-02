@@ -181,7 +181,7 @@ public enum RenderingEngine {
 		// Main weapon:
 		if (charactersInventoryToRender.getMainWeapon() != null) {
 			equippedPanelSB.append(
-					"<div class='inventory-item-slot weapon" + getClassRarityIdentifier(charactersInventoryToRender.getMainWeapon().getRarity()) + "'>"
+					"<div class='inventory-item-slot weapon'>"
 						+ "<div class='inventory-icon-content'>"+charactersInventoryToRender.getMainWeapon().getSVGString()+"</div>"
 						+ "<div class='overlay-inventory' id='" + InventorySlot.WEAPON_MAIN.toString() + "Slot'></div>"
 					+ "</div>");
@@ -191,7 +191,7 @@ public enum RenderingEngine {
 		
 		// Offhand weapon:
 		if (charactersInventoryToRender.getOffhandWeapon() != null) {
-			equippedPanelSB.append("<div class='inventory-item-slot weapon" + getClassRarityIdentifier(charactersInventoryToRender.getOffhandWeapon().getRarity()) + "'>"
+			equippedPanelSB.append("<div class='inventory-item-slot weapon'>"
 						+ "<div class='inventory-icon-content'>"+charactersInventoryToRender.getOffhandWeapon().getSVGString()+"</div>"
 						+ "<div class='overlay-inventory' id='" + InventorySlot.WEAPON_OFFHAND.toString() + "Slot'></div>"
 					+ "</div>");
@@ -214,7 +214,7 @@ public enum RenderingEngine {
 					// add to content:
 					equippedPanelSB.append(
 							// If slot is sealed:
-							"<div class='inventory-item-slot piercing " + getClassRarityIdentifier(clothing.getRarity()) + "'>"
+							"<div class='inventory-item-slot piercing'>"
 								
 								// Picture:
 								+ "<div class='inventory-icon-content'>"+clothing.getSVGEquippedString(charactersInventoryToRender)+"</div>"
@@ -354,12 +354,11 @@ public enum RenderingEngine {
 					// add to content:
 					equippedPanelSB.append(
 							// If slot is sealed:
-							"<div class='"+inventorySlotId + getClassRarityIdentifier(clothing.getRarity()) + "'>"
+							"<div class='"+inventorySlotId + "'>"
 								
 								// Picture:
 								+ "<div class='inventory-icon-content'>"+clothing.getSVGEquippedString(charactersInventoryToRender)+"</div>"
 
-//								+ (charactersInventoryToRender.getScarInSlot(invSlot)!=null ? "<div class='scarIcon'>" + SVGImages.SVG_IMAGE_PROVIDER.getScarIcon() + "</div>" : "")
 								// If clothing is displaced:
 								+ (!clothing.getDisplacedList().isEmpty() ? "<div class='displacedIcon'>" + SVGImages.SVG_IMAGE_PROVIDER.getDisplacedIcon() + "</div>" : "")
 								// If clothing is cummed in:
@@ -495,9 +494,7 @@ public enum RenderingEngine {
 		} else {
 			inventorySB.append(
 					"<p style='width:100%; text-align:center; padding:0 margin:0;'>"
-						+(InventoryDialogue.getNPCInventoryInteraction() ==  InventoryInteraction.CHARACTER_CREATION
-								?"<b style='color:"+Colour.BASE_TAN.toWebHexString()+";'>Your wardrobe</b>"
-								:"<b style='color:"+Colour.BASE_TAN.toWebHexString()+";'>In this Area</b>")
+						+"<b style='color:"+Colour.BASE_TAN.toWebHexString()+";'>In this Area</b>"
 						+"<b> | Page "+(pageRight+1)+"</b>"
 					+"</p>");
 		}
@@ -701,7 +698,7 @@ public enum RenderingEngine {
 	private static StringBuilder itemSB = new StringBuilder();
 	private static String getInventoryItemDiv(GameCharacter charactersInventoryToRender, AbstractCoreItem item, int count, String idPrefix) {
 		itemSB.setLength(0);
-		itemSB.append("<div class='inventory-item-slot "+ item.getDisplayRarity() + "'>"
+		itemSB.append("<div class='inventory-item-slot'>"
 						+ "<div class='inventory-icon-content'>"+item.getSVGString()+"</div>");
 
 		if (item instanceof AbstractClothing && ((AbstractClothing)item).isDirty()) {
@@ -745,7 +742,7 @@ public enum RenderingEngine {
 	}
 	private static String getInventoryItemDiv(CharacterInventory inventory, AbstractCoreItem item, int count, String idPrefix) {
 		itemSB.setLength(0);
-		itemSB.append("<div class='inventory-item-slot "+ item.getDisplayRarity() + "'>"
+		itemSB.append("<div class='inventory-item-slot'>"
 						+ "<div class='inventory-icon-content'>"+item.getSVGString()+"</div>");
 
 		if (item instanceof AbstractClothing && ((AbstractClothing)item).isDirty()) {
@@ -773,7 +770,7 @@ public enum RenderingEngine {
 	private static void appendDivsForGiftsToInventory(StringBuilder stringBuilder, Map<AbstractCoreItem, Integer> map, String idPrefix) {
 		for (Entry<? extends AbstractCoreItem, Integer> entry : map.entrySet()) {
 			stringBuilder.append(
-					"<div class='inventory-item-slot unequipped "+ entry.getKey().getDisplayRarity() + "'>"
+					"<div class='inventory-item-slot unequipped'>"
 						+ "<div class='inventory-icon-content'>"
 							+entry.getKey().getSVGString()
 						+"</div>"
@@ -802,7 +799,7 @@ public enum RenderingEngine {
 	}
 	
 	private static String getBuybackItemPanel(AbstractCoreItem itemBuyback, String id, int price) {
-		return "<div class='inventory-item-slot unequipped " + itemBuyback.getDisplayRarity() + "'>"
+		return "<div class='inventory-item-slot unequipped'>"
 					+ "<div class='inventory-icon-content'>"+itemBuyback.getSVGString()+"</div>"
 					+ "<div class='overlay' id='" + id + "'>"
 						+ getItemPriceDiv(price)
@@ -1170,13 +1167,13 @@ public enum RenderingEngine {
 					if(count%2==0) {
 						uiAttributeSB.append(
 								"<div class='event-log-entry' style='background:"+getEntryBackgroundColour(false)+";'>"
-										+entry.getValue()+"x "+UtilText.parse(entry.getKey().getName(false, true))
+										+entry.getValue()+"x "+UtilText.parse(entry.getKey().getName(false))
 										+ "<div class='overlay-inventory' id='WEAPON_FLOOR_"+entry.getKey().hashCode()+"'></div>"
 								+"</div>");
 					} else {
 						uiAttributeSB.append(
 								"<div class='event-log-entry' style='background:"+getEntryBackgroundColour(true)+";'>"
-										+entry.getValue()+"x "+UtilText.parse(entry.getKey().getName(false, true))
+										+entry.getValue()+"x "+UtilText.parse(entry.getKey().getName(false))
 										+ "<div class='overlay-inventory' id='WEAPON_FLOOR_"+entry.getKey().hashCode()+"'></div>"
 								+"</div>");
 					}
@@ -1186,13 +1183,13 @@ public enum RenderingEngine {
 					if(count%2==0) {
 						uiAttributeSB.append(
 								"<div class='event-log-entry' style='background:"+getEntryBackgroundColour(false)+";'>"
-										+entry.getValue()+"x "+UtilText.parse(entry.getKey().getName(false, true))
+										+entry.getValue()+"x "+UtilText.parse(entry.getKey().getName(false))
 										+ "<div class='overlay-inventory' id='CLOTHING_FLOOR_"+entry.getKey().hashCode()+"'></div>"
 								+"</div>");
 					} else {
 						uiAttributeSB.append(
 								"<div class='event-log-entry' style='background:"+getEntryBackgroundColour(true)+";'>"
-										+entry.getValue()+"x "+UtilText.parse(entry.getKey().getName(false, true))
+										+entry.getValue()+"x "+UtilText.parse(entry.getKey().getName(false))
 										+ "<div class='overlay-inventory' id='CLOTHING_FLOOR_"+entry.getKey().hashCode()+"'></div>"
 								+"</div>");
 					}
@@ -1202,13 +1199,13 @@ public enum RenderingEngine {
 					if(count%2==0) {
 						uiAttributeSB.append(
 								"<div class='event-log-entry' style='background:"+getEntryBackgroundColour(false)+";'>"
-										+entry.getValue()+"x "+UtilText.parse(entry.getKey().getName(false, true))
+										+entry.getValue()+"x "+UtilText.parse(entry.getKey().getName(false))
 										+ "<div class='overlay-inventory' id='ITEM_FLOOR_"+entry.getKey().hashCode()+"'></div>"
 								+"</div>");
 					} else {
 						uiAttributeSB.append(
 								"<div class='event-log-entry' style='background:"+getEntryBackgroundColour(true)+";'>"
-										+entry.getValue()+"x "+UtilText.parse(entry.getKey().getName(false, true))
+										+entry.getValue()+"x "+UtilText.parse(entry.getKey().getName(false))
 										+ "<div class='overlay-inventory' id='ITEM_FLOOR_"+entry.getKey().hashCode()+"'></div>"
 								+"</div>");
 					}

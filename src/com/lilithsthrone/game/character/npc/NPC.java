@@ -1353,7 +1353,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 				sexPositionPreferences.add(SexPositionSlot.SIXTY_NINE_TOP);
 				sexPositionPreferences.add(SexPositionSlot.KNEELING_PERFORMING_ORAL);
 				sexPositionPreferences.add(SexPositionSlot.CHAIR_KNEELING);
-				sexPositionPreferences.add(SexPositionSlot.GLORY_HOLE_KNEELING);
 				
 			} else if(targetSexPreference.equals(new SexType(SexParticipantType.NORMAL, SexAreaPenetration.TONGUE, SexAreaOrifice.VAGINA))){
 				sexPositionPreferences.add(SexPositionSlot.SIXTY_NINE_TOP);
@@ -1361,13 +1360,11 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 				sexPositionPreferences.add(SexPositionSlot.DOGGY_BEHIND_ORAL);
 				sexPositionPreferences.add(SexPositionSlot.FACE_SITTING_ON_BACK);
 				sexPositionPreferences.add(SexPositionSlot.CHAIR_KNEELING);
-				sexPositionPreferences.add(SexPositionSlot.GLORY_HOLE_KNEELING);
 				
 			} else if(targetSexPreference.equals(new SexType(SexParticipantType.NORMAL, SexAreaPenetration.TONGUE, SexAreaOrifice.ANUS))){
 				sexPositionPreferences.add(SexPositionSlot.DOGGY_BEHIND_ORAL);
 				sexPositionPreferences.add(SexPositionSlot.FACE_SITTING_ON_BACK);
 				sexPositionPreferences.add(SexPositionSlot.CHAIR_KNEELING);
-				sexPositionPreferences.add(SexPositionSlot.GLORY_HOLE_KNEELING);
 				
 			} else if(targetSexPreference.getTargetedSexArea()==SexAreaOrifice.ANUS){
 				sexPositionPreferences.add(SexPositionSlot.FACE_TO_WALL_FACING_TARGET);
@@ -1398,7 +1395,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 				sexPositionPreferences.add(SexPositionSlot.DOGGY_ON_ALL_FOURS);
 				sexPositionPreferences.add(SexPositionSlot.MISSIONARY_ON_BACK);
 				sexPositionPreferences.add(SexPositionSlot.CHAIR_TOP);
-				sexPositionPreferences.add(SexPositionSlot.GLORY_HOLE_FUCKED);
 				
 			} else if(targetSexPreference.equals(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.VAGINA, SexAreaPenetration.PENIS))) {
 				sexPositionPreferences.add(SexPositionSlot.COWGIRL_RIDING);
@@ -1406,7 +1402,6 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 				sexPositionPreferences.add(SexPositionSlot.DOGGY_ON_ALL_FOURS);
 				sexPositionPreferences.add(SexPositionSlot.MISSIONARY_ON_BACK);
 				sexPositionPreferences.add(SexPositionSlot.CHAIR_TOP);
-				sexPositionPreferences.add(SexPositionSlot.GLORY_HOLE_FUCKED);
 				
 			}
 		}

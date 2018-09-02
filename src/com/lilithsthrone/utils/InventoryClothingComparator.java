@@ -15,19 +15,12 @@ public class InventoryClothingComparator implements Comparator<AbstractClothing>
 
 	@Override
 	public int compare(AbstractClothing first, AbstractClothing second) {
-		int result = first.getRarity().compareTo(second.getRarity());
+		int result = first.getClothingType().toString().compareTo(second.getClothingType().toString());
 		
-		if (result != 0) {
+		if(result!=0) {
 			return result;
-			
 		} else {
-			result = first.getClothingType().toString().compareTo(second.getClothingType().toString());
-			
-			if(result!=0) {
-				return result;
-			} else {
-				return first.getColour().getName().compareTo(second.getColour().getName());
-			}
+			return first.getColour().getName().compareTo(second.getColour().getName());
 		}
 	}
 }

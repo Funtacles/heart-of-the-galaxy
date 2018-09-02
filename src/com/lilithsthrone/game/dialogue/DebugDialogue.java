@@ -3,7 +3,6 @@ package com.lilithsthrone.game.dialogue;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lilithsthrone.game.Weather;
 import com.lilithsthrone.game.character.attributes.Attribute;
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.types.ArmType;
@@ -23,9 +22,7 @@ import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.game.character.race.RacialBody;
-import com.lilithsthrone.game.dialogue.npcDialogue.unique.LumiDialogue;
 import com.lilithsthrone.game.dialogue.responses.Response;
-import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
 import com.lilithsthrone.parse.ParserCommand;
 import com.lilithsthrone.parse.ParserTarget;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -42,7 +39,6 @@ import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.BaseColour;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
-import com.lilithsthrone.world.places.PlaceType;
 
 /**
  * @since 0.1.0
@@ -216,23 +212,6 @@ public class DebugDialogue {
 						}
 					};
 					
-			} else if (index == 23) {
-				if(Main.game.getPlayer().getLocationPlace().getPlaceType()!=PlaceType.DOMINION_BACK_ALLEYS) {
-					return new Response("Lumi test", "Lumi can only be spawned in alleyway tiles.", null);
-					
-				} else if(!Main.game.getNonCompanionCharactersPresent().isEmpty()) {
-					return new Response("Lumi test", "Lumi can only be spawned into empty tiles!", null);
-					
-				}  else if(Main.game.getCurrentWeather()==Weather.MAGIC_STORM) {
-					return new Response("Lumi test", "Lumi can not be spawned during an arcane storm.", null);
-				}
-				return new ResponseEffectsOnly("Lumi test", "Spawn Lumi to test her dialogue and scenes."){
-					@Override
-					public void effects() {
-						Main.game.setContent(new Response("", "", LumiDialogue.LUMI_APPEARS));
-					}
-				};
-				
 			}
 			else {
 				return null;
@@ -1387,9 +1366,6 @@ public class DebugDialogue {
 							
 							+ command.getExampleBeforeParse("brax", (command.getArguments()==""?"":command.getArgumentExample()))+" -> "
 								+UtilText.parse("[brax."+command.getTags()[0]+(command.getArguments()==""?"":"("+command.getArgumentExample()+")")+"]")+"<br/>"
-							
-							+ command.getExampleBeforeParse("kate", (command.getArguments()==""?"":command.getArgumentExample()))+" -> "
-								+UtilText.parse("[kate."+command.getTags()[0]+(command.getArguments()==""?"":"("+command.getArgumentExample()+")")+"]")
 							+"</p>");
 					
 					count++;

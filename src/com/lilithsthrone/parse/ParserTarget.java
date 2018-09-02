@@ -94,17 +94,6 @@ public enum ParserTarget {
 				}
 			},
 	
-	PROLOGUE_MALE(Util.newArrayListOfValues("prologueMale"), "") {
-		public String getDescription() {
-			return Main.game.getPrologueMale().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getPrologueMale();
-		}
-	},
-	
 	PROLOGUE_FEMALE(Util.newArrayListOfValues("prologueFemale"), "") {
 		public String getDescription() {
 			return Main.game.getPrologueFemale().getDescription();
@@ -198,61 +187,6 @@ public enum ParserTarget {
 		}
 	},
 	
-	KATE(Util.newArrayListOfValues("kate"), "") {
-		public String getDescription() {
-			return Main.game.getKate().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getKate();
-		}
-	},
-	
-	RALPH(Util.newArrayListOfValues("ralph"), "") {
-		public String getDescription() {
-			return Main.game.getRalph().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getRalph();
-		}
-	},
-	
-	NYAN(Util.newArrayListOfValues("nyan"), "") {
-		public String getDescription() {
-			return Main.game.getNyan().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getNyan();
-		}
-	},
-	
-	VICKY(Util.newArrayListOfValues("vicky"), "") {
-		public String getDescription() {
-			return Main.game.getVicky().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getVicky();
-		}
-	},
-	
-	PIX(Util.newArrayListOfValues("pix"), "") {
-		public String getDescription() {
-			return Main.game.getPix().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getPix();
-		}
-	},
-	
 	ARTHUR(Util.newArrayListOfValues("arthur"), "") {
 		public String getDescription() {
 			return Main.game.getArthur().getDescription();
@@ -261,17 +195,6 @@ public enum ParserTarget {
 		@Override
 		public GameCharacter getCharacter(String tag) {
 			return Main.game.getArthur();
-		}
-	},
-	
-	LUMI(Util.newArrayListOfValues("lumi"), "") {
-		public String getDescription() {
-			return Main.game.getLumi().getDescription();
-		}
-
-		@Override
-		public GameCharacter getCharacter(String tag) {
-			return Main.game.getLumi();
 		}
 	};
 	

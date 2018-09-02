@@ -25,7 +25,6 @@ public class Anus implements BodyPartInterface, Serializable {
 	// Asshole variables:
 	protected AnusType type;
 	protected OrificeAnus orificeAnus;
-	protected boolean bleached;
 	protected BodyHair assHair;
 
 	public Anus(AnusType type, int wetness, float capacity, int elasticity, int plasticity, boolean virgin) {
@@ -33,7 +32,6 @@ public class Anus implements BodyPartInterface, Serializable {
 		
 		orificeAnus = new OrificeAnus(wetness, capacity, elasticity, plasticity, virgin, type.getDefaultRacialOrificeModifiers());
 		
-		bleached = false;
 		assHair = BodyHair.ZERO_NONE;
 	}
 
@@ -92,35 +90,6 @@ public class Anus implements BodyPartInterface, Serializable {
 	
 	public OrificeAnus getOrificeAnus() {
 		return orificeAnus;
-	}
-
-
-	public boolean isBleached() {
-		return bleached;
-	}
-	
-	public String setAssBleached(GameCharacter owner, boolean bleached) {
-		if(this.bleached == bleached) {
-			return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
-		}
-		
-		this.bleached = bleached;
-		
-		if(bleached) {
-			if(owner.isPlayer()) {
-				return "<p>[style.boldTfSex(Your asshole is now bleached!)]</p>";
-			} else {
-				return UtilText.parse(owner,
-						"<p>[style.boldTfSex([npc.NamePos] asshole is now bleached!)]</p>");
-			}
-		} else {
-			if(owner.isPlayer()) {
-				return "<p>[style.boldTfSex(Your asshole is no longer bleached!)]</p>";
-			} else {
-				return UtilText.parse(owner,
-						"<p>[style.boldTfSex([npc.NamePos] asshole is no longer bleached!)]</p>");
-			}
-		}
 	}
 
 	public BodyHair getAssHair() {

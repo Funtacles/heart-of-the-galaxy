@@ -19,7 +19,6 @@ import com.lilithsthrone.game.character.markings.TattooCounterType;
 import com.lilithsthrone.game.character.markings.TattooType;
 import com.lilithsthrone.game.character.persona.Name;
 import com.lilithsthrone.game.character.persona.NameTriplet;
-import com.lilithsthrone.game.character.persona.SexualOrientation;
 import com.lilithsthrone.game.character.quests.Quest;
 import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.character.quests.QuestType;
@@ -32,8 +31,6 @@ import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
 import com.lilithsthrone.game.dialogue.utils.BodyChanging;
 import com.lilithsthrone.game.dialogue.utils.CharacterModificationUtils;
-import com.lilithsthrone.game.dialogue.utils.InventoryDialogue;
-import com.lilithsthrone.game.dialogue.utils.InventoryInteraction;
 import com.lilithsthrone.game.dialogue.utils.OptionsDialogue;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.InventorySlot;
@@ -41,10 +38,6 @@ import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.game.inventory.weapon.WeaponType;
-import com.lilithsthrone.game.sex.SexAreaOrifice;
-import com.lilithsthrone.game.sex.SexAreaPenetration;
-import com.lilithsthrone.game.sex.SexParticipantType;
-import com.lilithsthrone.game.sex.SexType;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
@@ -536,23 +529,12 @@ public class CharacterCreation {
 		}
 	}
 	
-	public static final DialogueNodeOld CHOOSE_APPEARANCE = new DialogueNodeOld("A Night Out", "", true) {
+	public static final DialogueNodeOld CHOOSE_APPEARANCE = new DialogueNodeOld("TranSpace Personnel Form", "", true) {
 		private static final long serialVersionUID = 1L;
 		
 		@Override
 		public String getHeaderContent() {
-			return "<p>"
-						+ "By the time the taxi finally pulls up to the museum, you're already almost five minutes late."
-						+ " You'd promised your aunt Lily that you'd be here in time for her speech, and as you hurriedly pay the driver his fare and step out of the car, you hope that the opening event hasn't started yet."
-					+ "</p>"
-					+ "<p>"
-						+ "The street lights flicker into life as you rush over to the entrance, illuminating your surroundings with a dull orange glow."
-						+ " It only takes a moment before you're standing at the museum's front doors, where, much to your dismay, you see that a small queue has formed."
-						+ " Having no choice but to step in line and wait your turn, you briefly glance over at the large glass windows of the building's modern facade to see your blurry reflection in the glass..."
-					+ "</p>"
-					+ "<br/>"
-					
-					+ "<div class='cosmetics-container' style='background:transparent;'>"
+			return "<div class='cosmetics-container' style='background:transparent;'>"
 					
 						+ CharacterModificationUtils.getGenderChoiceDiv()
 						
@@ -579,7 +561,7 @@ public class CharacterCreation {
 		@Override
 		public Response getResponse(int responseTab, int index) {
 			if (index == 1) {
-				return new Response("Continue", "Wait your turn, and hope that the event hasn't started yet.", CHOOSE_NAME);
+				return new Response("Continue", "Specify Name", CHOOSE_NAME);
 				
 			}
 			else if (index == 0) {
@@ -591,36 +573,14 @@ public class CharacterCreation {
 		}
 	};
 	
-	public static final DialogueNodeOld CHOOSE_NAME = new DialogueNodeOld("A Night Out", "", true) {
+	public static final DialogueNodeOld CHOOSE_NAME = new DialogueNodeOld("TranSpace Personnel Form", "", true) {
 		private static final long serialVersionUID = 1L;
 
 		boolean unsuitableName = false, unsuitableSurname = false;
 		
 		@Override
 		public String getHeaderContent() {
-			return "<p>"
-						+ "[npcMale.speech("+(Main.game.getPlayer().isFeminine()?"Miss":"Sir")+",)]"
-						+ " the doorman calls out to you, evidently having finished with the other people in the queue,"
-						+ " [npcMale.speech(do you have an invitation?)]"
-					+ "</p>"
-					+ "<p>"
-						+ "You turn away from the glass and step forwards, smiling."
-						+ " [pc.speech(Yes, I have it right here... erm... hold on....)]"
-					+ "</p>"
-					+ "<p>"
-						+ "Reaching into your "+(Main.game.getPlayer().isFeminine()?"purse":"pocket")+", you feel your heart start to race as you discover that the invitation isn't in there."
-						+ " [pc.speech(No, no, no! I must have left it in the taxi!)]"
-					+ "</p>"
-					+ "<p>"
-						+ "[npcMale.speech(Well, don't worry,)]"
-						+ " the man replies,"
-						+ " [npcMale.speech(if you give me your name, I can check to make sure that you're on the list.)]"
-					+ "</p>"
-					+ "<p>"
-						+ "Breathing a sigh of relief, you tell the man your name..."
-					+ "</p>"
-					+"<br/>"
-					+ "<div class='container-full-width' style='text-align:center;'>"
+			return "<div class='container-full-width' style='text-align:center;'>"
 						+ "<div style='position:relative; display:inline-block; padding-bottom:0; margin 0 auto; vertical-align:middle; width:100%; text-align:center;'>"
 							+ "<p style='display:inline-block; padding:0; margin:0; height:32px; line-height:32px; width:100px;'>First name: </p>"
 							+ "<form style='display:inline-block; padding:0; margin:0; text-align:center;'><input type='text' id='nameInput' value='"+ UtilText.parseForHTMLDisplay(Main.game.getPlayer().getName())+ "'></form>"
@@ -737,34 +697,12 @@ public class CharacterCreation {
 		}
 	};
 	
-	public static final DialogueNodeOld CHOOSE_ADVANCED_APPEARANCE = new DialogueNodeOld("In the Museum", "", true) {
+	public static final DialogueNodeOld CHOOSE_ADVANCED_APPEARANCE = new DialogueNodeOld("TranSpace Personnel Medical Data", "", true) {
 		private static final long serialVersionUID = 1L;
 		
 		@Override
 		public String getHeaderContent() {
-			return "<p>"
-						+ "[pc.speech(It's "+(Main.game.getPlayer().getSurname().length()!=0?"[pc.surname], [pc.name] [pc.surname]":"[pc.name]")+",)]"
-						+ " you say, impatiently looking down at the man's clipboard as he scans through his list."
-					+ "</p>"
-					+ "<p>"
-						+ "Finally, you see his finger trace over your name, and with a smile, he steps to one side and beckons you forwards."
-						+ " [npcMale.speech(Have a good evening, "+(Main.game.getPlayer().getSurname().length()!=0
-								?(Main.game.getPlayer().isFeminine()?"Ms.":"Mr.")+" [pc.surname]"
-								:(Main.game.getPlayer().isFeminine()?"Miss":"Sir"))+".)]"
-					+ "</p>"
-					+ "<p>"
-						+ "Thanking him, you hurry through the entranceway, and within moments, find yourself stepping into the museum's enormous central lobby."
-						+ " Large banners have been hung from the upper floor's balconies; their bold font proudly declaring this to be the 'Akkadian Empire Exhibit: Opening Evening'."
-						+ " On the far side of the grand hall, you see throngs of people surrounding a large stage, and you breathe a sigh of relief as you notice that it's currently empty."
-					+ "</p>"
-					+ "<p>"
-						+ "[pc.thought(Phew... I made it in time after all...)]"
-					+ "</p>"
-					+ "<p>"
-						+ "As Lily's opening speech seems to be running just as late as you are, you decide to step over to a nearby mirror to make sure that you're looking presentable..."
-					+ "</p>"
-					+ "<br/>"
-					+ "<div class='container-full-width'>"
+			return "<div class='container-full-width'>"
 						+ "<h5 style='text-align:center;'>Appearance</h5>"
 						+ Main.game.getPlayer().getBodyDescription()
 					+ "</div>"
@@ -782,15 +720,7 @@ public class CharacterCreation {
 		@Override
 		public Response getResponse(int responseTab, int index) {
 			if (index == 1) {
-				return new Response("Continue", "Your clothes are a little messy after rushing here. Tidy yourself up before proceeding to the main stage.", InventoryDialogue.INVENTORY_MENU) {
-					@Override
-					public void effects() {
-						equipPiercings();
-						InventoryDialogue.setBuyback(false);
-						InventoryDialogue.setInventoryNPC(null);
-						InventoryDialogue.setNPCInventoryInteraction(InventoryInteraction.CHARACTER_CREATION);
-					}
-				};
+				return new Response("Continue", "Your clothes are a little messy after rushing here. Tidy yourself up before proceeding to the main stage.", FINAL_CHECK);
 				
 			} else if (index == 2) {
 				return new Response("Core", "Enter the customisation menu for all of your body's core aspects.", CHOOSE_ADVANCED_APPEARANCE_CORE);
@@ -987,9 +917,7 @@ public class CharacterCreation {
 						
 					+ CharacterModificationUtils.getAssSizeDiv()
 					
-					+ CharacterModificationUtils.getHipSizeDiv()
-					
-					+ CharacterModificationUtils.getBleachedAnusDiv();
+					+ CharacterModificationUtils.getHipSizeDiv();
 		}
 		
 		@Override
@@ -1298,243 +1226,14 @@ public class CharacterCreation {
 		}
 	};
 	
-	public static String getCheckingClothingDescription() {
-		return "<div class='container-full-width' style='background:transparent;'>"
-					+ "<p>"
-						+ "There doesn't seem to be any sign of activity on the main stage, so, afforded a few more minutes, you decide to smarten up your clothes a little."
-						+ " After all, this is a big evening for Lily, and you want her to see that you've put some effort into your appearance."
-					+ "</p>"
-					+ "<p>"
-						+ "Turning this way and that to get a better look at yourself in the mirror, you begin to notice just how "+(Main.game.getPlayer().isFeminine()?"hot":"handsome")+" you're looking tonight..."
-					+ "</p>"
-					+ "<p>"
-						+ "[pc.thought(Why am I feeling so horny all of a sudden?)]"
-					+ "</p>"
-					+ "<div class='container-full-width' style='text-align:center;'>"
-						+ "<i>Choose what you decided to wear to the museum.</i><br/>"
-						+ "<i>You'll need to be wearing some kind of footwear, as well as clothing that conceals your genitals and chest, before being able to proceed.</i>"
-					+ "</div>"
-				+ "</div>";
-	}
-	
 	public static void moveNPCIntoPlayerTile() {
-		if(Main.game.getPlayer().getSexualOrientation()==SexualOrientation.ANDROPHILIC || (Main.game.getPlayer().getSexualOrientation()==SexualOrientation.AMBIPHILIC && Main.game.getPlayer().hasVagina())) {
-			Main.game.getPrologueMale().setLocation(Main.game.getPlayer().getWorldLocation(), Main.game.getPlayer().getLocation(), false);
-			
-		} else {
-			Main.game.getPrologueFemale().setLocation(Main.game.getPlayer().getWorldLocation(), Main.game.getPlayer().getLocation(), false);
-		}
+		Main.game.getPrologueFemale().setLocation(Main.game.getPlayer().getWorldLocation(), Main.game.getPlayer().getLocation(), false);
 	}
 	
 	public static void moveNPCOutOfPlayerTile() {
-		Main.game.getPrologueMale().setLocation(WorldType.EMPTY, PlaceType.GENERIC_EMPTY_TILE, false);
 		Main.game.getPrologueFemale().setLocation(WorldType.EMPTY, PlaceType.GENERIC_EMPTY_TILE, false);
 	}
 	
-	public static boolean femalePrologueNPC() {
-		return Main.game.getPlayer().getSexualOrientation()==SexualOrientation.GYNEPHILIC || (Main.game.getPlayer().getSexualOrientation()==SexualOrientation.AMBIPHILIC && Main.game.getPlayer().hasPenis());
-	}
-	
-	public static final DialogueNodeOld CHOOSE_BACKGROUND = new DialogueNodeOld("In the Museum", "-", true) {
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public String getContent() {
-			UtilText.nodeContentSB.setLength(0);
-			
-			UtilText.nodeContentSB.append("<p>"
-						+ "Satisfied with your appearance, you turn away from the mirror and begin to walk towards the main stage."
-						+ " With each step you take, you inexplicably find yourself getting more and more turned on, and by the time you've barely covered half the distance to the bustling crowd of visitors,"
-							+(Main.game.getPlayer().hasPenis()
-									?" you're struggling to keep yourself from getting an erection."
-									:" you can feel your pussy getting wet from arousal.")
-					+ "</p>"
-					+ "<p>"
-						+ "Ducking behind a nearby pillar, you shake your head to try and dislodge the dirty thoughts that are starting to seep into your mind."
-						+ " As you lean back against the cold stone and take a deep breath, a voice suddenly interrupts your thoughts,");
-			
-			if(!femalePrologueNPC()) {
-				UtilText.nodeContentSB.append(" [prologueMale.speech(Taking a break from the crowds as well?)]"
-						+ "</p>"
-						+ "<p>"
-							+ "Turning around, you see a tall, handsome-looking man, who must be only a couple of years older than you, giving you the most charming smile you've ever seen."
-							+ " Before you know what you're doing, your eyes are travelling up and down every inch of his manly, muscular body, and you only just manage to stop yourself from letting out a desperate little whine."
-						+ "</p>"
-						+ "<p>"
-							+ "[pc.thought(Focus [pc.name], focus!)] you think, trying to act as casual as possible as you smile back at the stranger before you."
-						+ "</p>"
-						+ "<p>"
-							+ "[pc.speech(Actually,)] you say, [pc.speech(I've only just arrived. I thought I was going to be late, but it looks like nothing's started yet.)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[prologueMale.speech(Ah, you must have just missed the announcement,)] he replies, [prologueMale.speech(the opening speech is being delayed by half an hour."
-								+ " I tried hanging around in that crowd back there, but I'm no historian, and most of the conversation is pretty dry...)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[pc.speech(Haha,)]"
-							+ " you laugh, desperately trying not to imagine how he looks naked,"
-							+ " [pc.speech(I know <i>exactly</i> what you mean. My aunt is the lady giving the opening speech, and every time I meet her friends from the museum, I can never follow their conversations."
-									+ " Well, apart from Arthur that is. He's closer to our age, and is really easy-going and fun to talk to.)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[prologueMale.speech(Hah! You know Arthur? I'm here by his invitation. He and I go way back,)]"
-							+ " the man cheerily replies, his smile causing your heart to race."
-							+ " [prologueMale.speech(I'm [prologueMale.name] by the way, pleased to meet you "+(Main.game.getPlayer().isFeminine()?"Ms. ...?":"Mr. ...?")+")]"
-						+ "</p>"
-						+ "<p>"
-							+ "[pc.speech(Likewise,)] you respond, shaking his offered hand while trying not to think of how powerful and dominant his grip is. [pc.speech(I'm [pc.Name].)]"
-						+ "</p>"
-						+ "<p>"
-							+ "You and [prologueMale.name] continue talking with one another as you wait for the presentation to start."
-							+ " Before long, the subject shifts to work, and you find out that he's an airline pilot, based out of the airport on the city's outskirts."
-							+ " Conversation then moves on to what it is you do, and you end up talking about that for a little while..."
-						+ "</p>");
-				
-			} else {
-				UtilText.nodeContentSB.append(" [prologueFemale.speech(Taking a break from the crowds as well?)]"
-						+ "</p>"
-						+ "<p>"
-							+ "Turning around, you see a beautiful woman, who looks to be about the same age as you, giving you the most stunning smile you've ever seen."
-							+ " Before you know what you're doing, your eyes are travelling up and down every inch of her curvy, womanly body, and you only just manage to stop yourself from letting out a hungry groan."
-						+ "</p>"
-						+ "<p>"
-							+ "[pc.thought(Focus [pc.name], focus!)] you think, trying to act as casual as possible as you smile back at the stranger before you."
-						+ "</p>"
-						+ "<p>"
-							+ "[pc.speech(Actually,)] you say, [pc.speech(I've only just arrived. I thought I was going to be late, but it looks like nothing's started yet.)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[prologueFemale.speech(Ah, you must have just missed the announcement,)] she replies, [prologueFemale.speech(the opening speech is being delayed by half an hour."
-								+ " I tried hanging around in that crowd back there, but I'm no historian, and most of the conversation is pretty dry...)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[pc.speech(Haha,)]"
-							+ " you laugh, desperately trying not to imagine how she looks naked,"
-							+ " [pc.speech(I know <i>exactly</i> what you mean. My aunt is the lady giving the opening speech, and every time I meet her friends from the museum, I can never follow their conversations."
-									+ " Well, apart from Arthur that is. He's closer to our age, and is really easy-going and fun to talk to.)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[prologueFemale.speech(Oh! You know Arthur? I'm here by his invitation, actually. He and I go way back,)]"
-							+ " the woman cheerily replies, her smile causing your heart to race."
-							+ " [prologueFemale.speech(I'm [prologueFemale.name] by the way, pleased to meet you "+(Main.game.getPlayer().isFeminine()?"Ms. ...?":"Mr. ...?")+")]"
-						+ "</p>"
-						+ "<p>"
-							+ "[pc.speech(Likewise,)] you respond, shaking her offered hand while trying not to think of how soft and delicate her skin is. [pc.speech(I'm [pc.Name].)]"
-						+ "</p>"
-						+ "<p>"
-							+ "You and [prologueFemale.name] continue talking with one another as you wait for the presentation to start."
-							+ " Before long, the subject shifts to work, and you find out that she's training to become a doctor, and is studying here at the city's university."
-							+ " Conversation then moves on to what it is you do, and you end up talking about that for a little while..."
-						+ "</p>");
-			}
-			
-			return UtilText.nodeContentSB.toString();
-		}
-		
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 0) {
-				return new ResponseEffectsOnly("Back", "Return to clothing selection.") {
-					@Override
-					public void effects() {
-						moveNPCOutOfPlayerTile();
-						InventoryDialogue.setBuyback(false);
-						InventoryDialogue.setInventoryNPC(null);
-						InventoryDialogue.setNPCInventoryInteraction(InventoryInteraction.CHARACTER_CREATION);
-						Main.game.setContent(new Response("", "", InventoryDialogue.INVENTORY_MENU));
-					}
-				};
-				
-			} else if (index == 1) {
-				return new Response("Continue", "What is your sexual experience?", CHOOSE_SEX_EXPERIENCE);
-				
-			} else {
-				return null;
-			}
-		}
-	};
-	
-	public static final DialogueNodeOld CHOOSE_SEX_EXPERIENCE = new DialogueNodeOld("Start", "", true) {
-		private static final long serialVersionUID = 1L;
-		
-		@Override
-		public String getContent() {
-			UtilText.nodeContentSB.setLength(0);
-			if(femalePrologueNPC()) {
-				UtilText.nodeContentSB.append(
-						"<p>"
-							+ "As the two of you continue to talk, first about work, and then about more general subjects, you find yourself getting more and more turned on."
-							+ " What's more, you begin to notice that [prologueFemale.namePos] cheeks are starting to flush red, and she keeps on glancing hungrily down at your body when she thinks that you aren't looking."
-						+ "</p>"
-						+ "<p>"
-							+ "As final evidence that she's getting just as turned on as you are, she starts openly talking about her sex life."
-							+ " To begin with, you're a little taken aback at her openness, but the more she talks, the more comfortable you find yourself with talking to this relative stranger about sex."
-						+ "</p>"
-						+ "<p>"
-							+ "And so, after talking with [prologueFemale.name] for no longer than ten minutes, you're telling her every little detail about your sexual experiences..."
-						+ "</p>");
-				
-			} else {
-				UtilText.nodeContentSB.append(
-						"<p>"
-							+ "As the two of you continue to talk, first about work, and then about more general subjects, you find yourself getting more and more turned on."
-							+ " What's more, you begin to notice that [prologueMale.namePos] cheeks are starting to flush red, and he keeps on glancing hungrily down at your body when he thinks that you aren't looking."
-						+ "</p>"
-						+ "<p>"
-							+ "As final evidence that he's getting just as turned on as you are, he starts openly talking about his sex life."
-							+ " To begin with, you're a little taken aback at his openness, but the more he talks, the more comfortable you find yourself with talking to this relative stranger about sex."
-						+ "</p>"
-						+ "<p>"
-							+ "And so, after talking with [prologueMale.name] for no longer than ten minutes, you're telling him every little detail about your sexual experiences..."
-						+ "</p>");
-			}
-			
-			UtilText.nodeContentSB.append(
-					"<div class='container-full-width' style='text-align:center;'>"
-							+ "<i>For each increase in sexual experience, you will gain 1 corruption. (You can see your corruption, along with your other attributes, in the character panel in the left of the screen.)</i>"
-						+ "</div>"
-							+CharacterModificationUtils.getSexualExperienceDiv());
-			
-			return UtilText.nodeContentSB.toString();
-		}
-		
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 1) {
-				return new Response("Continue", "Once you're happy with your sexual experience, proceed to the next part of the character creation.", FINAL_CHECK) {
-					@Override
-					public void effects() {
-						if(!Main.game.getPlayer().hasPenis()) {
-							for(SexAreaOrifice ot : SexAreaOrifice.values()) {
-								SexType st = new SexType(SexParticipantType.NORMAL, SexAreaPenetration.PENIS, ot);
-								Main.game.getPlayer().setVirginityLoss(st, "");
-								st = new SexType(SexParticipantType.SELF, SexAreaPenetration.PENIS, ot);
-								Main.game.getPlayer().setVirginityLoss(st, "");
-							}
-							Main.game.getPlayer().setPenisVirgin(true);
-							
-						}
-						if(!Main.game.getPlayer().hasVagina()) {
-							for(SexAreaPenetration pt : SexAreaPenetration.values()) {
-								SexType st = new SexType(SexParticipantType.NORMAL, pt, SexAreaOrifice.VAGINA);
-								Main.game.getPlayer().setVirginityLoss(st, "");
-								st = new SexType(SexParticipantType.SELF, pt, SexAreaOrifice.VAGINA);
-								Main.game.getPlayer().setVirginityLoss(st, "");
-							}
-							Main.game.getPlayer().setVaginaVirgin(true);
-						}
-					}
-				};
-				
-			} else if (index == 0) {
-				return new Response("Back", "Return to background selection.", CHOOSE_BACKGROUND);
-				
-			} else {
-				return null;
-			}
-		}
-	};
-
 	private static void applyGameStart() {
 		Main.getProperties().addRaceDiscovered(Race.HUMAN);
 		
@@ -1612,7 +1311,7 @@ public class CharacterCreation {
 				};
 				
 			} else if (index == 0) {
-				return new Response("Back", "Return to background selection.", CHOOSE_SEX_EXPERIENCE){
+				return new Response("Back", "Return to appearance.", CHOOSE_ADVANCED_APPEARANCE){
 					@Override
 					public void effects() {
 						// Remove attribute gain sentences in the start game screen:

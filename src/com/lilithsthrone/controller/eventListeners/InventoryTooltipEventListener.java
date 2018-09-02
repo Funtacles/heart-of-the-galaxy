@@ -87,7 +87,7 @@ public class InventoryTooltipEventListener implements EventListener {
 			Main.mainController.setTooltipSize(TOOLTIP_WIDTH, 256 + (LINE_HEIGHT * yIncrease));
 
 			tooltipSB.setLength(0);
-			tooltipSB.append("<div class='title'>" + Util.capitaliseSentence(item.getDisplayName(true)) + "</div>");
+			tooltipSB.append("<div class='title'>" + Util.capitaliseSentence(item.getDisplayName()) + "</div>");
 
 			tooltipSB.append("<div class='subTitle-half'>"
 					+ (item.isConsumedOnUse() ? "<span style='color:" + Colour.GENERIC_BAD.toWebHexString() + ";'>Consumed on use</span>" : "<span style='color:" + Colour.GENERIC_GOOD.toWebHexString() + ";'>Infinite uses</span>") + "</div>"
@@ -146,7 +146,7 @@ public class InventoryTooltipEventListener implements EventListener {
 
 			tooltipSB.setLength(0);
 			if(colour!=null) {
-				tooltipSB.append("<div class='title' style='color:" + dyeClothing.getRarity().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(dyeClothing.getName()) + "</div>"
+				tooltipSB.append("<div class='title'>" + Util.capitaliseSentence(dyeClothing.getName()) + "</div>"
 						+ "<div class='subTitle'>" + Util.capitaliseSentence(colour.getName()) + "</div>"
 						+ "<div class='picture full' style='position:relative;'>"
 						+ dyeClothing.getClothingType().getSVGImage(
@@ -156,7 +156,7 @@ public class InventoryTooltipEventListener implements EventListener {
 						+ "</div>");
 			
 			} else if(secondaryColour!=null) {
-				tooltipSB.append("<div class='title' style='color:" + dyeClothing.getRarity().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(dyeClothing.getName()) + "</div>"
+				tooltipSB.append("<div class='title'>" + Util.capitaliseSentence(dyeClothing.getName()) + "</div>"
 						+ "<div class='subTitle'>" + Util.capitaliseSentence(secondaryColour.getName()) + "</div>"
 						+ "<div class='picture full' style='position:relative;'>"
 						+ dyeClothing.getClothingType().getSVGImage(
@@ -166,7 +166,7 @@ public class InventoryTooltipEventListener implements EventListener {
 						+ "</div>");
 				
 			} else if(tertiaryColour!=null) {
-				tooltipSB.append("<div class='title' style='color:" + dyeClothing.getRarity().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(dyeClothing.getName()) + "</div>"
+				tooltipSB.append("<div class='title'>" + Util.capitaliseSentence(dyeClothing.getName()) + "</div>"
 						+ "<div class='subTitle'>" + Util.capitaliseSentence(tertiaryColour.getName()) + "</div>"
 						+ "<div class='picture full' style='position:relative;'>"
 						+ dyeClothing.getClothingType().getSVGImage(
@@ -176,7 +176,7 @@ public class InventoryTooltipEventListener implements EventListener {
 						+ "</div>");
 				
 			} else if(pattern!=null) {
-				tooltipSB.append("<div class='title' style='color:" + dyeClothing.getRarity().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(dyeClothing.getName()) + "</div>"
+				tooltipSB.append("<div class='title'>" + Util.capitaliseSentence(dyeClothing.getName()) + "</div>"
 						
 						+ "<div class='subTitle'>" + Util.capitaliseSentence(pattern.getNiceName()) + "</div>"
 	
@@ -196,12 +196,12 @@ public class InventoryTooltipEventListener implements EventListener {
 			tooltipSB.setLength(0);
 			
 			if(colour!=null) {
-				tooltipSB.append("<div class='title' style='color:" + dyeWeapon.getRarity().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(dyeWeapon.getName()) + "</div>"
+				tooltipSB.append("<div class='title'>" + Util.capitaliseSentence(dyeWeapon.getName()) + "</div>"
 						+ "<div class='subTitle'>" + Util.capitaliseSentence(colour.getName()) + "</div>"
 						+ "<div class='picture full' style='position:relative;'>" + dyeWeapon.getWeaponType().getSVGImage(dyeWeapon.getDamageType(), colour, InventoryDialogue.dyePreviewSecondary) + "</div>");
 			
 			} else if(secondaryColour!=null) {
-				tooltipSB.append("<div class='title' style='color:" + dyeWeapon.getRarity().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(dyeWeapon.getName()) + "</div>"
+				tooltipSB.append("<div class='title'>" + Util.capitaliseSentence(dyeWeapon.getName()) + "</div>"
 						+ "<div class='subTitle'>" + Util.capitaliseSentence(secondaryColour.getName()) + "</div>"
 						+ "<div class='picture full' style='position:relative;'>" + dyeWeapon.getWeaponType().getSVGImage(dyeWeapon.getDamageType(), InventoryDialogue.dyePreviewPrimary, secondaryColour) + "</div>");
 				
@@ -650,7 +650,7 @@ public class InventoryTooltipEventListener implements EventListener {
 		// Title:
 		tooltipSB.setLength(0);
 		tooltipSB.append("<body>"
-			+ "<div class='container-full-width center'><h5>" + Util.capitaliseSentence(absWep.getDisplayName(true)) + "</h5></div>");
+			+ "<div class='container-full-width center'><h5>" + Util.capitaliseSentence(absWep.getDisplayName()) + "</h5></div>");
 
 		// Core info:
 		tooltipSB.append("<div class='container-half-width titular' style='color:"+absWep.getDamageType().getMultiplierAttribute().getColour().toWebHexString()+";'>" + Util.capitaliseSentence(absWep.getDamageType().getName()) + " damage</div>");
@@ -757,7 +757,7 @@ public class InventoryTooltipEventListener implements EventListener {
 		// Title:
 		tooltipSB.setLength(0);
 		tooltipSB.append("<body>"
-			+ "<div class='container-full-width center'><h5>" + Util.capitaliseSentence(absClothing.getDisplayName(true)) + "</h5></div>");
+			+ "<div class='container-full-width center'><h5>" + Util.capitaliseSentence(absClothing.getDisplayName()) + "</h5></div>");
 
 		// Core info:
 		tooltipSB.append("<div class='container-half-width titular'>" + Util.capitaliseSentence(absClothing.getClothingType().getSlot().getName()) + "</div>");
@@ -836,7 +836,7 @@ public class InventoryTooltipEventListener implements EventListener {
 		tooltipSB.append("</body>");
 
 		int specialIncrease = 0;
-		if(absClothing.getDisplayName(false).length()>40) {
+		if(absClothing.getDisplayName().length()>40) {
 			specialIncrease = 26;
 		}
 		Main.mainController.setTooltipSize(TOOLTIP_WIDTH, 400 + (yIncrease * LINE_HEIGHT_TITULAR) + specialIncrease);

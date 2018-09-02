@@ -124,19 +124,19 @@ public class GenericOrgasms {
 			case DOGGY_ON_ALL_FOURS: case DOGGY_ON_ALL_FOURS_SECOND: case PET_MOUNTING_ON_ALL_FOURS: case PET_ORAL_ON_ALL_FOURS:
 				orgasmText = "[npc1.Name] [npc1.verb(brace)] [npc1.herself] on all fours, letting out [npc1.a_moan+] as [npc1.she] [npc1.verb(prepare)] to reach [npc1.her] climax.";
 				break;
-			case FACE_TO_WALL_AGAINST_WALL: case FACE_TO_WALL_AGAINST_WALL_SHOWER_PIX:
+			case FACE_TO_WALL_AGAINST_WALL:
 				orgasmText = "[npc1.Name] [npc1.verb(brace)] [npc1.herself] against the wall in front of [npc2.herHim], letting out [npc1.a_moan+] as [npc1.she] [npc1.verb(prepare)] to reach [npc1.her] climax.";
 				break;
-			case FACE_TO_WALL_FACING_TARGET: case FACE_TO_WALL_FACING_TARGET_SHOWER_PIX:
+			case FACE_TO_WALL_FACING_TARGET:
 				orgasmText = "[npc1.Name] [npc1.verb(press)] [npc1.herself] into [npc2.namePos] back, letting out [npc1.a_moan+] as [npc1.she] [npc1.verb(prepare)] to reach [npc1.her] climax.";
 				break;
 			case HAND_SEX_DOM_ROSE: case HAND_SEX_SUB_ROSE:
 				orgasmText = "[npc1.Name] [npc1.verb(look)] into [npc2.namePos] [npc2.eyes+] and [npc1.verb(let)] out [npc1.a_moan+] as [npc1.she] [npc1.verb(reach)] [npc1.her] climax.";
 				break;
-			case KNEELING_PERFORMING_ORAL: case KNEELING_PERFORMING_ORAL_RALPH: case CHAIR_KNEELING:
+			case KNEELING_PERFORMING_ORAL: case CHAIR_KNEELING:
 				orgasmText = "[npc1.Name] [npc1.verb(reach)] up and [npc1.verb(place)] a [npc1.hand] on one of [npc2.namePos] [npc2.legs], before letting out [npc1.a_moan+] as [npc1.she] [npc1.verb(prepare)] to reach [npc1.her] climax.";
 				break;
-			case KNEELING_RECEIVING_ORAL: case KNEELING_RECEIVING_ORAL_RALPH: case CHAIR_ORAL_SITTING:
+			case KNEELING_RECEIVING_ORAL: case CHAIR_ORAL_SITTING:
 				orgasmText = "[npc1.Name] [npc1.verb(reach)] down and [npc1.verb(place)] a [npc1.hand] on [npc2.namePos] head, before letting out [npc1.a_moan+] as [npc1.she] [npc1.verb(reach)] [npc1.her] climax.";
 				break;
 			case MISSIONARY_DESK_DOM_VICKY:
@@ -203,21 +203,6 @@ public class GenericOrgasms {
 			case BREEDING_STALL_FUCKING:
 				orgasmText = "[npc1.Name] [npc1.verb(reach)] down and [npc1.verb(grab)] [npc2.namePos] waist, before stepping forwards and driving [npc1.her] [npc1.cock] deep into [npc2.namePos] [npc2.pussy+]."
 						+ " Letting out [npc1.a_moan+], [npc1.she] [npc1.verb(prepare)] to reach [npc1.her] climax, and pump [npc2.namePos] womb full of [npc1.cum+].";
-				break;
-			case GLORY_HOLE_FUCKED:
-				orgasmText = "[npc1.Name] [npc1.verb(push)] [npc.her] [npc.hips] back against the toilet stall's wall and [npc1.verb(let)] out [npc1.a_moan+] as [npc1.she] [npc1.verb(prepare)] to reach [npc1.her] climax.";
-				break;
-			case GLORY_HOLE_FUCKING:
-				orgasmText = "[npc1.Name] [npc1.verb(thrust)] [npc.her] [npc.hips] against the glory hole and [npc1.verb(let)] out [npc1.a_moan+] as [npc1.she] [npc1.verb(prepare)] to reach [npc1.her] climax.";
-				break;
-			case GLORY_HOLE_KNEELING:
-				orgasmText = "[npc1.Name] [npc1.verb(look)] back and forth between the two glory holes, letting out [npc1.a_moan+] as [npc1.she] [npc1.verb(prepare)] to reach [npc1.her] climax.";
-				break;
-			case GLORY_HOLE_RECEIVING_ORAL_ONE:
-				orgasmText = "[npc1.Name] [npc1.verb(thrust)] [npc.her] [npc.hips] against the glory hole and [npc1.verb(let)] out [npc1.a_moan+] as [npc1.she] [npc1.verb(prepare)] to reach [npc1.her] climax.";
-				break;
-			case GLORY_HOLE_RECEIVING_ORAL_TWO:
-				orgasmText = "[npc1.Name] [npc1.verb(thrust)] [npc.her] [npc.hips] against the glory hole and [npc1.verb(let)] out [npc1.a_moan+] as [npc1.she] [npc1.verb(prepare)] to reach [npc1.her] climax.";
 				break;
 		}
 		
@@ -1520,7 +1505,7 @@ public class GenericOrgasms {
 							}
 							cumTargetSB.append(" gulp down as much of the");
 							if(!characterOrgasming.getCumModifiers().isEmpty()) {
-								switch(characterOrgasming.getCumModifiers().get(Util.random.nextInt(characterOrgasming.getCumModifiers().size()))) { //TODO specials for ALCOHOLIC & HALLUCINOGENIC
+								switch(characterOrgasming.getCumModifiers().get(Util.random.nextInt(characterOrgasming.getCumModifiers().size()))) {
 									case ALCOHOLIC:
 										cumTargetSB.append(" alcoholic [npc1.cum] as you possibly can.");
 										break;

@@ -419,36 +419,6 @@ public class LilayasRoom {
 			} else {
 				return null;
 			}
-//			TODO Had to cut due to running out of time:
-//			if(index==1) {
-//				return new ResponseSex("Submit", "Let Rose and Lilaya fuck you as 'punishment'.",
-//						true, false,
-//						new SMDoggy(
-//								Util.newHashMapOfValues(
-//										new Value<>(Main.game.getRose(), SexPositionSlot.DOGGY_BEHIND),
-//										new Value<>(Main.game.getLilaya(), SexPositionSlot.DOGGY_INFRONT)),
-//								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.DOGGY_ON_ALL_FOURS))) {
-//							@Override
-//							public boolean isPositionChangingAllowed() {
-//								return false;
-//							}
-//						},
-//						AFTER_LILAYA_AND_ROSE_AS_DOMS,
-//						UtilText.parseFromXMLFile("places/dominion/lilayasHome/lilayasRoom", "LILAYA_AND_ROSE_AS_DOMS")) {
-//					@Override
-//					public void effects() {
-//						Main.game.getRose().unequipClothingIntoVoid(Main.game.getRose().getClothingInSlot(InventorySlot.GROIN), true, Main.game.getRose());
-//						Main.game.getRose().displaceClothingForAccess(CoverableArea.PENIS);
-//						Main.game.getRose().equipClothingFromNowhere(AbstractClothingType.generateClothing(ClothingType.BDSM_PENIS_STRAPON, Colour.CLOTHING_PURPLE_DARK, false), true, Main.game.getRose());
-//					}
-//				};
-//					
-//			} else if (index == 2) {
-//				return new Response("Explain", "Explain to Lilaya and Rose that you were just feeling particularly horny.", EXPLAIN);
-//
-//			} else {
-//				return null;
-//			}
 		}
 	};
 	

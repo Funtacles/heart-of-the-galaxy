@@ -1,18 +1,12 @@
 package com.lilithsthrone.world;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.inventory.CharacterInventory;
-import com.lilithsthrone.game.inventory.Rarity;
-import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
-import com.lilithsthrone.game.inventory.item.AbstractItem;
-import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
 import com.lilithsthrone.utils.Vector2i;
 import com.lilithsthrone.utils.XMLSaving;
 import com.lilithsthrone.world.places.GenericPlace;
@@ -217,47 +211,7 @@ public class Cell implements Serializable, XMLSaving {
 	}
 
 	public void resetInventory(){
-		resetInventory(null);
-	}
-	
-	public void resetInventory(List<Rarity> rarityOfItemsToSave){
-		if(rarityOfItemsToSave!=null && !rarityOfItemsToSave.isEmpty()) {
-			List<AbstractItem> itemsToSave = new ArrayList<>();
-			for(AbstractItem item : this.inventory.getItemsInInventory()) {
-				if(rarityOfItemsToSave.contains(item.getRarity())) {
-					itemsToSave.add(item);
-				}
-			}
-			
-			List<AbstractWeapon> weaponsToSave = new ArrayList<>();
-			for(AbstractWeapon weapon : this.inventory.getWeaponsInInventory()) {
-				if(rarityOfItemsToSave.contains(weapon.getRarity())) {
-					weaponsToSave.add(weapon);
-				}
-			}
-			
-			List<AbstractClothing> clothingToSave = new ArrayList<>();
-			for(AbstractClothing clothing : this.inventory.getClothingInInventory()) {
-				if(rarityOfItemsToSave.contains(clothing.getRarity())) {
-					clothingToSave.add(clothing);
-				}
-			}
-			
-			this.inventory = new CharacterInventory(0, 48);
-			
-			for(AbstractItem item : itemsToSave) {
-				this.inventory.addItem(item);
-			}
-			for(AbstractWeapon weapon : weaponsToSave) {
-				this.inventory.addWeapon(weapon);
-			}
-			for(AbstractClothing clothing : clothingToSave) {
-				this.inventory.addClothing(clothing);
-			}
-			
-		} else {
-			this.inventory = new CharacterInventory(0, 48);
-		}
+		this.inventory = new CharacterInventory(0, 48);
 	}
 
 	public CharacterInventory getInventory() {

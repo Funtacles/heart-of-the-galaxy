@@ -429,7 +429,6 @@ public class Body implements Serializable, XMLSaving {
 			CharacterUtils.addAttribute(doc, bodyAnus, "capacity", String.valueOf(this.ass.anus.orificeAnus.capacity));
 			CharacterUtils.addAttribute(doc, bodyAnus, "stretchedCapacity", String.valueOf(this.ass.anus.orificeAnus.stretchedCapacity));
 			CharacterUtils.addAttribute(doc, bodyAnus, "virgin", String.valueOf(this.ass.anus.orificeAnus.virgin));
-			CharacterUtils.addAttribute(doc, bodyAnus, "bleached", String.valueOf(this.ass.anus.bleached));
 			CharacterUtils.addAttribute(doc, bodyAnus, "assHair", this.ass.anus.assHair.toString());
 			Element anusModifiers = doc.createElement("anusModifiers");
 			bodyAnus.appendChild(anusModifiers);
@@ -712,7 +711,6 @@ public class Body implements Serializable, XMLSaving {
 		importedAss.hipSize = Integer.valueOf(ass.getAttribute("hipSize"));
 		
 		importedAss.anus.orificeAnus.stretchedCapacity = (Float.valueOf(anus.getAttribute("stretchedCapacity")));
-		importedAss.anus.bleached = (Boolean.valueOf(anus.getAttribute("bleached")));
 		try {
 			importedAss.anus.assHair = (BodyHair.valueOf(anus.getAttribute("assHair")));
 		} catch(IllegalArgumentException e) {
@@ -733,7 +731,6 @@ public class Body implements Serializable, XMLSaving {
 					+ "<br/>capacity: "+importedAss.anus.orificeAnus.capacity
 					+ "<br/>stretchedCapacity: "+importedAss.anus.orificeAnus.stretchedCapacity
 					+ "<br/>virgin: "+importedAss.anus.orificeAnus.virgin
-					+ "<br/>bleached: "+importedAss.anus.bleached
 					+ "<br/>assHair: "+importedAss.anus.assHair
 					+"<br/>Modifiers:");
 			Element anusModifiersElement = (Element)anus.getElementsByTagName("anusModifiers").item(0);
@@ -3665,19 +3662,10 @@ public class Body implements Serializable, XMLSaving {
 		}
 		
 		// Colour:
-		if(ass.getAnus().isBleached()) {
-			if (isPlayer) {
-				descriptionSB.append(", which has been bleached so that the rim is no darker than the [pc.assSkin] around it.");
-			} else {
-				descriptionSB.append(", which has been bleached so that the rim is no darker than the [npc.assSkin] around it.");
-			}
-			
+		if (isPlayer) {
+			descriptionSB.append(", the rim being slightly darker than the [pc.assSkin] around it.");
 		} else {
-			if (isPlayer) {
-				descriptionSB.append(", the rim being slightly darker than the [pc.assSkin] around it.");
-			} else {
-				descriptionSB.append(", the rim being slightly darker than the [npc.assSkin] around it.");
-			}
+			descriptionSB.append(", the rim being slightly darker than the [npc.assSkin] around it.");
 		}
 
 		descriptionSB.append(" <span style='color:" + Colour.GENERIC_SEX.toWebHexString() + ";'>It is "+Capacity.getCapacityFromValue(ass.getAnus().getOrificeAnus().getStretchedCapacity()).getDescriptor()+", and can comfortably take "

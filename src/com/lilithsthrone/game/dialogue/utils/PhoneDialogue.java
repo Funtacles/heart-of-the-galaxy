@@ -46,10 +46,8 @@ import com.lilithsthrone.rendering.RenderingEngine;
 import com.lilithsthrone.rendering.SVGImages;
 import com.lilithsthrone.utils.ClothingRarityComparator;
 import com.lilithsthrone.utils.Colour;
-import com.lilithsthrone.utils.ItemRarityComparator;
 import com.lilithsthrone.utils.TreeNode;
 import com.lilithsthrone.utils.Util;
-import com.lilithsthrone.utils.WeaponRarityComparator;
 
 /**
  * @since 0.1.0
@@ -1574,10 +1572,8 @@ public class PhoneDialogue {
 	static {
 		
 		itemsDiscoveredList.addAll(ItemType.allItems);
-		itemsDiscoveredList.sort(new ItemRarityComparator());
 		
 		weaponsDiscoveredList.addAll(WeaponType.allweapons);
-		weaponsDiscoveredList.sort(new WeaponRarityComparator());
 		
 		clothingDiscoveredList.addAll(ClothingType.getAllClothing());
 		clothingDiscoveredList.sort(new ClothingRarityComparator());

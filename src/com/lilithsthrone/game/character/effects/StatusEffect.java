@@ -930,25 +930,6 @@ public enum StatusEffect {
 	
 	// STANDARD EFFECTS:
 	
-	WEATHER_PROLOGUE(100,
-			"Strange Atmosphere",
-			"weatherNightStormIncoming",
-			Colour.CLOTHING_WHITE,
-			false,
-			null,
-			Util.newArrayListOfValues("<b style='color: " + Colour.GENERIC_ARCANE.toWebHexString() + ";'>Enhanced libido</b>")) {
-
-		@Override
-		public String getDescription(GameCharacter target) {
-			return "There's a strange atmosphere surrounding the museum this evening, and you inexplicably find yourself feeling incredibly aroused...";
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return !Main.game.isInNewWorld();
-		}
-	},
-	
 	WEATHER_CLEAR(100,
 			"Clear skies",
 			"weatherDayClear",
@@ -1304,30 +1285,6 @@ public enum StatusEffect {
 	
 	// RACES:
 	// HUMAN:
-	PURE_HUMAN_PROLOGUE(
-			1000,
-			"human",
-			"raceHuman",
-			Colour.CLOTHING_WHITE,
-			true,
-			null,
-			null) {
-
-		@Override
-		public String getDescription(GameCharacter target) {
-			if(target.isPlayer())
-				return "You're a human, just like every other person in this world.";
-			else
-				return "[npc.Name] is a human, just like every other person in this world.";
-		}
-
-		@Override
-		public boolean isConditionsMet(GameCharacter target) {
-			return target.getRace() == Race.HUMAN
-					&& target.getRaceStage() == RaceStage.HUMAN
-					&& !Main.game.isInNewWorld();
-		}
-	},
 	
 	PURE_HUMAN(
 			1000,
@@ -2226,7 +2183,7 @@ public enum StatusEffect {
 						if(sb.length()>0) {
 							sb.append("<br/>");
 						}
-						sb.append("You use your <b>"+clothing.getDisplayName(true)+"</b> to clean your "+clothing.getClothingType().getSlot().getName()
+						sb.append("You use your <b>"+clothing.getDisplayName()+"</b> to clean your "+clothing.getClothingType().getSlot().getName()
 								+", <b style='color:"+Colour.CUM.toWebHexString()+";'>dirtying "+(clothing.getClothingType().isPlural()?"them":"it")+" in the process</b>.");
 					}
 					
@@ -2239,7 +2196,7 @@ public enum StatusEffect {
 								if(sb.length()>0) {
 									sb.append("<br/>");
 								}
-								sb.append("You use your <b>"+clothing.getDisplayName(true)+"</b> to clean your "+clothing.getClothingType().getSlot().getName()
+								sb.append("You use your <b>"+clothing.getDisplayName()+"</b> to clean your "+clothing.getClothingType().getSlot().getName()
 										+", <b style='color:"+Colour.CUM.toWebHexString()+";'>dirtying "+(clothing.getClothingType().isPlural()?"them":"it")+" in the process</b>.");
 							}
 						}

@@ -52,17 +52,6 @@ public class SexFlags implements Serializable {
 	public static boolean requestedChairOralGiving;
 	public static boolean requestedChairOralReceiving;
 	
-	// Ralph
-	public static boolean customerAtCounter;
-	public static boolean alertedCustomer;
-	public static boolean askedForBigDiscount;
-	
-	//Pix
-	public static boolean pixDemandedPromise;
-	public static boolean pixPlayerPromised;
-	
-	public static int ralphDiscount;
-
 	public SexFlags() {
 		reset();
 	}
@@ -87,16 +76,6 @@ public class SexFlags implements Serializable {
 		playerDeniedPartner = false;
 		
 		resetRequests();
-		
-		// Ralph:
-		customerAtCounter = false;
-		alertedCustomer = false;
-		askedForBigDiscount = false;
-		ralphDiscount = 25;
-		
-		// Pix:
-		pixDemandedPromise=false;
-		pixPlayerPromised = false;
 	}
 	
 	public static void resetRequests() {

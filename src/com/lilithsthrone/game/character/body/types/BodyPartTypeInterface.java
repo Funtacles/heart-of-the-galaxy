@@ -50,8 +50,6 @@ public interface BodyPartTypeInterface {
 	/** A 1-word descriptor that best describes this body part. */
 	public String getDescriptor(GameCharacter gc);
 
-	/** @param gc TODO
-	 * @return The type of skin that is covering this body part. */
 	public BodyCoveringType getBodyCoveringType(Body body);
 	
 	public default BodyCoveringType getBodyCoveringType(GameCharacter gc) {

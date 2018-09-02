@@ -9,7 +9,6 @@ import com.lilithsthrone.game.character.body.valueEnums.HairLength;
 import com.lilithsthrone.game.character.body.valueEnums.PenisSize;
 import com.lilithsthrone.game.character.body.valueEnums.TesticleSize;
 import com.lilithsthrone.game.character.fetishes.Fetish;
-import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseCombat;
@@ -171,7 +170,7 @@ public class DominionSuccubusDialogue {
 							+ "</p>"
 							+ "<p>"
 								+ "As [npc.she] steps over the fallen webbing, you see that your tormentor is, in fact, [npc.a_fullRace(true)]."
-								+ " Unlike Lilaya"+(Main.game.getDialogueFlags().values.contains(DialogueFlagValue.kateIntroduced)?" or Kate":"")+", this demon has a hungry, primal look in [npc.her] eyes, and as [npc.she] moves closer, [npc.she] starts to talk."
+								+ " Unlike Lilaya, this demon has a hungry, primal look in [npc.her] eyes, and as [npc.she] moves closer, [npc.she] starts to talk."
 							+ "</p>"
 							+ "<p>"
 								+ UtilText.parse(Main.game.getActiveNPC(),

@@ -129,7 +129,6 @@ import com.lilithsthrone.game.combat.DamageType;
 import com.lilithsthrone.game.combat.SpecialAttack;
 import com.lilithsthrone.game.dialogue.eventLog.EventLogEntry;
 import com.lilithsthrone.game.dialogue.eventLog.EventLogEntryAttributeChange;
-import com.lilithsthrone.game.dialogue.eventLog.EventLogEntryEncyclopediaUnlock;
 import com.lilithsthrone.game.dialogue.story.CharacterCreation;
 import com.lilithsthrone.game.dialogue.utils.PhoneDialogue;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
@@ -144,7 +143,6 @@ import com.lilithsthrone.game.inventory.clothing.DisplacementType;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
 import com.lilithsthrone.game.inventory.item.AbstractItem;
 import com.lilithsthrone.game.inventory.item.AbstractItemType;
-import com.lilithsthrone.game.inventory.item.ItemType;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.game.sex.LubricationType;
@@ -2624,20 +2622,6 @@ public abstract class GameCharacter implements XMLSaving {
 	public String getCompanionSexRejectionReason(boolean companionIsSub) {
 		if(!Main.game.getSavedDialogueNode().equals(Main.game.getPlayer().getLocationPlace().getDialogue(false))) {
 			return "You're in the middle of something right now!";
-		}
-		switch(this.getWorldLocation()) {
-			case JUNGLE:
-			case DOMINION:
-			case EMPTY:
-			case LILAYAS_HOUSE_FIRST_FLOOR:
-			case LILAYAS_HOUSE_GROUND_FLOOR:
-				break;
-				
-			case SHOPPING_ARCADE:
-				if(this.getLocationPlace().getPlaceType()!=PlaceType.SHOPPING_ARCADE_PATH) {
-					return "This isn't a suitable place to be having sex with [npc.name]!";
-				}
-				break;
 		}
 		for(GameCharacter character : Main.game.getCharactersPresent()) {
 			if(!this.getPartyLeader().getCompanions().contains(character)) {
@@ -10235,13 +10219,13 @@ public abstract class GameCharacter implements XMLSaving {
 		String returnString = "<b style='color:" + Colour.GENERIC_GOOD.toWebHexString() + ";'>Item added to "+(this.isPlayer()?"":"[npc.namePos] ")+"inventory:</b> <b>" + item.getName() + "</b>";
 		
 		if(item instanceof AbstractItem) {
-			returnString = "<b style='color:" + Colour.GENERIC_GOOD.toWebHexString() + ";'>Item added to "+(this.isPlayer()?"":"[npc.namePos] ")+"inventory:</b> <b>" + ((AbstractItem)item).getDisplayName(true) + "</b>";
+			returnString = "<b style='color:" + Colour.GENERIC_GOOD.toWebHexString() + ";'>Item added to "+(this.isPlayer()?"":"[npc.namePos] ")+"inventory:</b> <b>" + ((AbstractItem)item).getDisplayName() + "</b>";
 			
 		} else if(item instanceof AbstractClothing) {
-			returnString = "<b style='color:" + Colour.GENERIC_GOOD.toWebHexString() + ";'>Clothing added to "+(this.isPlayer()?"":"[npc.namePos] ")+"inventory:</b> <b>" + ((AbstractClothing)item).getDisplayName(true) + "</b>";
+			returnString = "<b style='color:" + Colour.GENERIC_GOOD.toWebHexString() + ";'>Clothing added to "+(this.isPlayer()?"":"[npc.namePos] ")+"inventory:</b> <b>" + ((AbstractClothing)item).getDisplayName() + "</b>";
 			
 		} else if(item instanceof AbstractWeapon) {
-			returnString = "<b style='color:" + Colour.GENERIC_GOOD.toWebHexString() + ";'>Weapon added to "+(this.isPlayer()?"":"[npc.namePos] ")+"inventory:</b> <b>" + ((AbstractWeapon)item).getDisplayName(true) + "</b>";
+			returnString = "<b style='color:" + Colour.GENERIC_GOOD.toWebHexString() + ";'>Weapon added to "+(this.isPlayer()?"":"[npc.namePos] ")+"inventory:</b> <b>" + ((AbstractWeapon)item).getDisplayName() + "</b>";
 		}
 		
 		return UtilText.parse(this, returnString);
@@ -10449,12 +10433,6 @@ public abstract class GameCharacter implements XMLSaving {
 	 */
 
 	public String useItem(AbstractItem item, GameCharacter target, boolean removingFromFloor, boolean onlyReturnEffects) {
-		if(ItemType.allItems.contains(item.getItemType()) && isPlayer()) {
-			if(Main.getProperties().addItemDiscovered(item.getItemType())) {
-				Main.game.addEvent(new EventLogEntryEncyclopediaUnlock(item.getItemType().getName(false), item.getRarity().getColour()), true);
-			}
-		}
-		
 		if (item.getItemType().isConsumedOnUse()) {
 			if(removingFromFloor) {
 				Main.game.getWorlds().get(getWorldLocation()).getCell(getLocation()).getInventory().removeItem(item);
@@ -10801,12 +10779,6 @@ public abstract class GameCharacter implements XMLSaving {
 			fromCharactersInventory.removeClothing(newClothing);
 
 			updateInventoryListeners();
-
-			if (isPlayer() && Main.game.isInNewWorld()) {
-				if (Main.getProperties().addClothingDiscovered(newClothing.getClothingType())) {
-					Main.game.addEvent(new EventLogEntryEncyclopediaUnlock(newClothing.getClothingType().getName(), newClothing.getRarity().getColour()), true);
-				}
-			}
 		}
 
 		return inventory.getEquipDescription();
@@ -10833,12 +10805,6 @@ public abstract class GameCharacter implements XMLSaving {
 			applyEquipClothingEffects(newClothing);
 			
 			updateInventoryListeners();
-
-			if (isPlayer() && Main.game.isInNewWorld()) {
-				if (Main.getProperties().addClothingDiscovered(newClothing.getClothingType())) {
-					Main.game.addEvent(new EventLogEntryEncyclopediaUnlock(newClothing.getClothingType().getName(), newClothing.getRarity().getColour()), true);
-				}
-			}
 		}
 
 		return inventory.getEquipDescription();
@@ -10856,12 +10822,6 @@ public abstract class GameCharacter implements XMLSaving {
 			Main.game.getWorlds().get(getWorldLocation()).getCell(getLocation()).getInventory().removeClothing(newClothing);
 
 			updateInventoryListeners();
-
-			if (isPlayer() && Main.game.isInNewWorld()) {
-				if (Main.getProperties().addClothingDiscovered(newClothing.getClothingType())) {
-					Main.game.addEvent(new EventLogEntryEncyclopediaUnlock(newClothing.getClothingType().getName(), newClothing.getRarity().getColour()), true);
-				}
-			}
 		}
 
 		return inventory.getEquipDescription();
@@ -13030,13 +12990,6 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 	public void setAssVirgin(boolean virgin) {
 		body.getAss().getAnus().getOrificeAnus().setVirgin(virgin);
-	}
-	// Bleaching:
-	public boolean isAssBleached() {
-		return body.getAss().getAnus().isBleached();
-	}
-	public void setAssBleached(boolean bleached) {
-		body.getAss().getAnus().setAssBleached(this, bleached);
 	}
 	// Modifiers:
 	public Set<OrificeModifier> getAssOrificeModifiers() {

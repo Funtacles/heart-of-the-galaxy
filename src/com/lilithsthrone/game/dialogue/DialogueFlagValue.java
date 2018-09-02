@@ -28,9 +28,6 @@ public enum DialogueFlagValue {
 	bunnyIntroduced,
 	loppyIntroduced,
 	ashleyIntroduced,
-	ralphIntroduced,
-	nyanIntroduced,
-	kateIntroduced,
 	vickyIntroduced,
 
 	roxyIntroduced,
@@ -42,19 +39,8 @@ public enum DialogueFlagValue {
 	prostitutionLicenseObtained,
 	
 	
-	// Shopping arcade:
-	nyanTalkedTo,
-	nyanComplimented,
-	nyanFlirtedWith,
-	nyanKissed,
-	nyanMakeOut,
-	nyanSex,
-	nyanGift,
-	
 	ashleySexToysDiscovered,
 	ashleyAttitude,
-	
-	reactedToKatePregnancy,
 	
 	// Lilaya's Home:
 	knowsDate,
@@ -80,34 +66,10 @@ public enum DialogueFlagValue {
 	// Slaver Alley:
 	finchIntroduced,
 	
-	// Zaranix:
-	zaranixDiscoveredHome,
-	zaranixMaidsHostile,
-	zaranixKnockedOnDoor,
-	zaranixKickedDownDoor,
-	
-	zaranixAmberSubdued,
-	zaranixKatherineSubdued,
-	zaranixKellySubdued,
-	
 	amberRepeatEncountered,
 	katherineRepeatEncountered,
 	kellyRepeatEncountered,
 	zaranixRepeatEncountered,
-	
-	// Lumi:
-	lumiMet,
-	lumiDisabled,
-	lumiPromisedDinner,
-	
-	// Nightlife:
-	julesIntroduced,
-	suckedJulesCock,
-	passedJules,
-	kalahariIntroduced,
-	kalahariWantsSex,
-	krugerIntroduced,
-	
 	
 	;
 }

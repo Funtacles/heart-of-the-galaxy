@@ -27,7 +27,7 @@ public abstract class AbstractItem extends AbstractCoreItem implements Serializa
 	protected List<ItemEffect> itemEffects;
 
 	public AbstractItem(AbstractItemType itemType) {
-		super(itemType.getName(false), itemType.getNamePlural(false), itemType.getSVGString(), itemType.getColourPrimary(), itemType.getRarity(), null, itemType.getItemTags());
+		super(itemType.getName(false), itemType.getNamePlural(false), itemType.getSVGString(), itemType.getColourPrimary(), null, itemType.getItemTags());
 
 		this.itemType = itemType;
 	}
@@ -91,17 +91,17 @@ public abstract class AbstractItem extends AbstractCoreItem implements Serializa
 	
 	// Getters & setters:
 	
-	public String getName(boolean withDeterminer, boolean withRarityColour) {
+	public String getName(boolean withDeterminer) {
 		return (withDeterminer
 				? (!itemType.getDeterminer().equalsIgnoreCase("a") && !itemType.getDeterminer().equalsIgnoreCase("an")
 					? itemType.getDeterminer() + " "
 					: (Util.isVowel(name.charAt(0)) ? "an " : "a "))
 				: " ")
-				+ (withRarityColour ? (" <span style='color: " + rarity.getColour().toWebHexString() + ";'>" + name + "</span>") : " "+name);
+				+ " " + name;
 	}
 	
-	public String getDisplayName(boolean withRarityColour) {
-		return Util.capitaliseSentence((itemType.getDeterminer()==""?"":itemType.getDeterminer()+" ") + (withRarityColour ? ("<span style='color: " + rarity.getColour().toWebHexString() + ";'>" + name + "</span>") : name));
+	public String getDisplayName() {
+		return Util.capitaliseSentence((itemType.getDeterminer()==""?"":itemType.getDeterminer()+" ") + name);
 	}
 
 	@Override

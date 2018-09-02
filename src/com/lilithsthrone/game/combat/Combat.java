@@ -35,7 +35,6 @@ import com.lilithsthrone.utils.Util;
 public enum Combat {
 	COMBAT;
 
-	// TODO Make sure your status effects end before you take your turn, enemy's status effects end at the start of their turn
 	// Also, end combat it enemy drops to 0 health/mana/stamina on their turn from combat effects
 
 	private static NPC activeNPC;
@@ -64,7 +63,6 @@ public enum Combat {
 	/**
 	 * @param allies A list of allies who are fighting with you. <b>Do not include Main.game.getPlayer() in this!</b>
 	 * @param enemies A list of enemies you're fighting. The first enemy in the list is considered the leader.
-	 * @param escapePercentage The base chance of escaping in this combat situation. TODO
 	 * @param openingDescriptions A map of opening descriptions for characters. If a description is not provided, one is generated automatically.
 	 */
 	public void initialiseCombat(
@@ -196,7 +194,7 @@ public enum Combat {
 			for(NPC enemy : enemies) {
 				if(enemy.getLootItems()!=null) {
 					for(AbstractCoreItem item : enemy.getLootItems()) {
-						postCombatStringBuilder.append("<div class='container-full-width' style='text-align:center;'>You [style.boldGood(gained)] <b style='color:"+item.getRarity().getColour().toWebHexString()+";'>"+item.getName()+"</b>!</div>");
+						postCombatStringBuilder.append("<div class='container-full-width' style='text-align:center;'>You [style.boldGood(gained)] <b>"+item.getName()+"</b>!</div>");
 						if(item instanceof AbstractItem) {
 							Main.game.getPlayer().addItem((AbstractItem) item, false, true);
 						} else if(item instanceof AbstractWeapon) {

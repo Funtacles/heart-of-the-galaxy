@@ -61,7 +61,6 @@ public class Tattoo extends AbstractCoreItem implements XMLSaving {
 				type.getName(),
 				type.getPathName(),
 				primaryColour,
-				Rarity.COMMON,
 				null);
 		
 		this.type = type;

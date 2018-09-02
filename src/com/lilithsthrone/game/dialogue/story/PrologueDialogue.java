@@ -38,16 +38,11 @@ import com.lilithsthrone.world.places.PlaceType;
  */
 public class PrologueDialogue {
 
-	private static boolean femalePrologueNPC() {
-		return CharacterCreation.femalePrologueNPC();
-	}
-	
 	public static final DialogueNodeOld INTRO = new DialogueNodeOld("In the Museum", "", true) {
 		private static final long serialVersionUID = 1L;
 
 		@Override
 		public String getContent() {
-			if(femalePrologueNPC()) {
 				return "<p>"
 							+ "As the two of you talk about your sexual backgrounds, you find yourself increasingly unable to control your arousal, and from the desperate look in [prologueFemale.namePos] eyes, she's having the same problem as you are."
 							+ " Stepping forwards, she half-speaks, half-moans,"
@@ -57,18 +52,6 @@ public class PrologueDialogue {
 							+ "[prologueFemale.Name] is right; everyone who's present for the event seems to be clustered around the stage on the far side of the room."
 							+ " There'd be nothing stopping you and her from sneaking off and having a little fun in one of the empty rooms..."
 						+ "</p>";
-				
-			} else {
-				return "<p>"
-							+ "As the two of you talk about your sexual backgrounds, you find yourself increasingly unable to control your arousal, and from the desperate look in [prologueMale.namePos] eyes, he's having the same problem as you are."
-							+ " Stepping forwards, he half-speaks, half-groans,"
-							+ " [prologueMale.speech(All this talk's got me pretty turned on... I don't usually do things like this, but everyone's busy around the stage right now. I'm sure one of the rooms around here is empty, if you want to have some fun...)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[prologueMale.Name] is right; everyone who's present for the event seems to be clustered around the stage on the far side of the room."
-							+ " There'd be nothing stopping you and him from sneaking off and having a little fun in one of the empty rooms..."
-						+ "</p>";
-			}
 		}
 		
 		@Override
@@ -88,128 +71,66 @@ public class PrologueDialogue {
 
 		@Override
 		public String getContent() {
-			if(femalePrologueNPC()) {
-				return "<p>"
-							+ "Grinning at [prologueFemale.name], you reach down and take hold of her hand, before leading her off towards a quiet, shaded doorway nearby."
-							+ " [pc.speech(This looks like it'll be empty...)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[prologueFemale.Name] giggles at your observation, before skipping forwards and moaning into your ear,"
-							+ " [prologueFemale.speech(~Mmm!~ This is going to be good!)]"
-						+ "</p>"
-						+ "<p>"
-							+ "Ignoring the sign which reads 'Staff Only', you push the heavy oaken door ajar and peer inside, smiling to yourself as you discover that the room beyond is pitch black; proof that it's completely empty."
-							+ " Pulling [prologueFemale.name] inside, you flick the lights on as you close the door behind you."
-						+ "</p>"
-						+ "<p>"
-							+ "The room that you find yourself in appears to be some sort of office,"
-								+ " and from the numerous ceiling-height bookshelves lining the walls, the rich mahogany desk, and the pair of expensive-looking leather sofas, you guess that it belongs to someone very important."
-						+ "</p>"
-						+ "<p>"
-							+ "[prologueFemale.speech(I've never been fucked in an office as nice as this one before,)]"
-							+ " [prologueFemale.name] giggles again, before stepping forwards and pressing her full, plump lips against yours."
-							+ " Instantly, she slides her tongue into your mouth, reaching up to take hold of your head as you passionately start to kiss one another..."
-						+ "</p>";
-				
-			} else {
-				return "<p>"
-							+ "Grinning at [prologueMale.name], you allow him to reach down and take hold of your hand, before being led off towards a quiet, shaded doorway nearby."
-							+ " [prologueMale.speech(This looks like it'll be empty...)]"
-						+ "</p>"
-						+ "<p>"
-							+ "You can't help but smile at his observation, before skipping forwards and [pc.moaning] into his ear,"
-							+ " [pc.speech(~Mmm!~ This is going to be good!)]"
-						+ "</p>"
-						+ "<p>"
-							+ "Ignoring the sign which reads 'Staff Only', [prologueMale.name] pushes the heavy oaken door ajar and peers inside, smiling to himself as you both see that the room beyond is pitch black; proof that it's completely empty."
-							+ " Pulling you inside, he flicks the lights on before closing the door behind you."
-						+ "</p>"
-						+ "<p>"
-							+ "The room that you find yourself in appears to be some sort of office,"
-								+ " and from the numerous ceiling-height bookshelves lining the walls, the rich mahogany desk, and the pair of expensive-looking leather sofas, you guess that it belongs to someone very important."
-						+ "</p>"
-						+ "<p>"
-							+ "[prologueMale.speech(I've never fucked anyone in an office as nice as this one before,)]"
-							+ " [prologueMale.name] grins, before stepping forwards and pressing his lips against yours."
-							+ " Instantly, he pushes his tongue into your mouth, reaching around to squeeze your [pc.ass+] as you passionately start to kiss one another..."
-						+ "</p>";
-			}
+			return "<p>"
+						+ "Grinning at [prologueFemale.name], you reach down and take hold of her hand, before leading her off towards a quiet, shaded doorway nearby."
+						+ " [pc.speech(This looks like it'll be empty...)]"
+					+ "</p>"
+					+ "<p>"
+						+ "[prologueFemale.Name] giggles at your observation, before skipping forwards and moaning into your ear,"
+						+ " [prologueFemale.speech(~Mmm!~ This is going to be good!)]"
+					+ "</p>"
+					+ "<p>"
+						+ "Ignoring the sign which reads 'Staff Only', you push the heavy oaken door ajar and peer inside, smiling to yourself as you discover that the room beyond is pitch black; proof that it's completely empty."
+						+ " Pulling [prologueFemale.name] inside, you flick the lights on as you close the door behind you."
+					+ "</p>"
+					+ "<p>"
+						+ "The room that you find yourself in appears to be some sort of office,"
+							+ " and from the numerous ceiling-height bookshelves lining the walls, the rich mahogany desk, and the pair of expensive-looking leather sofas, you guess that it belongs to someone very important."
+					+ "</p>"
+					+ "<p>"
+						+ "[prologueFemale.speech(I've never been fucked in an office as nice as this one before,)]"
+						+ " [prologueFemale.name] giggles again, before stepping forwards and pressing her full, plump lips against yours."
+						+ " Instantly, she slides her tongue into your mouth, reaching up to take hold of your head as you passionately start to kiss one another..."
+					+ "</p>";
 		}
 		
 		@Override
 		public Response getResponse(int responseTab, int index) {
 			if (index == 1) {
-				if(femalePrologueNPC()) {
-					return new ResponseSex("Sex", "Give in to your lust and start having sex with [prologueFemale.name]...",
-							null, null, null,
-							null, null,
-							true, true,
-							new SMStanding(
-									Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.STANDING_DOMINANT)),
-									Util.newHashMapOfValues(new Value<>(Main.game.getPrologueFemale(), SexPositionSlot.STANDING_SUBMISSIVE))),
-							null,
-							AFTER_SEX, (Main.game.getPlayer().hasPenis()
-								?"<p>"
-									+ "You pull [prologueFemale.name] into your [pc.breasts], desperately [pc.moaning] into her mouth as you dominantly grope and fondle [npc.her] body."
-									+ " Breaking off the kiss for a moment, she pulls something out of her purse, before pushing it into your hands."
-									+ " [prologueFemale.speech(I'd rather you didn't, but if you want to, you can wear this.)]"
-								+ "</p>"
-								+ "<p>"
-									+ "You look down to see that you're holding a little square packet - a condom."
-								+ "</p>"
-								+"<div class='container-full-width' style='text-align:center;'>"
-									+ "<i>If you'd like to use the condom, open your inventory (by pressing 'i') and select it from the menu.<br/>"
-									+ "(Your penis will need to be exposed before it can be used!)</i>"
-								+ "</div>"
-								:"<p>"
-									+ "You pull [prologueFemale.name] into your [pc.breasts], desperately [pc.moaning] into her mouth as you dominantly grope and fondle [npc.her] body..."
-								+ "</p>")
-							+"<div class='container-full-width' style='text-align:center;'>"
-								+ "<i>You can click on both your and [prologueFemale.namePos] clothing (in the bottom-left and bottom-right of the screen) to manage clothing during sex!</i>"
-							+ "</div>") {
-						@Override
-						public void effects() {
-							if(Main.game.getPlayer().hasPenis()) {
-								Main.game.getPlayer().addClothing(AbstractClothingType.generateClothing(ClothingType.PENIS_CONDOM, Colour.CLOTHING_BLACK, false), false);
-							}
-						}
-					};
-					
-				} else {
-					return new ResponseSex("Sex", "Give in to your lust and start having sex with [prologueMale.name]...",
-							null, null, null,
-							null, null,
-							true, true,
-							new SMStanding(
-									Util.newHashMapOfValues(new Value<>(Main.game.getPrologueMale(), SexPositionSlot.STANDING_DOMINANT)),
-									Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.STANDING_SUBMISSIVE))),
-							null,
-							AFTER_SEX, "<p>"
-								+ "You allow [prologueMale.name] to pull you into his strong, masculine torso, desperately moaning into his mouth as he dominantly gropes and fondles your body."
-								+ " Breaking off the kiss for a moment, he pulls something out of his pocket, before pushing it into your hands."
-								+ " [prologueMale.speech(I'd rather not, but if you want me to, I can wear this.)]"
+				return new ResponseSex("Sex", "Give in to your lust and start having sex with [prologueFemale.name]...",
+						null, null, null,
+						null, null,
+						true, true,
+						new SMStanding(
+								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.STANDING_DOMINANT)),
+								Util.newHashMapOfValues(new Value<>(Main.game.getPrologueFemale(), SexPositionSlot.STANDING_SUBMISSIVE))),
+						null,
+						AFTER_SEX, (Main.game.getPlayer().hasPenis()
+							?"<p>"
+								+ "You pull [prologueFemale.name] into your [pc.breasts], desperately [pc.moaning] into her mouth as you dominantly grope and fondle [npc.her] body."
+								+ " Breaking off the kiss for a moment, she pulls something out of her purse, before pushing it into your hands."
+								+ " [prologueFemale.speech(I'd rather you didn't, but if you want to, you can wear this.)]"
 							+ "</p>"
 							+ "<p>"
-								+ (Main.game.getPlayer().hasPenis()
-										?"You look down to see that you're holding a couple of little square packets - a pair of condoms."
-										:"You look down to see that you're holding a little square packet - a condom.")
+								+ "You look down to see that you're holding a little square packet - a condom."
 							+ "</p>"
 							+"<div class='container-full-width' style='text-align:center;'>"
 								+ "<i>If you'd like to use the condom, open your inventory (by pressing 'i') and select it from the menu.<br/>"
-									+ "([prologueMale.namePos] penis will need to be exposed before it can be used!)</i>"
+								+ "(Your penis will need to be exposed before it can be used!)</i>"
 							+ "</div>"
-							+"<div class='container-full-width' style='text-align:center;'>"
-								+ "<i>You can click on both your and [prologueMale.namePos] clothing (in the bottom-left and bottom-right of the screen) to manage clothing during sex!</i>"
-							+ "</div>") {
-						@Override
-						public void effects() {
-							if(Main.game.getPlayer().hasPenis()) {
-								Main.game.getPlayer().addClothing(AbstractClothingType.generateClothing(ClothingType.PENIS_CONDOM, Colour.CLOTHING_BLACK, false), false);
-							}
+							:"<p>"
+								+ "You pull [prologueFemale.name] into your [pc.breasts], desperately [pc.moaning] into her mouth as you dominantly grope and fondle [npc.her] body..."
+							+ "</p>")
+						+"<div class='container-full-width' style='text-align:center;'>"
+							+ "<i>You can click on both your and [prologueFemale.namePos] clothing (in the bottom-left and bottom-right of the screen) to manage clothing during sex!</i>"
+						+ "</div>") {
+					@Override
+					public void effects() {
+						if(Main.game.getPlayer().hasPenis()) {
 							Main.game.getPlayer().addClothing(AbstractClothingType.generateClothing(ClothingType.PENIS_CONDOM, Colour.CLOTHING_BLACK, false), false);
 						}
-					};
-				}
+					}
+				};
 				
 			} else if (index == 2) {
 				return new Response("Second Thoughts", "Decide that this is a bad idea after all, and put an end to this.", INTRO_SECOND_THOUGHTS);
@@ -228,51 +149,26 @@ public class PrologueDialogue {
 		public String getContent() {
 			UtilText.nodeContentSB.setLength(0);
 			
-			if(femalePrologueNPC()) {
-				if(Sex.getNumberOfOrgasms(Main.game.getPrologueFemale())>0) {
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "[prologueFemale.Name] sinks down onto one of the leather sofas with a sigh,"
-								+ " [prologueFemale.speech(Fuck... That was good... I'm going to need some time to rest...)]"
-							+ "</p>"
-							+ "<p>"
-								+ "Grinning down at her as her breasts heave up and down from exertion, you reply,"
-								+ " [pc.speech(Yeah, that was good. I'll go on ahead, I'll catch up with you later!)]"
-							+ "</p>");
-				} else {
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "[prologueFemale.Name] sinks down onto one of the leather sofas with a sigh,"
-								+ " [prologueFemale.speech(Fuck... I didn't even get to orgasm... I'm going to finish myself off...)]"
-							+ "</p>"
-							+ "<p>"
-								+ "Grinning down at her as she starts frantically fingering herself, you reply,"
-								+ " [pc.speech(Yeah, sure. I'll catch up with you later!)]"
-							+ "</p>");
-				}
-				
+			if(Sex.getNumberOfOrgasms(Main.game.getPrologueFemale())>0) {
+				UtilText.nodeContentSB.append(
+						"<p>"
+							+ "[prologueFemale.Name] sinks down onto one of the leather sofas with a sigh,"
+							+ " [prologueFemale.speech(Fuck... That was good... I'm going to need some time to rest...)]"
+						+ "</p>"
+						+ "<p>"
+							+ "Grinning down at her as her breasts heave up and down from exertion, you reply,"
+							+ " [pc.speech(Yeah, that was good. I'll go on ahead, I'll catch up with you later!)]"
+						+ "</p>");
 			} else {
-				if(Sex.getNumberOfOrgasms(Main.game.getPrologueMale())>0) {
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "[prologueMale.Name] sinks down onto one of the leather sofas with a sigh,"
-								+ " [prologueMale.speech(Fuck... That was good... I'm going to need some time to rest...)]"
-							+ "</p>"
-							+ "<p>"
-								+ "Grinning down at him as his chest heaves up and down from exertion, you reply,"
-								+ " [pc.speech(Yeah, that was good. I'll go on ahead, I'll catch up with you later!)]"
-							+ "</p>");
-				} else {
-					UtilText.nodeContentSB.append(
-							"<p>"
-								+ "[prologueMale.Name] sinks down onto one of the leather sofas with a sigh,"
-								+ " [prologueMale.speech(Fuck... I didn't even get to cum... I'm going to finish myself off...)]"
-							+ "</p>"
-							+ "<p>"
-								+ "Grinning down at him as he starts frantically masturbating, you reply,"
-								+ " [pc.speech(Yeah, sure. I'll catch up with you later!)]"
-							+ "</p>");
-				}
+				UtilText.nodeContentSB.append(
+						"<p>"
+							+ "[prologueFemale.Name] sinks down onto one of the leather sofas with a sigh,"
+							+ " [prologueFemale.speech(Fuck... I didn't even get to orgasm... I'm going to finish myself off...)]"
+						+ "</p>"
+						+ "<p>"
+							+ "Grinning down at her as she starts frantically fingering herself, you reply,"
+							+ " [pc.speech(Yeah, sure. I'll catch up with you later!)]"
+						+ "</p>");
 			}
 			
 			UtilText.nodeContentSB.append(
@@ -333,30 +229,16 @@ public class PrologueDialogue {
 		public String getContent() {
 			UtilText.nodeContentSB.setLength(0);
 			
-			if(femalePrologueNPC()) {
-				UtilText.nodeContentSB.append(
-						"<p>"
-							+ "In a sudden moment of clarity, you realise that what you're about to do isn't a very good idea, and you step away from [prologueFemale.name]."
-							+ " [pc.speech(I'm sorry, but on second thoughts, I don't think this a good idea. Anyway, I'm sure the presentation will be starting soon...)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[prologueFemale.speech(Eugh... Fine...)]"
-							+ " [prologueFemale.name] sighs, before collapsing down onto one of the leather sofas."
-							+ " [prologueFemale.speech(You go on ahead then, I need a moment to calm down.)]"
-						+ "</p>");
-				
-			} else {
-				UtilText.nodeContentSB.append(
-						"<p>"
-							+ "In a sudden moment of clarity, you realise that what you're about to do isn't a very good idea, and you step away from [prologueMale.name]."
-							+ " [pc.speech(I'm sorry, but on second thoughts, I don't think this a good idea. Anyway, I'm sure the presentation will be starting soon...)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[prologueMale.speech(Eugh... Fine...)]"
-							+ " [prologueMale.name] sighs, before collapsing down onto one of the leather sofas."
-							+ " [prologueMale.speech(You go on ahead then, I need a moment to calm down.)]"
-						+ "</p>");
-			}
+			UtilText.nodeContentSB.append(
+					"<p>"
+						+ "In a sudden moment of clarity, you realise that what you're about to do isn't a very good idea, and you step away from [prologueFemale.name]."
+						+ " [pc.speech(I'm sorry, but on second thoughts, I don't think this a good idea. Anyway, I'm sure the presentation will be starting soon...)]"
+					+ "</p>"
+					+ "<p>"
+						+ "[prologueFemale.speech(Eugh... Fine...)]"
+						+ " [prologueFemale.name] sighs, before collapsing down onto one of the leather sofas."
+						+ " [prologueFemale.speech(You go on ahead then, I need a moment to calm down.)]"
+					+ "</p>");
 
 			UtilText.nodeContentSB.append(
 					"<p>"
@@ -415,48 +297,26 @@ public class PrologueDialogue {
 		public String getContent() {
 			UtilText.nodeContentSB.setLength(0);
 			
-			if(femalePrologueNPC()) {
-				UtilText.nodeContentSB.append(
-						"<p>"
-							+ "Keeping your growing arousal under control, you step away from [prologueFemale.name]."
-							+ " [pc.speech(I don't think that's a good idea. Anyway, I'm sure the presentation will be starting soo-)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[lilaya.speech([pc.Name]! There you are! I've been looking everywhere for you,)]"
-							+ " a very familiar voice calls out, cutting your sentence short,"
-							+ " [lilaya.speech(sorry if I'm interrupting, but I really need your help!)]"
-						+ "</p>"
-						+ "<p>"
-							+ "Turning towards the unmistakable voice of your aunt Lily, you give her a reassuring smile."
-							+ " [pc.speech(Don't worry, Lily, you're not interrupting."
-								+ " Is this about the opening being delayed?)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[prologueFemale.speech(I see you're going to be busy, perhaps I'll catch you later,)]"
-							+ " [prologueFemale.name] says, before walking off and leaving you alone with your aunt."
-						+ "</p>");
+			UtilText.nodeContentSB.append(
+					"<p>"
+						+ "Keeping your growing arousal under control, you step away from [prologueFemale.name]."
+						+ " [pc.speech(I don't think that's a good idea. Anyway, I'm sure the presentation will be starting soo-)]"
+					+ "</p>"
+					+ "<p>"
+						+ "[lilaya.speech([pc.Name]! There you are! I've been looking everywhere for you,)]"
+						+ " a very familiar voice calls out, cutting your sentence short,"
+						+ " [lilaya.speech(sorry if I'm interrupting, but I really need your help!)]"
+					+ "</p>"
+					+ "<p>"
+						+ "Turning towards the unmistakable voice of your aunt Lily, you give her a reassuring smile."
+						+ " [pc.speech(Don't worry, Lily, you're not interrupting."
+							+ " Is this about the opening being delayed?)]"
+					+ "</p>"
+					+ "<p>"
+						+ "[prologueFemale.speech(I see you're going to be busy, perhaps I'll catch you later,)]"
+						+ " [prologueFemale.name] says, before walking off and leaving you alone with your aunt."
+					+ "</p>");
 				
-			} else {
-				UtilText.nodeContentSB.append(
-						"<p>"
-							+ "Keeping your growing arousal under control, you step away from [prologueMale.name]."
-							+ " [pc.speech(I don't think that's a good idea. Anyway, I'm sure the presentation will be starting soo-)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[lilaya.speech([pc.Name]! There you are! I've been looking everywhere for you,)]"
-							+ " a very familiar voice calls out, cutting your sentence short,"
-							+ " [lilaya.speech(sorry if I'm interrupting, but I really need your help!)]"
-						+ "</p>"
-						+ "<p>"
-							+ "Turning towards the unmistakable voice of your aunt Lily, you give her a reassuring smile."
-							+ " [pc.speech(Don't worry, Lily, you're not interrupting."
-								+ " Is this about the opening being delayed?)]"
-						+ "</p>"
-						+ "<p>"
-							+ "[prologueMale.speech(I see you're going to be busy, perhaps I'll catch you later,)] [prologueMale.name] says, before walking off and leaving you alone with your aunt."
-						+ "</p>");
-			}
-			
 			UtilText.nodeContentSB.append(
 					"<p>"
 						+ "[lilaya.speech(Erm... goodbye!)]"

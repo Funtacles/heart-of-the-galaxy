@@ -16,7 +16,6 @@ import com.lilithsthrone.game.combat.DamageType;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.AbstractCoreItem;
 import com.lilithsthrone.game.inventory.InventorySlot;
-import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
@@ -38,7 +37,7 @@ public abstract class AbstractWeapon extends AbstractCoreItem implements Seriali
 	private Colour secondaryColour;
 
 	public AbstractWeapon(AbstractWeaponType weaponType, DamageType dt, Colour primaryColour, Colour secondaryColour) {
-		super(weaponType.getName(), weaponType.getNamePlural(), weaponType.getPathName(), dt.getMultiplierAttribute().getColour(), weaponType.getRarity(), weaponType.getAttributeModifiers());
+		super(weaponType.getName(), weaponType.getNamePlural(), weaponType.getPathName(), dt.getMultiplierAttribute().getColour(), weaponType.getAttributeModifiers());
 		
 		this.weaponType = weaponType;
 		damageType = dt;
@@ -233,10 +232,6 @@ public abstract class AbstractWeapon extends AbstractCoreItem implements Seriali
 			runningTotal *= 1.25f;
 		}
 		
-		if(rarity==Rarity.JINXED) {
-			runningTotal *= 0.5;
-		}
-		
 		float attributeBonuses = 0;//getModifiedDropoffValue
 		if (attributeModifiers != null) {
 			for (Integer i : attributeModifiers.values()) {
@@ -263,18 +258,18 @@ public abstract class AbstractWeapon extends AbstractCoreItem implements Seriali
 		return weaponType;
 	}
 
-	public String getName(boolean withDeterminer, boolean withRarityColour) {
+	public String getName(boolean withDeterminer) {
 		return (withDeterminer
 				? (!weaponType.getDeterminer().equalsIgnoreCase("a") && !weaponType.getDeterminer().equalsIgnoreCase("an")
 					? weaponType.getDeterminer() + " "
 					: (Util.isVowel(damageType.getWeaponDescriptor().charAt(0)) ? "an " : "a "))
 				: " ")
-				+ damageType.getWeaponDescriptor() + (withRarityColour ? (" <span style='color: " + rarity.getColour().toWebHexString() + ";'>" + name + "</span>") : " "+name);
+				+ name;
 	}
 	
-	public String getDisplayName(boolean withRarityColour) {
+	public String getDisplayName() {
 		return "<span style='color:" + damageType.getMultiplierAttribute().getColour().toWebHexString() + ";'>" + Util.capitaliseSentence(damageType.getWeaponDescriptor()) + "</span> "
-				+ (withRarityColour ? (" <span style='color: " + rarity.getColour().toWebHexString() + ";'>" + name + "</span>") : name);
+				+ name;
 	}
 
 	@Override

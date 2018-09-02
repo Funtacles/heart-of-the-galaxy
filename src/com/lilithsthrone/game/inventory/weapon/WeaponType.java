@@ -14,11 +14,9 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.Rarity;
-import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.ColourListPresets;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.Util.Value;
-import com.lilithsthrone.world.places.PlaceType;
 
 /**
  * @since 0.1.84
@@ -836,97 +834,6 @@ public class WeaponType {
 		}
 	};
 	
-	public static AbstractWeaponType MAIN_FEATHER_DUSTER = new AbstractWeaponType(250,
-			true,
-			"a",
-			"it",
-			false,
-			"feather duster",
-			"feather dusters",
-			"Duster Tickle",
-			"A short-handled feather duster, ideal for keeping a house clean, but not much use in combat...",
-			InventorySlot.WEAPON_MAIN,
-			"feather_duster",
-			Rarity.EPIC,
-			Util.newArrayListOfValues(DamageType.PHYSICAL),
-			2,
-			0,
-			DamageVariance.LOW,
-			Util.newHashMapOfValues(new Value<Attribute, Integer>(Attribute.MAJOR_PHYSIQUE, 5)),
-			null,
-			null,
-			null,
-			null,
-			Util.newArrayListOfValues(ItemTag.SOLD_BY_VICKY)) {
-		
-		private static final long serialVersionUID = 1L;
-		
-		
-		@Override
-
-		public String getDescription() {
-			if(Main.game.getPlayer().getLocationPlace().getPlaceType()==PlaceType.SHOPPING_ARCADE_ASHLEYS_SHOP) {
-				return "A short-handled feather duster, ideal for keeping a house clean, but not much use in combat..."
-						+ " [Ashley.speech(A feather duster: the epitome of romance, at least for those who don't know anything about their lover, other than that they're the person who keeps the house clean.)]";
-//						+ " Surely, that's all that's going on with their lives, right?)]";
-			} else {
-				return "A short-handled feather duster, ideal for keeping a house clean, but not much use in combat...";
-			}
-		}
-		
-		@Override
-		public String equipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(ready)] [npc.her] feather duster.");
-		}
-
-		@Override
-		public String unequipText(GameCharacter character) {
-			return UtilText.parse(character, "[npc.Name] [npc.verb(put)] [npc.her] feather duster away.");
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter character, GameCharacter target, boolean isHit) {
-			if(isHit) {
-				if(character.isPlayer()) {
-					return UtilText.parse(target,
-							UtilText.returnStringAtRandom(
-								"You tickle [npc.namePos] [npc.arm] with your feather duster.",
-								"You swipe your feather duster at [npc.namePos] [npc.legs], and manage to tickle [npc.her] shins.",
-								"You swing your feather duster at [npc.name], grinning as you tickle [npc.her] torso."));
-					
-				} else {
-					return UtilText.parse(character,
-							UtilText.returnStringAtRandom(
-								"[npc.Name] tickles your [pc.arm] with [npc.her] feather duster.",
-								"[npc.Name] swipes [npc.her] feather duster at your [pc.legs], and manages to tickle your shins.",
-								"[npc.Name] swings [npc.her] feather duster at you, grinning as [npc.she] tickles your torso."));
-				}
-				
-			} else {
-				if(character.isPlayer()) {
-					return UtilText.parse(target,
-							UtilText.returnStringAtRandom(
-								"You try to tickle [npc.name] with your feather duster, but [npc.she] manages to push you away.",
-								"You attempt to swipe your feather duster at [npc.namePos] [npc.legs], but [npc.she] jumps back and manages to avoid the tickling.",
-								"You swing your feather duster at [npc.name], but [npc.she] manages to duck at the last moment and avoid the tickling."));
-					
-				} else {
-					return UtilText.parse(character,
-							UtilText.returnStringAtRandom(
-								"[npc.Name] tries to tickle you with [npc.her] feather duster, but you manage to grab the shaft and push [npc.herHim] away.",
-								"[npc.Name] attempts to swipe [npc.her] feather duster at your [pc.legs], but you jump back and manage to avoid the tickling.",
-								"[npc.Name] swings [npc.her] feather duster at you, but you manage to duck at the last moment and avoid the tickling."));
-				}
-			}
-		}
-
-		@Override
-		public String getAttackDescription(GameCharacter user, GameCharacter target) {
-			return UtilText.parse(target,
-					"Tickle [npc.name] with your feather duster!");
-		}
-	};
-
 	public static List<AbstractWeaponType> rareWeapons = new ArrayList<>(), allweapons = new ArrayList<>();
 	
 	public static Map<AbstractWeaponType, String> weaponToIdMap = new HashMap<>();

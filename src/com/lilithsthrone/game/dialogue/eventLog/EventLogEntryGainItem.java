@@ -19,7 +19,7 @@ public class EventLogEntryGainItem extends EventLogEntry {
 	public EventLogEntryGainItem(AbstractCoreItem item) {
 		super(Main.game.getMinutesPassed(),
 				(item instanceof AbstractItem?"Gained Item":(item instanceof AbstractClothing?"Gained Clothing":"Gained Weapon")),
-				"<span style='color:"+item.getRarity().getColour().toWebHexString()+";'>"+Util.capitaliseSentence(item.getName())+"</span>");
+				"<span>"+Util.capitaliseSentence(item.getName())+"</span>");
 	}
 	
 	@Override

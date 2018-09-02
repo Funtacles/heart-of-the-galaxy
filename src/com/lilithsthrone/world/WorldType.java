@@ -32,9 +32,6 @@ public enum WorldType {
 					new Value<>(new Color(0x0080ff), PlaceType.DOMINION_CANAL),
 					new Value<>(new Color(0x004080), PlaceType.DOMINION_CANAL_END),
 					
-					new Value<>(new Color(0x000000), PlaceType.DOMINION_DEMON_HOME_GATE),
-					new Value<>(new Color(0xff80ff), PlaceType.DOMINION_DEMON_HOME),
-					new Value<>(new Color(0xff9100), PlaceType.DOMINION_DEMON_HOME_ARTHUR),
 					new Value<>(new Color(0x8000ff), PlaceType.DOMINION_CITY_HALL),
 					new Value<>(new Color(0xff00ff), PlaceType.DOMINION_LILITHS_TOWER),
 
@@ -45,7 +42,6 @@ public enum WorldType {
 					
 					new Value<>(new Color(0x004000), PlaceType.DOMINION_PLAZA),
 					new Value<>(new Color(0x00ffff), PlaceType.DOMINION_AUNTS_HOME),
-					new Value<>(new Color(0xffff00), PlaceType.DOMINION_SHOPPING_ARCADE),
 					new Value<>(new Color(0x4bff00), PlaceType.DOMINION_PARK)
 					
 					)),
@@ -101,28 +97,6 @@ public enum WorldType {
 					new Value<>(new Color(0x0080ff), PlaceType.LILAYA_HOME_ROOM_ROSE),
 					new Value<>(new Color(0x00ffff), PlaceType.LILAYA_HOME_ROOM_PLAYER),
 					new Value<>(new Color(0xff0000), PlaceType.LILAYA_HOME_STAIR_DOWN))){
-		@Override
-		public boolean isRevealedOnStart() {
-			return true;
-		}
-	},
-	
-	SHOPPING_ARCADE("Shopping Arcade",
-			Colour.BASE_YELLOW,
-			1,
-			"/com/lilithsthrone/res/map/dominion/shoppingArcade/shoppingArcade.png",
-			Util.newHashMapOfValues(
-					new Value<>(new Color(0xFFFFFF), PlaceType.GENERIC_IMPASSABLE),
-					new Value<>(new Color(0x808080), PlaceType.SHOPPING_ARCADE_PATH),
-					new Value<>(new Color(0xff0000), PlaceType.SHOPPING_ARCADE_ENTRANCE),
-					new Value<>(new Color(0x00ffff), PlaceType.SHOPPING_ARCADE_RALPHS_SHOP),
-					new Value<>(new Color(0xffff00), PlaceType.SHOPPING_ARCADE_NYANS_SHOP),
-					new Value<>(new Color(0x0080ff), PlaceType.SHOPPING_ARCADE_VICKYS_SHOP),
-					new Value<>(new Color(0x8000ff), PlaceType.SHOPPING_ARCADE_PIXS_GYM),
-					new Value<>(new Color(0xff8000), PlaceType.SHOPPING_ARCADE_KATES_SHOP),
-					new Value<>(new Color(0xff00ff), PlaceType.SHOPPING_ARCADE_GENERIC_SHOP),
-					new Value<>(new Color(0x008000), PlaceType.SHOPPING_ARCADE_ASHLEYS_SHOP)
-					)){
 		@Override
 		public boolean isRevealedOnStart() {
 			return true;

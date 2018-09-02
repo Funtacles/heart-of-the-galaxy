@@ -9,6 +9,5 @@ public enum InventoryInteraction {
 	SEX,
 	COMBAT,
 	TRADING,
-	FULL_MANAGEMENT,
-	CHARACTER_CREATION;
+	FULL_MANAGEMENT;
 }

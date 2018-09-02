@@ -117,7 +117,7 @@ public class Lab {
 			UtilText.nodeContentSB.setLength(0);
 			
 			if(Main.game.getPlayer().getQuest(QuestLine.MAIN) == Quest.MAIN_1_I_ARTHURS_TALE) {
-				if(Main.game.getDialogueFlags().values.contains(DialogueFlagValue.waitingOnLilayaPregnancyResults)) { //TODO
+				if(Main.game.getDialogueFlags().values.contains(DialogueFlagValue.waitingOnLilayaPregnancyResults)) {
 					if(Main.game.getLilaya().isVisiblyPregnant()) {
 						UtilText.nodeContentSB.append(// pregnant
 								"<p>"
@@ -491,21 +491,6 @@ public class Lab {
 					}
 				}
 
-				if(Main.game.getPlayer().hasQuest(QuestLine.SIDE_ACCOMMODATION) && !Main.game.getPlayer().isQuestCompleted(QuestLine.SIDE_ACCOMMODATION)) {
-					if (!Main.game.getPlayer().isQuestProgressGreaterThan(QuestLine.MAIN, Quest.MAIN_1_A_LILAYAS_TESTS)) {
-						generatedResponses.add(new Response("Accommodation", "You'll need to complete Lilaya's initial tests before you can ask her about inviting friends home!", null));
-						
-					} else {
-						generatedResponses.add(new Response("Accommodation", "Ask Lilaya about inviting your new friend to live in one of the many spare rooms in the mansion.", LILAYA_FRIEND_ACCOMMODATION){
-							@Override
-							public void effects() {
-								Main.game.getDialogueFlags().values.remove(DialogueFlagValue.roseToldOnYou);
-								Main.game.getTextEndStringBuilder().append(Main.game.getPlayer().setQuestProgress(QuestLine.SIDE_ACCOMMODATION, Quest.SIDE_UTIL_COMPLETE));
-							}
-						});
-					}
-				}
-				
 				// Return responses:
 				if(index==0) {
 					return new Response("Leave", "Say goodbye to Lilaya and exit her lab.", LAB) {
@@ -1068,28 +1053,6 @@ public class Lab {
 								+ "</p>");
 					}
 				};
-
-			} else {
-				return null;
-			}
-		}
-	};
-	
-	public static final DialogueNodeOld LILAYA_FRIEND_ACCOMMODATION = new DialogueNodeOld("", "", true, true) {
-
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public String getContent() {
-				return "<p>"
-							+ "TODO" //TODO
-						+ "</p>";
-		}
-
-		@Override
-		public Response getResponse(int responseTab, int index) {
-			if (index == 1) {
-				return new Response("Continue", "You've now got Lilaya's permission to invite friends back home!", LAB_EXIT);
 
 			} else {
 				return null;

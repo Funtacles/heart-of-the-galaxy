@@ -89,7 +89,6 @@ import com.lilithsthrone.game.character.persona.SexualOrientation;
 import com.lilithsthrone.game.combat.DamageType;
 import com.lilithsthrone.game.dialogue.DebugDialogue;
 import com.lilithsthrone.game.dialogue.DialogueNodeType;
-import com.lilithsthrone.game.dialogue.places.dominion.shoppingArcade.SuccubisSecrets;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.story.CharacterCreation;
 import com.lilithsthrone.game.dialogue.utils.BodyChanging;
@@ -1126,22 +1125,6 @@ public class MainControllerInitMethod {
 					}
 				}
 				
-				// Bleached anus:
-				id = "ANUS_BLEACHED_ON";
-				if (((EventTarget) MainController.document.getElementById(id)) != null) {
-					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-						BodyChanging.getTarget().setAssBleached(true);
-						Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-					}, false);
-				}
-				id = "ANUS_BLEACHED_OFF";
-				if (((EventTarget) MainController.document.getElementById(id)) != null) {
-					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-						BodyChanging.getTarget().setAssBleached(false);
-						Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()));
-					}, false);
-				}
-				
 				// Penis size:
 				for(int ps : CharacterModificationUtils.getPenisSizesAvailable()) {
 					id = "PENIS_SIZE_"+ps;
@@ -1841,14 +1824,11 @@ public class MainControllerInitMethod {
 				if (((EventTarget) MainController.document.getElementById(id)) != null) {
 					
 					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-						if(Main.game.getPlayer().getMoney() >= SuccubisSecrets.getBodyCoveringTypeCost(bct) || noCost) {
+						if(noCost) {
 							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
 								@Override
 								public void effects() {
 									if(CharacterModificationUtils.getCoveringsToBeApplied().containsKey(bct)) {
-										if(!noCost) {
-											Main.game.getPlayer().incrementMoney(-SuccubisSecrets.getBodyCoveringTypeCost(bct));
-										}
 										
 										BodyChanging.getTarget().setSkinCovering(new Covering(CharacterModificationUtils.getCoveringsToBeApplied().get(bct)), false);
 										
@@ -2000,13 +1980,10 @@ public class MainControllerInitMethod {
 				if (((EventTarget) MainController.document.getElementById(id)) != null) {
 					
 					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-						if(Main.game.getPlayer().getMoney() >= SuccubisSecrets.BASE_HAIR_LENGTH_COST || noCost) {
+						if(noCost) {
 							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
 								@Override
 								public void effects() {
-									if(!noCost) {
-										Main.game.getPlayer().incrementMoney(-SuccubisSecrets.BASE_HAIR_LENGTH_COST);
-									}
 									BodyChanging.getTarget().setHairLength(hairLength.getMedianValue());
 								}
 							});
@@ -2021,13 +1998,10 @@ public class MainControllerInitMethod {
 				if (((EventTarget) MainController.document.getElementById(id)) != null) {
 					
 					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-						if(Main.game.getPlayer().getMoney() >= SuccubisSecrets.BASE_HAIR_STYLE_COST || noCost) {
+						if(noCost) {
 							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
 								@Override
 								public void effects() {
-									if(!noCost) {
-										Main.game.getPlayer().incrementMoney(-SuccubisSecrets.BASE_HAIR_STYLE_COST);
-									}
 									BodyChanging.getTarget().setHairStyle(hairStyle);
 								}
 							});
@@ -2042,13 +2016,10 @@ public class MainControllerInitMethod {
 				if (((EventTarget) MainController.document.getElementById(id)) != null) {
 					
 					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-						if(Main.game.getPlayer().getMoney() >= SuccubisSecrets.getPiercingCost(piercingType) || noCost) {
+						if(noCost) {
 							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
 								@Override
 								public void effects() {
-									if(!noCost) {
-										Main.game.getPlayer().incrementMoney(-SuccubisSecrets.getPiercingCost(piercingType));
-									}
 									switch(piercingType) {
 										case EAR:
 											BodyChanging.getTarget().setPiercedEar(false);
@@ -2086,13 +2057,10 @@ public class MainControllerInitMethod {
 				if (((EventTarget) MainController.document.getElementById(id)) != null) {
 					
 					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-						if(Main.game.getPlayer().getMoney() >= SuccubisSecrets.getPiercingCost(piercingType) || noCost) {
+						if(noCost) {
 							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
 								@Override
 								public void effects() {
-									if(!noCost) {
-										Main.game.getPlayer().incrementMoney(-SuccubisSecrets.getPiercingCost(piercingType));
-									}
 									switch(piercingType) {
 										case EAR:
 											BodyChanging.getTarget().setPiercedEar(true);
@@ -2126,52 +2094,15 @@ public class MainControllerInitMethod {
 				}
 			}
 			
-			if (((EventTarget) MainController.document.getElementById("BLEACHING_OFF")) != null) {
-				
-				((EventTarget) MainController.document.getElementById("BLEACHING_OFF")).addEventListener("click", e -> {
-					if(Main.game.getPlayer().getMoney() >= SuccubisSecrets.BASE_ANAL_BLEACHING_COST || noCost) {
-						Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
-							@Override
-							public void effects() {
-								if(!noCost) {
-									Main.game.getPlayer().incrementMoney(-SuccubisSecrets.BASE_ANAL_BLEACHING_COST);
-								}
-								BodyChanging.getTarget().setAssBleached(false);
-							}
-						});
-					}
-				}, false);
-			}
-			
-			if (((EventTarget) MainController.document.getElementById("BLEACHING_ON")) != null) {
-				
-				((EventTarget) MainController.document.getElementById("BLEACHING_ON")).addEventListener("click", e -> {
-					if(Main.game.getPlayer().getMoney() >= SuccubisSecrets.BASE_ANAL_BLEACHING_COST || noCost) {
-						Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
-							@Override
-							public void effects() {
-								if(!noCost) {
-									Main.game.getPlayer().incrementMoney(-SuccubisSecrets.BASE_ANAL_BLEACHING_COST);
-								}
-								BodyChanging.getTarget().setAssBleached(true);
-							}
-						});
-					}
-				}, false);
-			}
-			
 			for(BodyHair bodyHair: BodyHair.values()) {
 				
 				id = "ASS_HAIR_"+bodyHair;
 				if (((EventTarget) MainController.document.getElementById(id)) != null) {
 					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-						if(Main.game.getPlayer().getMoney() >= SuccubisSecrets.BASE_BODY_HAIR_COST || noCost) {
+						if(noCost) {
 							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
 								@Override
 								public void effects() {
-									if(!noCost) {
-										Main.game.getPlayer().incrementMoney(-SuccubisSecrets.BASE_BODY_HAIR_COST);
-									}
 									BodyChanging.getTarget().setAssHair(bodyHair);
 								}
 							});
@@ -2182,13 +2113,10 @@ public class MainControllerInitMethod {
 				id = "UNDERARM_HAIR_"+bodyHair;
 				if (((EventTarget) MainController.document.getElementById(id)) != null) {
 					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-						if(Main.game.getPlayer().getMoney() >= SuccubisSecrets.BASE_BODY_HAIR_COST || noCost) {
+						if(noCost) {
 							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
 								@Override
 								public void effects() {
-									if(!noCost) {
-										Main.game.getPlayer().incrementMoney(-SuccubisSecrets.BASE_BODY_HAIR_COST);
-									}
 									BodyChanging.getTarget().setUnderarmHair(bodyHair);
 								}
 							});
@@ -2199,13 +2127,10 @@ public class MainControllerInitMethod {
 				id = "PUBIC_HAIR_"+bodyHair;
 				if (((EventTarget) MainController.document.getElementById(id)) != null) {
 					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-						if(Main.game.getPlayer().getMoney() >= SuccubisSecrets.BASE_BODY_HAIR_COST || noCost) {
+						if(noCost) {
 							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
 								@Override
 								public void effects() {
-									if(!noCost) {
-										Main.game.getPlayer().incrementMoney(-SuccubisSecrets.BASE_BODY_HAIR_COST);
-									}
 									BodyChanging.getTarget().setPubicHair(bodyHair);
 								}
 							});
@@ -2216,13 +2141,10 @@ public class MainControllerInitMethod {
 				id = "FACIAL_HAIR_"+bodyHair;
 				if (((EventTarget) MainController.document.getElementById(id)) != null) {
 					((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
-						if(Main.game.getPlayer().getMoney() >= SuccubisSecrets.BASE_BODY_HAIR_COST || noCost) {
+						if(noCost) {
 							Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
 								@Override
 								public void effects() {
-									if(!noCost) {
-										Main.game.getPlayer().incrementMoney(-SuccubisSecrets.BASE_BODY_HAIR_COST);
-									}
 									BodyChanging.getTarget().setFacialHair(bodyHair);
 								}
 							});
@@ -2231,8 +2153,7 @@ public class MainControllerInitMethod {
 				}
 			}
 			
-			if(Main.game.getCurrentDialogueNode()==SuccubisSecrets.SHOP_BEAUTY_SALON_TATTOOS
-					|| Main.game.getCurrentDialogueNode()==CharacterCreation.CHOOSE_ADVANCED_APPEARANCE_TATTOOS) {
+			if(Main.game.getCurrentDialogueNode()==CharacterCreation.CHOOSE_ADVANCED_APPEARANCE_TATTOOS) {
 				for(InventorySlot invSlot : InventorySlot.getClothingSlots()) {
 					id = "TATTOO_INFO_"+invSlot.toString();
 					if (((EventTarget) MainController.document.getElementById(id)) != null) {
@@ -2253,12 +2174,9 @@ public class MainControllerInitMethod {
 						if(BodyChanging.getTarget().getTattooInSlot(invSlot)==null) {
 							((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {
 								Main.game.setContent(new Response("", "",
-										Main.game.isInNewWorld()
-											?SuccubisSecrets.SHOP_BEAUTY_SALON_TATTOOS_ADD
-											:CharacterCreation.CHOOSE_ADVANCED_APPEARANCE_TATTOOS_ADD){
+										CharacterCreation.CHOOSE_ADVANCED_APPEARANCE_TATTOOS_ADD){
 									@Override
 									public void effects() {
-										SuccubisSecrets.invSlotTattooToRemove = null;
 										CharacterModificationUtils.resetTattooVariables(invSlot);
 									}
 								});
@@ -2270,14 +2188,11 @@ public class MainControllerInitMethod {
 									Main.game.setContent(new Response("", "", Main.game.getCurrentDialogueNode()){
 										@Override
 										public void effects() {
-											if(SuccubisSecrets.invSlotTattooToRemove == invSlot || !Main.getProperties().hasValue(PropertyValue.tattooRemovalConfirmations)) {
-												SuccubisSecrets.invSlotTattooToRemove = null;
+											if(!Main.getProperties().hasValue(PropertyValue.tattooRemovalConfirmations)) {
 												if(Main.game.isInNewWorld()) {
 													Main.game.getTextStartStringBuilder().append(Main.game.getPlayer().incrementMoney(-100)); //TODO Kate description
 												}
 												BodyChanging.getTarget().removeTattoo(invSlot);
-											} else {
-												SuccubisSecrets.invSlotTattooToRemove = invSlot;
 											}
 										}
 									});
@@ -2299,8 +2214,7 @@ public class MainControllerInitMethod {
 				}
 			}
 
-			if(Main.game.getCurrentDialogueNode()==SuccubisSecrets.SHOP_BEAUTY_SALON_TATTOOS_ADD
-					|| Main.game.getCurrentDialogueNode()==CharacterCreation.CHOOSE_ADVANCED_APPEARANCE_TATTOOS_ADD) {
+			if(Main.game.getCurrentDialogueNode()==CharacterCreation.CHOOSE_ADVANCED_APPEARANCE_TATTOOS_ADD) {
 				id = "NEW_TATTOO_INFO";
 				if (((EventTarget) MainController.document.getElementById(id)) != null) {
 					MainController.addEventListener(MainController.document, id, "mousemove", MainController.moveTooltipListener, false);

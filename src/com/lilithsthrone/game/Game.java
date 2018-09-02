@@ -42,22 +42,14 @@ import com.lilithsthrone.game.character.effects.StatusEffect;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.Arthur;
-import com.lilithsthrone.game.character.npc.dominion.Ashley;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
-import com.lilithsthrone.game.character.npc.dominion.Kate;
 import com.lilithsthrone.game.character.npc.dominion.Lilaya;
-import com.lilithsthrone.game.character.npc.dominion.Lumi;
-import com.lilithsthrone.game.character.npc.dominion.Nyan;
-import com.lilithsthrone.game.character.npc.dominion.Pix;
-import com.lilithsthrone.game.character.npc.dominion.Ralph;
 import com.lilithsthrone.game.character.npc.dominion.Rose;
 import com.lilithsthrone.game.character.npc.dominion.TestNPC;
-import com.lilithsthrone.game.character.npc.dominion.Vicky;
 import com.lilithsthrone.game.character.npc.misc.GenericAndrogynousNPC;
 import com.lilithsthrone.game.character.npc.misc.GenericFemaleNPC;
 import com.lilithsthrone.game.character.npc.misc.GenericMaleNPC;
 import com.lilithsthrone.game.character.npc.misc.PrologueFemale;
-import com.lilithsthrone.game.character.npc.misc.PrologueMale;
 import com.lilithsthrone.game.character.quests.QuestLine;
 import com.lilithsthrone.game.character.race.RacialBody;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
@@ -531,24 +523,9 @@ public class Game implements Serializable, XMLSaving {
 				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Rose.class))) {
 					Main.game.addNPC(new Rose(), false);
 				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Kate.class))) {
-					Main.game.addNPC(new Kate(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Vicky.class))) {
-					Main.game.addNPC(new Vicky(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Pix.class))) {
-					Main.game.addNPC(new Pix(), false);
-				}
 				
 				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Arthur.class))) {
 					Main.game.addNPC(new Arthur(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Ashley.class))) {
-					Main.game.addNPC(new Ashley(), false);
-				}
-				if(!Main.game.NPCMap.containsKey(Main.game.getUniqueNPCId(Lumi.class))) {
-					Main.game.addNPC(new Lumi(), false);
 				}
 				
 				Main.game.pendingSlaveInStocksReset = false;
@@ -632,8 +609,6 @@ public class Game implements Serializable, XMLSaving {
 			addNPC(new GenericFemaleNPC(), false);
 			addNPC(new GenericAndrogynousNPC(), false);
 			
-			addNPC(new PrologueMale(), false);
-			
 			addNPC(new PrologueFemale(), false);
 			
 			addNPC(new TestNPC(), false);
@@ -652,21 +627,7 @@ public class Game implements Serializable, XMLSaving {
 			
 			// Shopping Promenade:
 			
-			addNPC(new Ralph(), false);
-			
-			addNPC(new Nyan(), false);
-			
-			addNPC(new Vicky(), false);
-			
-			addNPC(new Pix(), false);
-			
-			addNPC(new Kate(), false);
-
 			addNPC(new Arthur(), false);
-
-			addNPC(new Ashley(), false);
-
-			addNPC(new Lumi(), false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -813,9 +774,6 @@ public class Game implements Serializable, XMLSaving {
 					
 				} else {
 					npc.endPregnancy(true);
-					if(npc instanceof Kate) {
-						Main.game.getDialogueFlags().values.remove(DialogueFlagValue.reactedToKatePregnancy);
-					}
 				}
 			}
 			
@@ -2152,10 +2110,6 @@ public class Game implements Serializable, XMLSaving {
 		return null;
 	}
 
-	public NPC getPrologueMale() {
-		return (NPC) this.getNPCById(getUniqueNPCId(PrologueMale.class));
-	}
-
 	public NPC getPrologueFemale() {
 		return (NPC) this.getNPCById(getUniqueNPCId(PrologueFemale.class));
 	}
@@ -2172,36 +2126,8 @@ public class Game implements Serializable, XMLSaving {
 		return (NPC) this.getNPCById(getUniqueNPCId(Rose.class));
 	}
 
-	public NPC getPix() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Pix.class));
-	}
-
-	public NPC getRalph() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Ralph.class));
-	}
-
-	public NPC getNyan() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Nyan.class));
-	}
-
-	public NPC getVicky() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Vicky.class));
-	}
-
-	public NPC getKate() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Kate.class));
-	}
-
 	public NPC getArthur() {
 		return (NPC) this.getNPCById(getUniqueNPCId(Arthur.class));
-	}
-
-	public NPC getAshley() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Ashley.class));
-	}
-	
-	public NPC getLumi() {
-		return (NPC) this.getNPCById(getUniqueNPCId(Lumi.class));
 	}
 
 	public NPC getGenericMaleNPC() {

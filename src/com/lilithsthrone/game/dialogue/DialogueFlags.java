@@ -25,8 +25,6 @@ public class DialogueFlags implements Serializable, XMLSaving {
 
 	public Set<DialogueFlagValue> values;
 	
-	public long ralphDiscountStartTime;
-	public int ralphDiscount;
 	public int scarlettPrice;
 	public int eponaStamps;
 	public long kalahariBreakStartTime;
@@ -43,9 +41,7 @@ public class DialogueFlags implements Serializable, XMLSaving {
 		slaveryManagerSlaveSelected = null;
 		slaveTrader = null;
 		
-		ralphDiscountStartTime = -1;
 		kalahariBreakStartTime = -1;
-		ralphDiscount = 0;
 		
 		eponaStamps = 0;
 		
@@ -56,8 +52,6 @@ public class DialogueFlags implements Serializable, XMLSaving {
 		Element element = doc.createElement("dialogueFlags");
 		parentElement.appendChild(element);
 		
-		CharacterUtils.createXMLElementWithValue(doc, element, "ralphDiscountStartTime", String.valueOf(ralphDiscountStartTime));
-		CharacterUtils.createXMLElementWithValue(doc, element, "ralphDiscount", String.valueOf(ralphDiscount));
 		CharacterUtils.createXMLElementWithValue(doc, element, "scarlettPrice", String.valueOf(scarlettPrice));
 		CharacterUtils.createXMLElementWithValue(doc, element, "eponaStamps", String.valueOf(eponaStamps));
 		CharacterUtils.createXMLElementWithValue(doc, element, "kalahariBreakStartTime", String.valueOf(kalahariBreakStartTime));
@@ -78,8 +72,6 @@ public class DialogueFlags implements Serializable, XMLSaving {
 	public static DialogueFlags loadFromXML(Element parentElement, Document doc) {
 		DialogueFlags newFlags = new DialogueFlags();
 		
-		newFlags.ralphDiscountStartTime = Long.valueOf(((Element)parentElement.getElementsByTagName("ralphDiscountStartTime").item(0)).getAttribute("value"));
-		newFlags.ralphDiscount = Integer.valueOf(((Element)parentElement.getElementsByTagName("ralphDiscount").item(0)).getAttribute("value"));
 		newFlags.scarlettPrice = Integer.valueOf(((Element)parentElement.getElementsByTagName("scarlettPrice").item(0)).getAttribute("value"));
 		
 		newFlags.offspringDialogueTokens = Integer.valueOf(((Element)parentElement.getElementsByTagName("offspringDialogueTokens").item(0)).getAttribute("value"));
@@ -171,15 +163,5 @@ public class DialogueFlags implements Serializable, XMLSaving {
 
 	public void setSlaveryManagerSlaveSelectedId(String slaveryManagerSlaveSelected) {
 		this.slaveryManagerSlaveSelected = slaveryManagerSlaveSelected;
-	}
-	
-	public void resetNyanActions() {
-		this.setFlag(DialogueFlagValue.nyanTalkedTo, false);
-		this.setFlag(DialogueFlagValue.nyanComplimented, false);
-		this.setFlag(DialogueFlagValue.nyanFlirtedWith, false);
-		this.setFlag(DialogueFlagValue.nyanKissed, false);
-		this.setFlag(DialogueFlagValue.nyanMakeOut, false);
-		this.setFlag(DialogueFlagValue.nyanSex, false);
-		this.setFlag(DialogueFlagValue.nyanGift, false);
 	}
 }

@@ -15,19 +15,12 @@ public class InventoryItemComparator implements Comparator<AbstractItem>, Serial
 
 	@Override
 	public int compare(AbstractItem first, AbstractItem second) {
-		int result = first.getRarity().compareTo(second.getRarity());
+		int result = first.getItemType().toString().compareTo(second.getItemType().toString());
 		
-		if (result != 0) {
+		if(result!=0) {
 			return result;
-			
 		} else {
-			result = first.getItemType().toString().compareTo(second.getItemType().toString());
-			
-			if(result!=0) {
-				return result;
-			} else {
-				return first.getColour().getName().compareTo(second.getColour().getName());
-			}
+			return first.getColour().getName().compareTo(second.getColour().getName());
 		}
 	}
 }

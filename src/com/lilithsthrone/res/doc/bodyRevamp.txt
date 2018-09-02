@@ -35,7 +35,6 @@ DONE Ass
 		[Internal tentacles]
 		[Internally ribbed]
 		[Muscle control]
-		[Bleached]
 		{Content lock} [Hair]
 
 DONE Body

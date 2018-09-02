@@ -23,7 +23,6 @@ import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.CharacterInventory;
-import com.lilithsthrone.game.sex.Sex;
 import com.lilithsthrone.game.sex.SexAreaOrifice;
 import com.lilithsthrone.game.sex.SexAreaPenetration;
 import com.lilithsthrone.game.sex.SexParticipantType;
@@ -222,12 +221,6 @@ public class GenericSexualPartner extends NPC {
 		}
 		
 		sexPositionPreferences.clear();
-		
-		if(Sex.isInForeplay() || this.hasFetish(Fetish.FETISH_ORAL_GIVING) || !target.hasPenis()) {
-			sexPositionPreferences.add(SexPositionSlot.GLORY_HOLE_KNEELING);
-		} else {
-			sexPositionPreferences.add(SexPositionSlot.GLORY_HOLE_FUCKED);
-		}
 		
 		return sexPositionPreferences;
 	}

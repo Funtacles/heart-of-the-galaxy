@@ -20,10 +20,6 @@ public class QuestTree {
 		mainQuestTree.addChild(node1);
 		TreeNode<Quest> node2 = new TreeNode<Quest>(Quest.MAIN_1_B_DEMON_HOME);
 		node1.addChild(node2);
-		node1 = new TreeNode<Quest>(Quest.MAIN_1_C_WOLFS_DEN);
-		node2.addChild(node1);
-		node2 = new TreeNode<Quest>(Quest.MAIN_1_D_SLAVERY);
-		node1.addChild(node2);
 		node1 = new TreeNode<Quest>(Quest.MAIN_1_E_REPORT_TO_ALEXA);
 		node2.addChild(node1);
 		node2 = new TreeNode<Quest>(Quest.MAIN_1_F_SCARLETTS_FATE);

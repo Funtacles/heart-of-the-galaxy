@@ -67,41 +67,6 @@ public enum Quest {
 		}
 	},
 
-	MAIN_1_C_WOLFS_DEN(QuestType.MAIN, 3, 20) {
-		@Override
-		public String getName() {
-			return "The search for Arthur; The Wolf's Den";
-		}
-
-		@Override
-		public String getDescription() {
-			return "Arthur has been arrested by Dominion's Enforcers, and has been taken to the Enforcer's HQ." + " It looks like you'll have to inquire further there and find out a way to save Arthur.";
-		}
-
-		@Override
-		public String getCompletedDescription() {
-			return "You were forced into a fight with the Enforcer's Chief, Brax." + " Thankfully, you were able to beat him, but you then found out that Arthur has been sold into slavery!";
-		}
-	},
-
-	MAIN_1_D_SLAVERY(QuestType.MAIN, 3, 10) {
-		@Override
-		public String getName() {
-			return "The search for Arthur; Sold into Slavery";
-		}
-
-		@Override
-		public String getDescription() {
-			return "After defeating Brax, you found out that Arthur was sold into slavery to a trader called Scarlett."
-					+ " You'll have to travel to Slaver Alley, find Scarlett, and find a way to free Arthur.";
-		}
-
-		@Override
-		public String getCompletedDescription() {
-			return "You found the harpy Scarlett in Slaver Alley, who turned out to be one of the most annoying people you've ever met.";
-		}
-	},
-	
 	MAIN_1_E_REPORT_TO_ALEXA(QuestType.MAIN, 3, 30) {
 		@Override
 		public String getName() {

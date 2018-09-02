@@ -12,10 +12,8 @@ import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffectType;
-import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Colour;
 import com.lilithsthrone.utils.Util;
-import com.lilithsthrone.world.places.PlaceType;
 
 /**
  * @since 0.1.84
@@ -256,12 +254,7 @@ public class ItemType {
 
 		@Override
 		public String getDescription() {
-			if(Main.game.getPlayer().getLocationPlace().getPlaceType()==PlaceType.SHOPPING_ARCADE_ASHLEYS_SHOP) {
-				return "A bouquet filled with roses of many colours, it smells pleasant even from a distance."
-						+ " [Ashley.speech(Just in case you're clueless to the point that you don't even know the favourite colour of your intended recipient, every natural colour is included here.)]";
-			} else {
-				return "A bouquet filled with roses of many colours, it smells pleasant even from a distance.";
-			}
+			return "A bouquet filled with roses of many colours, it smells pleasant even from a distance.";
 		}
 		
 		@Override
@@ -304,12 +297,7 @@ public class ItemType {
 
 		@Override
 		public String getDescription() {
-			if(Main.game.getPlayer().getLocationPlace().getPlaceType()==PlaceType.SHOPPING_ARCADE_ASHLEYS_SHOP) {
-				return "A cute brown teddy bear, with the words 'Hug me!' sewed onto a little heart that it's holding."
-						+ " [Ashley.speech(Warning, this is an inanimate object; it does not actually yearn for your affection and cannot protect you from monsters hiding under the bed!)]";
-			} else {
-				return "A cute brown teddy bear, with the words 'Hug me!' sewed onto a little heart that it's holding.";
-			}
+			return "A cute brown teddy bear, with the words 'Hug me!' sewed onto a little heart that it's holding.";
 		}
 		
 		@Override

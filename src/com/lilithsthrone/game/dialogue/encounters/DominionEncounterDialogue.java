@@ -27,7 +27,7 @@ public class DominionEncounterDialogue {
 					+ " A musky smell suddenly fills your nostrils, and you realise that the liquid is in fact sticky white cum."
 					+ " As you wonder what series of events led to this package being abandoned here, you notice that there's splatters of cum all over the floor and up part of the wall."
 					+ " There's no way to find out who the package was originally intended for, so, not wanting it to go to waste, you gingerly peel back the brown paper to reveal:" + "</p>" + "<p style='text-align:center;'>" + "<b>"
-					+ Encounter.getRandomItem().getDisplayName(true) + "</b>" + "</p>";
+					+ Encounter.getRandomItem().getDisplayName() + "</b>" + "</p>";
 		}
 		
 		@Override
@@ -63,7 +63,7 @@ public class DominionEncounterDialogue {
 					+ " As you wonder what series of events led to this package being abandoned here, you notice that there's splatters of cum all over the floor and up part of the wall."
 					+ " There's no way to find out who the package was originally intended for, so, not wanting it to go to waste, you gingerly peel back the brown paper to reveal:" + "</p>" + "<p style='text-align:center;'>"
 					+ "<b>"
-					+ Util.capitaliseSentence(Encounter.getRandomClothing().getName(true, true)) + "</b>" + "</p>";
+					+ Util.capitaliseSentence(Encounter.getRandomClothing().getName(true)) + "</b>" + "</p>";
 		}
 		
 		@Override
@@ -98,7 +98,7 @@ public class DominionEncounterDialogue {
 					+ " A musky smell suddenly fills your nostrils, and you realise that the liquid is in fact sticky white cum."
 					+ " As you wonder what series of events led to this package being abandoned here, you notice that there's splatters of cum all over the floor and up part of the wall."
 					+ " There's no way to find out who the package was originally intended for, so, not wanting it to go to waste, you gingerly peel back the brown paper to reveal:" + "</p>" + "<p style='text-align:center;'>" + "<b>"
-					+ Util.capitaliseSentence(Encounter.getRandomWeapon().getName(true, true)) + "</b>" + "</p>";
+					+ Util.capitaliseSentence(Encounter.getRandomWeapon().getName(true)) + "</b>" + "</p>";
 		}
 
 		@Override

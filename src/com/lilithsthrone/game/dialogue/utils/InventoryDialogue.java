@@ -7,8 +7,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.body.CoverableArea;
-import com.lilithsthrone.game.character.body.types.LegType;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.combat.Attack;
 import com.lilithsthrone.game.combat.Combat;
@@ -18,7 +16,6 @@ import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.dialogue.DialogueNodeType;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
-import com.lilithsthrone.game.dialogue.story.CharacterCreation;
 import com.lilithsthrone.game.inventory.InventorySlot;
 import com.lilithsthrone.game.inventory.ShopTransaction;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
@@ -106,8 +103,6 @@ public class InventoryDialogue {
 			if (inventoryNPC!=null && interactionType == InventoryInteraction.TRADING) {
 				UtilText.nodeContentSB.append(inventoryNPC.getTraderDescription());
 				
-			} else if(interactionType==InventoryInteraction.CHARACTER_CREATION) {
-				return CharacterCreation.getCheckingClothingDescription();
 			}
 			
 			return UtilText.nodeContentSB.toString();
@@ -501,28 +496,6 @@ public class InventoryDialogue {
 						return null;
 					}
 					
-				case CHARACTER_CREATION:
-					if (index == 1) {
-						if(Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.NIPPLES)
-								|| Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.ANUS)
-								|| Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
-								|| Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.VAGINA)
-								|| (Main.game.getPlayer().getClothingInSlot(InventorySlot.FOOT)==null && Main.game.getPlayer().getLegType() == LegType.HUMAN)) {
-							return new Response("To the stage", "You need to be wearing clothing that covers your body, as well as a pair of shoes.", null);
-							
-						} else {
-							return new Response("To the stage", "You're ready to approach the stage now.", CharacterCreation.CHOOSE_BACKGROUND) {
-								@Override
-								public void effects() {
-									CharacterCreation.moveNPCIntoPlayerTile();
-								}
-							};
-						}
-						
-					} else {
-						return null;
-					}
-					
 				case TRADING:
 					if (index == 1) {
 						if(inventoryNPC != null ||Main.game.getPlayerCell().getInventory().getInventorySlotsTaken()==0 || Main.game.isInCombat() || Main.game.isInSex()) {
@@ -817,7 +790,7 @@ public class InventoryDialogue {
 		@Override
 		public String getContent() {
 			return getItemDisplayPanel(item.getSVGString(),
-					item.getDisplayName(true),
+					item.getDisplayName(),
 					item.getDescription()
 					+ item.getExtraDescription(owner, owner)
 					+ (owner!=null && owner.isPlayer()
@@ -1067,7 +1040,7 @@ public class InventoryDialogue {
 								return null;
 							}
 							
-						case FULL_MANAGEMENT:  case CHARACTER_CREATION:
+						case FULL_MANAGEMENT:
 							boolean inventoryFull = inventoryNPC.isInventoryFull() && !inventoryNPC.hasItem(item);
 							
 							if(index == 1) {
@@ -1506,7 +1479,7 @@ public class InventoryDialogue {
 								return null;
 							}
 							
-						case FULL_MANAGEMENT:  case CHARACTER_CREATION:
+						case FULL_MANAGEMENT:
 							inventoryFull = Main.game.getPlayer().isInventoryFull() && !Main.game.getPlayer().hasItem(item);
 						
 							if(index == 1) {
@@ -1804,7 +1777,7 @@ public class InventoryDialogue {
 		@Override
 		public String getContent() {
 			return getItemDisplayPanel(weapon.getSVGString(),
-					weapon.getDisplayName(true),
+					weapon.getDisplayName(),
 					weapon.getDescription()
 					+ (owner!=null && owner.isPlayer()
 							? (inventoryNPC != null && interactionType == InventoryInteraction.TRADING
@@ -2011,7 +1984,7 @@ public class InventoryDialogue {
 								return null;
 							}
 							
-						case FULL_MANAGEMENT:  case CHARACTER_CREATION:
+						case FULL_MANAGEMENT:
 							boolean inventoryFull = inventoryNPC.isInventoryFull() && !inventoryNPC.hasWeapon(weapon);
 							
 							if(index == 1) {
@@ -2349,7 +2322,7 @@ public class InventoryDialogue {
 								return null;
 							}
 							
-						case FULL_MANAGEMENT:  case CHARACTER_CREATION:
+						case FULL_MANAGEMENT:
 							inventoryFull = Main.game.getPlayer().isInventoryFull() && !Main.game.getPlayer().hasWeapon(weapon);
 						
 							if(index == 1) {
@@ -2588,7 +2561,7 @@ public class InventoryDialogue {
 		@Override
 		public String getContent() {
 			return getItemDisplayPanel(clothing.getSVGString(),
-					clothing.getDisplayName(true),
+					clothing.getDisplayName(),
 					clothing.getDescription()
 					+ clothing.clothingExtraInformation(null)
 					+ (owner!=null && owner.isPlayer()
@@ -2603,8 +2576,7 @@ public class InventoryDialogue {
 								? "<p>"
 										+ inventoryNPC.getName("The") + " will sell it for " + UtilText.formatAsMoney(clothing.getPrice(inventoryNPC.getSellModifier())) + "."
 									+ "</p>" 
-								: "")))
-					+(interactionType==InventoryInteraction.CHARACTER_CREATION?CharacterCreation.getCheckingClothingDescription():"");
+								: "")));
 		}
 
 		public String getResponseTabTitle(int index) {
@@ -2798,7 +2770,7 @@ public class InventoryDialogue {
 								return null;
 							}
 							
-						case FULL_MANAGEMENT: case CHARACTER_CREATION:
+						case FULL_MANAGEMENT:
 							boolean inventoryFull = inventoryNPC.isInventoryFull() && !inventoryNPC.hasClothing(clothing);
 							
 							if(index == 1) {
@@ -3058,49 +3030,6 @@ public class InventoryDialogue {
 			} else {
 				// ****************************** Interacting with the ground ******************************
 				if(inventoryNPC == null) {
-					
-					if(interactionType == InventoryInteraction.CHARACTER_CREATION) {
-						if (index == 1) {
-							if(Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.NIPPLES)
-									|| Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.ANUS)
-									|| Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
-									|| Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.VAGINA)
-									|| (Main.game.getPlayer().getClothingInSlot(InventorySlot.FOOT)==null && Main.game.getPlayer().getLegType() == LegType.HUMAN)) {
-								return new Response("To the stage", "You need to be wearing clothing that covers your body, as well as a pair of shoes.", null);
-								
-							} else {
-								return new Response("To the stage", "You're ready to approach the stage now.", CharacterCreation.CHOOSE_BACKGROUND) {
-									@Override
-									public void effects() {
-										CharacterCreation.moveNPCIntoPlayerTile();
-									}
-								};
-							}
-							
-						} else if(index == 2) {
-							if(clothing.isCanBeEquipped(Main.game.getPlayer())) {
-								return new Response("Equip", "Equip the " + clothing.getName() + ".", INVENTORY_MENU){
-									@Override
-									public void effects(){
-										equipClothingFromGround(Main.game.getPlayer(), Main.game.getPlayer(), clothing);
-									}
-								};
-							} else {
-								return new Response("Equip", clothing.getCannotBeEquippedText(Main.game.getPlayer()), null);
-							}
-							
-						} else if(index == 3) {
-							return new Response("Change Colour", "Change the colour of this item of clothing.", DYE_CLOTHING_CHARACTER_CREATION) {
-								@Override
-								public void effects() {
-									resetClothingDyeColours();
-								}
-							};
-						} else {
-							return null;
-						}
-					}
-					
 					boolean inventoryFull = Main.game.getPlayer().isInventoryFull() && !Main.game.getPlayer().hasClothing(clothing);
 					
 					if(index == 1) {
@@ -3215,7 +3144,7 @@ public class InventoryDialogue {
 								return null;
 							}
 							
-						case FULL_MANAGEMENT: case CHARACTER_CREATION:
+						case FULL_MANAGEMENT:
 							inventoryFull = Main.game.getPlayer().isInventoryFull() && !Main.game.getPlayer().hasClothing(clothing);
 						
 							if(index == 1) {
@@ -3493,7 +3422,7 @@ public class InventoryDialogue {
 		@Override
 		public String getContent() {
 			return getItemDisplayPanel(weapon.getSVGString(),
-					weapon.getDisplayName(true),
+					weapon.getDisplayName(),
 					 weapon.getDescription());
 		}
 
@@ -3589,7 +3518,7 @@ public class InventoryDialogue {
 							return null;
 						}
 						
-					case FULL_MANAGEMENT: case TRADING: case CHARACTER_CREATION:
+					case FULL_MANAGEMENT: case TRADING:
 						if(index == 1) {
 							return new Response("Unequip", "Unequip the " + weapon.getName() + ".", INVENTORY_MENU){
 								@Override
@@ -3763,7 +3692,7 @@ public class InventoryDialogue {
 							return null;
 						}
 						
-					case FULL_MANAGEMENT:  case CHARACTER_CREATION:
+					case FULL_MANAGEMENT:
 						if(index == 1) {
 							return new Response("Unequip", "Unequip the " + weapon.getName() + ".", INVENTORY_MENU){
 								@Override
@@ -3914,11 +3843,10 @@ public class InventoryDialogue {
 		@Override
 		public String getContent() {
 			return getItemDisplayPanel(clothing.getSVGEquippedString(owner),
-					clothing.getDisplayName(true),
+					clothing.getDisplayName(),
 					clothing.getDescription()
 					+ clothing.clothingExtraInformation((Main.game.isInSex()?owner:Main.game.getPlayer()))
-					+ (Main.game.isInSex()||Main.game.isInCombat()?clothing.getDisplacementBlockingDescriptions(owner):""))
-					+(interactionType==InventoryInteraction.CHARACTER_CREATION?CharacterCreation.getCheckingClothingDescription():"");
+					+ (Main.game.isInSex()||Main.game.isInCombat()?clothing.getDisplacementBlockingDescriptions(owner):""));
 		}
 
 		public String getResponseTabTitle(int index) {
@@ -4157,43 +4085,6 @@ public class InventoryDialogue {
 							return null;
 						}
 						
-					case CHARACTER_CREATION:
-						if (index == 1) {
-							if(Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.NIPPLES)
-									|| Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.ANUS)
-									|| Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.PENIS)
-									|| Main.game.getPlayer().isCoverableAreaExposed(CoverableArea.VAGINA)
-									|| (Main.game.getPlayer().getClothingInSlot(InventorySlot.FOOT)==null && Main.game.getPlayer().getLegType() == LegType.HUMAN)) {
-								return new Response("To the stage", "You need to be wearing clothing that covers your body, as well as a pair of shoes.", null);
-								
-							} else {
-								return new Response("To the stage", "You're ready to approach the stage now.", CharacterCreation.CHOOSE_BACKGROUND) {
-									@Override
-									public void effects() {
-										CharacterCreation.moveNPCIntoPlayerTile();
-									}
-								};
-							}
-							
-						} else if(index == 2) {
-							return new Response("Unequip", "Unequip the " + clothing.getName() + ".", INVENTORY_MENU){
-								@Override
-								public void effects(){
-									unequipClothingToFloor(Main.game.getPlayer(), clothing);
-								}
-							};
-								
-						} else if(index == 3) {
-							return new Response("Change Colour", "Change the colour of this item of clothing.", DYE_EQUIPPED_CLOTHING_CHARACTER_CREATION) {
-								@Override
-								public void effects() {
-									resetClothingDyeColours();
-								}
-							};
-						} else {
-							return null;
-						}
-						
 					case SEX:
 						if (index == 1) {
 							boolean areaFull = Main.game.isPlayerTileFull() && !Main.game.getPlayerCell().getInventory().hasClothing(clothing);
@@ -4351,7 +4242,7 @@ public class InventoryDialogue {
 							return null;
 						}
 						
-					case FULL_MANAGEMENT: case CHARACTER_CREATION:
+					case FULL_MANAGEMENT:
 						if (index == 1) {
 							boolean areaFull = Main.game.isPlayerTileFull() && !Main.game.getPlayerCell().getInventory().hasClothing(clothing);
 							if(Main.game.getPlayer().getLocationPlace().isItemsDisappear()) {
@@ -4664,7 +4555,7 @@ public class InventoryDialogue {
 							+ clothing.getSVGString()
 						+ "</div>"
 					+ "</div>"
-					+ "<h3 style='text-align:center;'><b>"+clothing.getDisplayName(true)+"</b></h3>"
+					+ "<h3 style='text-align:center;'><b>"+clothing.getDisplayName()+"</b></h3>"
 					+ "<p>"
 						+ "Select the desired colours from the coloured buttons below, and after using the preview to see how the new clothing will look, press the 'Dye' option at the bottom of the screen to apply your changes."
 					+ "</p>"
@@ -4787,7 +4678,7 @@ public class InventoryDialogue {
 							+ weapon.getSVGString()
 						+ "</div>"
 					+ "</div>"
-					+ "<h3 style='text-align:center;'><b>"+weapon.getDisplayName(true)+"</b></h3>"
+					+ "<h3 style='text-align:center;'><b>"+weapon.getDisplayName()+"</b></h3>"
 					+ "<p>"
 						+ "Select the desired colours from the coloured buttons below, and after using the preview to see how the new weapon will look, press the 'Dye' option at the bottom of the screen to apply your changes."
 					+ "</p>"
@@ -5243,27 +5134,15 @@ public class InventoryDialogue {
 	}
 	
 	private static Response getCloseInventoryResponse() {
-		if(interactionType == InventoryInteraction.CHARACTER_CREATION) {
-			return new Response("Back", "Return to looking in the mirror at your appearance.", CharacterCreation.CHOOSE_ADVANCED_APPEARANCE){
-				@Override
-				public void effects(){
-					item = null;
-					clothing = null;
-					weapon = null;
-				}
-			};
-			
-		} else {
-			return new ResponseEffectsOnly("Close Inventory", "Close the Inventory menu."){
-				@Override
-				public void effects(){
-					item = null;
-					clothing = null;
-					weapon = null;
-					Main.mainController.openInventory();
-				}
-			};
-		}
+		return new ResponseEffectsOnly("Close Inventory", "Close the Inventory menu."){
+			@Override
+			public void effects(){
+				item = null;
+				clothing = null;
+				weapon = null;
+				Main.mainController.openInventory();
+			}
+		};
 	}
 	
 	private static Response getBuybackResponse() {

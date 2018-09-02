@@ -296,19 +296,6 @@ public enum SexPositionSlot {
 	PET_ORAL_COCKED_LEG("Cocked leg",
 			false, KNEELING_RECEIVING_ORAL.getAvailableCumTargets()),
 	
-	KNEELING_RECEIVING_ORAL_RALPH("Standing",
-			true, KNEELING_RECEIVING_ORAL.getAvailableCumTargets()),
-	
-	KNEELING_PERFORMING_ORAL_RALPH("Kneeling",
-			false, KNEELING_PERFORMING_ORAL.getAvailableCumTargets()),
-	
-	
-	FACE_TO_WALL_AGAINST_WALL_SHOWER_PIX("Facing wall",
-			true, FACE_TO_WALL_AGAINST_WALL.getAvailableCumTargets()),
-	
-	FACE_TO_WALL_FACING_TARGET_SHOWER_PIX("Pinning against wall",
-			true, FACE_TO_WALL_FACING_TARGET.getAvailableCumTargets()),
-	
 	
 	HAND_SEX_DOM_ROSE("Standing",
 			true, STANDING_DOMINANT.getAvailableCumTargets()),
@@ -350,42 +337,6 @@ public enum SexPositionSlot {
 					OrgasmCumTarget.FLOOR)),
 	
 	BREEDING_STALL_FUCKING("Standing",
-			true, Util.newArrayListOfValues(
-					OrgasmCumTarget.ASS,
-					OrgasmCumTarget.GROIN,
-					OrgasmCumTarget.LEGS,
-					OrgasmCumTarget.FLOOR)),
-	
-
-	/* Glory hole */
-	
-	GLORY_HOLE_KNEELING("Kneeling",
-			false, Util.newArrayListOfValues(
-					OrgasmCumTarget.SELF_STOMACH,
-					OrgasmCumTarget.SELF_GROIN,
-					OrgasmCumTarget.SELF_LEGS,
-					OrgasmCumTarget.FLOOR)),
-
-	GLORY_HOLE_FUCKED("Getting fucked",
-			true, Util.newArrayListOfValues(
-					OrgasmCumTarget.SELF_LEGS,
-					OrgasmCumTarget.FLOOR)),
-
-	GLORY_HOLE_RECEIVING_ORAL_ONE("Receiving oral",
-			true, Util.newArrayListOfValues(
-					OrgasmCumTarget.BREASTS,
-					OrgasmCumTarget.HAIR,
-					OrgasmCumTarget.FACE,
-					OrgasmCumTarget.FLOOR)),
-	
-	GLORY_HOLE_RECEIVING_ORAL_TWO("Receiving oral",
-			true, Util.newArrayListOfValues(
-					OrgasmCumTarget.BREASTS,
-					OrgasmCumTarget.HAIR,
-					OrgasmCumTarget.FACE,
-					OrgasmCumTarget.FLOOR)),
-	
-	GLORY_HOLE_FUCKING("Fucking",
 			true, Util.newArrayListOfValues(
 					OrgasmCumTarget.ASS,
 					OrgasmCumTarget.GROIN,

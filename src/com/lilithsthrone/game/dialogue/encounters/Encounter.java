@@ -11,11 +11,9 @@ import com.lilithsthrone.game.character.gender.GenderPreference;
 import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.dominion.DominionAlleywayAttacker;
 import com.lilithsthrone.game.character.npc.dominion.DominionSuccubusAttacker;
-import com.lilithsthrone.game.character.npc.dominion.Lumi;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNodeOld;
 import com.lilithsthrone.game.inventory.ItemTag;
-import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
@@ -87,9 +85,6 @@ public enum Encounter {
 				
 				// Prioritise re-encountering the NPC on this tile:
 				for(NPC npc : Main.game.getNonCompanionCharactersPresent()) {
-					if(npc instanceof Lumi) {
-						return null;
-					}
 					Main.game.setActiveNPC(npc);
 					return Main.game.getActiveNPC().getEncounterDialogue();
 				}
@@ -128,10 +123,7 @@ public enum Encounter {
 					List<AbstractClothingType> randomClothingList = ClothingType.getAllClothing();
 					randomClothingList.removeIf((clothing) ->
 							(!clothing.getItemTags().contains(ItemTag.SOLD_BY_KATE)
-							&& !clothing.getItemTags().contains(ItemTag.SOLD_BY_NYAN)
-							&& !clothing.getItemTags().contains(ItemTag.DOMINION_ALLEYWAY_SPAWN))
-							|| clothing.getRarity()==Rarity.EPIC
-							|| clothing.getRarity()==Rarity.LEGENDARY);
+							&& !clothing.getItemTags().contains(ItemTag.DOMINION_ALLEYWAY_SPAWN)));
 					randomClothing = AbstractClothingType.generateClothing(randomClothingList.get(Util.random.nextInt(randomClothingList.size())));
 					Main.game.getPlayerCell().getInventory().addClothing(randomClothing);
 				}
